@@ -629,6 +629,10 @@ article>h2:hover i {
   font-size: 0.8rem;
 }
 
+[data-theme="light"] .simulator-sublabel {
+  color: #475569 !important;
+}
+
 /* Filter & Outline Buttons */
 .btn-outline-secondary {
   color: var(--text-main) !important;

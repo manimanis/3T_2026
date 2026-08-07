@@ -415,7 +415,13 @@ class SectionDrawer {
       { file: 'seance06.html', label: 'Séance 6 : Traitements Élémentaires Tableaux 1D', icon: 'bi-journal-bookmark' },
       { file: 'seance07.html', label: 'Séance 7 : Introduction à la Modularité', icon: 'bi-journal-bookmark' },
       { file: 'seance08.html', label: 'Séance 8 : Paramètres, Valeurs de Retour & Portée', icon: 'bi-journal-bookmark' },
-      { file: 'seance09.html', label: 'Séance 9 : Modules Prédéfinis & Tableaux', icon: 'bi-journal-bookmark' }
+      { file: 'seance09.html', label: 'Séance 9 : Modules Prédéfinis & Tableaux', icon: 'bi-journal-bookmark' },
+      { file: 'seance10.html', label: 'Séance 10 : Évaluation Pratique Intermédiaire', icon: 'bi-journal-bookmark' },
+      { file: 'seance11.html', label: 'Séance 11 : Arithmétique I – PGCD & PPCM', icon: 'bi-journal-bookmark' },
+      { file: 'seance12.html', label: 'Séance 12 : Arithmétique II – Nombres Premiers', icon: 'bi-journal-bookmark' },
+      { file: 'seance13.html', label: 'Séance 13 : Recherche Séquentielle', icon: 'bi-journal-bookmark' },
+      { file: 'seance14.html', label: 'Séance 14 : Tri d\'un Tableau – Tri à Bulles', icon: 'bi-journal-bookmark' },
+      { file: 'seance15.html', label: 'Séance 15 : Synthèse & Mini-Projet Python', icon: 'bi-journal-bookmark' }
     ];
 
     const currentIndex = seancesList.findIndex(s => s.file === currentFile);

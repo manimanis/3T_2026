@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 250" width="100%" height="230" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-prime" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="grad-decomp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#10b981" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#3b82f6" />
+    </marker>
+  </defs>
+
+  <!-- Outer Frame -->
+  <rect x="10" y="10" width="780" height="230" rx="12" fill="#1e293b" fill-opacity="0.05" stroke="#10b981" stroke-opacity="0.3" stroke-width="1.5"/>
+
+  <!-- Block 1: Primality Test Optimization -->
+  <g transform="translate(30, 25)">
+    <rect x="0" y="0" width="350" height="200" rx="10" fill="#1e293b" fill-opacity="0.6" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="10" y="10" width="330" height="28" rx="6" fill="url(#grad-prime)"/>
+    <text x="175" y="29" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">1. TEST DE PRIMALITÉ OPTIMISÉ (≤ √N)</text>
+
+    <!-- Bound Box -->
+    <rect x="20" y="50" width="310" height="45" rx="6" fill="#0f172a" stroke="#10b981"/>
+    <text x="175" y="77" font-family="'Fira Code', monospace" font-size="12" font-weight="700" fill="#a7f3d0" text-anchor="middle">i ≤ int(sqrt(N))  [Borne Maximale]</text>
+
+    <rect x="20" y="108" width="310" height="77" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="35" y="130" font-family="'Fira Code', monospace" font-size="11" fill="#f8fafc">while i &lt;= int(sqrt(n)) and test:</text>
+    <text x="55" y="148" font-family="'Fira Code', monospace" font-size="11" fill="#ef4444">if n % i == 0: test = False</text>
+    <text x="55" y="168" font-family="'Fira Code', monospace" font-size="11" fill="#34d399">else: i += 1  # Zéro break !</text>
+  </g>
+
+  <!-- Block 2: Factor Decomposition -->
+  <g transform="translate(420, 25)">
+    <rect x="0" y="0" width="350" height="200" rx="10" fill="#1e293b" fill-opacity="0.6" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="10" y="10" width="330" height="28" rx="6" fill="url(#grad-decomp)"/>
+    <text x="175" y="29" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">2. DÉCOMPOSITION EN FACTEURS PREMIERS</text>
+
+    <!-- Formula Box -->
+    <rect x="20" y="50" width="310" height="45" rx="6" fill="#0f172a" stroke="#3b82f6"/>
+    <text x="175" y="77" font-family="'Fira Code', monospace" font-size="12" font-weight="700" fill="#60a5fa" text-anchor="middle">N = p1^e1 × p2^e2 × ... × pk^ek</text>
+
+    <rect x="20" y="108" width="310" height="77" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="35" y="130" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#93c5fd">Exemple N = 60 :</text>
+    <text x="35" y="150" font-family="'Fira Code', monospace" font-size="11" fill="#f8fafc">Divisions : 60/2=30, 30/2=15, 15/3=5, 5/5=1</text>
+    <text x="35" y="168" font-family="'Fira Code', monospace" font-size="11" font-weight="700" fill="#60a5fa">Produit : 2² × 3 × 5</text>
+  </g>
+</svg>

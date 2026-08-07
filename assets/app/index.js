@@ -144,11 +144,12 @@ createApp({
           moduleId: 3,
           title: "Évaluation Pratique Intermédiaire",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Sujet pratique sur machine combinant modularité, boucles et tableaux.",
+          status: "Disponible",
+          link: "seance10.html",
+          description: "Épreuve pratique individuelle sur machine (Sujet type Bac STEG) évaluant la décomposition modulaire, les boucles et les tableaux numpy.",
           objectives: [
-            "Synthèse des compétences théoriques et pratiques",
-            "Résolution modulaire sur machine"
+            "Évaluation synthétique sur 20 points",
+            "Implémentation d'un problème modulaire complet sur machine"
           ]
         },
         {
@@ -156,11 +157,12 @@ createApp({
           moduleId: 4,
           title: "Arithmétique I – PGCD et PPCM",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Algorithmes de calcul du PGCD (Euclide) et PPCM.",
+          status: "Disponible",
+          link: "seance11.html",
+          description: "Algorithme d'Euclide (divisions successives), formule du PPCM, simplification de fractions et synchronisation d'intervalles.",
           objectives: [
-            "Implémentation de PGCD(a, b)",
-            "Fractions irréductibles"
+            "Implémentation de PGCD(a, b) par l'algorithme d'Euclide",
+            "Simplification irréductible de fractions et PPCM"
           ]
         },
         {
@@ -168,11 +170,12 @@ createApp({
           moduleId: 4,
           title: "Arithmétique II – Nombres Premiers & Décomposition",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Test de primalité et décomposition en facteurs premiers.",
+          status: "Disponible",
+          link: "seance12.html",
+          description: "Test de primalité optimisé (borne racine carrée de N), prochain nombre premier et décomposition en facteurs premiers.",
           objectives: [
-            "Fonction est_premier(n)",
-            "Décomposition en facteurs premiers"
+            "Fonction est_premier(n) optimisée (bornée par sqrt(N))",
+            "Décomposition en facteurs premiers et premier suivant"
           ]
         },
         {
@@ -180,11 +183,12 @@ createApp({
           moduleId: 4,
           title: "Recherche Séquentielle dans un Tableau",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Recherche linéaire d'un élément avec arrêt optimisé.",
+          status: "Disponible",
+          link: "seance13.html",
+          description: "Recherche linéaire avec sortie anticipée booléenne (sans break) et application aux tableaux parallèles (registre d'élèves).",
           objectives: [
-            "Parcours conditionnel avec booléen",
-            "Retour de la position de l'élément"
+            "Parcours conditionnel while i < n and not trouve (zéro break)",
+            "Recherche dans des tableaux parallèles et vérification d'unicité"
           ]
         },
         {
@@ -192,23 +196,25 @@ createApp({
           moduleId: 4,
           title: "Tri d'un Tableau – Le Tri à Bulles",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Principe des permutations et implémentation du tri à bulles.",
+          status: "Disponible",
+          link: "seance14.html",
+          description: "Comparaison des paires adjacentes, permutations sécurisées avec variable aux et tri synchrone de tableaux parallèles (Marathon).",
           objectives: [
-            "Permutations d'éléments",
-            "Tri croissant et décroissant"
+            "Procédure tri_a_bulles avec variable intermédiaire aux",
+            "Tri synchrone de tableaux parallèles (Croissant / Décroissant)"
           ]
         },
         {
           id: 15,
           moduleId: 4,
-          title: "Synthèse & Mini-projet modulaire Python",
+          title: "Synthèse & Mini-projet modulaire Python (GIES)",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Projet guidé intégrant tableaux, tri, arithmétique et modularité.",
+          status: "Disponible",
+          link: "seance15.html",
+          description: "Application GIES intégrée avec menu interactif match...case, tableaux parallèles, tri à bulles, recherche séquentielle et statistiques.",
           objectives: [
-            "Gestionnaire de notes de classe",
-            "Analyseur arithmétique de nombres"
+            "Projet modulaire complet avec menu interactif match...case",
+            "Synthèse du Module 4 (Tri, recherche, statistiques et contrôle)"
           ]
         },
         {

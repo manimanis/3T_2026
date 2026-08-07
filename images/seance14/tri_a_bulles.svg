@@ -1,0 +1,61 @@
+<svg viewBox="0 0 800 250" width="100%" height="230" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-bubble" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="grad-swap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Frame -->
+  <rect x="10" y="10" width="780" height="230" rx="12" fill="#1e293b" fill-opacity="0.05" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="1.5"/>
+
+  <!-- Block 1: Bubble Principle -->
+  <g transform="translate(30, 25)">
+    <rect x="0" y="0" width="350" height="200" rx="10" fill="#1e293b" fill-opacity="0.6" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="10" y="10" width="330" height="28" rx="6" fill="url(#grad-bubble)"/>
+    <text x="175" y="29" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">1. PRINCIPE DU TRI À BULLES</text>
+
+    <!-- Step illustration -->
+    <g transform="translate(20, 55)">
+      <!-- Box 1 -->
+      <rect x="0" y="0" width="55" height="40" rx="4" fill="#0f172a" stroke="#64748b"/>
+      <text x="27" y="25" font-family="'Fira Code', monospace" font-size="12" fill="#cbd5e1" text-anchor="middle">3</text>
+
+      <!-- Compare Box 2 & 3 -->
+      <rect x="65" y="0" width="55" height="40" rx="4" fill="#78350f" stroke="#f59e0b" stroke-width="2"/>
+      <text x="92" y="25" font-family="'Fira Code', monospace" font-size="12" font-weight="700" fill="#fbbf24" text-anchor="middle">15</text>
+
+      <rect x="130" y="0" width="55" height="40" rx="4" fill="#78350f" stroke="#f59e0b" stroke-width="2"/>
+      <text x="157" y="25" font-family="'Fira Code', monospace" font-size="12" font-weight="700" fill="#fbbf24" text-anchor="middle">8</text>
+
+      <!-- Sorted Max Cell -->
+      <rect x="195" y="0" width="115" height="40" rx="4" fill="#065f46" stroke="#10b981"/>
+      <text x="252" y="25" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">Max "remonté"</text>
+    </g>
+
+    <!-- Explanation -->
+    <rect x="20" y="115" width="310" height="70" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="35" y="138" font-family="system-ui, sans-serif" font-size="11" fill="#f8fafc">Si T[j] &gt; T[j+1] : permutation des voisins</text>
+    <text x="35" y="160" font-family="'Fira Code', monospace" font-size="11" fill="#fbbf24">Pour i de 0 à n-2 / Pour j de 0 à n-2-i</text>
+  </g>
+
+  <!-- Block 2: Permutation via aux -->
+  <g transform="translate(420, 25)">
+    <rect x="0" y="0" width="350" height="200" rx="10" fill="#1e293b" fill-opacity="0.6" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="10" y="10" width="330" height="28" rx="6" fill="url(#grad-swap)"/>
+    <text x="175" y="29" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">2. MÉCANISME DE PERMUTATION (aux)</text>
+
+    <!-- Swap steps -->
+    <rect x="20" y="50" width="310" height="135" rx="6" fill="#0f172a" stroke="#10b981"/>
+    <text x="35" y="75" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#a7f3d0">Échange sécurisé de T[j] et T[j+1] :</text>
+    
+    <text x="40" y="102" font-family="'Fira Code', monospace" font-size="11" fill="#38bdf8">1. aux  ← T[j]      # Sauvegarde</text>
+    <text x="40" y="125" font-family="'Fira Code', monospace" font-size="11" fill="#fbbf24">2. T[j] ← T[j + 1]  # Écrasement</text>
+    <text x="40" y="148" font-family="'Fira Code', monospace" font-size="11" fill="#34d399">3. T[j+1] ← aux     # Restitution</text>
+    <text x="40" y="172" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">⚡ Idem pour le tableau synchrone des noms !</text>
+  </g>
+</svg>

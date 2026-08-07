@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°15 : Synthèse &amp; Mini-Projet Modulaire Python | 3ème Secondary</title>
+  <meta name="description"
+    content="Séance N°15 : Synthèse du Module 4 et réalisation du Mini-Projet GIES (Gestionnaire Intégré d'Évaluation Scolaire) pour la 3ème Année Secondaire.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- Static CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section / Breadcrumb -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25">
+      <div class="container px-lg-4">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-1 small">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
+            <li class="breadcrumb-item">Module 4 : Algorithmes Classiques &amp; Mini-Projets</li>
+            <li class="breadcrumb-item active" aria-current="page">Séance 15</li>
+          </ol>
+        </nav>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <span class="badge bg-purple bg-opacity-25 text-purple border border-purple border-opacity-50 mb-1" style="color: #a78bfa;">
+              Module 4 • Séance N°15 (Synthèse)
+            </span>
+            <h1 class="h3 mb-0 fw-bold">Synthèse &amp; Mini-Projet Modulaire Python (GIES)</h1>
+            <p class="text-muted small mb-0 mt-1">
+              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+            </p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
+              <i class="bi bi-diagram-3-fill me-1 text-purple" style="color: #a78bfa;"></i> Architecture Modulaire &amp; `match...case`
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container px-lg-4 my-4">
+
+      <!-- Article 1: Fiche Pédagogique -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+
+        <section id="section-objectifs" class="section-pane">
+          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Mobiliser et synthétiser l'ensemble des notions de programmation modulaire du Module 4.</li>
+                    <li>Maîtriser la gestion des menus d'application console via la structure <code>match ... case</code>.</li>
+                    <li>Consolider les algorithmes fondamentaux : Recherche Séquentielle, Tri à Bulles Synchrone et Statistiques.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Structurer un projet Python complet comportement au moins 5 modules spécialisés interconnectés.</li>
+                    <li>Saisir et contrôler des tableaux parallèles (unicité des identifiants et bornage des notes).</li>
+                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> Ne pas utiliser <code>break</code> dans les boucles de saisie ou de recherche.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chronogramme -->
+          <div class="card card-custom">
+            <div class="card-header-custom text-info fw-bold">
+              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Phase</th>
+                      <th>Durée</th>
+                      <th>Activité de l'Enseignant</th>
+                      <th>Activité de l'Élève</th>
+                      <th>Support</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge bg-secondary">1. Présentation du Projet</span></td>
+                      <td>10 min</td>
+                      <td>Présentation du cahier des charges de l'application *GIES (Gestionnaire Intégré d'Évaluation Scolaire)*.</td>
+                      <td>Prise de connaissance des spécifications et de l'architecture modulaire.</td>
+                      <td>ProProjecteur / Fiche</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-primary">2. Conception &amp; TDO</span></td>
+                      <td>15 min</td>
+                      <td>Encadrement de la décomposition modulaire, des tableaux synchrones et du TDO.</td>
+                      <td>Rédaction du TDO et signature des 5 sous-programmes.</td>
+                      <td>Cahier de TP</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-success">3. Développement Guidé</span></td>
+                      <td>50 min</td>
+                      <td>Suivi individuel, assistance au codage des modules et du menu sous Thonny.</td>
+                      <td>Écriture des modules, assemblage et tests pas-à-pas sous Thonny IDE.</td>
+                      <td>Thonny IDE</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation &amp; Recette</span></td>
+                      <td>15 min</td>
+                      <td>Recette fonctionnelle sur machine (validation des cas d'erreur et menus).</td>
+                      <td>Démonstration de l'application et correction des bugs.</td>
+                      <td>Environnement Python</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 2: Cahier des Charges du Mini-Projet -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-journal-code text-purple me-2" style="color: #a78bfa;"></i> Cahier des Charges &amp; Architecture Modulaire</h2>
+
+        <section id="section-cahier-charges" class="section-pane">
+          <h3>2. Spécifications du Mini-Projet GIES</h3>
+          <p class="text-muted">
+            L'application <strong>GIES (Gestionnaire Intégré d'Évaluation Scolaire)</strong> gère les résultats de $N$ élèves ($3 \le N \le 30$) à l'aide de deux tableaux synchrones : <code>IDs</code> (identifiants uniques $> 0$) et <code>Notes</code> ($0.0 \le \text{note} \le 20.0$).
+          </p>
+
+          <!-- SVG Diagram Vector Mini Projet GIES -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-purple fw-bold" style="color: #a78bfa;">
+              <i class="bi bi-diagram-3 me-2"></i> Diagramme Vectoriel : Architecture Modulaire GIES
+            </div>
+            <div class="card-body bg-body-tertiary text-center p-3">
+              <img src="images/seance15/mini_projet_gies.svg" alt="Architecture Modulaire du Mini Projet GIES"
+                class="img-fluid" style="max-height: 230px; width: 100%;">
+            </div>
+          </div>
+
+          <!-- TDO Table -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-primary fw-bold">
+              <i class="bi bi-table me-2"></i> Tableau de Déclaration des Objets Globaux (TDO)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small text-center">
+                  <thead>
+                    <tr>
+                      <th>Objet</th>
+                      <th>Type / Nature</th>
+                      <th>Rôle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>n</code></td>
+                      <td>Entier</td>
+                      <td>Nombre d'élèves de la classe ($3 \le N \le 30$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>IDs</code></td>
+                      <td>Tableau de `N` Entier</td>
+                      <td>Identifiants uniques des élèves ($> 0$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>Notes</code></td>
+                      <td>Tableau de `N` Réel</td>
+                      <td>Notes scolaires des élèves ($0 \le \text{note} \le 20$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>choix</code></td>
+                      <td>Entier</td>
+                      <td>Option sélectionnée dans le menu (1 à 6)</td>
+                    </tr>
+                    <tr>
+                      <td><code>donnees_saisies</code></td>
+                      <td>Booléen</td>
+                      <td>Indicateur autorisant l'accès aux traitements du menu</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 3: Application Console GIES (Simulateur Vue 3) -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-terminal-fill text-success me-2"></i> Application Console GIES &amp; Simulateur Interactif</h2>
+
+        <section id="section-simulateur" class="section-pane">
+          <h3>Simulateur de Console Python Réactif</h3>
+
+          <!-- Simulateur Vue 3 Réactif -->
+          <div class="card card-custom mb-4 border border-purple border-opacity-50 shadow-sm" style="border-color: #a78bfa !important;">
+            <div class="card-header-custom text-purple fw-bold d-flex justify-content-between align-items-center" style="color: #a78bfa;">
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Application Console GIES</span>
+              <span class="badge bg-primary">Vue 3 App</span>
+            </div>
+            <div class="card-body simulator-card-body">
+
+              <!-- Menu Buttons Bar -->
+              <div class="d-flex flex-wrap gap-2 mb-4">
+                <button class="btn btn-outline-primary btn-sm font-mono" @click="runAfficherReleve">
+                  <i class="bi bi-list-ul me-1"></i> 2. Afficher Relevé
+                </button>
+                <button class="btn btn-outline-warning btn-sm font-mono" @click="runTrierClasse">
+                  <i class="bi bi-sort-numeric-down-alt me-1"></i> 3. Trier Classe
+                </button>
+                <button class="btn btn-outline-info btn-sm font-mono" @click="runAfficherStats">
+                  <i class="bi bi-bar-chart-fill me-1"></i> 5. Statistiques
+                </button>
+              </div>
+
+              <!-- Search Row -->
+              <div class="row g-2 align-items-center mb-4">
+                <div class="col-md-6 col-lg-4">
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text font-mono">Option 4 (ID) :</span>
+                    <input type="number" v-model.number="searchIdInput" class="form-control font-mono">
+                    <button class="btn btn-info font-mono" @click="runRechercherID">
+                      <i class="bi bi-search me-1"></i> Chercher
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Console Terminal Box -->
+              <div class="simulator-val-box bg-dark text-light border-secondary border-opacity-50 font-mono small text-start p-3 mb-4 shadow-sm" style="min-height: 180px;">
+                <div class="text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2">
+                  <i class="bi bi-terminal me-2 text-success"></i> Terminal Python Thonny IDE — Sortie Console GIES
+                </div>
+                <div v-for="(line, idx) in consoleLogs" :key="idx" class="mb-1"
+                  :class="line.includes('===') ? 'text-purple fw-bold' : (line.includes('✅') ? 'text-success fw-bold' : (line.includes('❌') ? 'text-danger fw-bold' : 'text-light'))">
+                  {{ line }}
+                </div>
+              </div>
+
+              <!-- Add Student Form -->
+              <div class="simulator-box">
+                <h6 class="fw-bold text-success mb-3">
+                  <i class="bi bi-person-plus-fill me-2"></i> Option 1 : Saisir / Ajouter un Élève (Unicité ID)
+                </h6>
+                <div class="row g-2 mb-2">
+                  <div class="col-6">
+                    <label class="form-label small simulator-label">Identifiant ID (&gt; 0) :</label>
+                    <input type="number" v-model.number="newId" min="1" class="form-control font-mono">
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label small simulator-label">Note Scolaire (0 à 20) :</label>
+                    <input type="number" step="0.5" v-model.number="newNote" min="0" max="20" class="form-control font-mono">
+                  </div>
+                </div>
+                <button class="btn btn-success btn-sm w-100 mb-2 font-mono" @click="addStudent">
+                  <i class="bi bi-plus-circle me-1"></i> Ajouter à la classe
+                </button>
+                <div v-if="addMessage" class="alert py-2 font-mono small mb-0"
+                  :class="isAddError ? 'alert-danger' : 'alert-success'">
+                  {{ addMessage }}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 4: Code Python Complet -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-code-square text-primary me-2"></i> Implementation Python Officielle (GIES)</h2>
+
+        <section id="section-code-python" class="section-pane">
+          <h3>Code Source Complet (Format Thonny IDE)</h3>
+
+          <div class="code-container">
+            <div class="code-header"><span>Code Python Officiel GIES (Intégration du Menu match...case)</span></div>
+            <pre><code class="language-python"># =========================================================
+# MINI-PROJET : GESTIONNAIRE INTÉGRÉ D'ÉVALUATION SCOLAIRE (GIES)
+# Niveau : 3ème Année Secondary
+# Conventions : Ministère de l'Éducation 2024-2025
+# =========================================================
+
+from numpy import array
+
+# 1. Fonction de recherche sequentielle (Sans break)
+def recherche_seq(T, n, val):
+    i = 0
+    trouve = False
+    pos = -1
+    while i < n and not trouve:
+        if T[i] == val:
+            trouve = True
+            pos = i
+        else:
+            i += 1
+    return pos
+
+# 2. Procedure de saisie des donnees de la classe
+def saisir_donnees(IDs, Notes, n):
+    print("\n--- SAISIE DES ÉLÈVES DE LA CLASSE ---")
+    for i in range(n):
+        id_val = int(input("ID de l'élève N° " + str(i + 1) + " (> 0) : "))
+        while id_val <= 0 or recherche_seq(IDs, i, id_val) != -1:
+            id_val = int(input("ID invalide ou existant ! Saisir un ID unique > 0 : "))
+        IDs[i] = id_val
+        
+        note_val = float(input("Note de l'élève ID " + str(IDs[i]) + " (0 à 20) : "))
+        while not (0.0 <= note_val <= 20.0):
+            note_val = float(input("Invalide ! Saisir une note entre 0 et 20 : "))
+        Notes[i] = note_val
+
+# 3. Procedure d'affichage du releve
+def afficher_releve(IDs, Notes, n):
+    print("\n=== RELEVÉ DE NOTES DE LA CLASSE ===")
+    for i in range(n):
+        print("Rang", i + 1, "| ID :", IDs[i], "| Note :", Notes[i], "/ 20")
+
+# 4. Procedure de Tri a Bulles Synchrone Decroissant
+def trier_classe(IDs, Notes, n):
+    for i in range(n - 1):
+        for j in range(n - 1 - i):
+            if Notes[j] < Notes[j + 1]:  # Ordre décroissant
+                # Echange des notes
+                aux_note = Notes[j]
+                Notes[j] = Notes[j + 1]
+                Notes[j + 1] = aux_note
+                
+                # Echange synchrone des IDs
+                aux_id = IDs[j]
+                IDs[j] = IDs[j + 1]
+                IDs[j + 1] = aux_id
+    print("\n✅ Classe triée avec succès par ordre décroissant des notes !")
+
+# 5. Procedure de calcul et d'affichage des statistiques
+def afficher_statistiques(Notes, n):
+    somme = Notes[0]
+    max_n = Notes[0]
+    min_n = Notes[0]
+    nb_admis = 1 if Notes[0] >= 10.0 else 0
+    
+    for i in range(1, n):
+        somme += Notes[i]
+        if Notes[i] > max_n:
+            max_n = Notes[i]
+        if Notes[i] < min_n:
+            min_n = Notes[i]
+        if Notes[i] >= 10.0:
+            nb_admis += 1
+            
+    moy = somme / n
+    taux = (nb_admis / n) * 100
+    
+    print("\n=== BILAN STATISTIQUE DE LA CLASSE ===")
+    print("Moyenne Générale :", round(moy, 2), "/ 20")
+    print("Meilleure Note   :", max_n, "/ 20")
+    print("Moins bonne Note :", min_n, "/ 20")
+    print("Nombre d'Admis   :", nb_admis, "/", n)
+    print("Taux de Réussite :", round(taux, 1), "%")
+
+# =========================================================
+# PROGRAMME PRINCIPAL
+# =========================================================
+
+n = int(input("Donner le nombre d'élèves de la classe (3 à 30) : "))
+while not (3 <= n <= 30):
+    n = int(input("Invalide ! Saisir N entre 3 et 30 : "))
+
+IDs = array([0] * n)
+Notes = array([float()] * n)
+
+donnees_saisies = False
+choix = 0
+
+# Boucle principale du Menu (sans break)
+while choix != 6:
+    print("\n" + "=" * 55)
+    print(" GESTIONNAIRE INTÉGRÉ D'ÉVALUATION SCOLAIRE (GIES)")
+    print("=" * 55)
+    print("1. Saisir les données de la classe (IDs et Notes)")
+    print("2. Afficher le relevé de la classe")
+    print("3. Trier la classe par ordre décroissant des notes")
+    print("4. Rechercher un élève par son ID")
+    print("5. Afficher les statistiques de la classe")
+    print("6. Quitter l'application")
+    
+    choix = int(input("\nVotre choix (1-6) : "))
+    
+    match choix:
+        case 1:
+            saisir_donnees(IDs, Notes, n)
+            donnees_saisies = True
+            
+        case 2:
+            if donnees_saisies:
+                afficher_releve(IDs, Notes, n)
+            else:
+                print("⚠️ Erreur : Veuillez d'abord saisir les données (Option 1).")
+                
+        case 3:
+            if donnees_saisies:
+                trier_classe(IDs, Notes, n)
+                afficher_releve(IDs, Notes, n)
+            else:
+                print("⚠️ Erreur : Veuillez d'abord saisir les données (Option 1).")
+                
+        case 4:
+            if donnees_saisies:
+                id_q = int(input("Entrez l'ID de l'élève à rechercher : "))
+                idx = recherche_seq(IDs, n, id_q)
+                if idx != -1:
+                    print("✅ Élève trouvé à la position", idx + 1, "| ID :", IDs[idx], "| Note :", Notes[idx], "/ 20")
+                else:
+                    print("❌ Aucun élève répertorié avec l'ID", id_q)
+            else:
+                print("⚠️ Erreur : Veuillez d'abord saisir les données (Option 1).")
+                
+        case 5:
+            if donnees_saisies:
+                afficher_statistiques(Notes, n)
+            else:
+                print("⚠️ Erreur : Veuillez d'abord saisir les données (Option 1).")
+                
+        case 6:
+            print("\nMerci d'avoir utilisé l'application GIES. Au revoir !")
+            
+        case _:
+            print("⚠️ Choix invalide ! Veuillez saisir un nombre entre 1 et 6.")</code></pre>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 5: Évaluation Formative -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+
+        <section id="section-quiz" class="section-pane">
+          <h3>Testez vos Connaissances du Module 4</h3>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- EvalQuiz Vanilla JS Component -->
+              <div class="eval-quiz" data-title="Quiz de Synthèse - Module 4">
+
+                <!-- Quiz Question 1 -->
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="La condition 'while choix != 6:' permet de répéter l'affichage du menu et les choix utilisateur tant que l'option de sortie (6) n'est pas sélectionnée.">
+                  <div class="question-text">Quelle structure permet de maintenir le menu actif jusqu'à ce que l'utilisateur choisisse de quitter ?</div>
+                  <ul class="quiz-options">
+                    <li>while choix != 6:</li>
+                    <li>for choix in range(6):</li>
+                    <li>if choix == 6: break</li>
+                  </ul>
+                </div>
+
+                <!-- Quiz Question 2 -->
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Pour trier par ordre décroissant des notes, la condition dans la boucle du tri à bulles est 'Notes[j] < Notes[j+1]'. Quand la note de droite est supérieure, on les permute.">
+                  <div class="question-text">Quelle condition de test applique-t-on dans le tri à bulles pour obtenir un ordre décroissant ?</div>
+                  <ul class="quiz-options">
+                    <li>Notes[j] &gt; Notes[j + 1]</li>
+                    <li>Notes[j] == Notes[j + 1]</li>
+                    <li>Notes[j] &lt; Notes[j + 1]</li>
+                  </ul>
+                </div>
+
+                <!-- Quiz Question 3 -->
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Avant de saisir un nouvel identifiant dans IDs[i], on vérifie que 'recherche_seq(IDs, i, id_saisi) == -1' afin de garantir l'absence de doublon dans les cases déjà remplies.">
+                  <div class="question-text">Comment garantit-on l'unicité d'un identifiant `ID` lors de la saisie d'un élève ?</div>
+                  <ul class="quiz-options">
+                    <li>En utilisant la fonction len(IDs).</li>
+                    <li>En vérifiant que recherche_seq(IDs, i, id_saisi) == -1 dans la condition du while.</li>
+                    <li>En faisant un tri à bulles sur le tableau IDs.</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+
+  <!-- Application Script for Séance 15 -->
+  <script src="assets/app/seance15.js"></script>
+</body>
+
+</html>

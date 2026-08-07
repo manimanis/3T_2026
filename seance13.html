@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°13 : Recherche Séquentielle dans un Tableau | 3ème Secondary</title>
+  <meta name="description"
+    content="Séance N°13 : Recherche séquentielle (linéaire) dans un tableau 1D et application aux tableaux parallèles synchrones pour la 3ème Année Secondaire.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- Static CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section / Breadcrumb -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25">
+      <div class="container px-lg-4">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-1 small">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
+            <li class="breadcrumb-item">Module 4 : Algorithmes Classiques &amp; Mini-Projets</li>
+            <li class="breadcrumb-item active" aria-current="page">Séance 13</li>
+          </ol>
+        </nav>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-50 mb-1">
+              Module 4 • Séance N°13
+            </span>
+            <h1 class="h3 mb-0 fw-bold">Recherche Séquentielle dans un Tableau</h1>
+            <p class="text-muted small mb-0 mt-1">
+              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+            </p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
+              <i class="bi bi-search me-1 text-primary"></i> Boucle `while i &lt; n and not trouve:` (Zéro `break`)
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container px-lg-4 my-4">
+
+      <!-- Article 1: Fiche Pédagogique -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+
+        <section id="section-objectifs" class="section-pane">
+          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Comprendre le principe de la **recherche séquentielle** (ou linéaire) : examiner successivement les éléments d'un tableau de $0$ à $N-1$.</li>
+                    <li>Apprendre à gérer la **sortie anticipée** de la boucle dès que l'élément recherché est localisé.</li>
+                    <li>Analyser les cas d'exécution : **Meilleur cas** ($1$ seule comparaison à l'indice $0$) et **Pire cas** ($N$ comparaisons si dernier ou absent).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Concevoir la fonction <code>recherche_sequentielle(T, n, element)</code> avec l'indicateur booléen <code>trouve</code>.</li>
+                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> **Ne jamais utiliser l'instruction `break`**.</li>
+                    <li>Appliquer la recherche séquentielle à des **tableaux synchrones/parallèles** (ex: chercher un ID et récupérer la moyenne associée).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chronogramme -->
+          <div class="card card-custom">
+            <div class="card-header-custom text-info fw-bold">
+              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Phase</th>
+                      <th>Durée</th>
+                      <th>Activité de l'Enseignant</th>
+                      <th>Activité de l'Élève</th>
+                      <th>Support</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge bg-secondary">1. Situation Problème</span></td>
+                      <td>10 min</td>
+                      <td>Demander comment retrouver une moyenne à partir d'un numéro d'identifiant parmi $N$ élèves.</td>
+                      <td>Propose de parcourir la liste case par case jusqu'à trouver le numéro.</td>
+                      <td>Tableau / ProProjecteur</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td>25 min</td>
+                      <td>Présentation du schéma de la boucle `Tant que` avec l'indicateur `trouve` (sans `break`).</td>
+                      <td>Prise de notes et traçage manuel de la recherche sur un exemple (élément présent / absent).</td>
+                      <td>Fiche de cours</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td>40 min</td>
+                      <td>Annuaire de Contact des Élèves (Tableaux parallèles `IDs` et `Moyennes`).</td>
+                      <td>Élaboration du TDO/TDL, algorithme modulaire et codage sous Thonny.</td>
+                      <td>Thonny IDE</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td>15 min</td>
+                      <td>Vérification du retour de la position (`pos`) ou du code sentinelle d'absence (`-1`).</td>
+                      <td>Correction des erreurs d'indexation et quiz d'auto-évaluation.</td>
+                      <td>Environnement Python</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 2: Synthèse du Cours -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
+
+        <section id="section-cours-recherche" class="section-pane">
+          <h3>2. Algorithme de Recherche Séquentielle Officiel</h3>
+          <p class="text-muted">
+            La recherche séquentielle examine un tableau de gauche à droite jusqu'à trouver la valeur recherchée ou atteindre la fin du tableau.
+          </p>
+
+          <!-- SVG Diagram Vector Recherche Séquentielle -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-primary fw-bold">
+              <i class="bi bi-diagram-3 me-2"></i> Diagramme Vectoriel : Parcours Séquentiel &amp; Tableaux Parallèles
+            </div>
+            <div class="card-body bg-body-tertiary text-center p-3">
+              <img src="images/seance13/recherche_sequentielle.svg" alt="Recherche Séquentielle et Tableaux Parallèles"
+                class="img-fluid" style="max-height: 230px; width: 100%;">
+            </div>
+          </div>
+
+          <!-- Algorithm rules alert -->
+          <div class="alert alert-danger border border-danger border-opacity-50 shadow-sm mb-4">
+            <h5 class="alert-heading h6 fw-bold mb-2">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i> Interdiction de l'instruction `break`
+            </h5>
+            <p class="mb-0 small">
+              Dans les épreuves d'examen national (Baccalauréat), l'instruction <code>break</code> est strictement interdite. La boucle doit s'arrêter naturellement grâce à la condition composée :<br>
+              <code>while i &lt; n and not trouve:</code>.
+            </p>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 3: Activité 1 - Correction de Code Non Conforme -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-tools text-warning me-2"></i> Activité 1 : Transformation de Code Non Conforme (Sans `break`)</h2>
+
+        <section id="section-activite1" class="section-pane">
+          <h3>Correction d'un Script avec Boucle `for` et `break`</h3>
+
+          <div class="row g-4 mb-4">
+            <!-- Non Conforme -->
+            <div class="col-md-6">
+              <div class="card card-custom border-danger border-opacity-50 h-100">
+                <div class="card-header-custom text-danger fw-bold">
+                  <i class="bi bi-x-circle me-2"></i> Code Non Conforme (Interdit au Bac)
+                </div>
+                <div class="card-body">
+                  <p class="small text-muted mb-2">
+                    Utilise <code>for</code> et <code>break</code> pour interrompre la recherche.
+                  </p>
+                  <pre class="bg-body-tertiary p-2 rounded font-mono small text-danger"><code># NON CONFORME (Interdit)
+def chercher_mauvais(T, n, val):
+    pos = -1
+    for i in range(n):
+        if T[i] == val:
+            pos = i
+            break  # INTERDIT !
+    return pos</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conforme -->
+            <div class="col-md-6">
+              <div class="card card-custom border-success border-opacity-50 h-100">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-check-circle me-2"></i> Code Conforme (Norme Officielle)
+                </div>
+                <div class="card-body">
+                  <p class="small text-muted mb-2">
+                    Utilise <code>while</code> et un indicateur booléen <code>trouve</code>.
+                  </p>
+                  <pre class="bg-body-tertiary p-2 rounded font-mono small text-success"><code># CONFORME AUX DIRECTIVES
+def chercher_conforme(T, n, val):
+    i = 0
+    trouve = False
+    pos = -1
+    while i &lt; n and not trouve:
+        if T[i] == val:
+            trouve = True
+            pos = i
+        else:
+            i += 1
+    return pos</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 4: Activité 2 - Problème Pratique complet: Annuaire des Élèves -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-people-fill text-primary me-2"></i> Activité 2 : Annuaire des Élèves &amp; Tableaux Parallèles</h2>
+
+        <section id="section-activite2" class="section-pane">
+          <h3>Problème Pratique Modulaire</h3>
+
+          <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
+            <h5 class="alert-heading h6 fw-bold mb-2">
+              <i class="bi bi-journal-text me-2"></i> Énoncé du problème :
+            </h5>
+            <p class="mb-2">
+              Un établissement souhaite gérer le registre d'élèves à l'aide de deux tableaux parallèles de taille $N$ ($3 \le N \le 25$) :
+            </p>
+            <ul class="mb-2 small">
+              <li><code>IDs</code> : Tableau d'entiers contenant les identifiants uniques ($> 0$).</li>
+              <li><code>Moyennes</code> : Tableau de réels contenant les moyennes scolaires ($0.0 \le \text{moy} \le 20.0$).</li>
+            </ul>
+            <p class="mb-0 small">
+              L'application permet de saisir les données avec **vérification d'unicité de l'ID** via <code>recherche_sequentielle</code>, puis d'effectuer des recherches par ID pour afficher la position et la moyenne de l'élève.
+            </p>
+          </div>
+
+          <!-- Simulateur Vue 3 Réactif -->
+          <div class="card card-custom mb-4 border border-primary border-opacity-50 shadow-sm">
+            <div class="card-header-custom text-primary fw-bold d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Registre d'Élèves &amp; Recherche par ID</span>
+              <span class="badge bg-primary">Vue 3 App</span>
+            </div>
+            <div class="card-body simulator-card-body">
+
+              <!-- Interactive Registre Display -->
+              <div class="simulator-box mb-4">
+                <h6 class="fw-bold text-primary mb-3">
+                  <i class="bi bi-table me-2"></i> Registre d'Élèves Actuel (Tableaux Parallèles `IDs` &amp; `Moyennes`)
+                </h6>
+                <div class="table-responsive">
+                  <table class="table table-custom table-hover align-middle small text-center mb-0">
+                    <thead>
+                      <tr>
+                        <th>Indice `i`</th>
+                        <th>Identifiant `IDs[i]`</th>
+                        <th>Moyenne Scolaire `Moyennes[i]`</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(st, idx) in students" :key="st.id"
+                        :class="searchResult.pos === idx ? 'table-success bg-opacity-25 fw-bold' : ''">
+                        <td class="font-mono">[{{ idx }}]</td>
+                        <td class="font-mono text-primary fw-bold">ID {{ st.id }}</td>
+                        <td class="font-mono text-success fw-bold">{{ st.moy.toFixed(1) }} / 20</td>
+                        <td>
+                          <button class="btn btn-outline-danger btn-sm p-1 px-2" @click="removeStudent(idx)"
+                            :disabled="students.length <= 3">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Search Module -->
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <div class="simulator-box h-100">
+                    <h6 class="fw-bold text-primary mb-3">
+                      <i class="bi bi-search me-2"></i> Module de Recherche Séquentielle par ID
+                    </h6>
+                    <div class="mb-3">
+                      <label class="form-label small simulator-label">ID de l'élève à rechercher :</label>
+                      <input type="number" v-model.number="searchIdInput" min="1" class="form-control font-mono">
+                    </div>
+
+                    <div class="simulator-val-box text-start shadow-sm"
+                      :class="searchResult.pos !== -1 ? 'border-success' : 'border-danger'">
+                      <span class="simulator-sublabel d-block mb-1 fw-bold">Résultat de la Recherche :</span>
+                      <div v-if="searchResult.pos !== -1" class="text-success font-mono small">
+                        ✅ <strong>Élève Trouvé !</strong><br>
+                        • Indice dans le tableau : <code>pos = {{ searchResult.pos }}</code> (Ligne N°{{ searchResult.pos + 1 }})<br>
+                        • Identifiant ID : <strong>{{ searchResult.foundStudent.id }}</strong><br>
+                        • Moyenne scolaire : <strong>{{ searchResult.foundStudent.moy.toFixed(1) }} / 20</strong><br>
+                        • Comparaisons effectuées : <strong>{{ searchResult.totalComparisons }}</strong>
+                      </div>
+                      <div v-else class="text-danger font-mono small">
+                        ❌ <strong>Aucun Élève Trouvé avec l'ID {{ searchIdInput }}</strong><br>
+                        • Code retourné : <code>pos = -1</code><br>
+                        • Comparaisons effectuées : <strong>{{ searchResult.totalComparisons }}</strong> (Toutes les cases vérifiées)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Add Student Form with Uniqueness Check -->
+                <div class="col-md-6">
+                  <div class="simulator-box h-100">
+                    <h6 class="fw-bold text-success mb-3">
+                      <i class="bi bi-person-plus-fill me-2"></i> Ajouter un Élève (Contrôle d'Unicité de l'ID)
+                    </h6>
+                    <div class="row g-2 mb-2">
+                      <div class="col-6">
+                        <label class="form-label small simulator-label">Nouveau ID (&gt; 0) :</label>
+                        <input type="number" v-model.number="newId" min="1" class="form-control font-mono">
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label small simulator-label">Moyenne (0 à 20) :</label>
+                        <input type="number" step="0.5" v-model.number="newMoy" min="0" max="20" class="form-control font-mono">
+                      </div>
+                    </div>
+                    <button class="btn btn-success btn-sm w-100 mb-2 font-mono" @click="addStudent">
+                      <i class="bi bi-plus-circle me-1"></i> Valider &amp; Ajouter au Registre
+                    </button>
+                    <div v-if="addMessage" class="alert py-2 font-mono small mb-0"
+                      :class="isAddError ? 'alert-danger' : 'alert-success'">
+                      {{ addMessage }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Code Implementations -->
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="code-container">
+                <div class="code-header"><span>Algorithme Modulaire (Conventions 2024-2025)</span></div>
+                <pre><code class="language-algorithm">Fonction recherche_sequentielle (T : Tableau de N Entier, n : Entier, val : Entier) : Entier
+DÉCLARATION DES OBJETS LOCAUX
+    i, pos : Entier
+    trouve : Booléen
+DEBUT
+    i ← 0
+    trouve ← Faux
+    pos ← -1
+    Tant que (i < n ET trouve = Faux) Faire
+        Si (T[i] = val) Alors
+            trouve ← Vrai
+            pos ← i
+        Sinon
+            i ← i + 1
+        FinSi
+    Fin Tant que
+    Retourner pos
+FIN
+
+Procédure saisir_donnees (@IDs : Tableau de N Entier, @Moyennes : Tableau de N Réel, n : Entier)
+DÉCLARATION DES OBJETS LOCAUX
+    i, id_saisi : Entier
+DEBUT
+    Pour i de 0 à n - 1 Faire
+        Répéter
+            Écrire("ID Élève N° ", i + 1, " (> 0) : ")
+            Lire(id_saisi)
+        Jusqu'à (id_saisi > 0 ET recherche_sequentielle(IDs, i, id_saisi) = -1)
+        IDs[i] ← id_saisi
+        
+        Répéter
+            Écrire("Moyenne (0 à 20) : ")
+            Lire(Moyennes[i])
+        Jusqu'à (0.0 ≤ Moyennes[i] ET Moyennes[i] ≤ 20.0)
+    Fin Pour
+FIN
+
+ALGORITHME Registre_Eleves_Recherche
+DEBUT
+    n ← saisir_taille(3, 25)
+    saisir_donnees(IDs, Moyennes, n)
+    idx_trouve ← recherche_sequentielle(IDs, n, id_cherche)
+    Si (idx_trouve ≠ -1) Alors
+        Écrire("Moyenne : ", Moyennes[idx_trouve])
+    Sinon
+        Écrire("Élève non répertorié")
+    FinSi
+FIN</code></pre>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="code-container">
+                <div class="code-header"><span>Implémentation Python Officielle (Thonny IDE)</span></div>
+                <pre><code class="language-python">from numpy import array
+
+def recherche_sequentielle(T, n, val):
+    i = 0
+    trouve = False
+    pos = -1
+    while i < n and not trouve:
+        if T[i] == val:
+            trouve = True
+            pos = i
+        else:
+            i += 1
+    return pos
+
+def saisir_donnees(IDs, Moyennes, n):
+    for i in range(n):
+        id_saisi = int(input("ID élève N° " + str(i+1) + " : "))
+        while id_saisi <= 0 or recherche_sequentielle(IDs, i, id_saisi) != -1:
+            id_saisi = int(input("ID invalide ou existant ! ID unique > 0 : "))
+        IDs[i] = id_saisi
+        
+        moy = float(input("Moyenne (0 à 20) : "))
+        while not (0.0 <= moy <= 20.0):
+            moy = float(input("Invalide ! Note 0 à 20 : "))
+        Moyennes[i] = moy
+
+# PROGRAMME PRINCIPAL
+n = int(input("Nombre d'élèves (3 à 25) : "))
+IDs = array([0] * n)
+Moyennes = array([float()] * n)
+
+saisir_donnees(IDs, Moyennes, n)
+
+id_c = int(input("ID à chercher : "))
+idx = recherche_sequentielle(IDs, n, id_c)
+
+if idx != -1:
+    print("Trouvé ! ID:", IDs[idx], "Moyenne:", Moyennes[idx], "/ 20")
+else:
+    print("Élève non répertorié")</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 5: Évaluation Formative -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+
+        <section id="section-quiz" class="section-pane">
+          <h3>Testez vos Connaissances sur la Recherche Séquentielle</h3>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- EvalQuiz Vanilla JS Component -->
+              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°13">
+
+                <!-- Quiz Question 1 -->
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="La condition 'i < n and not trouve' permet de parcourir le tableau case par case et de s'arrêter immédiatement dès que l'élément est trouvé (trouve = True).">
+                  <div class="question-text">Quelle est la condition de maintien correcte dans la boucle `while` de la recherche séquentielle ?</div>
+                  <ul class="quiz-options">
+                    <li>while i &lt; n or trouve:</li>
+                    <li>while i &lt; n and not trouve:</li>
+                    <li>while i &lt;= n and trouve == True:</li>
+                  </ul>
+                </div>
+
+                <!-- Quiz Question 2 -->
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Les indices d'un tableau vont de 0 à n-1. La valeur sentinelle -1 indique de manière universelle que l'élément n'a pas été trouvé.">
+                  <div class="question-text">Quelle valeur de retour sentinelle indique que l'élément recherché est absent du tableau ?</div>
+                  <ul class="quiz-options">
+                    <li>-1</li>
+                    <li>0</li>
+                    <li>n</li>
+                  </ul>
+                </div>
+
+                <!-- Quiz Question 3 -->
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Dans deux tableaux parallèles synchrones (IDs et Moyennes), le même indice i localisé dans IDs donne directement l'élément correspondant Moyennes[i].">
+                  <div class="question-text">Comment accède-t-on à la moyenne de l'élève une fois son identifiant localisé à l'indice `idx` ?</div>
+                  <ul class="quiz-options">
+                    <li>recherche_sequentielle(Moyennes, n, idx)</li>
+                    <li>Moyennes[0]</li>
+                    <li>Moyennes[idx]</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+
+  <!-- Application Script for Séance 13 -->
+  <script src="assets/app/seance13.js"></script>
+</body>
+
+</html>
