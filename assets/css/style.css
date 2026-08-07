@@ -18,6 +18,8 @@
   --bs-modal-bg: #1e293b;
   --bs-secondary-color: #cbd5e1;
   --bs-tertiary-color: #94a3b8;
+  --bs-tertiary-bg: #1e293b;
+  --bs-tertiary-bg-rgb: 30, 41, 59;
   --bs-border-color: #334155;
 
   /* Custom Design System Tokens */
@@ -81,6 +83,8 @@
   --bs-modal-bg: #ffffff;
   --bs-secondary-color: #475569;
   --bs-tertiary-color: #64748b;
+  --bs-tertiary-bg: #f1f5f9;
+  --bs-tertiary-bg-rgb: 241, 245, 249;
   --bs-border-color: #cbd5e1;
 
   /* Custom Design System Tokens */
@@ -137,6 +141,19 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header & Background Subtitle Theme Overrides */
+header:not(.hero-section) {
+  background-color: var(--bg-header) !important;
+  color: var(--text-main) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bg-body-tertiary {
+  background-color: var(--bs-tertiary-bg) !important;
+  color: var(--text-main) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -575,6 +592,43 @@ article>h2:hover i {
   border: 1px solid var(--border-color);
 }
 
+/* --- High-Contrast Simulator Component Styles (Dark & Light Theme) --- */
+.simulator-card-body {
+  background-color: var(--bg-card) !important;
+  color: var(--text-main) !important;
+  padding: 1.5rem;
+}
+
+.simulator-box {
+  background-color: var(--bg-code-header) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.simulator-val-box {
+  background-color: var(--bg-code) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.simulator-label {
+  color: var(--text-main) !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.simulator-sublabel {
+  color: var(--text-muted) !important;
+  font-size: 0.8rem;
+}
+
 /* Filter & Outline Buttons */
 .btn-outline-secondary {
   color: var(--text-main) !important;
@@ -967,6 +1021,38 @@ footer p {
   color: var(--primary-text) !important;
   background-color: var(--primary-light) !important;
   font-weight: 600;
+}
+
+.drawer-seance-link {
+  transition: all 0.25s ease;
+  background-color: var(--bg-subtle) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+  font-size: 0.835rem;
+}
+
+.drawer-seance-link:hover {
+  border-color: var(--primary) !important;
+  background-color: var(--primary-light) !important;
+  color: var(--primary-text) !important;
+  transform: translateX(4px);
+}
+
+.drawer-seance-link.active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary-text) !important;
+  font-weight: 700 !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.drawer-seance-link i {
+  color: var(--text-muted);
+}
+
+.drawer-seance-link:hover i,
+.drawer-seance-link.active i {
+  color: var(--primary) !important;
 }
 
 /* Fade-in transition for single section display */

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°9 : Modules Prédéfinis &amp; Passage de Tableaux en Paramètres | 3ème Secondary</title>
+  <meta name="description"
+    content="Séance N°9 : Utilisation des modules prédéfinis (math, random, chaînes) et transmission de Tableaux 1D numpy.array en paramètre pour la 3ème Année Secondaire.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- Static CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section / Breadcrumb -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25">
+      <div class="container px-lg-4">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-1 small">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
+            <li class="breadcrumb-item">Module 3 : Modularité &amp; Décomposition Algorithmique</li>
+            <li class="breadcrumb-item active" aria-current="page">Séance 9</li>
+          </ol>
+        </nav>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <span class="badge bg-sky bg-opacity-25 text-sky border border-sky border-opacity-50 mb-1" style="color: #38bdf8;">
+              Module 3 • Séance N°9
+            </span>
+            <h1 class="h3 mb-0 fw-bold">Modules Prédéfinis &amp; Passage de Tableaux en Paramètres</h1>
+            <p class="text-muted small mb-0 mt-1">
+              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+            </p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
+              <i class="bi bi-gear-wide-connected me-1 text-primary"></i> Bibliothèques &amp; numpy.array
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container px-lg-4 my-4">
+
+      <!-- Article 1: Fiche Pédagogique -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+
+        <section id="section-objectifs" class="section-pane">
+          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Exploiter les modules prédéfinis des bibliothèques standards :
+                      <ul>
+                        <li><strong>Mathématiques (<code>math</code>) :</strong> <code>sqrt(x)</code> (racine carrée).</li>
+                        <li><strong>Aléatoire (<code>random</code>) :</strong> <code>randint(vi, vf)</code> (tirage d'un entier dans $[vi, vf]$).</li>
+                        <li><strong>Fonctions sur Chaînes :</strong> <code>len(ch)</code>, <code>ch.find(ch1)</code>, <code>ch.upper()</code>, <code>ch.isdecimal()</code>, <code>str(x)</code>.</li>
+                      </ul>
+                    </li>
+                    <li>Maîtriser la transmission d'un tableau 1D (<code>numpy.array</code>) en paramètre d'un sous-programme.</li>
+                    <li>Savoir qu'en Python, un tableau <code>numpy</code> est <strong>passé par adresse par défaut</strong> (les modifications d'éléments affectent directement le tableau d'origine).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Écrire la signature et le corps de modules spécialisés sur les tableaux :
+                      <ul>
+                        <li>Procédure de remplissage aléatoire avec <code>randint</code>.</li>
+                        <li>Procédure d'affichage élément par élément (<code>print(T[i])</code>).</li>
+                        <li>Fonction de calcul statistique ou d'extraction dans un second tableau.</li>
+                      </ul>
+                    </li>
+                    <li>Organiser l'exécution modulaire d'un programme gérant plusieurs tableaux (ex: <code>T_notes</code> et <code>T_admis</code>).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chronogramme -->
+          <div class="card card-custom">
+            <div class="card-header-custom text-info fw-bold">
+              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Phase</th>
+                      <th>Durée</th>
+                      <th>Activité de l'Enseignant</th>
+                      <th>Activité de l'Élève</th>
+                      <th>Support</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge bg-secondary">1. Rappel &amp; Diagnostic</span></td>
+                      <td>10 min</td>
+                      <td>Présenter le remplissage manuel vs le remplissage aléatoire avec <code>randint</code> pour gagner du temps lors des tests sur de grands tableaux ($N=40$).</td>
+                      <td>Comprend l'intérêt d'automatiser les données de test avec <code>randint</code>.</td>
+                      <td>Tableau / ProProjecteur</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td>25 min</td>
+                      <td>Présentation des fonctions prédéfinies des conventions 2024-2025 et de la syntaxe de transmission d'un tableau <code>numpy</code>.</td>
+                      <td>Prise de notes, analyse des équivalences Algorithmique / Python.</td>
+                      <td>Fiche de cours</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td>40 min</td>
+                      <td>Problème du Générateur &amp; Analyseur de Notes de Classe avec extraction dans un second tableau <code>T_admis</code>.</td>
+                      <td>Écriture du TDO, rédaction des algorithmes des 5 modules et codage sous Thonny.</td>
+                      <td>Thonny Python IDE</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td>15 min</td>
+                      <td>Test des scripts. Vérification du passage par adresse des tableaux et validation de l'extraction.</td>
+                      <td>Correction des signatures et validation du quiz d'évaluation.</td>
+                      <td>Environnement Python</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 2: Synthèse du Cours -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
+
+        <section id="section-cours-modules" class="section-pane">
+          <h3>2. Modules Prédéfinis &amp; Passage de Tableaux en Paramètres</h3>
+          <p class="text-muted">
+            Les fonctions prédéfinies permettent d'effectuer rapidement des calculs mathématiques, de la génération aléatoire et des manipulations de chaînes sans réinventer la roue.
+          </p>
+
+          <!-- SVG Diagram Vector Modules & Tableaux -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-primary fw-bold">
+              <i class="bi bi-diagram-3 me-2"></i> Diagramme Vectoriel : Bibliothèques Standards &amp; Passage par Adresse
+            </div>
+            <div class="card-body bg-body-tertiary text-center p-3">
+              <img src="images/seance09/modules_tableaux.svg" alt="Bibliothèques Standards et Passage par Adresse"
+                class="img-fluid" style="max-height: 230px; width: 100%;">
+            </div>
+          </div>
+
+          <!-- Table of Predefined Functions -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-sky fw-bold" style="color: #38bdf8;">
+              <i class="bi bi-table me-2"></i> Fonctions Prédéfinies Officielles (Conventions 2024-2025)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Domaine</th>
+                      <th>En Algorithmique</th>
+                      <th>En Python</th>
+                      <th>Exemple &amp; Utilisation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Mathématiques</strong></td>
+                      <td><code>RacineCarré(x)</code></td>
+                      <td><code>sqrt(x)</code> <em>(module math)</em></td>
+                      <td><code>from math import sqrt</code> $\to$ <code>sqrt(16)</code> $= 4.0$</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Aléatoire</strong></td>
+                      <td><code>Aléa(vi, vf)</code></td>
+                      <td><code>randint(vi, vf)</code> <em>(module random)</em></td>
+                      <td><code>from random import randint</code> $\to$ <code>randint(1, 6)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Longueur Chaîne</strong></td>
+                      <td><code>Long(ch)</code></td>
+                      <td><code>len(ch)</code></td>
+                      <td><code>len("Python")</code> $= 6$</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Recherche Substr</strong></td>
+                      <td><code>Pos(ch1, ch2)</code></td>
+                      <td><code>ch2.find(ch1)</code></td>
+                      <td><code>"informatique".find("info")</code> $= 0$ (ou $-1$ si absent)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Test Numérique</strong></td>
+                      <td><code>Estnum(ch)</code></td>
+                      <td><code>ch.isdecimal()</code></td>
+                      <td><code>"123".isdecimal()</code> $= \text{True}$</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Conversion Nombre</strong></td>
+                      <td><code>Convch(x)</code></td>
+                      <td><code>str(x)</code></td>
+                      <td><code>str(15.5)</code> $= \text{"15.5"}$</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Majuscules</strong></td>
+                      <td><code>Majus(ch)</code></td>
+                      <td><code>ch.upper()</code></td>
+                      <td><code>"bac".upper()</code> $= \text{"BAC"}$</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rules for Arrays in Parameters -->
+          <div class="alert alert-info border border-info border-opacity-50 shadow-sm mb-4">
+            <h5 class="alert-heading h6 fw-bold mb-2">
+              <i class="bi bi-info-circle-fill me-2"></i> Passage de Tableaux `numpy` en Paramètre
+            </h5>
+            <p class="mb-0 small">
+              - <strong>En Algorithmique :</strong> On indique le symbole <code>@</code> devant le tableau lorsque le module le remplit ou le modifie : <code>Procédure Remplir (@T : Tableau de N Entier, n : Entier)</code>.<br>
+              - <strong>En Python :</strong> Les tableaux de la bibliothèque <code>numpy</code> sont <strong>passés par adresse par défaut</strong>. La signature s'écrit simplement <code>def remplir(T, n):</code> et toute modification <code>T[i] = ...</code> impacte le tableau d'origine.
+            </p>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 3: Activité 1 - Fonctions Prédéfinies -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Application des Fonctions Prédéfinies (`generer_code_eleve`)</h2>
+
+        <section id="section-activite1" class="section-pane">
+          <h3>Génération Automatique de Code d'Accès Élève</h3>
+          <p class="text-muted">
+            Écrire une fonction Python <code>generer_code_eleve(nom, annee)</code> qui prend le nom d'un élève et son année de naissance, et retourne un code au format : <strong>3 premières lettres en Majuscules + Année</strong>.
+          </p>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-file-code me-2"></i> Code Python (Fonction &amp; Test)
+                </div>
+                <div class="card-body">
+                  <div class="code-container">
+                    <pre><code class="language-python">def generer_code_eleve(nom, annee):
+    # Extraction des 3 premiers caractères en majuscules
+    prefixe = nom[:3].upper()
+    # Concaténation avec l'année convertie en chaîne
+    code = prefixe + str(annee)
+    return code
+
+# Test du programme principal
+nom = "ben ali"
+annee = 2008
+code_eleve = generer_code_eleve(nom, annee)
+
+print("Nom élève :", nom)
+print("Code généré :", code_eleve)  # Affiche BEN2008</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100 border-info border-opacity-50">
+                <div class="card-header-custom text-info fw-bold">
+                  <i class="bi bi-layers-fill me-2"></i> Analyse des Fonctions Prédéfinies Utilisées
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom small mb-0">
+                    <li><code>nom[:3]</code> : Découpage de chaîne (*slicing*) pour extraire les 3 premiers caractères (indices 0 à 2).</li>
+                    <li><code>.upper()</code> : Conversion du prétexte en lettres majuscules (ex: `"ben"` $\to$ `"BEN"`).</li>
+                    <li><code>str(annee)</code> : Conversion de l'entier `2008` en chaîne de caractères `"2008"`.</li>
+                    <li><code>+</code> : Opération de concaténation des deux chaînes.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 4: Activité 2 - Problème Pratique complet: Générateur & Analyseur Modulaire -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-bar-chart-steps text-sky me-2" style="color: #38bdf8;"></i> Activité 2 : Générateur &amp; Analyseur de Performances de Classe</h2>
+
+        <section id="section-activite2" class="section-pane">
+          <h3>Problème Pratique Modulaire Complet</h3>
+
+          <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
+            <h5 class="alert-heading h6 fw-bold mb-2">
+              <i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé du problème :
+            </h5>
+            <p class="mb-2">
+              On souhaite concevoir une application modulaire d'analyse des performances d'une classe qui :
+            </p>
+            <ol class="mb-0 small">
+              <li>Saisit le nombre d'élèves $N$ ($5 \le N \le 40$) via une fonction <code>saisir_taille</code>.</li>
+              <li>Génère automatiquement les notes (entiers dans $[0, 20]$) dans <code>T_notes</code> via une procédure <code>remplir_notes_aleatoires</code> (avec <code>randint</code>).</li>
+              <li>Affiche le tableau via <code>afficher_tableau</code>.</li>
+              <li>Calcule la moyenne de la classe via <code>calculer_moyenne</code>.</li>
+              <li>Extrais toutes les notes $\ge 10$ dans un second tableau <code>T_admis</code> et retourne le nombre d'admis $M$ via la fonction <code>extraire_admis</code>.</li>
+            </ol>
+          </div>
+
+          <!-- TDO Table -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-primary fw-bold">
+              <i class="bi bi-table me-2"></i> Tableau de Déclaration des Objets (TDO)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Objet</th>
+                      <th>Type / Nature</th>
+                      <th>Rôle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>n</code></td>
+                      <td>Entier</td>
+                      <td>Nombre total d'élèves de la classe ($5 \le N \le 40$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>m</code></td>
+                      <td>Entier</td>
+                      <td>Nombre d'élèves admis (notes $\ge 10$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>T_notes</code></td>
+                      <td>Tableau de <code>N</code> Entier</td>
+                      <td>Tableau principal des notes de la classe</td>
+                    </tr>
+                    <tr>
+                      <td><code>T_admis</code></td>
+                      <td>Tableau de <code>N</code> Entier</td>
+                      <td>Tableau secondaire des notes d'admis</td>
+                    </tr>
+                    <tr>
+                      <td><code>moy_classe</code></td>
+                      <td>Réel</td>
+                      <td>Moyenne générale de la classe</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulateur Vue 3 Réactif -->
+          <div class="card card-custom mb-4 border border-sky border-opacity-50 shadow-sm" style="border-color: #38bdf8 !important;">
+            <div class="card-header-custom text-primary fw-bold d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Générateur &amp; Analyseur Modulaire</span>
+              <span class="badge bg-primary">Vue 3 App</span>
+            </div>
+            <div class="card-body simulator-card-body">
+
+              <!-- Controls -->
+              <div class="row g-3 align-items-end mb-4">
+                <div class="col-md-5">
+                  <label class="form-label small fw-bold simulator-label">Nombre d'élèves $N$ ($5 \le N \le 40$) :</label>
+                  <div class="input-group">
+                    <input type="number" v-model.number="nEleves" min="5" max="40" class="form-control" placeholder="Taille N...">
+                    <button type="button" class="btn btn-primary" @click="remplirNotesAleatoires">
+                      <i class="bi bi-dice-5 me-1"></i> Générer (randint)
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-7 d-flex align-items-center justify-content-md-end gap-2">
+                  <div class="p-2 px-3 bg-body rounded border border-success border-opacity-50 text-center font-mono shadow-sm">
+                    <span class="simulator-sublabel d-block">`calculer_moyenne(T_notes, N)`</span>
+                    <span class="fw-bold text-success fs-5">{{ moyenneClasse }} / 20</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert mb-4 font-mono small" :class="'alert-' + notificationSysteme.type">
+                {{ notificationSysteme.text }}
+              </div>
+
+              <!-- Main Notes Grid: T_notes -->
+              <div class="simulator-box mb-4">
+                <h6 class="simulator-label mb-2"><i class="bi bi-layers-fill me-1 text-primary"></i> Tableau principal `T_notes` (N = {{ tNotes.length }}) :</h6>
+                <div class="d-flex flex-wrap gap-2 p-2 bg-body rounded border border-secondary border-opacity-25 shadow-sm">
+                  <div v-for="(note, idx) in tNotes" :key="idx"
+                    class="p-2 rounded text-center font-mono position-relative transition-all"
+                    :class="note >= 10 ? 'bg-success bg-opacity-25 border-success text-success' : 'bg-danger bg-opacity-25 border-danger text-danger'"
+                    style="min-width: 75px; flex: 1;">
+                    <span class="badge position-absolute top-0 start-50 translate-middle-x mt-1"
+                      :class="note >= 10 ? 'bg-success' : 'bg-danger'" style="font-size: 0.6rem;">
+                      [{{ idx }}]
+                    </span>
+                    <div class="mt-3 fw-bold fs-6">{{ note }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Extracted Admis Grid: T_admis -->
+              <div class="simulator-box">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="simulator-label mb-0"><i class="bi bi-check-circle-fill me-1 text-success"></i> Tableau extrait `T_admis` (M = {{ tAdmis.length }} admis / {{ tNotes.length }}) :</h6>
+                  <button type="button" class="btn btn-outline-success btn-sm" @click="extraireAdmisModulaire">
+                    <i class="bi bi-funnel me-1"></i> `extraire_admis(T_notes, N, T_admis)`
+                  </button>
+                </div>
+                <div v-if="tAdmis.length > 0" class="d-flex flex-wrap gap-2 p-2 bg-body rounded border border-success border-opacity-25 shadow-sm">
+                  <div v-for="(note, idx) in tAdmis" :key="idx"
+                    class="p-2 rounded text-center font-mono bg-success bg-opacity-25 border border-success text-success"
+                    style="min-width: 75px; flex: 1;">
+                    <span class="badge bg-success position-absolute top-0 start-50 translate-middle-x mt-1" style="font-size: 0.6rem;">
+                      [{{ idx }}]
+                    </span>
+                    <div class="mt-3 fw-bold fs-6">{{ note }}</div>
+                  </div>
+                </div>
+                <div v-else class="alert alert-warning small mb-0 py-2">
+                  Aucun élève n'a obtenu la moyenne (T_admis est vide).
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Code Implementations -->
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="code-container">
+                <div class="code-header"><span>Algorithme Modulaire (Conventions 2024-2025)</span></div>
+                <pre><code class="language-algorithm">Fonction saisir_taille (min_v : Entier, max_v : Entier) : Entier
+DEBUT
+    Répéter
+        Écrire("Donner la taille (", min_v, " à ", max_v, ") : ")
+        Lire(taille)
+    Jusqu'à (min_v ≤ taille ET taille ≤ max_v)
+    Retourner taille
+FIN
+
+Procédure remplir_notes_aleatoires (@T : Tableau de N Entier, n : Entier)
+DEBUT
+    Pour i de 0 à n - 1 Faire
+        T[i] ← Aléa(0, 20)
+    Fin Pour
+FIN
+
+Procédure afficher_tableau (T : Tableau de N Entier, n : Entier, msg : Chaîne)
+DEBUT
+    Écrire("=== ", msg, " ===")
+    Pour i de 0 à n - 1 Faire
+        Écrire("Élément [", i, "] = ", T[i])
+    Fin Pour
+FIN
+
+Fonction calculer_moyenne (T : Tableau de N Entier, n : Entier) : Réel
+DEBUT
+    somme ← 0
+    Pour i de 0 à n - 1 Faire
+        somme ← somme + T[i]
+    Fin Pour
+    Retourner somme / n
+FIN
+
+Fonction extraire_admis (T_src : Tableau de N Entier, n : Entier, @T_dest : Tableau de N Entier) : Entier
+DEBUT
+    j ← 0
+    Pour i de 0 à n - 1 Faire
+        Si (T_src[i] ≥ 10) Alors
+            T_dest[j] ← T_src[i]
+            j ← j + 1
+        FinSi
+    Fin Pour
+    Retourner j
+FIN
+
+ALGORITHME Analyse_Notes_Modulaire
+DEBUT
+    n ← saisir_taille(5, 40)
+    remplir_notes_aleatoires(T_notes, n)
+    afficher_tableau(T_notes, n, "NOTES GÉNÉRÉES")
+    
+    moy_classe ← calculer_moyenne(T_notes, n)
+    Écrire("Moyenne classe : ", moy_classe)
+    
+    m ← extraire_admis(T_notes, n, T_admis)
+    afficher_tableau(T_admis, m, "NOTES ADMIS")
+    Écrire("Total admis : ", m, " / ", n)
+FIN</code></pre>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="code-container">
+                <div class="code-header"><span>Implémentation Python (Thonny IDE)</span></div>
+                <pre><code class="language-python">from numpy import array
+from random import randint
+
+def saisir_taille(min_v, max_v):
+    taille = int(input("Taille (" + str(min_v) + "-" + str(max_v) + ") : "))
+    while not (min_v <= taille <= max_v):
+        taille = int(input("Invalide ! Recommencer : "))
+    return taille
+
+def remplir_notes_aleatoires(T, n):
+    for i in range(n):
+        T[i] = randint(0, 20)  # Tirage aleatoire
+
+def afficher_tableau(T, n, msg):
+    print("\n=== " + msg + " ===")
+    for i in range(n):
+        print("Élément [" + str(i) + "] =", T[i])
+
+def calculer_moyenne(T, n):
+    somme = 0
+    for i in range(n):
+        somme += T[i]
+    return somme / n
+
+def extraire_admis(T_src, n, T_dest):
+    j = 0
+    for i in range(n):
+        if T_src[i] >= 10:
+            T_dest[j] = T_src[i]
+            j += 1
+    return j  # Retourne la taille effective M
+
+# PROGRAMME PRINCIPAL
+n = saisir_taille(5, 40)
+
+T_notes = array([0] * n)
+T_admis = array([0] * n)
+
+remplir_notes_aleatoires(T_notes, n)
+afficher_tableau(T_notes, n, "NOTES GÉNÉRÉES")
+
+moy_classe = calculer_moyenne(T_notes, n)
+print("\nMoyenne générale :", round(moy_classe, 2), "/ 20")
+
+m = extraire_admis(T_notes, n, T_admis)
+afficher_tableau(T_admis, m, "NOTES ADMIS")
+print("\nTotal admis :", m, "/", n)</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 5: Évaluation Formative -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+
+        <section id="section-quiz" class="section-pane">
+          <h3>Testez vos Connaissances sur les Modules Prédéfinis &amp; les Tableaux</h3>
+          <p class="text-muted">Sélectionnez la bonne réponse pour chaque question.</p>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- EvalQuiz Vanilla JS Component -->
+              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°9">
+
+                <!-- Quiz Question 1 -->
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="La fonction randint(a, b) du module 'random' génère un entier aléatoire compris de manière inclusive entre a et b.">
+                  <div class="question-text">Quelle fonction de la bibliothèque `random` génère un entier aléatoire entre deux bornes incluses ?</div>
+                  <ul class="quiz-options">
+                    <li>randint(a, b)</li>
+                    <li>random.range(a, b)</li>
+                    <li>aléa(a, b)</li>
+                  </ul>
+                </div>
+
+                <!-- Quiz Question 2 -->
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="En Python, les tableaux de la bibliothèque numpy sont transmis par adresse par défaut. Toute modification d'élément T[i] dans un sous-programme modifie directement le tableau d'origine.">
+                  <div class="question-text">Comment un tableau `numpy.array` est-il transmis lorsqu'il est passé en paramètre à une fonction Python ?</div>
+                  <ul class="quiz-options">
+                    <li>Par valeur (une copie intégrale est créée).</li>
+                    <li>Par adresse par défaut (les modifications locales affectent le tableau d'origine).</li>
+                    <li>Il est obligatoire d'utiliser le mot-clé global.</li>
+                  </ul>
+                </div>
+
+                <!-- Quiz Question 3 -->
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Pour extraire des éléments dans un second tableau T_dest, la fonction ou procédure utilise un indice séparé j (j = 0 initialement) qu'elle incrémente chaque fois qu'un élément vérifie la condition.">
+                  <div class="question-text">Comment gère-t-on le remplissage d'un second tableau d'extraction `T_dest` ?</div>
+                  <ul class="quiz-options">
+                    <li>En utilisant la méthode append() de la bibliothèque numpy.</li>
+                    <li>En copiant tout le tableau principal d'un seul bloc.</li>
+                    <li>En gérant un indice séparé 'j' qui s'incrémente pour chaque élément sélectionné.</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+
+  <!-- Application Script for Séance 9 -->
+  <script src="assets/app/seance09.js"></script>
+</body>
+
+</html>

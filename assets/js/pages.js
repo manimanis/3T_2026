@@ -394,46 +394,149 @@ class SectionDrawer {
   }
 
   /**
-   * Remplit le tiroir en GROUPANT les sections sous chaque Article
+   * Remplit le tiroir en incluant la navigation entre les séances et le sommaire de la page
    */
   populateNavItems() {
     const bodyEl = document.getElementById(`${this.options.drawerId}Body`);
     if (!bodyEl) return;
 
+    // Récupération de la page actuelle pour surligner la séance active
+    const currentPath = window.location.pathname;
+    let currentFile = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+    if (!currentFile || currentFile === '') currentFile = 'index.html';
+
+    const seancesList = [
+      { file: 'index.html', label: 'Accueil & Planification', icon: 'bi-house-door' },
+      { file: 'seance01.html', label: 'Séance 1 : Bases Python & Diagnostic', icon: 'bi-journal-bookmark' },
+      { file: 'seance02.html', label: 'Séance 2 : Structures Simples (Si / Pour)', icon: 'bi-journal-bookmark' },
+      { file: 'seance03.html', label: 'Séance 3 : Structure Selon (match...case)', icon: 'bi-journal-bookmark' },
+      { file: 'seance04.html', label: 'Séance 4 : Tant Que & Répéter', icon: 'bi-journal-bookmark' },
+      { file: 'seance05.html', label: 'Séance 5 : Tableaux 1D – Saisie & Parcours', icon: 'bi-journal-bookmark' },
+      { file: 'seance06.html', label: 'Séance 6 : Traitements Élémentaires Tableaux 1D', icon: 'bi-journal-bookmark' },
+      { file: 'seance07.html', label: 'Séance 7 : Introduction à la Modularité', icon: 'bi-journal-bookmark' },
+      { file: 'seance08.html', label: 'Séance 8 : Paramètres, Valeurs de Retour & Portée', icon: 'bi-journal-bookmark' },
+      { file: 'seance09.html', label: 'Séance 9 : Modules Prédéfinis & Tableaux', icon: 'bi-journal-bookmark' }
+    ];
+
+    const currentIndex = seancesList.findIndex(s => s.file === currentFile);
+
+    // Construction de la liste restreinte : Séance Précédente, Actuelle, Séance Suivante
+    const itemsToDisplay = [];
+
+    if (currentIndex !== -1) {
+      // Séance Précédente (si elle existe)
+      if (currentIndex > 0) {
+        itemsToDisplay.push({
+          ...seancesList[currentIndex - 1],
+          relType: 'prev',
+          badgeText: 'Précédente',
+          badgeClass: 'bg-secondary text-white'
+        });
+      }
+
+      // Séance Actuelle
+      itemsToDisplay.push({
+        ...seancesList[currentIndex],
+        relType: 'current',
+        badgeText: 'Actuelle',
+        badgeClass: 'bg-primary text-white'
+      });
+
+      // Séance Suivante (si elle existe)
+      if (currentIndex < seancesList.length - 1) {
+        itemsToDisplay.push({
+          ...seancesList[currentIndex + 1],
+          relType: 'next',
+          badgeText: 'Suivante',
+          badgeClass: 'bg-info text-dark'
+        });
+      }
+    } else {
+      // Par défaut
+      itemsToDisplay.push(...seancesList.slice(0, 2).map((s, idx) => ({
+        ...s,
+        relType: idx === 0 ? 'current' : 'next',
+        badgeText: idx === 0 ? 'Actuelle' : 'Suivante',
+        badgeClass: idx === 0 ? 'bg-primary text-white' : 'bg-info text-dark'
+      })));
+    }
+
     let html = '<div class="nav-drawer-list d-flex flex-column gap-3">';
 
-    this.articles.forEach((artGroup) => {
-      html += `
-        <div class="drawer-article-group">
-          <!-- En-tête du groupe d'Article -->
-          <div class="drawer-article-header d-flex align-items-center gap-2 px-2 py-1 mb-2 text-primary fw-bold small text-uppercase tracking-wider border-bottom border-secondary border-opacity-25">
-            <i class="${artGroup.icon} fs-6"></i>
-            <span class="text-truncate">${this.escapeHtml(artGroup.title)}</span>
-          </div>
+    // 1. Navigation globale entre les Séances (Précédente, Actuelle, Suivante)
+    html += `
+      <div class="drawer-article-group pb-2 mb-2 border-bottom border-secondary border-opacity-25">
+        <div class="drawer-article-header d-flex align-items-center justify-content-between px-2 py-1 mb-2 text-info fw-bold small text-uppercase tracking-wider">
+          <span class="d-flex align-items-center gap-2"><i class="bi bi-journals fs-6 text-info"></i> Navigation Séances</span>
+          <span class="badge bg-info bg-opacity-25 text-info" style="font-size: 0.65rem;">Séquentielle</span>
+        </div>
+        <div class="d-flex flex-column gap-1 ms-1">
+    `;
 
-          <!-- Liste des sections du groupe -->
-          <div class="drawer-sections-list d-flex flex-column gap-1 ms-2 ps-2 border-start border-primary border-opacity-25">
+    itemsToDisplay.forEach((item) => {
+      const isActive = (item.relType === 'current');
+      const activeClass = isActive ? 'active' : '';
+
+      html += `
+        <a href="${item.file}" class="drawer-seance-link ${activeClass} text-start d-flex justify-content-between align-items-center py-2 px-3 text-decoration-none rounded-3 border mb-1">
+          <span class="text-truncate d-flex align-items-center gap-2">
+            ${item.relType === 'prev' ? '<i class="bi bi-arrow-left text-muted me-1"></i>' : ''}
+            <i class="bi ${isActive ? 'bi-journal-bookmark-fill' : item.icon}"></i>
+            <span>${this.escapeHtml(item.label)}</span>
+            ${item.relType === 'next' ? '<i class="bi bi-arrow-right text-info ms-1"></i>' : ''}
+          </span>
+          <span class="badge ${item.badgeClass} rounded-pill px-2" style="font-size: 0.65rem;">${item.badgeText}</span>
+        </a>
+      `;
+    });
+
+    html += `
+        </div>
+      </div>
+    `;
+
+    // 2. Sections de la Séance Actuelle (Sommaire)
+    if (this.articles && this.articles.length > 0) {
+      html += `
+        <div class="drawer-article-header d-flex align-items-center gap-2 px-2 py-1 mb-2 text-primary fw-bold small text-uppercase tracking-wider">
+          <i class="bi bi-list-nested fs-6 text-primary"></i>
+          <span>Sommaire de cette page</span>
+        </div>
       `;
 
-      artGroup.sections.forEach((sec) => {
+      this.articles.forEach((artGroup) => {
         html += `
-          <div class="drawer-nav-item" data-flat-index="${sec.flatIndex}" data-target-id="${sec.id}" title="${this.escapeHtml(sec.title)}" role="button" tabindex="0">
-            <div class="d-flex align-items-center gap-2 overflow-hidden">
-              <div class="drawer-item-icon flex-shrink-0">
-                <i class="${sec.icon}"></i>
-              </div>
-              <div class="drawer-item-title fw-semibold">${this.escapeHtml(sec.title)}</div>
+          <div class="drawer-article-group mb-2">
+            <!-- En-tête du groupe d'Article -->
+            <div class="drawer-article-header d-flex align-items-center gap-2 px-2 py-1 mb-2 text-primary fw-bold small text-uppercase tracking-wider border-bottom border-secondary border-opacity-25">
+              <i class="${artGroup.icon} fs-6"></i>
+              <span class="text-truncate">${this.escapeHtml(artGroup.title)}</span>
             </div>
-            <i class="bi bi-chevron-right text-muted small ms-2 flex-shrink-0"></i>
+
+            <!-- Liste des sections du groupe -->
+            <div class="drawer-sections-list d-flex flex-column gap-1 ms-2 ps-2 border-start border-primary border-opacity-25">
+        `;
+
+        artGroup.sections.forEach((sec) => {
+          html += `
+            <div class="drawer-nav-item" data-flat-index="${sec.flatIndex}" data-target-id="${sec.id}" title="${this.escapeHtml(sec.title)}" role="button" tabindex="0">
+              <div class="d-flex align-items-center gap-2 overflow-hidden">
+                <div class="drawer-item-icon flex-shrink-0">
+                  <i class="${sec.icon}"></i>
+                </div>
+                <div class="drawer-item-title fw-semibold">${this.escapeHtml(sec.title)}</div>
+              </div>
+              <i class="bi bi-chevron-right text-muted small ms-2 flex-shrink-0"></i>
+            </div>
+          `;
+        });
+
+        html += `
+            </div>
           </div>
         `;
       });
-
-      html += `
-          </div>
-        </div>
-      `;
-    });
+    }
 
     html += '</div>';
     bodyEl.innerHTML = html;

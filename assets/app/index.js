@@ -66,7 +66,8 @@ createApp({
           moduleId: 2,
           title: "Structures répétitives conditionnelles (Tant Que & Répéter)",
           duration: "1h 30mn",
-          status: "Planifié",
+          status: "Disponible",
+          link: "seance04.html",
           description: "Boucles non bornées avec conditions d'arrêt et contrôle de saisie.",
           objectives: [
             "Saisie sécurisée d'une donnée",
@@ -78,11 +79,12 @@ createApp({
           moduleId: 2,
           title: "Tableaux 1D – Saisie & Parcours",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Déclaration, initialisation et parcours des listes Python (Tableaux 1D).",
+          status: "Disponible",
+          link: "seance05.html",
+          description: "Déclaration (numpy.array), initialisation et parcours des tableaux à une dimension (Tableaux 1D).",
           objectives: [
-            "Stockage de N éléments dans un tableau",
-            "Parcours complet et affichage"
+            "Stockage contigu de N éléments (from numpy import array)",
+            "Indices de 0 à N-1 et affichage élément par élément"
           ]
         },
         {
@@ -90,11 +92,12 @@ createApp({
           moduleId: 2,
           title: "Traitements élémentaires sur Tableaux 1D",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Calculs cumulatifs, somme, moyenne, min et max dans une liste.",
+          status: "Disponible",
+          link: "seance06.html",
+          description: "Calculs cumulatifs (Somme, Moyenne), extrémums (Max, Min) et comptage conditionnel sur un tableau 1D.",
           objectives: [
-            "Somme et moyenne des éléments",
-            "Recherche du maximum et minimum"
+            "Somme, moyenne et recherche de Max/Min",
+            "Comptage conditionnel (notes >= 10.0)"
           ]
         },
         {
@@ -102,11 +105,12 @@ createApp({
           moduleId: 3,
           title: "Introduction à la Modularité (Fonction & Procédure)",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Décomposition d'un problème complexe en sous-programmes modulaires.",
+          status: "Disponible",
+          link: "seance07.html",
+          description: "Décomposition descendante (Top-Down), définition de fonctions (def / return) et de procédures.",
           objectives: [
-            "Définition (def) et appel de fonctions",
-            "Décomposition en tâches simples"
+            "Définition (def) et appel de fonctions vs procédures",
+            "Distinction entre print() et return"
           ]
         },
         {
@@ -114,11 +118,12 @@ createApp({
           moduleId: 3,
           title: "Paramètres, Valeurs de retour et Portée",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Paramètres, valeur de retour (return) et portée locale vs globale.",
+          status: "Disponible",
+          link: "seance08.html",
+          description: "Portée locale vs globale, passage par valeur vs par référence (@), mot-clé global et retours multiples.",
           objectives: [
-            "Modules avec paramètres",
-            "Gestion de la portée des objets"
+            "Passage par valeur vs par référence (@)",
+            "Portée des variables et règle du mot-clé global"
           ]
         },
         {
@@ -126,11 +131,12 @@ createApp({
           moduleId: 3,
           title: "Modules prédéfinis et Passage de Tableaux",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Utilisation des modules math et random, passage de tableaux en paramètre.",
+          status: "Disponible",
+          link: "seance09.html",
+          description: "Utilisation des modules math, random (randint), chaînes et transmission de tableaux numpy.array.",
           objectives: [
-            "Remplissage aléatoire de tableaux",
-            "Traitement de tableaux dans un module"
+            "Remplissage aléatoire de tableaux (randint)",
+            "Passage par adresse de numpy.array en paramètre"
           ]
         },
         {

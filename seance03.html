@@ -30,36 +30,26 @@
 
   <div id="app">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
-      <div class="container-fluid px-lg-4">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <span class="brand-icon me-2"><i class="bi bi-code-square"></i></span>
-          <span class="brand-text">Informatique <span class="badge bg-primary ms-1" style="font-size: 0.7rem;">3º
-              Scientifiques</span></span>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
         </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-custom" href="seance01.html"><i class="bi bi-journal-bookmark me-1"></i>
-                Séance N°1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-custom" href="seance02.html"><i class="bi bi-journal-bookmark me-1"></i>
-                Séance N°2</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-custom active" href="seance03.html"><i
-                  class="bi bi-journal-bookmark-fill me-1"></i> Séance N°3</a>
-            </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <button class="theme-toggle-btn" @click="toggleTheme" title="Changer de thème">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
               <i class="bi"
                 :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
@@ -70,7 +60,7 @@
     </nav>
 
     <!-- Sub-Header / Breadcrumb -->
-    <header class="bg-body-tertiary border-bottom border-secondary border-opacity-25 py-3">
+    <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container px-lg-4">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-1 small">
@@ -85,7 +75,8 @@
               Module 2 • Séance N°3
             </span>
             <h1 class="h3 mb-0 fw-bold">Structure Conditionnelle à Choix Multiples (<code>Selon</code> /
-              <code>match...case</code>)</h1>
+              <code>match...case</code>)
+            </h1>
             <p class="text-muted small mb-0 mt-1">
               Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
             </p>
@@ -118,7 +109,8 @@
                 <div class="card-body">
                   <ul class="list-custom mb-0">
                     <li>Comprendre l'intérêt de la structure à choix multiples par rapport à une suite de
-                      <code>Si ... Sinon Si</code> imbriqués.</li>
+                      <code>Si ... Sinon Si</code> imbriqués.
+                    </li>
                     <li>Maîtriser la syntaxe algorithmique officielle de la structure <code>Selon</code> avec un
                       sélecteur <strong>scalaire</strong>.</li>
                     <li>Manipuler les listes de valeurs (<code>v1, v2</code>) et les intervalles
@@ -138,7 +130,8 @@
                   <ul class="list-custom mb-0">
                     <li>Concevoir un menu interactif d'options à choix multiples.</li>
                     <li>Valider le sélecteur et gérer l'option par défaut avec la clause <code>Sinon</code> /
-                      <code>case _</code>.</li>
+                      <code>case _</code>.
+                    </li>
                     <li>Implémenter et tester un script Python avec branchements multiples sur Thonny IDE.</li>
                   </ul>
                 </div>
@@ -176,7 +169,8 @@
                       <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
                       <td>20 min</td>
                       <td>Explication de la syntaxe <code>Selon</code>, du sélecteur scalaire et de l'équivalent
-                        <code>match...case</code>.</td>
+                        <code>match...case</code>.
+                      </td>
                       <td>Prise de notes, compréhension des motifs <code>case</code>.</td>
                       <td>Fiche de cours</td>
                     </tr>
@@ -415,7 +409,8 @@ print("Tarif appliqué :", tarif, "DT")</code></pre>
               <li><strong>Option 3 :</strong> Convertir des Octets en <strong>Giga-Octets (Go)</strong> ($1 \text{ Go} =
                 1024^3 \text{ Octets}$).</li>
               <li><strong>Option 4 :</strong> Calculer la durée de téléchargement en secondes sur une ligne de
-                <strong>10 Mo/s</strong>.</li>
+                <strong>10 Mo/s</strong>.
+              </li>
             </ul>
           </div>
 

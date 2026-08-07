@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°7 : Introduction à la Modularité (Fonctions et Procédures) | 3ème Secondary</title>
+  <meta name="description"
+    content="Séance N°7 : Décomposition modulaire, Fonctions (def / return), Procédures et distinction entre print() et return en Python pour la 3ème Année Secondaire.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- Static CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section / Breadcrumb -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25">
+      <div class="container px-lg-4">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-1 small">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
+            <li class="breadcrumb-item">Module 3 : Modularité &amp; Décomposition Algorithmique</li>
+            <li class="breadcrumb-item active" aria-current="page">Séance 7</li>
+          </ol>
+        </nav>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <span class="badge bg-indigo bg-opacity-25 text-indigo border border-indigo border-opacity-50 mb-1" style="color: #818cf8;">
+              Module 3 • Séance N°7
+            </span>
+            <h1 class="h3 mb-0 fw-bold">Introduction à la Modularité (Fonctions &amp; Procédures)</h1>
+            <p class="text-muted small mb-0 mt-1">
+              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+            </p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
+              <i class="bi bi-diagram-3-fill me-1 text-primary"></i> Décomposition Top-Down
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container px-lg-4 my-4">
+
+      <!-- Article 1: Fiche Pédagogique -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+
+        <section id="section-objectifs" class="section-pane">
+          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Comprendre les enjeux de la <strong>décomposition modulaire</strong> (approche descendante / <em>Top-Down</em>) : lisibilité, réutilisabilité et débogage ciblé.</li>
+                    <li>Distinguer les 2 grands types de sous-programmes :
+                      <ul>
+                        <li><strong>La Fonction :</strong> Sous-programme qui effectue des calculs et <strong>retourne un résultat unique</strong> (<code>return</code>).</li>
+                        <li><strong>La Procédure :</strong> Sous-programme réalisant une suite d'instructions (affichage, saisie) <strong>sans retourner de valeur</strong>.</li>
+                      </ul>
+                    </li>
+                    <li>Distinguer <strong>Paramètres Formels (pf)</strong> (définition) et <strong>Paramètres Effectifs (pe)</strong> (appel).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Décomposer un problème complexe en modules autonomes.</li>
+                    <li>Déclarer des fonctions et procédures en Python avec la syntaxe <code>def</code>.</li>
+                    <li>Effectuer des appels de sous-programmes conformes en respectant le nombre, l'ordre et le type des paramètres.</li>
+                    <li>Éviter l'erreur classique d'utiliser <code>print()</code> au lieu de <code>return</code> dans une fonction.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chronogramme -->
+          <div class="card card-custom">
+            <div class="card-header-custom text-info fw-bold">
+              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Phase</th>
+                      <th>Durée</th>
+                      <th>Activité de l'Enseignant</th>
+                      <th>Activité de l'Élève</th>
+                      <th>Support</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge bg-secondary">1. Situation Problème</span></td>
+                      <td>10 min</td>
+                      <td>Présenter un script monolithe de 60 lignes mélangées. Montrer la difficulté de correction et de réutilisation.</td>
+                      <td>Exprime le besoin d'isoler les blocs de calcul dans des modules séparés.</td>
+                      <td>Tableau / ProProjecteur</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td>25 min</td>
+                      <td>Présentation des fonctions (<code>return</code>) vs procédures (affichage/saisie). Distinction <code>print()</code> vs <code>return</code>.</td>
+                      <td>Prise de notes, assimilation des syntaxes <code>def</code> et des appels de modules.</td>
+                      <td>Fiche de cours</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td>40 min</td>
+                      <td>Problème d'Analyse Géométrique d'un Rectangle. Encadrement de la décomposition modulaire et du TDO.</td>
+                      <td>Conception des fonctions <code>perimetre</code>, <code>surface</code>, <code>diagonale</code> et de la procédure <code>afficher_bilan</code>.</td>
+                      <td>Thonny Python IDE</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td>15 min</td>
+                      <td>Détection des erreurs d'appel (<code>NoneType</code>) et vérification de l'exécution modulaire.</td>
+                      <td>Correction des erreurs et validation du quiz interactif.</td>
+                      <td>Environnement Python</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 2: Synthèse du Cours -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
+
+        <section id="section-cours-modularite" class="section-pane">
+          <h3>2. Principes de la Décomposition Modulaire</h3>
+          <p class="text-muted">
+            La décomposition modulaire (ou approche <em>Top-Down</em>) consiste à découper un problème complexe en plusieurs sous-programmes réutilisables.
+          </p>
+
+          <!-- SVG Diagram Vector Modularité -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-primary fw-bold">
+              <i class="bi bi-diagram-3 me-2"></i> Diagramme Vectoriel : Architecture Modulaire (Fonction vs Procédure)
+            </div>
+            <div class="card-body bg-body-tertiary text-center p-3">
+              <img src="images/seance07/modularite.svg" alt="Architecture Modulaire : Fonction vs Procédure"
+                class="img-fluid" style="max-height: 240px; width: 100%;">
+            </div>
+          </div>
+
+          <!-- Comparison Table Fonction vs Procédure -->
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100 border-success border-opacity-50">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-funnel-fill me-2"></i> La Fonction (`def ... : return val`)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom small mb-3">
+                    <li><strong>Rôle :</strong> Effectue des calculs et <strong>retourne un résultat unique</strong> de type simple (`int`, `float`, `str`, `bool`).</li>
+                    <li><strong>Instruction clé :</strong> S'achève obligatoirement par <code>return resultat</code>.</li>
+                    <li><strong>Appel :</strong> S'appelle au sein d'une expression, d'une affectation ou d'un <code>print()</code>.</li>
+                  </ul>
+                  <div class="code-container mb-0">
+                    <div class="code-header"><span>Syntaxe Python</span></div>
+                    <pre><code class="language-python">def perimetre(l, h):
+    return 2 * (l + h)
+
+# Appel dans une affectation :
+p = perimetre(6.0, 10.0)</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100 border-warning border-opacity-50">
+                <div class="card-header-custom text-warning fw-bold">
+                  <i class="bi bi-play-circle-fill me-2"></i> La Procédure (`def ...` sans `return`)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom small mb-3">
+                    <li><strong>Rôle :</strong> Exécute une série d'actions (affichage, saisie, modification) <strong>sans retourner de résultat direct</strong>.</li>
+                    <li><strong>Instruction clé :</strong> Ne contient **pas** d'instruction `return` explicite.</li>
+                    <li><strong>Appel :</strong> S'appelle comme une <strong>instruction autonome</strong> sur sa propre ligne.</li>
+                  </ul>
+                  <div class="code-container mb-0">
+                    <div class="code-header"><span>Syntaxe Python</span></div>
+                    <pre><code class="language-python">def afficher_bilan(l, h, p):
+    print("Largeur :", l, "Périmètre :", p)
+
+# Appel autonome :
+afficher_bilan(6.0, 10.0, p)</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 3: Activité 1 - Bug print vs return -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Activité 1 : Erreur Cruciale `print()` vs `return`</h2>
+
+        <section id="section-activite1" class="section-pane">
+          <h3>Piège de l'utilisation de `print()` dans une Fonction</h3>
+          <p class="text-muted">
+            Pourquoi le code de gauche produit-il l'erreur <code>TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'</code> ?
+          </p>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100 border-danger border-opacity-50">
+                <div class="card-header-custom text-danger fw-bold">
+                  <i class="bi bi-x-circle-fill me-2"></i> Code Erroné (`print` au lieu de `return`)
+                </div>
+                <div class="card-body">
+                  <div class="code-container">
+                    <pre><code class="language-python"># ❌ ERREUR : La fonction affiche mais ne retourne rien !
+def carre(x):
+    res = x * x
+    print(res)  # Affiche 25, mais retourne None !
+
+# Programme Principal
+a = 5
+# b reçoit None ! crash sur + 10 !
+b = carre(a) + 10  
+print("Résultat :", b)</code></pre>
+                  </div>
+                  <div class="alert alert-danger small mt-2 mb-0">
+                    <strong>Explication :</strong> En Python, une fonction sans <code>return</code> renvoie par défaut <code>None</code>. L'opération <code>None + 10</code> provoque un plantage immédiat !
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100 border-success border-opacity-50">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-check-circle-fill me-2"></i> Code Corrigé avec `return`
+                </div>
+                <div class="card-body">
+                  <div class="code-container">
+                    <pre><code class="language-python"># ✅ CORRECTION CONFORME : Utilisation de return
+def carre(x):
+    res = x * x
+    return res  # Renvoie la valeur numérique 25
+
+# Programme Principal
+a = 5
+b = carre(a) + 10  # b = 25 + 10 = 35 !
+print("Résultat :", b)  # Affiche 35</code></pre>
+                  </div>
+                  <div class="alert alert-success small mt-2 mb-0">
+                    <strong>Règle :</strong> Une fonction doit obligatoirement retourner sa valeur calculée avec <code>return</code> pour qu'elle puisse être réutilisée dans le reste du programme.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 4: Activité 2 - Problème Pratique complet: Analyse Géométrique du Rectangle -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-bounding-box text-indigo me-2" style="color: #818cf8;"></i> Activité 2 : Analyse Géométrique d'un Rectangle (Application Modulaire)</h2>
+
+        <section id="section-activite2" class="section-pane">
+          <h3>Problème Pratique Guidé</h3>
+
+          <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
+            <h5 class="alert-heading h6 fw-bold mb-2">
+              <i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé du problème :
+            </h5>
+            <p class="mb-2">
+              On souhaite concevoir une application modulaire d'<strong>Analyse Géométrique d'un Rectangle</strong> qui :
+            </p>
+            <ol class="mb-0 small">
+              <li>Saisit la largeur $L$ et la longueur $H$ (avec $0 < L \le H$).</li>
+              <li>Calcule le <strong>périmètre</strong> $P = 2 \times (L + H)$ via une fonction <code>perimetre</code>.</li>
+              <li>Calcule la <strong>surface</strong> $S = L \times H$ via une fonction <code>surface</code>.</li>
+              <li>Calcule la <strong>diagonale</strong> $D = \sqrt{L^2 + H^2}$ via une fonction <code>diagonale</code> (utilisant <code>sqrt</code> de la bibliothèque <code>math</code>).</li>
+              <li>Affiche un <strong>bilan géométrique complet</strong> via une procédure <code>afficher_bilan</code>.</li>
+            </ol>
+          </div>
+
+          <!-- TDO Table -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-primary fw-bold">
+              <i class="bi bi-table me-2"></i> Tableau de Déclaration des Objets du Programme Principal (TDO)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Objet</th>
+                      <th>Type / Nature</th>
+                      <th>Rôle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>larg</code>, <code>long</code></td>
+                      <td>Réel</td>
+                      <td>Dimensions saisies du rectangle ($0 < larg \le long$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>p</code>, <code>s</code>, <code>d</code></td>
+                      <td>Réel</td>
+                      <td>Résultats des calculs du périmètre, de la surface et de la diagonale</td>
+                    </tr>
+                    <tr>
+                      <td><code>perimetre</code></td>
+                      <td>Fonction</td>
+                      <td>Module de calcul du périmètre ($2 \times (l + h)$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>surface</code></td>
+                      <td>Fonction</td>
+                      <td>Module de calcul de la surface ($l \times h$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>diagonale</code></td>
+                      <td>Fonction</td>
+                      <td>Module de calcul de la diagonale ($\sqrt{l^2 + h^2}$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>afficher_bilan</code></td>
+                      <td>Procédure</td>
+                      <td>Module d'affichage du rapport géométrique</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulateur Vue 3 Réactif -->
+          <div class="card card-custom mb-4 border border-indigo border-opacity-50 shadow-sm" style="border-color: #818cf8 !important;">
+            <div class="card-header-custom text-primary fw-bold d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Calculateur Modulaire Réactif</span>
+              <span class="badge bg-primary">Vue 3 App</span>
+            </div>
+            <div class="card-body simulator-card-body">
+
+              <!-- Controls -->
+              <div class="row g-3 align-items-end mb-4">
+                <div class="col-md-4">
+                  <label class="form-label fw-bold small">Largeur $L$ ($> 0$) :</label>
+                  <input type="number" step="0.5" v-model.number="largeurInput" @input="validerDimensions" class="form-control" placeholder="Largeur L...">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-bold small">Longueur $H$ ($\ge L$) :</label>
+                  <input type="number" step="0.5" v-model.number="longueurInput" @input="validerDimensions" class="form-control" placeholder="Longueur H...">
+                </div>
+                <div class="col-md-4 d-flex gap-1 justify-content-md-end">
+                  <button type="button" class="btn btn-outline-secondary btn-sm" @click="chargerPreset('standard')">Standard (6×10)</button>
+                  <button type="button" class="btn btn-outline-info btn-sm" @click="chargerPreset('carre')">Carré (8×8)</button>
+                  <button type="button" class="btn btn-outline-success btn-sm" @click="chargerPreset('grand')">Terrain (15.5×30)</button>
+                </div>
+              </div>
+
+              <div v-if="validationErreur" class="alert alert-danger small mb-4">
+                {{ validationErreur }}
+              </div>
+
+              <!-- Interactive Reactive SVG Canvas Preview & Results Grid -->
+              <div v-if="resultatsGeometriques.valide" class="row g-4 align-items-center">
+                <!-- SVG Canvas Preview -->
+                <div class="col-md-5 text-center">
+                  <div class="p-3 bg-body rounded border border-secondary border-opacity-25 d-flex justify-content-center align-items-center shadow-sm" style="min-height: 200px;">
+                    <svg width="280" height="170" viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg">
+                      <!-- Rectangle Fill & Border -->
+                      <rect :x="dimensionsSvg.x" :y="dimensionsSvg.y" :width="dimensionsSvg.w" :height="dimensionsSvg.h"
+                        fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-width="2.5" rx="4"/>
+                      <!-- Diagonal Line -->
+                      <line :x1="dimensionsSvg.x" :y1="dimensionsSvg.y + dimensionsSvg.h"
+                            :x2="dimensionsSvg.x + dimensionsSvg.w" :y2="dimensionsSvg.y"
+                            stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 2"/>
+                      <!-- Labels -->
+                      <text :x="dimensionsSvg.x + dimensionsSvg.w / 2" :y="dimensionsSvg.y + dimensionsSvg.h + 16"
+                        font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#818cf8" text-anchor="middle">
+                        Longueur H = {{ longueurInput }} m
+                      </text>
+                      <text :x="dimensionsSvg.x - 10" :y="dimensionsSvg.y + dimensionsSvg.h / 2"
+                        font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#818cf8" text-anchor="middle"
+                        transform-origin="center">
+                        L = {{ largeurInput }} m
+                      </text>
+                      <text :x="dimensionsSvg.x + dimensionsSvg.w / 2 + 10" :y="dimensionsSvg.y + dimensionsSvg.h / 2 - 10"
+                        font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fbbf24" text-anchor="middle">
+                        D = {{ resultatsGeometriques.d }} m
+                      </text>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Live Results Modular Outputs -->
+                <div class="col-md-7">
+                  <div class="row g-3">
+                    <div class="col-6">
+                      <div class="p-3 bg-body rounded border border-success border-opacity-50 text-center">
+                        <span class="text-muted d-block small mb-1">Module `perimetre(L, H)`</span>
+                        <div class="fs-4 fw-bold text-success">{{ resultatsGeometriques.p }} m</div>
+                        <span class="small text-muted font-mono">2 × ({{ largeurInput }} + {{ longueurInput }})</span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="p-3 bg-body rounded border border-primary border-opacity-50 text-center">
+                        <span class="text-muted d-block small mb-1">Module `surface(L, H)`</span>
+                        <div class="fs-4 fw-bold text-primary">{{ resultatsGeometriques.s }} m²</div>
+                        <span class="small text-muted font-mono">{{ largeurInput }} × {{ longueurInput }}</span>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="p-3 bg-body rounded border border-warning border-opacity-50 text-center">
+                        <span class="text-muted d-block small mb-1">Module `diagonale(L, H)`</span>
+                        <div class="fs-4 fw-bold text-warning">{{ resultatsGeometriques.d }} m</div>
+                        <span class="small text-muted font-mono">√( {{ largeurInput }}² + {{ longueurInput }}² )</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Code Implementations -->
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="code-container">
+                <div class="code-header"><span>Algorithme Modulaire (Conventions 2024-2025)</span></div>
+                <pre><code class="language-algorithm">Fonction perimetre (l : Réel, h : Réel) : Réel
+DEBUT
+    Retourner 2 * (l + h)
+FIN
+
+Fonction surface (l : Réel, h : Réel) : Réel
+DEBUT
+    Retourner l * h
+FIN
+
+Fonction diagonale (l : Réel, h : Réel) : Réel
+DEBUT
+    Retourner RacineCarré(l * l + h * h)
+FIN
+
+Procédure afficher_bilan (l: Réel, h: Réel, p: Réel, s: Réel, d: Réel)
+DEBUT
+    Écrire("=== BILAN GÉOMÉTRIQUE ===")
+    Écrire("Périmètre : ", p, " Surface : ", s, " Diagonale : ", d)
+FIN
+
+ALGORITHME Geometrie_Rectangle
+DEBUT
+    Répéter
+        Écrire("Largeur (>0) et Longueur (>=Largeur) : ")
+        Lire(larg, long)
+    Jusqu'à (larg > 0 ET long ≥ larg)
+    
+    p ← perimetre(larg, long)
+    s ← surface(larg, long)
+    d ← diagonale(larg, long)
+    
+    afficher_bilan(larg, long, p, s, d)
+FIN</code></pre>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="code-container">
+                <div class="code-header"><span>Implémentation Python (Thonny IDE)</span></div>
+                <pre><code class="language-python">from math import sqrt
+
+# Definition des fonctions et procedures
+def perimetre(l, h):
+    return 2 * (l + h)
+
+def surface(l, h):
+    return l * h
+
+def diagonale(l, h):
+    return sqrt(l**2 + h**2)
+
+def afficher_bilan(l, h, p, s, d):
+    print("\n=== BILAN GÉOMÉTRIQUE ===")
+    print("Largeur   :", l, "m")
+    print("Longueur  :", h, "m")
+    print("Périmètre :", round(p, 2), "m")
+    print("Surface   :", round(s, 2), "m²")
+    print("Diagonale :", round(d, 2), "m")
+
+# PROGRAMME PRINCIPAL
+larg = float(input("Donner la largeur (>0) : "))
+long = float(input("Donner la longueur (>= larg) : "))
+
+while not (larg > 0 and long >= larg):
+    print("Dimensions invalides !")
+    larg = float(input("Largeur (>0) : "))
+    long = float(input("Longueur (>= larg) : "))
+
+# Appels des fonctions
+p = perimetre(larg, long)
+s = surface(larg, long)
+d = diagonale(larg, long)
+
+# Appel de la procedure d'affichage
+afficher_bilan(larg, long, p, s, d)</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 5: Évaluation Formative -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+
+        <section id="section-quiz" class="section-pane">
+          <h3>Testez vos Connaissances sur la Modularité</h3>
+          <p class="text-muted">Sélectionnez la bonne réponse pour chaque question.</p>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- EvalQuiz Vanilla JS Component -->
+              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°7">
+
+                <!-- Quiz Question 1 -->
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Une Fonction est conçue pour effectuer des calculs et retourner un résultat unique via l'instruction 'return'. Une procédure réalise des traitements (affichage, saisie) sans instruction return.">
+                  <div class="question-text">Quelle est la différence fondamentale entre une Fonction et une Procédure ?</div>
+                  <ul class="quiz-options">
+                    <li>La Fonction retourne un résultat unique avec 'return', la Procédure n'en retourne pas.</li>
+                    <li>La Procédure est écrite en Python, la Fonction est écrite en algorithme.</li>
+                    <li>La Fonction ne prend pas de paramètres, la Procédure prend obligatoirement 3 paramètres.</li>
+                  </ul>
+                </div>
+
+                <!-- Quiz Question 2 -->
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Une fonction sans instruction 'return' renvoie 'None' par défaut en Python. Utiliser son résultat dans un calcul numérique (+ 10) déclenche une erreur TypeError (NoneType).">
+                  <div class="question-text">Que se passe-t-il si l'on écrit 'print()' au lieu de 'return' dans une fonction de calcul ?</div>
+                  <ul class="quiz-options">
+                    <li>La fonction fonctionne normalement.</li>
+                    <li>La fonction renvoie 'None' et provoque une erreur si le résultat est utilisé dans un calcul (+ 10).</li>
+                    <li>Python convertit automatiquement l'affichage en nombre entier.</li>
+                  </ul>
+                </div>
+
+                <!-- Quiz Question 3 -->
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Les paramètres formels sont les noms de variables figurant dans la définition du module (ex: def f(x, y)), tandis que les paramètres effectifs sont les valeurs réelles transmises lors de l'appel (ex: f(a, b)).">
+                  <div class="question-text">Que désignent les 'Paramètres Effectifs' ?</div>
+                  <ul class="quiz-options">
+                    <li>Les variables fictives définies dans l'en-tête 'def f(x, y)'.</li>
+                    <li>Les mots-clés réservés du langage Python.</li>
+                    <li>Les valeurs ou variables réelles transmises lors de l'appel du module dans le programme principal.</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+
+  <!-- Application Script for Séance 7 -->
+  <script src="assets/app/seance07.js"></script>
+</body>
+
+</html>

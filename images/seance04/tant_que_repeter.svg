@@ -1,0 +1,106 @@
+<svg viewBox="0 0 800 320" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+
+    <!-- Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#2563eb" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#059669" />
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#dc2626" />
+    </marker>
+  </defs>
+
+  <!-- Left Column: Tant Que -->
+  <g transform="translate(20, 0)">
+    <!-- Container Card Left -->
+    <rect x="0" y="10" width="365" height="300" rx="12" fill="#1e293b" fill-opacity="0.05" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1.5"/>
+    
+    <!-- Title -->
+    <rect x="20" y="22" width="325" height="36" rx="8" fill="url(#grad-blue)"/>
+    <text x="182" y="45" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">Boucle Tant Que (Évaluation au Début)</text>
+
+    <!-- Flow Diagram Tant Que -->
+    <!-- Start Arrow -->
+    <line x1="182" y1="58" x2="182" y2="85" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+    <!-- Condition Pill -->
+    <rect x="92" y="85" width="180" height="42" rx="21" fill="#1e293b" stroke="#3b82f6" stroke-width="2.5"/>
+    <text x="182" y="111" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#38bdf8" text-anchor="middle">Condition Poursuite ?</text>
+
+    <!-- True Branch -> Traitement -->
+    <line x1="182" y1="127" x2="182" y2="165" stroke="#059669" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+    <rect x="190" y="142" width="45" height="20" rx="4" fill="#059669" fill-opacity="0.15"/>
+    <text x="212" y="156" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#059669" text-anchor="middle">VRAI</text>
+
+    <!-- Traitement Box -->
+    <rect x="107" y="165" width="150" height="45" rx="8" fill="url(#grad-green)"/>
+    <text x="182" y="192" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Bloc d'instructions</text>
+
+    <!-- Loop Back Line -->
+    <path d="M 107 187 L 50 187 L 50 106 L 92 106" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)" stroke-dasharray="4 2"/>
+
+    <!-- False Branch -> Exit -->
+    <path d="M 272 106 L 330 106 L 330 255 L 182 255" fill="none" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+    <rect x="278" y="88" width="45" height="20" rx="4" fill="#dc2626" fill-opacity="0.15"/>
+    <text x="300" y="102" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#dc2626" text-anchor="middle">FAUX</text>
+
+    <!-- Exit Box -->
+    <rect x="122" y="240" width="120" height="32" rx="16" fill="#475569"/>
+    <text x="182" y="261" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Fin Tant que (0..N)</text>
+  </g>
+
+  <!-- Right Column: Répéter...Jusqu'à -->
+  <g transform="translate(415, 0)">
+    <!-- Container Card Right -->
+    <rect x="0" y="10" width="365" height="300" rx="12" fill="#1e293b" fill-opacity="0.05" stroke="#8b5cf6" stroke-opacity="0.3" stroke-width="1.5"/>
+
+    <!-- Title -->
+    <rect x="20" y="22" width="325" height="36" rx="8" fill="url(#grad-purple)"/>
+    <text x="182" y="45" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">Boucle Répéter (Évaluation à la Fin)</text>
+
+    <!-- Flow Diagram Répéter -->
+    <!-- Start Arrow -->
+    <line x1="182" y1="58" x2="182" y2="85" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+    <!-- Traitement Box -->
+    <rect x="107" y="85" width="150" height="45" rx="8" fill="url(#grad-green)"/>
+    <text x="182" y="112" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Bloc d'instructions</text>
+
+    <!-- Arrow down to Condition -->
+    <line x1="182" y1="130" x2="182" y2="165" stroke="#8b5cf6" stroke-width="2"/>
+
+    <!-- Condition Pill (Condition d'arrêt) -->
+    <rect x="92" y="165" width="180" height="42" rx="21" fill="#1e293b" stroke="#8b5cf6" stroke-width="2.5"/>
+    <text x="182" y="191" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#a78bfa" text-anchor="middle">Condition d'Arrêt ?</text>
+
+    <!-- False Branch (Condition d'arrêt = FAUX => Réitérer) -->
+    <path d="M 92 186 L 50 186 L 50 107 L 107 107" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow-red)" stroke-dasharray="4 2"/>
+    <rect x="42" y="142" width="45" height="20" rx="4" fill="#dc2626" fill-opacity="0.15"/>
+    <text x="64" y="156" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#dc2626" text-anchor="middle">FAUX</text>
+
+    <!-- True Branch (Condition d'arrêt = VRAI => Sortie) -->
+    <line x1="182" y1="207" x2="182" y2="240" stroke="#059669" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+    <rect x="190" y="212" width="45" height="20" rx="4" fill="#059669" fill-opacity="0.15"/>
+    <text x="212" y="226" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#059669" text-anchor="middle">VRAI</text>
+
+    <!-- Exit Box -->
+    <rect x="122" y="240" width="120" height="32" rx="16" fill="#475569"/>
+    <text x="182" y="261" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Sortie (1..N fois)</text>
+  </g>
+</svg>
