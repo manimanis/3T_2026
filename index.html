@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informatique 3ème Année Secondary - Programme 2024-2025</title>
+  <meta name="description"
+    content="Portail d'apprentissage interactif du cours d'informatique pour la 3ème Année Secondaire (Sciences Expérimentales, Techniques, Mathématiques) - Tunisie 2024/2025.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>3T Informatique <small class="fs-6 text-muted fw-normal">2024-2025</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom active" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil
+                & Planification</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="seance01.html"><i class="bi bi-journal-bookmark me-1"></i>
+                Séance N°1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="seance02.html"><i class="bi bi-journal-bookmark me-1"></i>
+                Séance N°2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="seance03.html"><i class="bi bi-journal-bookmark me-1"></i>
+                Séance N°3</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#cheatsheetModal" data-bs-toggle="modal"><i
+                  class="bi bi-book me-1"></i> Conventions 2024</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge badge-custom"><i class="bi bi-mortarboard-fill me-1"></i> 3ème Secondary</span>
+            <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50"><i
+                class="bi bi-clock-history me-1"></i> 30 Jours / 30h</span>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <div class="container">
+        <span class="badge badge-custom mb-3">
+          <i class="bi bi-award-fill me-1"></i> Ministère de l'Éducation – Direction Générale des Programmes
+        </span>
+        <h1 class="hero-title">Pensée Computationnelle & Programmation</h1>
+        <p class="hero-subtitle">
+          Plateforme interactive d'apprentissage de l'Algorithmique, du langage Python et de l'Internet des Objets (IoT
+          ESP32) pour les sections Sciences Expérimentales, Sciences Techniques et Mathématiques.
+        </p>
+
+        <!-- Search & Quick Filter -->
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-8 col-lg-6">
+            <div class="input-group shadow-lg">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" v-model="searchQuery" class="form-control"
+                placeholder="Rechercher une séance, un concept (Python, TDO, Tableau, PGCD, ESP32)...">
+              <button class="btn btn-primary px-4" type="button" @click="searchQuery = ''">Réinitialiser</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module Filter Pills -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+          <button class="btn btn-sm" :class="selectedModule === 0 ? 'btn-primary' : 'btn-outline-secondary'"
+            @click="selectedModule = 0">
+            Tous les modules ({{ seances.length }})
+          </button>
+          <button v-for="mod in modules" :key="mod.id" class="btn btn-sm"
+            :class="selectedModule === mod.id ? 'btn-primary' : 'btn-outline-secondary'"
+            @click="selectedModule = mod.id">
+            M{{ mod.id }} : {{ mod.shortTitle }}
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container my-5">
+
+      <!-- Syllabus & Sessions Grid -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0"><i class="bi bi-grid-3x3-gap-fill text-primary me-2"></i> Planification des Séances (20
+          Séances)</h2>
+        <span class="text-muted">{{ filteredSeances.length }} séance(s) affichée(s)</span>
+      </div>
+
+      <div class="row g-4">
+        <div v-for="seance in filteredSeances" :key="seance.id" class="col-md-6 col-lg-4">
+          <div class="card card-custom h-100">
+            <div class="card-header-custom d-flex justify-content-between align-items-start">
+              <div>
+                <span class="badge badge-custom mb-2">
+                  Module {{ seance.moduleId }}
+                </span>
+                <h3 class="h5 mb-1">Séance {{ seance.id }} : {{ seance.title }}</h3>
+              </div>
+              <span class="badge"
+                :class="seance.status === 'Disponible' ? 'bg-success text-white' : 'bg-secondary text-white'">
+                {{ seance.status }}
+              </span>
+            </div>
+
+            <div class="card-body d-flex flex-column">
+              <p class="text-muted small mb-3">{{ seance.description }}</p>
+
+              <div class="mb-3">
+                <span class="text-xs text-uppercase tracking-wider text-muted fw-bold d-block mb-1">Objectifs Clés
+                  :</span>
+                <ul class="list-unstyled mb-0 small">
+                  <li v-for="(obj, idx) in seance.objectives" :key="idx" class="mb-1">
+                    <i class="bi bi-check2-circle text-primary me-1"></i> {{ obj }}
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="mt-auto pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="small text-muted"><i class="bi bi-clock me-1"></i> {{ seance.duration }}</span>
+                <a v-if="seance.link" :href="seance.link" class="btn btn-sm btn-primary rounded-pill px-3">
+                  Ouvrir la Séance <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+                <button v-else class="btn btn-sm btn-outline-secondary rounded-pill px-3" @click="openPreview(seance)">
+                  Aperçu <i class="bi bi-eye ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conventions Quick Reference Card Section -->
+      <section class="mt-5 pt-4 border-top border-secondary border-opacity-25">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <h3 class="h4 mb-3"><i class="bi bi-journal-code text-info me-2"></i> Conventions Algorithmiques
+              Ministérielles 2024</h3>
+            <p class="text-muted">
+              Le programme de 3ème Année s'appuie sur la référence pédagogique 2024-2025. Retrouvez ici la syntaxe
+              exacte des déclarations TDO, des boucles, des fonctions et des opérations d'entrée/sortie.
+            </p>
+            <div class="d-flex gap-3 mt-3">
+              <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#cheatsheetModal">
+                <i class="bi bi-card-checklist me-1"></i> Consulter le Guide Complet
+              </button>
+              <a href="seance01.html" class="btn btn-outline-primary">
+                <i class="bi bi-play-circle me-1"></i> Tester la Séance 1
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <!-- Algorithm Highlighting Demo Box -->
+            <div class="code-container shadow-lg">
+              <div class="code-header">
+                <span><i class="bi bi-code-square me-1"></i> Conventions 2024 (Pseudo-code)</span>
+                <span class="badge bg-secondary">Extrait</span>
+              </div>
+              <pre><code class="language-algorithm">ALGORITHME Calcul_Penalite
+DEBUT
+  Répéter
+    Ecrire("Jours de retard : ")
+    Lire(nb_jours)
+  Jusqu'à (nb_jours ≥ 0)
+
+  montant ← (nb_jours * 0.500) + 1.200
+  Ecrire_nl("Montant total : ", montant, " DT")
+FIN</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Modal Conventions Guide -->
+    <div class="modal fade" id="cheatsheetModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="bi bi-book text-primary me-2"></i> Conventions Algorithmiques
+              Ministérielles (2024-2025)</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+
+            <h6>1. Structure Générale & TDO</h6>
+            <div class="code-container">
+              <pre><code class="language-algorithm">ALGORITHME Nom_Algorithme
+DEBUT
+  // Instructions
+FIN</code></pre>
+            </div>
+
+            <table class="table table-custom table-striped table-bordered mt-3">
+              <thead>
+                <tr>
+                  <th>Opération / Concept</th>
+                  <th>Conventions Algorithmiques</th>
+                  <th>Python</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Type Entier</strong></td>
+                  <td><code>Entier</code></td>
+                  <td><code>int</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Type Réel</strong></td>
+                  <td><code>Réel</code></td>
+                  <td><code>float</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Type Chaîne</strong></td>
+                  <td><code>Chaîne de caractères</code></td>
+                  <td><code>str</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Type Booléen</strong></td>
+                  <td><code>Booléen</code></td>
+                  <td><code>bool</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Affectation</strong></td>
+                  <td><code>Variable ← Expression</code></td>
+                  <td><code>Variable = Expression</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Saisie</strong></td>
+                  <td><code>Lire(Variable)</code></td>
+                  <td><code>Variable = input()</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Affichage</strong></td>
+                  <td><code>Écrire("Msg", Var)</code></td>
+                  <td><code>print("Msg", Var)</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h6 class="mt-4">2. Opérations Arithmétiques & Logiques</h6>
+            <p class="small text-muted">
+              Division entière : <code>Div</code> | Reste : <code>Mod</code> | Logiques : <code>Non</code>,
+              <code>Et</code>, <code>Ou</code> | Comparaison : <code>≠</code>, <code>≥</code>, <code>≤</code>,
+              <code>∈</code>.
+            </p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Séance Preview -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" v-if="activePreview">Séance {{ activePreview.id }} : {{ activePreview.title }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body" v-if="activePreview">
+            <p class="text-muted">{{ activePreview.description }}</p>
+            <h6>Contenu prévu :</h6>
+            <ul>
+              <li v-for="(obj, i) in activePreview.objectives" :key="i">{{ obj }}</li>
+            </ul>
+            <div class="alert alert-info py-2 small">
+              <i class="bi bi-info-circle me-1"></i> Cette séance fera l'objet des prochains TP guidés sur machine.
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/pages.js"></script>
+  <!-- Application Script for Index -->
+  <script src="assets/app/index.js"></script>
+</body>
+
+</html>

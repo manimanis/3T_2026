@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°1 : Évaluation Diagnostique & Bases Python - 3ème Année</title>
+  <meta name="description"
+    content="Fiche de séance N°1 interactive : Évaluation Diagnostique et Consolidation des Bases Python pour la 3ème Année Secondaire.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom active" href="seance01.html"><i
+                  class="bi bi-journal-bookmark-fill me-1"></i> Séance N°1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="seance02.html"><i class="bi bi-journal-bookmark me-1"></i>
+                Séance N°2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="seance03.html"><i class="bi bi-journal-bookmark me-1"></i>
+                Séance N°3</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="py-4 border-bottom border-secondary border-opacity-25" style="background: var(--bg-subtle);">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-2 small text-muted">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">Accueil</a></li>
+            <li class="breadcrumb-item text-muted">Module 1 : Révision & Consolidation</li>
+            <li class="breadcrumb-item active text-primary" aria-current="page">Séance 1</li>
+          </ol>
+        </nav>
+
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+          <div>
+            <span
+              class="badge bg-primary bg-opacity-25 text-primary-light border border-primary border-opacity-25 mb-2">
+              <i class="bi bi-bookmark-fill me-1"></i> Module 1 • Séance N°1
+            </span>
+            <h1 class="h2 fw-bold mb-1">Évaluation Diagnostique & Consolidation des Bases Python</h1>
+            <p class="text-muted mb-0">Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn</p>
+          </div>
+          <div class="d-flex gap-2 align-items-center">
+            <span class="badge badge-custom p-2 px-3 d-flex align-items-center gap-2">
+              <i class="bi bi-laptop text-info"></i> Thonny Python IDE / IDLE
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container my-4">
+      <!-- Section Content Panes -->
+      <article class="article-content-wrapper">
+        <h2><i class="bi bi-check2-square text-success me-2"></i> Objectifs & Déroulement</h2>
+
+        <section class="section-pane">
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom">
+                  <h3 class="h5 mb-0"><i class="bi bi-check2-square text-success me-2"></i> Objectifs Pédagogiques</h3>
+                </div>
+                <div class="card-body">
+                  <h5 class="h6 text-primary mb-2">A. Savoirs (Connaissances)</h5>
+                  <ul class="text-muted small mb-4">
+                    <li>Identifier la structure générale d'un algorithme et la déclaration des objets (Variables et
+                      Constantes).</li>
+                    <li>Distinguer les types de données simples : <code>Entier</code>, <code>Réel</code>,
+                      <code>Caractère</code>, <code>Booléen</code>, <code>Chaîne de caractères</code>.
+                    </li>
+                    <li>Maîtriser la correspondance entre la syntaxe algorithmique officielle (Conventions 2024-2025) et
+                      sa traduction en Python (<code>int</code>, <code>float</code>, <code>bool</code>,
+                      <code>str</code>).
+                    </li>
+                  </ul>
+
+                  <h5 class="h6 text-primary mb-2">B. Savoir-faire (Compétences pratiques)</h5>
+                  <ul class="text-muted small mb-0">
+                    <li>Exprimer les opérations d'entrée/sortie (<code>Lire</code> / <code>input()</code>,
+                      <code>Écrire</code> / <code>print()</code>) et d'affectation (<code>←</code> / <code>=</code>).
+                    </li>
+                    <li>Effectuer les conversions de types explicites (<code>int()</code>, <code>float()</code>,
+                      <code>str()</code>).
+                    </li>
+                    <li>Écrire, tester et exécuter une séquence d'instructions simple dans l'environnement Python.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom">
+                  <h3 class="h5 mb-0"><i class="bi bi-clock-history text-warning me-2"></i> Déroulement de la Séance (90
+                    minutes)</h3>
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-custom mb-0 align-middle">
+                      <thead>
+                        <tr>
+                          <th>Phase</th>
+                          <th>Durée</th>
+                          <th>Activité Enseignant / Élève</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><span class="badge bg-secondary text-white">1. Diagnostic</span></td>
+                          <td>15 min</td>
+                          <td class="small">Questionnement oral & QCM sur les prérequis de 2ème année (types &
+                            affectation).</td>
+                        </tr>
+                        <tr>
+                          <td><span class="badge bg-primary text-white">2. Synthèse</span></td>
+                          <td>25 min</td>
+                          <td class="small">Rappel théorique structuré sur les conventions algorithmiques 2024-2025.
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><span class="badge badge-info-custom">3. Guidée</span></td>
+                          <td>35 min</td>
+                          <td class="small">Analyse du problème de pénalité de retard, TDO et saisie sous Thonny.</td>
+                        </tr>
+                        <tr>
+                          <td><span class="badge bg-success text-white">4. Évaluation</span></td>
+                          <td>15 min</td>
+                          <td class="small">Vérification individuelle des scripts Python et test avec jeux d'essais.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+
+      <article class="article-content-wrapper">
+        <h2><i class="bi bi-book text-info me-2"></i> Résumé de Cours</h2>
+
+        <section class="section-pane">
+          <h3>Structure d'un algorithme</h3>
+
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom">
+              <h3 class="h5 mb-0"><i class="bi bi-book text-info me-2"></i> I. Structure Générale d'un Algorithme &
+                Déclaration (TDO)</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <div class="p-3 border border-secondary border-opacity-25 rounded bg-body-tertiary text-center">
+                    <small class="text-muted d-block mb-2 font-mono" style="font-size: 0.75rem;">Diagramme Vectoriel :
+                      Architecture d'un Algorithme (Entrées &rarr; Traitement &rarr; Sorties)</small>
+                    <img src="images/seance01/architecture_algorithme.svg" alt="Architecture générale d'un algorithme"
+                      class="img-fluid" style="max-height: 180px; width: 100%;">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <h6>Algorithme (Pseudo-code) :</h6>
+                  <div class="code-container">
+                    <pre><code class="language-algorithm">ALGORITHME Nom_Algorithme
+DEBUT
+    // Séquence d'instructions
+FIN</code></pre>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <h6>Tableau de Déclaration des Objets (TDO) :</h6>
+                  <table class="table table-custom table-bordered small">
+                    <thead>
+                      <tr>
+                        <th>Objet</th>
+                        <th>Type / Nature</th>
+                        <th>Rôle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>nom</code></td>
+                        <td>Chaîne de caractères</td>
+                        <td>Nom de l'utilisateur</td>
+                      </tr>
+                      <tr>
+                        <td><code>age</code></td>
+                        <td>Entier</td>
+                        <td>Âge de l'utilisateur</td>
+                      </tr>
+                      <tr>
+                        <td><code>moyenne</code></td>
+                        <td>Réel</td>
+                        <td>Moyenne calculée</td>
+                      </tr>
+                      <tr>
+                        <td><code>PI</code></td>
+                        <td>Constante = 3.14</td>
+                        <td>Valeur constante</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom">
+              <h3 class="h5 mb-0"><i class="bi bi-arrow-left-right text-warning me-2"></i> II. Correspondance Algorithme
+                ➔ Python</h3>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle">
+                  <thead>
+                    <tr>
+                      <th>Concept</th>
+                      <th>Syntaxe Algorithmique (2024-2025)</th>
+                      <th>Traduction Python</th>
+                      <th>Remarques</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Type Entier</strong></td>
+                      <td><code>Entier</code></td>
+                      <td><code>int</code></td>
+                      <td>Ex: <code>12</code>, <code>-5</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Type Réel</strong></td>
+                      <td><code>Réel</code></td>
+                      <td><code>float</code></td>
+                      <td>Ex: <code>14.5</code>, <code>3.14</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Type Chaîne</strong></td>
+                      <td><code>Chaîne de caractères</code></td>
+                      <td><code>str</code></td>
+                      <td>Ex: <code>"Tunisie"</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Type Booléen</strong></td>
+                      <td><code>Booléen</code></td>
+                      <td><code>bool</code></td>
+                      <td><code>True</code> ou <code>False</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Affectation</strong></td>
+                      <td><code>Variable ← Expression</code></td>
+                      <td><code>Variable = Expression</code></td>
+                      <td><code>x = 5</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Saisie (Entrée)</strong></td>
+                      <td><code>Lire(Variable)</code></td>
+                      <td><code>Variable = input("Message : ")</code></td>
+                      <td><code>input()</code> renvoie toujours un <code>str</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Affichage (Sortie)</strong></td>
+                      <td><code>Écrire("Message", Variable)</code></td>
+                      <td><code>print("Message", Variable)</code></td>
+                      <td>Virgule comme séparateur</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-custom">
+            <div class="card-header-custom">
+              <h3 class="h5 mb-0"><i class="bi bi-lightning-charge text-danger me-2"></i> III. Conversions de Types en
+                Python</h3>
+            </div>
+            <div class="card-body">
+              <p class="text-muted">
+                Puisque <code>input()</code> renvoie systématiquement une chaîne de caractères (<code>str</code>), une
+                conversion explicite est indispensable avant tout calcul numérique :
+              </p>
+
+              <div class="code-container">
+                <div class="code-header">
+                  <span>Exemples de conversions explicites</span>
+                  <button class="btn-copy" @click="copyCode(conversionCode)">Copier</button>
+                </div>
+                <pre><code class="language-python"># Conversion d'une chaîne vers un entier
+nb = int(input("Donner un nombre entier : "))
+
+# Conversion d'une chaîne vers un réel
+prix = float(input("Donner le prix : "))
+
+# Conversion d'un nombre vers une chaîne (pour concaténation)
+message = "Votre note est : " + str(15.5)</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+
+      <article class="article-content-wrapper">
+        <h2><i class="bi bi-bug text-danger me-2"></i> Activités Pratiques</h2>
+
+        <section class="section-pane">
+          <h3>Activité 1 : Analyse et correction de séquence code</h3>
+
+          <!-- Activité 1 -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom d-flex justify-content-between align-items-center">
+              <h3 class="h5 mb-0"><i class="bi bi-bug text-danger me-2"></i> Activité 1 : Analyse et Correction de
+                Séquence Code (10 min)</h3>
+              <span class="badge badge-warning-custom">Exercice Diagnostique</span>
+            </div>
+            <div class="card-body">
+              <p class="text-muted">Analyse le script Python ci-dessous. Pourquoi ce code produit-il un résultat
+                inattendu ?</p>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <h6>Séquence erronée :</h6>
+                  <div class="code-container">
+                    <pre><code class="language-python">a = input("Donner a : ")
+b = input("Donner b : ")
+somme = a + b
+print("La somme est :", somme)</code></pre>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <h6>Analyse & Solution :</h6>
+                  <div class="box-custom mb-3">
+                    <p class="small mb-2">
+                      <strong class="text-warning">Analyse de l'erreur :</strong> Si l'utilisateur saisit <code>5</code>
+                      pour <code>a</code> et <code>3</code> pour <code>b</code>, la variable <code>somme</code> vaudra
+                      <code>"53"</code> (concaténation de chaînes) au lieu de <code>8</code> !
+                    </p>
+                    <button class="btn btn-sm btn-outline-success mt-2" @click="toggleCorrectionAct1()">
+                      {{ showCorrectionAct1 ? 'Masquer la correction' : 'Afficher la correction' }}
+                    </button>
+                  </div>
+
+                  <div v-show="showCorrectionAct1" class="code-container">
+                    <div class="code-header text-success"><span>Séquence corrigée</span></div>
+                    <pre><code class="language-python">a = int(input("Donner a : "))
+b = int(input("Donner b : "))
+somme = a + b
+print("La somme est :", somme)</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-pane">
+          <h3>Activité 2 : Mini-projet calcul de pénalité de retard</h3>
+
+          <!-- Activité 2 -->
+          <div class="card card-custom">
+            <div class="card-header-custom">
+              <h3 class="h5 mb-0"><i class="bi bi-tools text-primary me-2"></i> Activité 2 : Mini-Projet Calcul de
+                Pénalité de Retard (25 min)</h3>
+            </div>
+            <div class="card-body">
+
+              <!-- Énoncé -->
+              <div class="box-custom mb-4">
+                <h6 class="text-primary"><i class="bi bi-journal-bookmark-fill me-2"></i> Énoncé du Problème :</h6>
+                <p class="text-muted mb-2">
+                  On souhaite concevoir une application pour une bibliothèque scolaire qui calcule le <strong>montant
+                    total de pénalité de retard</strong> pour l'emprunt d'un livre.
+                </p>
+                <ul class="text-muted small mb-2">
+                  <li>Le système demande le nom de l'élève, le titre du livre et le nombre de jours de retard.</li>
+                  <li>La pénalité de base est fixée à <strong>0.500 DT par jour</strong> de retard.</li>
+                  <li>Une taxe fixe de gestion de <strong>1.200 DT</strong> est ajoutée au montant total.</li>
+                </ul>
+                <div class="formula-box">
+                  Formule mathématique : $$ \text{montant\_total} = (\text{nb\_jours} \times 0.500) + 1.200 $$
+                </div>
+              </div>
+
+              <!-- Accordion de Résolution -->
+              <div class="accordion accordion-custom" id="accordionProblem">
+
+                <!-- 1. Analyse -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne">
+                      1. Analyse du Problème (Entrées, Sorties & Traitements)
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionProblem">
+                    <div class="accordion-body text-muted small">
+                      <ul>
+                        <li><strong>Entrées :</strong> Nom de l'élève (<code>nom</code> : Chaîne), Titre du livre
+                          (<code>titre</code> : Chaîne), Jours de retard (<code>nb_jours</code> : Entier).</li>
+                        <li><strong>Sortie :</strong> Montant total à payer (<code>montant_total</code> : Réel).</li>
+                        <li><strong>Traitement :</strong> <code>montant_total = (nb_jours * 0.500) + 1.200</code>.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. TDO -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo">
+                      2. Tableau de Déclaration des Objets (TDO)
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionProblem">
+                    <div class="accordion-body">
+                      <table class="table table-custom table-bordered small">
+                        <thead>
+                          <tr>
+                            <th>Objet</th>
+                            <th>Type / Nature</th>
+                            <th>Rôle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>nom</code></td>
+                            <td>Chaîne de caractères</td>
+                            <td>Nom de l'élève</td>
+                          </tr>
+                          <tr>
+                            <td><code>titre</code></td>
+                            <td>Chaîne de caractères</td>
+                            <td>Titre du livre</td>
+                          </tr>
+                          <tr>
+                            <td><code>nb_jours</code></td>
+                            <td>Entier</td>
+                            <td>Jours de retard</td>
+                          </tr>
+                          <tr>
+                            <td><code>montant_total</code></td>
+                            <td>Réel</td>
+                            <td>Montant total final</td>
+                          </tr>
+                          <tr>
+                            <td><code>TARIF_JOUR</code></td>
+                            <td>Constante = 0.500</td>
+                            <td>Tarif journalier</td>
+                          </tr>
+                          <tr>
+                            <td><code>TAXE_FIXE</code></td>
+                            <td>Constante = 1.200</td>
+                            <td>Frais de gestion</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 3. Algorithme -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree">
+                      3. Algorithme
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionProblem">
+                    <div class="accordion-body">
+                      <div class="code-container">
+                        <pre><code class="language-algorithm">ALGORITHME Calcul_Penalite
+DEBUT
+    Écrire("Nom de l'élève : ")
+    Lire(nom)
+    Écrire("Titre du livre : ")
+    Lire(titre)
+    Écrire("Nombre de jours de retard : ")
+    Lire(nb_jours)
+    
+    montant_total ← (nb_jours * 0.500) + 1.200
+    
+    Écrire("Élève : ", nom)
+    Écrire("Livre : ", titre)
+    Écrire("Montant total de la pénalité : ", montant_total, " DT")
+FIN</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 4. Python -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button show" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour">
+                      4. Code Python Complet (Thonny IDE)
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionProblem">
+                    <div class="accordion-body">
+                      <div class="code-container">
+                        <div class="code-header">
+                          <span>script_penalite.py</span>
+                          <button class="btn-copy" @click="copyCode(pyCodeAct2, $event)">Copier le code</button>
+                        </div>
+                        <pre><code class="language-python"># Declarations des constantes
+TARIF_JOUR = 0.500
+TAXE_FIXE = 1.200
+
+# Saisie des donnees
+nom = input("Nom de l'élève : ")
+titre = input("Titre du livre : ")
+nb_jours = int(input("Nombre de jours de retard : "))
+
+# Traitement
+montant_total = (nb_jours * TARIF_JOUR) + TAXE_FIXE
+
+# Affichage des resultats
+print("\n--- FICHE DE PÉNALITÉ ---")
+print("Élève :", nom)
+print("Livre :", titre)
+print("Montant total à payer :", montant_total, "DT")</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center my-4">
+            <div class="col-lg-10">
+              <div class="card card-custom">
+                <div class="card-header-custom d-flex justify-content-between align-items-center">
+                  <h3 class="h5 mb-0"><i class="bi bi-terminal-fill text-success me-2"></i> Bac à Sable : Exécuter le
+                    programme Python</h3>
+                  <span class="badge bg-success bg-opacity-25 text-success">Thonny Simulator</span>
+                </div>
+                <div class="card-body">
+                  <p class="text-muted small mb-4">
+                    Saisis les données ci-dessous pour simuler l'exécution réelle du programme Python dans Thonny IDE.
+                  </p>
+
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                      <label class="form-label small fw-bold">Nom de l'élève :</label>
+                      <input type="text" v-model="simNom" class="form-control" placeholder="Ex: Mohamed Ben Ali">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label small fw-bold">Titre du livre :</label>
+                      <input type="text" v-model="simTitre" class="form-control" placeholder="Ex: Les Misérables">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label small fw-bold">Jours de retard :</label>
+                      <input type="number" v-model.number="simJours" min="0" class="form-control">
+                    </div>
+                  </div>
+
+                  <!-- Terminal Display Window -->
+                  <div class="terminal-window">
+                    <div class="terminal-header">
+                      <span class="dot dot-red"></span>
+                      <span class="dot dot-yellow"></span>
+                      <span class="dot dot-green"></span>
+                      <span class="text-muted small ms-2">Console Python 3.11 - Thonny</span>
+                    </div>
+                    <div class="terminal-body">
+                      <div class="terminal-prompt">>>> %Run script_penalite.py</div>
+                      <div>Nom de l'élève : <span class="text-warning">{{ simNom || '...' }}</span></div>
+                      <div>Titre du livre : <span class="text-warning">{{ simTitre || '...' }}</span></div>
+                      <div>Nombre de jours de retard : <span class="text-warning">{{ simJours !== null ? simJours :
+                          '...' }}</span></div>
+
+                      <div v-if="simNom && simTitre && simJours !== null"
+                        class="mt-3 text-white border-top border-secondary pt-2">
+                        <div class="text-info fw-bold">--- FICHE DE PÉNALITÉ ---</div>
+                        <div>Élève : {{ simNom }}</div>
+                        <div>Livre : {{ simTitre }}</div>
+                        <div>Montant total à payer : <span class="text-success fw-bold">{{ computedPenalite.toFixed(3)
+                            }} DT</span></div>
+                        <div class="text-muted text-xs mt-2">>>> Process finished with exit code 0</div>
+                      </div>
+                      <div v-else class="text-muted small mt-2">
+                        <em>Remplissez tous les champs ci-dessus pour afficher la console d'exécution...</em>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+
+      <article class="article-content-wrapper">
+        <h2><i class="bi bi-patch-question-fill text-warning me-2"></i> Auto-évaluation</h2>
+
+        <section class="section-pane">
+          <h3>Quiz</h3>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="eval-quiz" data-title="Quiz Diagnostique (4 Questions)">
+
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="input() renvoie TOUJOURS une chaîne de caractères (str), même si l'utilisateur saisit des chiffres.">
+                  <div class="question-text">Quelle est la valeur retournée systématiquement par l'instruction input()
+                    en Python ?</div>
+                  <ul class="quiz-options">
+                    <li>Un entier (int)</li>
+                    <li>Une chaîne de caractères (str)</li>
+                    <li>Un réel (float)</li>
+                    <li>Dépend de la saisie de l'utilisateur</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Dans les conventions 2024-2025, l'affectation est représentée par la flèche ←.">
+                  <div class="question-text">Comment écrit-on l'opération d'affectation en syntaxe algorithmique
+                    officielle 2024-2025 ?</div>
+                  <ul class="quiz-options">
+                    <li>Variable = Expression</li>
+                    <li>Variable := Expression</li>
+                    <li>Variable ← Expression</li>
+                    <li>Variable -&gt; Expression</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="L'opérateur + entre deux chaînes réalise la concaténation : '10' + '20' donne '1020'.">
+                  <div class="question-text">Que vaut la variable 'x' après l'exécution de : x = '10' + '20' ?</div>
+                  <ul class="quiz-options">
+                    <li>30</li>
+                    <li>1020</li>
+                    <li>Une erreur de type (TypeError)</li>
+                    <li>None</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="float('14.5') convertit la chaîne en nombre réel (float) 14.5.">
+                  <div class="question-text">Quelle fonction permet de convertir la chaîne '14.5' en nombre flottant ?
+                  </div>
+                  <ul class="quiz-options">
+                    <li>int('14.5')</li>
+                    <li>str('14.5')</li>
+                    <li>float('14.5')</li>
+                    <li>real('14.5')</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+  <!-- Application Script for Séance 1 -->
+  <script src="assets/app/seance01.js"></script>
+</body>
+
+</html>

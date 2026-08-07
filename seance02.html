@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°2 : Consolidation des Structures de Contrôle Simples - 3ème Année</title>
+  <meta name="description"
+    content="Fiche de séance N°2 interactive : Consolidation des structures conditionnelles et itératives bornées (Si, Pour, range) pour la 3ème Année Secondaire.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="seance01.html"><i class="bi bi-journal-bookmark me-1"></i>
+                Séance N°1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom active" href="seance02.html"><i
+                  class="bi bi-journal-bookmark-fill me-1"></i> Séance N°2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="seance03.html"><i class="bi bi-journal-bookmark me-1"></i>
+                Séance N°3</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="py-4 border-bottom border-secondary border-opacity-25" style="background: var(--bg-subtle);">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-2 small text-muted">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">Accueil</a></li>
+            <li class="breadcrumb-item text-muted">Module 1 : Révision & Consolidation</li>
+            <li class="breadcrumb-item active text-primary" aria-current="page">Séance 2</li>
+          </ol>
+        </nav>
+
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+          <div>
+            <span
+              class="badge bg-primary bg-opacity-25 text-primary-light border border-primary border-opacity-25 mb-2">
+              <i class="bi bi-bookmark-fill me-1"></i> Module 1 • Séance N°2
+            </span>
+            <h1 class="h2 fw-bold mb-1">Consolidation des Structures de Contrôle Simples</h1>
+            <p class="text-muted mb-0">Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn</p>
+          </div>
+          <div class="d-flex gap-2 align-items-center">
+            <span class="badge badge-custom p-2 px-3 d-flex align-items-center gap-2">
+              <i class="bi bi-laptop text-info"></i> Thonny Python IDE / IDLE
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container my-4">
+
+      <!-- Article 1: Objectifs & Déroulement -->
+      <article class="article-content-wrapper">
+        <h2><i class="bi bi-check2-square text-success me-2"></i> Objectifs & Déroulement</h2>
+
+        <section id="section-objectifs" class="section-pane">
+          <h3>1. Objectifs Pédagogiques & Organisation</h3>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-body">
+                  <h4 class="h5 card-title text-primary"><i class="bi bi-book me-2"></i> A. Savoirs (Connaissances)</h4>
+                  <ul class="list-custom mb-0">
+                    <li>Maîtriser la syntaxe algorithmique de la structure conditionnelle alternative
+                      (<code>Si ... Alors ... Sinon</code>) et généralisée (<code>Si ... Sinon Si ...</code>).</li>
+                    <li>Maîtriser la syntaxe de la structure répétitive bornée
+                      (<code>Pour ... De ... À ... Faire</code>).</li>
+                    <li>Comprendre la fonction <code>range(début, fin + 1, pas)</code> en Python et la gestion des
+                      accumulateurs (somme, produit) et compteurs.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-body">
+                  <h4 class="h5 card-title text-info"><i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences
+                    pratiques)</h4>
+                  <ul class="list-custom mb-0">
+                    <li>Traduire des conditions complexes avec opérateurs logiques (<code>Et</code>, <code>Ou</code>,
+                      <code>Non</code> &rarr; <code>and</code>, <code>or</code>, <code>not</code>).
+                    </li>
+                    <li>Concevoir un algorithme utilisant une boucle <code>Pour</code> pour des calculs cumulatifs.</li>
+                    <li>Saisir, exécuter et débugger un script Python avec des conditions et boucles bornées.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deroulement Table -->
+          <div class="card card-custom">
+            <div class="card-header-custom">
+              <h4 class="h6 mb-0"><i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)</h4>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-custom mb-0">
+                <thead>
+                  <tr>
+                    <th>Phase</th>
+                    <th>Durée</th>
+                    <th>Activité de l'Enseignant</th>
+                    <th>Activité de l'Élève</th>
+                    <th>Support</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge bg-secondary">1. Diagnostic</span></td>
+                    <td>10 min</td>
+                    <td>Rappel rapide des structures alternatives et itératives.</td>
+                    <td>Participation orale, choix vs répétition.</td>
+                    <td>Tableau</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge bg-primary">2. Synthèse</span></td>
+                    <td>25 min</td>
+                    <td>Présentation des règles <code>Si</code> et <code>Pour</code> (2024-2025). Focus sur
+                      <code>range()</code>.
+                    </td>
+                    <td>Prise de notes, analyse des motifs d'accumulation.</td>
+                    <td>Projection / Fiche</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge bg-info">3. Pratique</span></td>
+                    <td>40 min</td>
+                    <td>Présentation du problème (Calcul de primes et salaire). Encadrement du TDO.</td>
+                    <td>Analyse, TDO, algorithme et codage Python.</td>
+                    <td>Thonny IDE</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge bg-success">4. Évaluation</span></td>
+                    <td>15 min</td>
+                    <td>Test sur machine avec jeux d'essais variés (cas limites N=0).</td>
+                    <td>Validation du script, correction des bornes/indentation.</td>
+                    <td>Python IDE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 2: Synthèse du Cours -->
+      <article class="article-content-wrapper">
+        <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
+
+        <section id="section-cours-conditionnelle" class="section-pane">
+          <h3>2. La Structure Conditionnelle (Réduite, Alternative & Généralisée)</h3>
+          <p class="text-muted">
+            La structure conditionnelle permet d'exécuter un bloc d'instructions uniquement lorsque la condition logique
+            est vraie (<code>True</code>).
+          </p>
+
+          <div class="row g-4 mb-4">
+            <!-- Forme Reduite -->
+            <div class="col-lg-4 col-md-6">
+              <div class="card card-custom h-100">
+                <div
+                  class="card-image text-center p-2 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
+                  <small class="text-muted d-block mb-1 font-mono" style="font-size: 0.75rem;">Diagramme d'exécution
+                    vectoriel</small>
+                  <img src="images/seance02/si_reduite.svg" alt="Diagramme Si Réduite" class="img-fluid"
+                    style="max-height: 200px; width: 100%;">
+                </div>
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-arrow-right-short me-2"></i> Forme Réduite (Si ... Alors)
+                </div>
+                <div class="card-body p-0 cond-card-body">
+                  <div class="p-3 border-bottom border-secondary border-opacity-25 cond-code-cell">
+                    <small class="text-muted d-block mb-1">Algorithme</small>
+                    <pre class="m-0"><code class="language-algorithm">Si Condition Alors
+    Traitement
+FinSi</code></pre>
+                  </div>
+                  <div class="p-3 cond-code-cell">
+                    <small class="text-muted d-block mb-1">Python (Instruction simple if)</small>
+                    <pre class="m-0"><code class="language-python">if condition:
+    traitement</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Forme Alternative -->
+            <div class="col-lg-4 col-md-6">
+              <div class="card card-custom h-100">
+                <div
+                  class="card-image text-center p-2 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
+                  <small class="text-muted d-block mb-1 font-mono" style="font-size: 0.75rem;">Diagramme d'exécution
+                    vectoriel</small>
+                  <img src="images/seance02/si_alternative.svg" alt="Diagramme Si Alternative" class="img-fluid"
+                    style="max-height: 200px; width: 100%;">
+                </div>
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-signpost-split me-2"></i> Forme Alternative (Si ... Sinon)
+                </div>
+                <div class="card-body p-0 cond-card-body">
+                  <div class="p-3 border-bottom border-secondary border-opacity-25 cond-code-cell">
+                    <small class="text-muted d-block mb-1">Algorithme</small>
+                    <pre class="m-0"><code class="language-algorithm">Si Condition Alors
+    Traitement1
+Sinon
+    Traitement2
+FinSi</code></pre>
+                  </div>
+                  <div class="p-3 cond-code-cell">
+                    <small class="text-muted d-block mb-1">Python (Blocs if ... else)</small>
+                    <pre class="m-0"><code class="language-python">if condition:
+    traitement1
+else:
+    traitement2</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Forme Generalisee -->
+            <div class="col-lg-4 col-md-12">
+              <div class="card card-custom h-100">
+                <div
+                  class="card-image text-center p-2 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
+                  <small class="text-muted d-block mb-1 font-mono" style="font-size: 0.75rem;">Diagramme d'exécution
+                    vectoriel</small>
+                  <img src="images/seance02/si_generalisee.svg" alt="Diagramme Si Généralisée" class="img-fluid"
+                    style="max-height: 200px; width: 100%;">
+                </div>
+                <div class="card-header-custom text-info fw-bold">
+                  <i class="bi bi-diagram-3 me-2"></i> Forme Généralisée (Si ... Sinon Si)
+                </div>
+                <div class="card-body p-0 cond-card-body">
+                  <div class="p-3 border-bottom border-secondary border-opacity-25 cond-code-cell">
+                    <small class="text-muted d-block mb-1">Algorithme</small>
+                    <pre class="m-0"><code class="language-algorithm">Si Condition1 Alors
+    Traitement1
+Sinon Si Condition2 Alors
+    Traitement2
+Sinon
+    TraitementN
+FinSi</code></pre>
+                  </div>
+                  <div class="p-3 cond-code-cell">
+                    <small class="text-muted d-block mb-1">Python (Instruction elif)</small>
+                    <pre class="m-0"><code class="language-python">if condition1:
+    traitement1
+elif condition2:
+    traitement2
+else:
+    traitementN</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-cours-boucle" class="section-pane">
+          <h3>3. La Structure Répétitive Bornée (Pour & range)</h3>
+          <p class="text-muted">
+            La boucle <code>Pour</code> est utilisée lorsque le <strong>nombre d'itérations est connu à
+              l'avance</strong>.
+          </p>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="code-container">
+                <div class="code-header"><span>Algorithme</span></div>
+                <pre><code class="language-algorithm">Pour compteur de Début à Fin [Pas = v_pas] Faire
+    Traitement
+Fin Pour</code></pre>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="code-container">
+                <div class="code-header"><span>Python (Fonction range)</span></div>
+                <pre><code class="language-python">for compteur in range(début, fin + 1, pas):
+    traitement</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- SVG Flowchart pour la Boucle Pour -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-warning fw-bold">
+              <i class="bi bi-arrow-repeat me-2"></i> Diagramme de flux d'exécution : Boucle Pour / for range()
+            </div>
+            <div class="card-body bg-body-tertiary text-center p-3">
+              <img src="images/seance02/boucle_pour.svg" alt="Diagramme Boucle Pour / for range" class="img-fluid"
+                style="max-height: 220px; width: 100%;">
+            </div>
+          </div>
+
+          <!-- Alert Box Piège classique -->
+          <div class="alert alert-warning border border-warning border-opacity-25 mb-4">
+            <h5 class="alert-heading h6 fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i> Piège classique en
+              Python : Exclusion de la borne supérieure !</h5>
+            <p class="mb-0 small">
+              La borne supérieure du <code>range(a, b)</code> est <strong>exclue</strong>. Pour répéter un traitement
+              pour un compteur allant de <code>1</code> à <code>N</code> inclus, il faut obligatoirement écrire
+              <code>range(1, N + 1)</code>. Par défaut, le pas d'incrémentation est égal à <code>1</code>.
+            </p>
+          </div>
+
+          <!-- Motifs Classiques Table -->
+          <h4 class="h6 fw-bold mt-4 mb-3"><i class="bi bi-layers me-2"></i> Les Motifs Classiques : Compteur,
+            Accumulateur & Produit</h4>
+          <div class="table-responsive mb-3">
+            <table class="table table-custom">
+              <thead>
+                <tr>
+                  <th>Rôle</th>
+                  <th>Initialisation (Avant la boucle)</th>
+                  <th>Traitement (Dans la boucle)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Compteur</strong> (Compter des éléments)</td>
+                  <td><code>c &larr; 0</code></td>
+                  <td><code>c &larr; c + 1</code> (Python: <code>c += 1</code>)</td>
+                </tr>
+                <tr>
+                  <td><strong>Accumulateur</strong> (Sommer des valeurs)</td>
+                  <td><code>somme &larr; 0</code></td>
+                  <td><code>somme &larr; somme + valeur</code> (Python: <code>somme += val</code>)</td>
+                </tr>
+                <tr>
+                  <td><strong>Produit cumulé</strong></td>
+                  <td><code>p &larr; 1</code></td>
+                  <td><code>p &larr; p * valeur</code> (Python: <code>p *= val</code>)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 3: Travaux Pratiques -->
+      <article class="article-content-wrapper">
+        <h2><i class="bi bi-code-slash text-info me-2"></i> Travaux Pratiques sur Machine</h2>
+
+        <section id="section-act1-debogage" class="section-pane">
+          <h3>Activité 1 : Débogage & Analyse de Code (10 min)</h3>
+          <p class="text-muted">
+            <strong>Énoncé :</strong> L'élève doit analyser ce script Python censé calculer et afficher la somme des
+            nombres pairs entre <code>1</code> et <code>N</code>, et corriger les <strong>3 erreurs</strong> glissées
+            dans le code.
+          </p>
+
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="code-container">
+                <div class="code-header text-danger"><span>script_errone.py (Contient des erreurs)</span></div>
+                <pre><code class="language-python"># Script contenant des erreurs
+n = input("Donner N : ")
+somme = 0
+for i in range(1, n):
+    if i % 2 == 1:
+        somme = i
+print("Somme =", somme)</code></pre>
+              </div>
+              <button class="btn btn-sm btn-outline-success mt-2" @click="toggleCorrectionAct1()">
+                {{ showCorrectionAct1 ? 'Masquer la correction' : 'Afficher la correction' }}
+              </button>
+            </div>
+
+            <div class="col-md-6">
+              <div v-show="showCorrectionAct1" class="code-container">
+                <div class="code-header text-success"><span>script_corrige.py (Code Corrigé)</span></div>
+                <pre><code class="language-python"># Code corrigé et fonctionnel
+n = int(input("Donner N : "))
+somme = 0
+for i in range(1, n + 1):
+    if i % 2 == 0:
+        somme += i
+print("Somme des nombres pairs =", somme)</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-act2-probleme" class="section-pane">
+          <h3>Activité 2 : Résolution du Problème - Salaire Mensuel Vendeur (30 min)</h3>
+
+          <!-- Problème Description -->
+          <div class="box-custom mb-4">
+            <h4 class="h6 text-warning fw-bold mb-2"><i class="bi bi-building me-2"></i> Énoncé de l'exercice :</h4>
+            <p class="mb-2">
+              Une entreprise commerciale calcule le <strong>salaire mensuel net</strong> de ses vendeurs sur une période
+              de <strong>$N$ jours ouvrables</strong> (saisi par l'utilisateur).
+            </p>
+            <ul class="mb-0 small">
+              <li>Le salaire de base quotidien est de <strong>35.000 DT</strong>.</li>
+              <li>Pour chaque jour $i$ ($1 \le i \le N$), l'utilisateur saisit le nombre de ventes réalisées.</li>
+              <li>Si le nombre de ventes d'un jour est <strong>supérieur à 10</strong>, le vendeur touche une
+                <strong>prime journalière de 15.000 DT</strong>.
+              </li>
+              <li>À la fin du mois, si le total des ventes réalisées dépasse <strong>150 articles</strong>, une
+                <strong>prime de performance globale de 100.000 DT</strong> est ajoutée au salaire net.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Accordion for Resolution Steps -->
+          <div class="accordion accordion-custom mb-4" id="accordionSalaire">
+
+            <!-- 1. Analyse -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingAnal">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnal">
+                  <i class="bi bi-search me-2"></i> 1. Analyse du Problème
+                </button>
+              </h2>
+              <div id="collapseAnal" class="accordion-collapse collapse show" data-bs-parent="#accordionSalaire">
+                <div class="accordion-body">
+                  <ul>
+                    <li><strong>Données d'entrée (Entrées) :</strong>
+                      <ul>
+                        <li><code>n</code> : Nombre de jours ouvrables (Entier)</li>
+                        <li><code>nb_ventes</code> : Ventes quotidiennes (Entier, saisi $N$ fois)</li>
+                      </ul>
+                    </li>
+                    <li><strong>Données de sortie (Sorties) :</strong>
+                      <ul>
+                        <li><code>total_ventes</code> : Total d'articles vendus (Entier)</li>
+                        <li><code>salaire_net</code> : Salaire mensuel net (Réel)</li>
+                      </ul>
+                    </li>
+                    <li><strong>Traitements :</strong>
+                      <ol>
+                        <li>Initialiser <code>total_ventes &larr; 0</code> et <code>salaire_net &larr; 0.0</code>.</li>
+                        <li>Pour chaque jour $i$ de $1$ à $n$ :
+                          <ul>
+                            <li><code>total_ventes &larr; total_ventes + nb_ventes</code></li>
+                            <li><code>salaire_net &larr; salaire_net + 35.000</code></li>
+                            <li>Si <code>nb_ventes &gt; 10</code> Alors
+                              <code>salaire_net &larr; salaire_net + 15.000</code>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>Si <code>total_ventes &gt; 150</code> Alors
+                          <code>salaire_net &larr; salaire_net + 100.000</code>
+                        </li>
+                      </ol>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. TDO -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTdo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTdo">
+                  <i class="bi bi-table me-2"></i> 2. Tableau de Déclaration des Objets (TDO)
+                </button>
+              </h2>
+              <div id="collapseTdo" class="accordion-collapse collapse" data-bs-parent="#accordionSalaire">
+                <div class="accordion-body">
+                  <table class="table table-custom mb-0">
+                    <thead>
+                      <tr>
+                        <th>Objet</th>
+                        <th>Type / Nature</th>
+                        <th>Rôle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>n</code></td>
+                        <td>Entier</td>
+                        <td>Nombre de jours ouvrables du mois</td>
+                      </tr>
+                      <tr>
+                        <td><code>i</code></td>
+                        <td>Entier</td>
+                        <td>Compteur de la boucle Pour</td>
+                      </tr>
+                      <tr>
+                        <td><code>nb_ventes</code></td>
+                        <td>Entier</td>
+                        <td>Nombre de ventes du jour i</td>
+                      </tr>
+                      <tr>
+                        <td><code>total_ventes</code></td>
+                        <td>Entier</td>
+                        <td>Accumulateur des ventes totales</td>
+                      </tr>
+                      <tr>
+                        <td><code>salaire_net</code></td>
+                        <td>Réel</td>
+                        <td>Accumulateur du salaire net mensuel</td>
+                      </tr>
+                      <tr>
+                        <td><code>BASE_JOUR</code></td>
+                        <td>Constante = 35.000</td>
+                        <td>Salaire de base fixe quotidien (DT)</td>
+                      </tr>
+                      <tr>
+                        <td><code>PRIME_JOUR</code></td>
+                        <td>Constante = 15.000</td>
+                        <td>Prime journalière si ventes &gt; 10 (DT)</td>
+                      </tr>
+                      <tr>
+                        <td><code>PRIME_GLOBALE</code></td>
+                        <td>Constante = 100.000</td>
+                        <td>Prime de performance mensuelle si total &gt; 150 (DT)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Algorithme -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingAlgo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseAlgo">
+                  <i class="bi bi-file-earmark-code me-2"></i> 3. Algorithme
+                </button>
+              </h2>
+              <div id="collapseAlgo" class="accordion-collapse collapse" data-bs-parent="#accordionSalaire">
+                <div class="accordion-body">
+                  <pre><code class="language-algorithm">ALGORITHME Calcul_Salaire_Vendeur
+DEBUT
+    Écrire("Donner le nombre de jours ouvrables (N) : ")
+    Lire(n)
+    
+    total_ventes ← 0
+    salaire_net ← 0.0
+    
+    Pour i de 1 à n Faire
+        Écrire("Nombre de ventes pour le jour ", i, " : ")
+        Lire(nb_ventes)
+        
+        total_ventes ← total_ventes + nb_ventes
+        salaire_net ← salaire_net + 35.000
+        
+        Si (nb_ventes > 10) Alors
+            salaire_net ← salaire_net + 15.000
+        FinSi
+    Fin Pour
+    
+    Si (total_ventes > 150) Alors
+        salaire_net ← salaire_net + 100.000
+    FinSi
+    
+    Écrire("Total des ventes du mois : ", total_ventes)
+    Écrire("Salaire net mensuel : ", salaire_net, " DT")
+FIN</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Implémentation Python -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingPy">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapsePy">
+                  <i class="bi bi-filetype-py me-2"></i> 4. Implémentation Python (Thonny IDE)
+                </button>
+              </h2>
+              <div id="collapsePy" class="accordion-collapse collapse" data-bs-parent="#accordionSalaire">
+                <div class="accordion-body">
+                  <div class="code-container">
+                    <div class="code-header">
+                      <span>script_vendeur.py</span>
+                    </div>
+                    <pre><code class="language-python"># Constantes
+BASE_JOUR = 35.000
+PRIME_JOUR = 15.000
+PRIME_GLOBALE = 100.000
+
+# Entrée principale
+n = int(input("Donner le nombre de jours ouvrables (N) : "))
+
+# Initialisation des accumulateurs
+total_ventes = 0
+salaire_net = 0.0
+
+# Boucle pour traiter chaque jour
+for i in range(1, n + 1):
+    nb_ventes = int(input("Nombre de ventes pour le jour " + str(i) + " : "))
+    
+    total_ventes += nb_ventes
+    salaire_net += BASE_JOUR
+    
+    if nb_ventes > 10:
+        salaire_net += PRIME_JOUR
+
+# Test de la prime globale
+if total_ventes > 150:
+    salaire_net += PRIME_GLOBALE
+    print("Félicitations ! Prime globale de 100.000 DT accordée.")
+
+# Affichage des résultats
+print("\n--- BILAN MENSUEL ---")
+print("Total d'articles vendus :", total_ventes)
+print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Simulateur Interactif Vue.js -->
+          <div class="card card-custom mt-4">
+            <div class="card-header-custom d-flex justify-content-between align-items-center">
+              <h4 class="h6 mb-0 text-success"><i class="bi bi-play-circle-fill me-2"></i> Simulateur en direct :
+                Salaire & Primes Vendeur</h4>
+              <span class="badge bg-success bg-opacity-25 text-success">Interactif</span>
+            </div>
+            <div class="card-body">
+              <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-4">
+                  <label class="form-label small fw-bold">Nombre de jours ouvrables ($N$) :</label>
+                  <input type="number" class="form-control form-control-sm" v-model.number="simJours"
+                    @change="updateJoursSim" min="1" max="15">
+                </div>
+                <div class="col-md-8">
+                  <p class="small text-muted mb-0">Saisissez les ventes journalières ci-dessous pour calculer les primes
+                    automatiques :</p>
+                </div>
+              </div>
+
+              <!-- Jours Inputs -->
+              <div class="row g-2 mb-3">
+                <div v-for="(v, idx) in simVentesJour" :key="idx" class="col-6 col-sm-4 col-md-2.4">
+                  <div class="p-2 border border-secondary border-opacity-25 rounded bg-subtle text-center">
+                    <small class="d-block text-muted">Jour {{ idx + 1 }}</small>
+                    <input type="number" class="form-control form-control-sm text-center font-mono mt-1"
+                      v-model.number="simVentesJour[idx]" min="0">
+                    <span v-if="simVentesJour[idx] > 10" class="badge bg-success mt-1" style="font-size: 0.65rem;">+15
+                      DT</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Simulator Results -->
+              <div class="p-3 rounded bg-body-tertiary border border-secondary border-opacity-25">
+                <div class="row text-center g-2">
+                  <div class="col-md-4">
+                    <small class="text-muted d-block">Total Articles Vendus</small>
+                    <span class="fs-5 fw-bold font-mono text-info">{{ totalVentesSim }}</span>
+                  </div>
+                  <div class="col-md-4">
+                    <small class="text-muted d-block">Jours avec Prime (&gt;10)</small>
+                    <span class="fs-5 fw-bold font-mono text-warning">{{ nbJoursPrimeSim }} / {{ simJours }}</span>
+                  </div>
+                  <div class="col-md-4">
+                    <small class="text-muted d-block">Salaire Net Mensuel</small>
+                    <span class="fs-4 fw-bold font-mono text-success">{{ salaireNetSim.toFixed(3) }} DT</span>
+                  </div>
+                </div>
+                <div v-if="hasPrimeGlobaleSim" class="alert alert-success m-0 mt-3 p-2 text-center small fw-bold">
+                  <i class="bi bi-trophy-fill me-1"></i> Prime Globale de 100.000 DT débloquée ! (Total &gt; 150 ventes)
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </article>
+
+      <!-- Article 4: Auto-évaluation -->
+      <article class="article-content-wrapper">
+        <h2><i class="bi bi-patch-question-fill text-warning me-2"></i> Auto-évaluation</h2>
+
+        <section id="section-quiz" class="section-pane">
+          <h3>Quiz Diagnostique & Consolidation</h3>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- EvalQuiz Vanilla JS Component -->
+              <div class="eval-quiz" data-title="Quiz Diagnostique (4 Questions)">
+
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="range(début, fin) exclut TOUJOURS la borne supérieure fin. Donc range(1, 5) génère 1, 2, 3 et 4.">
+                  <div class="question-text">Quels sont les nombres générés par l'instruction range(1, 5) en Python ?
+                  </div>
+                  <ul class="quiz-options">
+                    <li>[1, 2, 3, 4, 5]</li>
+                    <li>[1, 2, 3, 4]</li>
+                    <li>[0, 1, 2, 3, 4]</li>
+                    <li>[1, 5]</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="En Python, la contraction officielle de 'else if' est 'elif'.">
+                  <div class="question-text">Quelle instruction correspond à la forme 'Sinon Si' en langage Python ?
+                  </div>
+                  <ul class="quiz-options">
+                    <li>else if</li>
+                    <li>elseif</li>
+                    <li>elif</li>
+                    <li>else</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="L'élément neutre de l'addition est 0, donc un accumulateur de somme doit être initialisé à 0 avant la boucle.">
+                  <div class="question-text">Quelle valeur initiale doit-on donner à un accumulateur de somme avant
+                    d'entrer dans une boucle ?</div>
+                  <ul class="quiz-options">
+                    <li>1</li>
+                    <li>0</li>
+                    <li>-1</li>
+                    <li>None</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="L'opérateur modulo % calcule le reste de la division entière. Si i % 2 == 0, le nombre est pair.">
+                  <div class="question-text">Quelle est la condition correcte en Python pour vérifier si un nombre 'i'
+                    est pair ?</div>
+                  <ul class="quiz-options">
+                    <li>i / 2 == 0</li>
+                    <li>i % 2 == 0</li>
+                    <li>i Mod 2 = 0</li>
+                    <li>i % 2 == 1</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+  <!-- Application Script for Séance 2 -->
+  <script src="assets/app/seance02.js"></script>
+</body>
+
+</html>
