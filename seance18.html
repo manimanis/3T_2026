@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°18 : Contrôle des Actionneurs (PWM &amp; Servomoteur) | 3ème Secondary</title>
+  <meta name="description"
+    content="Séance N°18 : Pilotage d'actionneurs avec la carte microcontrôleur ESP32. Modulation de largeur d'impulsion PWM, commande du servomoteur SG90 (0 à 180°), buzzer piezo et boucle de régulation automatique.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- Static CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* Custom Actuators Visual Simulator Styles */
+    .actuator-card {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      border: 2px solid #334155;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      padding: 24px;
+    }
+
+    .servo-visual-container {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto;
+    }
+
+    .servo-arm {
+      width: 6px;
+      height: 65px;
+      background: #ef4444;
+      position: absolute;
+      bottom: 50%;
+      left: calc(50% - 3px);
+      transform-origin: bottom center;
+      border-radius: 3px;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    }
+
+    .servo-center-pin {
+      width: 20px;
+      height: 20px;
+      background: #f8fafc;
+      border: 3px solid #1e293b;
+      border-radius: 50%;
+      position: absolute;
+      top: calc(50% - 10px);
+      left: calc(50% - 10px);
+      z-index: 10;
+    }
+
+    .repl-terminal {
+      background-color: #050811;
+      color: #38bdf8;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+      border-radius: 8px;
+      padding: 15px;
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid #1e293b;
+    }
+
+    .repl-line {
+      line-height: 1.4;
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+
+    .sound-pulse {
+      animation: pulse-ring 1s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(234, 179, 8, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(234, 179, 8, 0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section / Breadcrumb -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25">
+      <div class="container px-lg-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <span class="badge bg-cyan bg-opacity-25 text-info border border-info border-opacity-50 mb-1"
+              style="color: #38bdf8;">
+              Module 5 • Séance N°18
+            </span>
+            <h1 class="h3 mb-0 fw-bold">Contrôle des Actionneurs (PWM &amp; Servomoteur SG90)</h1>
+            <p class="text-muted small mb-0 mt-1">
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container px-lg-4 my-4">
+
+      <!-- Article 1: Fiche Pédagogique -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+
+        <section id="section-objectifs" class="section-pane">
+          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Définir le rôle d'un **Actionneur** dans une chaîne IoT (mouvement, son, éclairage).</li>
+                    <li>Comprendre la **Modulation de Largeur d'Impulsion (PWM)** et la notion de rapport cyclique ($D =
+                      \frac{t_{\text{on}}}{T}$).</li>
+                    <li>Comprendre la commande du **Servomoteur SG90** ($50\,\text{Hz}$, duty MicroPython $26 \dots 123$
+                      pour $0^\circ \dots 180^\circ$).</li>
+                    <li>Générer des fréquences sonores sur un **Buzzer Piezoélectrique**.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Configurer et piloter une sortie PWM en MicroPython (`PWM(Pin(pin), freq=f, duty=d)`).</li>
+                    <li>Écrire une fonction de conversion d'angle $0^\circ \dots 180^\circ$ pour le servomoteur SG90.
+                    </li>
+                    <li>Émettre des bips sonores et alertes sur le buzzer piezo.</li>
+                    <li>Programmer une **Boucle de Régulation Automatique** fermée (Capteur ➔ Seuil ➔ Actionneurs).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chronogramme -->
+          <div class="card card-custom">
+            <div class="card-header-custom text-info fw-bold">
+              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Phase</th>
+                      <th>Durée</th>
+                      <th>Activité de l'Enseignant</th>
+                      <th>Activité de l'Élève</th>
+                      <th>Support / Outils</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge bg-primary">1. Situation Problème</span></td>
+                      <td>15 min</td>
+                      <td>Présentation de systèmes automatisés (Barrière de parking, Climatisation autorégulée). Rôle
+                        des actionneurs.</td>
+                      <td>Analyse du besoin d'un signal variable pour contrôler la position d'un servomoteur.</td>
+                      <td>Diaporama &amp; Vidéo</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-info text-dark">2. Théorie PWM &amp; Servo</span></td>
+                      <td>20 min</td>
+                      <td>Explication du signal PWM ($50\,\text{Hz}$) et calcul des valeurs de duty cycle pour
+                        $0^\circ$, $90^\circ$ et $180^\circ$.</td>
+                      <td>Calcul des rapports cycliques et des fréquences musicales pour le buzzer.</td>
+                      <td>Tableau &amp; Formules KaTeX</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-success">3. TP Pratique sur ESP32</span></td>
+                      <td>40 min</td>
+                      <td>Encadrement du câblage du servomoteur SG90 (GPIO 13) et du buzzer (GPIO 12) sous Thonny.</td>
+                      <td>Câblage, écriture des fonctions `poser_angle()` et alarme sonore sous Thonny.</td>
+                      <td>Thonny IDE / ESP32 / Servo SG90</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation &amp; Synthèse</span></td>
+                      <td>15 min</td>
+                      <td>Quiz de validation et défi pratique (Système d'alarme de barrière de parking).</td>
+                      <td>Résolution du quiz et écriture du script de régulation automatique global.</td>
+                      <td>Environnement de TP</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 2: La Modulation PWM & Actionneurs -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-sliders text-info me-2"></i> La Modulation de Largeur d'Impulsion (PWM)</h2>
+
+        <section id="section-pwm" class="section-pane">
+          <h3>1. Principe de la PWM (Pulse Width Modulation)</h3>
+          <p>
+            La **PWM** permet à un microcontrôleur numérique de délivrer une puissance variable en faisant osciller la
+            broche entre $0\,\text{V}$ et $3.3\,\text{V}$ à haute fréquence.
+          </p>
+
+          <div class="alert alert-info border-info d-flex align-items-center gap-3 my-3">
+            <i class="bi bi-calculator-fill fs-2"></i>
+            <div>
+              <strong>Formule du Rapport Cyclique (Duty Cycle $D$) :</strong>
+              $$D = \frac{t_{\text{on}}}{T} \times 100\% \quad \text{avec} \quad T = \frac{1}{f}$$
+              En MicroPython sur ESP32, la résolution est codée sur **10 bits** ($0 \dots 1023$).
+            </div>
+          </div>
+
+          <h3 class="mt-4">2. Commande du Servomoteur SG90 ($50\,\text{Hz}$)</h3>
+          <p>Le servomoteur SG90 se pilote avec une impulsion de largeur variable répétée à **$50\,\text{Hz}$** ($T =
+            20\,\text{ms}$) :</p>
+
+          <div class="table-responsive">
+            <table class="table table-custom table-bordered align-middle text-center small">
+              <thead class="table-dark">
+                <tr>
+                  <th>Angle ($^\circ$)</th>
+                  <th>Durée de l'Impulsion ($t_{\text{on}}$)</th>
+                  <th>Rapport Cyclique ($D$)</th>
+                  <th>Valeur Duty MicroPython (0-1023)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold font-mono">0°</td>
+                  <td class="font-mono">1.0 ms</td>
+                  <td class="font-mono">5.0 %</td>
+                  <td class="text-info font-mono fw-bold">26</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold font-mono">90°</td>
+                  <td class="font-mono">1.5 ms</td>
+                  <td class="font-mono">7.5 %</td>
+                  <td class="text-info font-mono fw-bold">77</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold font-mono">180°</td>
+                  <td class="font-mono">2.0 ms</td>
+                  <td class="font-mono">10.0 %</td>
+                  <td class="text-info font-mono fw-bold">123</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 3: Servomoteur SG90 & Buzzer Piezo -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-volume-up text-success me-2"></i> Scripts MicroPython &amp; C++</h2>
+
+        <section id="section-servo" class="section-pane">
+          <h3>1. Fonction de commande du Servomoteur en MicroPython</h3>
+
+          <pre class="bg-dark text-light p-3 rounded font-mono small"><code>from machine import Pin, PWM
+import time
+
+# Initialisation PWM sur GPIO 13 à 50 Hz
+servo = PWM(Pin(13), freq=50)
+
+def poser_angle(angle):
+    # Formule de conversion d'angle (0°..180°) vers duty (26..123)
+    duty_val = int(26 + (angle / 180.0) * (123 - 26))
+    servo.duty(duty_val)
+
+# Exemple : Ouvrir le servo à 90 degrés
+poser_angle(90)</code></pre>
+
+          <h3 class="mt-4">2. Génération de Bips Sonores sur Buzzer Piezo</h3>
+
+          <pre class="bg-dark text-light p-3 rounded font-mono small"><code>from machine import Pin, PWM
+import time
+
+buzzer = PWM(Pin(12))
+
+def bip_alarme(frequence_hz, duree_sec):
+    buzzer.freq(frequence_hz)
+    buzzer.duty(512) # 50% de puissance
+    time.sleep(duree_sec)
+    buzzer.duty(0)   # Éteindre
+
+# Émettre une note LA à 440 Hz pendant 0.5 sec
+bip_alarme(440, 0.5)</code></pre>
+        </section>
+      </article>
+
+      <!-- Article 4: Laboratoire Virtuel des Actionneurs -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-display-fill text-warning me-2"></i> Laboratoire Virtuel des Actionneurs</h2>
+
+        <section id="section-demo" class="section-pane">
+          <h3>Simulateur Interactif PWM, Servomoteur SG90 &amp; Buzzer</h3>
+          <p class="text-muted small">
+            Manœuvrez le servomoteur SG90, ajustez le gradateur de lumière LED PWM, générez des fréquences sonores et
+            simulez une boucle de régulation automatique Capteur ➔ Actionneur.
+          </p>
+
+          <div class="row g-4 my-2">
+            <!-- Servo & LED Controls -->
+            <div class="col-lg-6">
+              <div class="actuator-card">
+                <h5 class="fw-bold mb-3 text-info"><i class="bi bi-gear-wide me-2"></i> 1. Servomoteur SG90 (GPIO 13 PWM
+                  50Hz)</h5>
+
+                <!-- Visual Rotational Gauge for SG90 Servo -->
+                <div class="p-3 border rounded bg-dark bg-opacity-50 text-center mb-3">
+                  <div class="servo-visual-container">
+                    <div class="servo-center-pin"></div>
+                    <div class="servo-arm" :style="{ transform: 'rotate(' + (servoAngle - 90) + 'deg)' }"></div>
+                  </div>
+                  <div class="mt-2 font-mono">
+                    <span class="badge bg-danger fs-6">{{ servoAngle }}°</span>
+                    <span class="ms-2 text-muted small">Duty: {{ servoDuty }} / 1023</span>
+                  </div>
+                </div>
+
+                <!-- Servo Angle Range Input & Buttons -->
+                <div class="mb-3">
+                  <label class="form-label small text-muted mb-1">Positionner l'angle (0° à 180°) :</label>
+                  <input type="range" class="form-range" min="0" max="180" :value="servoAngle"
+                    @input="setServoAngle(parseInt($event.target.value))">
+                  <div class="d-flex justify-content-between gap-1 mt-2">
+                    <button class="btn btn-outline-secondary btn-sm flex-fill" @click="setServoAngle(0)">0°
+                      (Fermé)</button>
+                    <button class="btn btn-outline-info btn-sm flex-fill" @click="setServoAngle(90)">90°
+                      (Mi-Ouvert)</button>
+                    <button class="btn btn-outline-warning btn-sm flex-fill" @click="setServoAngle(180)">180°
+                      (Ouvert)</button>
+                  </div>
+                </div>
+
+                <!-- Servo Sweep Button -->
+                <button class="btn btn-outline-primary w-100 btn-sm mb-4" @click="triggerSweepAnimation">
+                  <i class="bi bi-arrow-repeat me-1"></i> Lancer Balayage Automatique (0° ➔ 180°)
+                </button>
+
+                <!-- Dimmer LED PWM -->
+                <h5 class="fw-bold mb-2 text-warning"><i class="bi bi-lightbulb-fill me-2"></i> 2. Gradateur LED PWM
+                  (GPIO 4)</h5>
+                <div class="p-3 border rounded bg-dark bg-opacity-50">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label class="form-label mb-0 small text-muted">Luminosité LED :</label>
+                    <span class="badge bg-warning text-dark font-mono">{{ ledBrightness }} % (Duty: {{ ledDuty
+                      }})</span>
+                  </div>
+                  <input type="range" class="form-range" min="0" max="100" v-model.number="ledBrightness">
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Buzzer Notes & Regulation Loop -->
+            <div class="col-lg-6">
+              <!-- Buzzer Panel -->
+              <div class="actuator-card mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="fw-bold mb-0 text-warning"><i class="bi bi-music-note-beaming me-2"></i> 3. Buzzer Piezo
+                    (GPIO 12)</h5>
+                  <span class="badge" :class="isBuzzerActive ? 'bg-warning text-dark sound-pulse' : 'bg-secondary'">
+                    {{ isBuzzerActive ? '🎵 ÉMISSION SONORE' : 'SILENCE' }}
+                  </span>
+                </div>
+
+                <p class="small text-muted mb-2">Clavier de notes musicales (Fréquences en Hz) :</p>
+                <div class="d-flex flex-wrap gap-2 mb-2">
+                  <button v-for="(freq, note) in noteFreqs" :key="note" class="btn btn-sm btn-outline-info font-mono"
+                    @click="playNote(note)">
+                    {{ note }} ({{ freq }}Hz)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Automatic Regulation Panel -->
+              <div class="actuator-card mb-4 border-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="fw-bold mb-0 text-info"><i class="bi bi-cpu-fill me-2"></i> 4. Boucle de Régulation
+                    Automatique</h5>
+                  <button class="btn btn-sm" :class="isRegulationActive ? 'btn-success' : 'btn-outline-secondary'"
+                    @click="toggleRegulationMode">
+                    {{ isRegulationActive ? 'Régulation Active' : 'Activer Régulation' }}
+                  </button>
+                </div>
+
+                <div class="p-3 border rounded bg-dark bg-opacity-50 my-2">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label class="form-label mb-0 small text-muted">Simuler Température DHT11 (°C) :</label>
+                    <span class="badge font-mono" :class="isThresholdExceeded ? 'bg-danger' : 'bg-success'">
+                      {{ regulationTemp }} °C (Seuil: {{ regulationThreshold }}°C)
+                    </span>
+                  </div>
+                  <input type="range" class="form-range" min="20" max="40" v-model.number="regulationTemp"
+                    :disabled="!isRegulationActive">
+                </div>
+              </div>
+
+              <!-- REPL Console -->
+              <div class="card card-custom">
+                <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+                  <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Console REPL
+                    MicroPython</span>
+                  <button class="btn btn-link btn-sm text-muted p-0 text-decoration-none" @click="clearLogs">
+                    <i class="bi bi-trash"></i> Effacer
+                  </button>
+                </div>
+                <div class="card-body p-2">
+                  <div id="replTerminal" class="repl-terminal">
+                    <div v-for="(log, idx) in replLogs" :key="idx" class="repl-line">
+                      {{ log }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 5: Évaluation Formative -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+
+        <section id="section-quiz" class="section-pane">
+          <h3>Testez vos Connaissances du Contrôle des Actionneurs</h3>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- EvalQuiz Vanilla JS Component -->
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Actionneurs IoT (5 Questions)">
+
+                <div class="quiz-question" data-correct="0" data-explanation="Le rapport cyclique (Duty Cycle) d'un signal PWM définit le pourcentage de temps à l'état HAUT.">
+                  <div class="question-text">1. Qu'est-ce que le rapport cyclique (Duty Cycle) d'un signal PWM ?</div>
+                  <ul class="quiz-options">
+                    <li>Le pourcentage de temps où le signal est à l'état HAUT (3.3V) sur une période complète</li>
+                    <li>La fréquence totale du processeur</li>
+                    <li>Le nombre de fois où la LED clignote par minute</li>
+                    <li>La résistance du composant</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="1" data-explanation="Un servomoteur SG90 s'oriente avec précision sur une plage d'angles variant de 0° à 180°.">
+                  <div class="question-text">2. Quelle est la plage d'orientation angulaire d'un servomoteur standard SG90 ?</div>
+                  <ul class="quiz-options">
+                    <li>De 0° à 360° en continu</li>
+                    <li>De 0° à 180°</li>
+                    <li>De -90° à +90°</li>
+                    <li>De 0° à 90°</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="2" data-explanation="La hauteur de note produite par un buzzer piézoélectrique dépend de la fréquence du signal PWM (Hz).">
+                  <div class="question-text">3. Quel paramètre PWM modifie la hauteur de note (fréquence sonore) émise par un buzzer ?</div>
+                  <ul class="quiz-options">
+                    <li>Le rapport cyclique (duty)</li>
+                    <li>La tension de la batterie</li>
+                    <li>La fréquence du signal PWM (en Hz)</li>
+                    <li>La broche GND</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Un signal PWM de 50Hz (période 20ms) avec impulsion 1.5ms commande le servomoteur à 90°.">
+                  <div class="question-text">4. Quelle est la fréquence PWM standard requise pour piloter un servomoteur SG90 ?</div>
+                  <ul class="quiz-options">
+                    <li>50 Hz (Période de 20 ms)</li>
+                    <li>1000 Hz (1 kHz)</li>
+                    <li>1 Hz</li>
+                    <li>10000 Hz</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="PWM(Pin(4), freq=1000) configure un signal PWM à 1000Hz sur le GPIO 4 pour faire varier une LED.">
+                  <div class="question-text">5. Comment crée-t-on un objet PWM à 1000 Hz sur la broche GPIO 4 en MicroPython ?</div>
+                  <ul class="quiz-options">
+                    <li>pwm = PWM(Pin(4), freq=1000)</li>
+                    <li>pwm = Pin(4).pwm(1000)</li>
+                    <li>pwm = AnalogOut(4, 1000)</li>
+                    <li>pwm = Servo(4)</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+
+  <!-- Application Script for Séance 18 -->
+  <script src="assets/app/seance18.js"></script>
+</body>
+
+</html>

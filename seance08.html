@@ -62,27 +62,16 @@
     <!-- Header Section / Breadcrumb -->
     <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container px-lg-4">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-1 small">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
-            <li class="breadcrumb-item">Module 3 : Modularité &amp; Décomposition Algorithmique</li>
-            <li class="breadcrumb-item active" aria-current="page">Séance 8</li>
-          </ol>
-        </nav>
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
           <div>
-            <span class="badge bg-purple bg-opacity-25 text-purple border border-purple border-opacity-50 mb-1" style="color: #a78bfa;">
+            <span class="badge bg-purple bg-opacity-25 text-purple border border-purple border-opacity-50 mb-1"
+              style="color: #a78bfa;">
               Module 3 • Séance N°8
             </span>
             <h1 class="h3 mb-0 fw-bold">Paramètres, Valeurs de Retour &amp; Portée des Variables</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
             </p>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
-              <i class="bi bi-[#8b5cf6] bi-shield-lock-fill me-1 text-primary"></i> Espace Mémoire &amp; Scope
-            </span>
           </div>
         </div>
       </div>
@@ -106,11 +95,16 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Comprendre la portée (*scope*) : <strong>Variable locale</strong> (détruite après exécution) vs <strong>Variable globale</strong> (dans le programme principal).</li>
+                    <li>Comprendre la portée (*scope*) : <strong>Variable locale</strong> (détruite après exécution) vs
+                      <strong>Variable globale</strong> (dans le programme principal).
+                    </li>
                     <li>Maîtriser les 2 modes de passage :
                       <ul>
-                        <li><strong>Passage par Valeur :</strong> Le module reçoit une copie (les types simples `int`, `float`, `str`, `bool` sont immuables).</li>
-                        <li><strong>Passage par Adresse :</strong> Transmet l'adresse mémoire (symbole <code>@</code> en algorithmique, automatique en Python pour les objets mutables comme <code>numpy.array</code> et <code>dict</code>).</li>
+                        <li><strong>Passage par Valeur :</strong> Le module reçoit une copie (les types simples `int`,
+                          `float`, `str`, `bool` sont immuables).</li>
+                        <li><strong>Passage par Adresse :</strong> Transmet l'adresse mémoire (symbole <code>@</code> en
+                          algorithmique, automatique en Python pour les objets mutables comme <code>numpy.array</code>
+                          et <code>dict</code>).</li>
                       </ul>
                     </li>
                     <li>Connaître le rôle du mot-clé <strong><code>global</code></strong> en Python.</li>
@@ -127,8 +121,11 @@
                 <div class="card-body">
                   <ul class="list-custom mb-0">
                     <li>Identifier la portée de chaque variable et éviter les effets de bord indésirables.</li>
-                    <li>Simuler le passage par adresse de plusieurs variables réelles en Python grâce aux retours multiples (<code>return h, m, s</code>).</li>
-                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> Si une variable globale est déclarée <code>global</code> dans un module, elle ne doit **jamais** figurer dans ses paramètres.</li>
+                    <li>Simuler le passage par adresse de plusieurs variables réelles en Python grâce aux retours
+                      multiples (<code>return h, m, s</code>).</li>
+                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> Si une variable globale est déclarée
+                      <code>global</code> dans un module, elle ne doit **jamais** figurer dans ses paramètres.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -156,22 +153,27 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Situation Problème</span></td>
                       <td>15 min</td>
-                      <td>Exécuter un script où une variable modifiée dans une fonction garde sa valeur initiale dans le programme principal.</td>
-                      <td>Constate la non-modification de la variable globale et s'interroge sur les espaces mémoire.</td>
+                      <td>Exécuter un script où une variable modifiée dans une fonction garde sa valeur initiale dans le
+                        programme principal.</td>
+                      <td>Constate la non-modification de la variable globale et s'interroge sur les espaces mémoire.
+                      </td>
                       <td>Tableau / ProProjecteur</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
                       <td>25 min</td>
-                      <td>Explication : Portée locale vs globale, passage par valeur vs par référence (<code>@</code>), et règle du mot-clé <code>global</code>.</td>
+                      <td>Explication : Portée locale vs globale, passage par valeur vs par référence (<code>@</code>),
+                        et règle du mot-clé <code>global</code>.</td>
                       <td>Prise de notes, analyse du tableau comparatif des modes de transmission.</td>
                       <td>Fiche de cours</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-success">3. Activité Guidée</span></td>
                       <td>35 min</td>
-                      <td>Résolution du problème de Conversion de Temps ($sec \to H, M, S$) et de Permutation de variables.</td>
-                      <td>Rédaction du TDO, écriture des algorithmes avec <code>@</code> et codage Python avec retours multiples.</td>
+                      <td>Résolution du problème de Conversion de Temps ($sec \to H, M, S$) et de Permutation de
+                        variables.</td>
+                      <td>Rédaction du TDO, écriture des algorithmes avec <code>@</code> et codage Python avec retours
+                        multiples.</td>
                       <td>Thonny Python IDE</td>
                     </tr>
                     <tr>
@@ -196,7 +198,8 @@
         <section id="section-cours-portee" class="section-pane">
           <h3>2. Portée des Variables &amp; Modes de Transmission</h3>
           <p class="text-muted">
-            L'exécution d'un module crée un espace mémoire isolé pour ses variables locales. La transmission d'information entre le programme principal et les modules dépend du mode de passage.
+            L'exécution d'un module crée un espace mémoire isolé pour ses variables locales. La transmission
+            d'information entre le programme principal et les modules dépend du mode de passage.
           </p>
 
           <!-- SVG Diagram Portée & Paramètres -->
@@ -237,13 +240,16 @@
                       <td>Types simples modifiés par adresse</td>
                       <td><span class="badge bg-success">Par Adresse</span></td>
                       <td><code>@pf : Type</code></td>
-                      <td>Simulé en Python par un retour de valeur (<code>return val</code> ou <code>return h, m, s</code>).</td>
+                      <td>Simulé en Python par un retour de valeur (<code>return val</code> ou
+                        <code>return h, m, s</code>).
+                      </td>
                     </tr>
                     <tr>
                       <td>Tableaux 1D (<code>numpy.array</code>) &amp; Dictionnaires</td>
                       <td><span class="badge bg-success">Par Adresse</span></td>
                       <td><code>@T : Tableau</code></td>
-                      <td>Transmet l'adresse mémoire (objet mutable). Les modifications du tableau affectent directement la structure d'origine.</td>
+                      <td>Transmet l'adresse mémoire (objet mutable). Les modifications du tableau affectent directement
+                        la structure d'origine.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -257,7 +263,9 @@
               <i class="bi bi-exclamation-triangle-fill me-2"></i> Règle Ministérielle Stricte sur le Mot-Clé `global`
             </h5>
             <p class="mb-0 small">
-              Si un module Python modifie directement une variable globale de type simple via l'instruction <code>global ma_var</code>, cette variable <strong>ne doit pas figurer dans la liste des paramètres</strong> de la fonction ou de la procédure.
+              Si un module Python modifie directement une variable globale de type simple via l'instruction
+              <code>global ma_var</code>, cette variable <strong>ne doit pas figurer dans la liste des
+                paramètres</strong> de la fonction ou de la procédure.
             </p>
           </div>
         </section>
@@ -265,12 +273,14 @@
 
       <!-- Article 3: Activité 1 - Prédiction d'Affichage -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-eye-fill text-info me-2"></i> Activité 1 : Prédiction d'Affichage &amp; Piège du Passage par Valeur</h2>
+        <h2><i class="bi bi-eye-fill text-info me-2"></i> Activité 1 : Prédiction d'Affichage &amp; Piège du Passage par
+          Valeur</h2>
 
         <section id="section-activite1" class="section-pane">
           <h3>Analyse de Script : Pourquoi `x` reste égal à 5 ?</h3>
           <p class="text-muted">
-            Observez l'exécution du script suivant et expliquez pourquoi la variable <code>x</code> du programme principal ne change pas.
+            Observez l'exécution du script suivant et expliquez pourquoi la variable <code>x</code> du programme
+            principal ne change pas.
           </p>
 
           <div class="row g-4 mb-4">
@@ -305,7 +315,10 @@ print("Dans le prog. principal, x =", x)</code></pre>
                     Dans le prog. principal, x = 5
                   </div>
                   <p class="small mb-0">
-                    <strong>Explication :</strong> L'argument <code>x</code> étant un entier (type simple `int`), il est transmis <strong>par valeur</strong>. La fonction <code>modifier</code> travaille sur une copie locale. L'affectation <code>x = x + 10</code> modifie uniquement la copie locale, sans aucun effet sur le <code>x</code> du programme principal.
+                    <strong>Explication :</strong> L'argument <code>x</code> étant un entier (type simple `int`), il est
+                    transmis <strong>par valeur</strong>. La fonction <code>modifier</code> travaille sur une copie
+                    locale. L'affectation <code>x = x + 10</code> modifie uniquement la copie locale, sans aucun effet
+                    sur le <code>x</code> du programme principal.
                   </p>
                 </div>
               </div>
@@ -316,7 +329,8 @@ print("Dans le prog. principal, x =", x)</code></pre>
 
       <!-- Article 4: Activité 2 - Problème Pratique: Conversion de Temps & Permutation -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-clock-history text-purple me-2" style="color: #a78bfa;"></i> Activité 2 : Conversion de Temps &amp; Permutation de Variables</h2>
+        <h2><i class="bi bi-clock-history text-purple me-2" style="color: #a78bfa;"></i> Activité 2 : Conversion de
+          Temps &amp; Permutation de Variables</h2>
 
         <section id="section-activite2" class="section-pane">
           <h3>Problème Pratique Modulaire</h3>
@@ -330,7 +344,9 @@ print("Dans le prog. principal, x =", x)</code></pre>
             </p>
             <ol class="mb-0 small">
               <li>Saisit une durée totale exprimée en <strong>secondes</strong> (entier positif $> 0$).</li>
-              <li>Utilise un module <code>convertir_temps</code> pour calculer le nombre d'<strong>heures</strong>, <strong>minutes</strong> et <strong>secondes</strong> réparties.</li>
+              <li>Utilise un module <code>convertir_temps</code> pour calculer le nombre d'<strong>heures</strong>,
+                <strong>minutes</strong> et <strong>secondes</strong> réparties.
+              </li>
               <li>Utilise un module <code>permuter</code> pour échanger les valeurs de deux entiers $A$ et $B$.</li>
               <li>Affiche les résultats de manière claire.</li>
             </ol>
@@ -384,9 +400,11 @@ print("Dans le prog. principal, x =", x)</code></pre>
           </div>
 
           <!-- Simulateur Vue 3 Réactif -->
-          <div class="card card-custom mb-4 border border-purple border-opacity-50 shadow-sm" style="border-color: #a78bfa !important;">
+          <div class="card card-custom mb-4 border border-purple border-opacity-50 shadow-sm"
+            style="border-color: #a78bfa !important;">
             <div class="card-header-custom text-primary fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Portée, Conversion &amp; Permutation</span>
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Portée, Conversion &amp;
+                Permutation</span>
               <span class="badge bg-primary">Vue 3 App</span>
             </div>
             <div class="card-body simulator-card-body">
@@ -399,11 +417,13 @@ print("Dans le prog. principal, x =", x)</code></pre>
                 <div class="row g-3 align-items-center">
                   <div class="col-md-5">
                     <label class="form-label small fw-bold simulator-label">Durée totale en secondes ($> 0$) :</label>
-                    <input type="number" v-model.number="dureeSecInput" min="1" class="form-control" placeholder="Secondes...">
+                    <input type="number" v-model.number="dureeSecInput" min="1" class="form-control"
+                      placeholder="Secondes...">
                   </div>
                   <div class="col-md-7">
                     <div class="simulator-val-box font-mono shadow-sm">
-                      <span class="simulator-sublabel d-block mb-1">`convertir_temps({{ tempsConverti.secTotales }})` $\to$ Tuple de retour :</span>
+                      <span class="simulator-sublabel d-block mb-1">`convertir_temps({{ tempsConverti.secTotales }})`
+                        $\to$ Tuple de retour :</span>
                       <div class="fs-4 fw-bold text-success">
                         {{ tempsConverti.h }} h : {{ tempsConverti.m }} min : {{ tempsConverti.s }} s
                       </div>
@@ -415,7 +435,8 @@ print("Dans le prog. principal, x =", x)</code></pre>
               <!-- Module 2: Permutation de variables -->
               <div class="simulator-box">
                 <h6 class="fw-bold text-warning mb-3">
-                  <i class="bi bi-arrow-left-right me-2"></i> Module 2 : Permutation de Deux Variables ($A \leftrightarrow B$)
+                  <i class="bi bi-arrow-left-right me-2"></i> Module 2 : Permutation de Deux Variables ($A
+                  \leftrightarrow B$)
                 </h6>
                 <div class="row g-3 align-items-center">
                   <div class="col-md-3 text-center">
@@ -453,7 +474,7 @@ print("Dans le prog. principal, x =", x)</code></pre>
           <div class="row g-4">
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Algorithme Officiel (Conventions 2024-2025)</span></div>
+                <div class="code-header"><span>Algorithme</span></div>
                 <pre><code class="language-algorithm">// Procédure de conversion
 Procédure convertir_temps (sec_totales : Entier, @h : Entier, @m : Entier, @s : Entier)
 LOCAUX
@@ -542,42 +563,60 @@ print("Après permutation : A =", v1, ", B =", v2)</code></pre>
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°8">
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Paramètres & Portée (5 Questions)">
 
-                <!-- Quiz Question 1 -->
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="En Python, les entiers (int) et les réels (float) sont des types simples immuables passés par valeur. Toute modification locale dans la fonction travaille sur une copie et n'affecte pas la variable d'origine.">
-                  <div class="question-text">Si une fonction Python modifie un paramètre entier `x = x + 10`, que devient la variable `x` du programme principal ?</div>
+                <div class="quiz-question" data-correct="0" data-explanation="Une variable locale est créée dans une fonction et n'est accessible que dans le corps de cette fonction.">
+                  <div class="question-text">1. Qu'est-ce qu'une variable locale ?</div>
                   <ul class="quiz-options">
-                    <li>Elle augmente de 10 automatiquement.</li>
-                    <li>Elle conserve sa valeur d'origine inchangée (passage par valeur).</li>
-                    <li>Elle est détruite et provoque un crash.</li>
+                    <li>Une variable accessible uniquement dans le corps du sous-programme où elle est créée</li>
+                    <li>Une variable accessible dans tout le programme</li>
+                    <li>Une constante globale non modifiable</li>
+                    <li>Une donnée enregistrée sur le disque</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 2 -->
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="En algorithmique, le symbole '@' placé devant un paramètre formel (@x : Entier) indique que le paramètre est transmis par adresse / référence.">
-                  <div class="question-text">Comment indique-t-on le passage par adresse (ou référence) dans un en-tête d'algorithme ?</div>
+                <div class="quiz-question" data-correct="1" data-explanation="Les paramètres formels sont déclarés dans la définition; les paramètres effectifs sont transmis lors de l'appel.">
+                  <div class="question-text">2. Quelle est la différence entre paramètres formels et paramètres effectifs ?</div>
                   <ul class="quiz-options">
-                    <li>En précédant le paramètre du symbole '@' (ex: @x : Entier).</li>
-                    <li>En écrivant le mot-clé 'ref' après le paramètre.</li>
-                    <li>En mettant le paramètre entre crochets [x].</li>
+                    <li>Les paramètres effectifs sont dans la définition, les formels lors de l'appel</li>
+                    <li>Les paramètres formels sont dans l'en-tête de définition, les effectifs lors de l'appel</li>
+                    <li>Ce sont exactement les mêmes variables</li>
+                    <li>Les paramètres effectifs sont toujours globaux</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 3 -->
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Selon la règle officielle du Ministère, une variable globale déclarée avec le mot-clé 'global' dans un module ne doit pas apparaître dans la liste des paramètres du module.">
-                  <div class="question-text">Que prescrit la règle officielle du Ministère sur le mot-clé `global` en Python ?</div>
+                <div class="quiz-question" data-correct="2" data-explanation="Lors de l'appel d'un sous-programme, la correspondance se fait en nombre, en ordre et en type.">
+                  <div class="question-text">3. Comment se fait la correspondance entre paramètres effectifs et paramètres formels ?</div>
                   <ul class="quiz-options">
-                    <li>Une variable globale doit toujours être transmise en paramètre.</li>
-                    <li>Le mot-clé global est interdit dans Thonny IDE.</li>
-                    <li>Une variable déclarée 'global' dans un module ne doit pas figurer dans ses paramètres.</li>
+                    <li>Uniquement par le nom des variables</li>
+                    <li>De manière totalement aléatoire</li>
+                    <li>Par ordre de position, nombre et compatibilité de type</li>
+                    <li>Par ordre alphabétique</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="En algorithmique, un paramètre transmis par adresse (variable) permet au sous-programme de modifier la variable d'origine.">
+                  <div class="question-text">4. En algorithmique, que permet le passage de paramètre par adresse (ou par variable VAR) ?</div>
+                  <ul class="quiz-options">
+                    <li>De modifier directement la valeur de la variable d'origine transmise par l'appelant</li>
+                    <li>De transmettre une copie en lecture seule</li>
+                    <li>D'accélérer uniquement la vitesse du processeur</li>
+                    <li>De rendre la variable globale</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="En Python, modifier une variable du même nom dans une fonction crée par défaut une nouvelle variable locale.">
+                  <div class="question-text">5. En Python, que se passe-t-il si l'on assigne une valeur à une variable dans une fonction sans mot-clé global ?</div>
+                  <ul class="quiz-options">
+                    <li>Python crée une variable locale propre à cette fonction</li>
+                    <li>Python modifie la variable globale du même nom</li>
+                    <li>Python lève une NameError</li>
+                    <li>Le programme s'arrête</li>
                   </ul>
                 </div>
 
               </div>
+            </div>
             </div>
           </div>
         </section>

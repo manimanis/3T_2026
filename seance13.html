@@ -62,13 +62,6 @@
     <!-- Header Section / Breadcrumb -->
     <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container px-lg-4">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-1 small">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
-            <li class="breadcrumb-item">Module 4 : Algorithmes Classiques &amp; Mini-Projets</li>
-            <li class="breadcrumb-item active" aria-current="page">Séance 13</li>
-          </ol>
-        </nav>
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
           <div>
             <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-50 mb-1">
@@ -76,13 +69,8 @@
             </span>
             <h1 class="h3 mb-0 fw-bold">Recherche Séquentielle dans un Tableau</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
             </p>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
-              <i class="bi bi-search me-1 text-primary"></i> Boucle `while i &lt; n and not trouve:` (Zéro `break`)
-            </span>
           </div>
         </div>
       </div>
@@ -106,9 +94,12 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Comprendre le principe de la **recherche séquentielle** (ou linéaire) : examiner successivement les éléments d'un tableau de $0$ à $N-1$.</li>
-                    <li>Apprendre à gérer la **sortie anticipée** de la boucle dès que l'élément recherché est localisé.</li>
-                    <li>Analyser les cas d'exécution : **Meilleur cas** ($1$ seule comparaison à l'indice $0$) et **Pire cas** ($N$ comparaisons si dernier ou absent).</li>
+                    <li>Comprendre le principe de la **recherche séquentielle** (ou linéaire) : examiner successivement
+                      les éléments d'un tableau de $0$ à $N-1$.</li>
+                    <li>Apprendre à gérer la **sortie anticipée** de la boucle dès que l'élément recherché est localisé.
+                    </li>
+                    <li>Analyser les cas d'exécution : **Meilleur cas** ($1$ seule comparaison à l'indice $0$) et **Pire
+                      cas** ($N$ comparaisons si dernier ou absent).</li>
                   </ul>
                 </div>
               </div>
@@ -121,9 +112,12 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Concevoir la fonction <code>recherche_sequentielle(T, n, element)</code> avec l'indicateur booléen <code>trouve</code>.</li>
-                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> **Ne jamais utiliser l'instruction `break`**.</li>
-                    <li>Appliquer la recherche séquentielle à des **tableaux synchrones/parallèles** (ex: chercher un ID et récupérer la moyenne associée).</li>
+                    <li>Concevoir la fonction <code>recherche_sequentielle(T, n, element)</code> avec l'indicateur
+                      booléen <code>trouve</code>.</li>
+                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> **Ne jamais utiliser l'instruction `break`**.
+                    </li>
+                    <li>Appliquer la recherche séquentielle à des **tableaux synchrones/parallèles** (ex: chercher un ID
+                      et récupérer la moyenne associée).</li>
                   </ul>
                 </div>
               </div>
@@ -151,7 +145,8 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Situation Problème</span></td>
                       <td>10 min</td>
-                      <td>Demander comment retrouver une moyenne à partir d'un numéro d'identifiant parmi $N$ élèves.</td>
+                      <td>Demander comment retrouver une moyenne à partir d'un numéro d'identifiant parmi $N$ élèves.
+                      </td>
                       <td>Propose de parcourir la liste case par case jusqu'à trouver le numéro.</td>
                       <td>Tableau / ProProjecteur</td>
                     </tr>
@@ -159,7 +154,8 @@
                       <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
                       <td>25 min</td>
                       <td>Présentation du schéma de la boucle `Tant que` avec l'indicateur `trouve` (sans `break`).</td>
-                      <td>Prise de notes et traçage manuel de la recherche sur un exemple (élément présent / absent).</td>
+                      <td>Prise de notes et traçage manuel de la recherche sur un exemple (élément présent / absent).
+                      </td>
                       <td>Fiche de cours</td>
                     </tr>
                     <tr>
@@ -191,7 +187,8 @@
         <section id="section-cours-recherche" class="section-pane">
           <h3>2. Algorithme de Recherche Séquentielle Officiel</h3>
           <p class="text-muted">
-            La recherche séquentielle examine un tableau de gauche à droite jusqu'à trouver la valeur recherchée ou atteindre la fin du tableau.
+            La recherche séquentielle examine un tableau de gauche à droite jusqu'à trouver la valeur recherchée ou
+            atteindre la fin du tableau.
           </p>
 
           <!-- SVG Diagram Vector Recherche Séquentielle -->
@@ -211,7 +208,8 @@
               <i class="bi bi-exclamation-triangle-fill me-2"></i> Interdiction de l'instruction `break`
             </h5>
             <p class="mb-0 small">
-              Dans les épreuves d'examen national (Baccalauréat), l'instruction <code>break</code> est strictement interdite. La boucle doit s'arrêter naturellement grâce à la condition composée :<br>
+              Dans les épreuves d'examen national (Baccalauréat), l'instruction <code>break</code> est strictement
+              interdite. La boucle doit s'arrêter naturellement grâce à la condition composée :<br>
               <code>while i &lt; n and not trouve:</code>.
             </p>
           </div>
@@ -220,7 +218,8 @@
 
       <!-- Article 3: Activité 1 - Correction de Code Non Conforme -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-tools text-warning me-2"></i> Activité 1 : Transformation de Code Non Conforme (Sans `break`)</h2>
+        <h2><i class="bi bi-tools text-warning me-2"></i> Activité 1 : Transformation de Code Non Conforme (Sans
+          `break`)</h2>
 
         <section id="section-activite1" class="section-pane">
           <h3>Correction d'un Script avec Boucle `for` et `break`</h3>
@@ -279,7 +278,8 @@ def chercher_conforme(T, n, val):
 
       <!-- Article 4: Activité 2 - Problème Pratique complet: Annuaire des Élèves -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-people-fill text-primary me-2"></i> Activité 2 : Annuaire des Élèves &amp; Tableaux Parallèles</h2>
+        <h2><i class="bi bi-people-fill text-primary me-2"></i> Activité 2 : Annuaire des Élèves &amp; Tableaux
+          Parallèles</h2>
 
         <section id="section-activite2" class="section-pane">
           <h3>Problème Pratique Modulaire</h3>
@@ -289,21 +289,26 @@ def chercher_conforme(T, n, val):
               <i class="bi bi-journal-text me-2"></i> Énoncé du problème :
             </h5>
             <p class="mb-2">
-              Un établissement souhaite gérer le registre d'élèves à l'aide de deux tableaux parallèles de taille $N$ ($3 \le N \le 25$) :
+              Un établissement souhaite gérer le registre d'élèves à l'aide de deux tableaux parallèles de taille $N$
+              ($3 \le N \le 25$) :
             </p>
             <ul class="mb-2 small">
               <li><code>IDs</code> : Tableau d'entiers contenant les identifiants uniques ($> 0$).</li>
-              <li><code>Moyennes</code> : Tableau de réels contenant les moyennes scolaires ($0.0 \le \text{moy} \le 20.0$).</li>
+              <li><code>Moyennes</code> : Tableau de réels contenant les moyennes scolaires ($0.0 \le \text{moy} \le
+                20.0$).</li>
             </ul>
             <p class="mb-0 small">
-              L'application permet de saisir les données avec **vérification d'unicité de l'ID** via <code>recherche_sequentielle</code>, puis d'effectuer des recherches par ID pour afficher la position et la moyenne de l'élève.
+              L'application permet de saisir les données avec **vérification d'unicité de l'ID** via
+              <code>recherche_sequentielle</code>, puis d'effectuer des recherches par ID pour afficher la position et
+              la moyenne de l'élève.
             </p>
           </div>
 
           <!-- Simulateur Vue 3 Réactif -->
           <div class="card card-custom mb-4 border border-primary border-opacity-50 shadow-sm">
             <div class="card-header-custom text-primary fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Registre d'Élèves &amp; Recherche par ID</span>
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Registre d'Élèves &amp; Recherche par
+                ID</span>
               <span class="badge bg-primary">Vue 3 App</span>
             </div>
             <div class="card-body simulator-card-body">
@@ -358,7 +363,8 @@ def chercher_conforme(T, n, val):
                       <span class="simulator-sublabel d-block mb-1 fw-bold">Résultat de la Recherche :</span>
                       <div v-if="searchResult.pos !== -1" class="text-success font-mono small">
                         ✅ <strong>Élève Trouvé !</strong><br>
-                        • Indice dans le tableau : <code>pos = {{ searchResult.pos }}</code> (Ligne N°{{ searchResult.pos + 1 }})<br>
+                        • Indice dans le tableau : <code>pos = {{ searchResult.pos }}</code> (Ligne N°{{
+                        searchResult.pos + 1 }})<br>
                         • Identifiant ID : <strong>{{ searchResult.foundStudent.id }}</strong><br>
                         • Moyenne scolaire : <strong>{{ searchResult.foundStudent.moy.toFixed(1) }} / 20</strong><br>
                         • Comparaisons effectuées : <strong>{{ searchResult.totalComparisons }}</strong>
@@ -366,7 +372,8 @@ def chercher_conforme(T, n, val):
                       <div v-else class="text-danger font-mono small">
                         ❌ <strong>Aucun Élève Trouvé avec l'ID {{ searchIdInput }}</strong><br>
                         • Code retourné : <code>pos = -1</code><br>
-                        • Comparaisons effectuées : <strong>{{ searchResult.totalComparisons }}</strong> (Toutes les cases vérifiées)
+                        • Comparaisons effectuées : <strong>{{ searchResult.totalComparisons }}</strong> (Toutes les
+                        cases vérifiées)
                       </div>
                     </div>
                   </div>
@@ -385,7 +392,8 @@ def chercher_conforme(T, n, val):
                       </div>
                       <div class="col-6">
                         <label class="form-label small simulator-label">Moyenne (0 à 20) :</label>
-                        <input type="number" step="0.5" v-model.number="newMoy" min="0" max="20" class="form-control font-mono">
+                        <input type="number" step="0.5" v-model.number="newMoy" min="0" max="20"
+                          class="form-control font-mono">
                       </div>
                     </div>
                     <button class="btn btn-success btn-sm w-100 mb-2 font-mono" @click="addStudent">
@@ -406,7 +414,7 @@ def chercher_conforme(T, n, val):
           <div class="row g-4">
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Algorithme Modulaire (Conventions 2024-2025)</span></div>
+                <div class="code-header"><span>Algorithme</span></div>
                 <pre><code class="language-algorithm">Fonction recherche_sequentielle (T : Tableau de N Entier, n : Entier, val : Entier) : Entier
 DÉCLARATION DES OBJETS LOCAUX
     i, pos : Entier
@@ -517,42 +525,60 @@ else:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°13">
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Recherche Séquentielle (5 Questions)">
 
-                <!-- Quiz Question 1 -->
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="La condition 'i < n and not trouve' permet de parcourir le tableau case par case et de s'arrêter immédiatement dès que l'élément est trouvé (trouve = True).">
-                  <div class="question-text">Quelle est la condition de maintien correcte dans la boucle `while` de la recherche séquentielle ?</div>
+                <div class="quiz-question" data-correct="0" data-explanation="La recherche séquentielle parcourt le tableau élément par élément de l'indice 0 jusqu'à trouver l'élément ou atteindre la fin.">
+                  <div class="question-text">1. Quel est le principe de la recherche séquentielle dans un tableau ?</div>
                   <ul class="quiz-options">
-                    <li>while i &lt; n or trouve:</li>
-                    <li>while i &lt; n and not trouve:</li>
-                    <li>while i &lt;= n and trouve == True:</li>
+                    <li>Examiner chaque élément séquentiellement du début à la fin</li>
+                    <li>Diviser le tableau en deux à chaque étape</li>
+                    <li>Trier d'abord le tableau avant de chercher</li>
+                    <li>Regarder uniquement le premier et le dernier élément</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 2 -->
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Les indices d'un tableau vont de 0 à n-1. La valeur sentinelle -1 indique de manière universelle que l'élément n'a pas été trouvé.">
-                  <div class="question-text">Quelle valeur de retour sentinelle indique que l'élément recherché est absent du tableau ?</div>
+                <div class="quiz-question" data-correct="1" data-explanation="Dans le pire des cas (élément absent ou à la fin), on effectue N comparaisons.">
+                  <div class="question-text">2. Dans un tableau non trié de N éléments, combien de comparaisons sont effectuées au maximum ?</div>
                   <ul class="quiz-options">
-                    <li>-1</li>
+                    <li>1 comparaison</li>
+                    <li>N comparaisons</li>
+                    <li>log2(N) comparaisons</li>
+                    <li>N / 2 comparaisons</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="2" data-explanation="Renvoyer -1 ou False indique clairement que l'élément n'existe pas dans le tableau (indices 0..N-1).">
+                  <div class="question-text">3. Quelle valeur de retour indique traditionnellement que l'élément recherché n'a pas été trouvé ?</div>
+                  <ul class="quiz-options">
                     <li>0</li>
-                    <li>n</li>
+                    <li>N</li>
+                    <li>-1 (ou False)</li>
+                    <li>999</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 3 -->
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Dans deux tableaux parallèles synchrones (IDs et Moyennes), le même indice i localisé dans IDs donne directement l'élément correspondant Moyennes[i].">
-                  <div class="question-text">Comment accède-t-on à la moyenne de l'élève une fois son identifiant localisé à l'indice `idx` ?</div>
+                <div class="quiz-question" data-correct="0" data-explanation="La boucle de recherche s'arrête dès que l'élément est trouvé (Trouve == Vrai) ou que la fin du tableau est atteinte (i >= N).">
+                  <div class="question-text">4. Quelle est la condition d'arrêt optimale d'une boucle de recherche séquentielle ?</div>
                   <ul class="quiz-options">
-                    <li>recherche_sequentielle(Moyennes, n, idx)</li>
-                    <li>Moyennes[0]</li>
-                    <li>Moyennes[idx]</li>
+                    <li>(Trouve == Vrai) OU (i >= N)</li>
+                    <li>i == N</li>
+                    <li>Trouve == Faux</li>
+                    <li>i == 0</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="La recherche séquentielle s'applique sur tout tableau, trié ou non trié.">
+                  <div class="question-text">5. Le tableau doit-il être obligatoirement trié pour effectuer une recherche séquentielle ?</div>
+                  <ul class="quiz-options">
+                    <li>Non, elle fonctionne sur n'importe quel tableau (trié ou non trié)</li>
+                    <li>Oui, le tableau doit être trié en ordre croissant</li>
+                    <li>Oui, le tableau doit être trié en ordre décroissant</li>
+                    <li>Uniquement si N > 100</li>
                   </ul>
                 </div>
 
               </div>
+            </div>
             </div>
           </div>
         </section>

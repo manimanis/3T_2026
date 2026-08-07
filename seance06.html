@@ -62,13 +62,6 @@
     <!-- Header Section / Breadcrumb -->
     <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container px-lg-4">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-1 small">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
-            <li class="breadcrumb-item">Module 2 : Structures de Contrôle &amp; Données Avancées</li>
-            <li class="breadcrumb-item active" aria-current="page">Séance 6</li>
-          </ol>
-        </nav>
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
           <div>
             <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-50 mb-1">
@@ -76,13 +69,8 @@
             </span>
             <h1 class="h3 mb-0 fw-bold">Traitements Élémentaires sur les Tableaux 1D</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
             </p>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
-              <i class="bi bi-bar-chart-fill me-1 text-primary"></i> Statistique sur Tableaux 1D
-            </span>
           </div>
         </div>
       </div>
@@ -109,11 +97,14 @@
                     <li>Maîtriser les 3 motifs algorithmiques fondamentaux appliqués aux Tableaux 1D :
                       <ul>
                         <li>Calculs cumulatifs : <strong>Somme</strong> et <strong>Moyenne</strong>.</li>
-                        <li>Recherche d'extrémums : <strong>Valeur Maximale</strong> et <strong>Valeur Minimale</strong>.</li>
-                        <li><strong>Comptage conditionnel</strong> : Nombre d'éléments vérifiant un critère (ex: notes $\ge 10.0$).</li>
+                        <li>Recherche d'extrémums : <strong>Valeur Maximale</strong> et <strong>Valeur
+                            Minimale</strong>.</li>
+                        <li><strong>Comptage conditionnel</strong> : Nombre d'éléments vérifiant un critère (ex: notes
+                          $\ge 10.0$).</li>
                       </ul>
                     </li>
-                    <li>Comprendre la règle d'initialisation du Max/Min sur le 1er élément du tableau (<code>max_val ← T[0]</code>).</li>
+                    <li>Comprendre la règle d'initialisation du Max/Min sur le 1er élément du tableau
+                      (<code>max_val ← T[0]</code>).</li>
                   </ul>
                 </div>
               </div>
@@ -126,9 +117,12 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Initialiser correctement les accumulateurs et variables d'extrémums avant d'entrer dans la boucle.</li>
-                    <li>Effectuer un parcours complet d'un tableau <code>numpy</code> pour extraire des statistiques en un seul passage.</li>
-                    <li>🚫 <strong>Règle Algorithmique :</strong> Écrire les boucles de calcul explicites et <strong>ne pas utiliser</strong> les fonctions masquées de haut niveau (`sum()`, `max()`, `min()`).</li>
+                    <li>Initialiser correctement les accumulateurs et variables d'extrémums avant d'entrer dans la
+                      boucle.</li>
+                    <li>Effectuer un parcours complet d'un tableau <code>numpy</code> pour extraire des statistiques en
+                      un seul passage.</li>
+                    <li>🚫 <strong>Règle Algorithmique :</strong> Écrire les boucles de calcul explicites et <strong>ne
+                        pas utiliser</strong> les fonctions masquées de haut niveau (`sum()`, `max()`, `min()`).</li>
                   </ul>
                 </div>
               </div>
@@ -156,28 +150,37 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Rappel &amp; Problématisation</span></td>
                       <td>10 min</td>
-                      <td>Demander comment trouver la meilleure note de la classe dans un tableau. Pourquoi <code>max = 0</code> est un piège ?</td>
-                      <td>Comprend la nécessité d'initialiser le Max avec le premier élément du tableau <code>T[0]</code>.</td>
+                      <td>Demander comment trouver la meilleure note de la classe dans un tableau. Pourquoi
+                        <code>max = 0</code> est un piège ?
+                      </td>
+                      <td>Comprend la nécessité d'initialiser le Max avec le premier élément du tableau
+                        <code>T[0]</code>.
+                      </td>
                       <td>Tableau</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
                       <td>20 min</td>
-                      <td>Présentation des 3 motifs : Cumul (Somme/Moyenne), Extrémums (Max/Min) et Comptage conditionnel.</td>
-                      <td>Prise de notes, analyse des conditions d'initialisation (<code>somme ← 0</code> vs <code>max ← T[0]</code>).</td>
+                      <td>Présentation des 3 motifs : Cumul (Somme/Moyenne), Extrémums (Max/Min) et Comptage
+                        conditionnel.</td>
+                      <td>Prise de notes, analyse des conditions d'initialisation (<code>somme ← 0</code> vs
+                        <code>max ← T[0]</code>).
+                      </td>
                       <td>Projecteur / Fiche</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-success">3. Activité Guidée</span></td>
                       <td>45 min</td>
-                      <td>Présentation du problème d'Analyse Statistique des Notes d'un Devoir. Encadrement du TDO et de l'algorithme.</td>
+                      <td>Présentation du problème d'Analyse Statistique des Notes d'un Devoir. Encadrement du TDO et de
+                        l'algorithme.</td>
                       <td>Rédaction du TDO, écriture de l'algorithme et codage Python sous Thonny.</td>
                       <td>Thonny Python IDE</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
                       <td>15 min</td>
-                      <td>Vérification de la cohérence des statistiques avec des séries variées (notes négatives ou égales).</td>
+                      <td>Vérification de la cohérence des statistiques avec des séries variées (notes négatives ou
+                        égales).</td>
                       <td>Correction des erreurs et validation du quiz d'évaluation.</td>
                       <td>Environnement Python</td>
                     </tr>
@@ -196,7 +199,8 @@
         <section id="section-cours-traitements" class="section-pane">
           <h3>2. Les 3 Motifs Algorithmiques Fondamentaux sur Tableau 1D</h3>
           <p class="text-muted">
-            Le parcours d'un tableau permet d'effectuer des calculs cumulatifs, des filtres et des recherches d'extrémums en parcourant les éléments de l'indice 0 à $N-1$.
+            Le parcours d'un tableau permet d'effectuer des calculs cumulatifs, des filtres et des recherches
+            d'extrémums en parcourant les éléments de l'indice 0 à $N-1$.
           </p>
 
           <!-- Diagramme Vectoriel Les 3 Traitements -->
@@ -296,7 +300,10 @@ for i in range(n):
               <i class="bi bi-lightbulb-fill me-2"></i> Règle d'Or sur l'Initialisation du Max et du Min
             </h5>
             <p class="mb-0 small">
-              Ne jamais initialiser la variable <code>Max</code> à <code>0</code> ! Si toutes les valeurs du tableau sont négatives (ex: températures <code>[-5.5, -12.0, -2.3]</code>), <code>0.0</code> restera supérieur à toutes les cases et le résultat sera faux. <strong>On initialisera toujours <code>max_val ← T[0]</code> et <code>min_val ← T[0]</code>.</strong>
+              Ne jamais initialiser la variable <code>Max</code> à <code>0</code> ! Si toutes les valeurs du tableau
+              sont négatives (ex: températures <code>[-5.5, -12.0, -2.3]</code>), <code>0.0</code> restera supérieur à
+              toutes les cases et le résultat sera faux. <strong>On initialisera toujours <code>max_val ← T[0]</code> et
+                <code>min_val ← T[0]</code>.</strong>
             </p>
           </div>
         </section>
@@ -366,7 +373,8 @@ print("Température max :", max_temp)</code></pre>
 
       <!-- Article 4: Activité 2 - Problème Pratique complet: Analyse Notes Classe -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-bar-chart-line-fill text-warning me-2"></i> Activité 2 : Analyse Statistique des Notes d'une Classe</h2>
+        <h2><i class="bi bi-bar-chart-line-fill text-warning me-2"></i> Activité 2 : Analyse Statistique des Notes d'une
+          Classe</h2>
 
         <section id="section-activite2" class="section-pane">
           <h3>Problème Pratique Guidé</h3>
@@ -376,12 +384,17 @@ print("Température max :", max_temp)</code></pre>
               <i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé du problème :
             </h5>
             <p class="mb-2">
-              Un enseignant d'informatique souhaite effectuer l'analyse statistique des notes obtenues par une classe de $N$ élèves ($5 \le N \le 30$) lors d'un devoir pratique.
+              Un enseignant d'informatique souhaite effectuer l'analyse statistique des notes obtenues par une classe de
+              $N$ élèves ($5 \le N \le 30$) lors d'un devoir pratique.
             </p>
             <ol class="mb-0 small">
               <li>Saisir le nombre d'élèves $N$ avec contrôle de saisie ($5 \le N \le 30$).</li>
-              <li>Remplir un tableau <code>Notes</code> avec les notes des élèves (réels compris dans $[0.0, 20.0]$).</li>
-              <li>Calculer et afficher : la <strong>moyenne de la classe</strong>, la <strong>note maximale</strong>, la <strong>note minimale</strong>, le <strong>nombre d'admis</strong> ($\ge 10.0$) et le <strong>taux de réussite %</strong>.</li>
+              <li>Remplir un tableau <code>Notes</code> avec les notes des élèves (réels compris dans $[0.0, 20.0]$).
+              </li>
+              <li>Calculer et afficher : la <strong>moyenne de la classe</strong>, la <strong>note maximale</strong>, la
+                <strong>note minimale</strong>, le <strong>nombre d'admis</strong> ($\ge 10.0$) et le <strong>taux de
+                  réussite %</strong>.
+              </li>
             </ol>
           </div>
 
@@ -487,8 +500,10 @@ print("Température max :", max_temp)</code></pre>
 
               <!-- Memory Grid View -->
               <div v-if="estAllocated" class="mb-4">
-                <h6 class="small fw-bold text-muted mb-2"><i class="bi bi-layers-fill me-1"></i> Notes de la classe `Notes[0 ... {{ notesArray.length - 1 }}]` :</h6>
-                <div class="d-flex flex-wrap gap-2 p-3 bg-body rounded border border-secondary border-opacity-25 shadow-sm">
+                <h6 class="small fw-bold text-muted mb-2"><i class="bi bi-layers-fill me-1"></i> Notes de la classe
+                  `Notes[0 ... {{ notesArray.length - 1 }}]` :</h6>
+                <div
+                  class="d-flex flex-wrap gap-2 p-3 bg-body rounded border border-secondary border-opacity-25 shadow-sm">
                   <div v-for="(val, idx) in notesArray" :key="idx"
                     class="p-2 rounded text-center font-mono position-relative transition-all"
                     :class="val >= 10.0 ? 'bg-success bg-opacity-25 border-success text-success' : 'bg-danger bg-opacity-25 border-danger text-danger'"
@@ -499,8 +514,10 @@ print("Température max :", max_temp)</code></pre>
                     </span>
                     <div class="mt-3 fw-bold fs-6">{{ val }} / 20</div>
                     <div class="d-flex justify-content-center gap-1 mt-1">
-                      <span v-if="val.toFixed(1) === statistiques.max" class="badge bg-warning text-dark" style="font-size: 0.6rem;">MAX</span>
-                      <span v-if="val.toFixed(1) === statistiques.min" class="badge bg-info text-dark" style="font-size: 0.6rem;">MIN</span>
+                      <span v-if="val.toFixed(1) === statistiques.max" class="badge bg-warning text-dark"
+                        style="font-size: 0.6rem;">MAX</span>
+                      <span v-if="val.toFixed(1) === statistiques.min" class="badge bg-info text-dark"
+                        style="font-size: 0.6rem;">MIN</span>
                     </div>
                   </div>
                 </div>
@@ -545,7 +562,7 @@ print("Température max :", max_temp)</code></pre>
           <div class="row g-4">
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Algorithme Officiel (Conventions 2024-2025)</span></div>
+                <div class="code-header"><span>Algorithme</span></div>
                 <pre><code class="language-algorithm">ALGORITHME Analyse_Notes_Classe
 DEBUT
     Répéter
@@ -638,42 +655,60 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°6">
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Traitements Tableaux 1D (5 Questions)">
 
-                <!-- Quiz Question 1 -->
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="Pour rechercher le maximum dans un tableau sans risquer une erreur lorsque toutes les valeurs sont négatives, on doit impérativement initialiser le max sur le premier élément : max_val = T[0].">
-                  <div class="question-text">À quelle valeur doit-on initialiser la variable `max_val` avant de parcourir le tableau ?</div>
+                <div class="quiz-question" data-correct="0" data-explanation="Pour chercher le Maximum, on initialise Max avec le premier élément T[0] du tableau.">
+                  <div class="question-text">1. Comment initialise-t-on la variable 'Max' pour chercher le plus grand élément d'un tableau 'T' ?</div>
                   <ul class="quiz-options">
-                    <li>À 0.0 obligatoirement</li>
-                    <li>Au premier élément du tableau T[0]</li>
-                    <li>À la taille du tableau N</li>
+                    <li>Max = T[0]</li>
+                    <li>Max = 0</li>
+                    <li>Max = -1</li>
+                    <li>Max = 99999</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 2 -->
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Avant de démarrer la boucle de cumul, l'accumulateur 'somme' doit être initialisé à 0.0 (l'élément neutre de l'addition).">
-                  <div class="question-text">Quelle est la valeur initiale correcte de l'accumulateur `somme` pour calculer une moyenne ?</div>
+                <div class="quiz-question" data-correct="1" data-explanation="Pour accumuler les valeurs d'un tableau, l'accumulateur 'S' s'initialise à 0 avant la boucle.">
+                  <div class="question-text">2. Quelle est l'initialisation correcte de la variable de somme 'S' avant de calculer la somme d'un tableau ?</div>
                   <ul class="quiz-options">
-                    <li>somme = 0.0</li>
-                    <li>somme = T[0] (puis boucle de 0 à N-1)</li>
-                    <li>somme = 1.0</li>
+                    <li>S = 1</li>
+                    <li>S = 0</li>
+                    <li>S = T[0]</li>
+                    <li>S = None</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 3 -->
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Le comptage conditionnel s'effectue en incrémentant un compteur (compteur = compteur + 1) chaque fois que l'élément T[i] satisfait la condition testée.">
-                  <div class="question-text">Comment effectue-t-on le comptage conditionnel des éléments supérieurs à un seuil ?</div>
+                <div class="quiz-question" data-correct="2" data-explanation="Dans la boucle, chaque élément T[i] valide ajoute 1 au compteur : Nbr = Nbr + 1.">
+                  <div class="question-text">3. Quelle instruction permet d'incrémenter un compteur 'Nbr' de notes supérieures ou égales à 10 ?</div>
                   <ul class="quiz-options">
-                    <li>En utilisant la fonction intégrée count() de Python.</li>
-                    <li>En multipliant l'élément T[i] par le seuil.</li>
-                    <li>En testant 'Si T[i] >= seuil' et en incrémentant un compteur.</li>
+                    <li>Nbr = T[i]</li>
+                    <li>Nbr = Nbr + T[i]</li>
+                    <li>Nbr = Nbr + 1</li>
+                    <li>Nbr += 10</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="La moyenne arithmétique est égale à la somme totale divisée par le nombre d'éléments N.">
+                  <div class="question-text">4. Quelle est la formule correcte pour calculer la moyenne 'Moy' d'un tableau de N éléments ?</div>
+                  <ul class="quiz-options">
+                    <li>Moy = Somme / N</li>
+                    <li>Moy = Somme * N</li>
+                    <li>Moy = Somme / (N - 1)</li>
+                    <li>Moy = N / Somme</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Pour échanger T[i] et T[j], on sauvegarde T[i] dans une variable temporaire Aux.">
+                  <div class="question-text">5. Comment permute-t-on deux éléments T[i] et T[j] d'un tableau ?</div>
+                  <ul class="quiz-options">
+                    <li>Aux = T[i] ; T[i] = T[j] ; T[j] = Aux</li>
+                    <li>T[i] = T[j] ; T[j] = T[i]</li>
+                    <li>Aux = T[j] ; T[j] = Aux ; T[i] = Aux</li>
+                    <li>swap(T[i], T[j])</li>
                   </ul>
                 </div>
 
               </div>
+            </div>
             </div>
           </div>
         </section>

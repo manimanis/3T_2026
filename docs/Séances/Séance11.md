@@ -156,7 +156,7 @@ On demande de concevoir un programme modulaire qui :
 
 ---
 
-#### **2. Algorithmes des Modules (Conventions 2024-2025)**
+#### **2. Algorithmes des Modules **
 
 ```text
 // 1. Fonction Saisir Entier Positif

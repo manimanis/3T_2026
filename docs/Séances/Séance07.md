@@ -185,7 +185,7 @@ On souhaite concevoir une application d'**Analyse Géométrique d'un Rectangle**
 
 ---
 
-#### **2. Algorithmes des Modules (Conventions 2024-2025)**
+#### **2. Algorithmes des Modules **
 
 ```text
 // 1. Fonction Périmètre

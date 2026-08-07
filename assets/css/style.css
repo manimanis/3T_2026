@@ -1,5 +1,5 @@
 /* ==========================================================================
-   3T_2026 - Informatique 3ème Année Secondary (Conventions 2024-2025)
+   3T_2026 - Informatique 3ème Année Secondary 
    Design System & Theme Stylesheet (Dark & Light Mode Support)
    ========================================================================== */
 
@@ -180,6 +180,14 @@ h6,
 
 .text-dim {
   color: var(--text-dim) !important;
+}
+
+.text-heading {
+  color: var(--text-heading) !important;
+}
+
+.text-body {
+  color: var(--text-main) !important;
 }
 
 a {
@@ -435,12 +443,42 @@ pre code.hljs {
   transform: translateY(-1px);
 }
 
+/* Breadcrumb Global Hidden */
+.breadcrumb,
+nav[aria-label="breadcrumb"] {
+  display: none !important;
+}
+
 /* Hero Section */
 .hero-section {
   background: var(--hero-bg-grad);
-  padding: 3.5rem 1rem 3rem 1rem;
+  padding: 5.5rem 1.5rem 3.5rem 1.5rem;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section .btn {
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.hero-section .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+[data-theme="dark"] .hero-section .btn-outline-secondary {
+  color: #cbd5e1 !important;
+  border-color: #334155 !important;
+  background-color: rgba(30, 41, 59, 0.7) !important;
+}
+
+[data-theme="dark"] .hero-section .btn-outline-secondary:hover {
+  color: #ffffff !important;
+  border-color: #6366f1 !important;
+  background-color: rgba(99, 102, 241, 0.25) !important;
 }
 
 .hero-title {
@@ -579,6 +617,268 @@ article>h2:hover i {
   color: var(--text-main) !important;
   border-radius: 0.75rem;
   padding: 1.25rem;
+}
+
+/* --- High-Contrast Custom Alert Components (Dark & Light Themes) --- */
+.alert {
+  border-radius: 0.75rem;
+  padding: 1.15rem 1.35rem;
+  border-width: 1px;
+  border-style: solid;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.alert h1, .alert h2, .alert h3, .alert h4, .alert h5, .alert h6,
+.alert .h1, .alert .h2, .alert .h3, .alert .h4, .alert .h5, .alert .h6,
+.alert .alert-heading {
+  font-weight: 700 !important;
+  margin-bottom: 0.4rem;
+}
+
+/* Alert Warning */
+.alert-warning {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  color: #fef08a !important;
+}
+
+.alert-warning h1, .alert-warning h2, .alert-warning h3, .alert-warning h4, .alert-warning h5, .alert-warning h6,
+.alert-warning .h1, .alert-warning .h2, .alert-warning .h3, .alert-warning .h4, .alert-warning .h5, .alert-warning .h6,
+.alert-warning .alert-heading,
+.alert-warning i {
+  color: #f59e0b !important;
+}
+
+.alert-warning code {
+  background-color: rgba(245, 158, 11, 0.22) !important;
+  color: #fef08a !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+}
+
+/* Light mode overrides for Alert Warning */
+[data-theme="light"] .alert-warning {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #78350f !important;
+}
+
+[data-theme="light"] .alert-warning h1,
+[data-theme="light"] .alert-warning h2,
+[data-theme="light"] .alert-warning h3,
+[data-theme="light"] .alert-warning h4,
+[data-theme="light"] .alert-warning h5,
+[data-theme="light"] .alert-warning h6,
+[data-theme="light"] .alert-warning .h1,
+[data-theme="light"] .alert-warning .h2,
+[data-theme="light"] .alert-warning .h3,
+[data-theme="light"] .alert-warning .h4,
+[data-theme="light"] .alert-warning .h5,
+[data-theme="light"] .alert-warning .h6,
+[data-theme="light"] .alert-warning .alert-heading,
+[data-theme="light"] .alert-warning i {
+  color: #b45309 !important;
+}
+
+[data-theme="light"] .alert-warning code {
+  background-color: #fef3c7 !important;
+  color: #78350f !important;
+  border: 1px solid #fde68a !important;
+}
+
+/* Alert Info */
+.alert-info {
+  background-color: rgba(6, 182, 212, 0.12) !important;
+  border-color: rgba(6, 182, 212, 0.35) !important;
+  color: #cff4fc !important;
+}
+
+.alert-info h1, .alert-info h2, .alert-info h3, .alert-info h4, .alert-info h5, .alert-info h6,
+.alert-info .h1, .alert-info .h2, .alert-info .h3, .alert-info .h4, .alert-info .h5, .alert-info .h6,
+.alert-info .alert-heading,
+.alert-info i {
+  color: #06b6d4 !important;
+}
+
+.alert-info code {
+  background-color: rgba(6, 182, 212, 0.22) !important;
+  color: #cff4fc !important;
+  border: 1px solid rgba(6, 182, 212, 0.3) !important;
+}
+
+[data-theme="light"] .alert-info {
+  background-color: #ecfeff !important;
+  border-color: #a5f3fc !important;
+  color: #164e63 !important;
+}
+
+[data-theme="light"] .alert-info h1,
+[data-theme="light"] .alert-info h2,
+[data-theme="light"] .alert-info h3,
+[data-theme="light"] .alert-info h4,
+[data-theme="light"] .alert-info h5,
+[data-theme="light"] .alert-info h6,
+[data-theme="light"] .alert-info .h1,
+[data-theme="light"] .alert-info .h2,
+[data-theme="light"] .alert-info .h3,
+[data-theme="light"] .alert-info .h4,
+[data-theme="light"] .alert-info .h5,
+[data-theme="light"] .alert-info .h6,
+[data-theme="light"] .alert-info .alert-heading,
+[data-theme="light"] .alert-info i {
+  color: #0e7490 !important;
+}
+
+[data-theme="light"] .alert-info code {
+  background-color: #cff4fc !important;
+  color: #164e63 !important;
+  border: 1px solid #a5f3fc !important;
+}
+
+/* Alert Success */
+.alert-success {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  color: #d1fae5 !important;
+}
+
+.alert-success h1, .alert-success h2, .alert-success h3, .alert-success h4, .alert-success h5, .alert-success h6,
+.alert-success .h1, .alert-success .h2, .alert-success .h3, .alert-success .h4, .alert-success .h5, .alert-success .h6,
+.alert-success .alert-heading,
+.alert-success i {
+  color: #10b981 !important;
+}
+
+.alert-success code {
+  background-color: rgba(16, 185, 129, 0.22) !important;
+  color: #d1fae5 !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+
+[data-theme="light"] .alert-success {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #065f46 !important;
+}
+
+[data-theme="light"] .alert-success h1,
+[data-theme="light"] .alert-success h2,
+[data-theme="light"] .alert-success h3,
+[data-theme="light"] .alert-success h4,
+[data-theme="light"] .alert-success h5,
+[data-theme="light"] .alert-success h6,
+[data-theme="light"] .alert-success .h1,
+[data-theme="light"] .alert-success .h2,
+[data-theme="light"] .alert-success .h3,
+[data-theme="light"] .alert-success .h4,
+[data-theme="light"] .alert-success .h5,
+[data-theme="light"] .alert-success .h6,
+[data-theme="light"] .alert-success .alert-heading,
+[data-theme="light"] .alert-success i {
+  color: #047857 !important;
+}
+
+[data-theme="light"] .alert-success code {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+  border: 1px solid #a7f3d0 !important;
+}
+
+/* Alert Danger */
+.alert-danger {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+  color: #fee2e2 !important;
+}
+
+.alert-danger h1, .alert-danger h2, .alert-danger h3, .alert-danger h4, .alert-danger h5, .alert-danger h6,
+.alert-danger .h1, .alert-danger .h2, .alert-danger .h3, .alert-danger .h4, .alert-danger .h5, .alert-danger .h6,
+.alert-danger .alert-heading,
+.alert-danger i {
+  color: #ef4444 !important;
+}
+
+.alert-danger code {
+  background-color: rgba(239, 68, 68, 0.22) !important;
+  color: #fee2e2 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+[data-theme="light"] .alert-danger {
+  background-color: #fef2f2 !important;
+  border-color: #fecaca !important;
+  color: #991b1b !important;
+}
+
+[data-theme="light"] .alert-danger h1,
+[data-theme="light"] .alert-danger h2,
+[data-theme="light"] .alert-danger h3,
+[data-theme="light"] .alert-danger h4,
+[data-theme="light"] .alert-danger h5,
+[data-theme="light"] .alert-danger h6,
+[data-theme="light"] .alert-danger .h1,
+[data-theme="light"] .alert-danger .h2,
+[data-theme="light"] .alert-danger .h3,
+[data-theme="light"] .alert-danger .h4,
+[data-theme="light"] .alert-danger .h5,
+[data-theme="light"] .alert-danger .h6,
+[data-theme="light"] .alert-danger .alert-heading,
+[data-theme="light"] .alert-danger i {
+  color: #b91c1c !important;
+}
+
+[data-theme="light"] .alert-danger code {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #fecaca !important;
+}
+
+/* Alert Primary */
+.alert-primary {
+  background-color: rgba(99, 102, 241, 0.12) !important;
+  border-color: rgba(99, 102, 241, 0.35) !important;
+  color: #e0e7ff !important;
+}
+
+.alert-primary h1, .alert-primary h2, .alert-primary h3, .alert-primary h4, .alert-primary h5, .alert-primary h6,
+.alert-primary .h1, .alert-primary .h2, .alert-primary .h3, .alert-primary .h4, .alert-primary .h5, .alert-primary .h6,
+.alert-primary .alert-heading,
+.alert-primary i {
+  color: #6366f1 !important;
+}
+
+.alert-primary code {
+  background-color: rgba(99, 102, 241, 0.22) !important;
+  color: #e0e7ff !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+}
+
+[data-theme="light"] .alert-primary {
+  background-color: #eef2ff !important;
+  border-color: #c7d2fe !important;
+  color: #3730a3 !important;
+}
+
+[data-theme="light"] .alert-primary h1,
+[data-theme="light"] .alert-primary h2,
+[data-theme="light"] .alert-primary h3,
+[data-theme="light"] .alert-primary h4,
+[data-theme="light"] .alert-primary h5,
+[data-theme="light"] .alert-primary h6,
+[data-theme="light"] .alert-primary .h1,
+[data-theme="light"] .alert-primary .h2,
+[data-theme="light"] .alert-primary .h3,
+[data-theme="light"] .alert-primary .h4,
+[data-theme="light"] .alert-primary .h5,
+[data-theme="light"] .alert-primary .h6,
+[data-theme="light"] .alert-primary .alert-heading,
+[data-theme="light"] .alert-primary i {
+  color: #4338ca !important;
+}
+
+[data-theme="light"] .alert-primary code {
+  background-color: #e0e7ff !important;
+  color: #3730a3 !important;
+  border: 1px solid #c7d2fe !important;
 }
 
 .formula-box {

@@ -62,13 +62,6 @@
     <!-- Header Section / Breadcrumb -->
     <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container px-lg-4">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-1 small">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
-            <li class="breadcrumb-item">Module 4 : Algorithmes Classiques &amp; Mini-Projets</li>
-            <li class="breadcrumb-item active" aria-current="page">Séance 14</li>
-          </ol>
-        </nav>
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
           <div>
             <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-50 mb-1">
@@ -76,13 +69,8 @@
             </span>
             <h1 class="h3 mb-0 fw-bold">Tri d'un Tableau – Le Tri à Bulles</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
             </p>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
-              <i class="bi bi-arrow-down-up me-1 text-warning"></i> Permutation `aux` &amp; Tri Synchrone
-            </span>
           </div>
         </div>
       </div>
@@ -106,9 +94,12 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Comprendre le principe du **Tri à Bulles** (Bubble Sort) : comparer deux éléments adjacents $T[j]$ et $T[j+1]$ et les permuter s'ils sont désordonnés.</li>
-                    <li>Comprendre la dynamique : à chaque passage $i$, le plus grand élément non trié « remonte » vers sa position finale à la fin du tableau.</li>
-                    <li>Maîtriser le mécanisme de **permutation** sécurisée de deux cases d'un tableau à l'aide d'une variable intermédiaire `aux`.</li>
+                    <li>Comprendre le principe du **Tri à Bulles** (Bubble Sort) : comparer deux éléments adjacents
+                      $T[j]$ et $T[j+1]$ et les permuter s'ils sont désordonnés.</li>
+                    <li>Comprendre la dynamique : à chaque passage $i$, le plus grand élément non trié « remonte » vers
+                      sa position finale à la fin du tableau.</li>
+                    <li>Maîtriser le mécanisme de **permutation** sécurisée de deux cases d'un tableau à l'aide d'une
+                      variable intermédiaire `aux`.</li>
                   </ul>
                 </div>
               </div>
@@ -121,9 +112,12 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Implémenter la procédure `tri_a_bulles(T, n)` en ordre croissant ($T[j] > T[j+1]$) et décroissant ($T[j] < T[j+1]$).</li>
-                    <li>Adapter le tri à bulles pour trier des **tableaux parallèles/synchrones** (ex: trier les temps tout en conservant le nom des athlètes).</li>
-                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> **Ne pas utiliser l'instruction `break`** dans les boucles de tri.</li>
+                    <li>Implémenter la procédure `tri_a_bulles(T, n)` en ordre croissant ($T[j] > T[j+1]$) et
+                      décroissant ($T[j] < T[j+1]$).</li>
+                    <li>Adapter le tri à bulles pour trier des **tableaux parallèles/synchrones** (ex: trier les temps
+                      tout en conservant le nom des athlètes).</li>
+                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> **Ne pas utiliser l'instruction `break`** dans
+                      les boucles de tri.</li>
                   </ul>
                 </div>
               </div>
@@ -151,14 +145,16 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Situation Problème</span></td>
                       <td>10 min</td>
-                      <td>Proposer d'ordonner des cartes à jouer désordonnées uniquement en comparant 2 cartes voisines.</td>
+                      <td>Proposer d'ordonner des cartes à jouer désordonnées uniquement en comparant 2 cartes voisines.
+                      </td>
                       <td>Propose d'échanger les voisins mal placés et répéter.</td>
                       <td>Tableau / ProProjecteur</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
                       <td>25 min</td>
-                      <td>Explication des rôles des boucles $i$ (passages) et $j$ (paires), et de la variable intermédiaire `aux`.</td>
+                      <td>Explication des rôles des boucles $i$ (passages) et $j$ (paires), et de la variable
+                        intermédiaire `aux`.</td>
                       <td>Prise de notes et simulation manuelle du 1er passage de tri au tableau.</td>
                       <td>Fiche de cours</td>
                     </tr>
@@ -172,7 +168,8 @@
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
                       <td>15 min</td>
-                      <td>Vérification du tri sur machine. Inversion de la condition ($>$ vs $<$) pour tester les ordres.</td>
+                      <td>Vérification du tri sur machine. Inversion de la condition ($>$ vs $<$) pour tester les
+                          ordres.</td>
                       <td>Validation du classement et correction des permutations.</td>
                       <td>Environnement Python</td>
                     </tr>
@@ -191,7 +188,8 @@
         <section id="section-cours-tri" class="section-pane">
           <h3>2. Principe &amp; Algorithme du Tri à Bulles</h3>
           <p class="text-muted">
-            Le tri à bulles effectue $N - 1$ passages sur le tableau. À chaque passage $i$, il compare les paires adjacentes $T[j]$ et $T[j+1]$ et les échange si nécessaire.
+            Le tri à bulles effectue $N - 1$ passages sur le tableau. À chaque passage $i$, il compare les paires
+            adjacentes $T[j]$ et $T[j+1]$ et les échange si nécessaire.
           </p>
 
           <!-- SVG Diagram Vector Tri à Bulles -->
@@ -211,7 +209,8 @@
               <i class="bi bi-arrow-repeat me-2"></i> Le Mécanisme de Permutation à 3 Étapes
             </h5>
             <p class="mb-0 small">
-              Pour échanger $T[j]$ et $T[j+1]$ sans écraser de valeur, une variable temporaire <code>aux</code> est obligatoire :<br>
+              Pour échanger $T[j]$ et $T[j+1]$ sans écraser de valeur, une variable temporaire <code>aux</code> est
+              obligatoire :<br>
               <code>1. aux ← T[j]</code> &nbsp;|&nbsp;
               <code>2. T[j] ← T[j + 1]</code> &nbsp;|&nbsp;
               <code>3. T[j + 1] ← aux</code>
@@ -265,7 +264,8 @@
                       <td><strong>i = 2</strong></td>
                       <td>j = 0</td>
                       <td>3 &gt; 2 (Échange)</td>
-                      <td><code>[<strong class="text-success">2, 3, 8, 15</strong>]</code> <strong>Tableau Trié !</strong></td>
+                      <td><code>[<strong class="text-success">2, 3, 8, 15</strong>]</code> <strong>Tableau Trié
+                          !</strong></td>
                     </tr>
                   </tbody>
                 </table>
@@ -277,7 +277,8 @@
 
       <!-- Article 4: Activité 2 - Problème Pratique complet: Classement du Marathon -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-trophy-fill text-warning me-2"></i> Activité 2 : Classement du Marathon de Hammam Sousse</h2>
+        <h2><i class="bi bi-trophy-fill text-warning me-2"></i> Activité 2 : Classement du Marathon de Hammam Sousse
+        </h2>
 
         <section id="section-activite2" class="section-pane">
           <h3>Problème Pratique Modulaire (Tri à Bulles Synchrone)</h3>
@@ -287,21 +288,25 @@
               <i class="bi bi-stopwatch-fill me-2"></i> Énoncé du problème :
             </h5>
             <p class="mb-2">
-              Le comité d'organisation enregistre les résultats de $N$ coureurs ($4 \le N \le 30$) dans deux tableaux synchrones :
+              Le comité d'organisation enregistre les résultats de $N$ coureurs ($4 \le N \le 30$) dans deux tableaux
+              synchrones :
             </p>
             <ul class="mb-2 small">
               <li><code>Noms</code> : Noms des athlètes.</li>
               <li><code>Temps</code> : Temps de course réalisés en secondes ($> 0.0$).</li>
             </ul>
             <p class="mb-0 small">
-              On demande de trier les coureurs par **ordre croissant de leurs temps** (du plus rapide au plus lent) avec le **Tri à Bulles Synchrone**, puis d'afficher le **Classement Général** et le **Podium des 3 Gagnants** 🥇 🥈 🥉.
+              On demande de trier les coureurs par **ordre croissant de leurs temps** (du plus rapide au plus lent) avec
+              le **Tri à Bulles Synchrone**, puis d'afficher le **Classement Général** et le **Podium des 3 Gagnants**
+              🥇 🥈 🥉.
             </p>
           </div>
 
           <!-- Simulateur Vue 3 Réactif -->
           <div class="card card-custom mb-4 border border-warning border-opacity-50 shadow-sm">
             <div class="card-header-custom text-warning fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Tri à Bulles Synchrone &amp; Podium</span>
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Tri à Bulles Synchrone &amp;
+                Podium</span>
               <span class="badge bg-warning text-dark">Vue 3 App</span>
             </div>
             <div class="card-body simulator-card-body">
@@ -316,7 +321,8 @@
                   </select>
                 </div>
                 <div class="font-mono small">
-                  Permutations totales exécutées : <span class="badge bg-warning text-dark fs-6">{{ sortedResult.totalSwaps }}</span>
+                  Permutations totales exécutées : <span class="badge bg-warning text-dark fs-6">{{
+                    sortedResult.totalSwaps }}</span>
                 </div>
               </div>
 
@@ -328,7 +334,8 @@
                     <span class="simulator-sublabel d-block text-warning fw-bold">1ère Place (Médaille d'Or)</span>
                     <div v-if="sortedResult.podium.gold" class="font-mono mt-1">
                       <strong class="fs-6 text-warning">{{ sortedResult.podium.gold.nom }}</strong><br>
-                      <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-50 mt-1">
+                      <span
+                        class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-50 mt-1">
                         {{ sortedResult.podium.gold.temps.toFixed(1) }} sec
                       </span>
                     </div>
@@ -338,10 +345,12 @@
                 <div class="col-md-4">
                   <div class="simulator-val-box border-secondary shadow-sm">
                     <span class="fs-3">🥈</span>
-                    <span class="simulator-sublabel d-block text-secondary fw-bold">2ème Place (Médaille d'Argent)</span>
+                    <span class="simulator-sublabel d-block text-secondary fw-bold">2ème Place (Médaille
+                      d'Argent)</span>
                     <div v-if="sortedResult.podium.silver" class="font-mono mt-1">
                       <strong class="fs-6 text-body-secondary">{{ sortedResult.podium.silver.nom }}</strong><br>
-                      <span class="badge bg-secondary bg-opacity-25 text-body border border-secondary border-opacity-50 mt-1">
+                      <span
+                        class="badge bg-secondary bg-opacity-25 text-body border border-secondary border-opacity-50 mt-1">
                         {{ sortedResult.podium.silver.temps.toFixed(1) }} sec
                       </span>
                     </div>
@@ -351,10 +360,12 @@
                 <div class="col-md-4">
                   <div class="simulator-val-box border-amber shadow-sm" style="border-color: #b45309 !important;">
                     <span class="fs-3">🥉</span>
-                    <span class="simulator-sublabel d-block text-amber fw-bold" style="color: #d97706 !important;">3ème Place (Médaille de Bronze)</span>
+                    <span class="simulator-sublabel d-block text-amber fw-bold" style="color: #d97706 !important;">3ème
+                      Place (Médaille de Bronze)</span>
                     <div v-if="sortedResult.podium.bronze" class="font-mono mt-1">
                       <strong class="fs-6" style="color: #d97706;">{{ sortedResult.podium.bronze.nom }}</strong><br>
-                      <span class="badge bg-amber bg-opacity-25 text-amber border border-amber border-opacity-50 mt-1" style="color: #d97706;">
+                      <span class="badge bg-amber bg-opacity-25 text-amber border border-amber border-opacity-50 mt-1"
+                        style="color: #d97706;">
                         {{ sortedResult.podium.bronze.temps.toFixed(1) }} sec
                       </span>
                     </div>
@@ -385,7 +396,8 @@
                         <td>
                           <span v-if="idx === 0" class="badge bg-warning text-dark">🥇 Or</span>
                           <span v-else-if="idx === 1" class="badge bg-secondary text-white">🥈 Argent</span>
-                          <span v-else-if="idx === 2" class="badge bg-amber text-white" style="background-color: #d97706 !important;">🥉 Bronze</span>
+                          <span v-else-if="idx === 2" class="badge bg-amber text-white"
+                            style="background-color: #d97706 !important;">🥉 Bronze</span>
                           <button v-else class="btn btn-outline-danger btn-sm p-1 px-2" @click="removeRunner(idx)"
                             :disabled="runners.length <= 4">
                             <i class="bi bi-trash"></i>
@@ -405,11 +417,13 @@
                 <div class="row g-2 mb-2">
                   <div class="col-6">
                     <label class="form-label small simulator-label">Nom de l'Athlète :</label>
-                    <input type="text" v-model="newRunnerName" class="form-control font-mono" placeholder="Ex: Karim Sassi">
+                    <input type="text" v-model="newRunnerName" class="form-control font-mono"
+                      placeholder="Ex: Karim Sassi">
                   </div>
                   <div class="col-6">
                     <label class="form-label small simulator-label">Temps (en secondes &gt; 0) :</label>
-                    <input type="number" step="0.1" v-model="newRunnerTime" min="1" class="form-control font-mono" placeholder="Ex: 1250.0">
+                    <input type="number" step="0.1" v-model="newRunnerTime" min="1" class="form-control font-mono"
+                      placeholder="Ex: 1250.0">
                   </div>
                 </div>
                 <button class="btn btn-success btn-sm w-100 mb-2 font-mono" @click="addRunner">
@@ -428,7 +442,7 @@
           <div class="row g-4">
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Algorithme Modulaire (Conventions 2024-2025)</span></div>
+                <div class="code-header"><span>Algorithme</span></div>
                 <pre><code class="language-algorithm">Procédure tri_a_bulles_synchrone (@Noms : Tableau de N Chaîne, @Temps : Tableau de N Réel, n : Entier)
 DÉCLARATION DES OBJETS LOCAUX
     i, j : Entier
@@ -519,42 +533,60 @@ print("🥉 Bronze :", Noms[2], "(", Temps[2], "sec )")</code></pre>
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°14">
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Tri à Bulles (5 Questions)">
 
-                <!-- Quiz Question 1 -->
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="À chaque passage i, le plus grand élément restant remonte à sa position finale à la fin du tableau. Il reste donc n - 1 - i comparaisons à effectuer dans la boucle j.">
-                  <div class="question-text">Pourquoi la boucle interne `j` s'arrête-t-elle à `n - 2 - i` (ou `range(n - 1 - i)`) ?</div>
+                <div class="quiz-question" data-correct="0" data-explanation="Le tri à bulles compare et échange les éléments adjacents (T[i] et T[i+1]) s'ils sont mal ordonnés.">
+                  <div class="question-text">1. Quel est le principe du Tri à Bulles ?</div>
                   <ul class="quiz-options">
-                    <li>Parce qu'on ne veut trier que la première moitié du tableau.</li>
-                    <li>Parce que les i derniers éléments sont déjà définitivement triés à leur place finale.</li>
-                    <li>Parce qu'on saute les éléments de valeur égale.</li>
+                    <li>Comparer et échanger répétitivement les éléments adjacents mal ordonnés</li>
+                    <li>Sélectionner le plus petit élément et le placer au début</li>
+                    <li>Insérer chaque élément à sa place exacte</li>
+                    <li>Diviser le tableau en sous-tableaux</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 2 -->
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="La variable intermédiaire 'aux' permet de mémoriser la première valeur avant qu'elle ne soit écrasée par la seconde lors de l'échange.">
-                  <div class="question-text">Quel est le rôle de la variable intermédiaire `aux` lors de la permutation ?</div>
+                <div class="quiz-question" data-correct="1" data-explanation="Un indicateur booléen (ex. Permut) permet d'arrêter le tri dès qu'aucun échange n'a été effectué lors d'un passage.">
+                  <div class="question-text">2. Comment optimise-t-on le Tri à Bulles pour arrêter l'exécution si le tableau est déjà trié ?</div>
                   <ul class="quiz-options">
-                    <li>Sauvegarder temporairement la valeur T[j] pour éviter son écrasement.</li>
-                    <li>Compter le nombre depermutations effectuées.</li>
-                    <li>Calculer la moyenne des deux éléments.</li>
+                    <li>En utilisant une variable réelles</li>
+                    <li>En utilisant une variable booléenne de permutation (ex: Permut)</li>
+                    <li>En supprimant la boucle externe</li>
+                    <li>En doublant la taille du tableau</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 3 -->
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Pour obtenir un tri décroissant, il suffit d'inverser la condition d'échange en testant Si Temps[j] < Temps[j + 1].">
-                  <div class="question-text">Comment modifier le tri à bulles pour obtenir un classement par ordre décroissant ?</div>
+                <div class="quiz-question" data-correct="2" data-explanation="La complexité temporelle du tri à bulles dans le pire des cas est quadratique O(N^2).">
+                  <div class="question-text">3. Quelle est la complexité dans le pire des cas de l'algorithme du Tri à Bulles ?</div>
                   <ul class="quiz-options">
-                    <li>En remplaçant la boucle Pour par une boucle Tant que.</li>
-                    <li>En échangeant les variables i et j.</li>
-                    <li>En remplaçant la condition (T[j] > T[j+1]) par (T[j] < T[j+1]).</li>
+                    <li>O(N)</li>
+                    <li>O(log N)</li>
+                    <li>O(N^2)</li>
+                    <li>O(1)</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Après le premier passage, le plus grand élément 'remonte' à la dernière position T[N-1].">
+                  <div class="question-text">4. Que se passe-t-il au terme du tout premier passage complet du Tri à Bulles ?</div>
+                  <ul class="quiz-options">
+                    <li>Le plus grand élément est garanti d'être à sa position finale à la fin du tableau</li>
+                    <li>Le tableau entier est trié</li>
+                    <li>Le plus petit élément est éliminé</li>
+                    <li>La première moitié du tableau est triée</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Pour permuter A et B : Aux = A ; A = B ; B = Aux.">
+                  <div class="question-text">5. Quelle est la séquence correcte de permutation de deux variables A et B avec une variable Aux ?</div>
+                  <ul class="quiz-options">
+                    <li>Aux = A ; A = B ; B = Aux</li>
+                    <li>A = B ; B = A</li>
+                    <li>Aux = B ; B = Aux ; A = B</li>
+                    <li>A = Aux ; B = A ; Aux = B</li>
                   </ul>
                 </div>
 
               </div>
+            </div>
             </div>
           </div>
         </section>

@@ -86,7 +86,7 @@ La Société Tunisienne de l'Électricité et du Gaz (**STEG**) souhaite analyse
 
 ---
 
-### **II. Algorithmes des Modules (Conventions 2024-2025)**
+### **II. Algorithmes des Modules **
 
 ```text
 // 1. Fonction Saisir Taille

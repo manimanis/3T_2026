@@ -41,7 +41,9 @@ createApp({
       this.activeSection = sectionId;
       this.closeDrawer();
       this.$nextTick(() => {
-        if (typeof hljs !== 'undefined') {
+        if (typeof window.safeHighlightAll === 'function') {
+          window.safeHighlightAll();
+        } else if (typeof hljs !== 'undefined') {
           hljs.highlightAll();
         }
         this.renderMath();
@@ -65,7 +67,9 @@ createApp({
     toggleCorrectionAct1() {
       this.showCorrectionAct1 = !this.showCorrectionAct1;
       this.$nextTick(() => {
-        if (typeof hljs !== 'undefined') {
+        if (typeof window.safeHighlightAll === 'function') {
+          window.safeHighlightAll();
+        } else if (typeof hljs !== 'undefined') {
           hljs.highlightAll();
         }
       });
@@ -91,14 +95,17 @@ createApp({
     },
     renderMath() {
       if (typeof renderMathInElement === 'function') {
-        renderMathInElement(document.body, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '\\[', right: '\\]', display: true },
-            { left: '\\(', right: '\\)', display: false },
-            { left: '$', right: '$', display: false }
-          ],
-          throwOnError: false
+        const containers = document.querySelectorAll('.math-expr, .formula-box');
+        containers.forEach(el => {
+          renderMathInElement(el, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false },
+              { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+          });
         });
       }
     }
@@ -106,7 +113,9 @@ createApp({
   mounted() {
     document.documentElement.setAttribute('data-theme', this.theme);
     this.$nextTick(() => {
-      if (typeof hljs !== 'undefined') {
+      if (typeof window.safeHighlightAll === 'function') {
+        window.safeHighlightAll();
+      } else if (typeof hljs !== 'undefined') {
         hljs.highlightAll();
       }
       this.renderMath();

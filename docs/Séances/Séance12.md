@@ -197,7 +197,7 @@ On souhaite créer une application d'**Analyse Arithmétique d'un Entier $N$** :
 
 ---
 
-#### **2. Algorithmes des Modules (Conventions 2024-2025)**
+#### **2. Algorithmes des Modules **
 
 ```text
 // 1. Fonction Saisir Entier > 1

@@ -69,7 +69,7 @@ T[j + 1] ← aux
 
 ---
 
-### **III. algorithme & Implémentation Python (Conventions 2024-2025)**
+### **III. algorithme & Implémentation Python **
 
 #### **1. Algorithme de la Procédure `tri_a_bulles` (Ordre Croissant)**
 
@@ -146,7 +146,7 @@ On demande de concevoir un programme modulaire qui :
 
 ---
 
-#### **2. Algorithmes des Modules (Conventions 2024-2025)**
+#### **2. Algorithmes des Modules **
 
 ```text
 // Procédure de Tri à Bulles Synchrone

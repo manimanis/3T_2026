@@ -33,7 +33,7 @@
 | Phase | Durée | Activité de l'Enseignant | Activité de l'Élève | Support / Outil |
 | --- | --- | --- | --- | --- |
 | **1. Rappel & Diagnostic** | 10 min | Rappel rapide des structures alternatives et itératives vues en 2ème année. | Participation orale, identification de la différence entre choix et répétition. | Tableau |
-| **2. Synthèse Théorique** | 25 min | Présentation des règles d'écriture des structures `Si` et `Pour` (Conventions 2024-2025). Focus sur `range()`. | Prise de notes et analyse des exemples d'accumulation (somme/compteur). | ProProjecteur / Fiche |
+| **2. Synthèse Théorique** | 25 min | Présentation des règles d'écriture des structures `Si` et `Pour` . Focus sur `range()`. | Prise de notes et analyse des exemples d'accumulation (somme/compteur). | ProProjecteur / Fiche |
 | **3. Activité Guidée** | 40 min | Présentation du problème pratique (Calcul de primes et salaire). Encadrement de l'analyse et du TDO. | Rédaction de l'analyse, élaboration du TDO, écriture de l'algorithme et codage Python. | Ordinateur (Thonny IDE) |
 | **4. Évaluation Formative** | 15 min | Test sur machine avec des jeux d'essais variés (ex: cas limites $N = 0$, valeurs négatives). | Validation du script Python, correction des erreurs d'indentation ou de bornes. | Environnement Python |
 
@@ -112,17 +112,23 @@ for compteur in range(début, fin + 1, pas):
 
 ```
 
-> ⚠️ **Piège classique en Python :** La borne supérieure du `range(a, b)` est **exclue**. Pour répéter un traitement pour `compteur` allant de `1` à `N`, il faut écrire `range(1, N + 1)`. Par défaut, le pas est égal à `1`.
+> ⚠️ **Piège classique en Python (Exclusion de la borne finale) :**
+> - **Ordre croissant (de 1 à N inclus) :** Écrire `range(1, N + 1)` (le pas vaut `1` par défaut).
+> - **Ordre décroissant (de N à 1 inclus) :** Écrire `range(N, 0, -1)` (la borne `0` est exclue, l'itération s'arrête bien à `1` avec un pas de `-1`).
 
 ---
 
-### **III. Les Motifs Classiques : Compteur et Accumulateur**
+### **III. Les Motifs Classiques : Compteur, Accumulateur & Produit**
 
-| Rôle | Initialisation (Avant la boucle) | Traitement (Dans la boucle) |
-| --- | --- | --- |
-| **Compteur** (Compter des éléments) | `c ← 0` | `c ← c + 1` |
-| **Accumulateur** (Sommer des valeurs) | `somme ← 0` | `somme ← somme + valeur` |
-| **Produit cumulé** | `p ← 1` | `p ← p * valeur` |
+Un **motif classique** est un schéma de calcul récurrent dans une boucle requiring deux étapes :
+1. **Initialisation AVANT la boucle** avec l'élément neutre de l'opération.
+2. **Mise à jour À L'INTÉRIEUR de la boucle** à chaque étape d'itération.
+
+| Motif | Rôle & Principe | Initialisation (Avant la boucle) | Formule Algorithmique | Code Python Officiel | Exemple concrêt |
+| --- | --- | --- | --- | --- | --- |
+| **Compteur** | Dénombrer des événements (neutre = 0) | `c ← 0` | `c ← c + 1` | `c = c + 1` | Compter les pairs de 1 à N |
+| **Accumulateur** | Cumuler une somme (neutre = 0) | `somme ← 0` | `somme ← somme + val` | `somme = somme + i` | Somme des entiers de 1 à N |
+| **Produit Cumulé** | Multiplier des facteurs (neutre = 1) | `p ← 1` *(jamais 0 !)* | `p ← p * val` | `fact = fact * i` | Calcul de la Factorielle $N!$ |
 
 ---
 
@@ -148,7 +154,7 @@ print("Somme =", somme)
 1. `n` doit être converti en entier : `n = int(input(...))`.
 2. La boucle doit inclure `n` : `range(1, n + 1)`.
 3. Le test de parité est `i % 2 == 0` (et non `1`).
-4. L'accumulation nécessite `somme = somme + i` (ou `somme += i`).
+4. L'accumulation nécessite `somme = somme + i`.
 
 ```python
 # Code corrigé
@@ -156,7 +162,7 @@ n = int(input("Donner N : "))
 somme = 0
 for i in range(1, n + 1):
     if i % 2 == 0:
-        somme += i
+        somme = somme + i
 print("Somme =", somme)
 
 ```
@@ -192,11 +198,11 @@ Une entreprise commerciale calcule le **salaire mensuel net** de ses vendeurs su
 1. Initialiser `total_ventes` à 0 et `salaire_net` à 0.0.
 2. Pour chaque jour $i$ de $1$ à $n$ :
 * $total\_ventes \leftarrow total\_ventes + nb\_ventes$
-* $salaire\_net \leftarrow salaire\_net + 35.000$
-* Si $nb\_ventes > 10$ Alors $salaire\_net \leftarrow salaire\_net + 15.000$
+* $salaire\_net \leftarrow salaire\_net + BASE\_JOUR$
+* Si $nb\_ventes > 10$ Alors $salaire\_net \leftarrow salaire\_net + PRIME\_JOUR$
 
 
-3. Après la boucle, si $total\_ventes > 150$ Alors $salaire\_net \leftarrow salaire\_net + 100.000$
+3. Après la boucle, si $total\_ventes > 150$ Alors $salaire\_net \leftarrow salaire\_net + PRIME\_GLOBALE$
 
 
 
@@ -233,15 +239,15 @@ DEBUT
         Lire(nb_ventes)
         
         total_ventes ← total_ventes + nb_ventes
-        salaire_net ← salaire_net + 35.000
+        salaire_net ← salaire_net + BASE_JOUR
         
         Si (nb_ventes > 10) Alors
-            salaire_net ← salaire_net + 15.000
+            salaire_net ← salaire_net + PRIME_JOUR
         FinSi
     Fin Pour
     
     Si (total_ventes > 150) Alors
-        salaire_net ← salaire_net + 100.000
+        salaire_net ← salaire_net + PRIME_GLOBALE
     FinSi
     
     Écrire("Total des ventes du mois : ", total_ventes)
@@ -277,15 +283,15 @@ salaire_net = 0.0
 for i in range(1, n + 1):
     nb_ventes = int(input("Nombre de ventes pour le jour " + str(i) + " : "))
     
-    total_ventes += nb_ventes
-    salaire_net += BASE_JOUR
+    total_ventes = total_ventes + nb_ventes
+    salaire_net = salaire_net + BASE_JOUR
     
     if nb_ventes > 10:
-        salaire_net += PRIME_JOUR
+        salaire_net = salaire_net + PRIME_JOUR
 
 # Test de la prime globale
 if total_ventes > 150:
-    salaire_net += PRIME_GLOBALE
+    salaire_net = salaire_net + PRIME_GLOBALE
     print("Félicitations ! Prime globale de 100.000 DT accordée.")
 
 # Affichage des resultats

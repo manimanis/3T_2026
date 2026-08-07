@@ -222,11 +222,13 @@ createApp({
           moduleId: 5,
           title: "Concepts IoT & Carte ESP32",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Architecture IoT, carte ESP32, GPIO, Micro-Python / Arduino IDE.",
+          status: "Disponible",
+          link: "seance16.html",
+          description: "Architecture IoT, carte ESP32-WROOM-32, brochage GPIO (3.3V), montage breadboard et premier script Blink LED en MicroPython et C++.",
           objectives: [
-            "Présentation matérielle ESP32",
-            "Premier script Blink LED"
+            "Chaîne fonctionnelle IoT & Matériel ESP32 Dual-Core",
+            "Brochage GPIO, sécurité 3.3V & résistance 220Ω",
+            "Premier script Blink LED (GPIO 2 & GPIO 4) en MicroPython & C++"
           ]
         },
         {
@@ -234,11 +236,13 @@ createApp({
           moduleId: 5,
           title: "Acquisition de données via les Capteurs",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Interfaçage de capteurs de température, humidité et lumière avec l'ESP32.",
+          status: "Disponible",
+          link: "seance17.html",
+          description: "Interfaçage de capteurs analogiques (LDR Photorésistance, ADC 12 bits) et numériques (DHT11 Température & Humidité) avec l'ESP32.",
           objectives: [
-            "Câblage sur broches GPIO",
-            "Acquisition en temps réel"
+            "Classification Capteurs Analogiques vs Numériques",
+            "Convertisseur ADC 12 bits (0..4095) & Tension Vin",
+            "Acquisition LDR & DHT11 en temps réel (MicroPython & C++)"
           ]
         },
         {
@@ -246,11 +250,13 @@ createApp({
           moduleId: 5,
           title: "Contrôle des Actionneurs",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Pilotage de moteurs, servomoteurs, buzzers et LED selon les capteurs.",
+          status: "Disponible",
+          link: "seance18.html",
+          description: "Modulation de largeur d'impulsion PWM, commande du servomoteur SG90 (0 à 180°), buzzer piezo et boucle de régulation automatique.",
           objectives: [
-            "Seuils de déclenchement intelligents",
-            "Commande d'actionneurs"
+            "Principe de la PWM (Fréquence & Rapport Cyclique Duty)",
+            "Commande du Servomoteur SG90 (50Hz) & Buzzer Piezo",
+            "Boucle de Régulation Automatique Capteur ➔ Actionneur"
           ]
         },
         {
@@ -258,11 +264,13 @@ createApp({
           moduleId: 5,
           title: "Projet Intégré IoT embarqué",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Réalisation d'un système autonome (Arrosage automatique / Alerte météo).",
+          status: "Disponible",
+          link: "seance19.html",
+          description: "Projet Smart Agro (Serre Intelligente) : Connexion Wi-Fi, serveur HTTP embarqué Sockets, capteurs DHT11/LDR et supervision par smartphone.",
           objectives: [
-            "Capteur ➔ ESP32 ➔ Actionneur",
-            "Projet autonome complet"
+            "Connexion Wi-Fi Station (network.WLAN) & Adresse IP",
+            "Serveur Web HTTP Embarqué (usocket) & Sockets Port 80",
+            "Projet Intégré Autonome avec Supervision par Smartphone"
           ]
         },
         {
@@ -270,11 +278,13 @@ createApp({
           moduleId: 6,
           title: "Évaluation Pratique Bilan & Bilan Annuel",
           duration: "1h 30mn",
-          status: "Planifié",
-          description: "Épreuve pratique bilan sur machine et synthèse des apprentissages.",
+          status: "Disponible",
+          link: "seance20.html",
+          description: "Épreuve pratique bilan sur machine (1h00), évaluation sur 20 points des compétences Python & ESP32 et synthèse des 20 séances (0h30).",
           objectives: [
-            "Épreuve pratique (1h00)",
-            "Bilan annuel et clôture (0h30)"
+            "Épreuve Pratique Bilan sur Machine (60 min / 20 pts)",
+            "Synthèse Générale des 6 Modules (20/20 Séances complétées)",
+            "Auto-évaluation & Bilan d'orientation vers la 4ème Bac"
           ]
         }
       ]
@@ -291,6 +301,17 @@ createApp({
     }
   },
   methods: {
+    selectModule(id) {
+      this.selectedModule = id;
+    },
+    resetFilters() {
+      this.selectedModule = 0;
+      this.searchQuery = '';
+    },
+    getModuleTitle(modId) {
+      const m = this.modules.find(mod => mod.id === modId);
+      return m ? m.shortTitle : `Module ${modId}`;
+    },
     toggleTheme() {
       this.theme = this.theme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', this.theme);
@@ -302,15 +323,18 @@ createApp({
       modal.show();
     },
     renderMath() {
-      if (typeof renderMathInElement === 'function') {
-        renderMathInElement(document.body, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '\\[', right: '\\]', display: true },
-            { left: '\\(', right: '\\)', display: false },
-            { left: '$', right: '$', display: false }
-          ],
-          throwOnError: false
+      const mathEls = document.querySelectorAll('.math-expr');
+      if (mathEls.length > 0 && typeof renderMathInElement === 'function') {
+        mathEls.forEach(el => {
+          renderMathInElement(el, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false },
+              { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+          });
         });
       }
     }
@@ -318,10 +342,11 @@ createApp({
   mounted() {
     document.documentElement.setAttribute('data-theme', this.theme);
     this.$nextTick(() => {
-      if (typeof hljs !== 'undefined') {
+      if (typeof window.safeHighlightAll === 'function') {
+        window.safeHighlightAll();
+      } else if (typeof hljs !== 'undefined') {
         hljs.highlightAll();
       }
-      this.renderMath();
     });
   }
 }).mount('#app');

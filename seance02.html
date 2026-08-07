@@ -28,7 +28,7 @@
 
 <body>
 
-  <div id="app">
+  <div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
@@ -49,10 +49,9 @@
             <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
               au Plan</a>
             <!-- Theme Toggle Button -->
-            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi"
-                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
-              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            <button class="theme-toggle-btn ms-lg-2" title="Changer de thème">
+              <i class="bi bi-sun-fill text-warning"></i>
+              <span>Mode Clair</span>
             </button>
           </div>
         </div>
@@ -62,13 +61,6 @@
     <!-- Header Section -->
     <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-2 small text-muted">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">Accueil</a></li>
-            <li class="breadcrumb-item text-muted">Module 1 : Révision & Consolidation</li>
-            <li class="breadcrumb-item active text-primary" aria-current="page">Séance 2</li>
-          </ol>
-        </nav>
 
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
@@ -77,12 +69,7 @@
               <i class="bi bi-bookmark-fill me-1"></i> Module 1 • Séance N°2
             </span>
             <h1 class="h2 fw-bold mb-1">Consolidation des Structures de Contrôle Simples</h1>
-            <p class="text-muted mb-0">Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn</p>
-          </div>
-          <div class="d-flex gap-2 align-items-center">
-            <span class="badge badge-custom p-2 px-3 d-flex align-items-center gap-2">
-              <i class="bi bi-laptop text-info"></i> Thonny Python IDE / IDLE
-            </span>
+            <p class="text-muted mb-0">Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn</p>
           </div>
         </div>
       </div>
@@ -151,14 +138,14 @@
                   <tr>
                     <td><span class="badge bg-secondary">1. Diagnostic</span></td>
                     <td>10 min</td>
-                    <td>Rappel rapide des structures alternatives et itératives.</td>
+                    <td>Rappel rapide des structures conditionnelles et itératives.</td>
                     <td>Participation orale, choix vs répétition.</td>
                     <td>Tableau</td>
                   </tr>
                   <tr>
                     <td><span class="badge bg-primary">2. Synthèse</span></td>
                     <td>25 min</td>
-                    <td>Présentation des règles <code>Si</code> et <code>Pour</code> (2024-2025). Focus sur
+                    <td>Présentation des instructions <code>Si</code> et <code>Pour</code>. Concentration sur
                       <code>range()</code>.
                     </td>
                     <td>Prise de notes, analyse des motifs d'accumulation.</td>
@@ -190,10 +177,11 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-conditionnelle" class="section-pane">
-          <h3>2. La Structure Conditionnelle (Réduite, Alternative & Généralisée)</h3>
+          <h3>2. Les Structures Conditionnelles</h3>
           <p class="text-muted">
-            La structure conditionnelle permet d'exécuter un bloc d'instructions uniquement lorsque la condition logique
-            est vraie (<code>True</code>).
+            Une structure conditionnelle permet d'exécuter un bloc d'instructions uniquement si une <strong>condition
+              logique</strong> est vraie (<code>True</code>). On distingue <strong>trois formes</strong> de structures
+            conditionnelles :
           </p>
 
           <div class="row g-4 mb-4">
@@ -202,13 +190,11 @@
               <div class="card card-custom h-100">
                 <div
                   class="card-image text-center p-2 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
-                  <small class="text-muted d-block mb-1 font-mono" style="font-size: 0.75rem;">Diagramme d'exécution
-                    vectoriel</small>
-                  <img src="images/seance02/si_reduite.svg" alt="Diagramme Si Réduite" class="img-fluid"
+                  <img src="images/seance02/si_reduite.svg" alt="Forme réduite" class="img-fluid"
                     style="max-height: 200px; width: 100%;">
                 </div>
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-arrow-right-short me-2"></i> Forme Réduite (Si ... Alors)
+                  <i class="bi bi-arrow-right-short me-2"></i> Forme Réduite
                 </div>
                 <div class="card-body p-0 cond-card-body">
                   <div class="p-3 border-bottom border-secondary border-opacity-25 cond-code-cell">
@@ -218,7 +204,7 @@
 FinSi</code></pre>
                   </div>
                   <div class="p-3 cond-code-cell">
-                    <small class="text-muted d-block mb-1">Python (Instruction simple if)</small>
+                    <small class="text-muted d-block mb-1">Python (Instruction if)</small>
                     <pre class="m-0"><code class="language-python">if condition:
     traitement</code></pre>
                   </div>
@@ -231,13 +217,11 @@ FinSi</code></pre>
               <div class="card card-custom h-100">
                 <div
                   class="card-image text-center p-2 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
-                  <small class="text-muted d-block mb-1 font-mono" style="font-size: 0.75rem;">Diagramme d'exécution
-                    vectoriel</small>
-                  <img src="images/seance02/si_alternative.svg" alt="Diagramme Si Alternative" class="img-fluid"
+                  <img src="images/seance02/si_alternative.svg" alt="Forme alternative" class="img-fluid"
                     style="max-height: 200px; width: 100%;">
                 </div>
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-signpost-split me-2"></i> Forme Alternative (Si ... Sinon)
+                  <i class="bi bi-signpost-split me-2"></i> Forme Alternative
                 </div>
                 <div class="card-body p-0 cond-card-body">
                   <div class="p-3 border-bottom border-secondary border-opacity-25 cond-code-cell">
@@ -249,7 +233,7 @@ Sinon
 FinSi</code></pre>
                   </div>
                   <div class="p-3 cond-code-cell">
-                    <small class="text-muted d-block mb-1">Python (Blocs if ... else)</small>
+                    <small class="text-muted d-block mb-1">Python (Instructions if ... else)</small>
                     <pre class="m-0"><code class="language-python">if condition:
     traitement1
 else:
@@ -264,13 +248,11 @@ else:
               <div class="card card-custom h-100">
                 <div
                   class="card-image text-center p-2 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
-                  <small class="text-muted d-block mb-1 font-mono" style="font-size: 0.75rem;">Diagramme d'exécution
-                    vectoriel</small>
-                  <img src="images/seance02/si_generalisee.svg" alt="Diagramme Si Généralisée" class="img-fluid"
+                  <img src="images/seance02/si_generalisee.svg" alt="Forme généralisée" class="img-fluid"
                     style="max-height: 200px; width: 100%;">
                 </div>
                 <div class="card-header-custom text-info fw-bold">
-                  <i class="bi bi-diagram-3 me-2"></i> Forme Généralisée (Si ... Sinon Si)
+                  <i class="bi bi-diagram-3 me-2"></i> Forme Généralisée
                 </div>
                 <div class="card-body p-0 cond-card-body">
                   <div class="p-3 border-bottom border-secondary border-opacity-25 cond-code-cell">
@@ -299,9 +281,9 @@ else:
         </section>
 
         <section id="section-cours-boucle" class="section-pane">
-          <h3>3. La Structure Répétitive Bornée (Pour & range)</h3>
+          <h3>3. La Structure Itérative Complète</h3>
           <p class="text-muted">
-            La boucle <code>Pour</code> est utilisée lorsque le <strong>nombre d'itérations est connu à
+            La structure itérative <code>Pour</code> est utilisée lorsque le <strong>nombre d'itérations est connu à
               l'avance</strong>.
           </p>
 
@@ -337,41 +319,161 @@ Fin Pour</code></pre>
           <!-- Alert Box Piège classique -->
           <div class="alert alert-warning border border-warning border-opacity-25 mb-4">
             <h5 class="alert-heading h6 fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i> Piège classique en
-              Python : Exclusion de la borne supérieure !</h5>
-            <p class="mb-0 small">
-              La borne supérieure du <code>range(a, b)</code> est <strong>exclue</strong>. Pour répéter un traitement
-              pour un compteur allant de <code>1</code> à <code>N</code> inclus, il faut obligatoirement écrire
-              <code>range(1, N + 1)</code>. Par défaut, le pas d'incrémentation est égal à <code>1</code>.
+              Python : Exclusion de la borne finale !</h5>
+            <p class="mb-2 small">
+              La borne finale dans <code>range(début, fin, pas)</code> est <strong>toujours exclue</strong> :
             </p>
+            <ul class="mb-0 small ps-3">
+              <li class="mb-1">
+                <strong>Ordre croissant (de 1 à N inclus) :</strong> Écrire <code>range(1, N + 1)</code> (le pas vaut
+                <code>1</code> par défaut).
+              </li>
+              <li>
+                <strong>Ordre décroissant (de N à 1 inclus) :</strong> Écrire <code>range(N, 0, -1)</code> (la borne
+                <code>0</code> est exclue, l'itération s'arrête bien à <code>1</code> avec un pas négatif de
+                <code>-1</code>).
+              </li>
+            </ul>
           </div>
 
-          <!-- Motifs Classiques Table -->
-          <h4 class="h6 fw-bold mt-4 mb-3"><i class="bi bi-layers me-2"></i> Les Motifs Classiques : Compteur,
-            Accumulateur & Produit</h4>
+          <!-- Motifs Classiques Detailed Explanation -->
+          <h4 class="h5 fw-bold mt-4 mb-3"><i class="bi bi-layers text-primary me-2"></i> Les Motifs Classiques :
+            Compteur, Accumulateur & Produit</h4>
+          <p class="text-muted">
+            En algorithmique et programmation, un <strong>motif classique</strong> est un schéma de calcul récurrent
+            dans une boucle. Pour fonctionner correctement, chaque motif exige deux étapes clés :</p>
+          <ul class="mb-0 small ps-3">
+            <li class="mb-1"><strong>l'initialisation obligatoire AVANT d'entrer dans la boucle</strong> (élément
+              neutre)</li>
+            <li class="mb-1"><strong>la mise à jour À L'INTÉRIEUR de la boucle</strong></li>
+          </ul>
+
+          <div class="row g-3 mb-4">
+            <!-- 1. Compteur -->
+            <div class="col-md-4">
+              <div class="card card-custom h-100 border-start border-primary border-4">
+                <div class="card-body">
+                  <div class="d-flex align-items-center gap-2 mb-2 text-primary fw-bold">
+                    <i class="bi bi-plus-circle-fill fs-5"></i>
+                    <span class="fs-6">1. Le Compteur</span>
+                  </div>
+                  <p class="small text-main mb-3">
+                    Servant à <strong>dénombrer</strong> des éléments ou des événements satisfaisant une condition.
+                  </p>
+                  <div class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
+                    <div><span class="fw-semibold text-primary">Initialisation :</span> <code>c &larr; 0</code></div>
+                    <div><span class="fw-semibold text-primary">Mise à jour :</span> <code>c &larr; c + 1</code></div>
+                  </div>
+                  <div class="small mb-3">
+                    <strong class="text-primary">Principe :</strong> L'élément neutre du comptage est <code>0</code>. À chaque élément valide trouvé, on ajoute <code>1</code> au compteur.
+                  </div>
+                  <div class="border-top border-secondary border-opacity-25 pt-2">
+                    <span class="badge bg-primary bg-opacity-25 text-primary mb-1">Exemple Concret :</span>
+                    <p class="small text-muted mb-1">Compter les nombres pairs entre 1 et N :</p>
+                    <pre class="m-0 p-2 rounded bg-body-tertiary border border-secondary border-opacity-25"><code class="language-python">nb_pairs = 0
+n = int(input("Donner N : "))
+for i in range(1, n + 1):
+    if i % 2 == 0:
+        nb_pairs = nb_pairs + 1</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Accumulateur de Somme -->
+            <div class="col-md-4">
+              <div class="card card-custom h-100 border-start border-success border-4">
+                <div class="card-body">
+                  <div class="d-flex align-items-center gap-2 mb-2 text-success fw-bold">
+                    <i class="bi bi-calculator-fill fs-5"></i>
+                    <span class="fs-6">2. L'Accumulateur (Somme)</span>
+                  </div>
+                  <p class="small text-main mb-3">
+                    Servant à <strong>cumuler la somme</strong> de plusieurs valeurs successives.
+                  </p>
+                  <div class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
+                    <div><span class="fw-semibold text-success">Initialisation :</span> <code>somme &larr; 0</code></div>
+                    <div><span class="fw-semibold text-success">Mise à jour :</span> <code>somme &larr; somme + val</code></div>
+                  </div>
+                  <div class="small mb-3">
+                    <strong class="text-success">Principe :</strong> L'élément neutre de l'addition est <code>0</code>. À chaque tour, on ajoute la nouvelle valeur à la somme totale accumulée.
+                  </div>
+                  <div class="border-top border-secondary border-opacity-25 pt-2">
+                    <span class="badge bg-success bg-opacity-25 text-success mb-1">Exemple Concret :</span>
+                    <p class="small text-muted mb-1">Calculer la somme des entiers de 1 à N :</p>
+                    <pre class="m-0 p-2 rounded bg-body-tertiary border border-secondary border-opacity-25"><code class="language-python">somme = 0
+n = int(input("Donner N : "))
+for i in range(1, n + 1):
+    somme = somme + i</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Produit Cumulé -->
+            <div class="col-md-4">
+              <div class="card card-custom h-100 border-start border-warning border-4">
+                <div class="card-body">
+                  <div class="d-flex align-items-center gap-2 mb-2 text-warning fw-bold">
+                    <i class="bi bi-x-circle-fill fs-5"></i>
+                    <span class="fs-6">3. Le Produit Cumulé</span>
+                  </div>
+                  <p class="small text-main mb-3">
+                    Servant à <strong>multiplier</strong> successivement une série de facteurs (ex: Factorielle).
+                  </p>
+                  <div class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
+                    <div><span class="fw-semibold text-warning">Initialisation :</span> <code>p &larr; 1</code></div>
+                    <div><span class="fw-semibold text-warning">Mise à jour :</span> <code>p &larr; p * val</code></div>
+                  </div>
+                  <div class="small mb-3">
+                    <strong class="text-warning">Principe :</strong> L'élément neutre de la multiplication est <code>1</code> (initialiser à 0 annulerait tout le produit !).
+                  </div>
+                  <div class="border-top border-secondary border-opacity-25 pt-2">
+                    <span class="badge bg-warning bg-opacity-25 text-warning mb-1">Exemple Concret :</span>
+                    <p class="small text-muted mb-1">Calculer la factorielle de N (N!) :</p>
+                    <pre class="m-0 p-2 rounded bg-body-tertiary border border-secondary border-opacity-25"><code class="language-python">fact = 1
+n = int(input("Donner N : "))
+for i in range(1, n + 1):
+    fact = fact * i</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tableau récapitulatif comparatif -->
           <div class="table-responsive mb-3">
             <table class="table table-custom">
               <thead>
                 <tr>
-                  <th>Rôle</th>
-                  <th>Initialisation (Avant la boucle)</th>
-                  <th>Traitement (Dans la boucle)</th>
+                  <th>Motif</th>
+                  <th>Valeur Initiale (Neutre)</th>
+                  <th>Formule Algorithmique</th>
+                  <th>Code Python (Conventions)</th>
+                  <th>Exemple d'utilisation</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Compteur</strong> (Compter des éléments)</td>
-                  <td><code>c &larr; 0</code></td>
-                  <td><code>c &larr; c + 1</code> (Python: <code>c += 1</code>)</td>
+                  <td><strong>Compteur</strong></td>
+                  <td><code>0</code></td>
+                  <td><code>c &larr; c + 1</code></td>
+                  <td><code>c = c + 1</code></td>
+                  <td>Compter les nombres pairs entre 1 et N</td>
                 </tr>
                 <tr>
-                  <td><strong>Accumulateur</strong> (Sommer des valeurs)</td>
-                  <td><code>somme &larr; 0</code></td>
-                  <td><code>somme &larr; somme + valeur</code> (Python: <code>somme += val</code>)</td>
+                  <td><strong>Accumulateur</strong></td>
+                  <td><code>0</code></td>
+                  <td><code>somme &larr; somme + val</code></td>
+                  <td><code>somme = somme + i</code></td>
+                  <td>Calculer la somme des entiers de 1 à N</td>
                 </tr>
                 <tr>
-                  <td><strong>Produit cumulé</strong></td>
-                  <td><code>p &larr; 1</code></td>
-                  <td><code>p &larr; p * valeur</code> (Python: <code>p *= val</code>)</td>
+                  <td><strong>Produit</strong></td>
+                  <td><code>1</code> (Piège si 0 !)</td>
+                  <td><code>p &larr; p * val</code></td>
+                  <td><code>fact = fact * i</code></td>
+                  <td>Calculer la factorielle de N (N! = 1 * 2 * ... * N)</td>
                 </tr>
               </tbody>
             </table>
@@ -403,20 +505,20 @@ for i in range(1, n):
         somme = i
 print("Somme =", somme)</code></pre>
               </div>
-              <button class="btn btn-sm btn-outline-success mt-2" @click="toggleCorrectionAct1()">
-                {{ showCorrectionAct1 ? 'Masquer la correction' : 'Afficher la correction' }}
+              <button class="btn btn-sm btn-outline-success mt-2" onclick="toggleAct1Correction(this)">
+                Afficher la correction
               </button>
             </div>
 
             <div class="col-md-6">
-              <div v-show="showCorrectionAct1" class="code-container">
+              <div class="code-container correction-block" style="display: none;">
                 <div class="code-header text-success"><span>script_corrige.py (Code Corrigé)</span></div>
                 <pre><code class="language-python"># Code corrigé et fonctionnel
 n = int(input("Donner N : "))
 somme = 0
 for i in range(1, n + 1):
     if i % 2 == 0:
-        somme += i
+        somme = somme + i
 print("Somme des nombres pairs =", somme)</code></pre>
               </div>
             </div>
@@ -431,11 +533,11 @@ print("Somme des nombres pairs =", somme)</code></pre>
             <h4 class="h6 text-warning fw-bold mb-2"><i class="bi bi-building me-2"></i> Énoncé de l'exercice :</h4>
             <p class="mb-2">
               Une entreprise commerciale calcule le <strong>salaire mensuel net</strong> de ses vendeurs sur une période
-              de <strong>$N$ jours ouvrables</strong> (saisi par l'utilisateur).
+              de <strong>N jours ouvrables</strong> (saisi par l'utilisateur).
             </p>
             <ul class="mb-0 small">
               <li>Le salaire de base quotidien est de <strong>35.000 DT</strong>.</li>
-              <li>Pour chaque jour $i$ ($1 \le i \le N$), l'utilisateur saisit le nombre de ventes réalisées.</li>
+              <li>Pour chaque jour i (1 <= i <= N), l'utilisateur saisit le nombre de ventes réalisées.</li>
               <li>Si le nombre de ventes d'un jour est <strong>supérieur à 10</strong>, le vendeur touche une
                 <strong>prime journalière de 15.000 DT</strong>.
               </li>
@@ -446,7 +548,7 @@ print("Somme des nombres pairs =", somme)</code></pre>
           </div>
 
           <!-- Accordion for Resolution Steps -->
-          <div class="accordion accordion-custom mb-4" id="accordionSalaire">
+          <div class="accordion accordion-custom mb-4" id="accordionSalaire" v-pre>
 
             <!-- 1. Analyse -->
             <div class="accordion-item">
@@ -461,7 +563,7 @@ print("Somme des nombres pairs =", somme)</code></pre>
                     <li><strong>Données d'entrée (Entrées) :</strong>
                       <ul>
                         <li><code>n</code> : Nombre de jours ouvrables (Entier)</li>
-                        <li><code>nb_ventes</code> : Ventes quotidiennes (Entier, saisi $N$ fois)</li>
+                        <li><code>nb_ventes</code> : Ventes quotidiennes (Entier, saisi N fois)</li>
                       </ul>
                     </li>
                     <li><strong>Données de sortie (Sorties) :</strong>
@@ -473,17 +575,17 @@ print("Somme des nombres pairs =", somme)</code></pre>
                     <li><strong>Traitements :</strong>
                       <ol>
                         <li>Initialiser <code>total_ventes &larr; 0</code> et <code>salaire_net &larr; 0.0</code>.</li>
-                        <li>Pour chaque jour $i$ de $1$ à $n$ :
+                        <li>Pour chaque jour i de 1 à n :
                           <ul>
                             <li><code>total_ventes &larr; total_ventes + nb_ventes</code></li>
-                            <li><code>salaire_net &larr; salaire_net + 35.000</code></li>
-                            <li>Si <code>nb_ventes &gt; 10</code> Alors
-                              <code>salaire_net &larr; salaire_net + 15.000</code>
+                            <li><code>salaire_net &larr; salaire_net + BASE_JOUR</code></li>
+                            <li>Si <code>nb_ventes > 10</code> Alors
+                              <code>salaire_net &larr; salaire_net + PRIME_JOUR</code>
                             </li>
                           </ul>
                         </li>
-                        <li>Si <code>total_ventes &gt; 150</code> Alors
-                          <code>salaire_net &larr; salaire_net + 100.000</code>
+                        <li>Si <code>total_ventes > 150</code> Alors
+                          <code>salaire_net &larr; salaire_net + PRIME_GLOBALE</code>
                         </li>
                       </ol>
                     </li>
@@ -544,12 +646,12 @@ print("Somme des nombres pairs =", somme)</code></pre>
                       <tr>
                         <td><code>PRIME_JOUR</code></td>
                         <td>Constante = 15.000</td>
-                        <td>Prime journalière si ventes &gt; 10 (DT)</td>
+                        <td>Prime journalière si ventes > 10 (DT)</td>
                       </tr>
                       <tr>
                         <td><code>PRIME_GLOBALE</code></td>
                         <td>Constante = 100.000</td>
-                        <td>Prime de performance mensuelle si total &gt; 150 (DT)</td>
+                        <td>Prime de performance mensuelle si total > 150 (DT)</td>
                       </tr>
                     </tbody>
                   </table>
@@ -580,15 +682,15 @@ DEBUT
         Lire(nb_ventes)
         
         total_ventes ← total_ventes + nb_ventes
-        salaire_net ← salaire_net + 35.000
+        salaire_net ← salaire_net + BASE_JOUR
         
         Si (nb_ventes > 10) Alors
-            salaire_net ← salaire_net + 15.000
+            salaire_net ← salaire_net + PRIME_JOUR
         FinSi
     Fin Pour
     
     Si (total_ventes > 150) Alors
-        salaire_net ← salaire_net + 100.000
+        salaire_net ← salaire_net + PRIME_GLOBALE
     FinSi
     
     Écrire("Total des ventes du mois : ", total_ventes)
@@ -628,15 +730,15 @@ salaire_net = 0.0
 for i in range(1, n + 1):
     nb_ventes = int(input("Nombre de ventes pour le jour " + str(i) + " : "))
     
-    total_ventes += nb_ventes
-    salaire_net += BASE_JOUR
+    total_ventes = total_ventes + nb_ventes
+    salaire_net = salaire_net + BASE_JOUR
     
     if nb_ventes > 10:
-        salaire_net += PRIME_JOUR
+        salaire_net = salaire_net + PRIME_JOUR
 
 # Test de la prime globale
 if total_ventes > 150:
-    salaire_net += PRIME_GLOBALE
+    salaire_net = salaire_net + PRIME_GLOBALE
     print("Félicitations ! Prime globale de 100.000 DT accordée.")
 
 # Affichage des résultats
@@ -651,7 +753,7 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
           </div>
 
           <!-- Simulateur Interactif Vue.js -->
-          <div class="card card-custom mt-4">
+          <div id="app" class="card card-custom mt-4">
             <div class="card-header-custom d-flex justify-content-between align-items-center">
               <h4 class="h6 mb-0 text-success"><i class="bi bi-play-circle-fill me-2"></i> Simulateur en direct :
                 Salaire & Primes Vendeur</h4>
@@ -660,9 +762,8 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
             <div class="card-body">
               <div class="row g-3 align-items-center mb-3">
                 <div class="col-md-4">
-                  <label class="form-label small fw-bold">Nombre de jours ouvrables ($N$) :</label>
-                  <input type="number" class="form-control form-control-sm" v-model.number="simJours"
-                    @change="updateJoursSim" min="1" max="15">
+                  <label class="form-label small fw-bold">Nombre de jours ouvrables (N) :</label>
+                  <input type="number" class="form-control form-control-sm" v-model.number="simJours" min="1" max="15">
                 </div>
                 <div class="col-md-8">
                   <p class="small text-muted mb-0">Saisissez les ventes journalières ci-dessous pour calculer les primes
@@ -672,12 +773,12 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
 
               <!-- Jours Inputs -->
               <div class="row g-2 mb-3">
-                <div v-for="(v, idx) in simVentesJour" :key="idx" class="col-6 col-sm-4 col-md-2.4">
+                <div v-for="(item, idx) in simVentesJour" :key="item.id" class="col-6 col-sm-4 col-md-2">
                   <div class="p-2 border border-secondary border-opacity-25 rounded bg-subtle text-center">
                     <small class="d-block text-muted">Jour {{ idx + 1 }}</small>
                     <input type="number" class="form-control form-control-sm text-center font-mono mt-1"
-                      v-model.number="simVentesJour[idx]" min="0">
-                    <span v-if="simVentesJour[idx] > 10" class="badge bg-success mt-1" style="font-size: 0.65rem;">+15
+                      v-model.number="item.ventes" min="0">
+                    <span v-if="item.ventes > 10" class="badge bg-success mt-1" style="font-size: 0.65rem;">+15
                       DT</span>
                   </div>
                 </div>
@@ -719,71 +820,82 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" data-title="Quiz Diagnostique (4 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Structures Simples (5 Questions)">
+
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="L'opérateur modulo % calcule le reste de la division entière. Si x % 2 == 0, le nombre est pair.">
+                  <div class="question-text">1. Quelle condition teste si un nombre entier 'x' est pair ?</div>
+                  <ul class="quiz-options">
+                    <li>x % 2 == 0</li>
+                    <li>x / 2 == 0</li>
+                    <li>x // 2 == 0</li>
+                    <li>x % 2 == 1</li>
+                  </ul>
+                </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="range(début, fin) exclut TOUJOURS la borne supérieure fin. Donc range(1, 5) génère 1, 2, 3 et 4.">
-                  <div class="question-text">Quels sont les nombres générés par l'instruction range(1, 5) en Python ?
-                  </div>
+                  data-explanation="range(1, 5) génère les entiers de 1 inclus à 5 exclus, soit : 1, 2, 3, 4.">
+                  <div class="question-text">2. Quelles sont les valeurs prises par 'i' dans la boucle : for i in
+                    range(1, 5) ?</div>
                   <ul class="quiz-options">
-                    <li>[1, 2, 3, 4, 5]</li>
-                    <li>[1, 2, 3, 4]</li>
-                    <li>[0, 1, 2, 3, 4]</li>
-                    <li>[1, 5]</li>
+                    <li>1, 2, 3, 4, 5</li>
+                    <li>1, 2, 3, 4</li>
+                    <li>0, 1, 2, 3, 4</li>
+                    <li>1, 5</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="En Python, la contraction officielle de 'else if' est 'elif'.">
-                  <div class="question-text">Quelle instruction correspond à la forme 'Sinon Si' en langage Python ?
+                  data-explanation="En algorithmique officielle, la structure conditionnelle complète s'écrit : Si...Alors...Sinon...FinSi.">
+                  <div class="question-text">3. Quelle est la syntaxe algorithmique d'une alternative conditionnelle ?
                   </div>
                   <ul class="quiz-options">
-                    <li>else if</li>
-                    <li>elseif</li>
-                    <li>elif</li>
-                    <li>else</li>
+                    <li>If...Then...Else</li>
+                    <li>Si...Faire...Sinon</li>
+                    <li>Si...Alors...Sinon...FinSi</li>
+                    <li>Selon...Cas...FinSelon</li>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="L'élément neutre de l'addition est 0, donc un accumulateur de somme doit être initialisé à 0 avant la boucle.">
-                  <div class="question-text">Quelle valeur initiale doit-on donner à un accumulateur de somme avant
-                    d'entrer dans une boucle ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Pour i de 1 à N Faire s'exécute pour i allant de 1 jusqu'à N inclus avec un pas de 1.">
+                  <div class="question-text">4. Dans 'Pour i de 1 à N Faire', combien de fois le corps de la boucle
+                    est-il exécuté ?</div>
                   <ul class="quiz-options">
-                    <li>1</li>
-                    <li>0</li>
-                    <li>-1</li>
-                    <li>None</li>
+                    <li>N fois</li>
+                    <li>N - 1 fois</li>
+                    <li>N + 1 fois</li>
+                    <li>Indéfiniment</li>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="L'opérateur modulo % calcule le reste de la division entière. Si i % 2 == 0, le nombre est pair.">
-                  <div class="question-text">Quelle est la condition correcte en Python pour vérifier si un nombre 'i'
-                    est pair ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="En Python, une boucle for sur une chaîne de caractères parcourt directement chaque caractère un par un.">
+                  <div class="question-text">5. Que fait l'instruction Python : for c in 'PYTHON' : ?</div>
                   <ul class="quiz-options">
-                    <li>i / 2 == 0</li>
-                    <li>i % 2 == 0</li>
-                    <li>i Mod 2 = 0</li>
-                    <li>i % 2 == 1</li>
+                    <li>Parcourt chaque caractère de la chaîne un par un</li>
+                    <li>Répète 6 fois sans variable</li>
+                    <li>Génère une erreur de type</li>
+                    <li>Convertit la chaîne en entier</li>
                   </ul>
                 </div>
 
               </div>
             </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

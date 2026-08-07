@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°17 : Acquisition de données via les Capteurs | 3ème Secondary</title>
+  <meta name="description"
+    content="Séance N°17 : Interfaçage de capteurs analogiques (LDR Photorésistance, ADC 12 bits) et numériques (DHT11 Température & Humidité) avec la carte microcontrôleur ESP32 en MicroPython et C++.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- Static CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* Custom Telemetry Dashboard & Sensor Styles */
+    .telemetry-card {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      border: 2px solid #334155;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      padding: 24px;
+    }
+
+    .sensor-gauge {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    .sensor-gauge:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+
+    .gauge-value {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: monospace;
+      line-height: 1;
+    }
+
+    .repl-terminal {
+      background-color: #050811;
+      color: #38bdf8;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+      border-radius: 8px;
+      padding: 15px;
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid #1e293b;
+    }
+
+    .repl-line {
+      line-height: 1.4;
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section / Breadcrumb -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25">
+      <div class="container px-lg-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <span class="badge bg-cyan bg-opacity-25 text-info border border-info border-opacity-50 mb-1"
+              style="color: #38bdf8;">
+              Module 5 • Séance N°17
+            </span>
+            <h1 class="h3 mb-0 fw-bold">Acquisition de données via les Capteurs (ADC &amp; DHT11)</h1>
+            <p class="text-muted small mb-0 mt-1">
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container px-lg-4 my-4">
+
+      <!-- Article 1: Fiche Pédagogique -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+
+        <section id="section-objectifs" class="section-pane">
+          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Distinguer les **Capteurs Numériques** (binaires/sériels) et **Capteurs Analogiques** (variation
+                      continue de tension).</li>
+                    <li>Comprendre la résolution de l'**ADC 12 bits** de l'ESP32 : $N_{\text{ADC}} \in [0, 4095]$
+                      correspondant à $0 \dots 3.3\,\text{V}$.</li>
+                    <li>Maîtriser la formule de conversion tension : $V_{\text{in}} = \frac{N_{\text{ADC}}}{4095} \times
+                      3.3\,\text{V}$.</li>
+                    <li>Identifier les broches d'entrée analogique (ex: **GPIO 34**) et de communication DHT11 (ex:
+                      **GPIO 15**).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Configurer et lire une entrée analogique ADC en MicroPython (`ADC(Pin(34))`, `read()`).</li>
+                    <li>Appliquer l'atténuation 11 dB pour lire l'échelle complète $3.3\,\text{V}$
+                      (`atten(ADC.ATTN_11DB)`).</li>
+                    <li>Acquérir la température et l'humidité avec le capteur **DHT11** (`dht.DHT11(Pin(15))`,
+                      `measure()`).</li>
+                    <li>Formater l'affichage des données dans la console REPL et programmer des seuils d'alerte.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chronogramme -->
+          <div class="card card-custom">
+            <div class="card-header-custom text-info fw-bold">
+              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Phase</th>
+                      <th>Durée</th>
+                      <th>Activité de l'Enseignant</th>
+                      <th>Activité de l'Élève</th>
+                      <th>Support / Outils</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge bg-primary">1. Classification Capteurs</span></td>
+                      <td>15 min</td>
+                      <td>Présentation de capteurs réels (LDR, DHT11, Bouton). Différence entre signal analogique
+                        continu et numérique binaire.</td>
+                      <td>Classification des capteurs en deux catégories (Analogique vs Numérique).</td>
+                      <td>Diaporama &amp; Échantillons</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-info text-dark">2. Convertisseur ADC 12 bits</span></td>
+                      <td>20 min</td>
+                      <td>Présentation de l'ADC 12 bits ($2^{12}=4096$ niveaux) et explications de la formule de
+                        conversion de tension $V_{\text{in}}$.</td>
+                      <td>Résolution des exercices de calcul de tension ($N_{\text{ADC}} \to V_{\text{in}}$).</td>
+                      <td>Tableau &amp; Fiche d'activités</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-success">3. TP Acquisition sur ESP32</span></td>
+                      <td>40 min</td>
+                      <td>Encadrement des montages LDR (GPIO 34) et DHT11 (GPIO 15) et codage sous Thonny.</td>
+                      <td>Réalisation des câblages, écriture des scripts MicroPython et affichage des données en direct.
+                      </td>
+                      <td>Thonny IDE / Wokwi / ESP32</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation &amp; Synthèse</span></td>
+                      <td>15 min</td>
+                      <td>Animation du quiz formatif et défi pratique (déclencher une alerte si Temp > 30°C).</td>
+                      <td>Réponse aux questions et écriture de la condition d'alerte `if temp > 30:`.</td>
+                      <td>Environnement de TP</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 2: Classification Capteurs & ADC -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-sliders text-info me-2"></i> Capteurs Analogiques vs Numériques &amp; ADC 12 bits</h2>
+
+        <section id="section-adc" class="section-pane">
+          <h3>1. Différence Fondamentale entre Capteurs</h3>
+
+          <div class="row g-4 my-2">
+            <div class="col-md-6">
+              <div class="p-3 border rounded bg-body-tertiary h-100">
+                <h5 class="text-info fw-bold"><i class="bi bi-wave-charter me-2"></i> Capteurs Analogiques (ex: LDR)
+                </h5>
+                <p class="small text-muted mb-2">
+                  Délivrent une **tension électrique continue** comprise entre $0.0\,\text{V}$ et $3.3\,\text{V}$
+                  proportionnelle à la grandeur physique mesurée.
+                </p>
+                <div class="alert alert-secondary py-2 small mb-0 font-mono">
+                  Luminosité ➔ Tension $V_{\text{in}} \in [0.0\text{V}, 3.3\text{V}]$ ➔ Broche ADC ESP32
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="p-3 border rounded bg-body-tertiary h-100">
+                <h5 class="text-success fw-bold"><i class="bi bi-binary me-2"></i> Capteurs Numériques (ex: DHT11)</h5>
+                <p class="small text-muted mb-2">
+                  Délivrent directement une **trame de bits numériques** (série de 0 et 1) codant les grandeurs
+                  physiques (Température, Humidité).
+                </p>
+                <div class="alert alert-secondary py-2 small mb-0 font-mono">
+                  Temp &amp; Humidité ➔ Trame de bits ➔ Broche GPIO numérique
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="mt-4">2. Le Convertisseur Analogique-Numérique (ADC 12 bits) de l'ESP32</h3>
+          <p>
+            L'ESP32 intègre un **CAN / ADC de 12 bits**. Il convertit la tension d'entrée analogique $V_{\text{in}}$
+            (entre $0\,\text{V}$ et $3.3\,\text{V}$) en une valeur entière brute $N_{\text{ADC}}$ variant de **0 à
+            4095** ($2^{12} = 4096$ valeurs).
+          </p>
+
+          <div class="alert alert-info border-info d-flex align-items-center gap-3 my-3">
+            <i class="bi bi-calculator-fill fs-2"></i>
+            <div>
+              <strong>Formule de Conversion de Tension :</strong>
+              $$V_{\text{in}} = \frac{N_{\text{ADC}}}{4095} \times 3.3\,\text{V}$$
+            </div>
+          </div>
+
+          <!-- Table of ADC values -->
+          <div class="table-responsive">
+            <table class="table table-custom table-bordered align-middle small text-center">
+              <thead class="table-dark">
+                <tr>
+                  <th>Valeur Brute $N_{\text{ADC}}$</th>
+                  <th>Calcul Tension $V_{\text{in}}$</th>
+                  <th>Tension Mesurée</th>
+                  <th>Niveau de Luminosité LDR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-mono fw-bold">0</td>
+                  <td class="font-mono">(0 / 4095) × 3.3 V</td>
+                  <td class="text-info font-mono fw-bold">0.00 V</td>
+                  <td>Obscurité totale</td>
+                </tr>
+                <tr>
+                  <td class="font-mono fw-bold">1024</td>
+                  <td class="font-mono">(1024 / 4095) × 3.3 V</td>
+                  <td class="text-info font-mono fw-bold">0.83 V</td>
+                  <td>Faible luminosité</td>
+                </tr>
+                <tr>
+                  <td class="font-mono fw-bold">2048</td>
+                  <td class="font-mono">(2048 / 4095) × 3.3 V</td>
+                  <td class="text-info font-mono fw-bold">1.65 V</td>
+                  <td>Lumière ambiante moyenne</td>
+                </tr>
+                <tr>
+                  <td class="font-mono fw-bold">3072</td>
+                  <td class="font-mono">(3072 / 4095) × 3.3 V</td>
+                  <td class="text-info font-mono fw-bold">2.48 V</td>
+                  <td>Lumière forte</td>
+                </tr>
+                <tr>
+                  <td class="font-mono fw-bold">4095</td>
+                  <td class="font-mono">(4095 / 4095) × 3.3 V</td>
+                  <td class="text-info font-mono fw-bold">3.30 V</td>
+                  <td>Plein soleil / Saturation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 3: Câblage & Scripts d'Acquisition -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-code-square text-success me-2"></i> Scripts d'Acquisition MicroPython &amp; C++</h2>
+
+        <section id="section-cablage" class="section-pane">
+          <h3>1. Acquisition Analogique LDR (MicroPython)</h3>
+          <p>La photorésistance LDR est branchée en pont diviseur de tension sur le <strong>GPIO 34</strong> :</p>
+
+          <pre class="bg-dark text-light p-3 rounded font-mono small"><code>from machine import ADC, Pin
+import time
+
+# Initialisation du CAN sur le GPIO 34 (ADC1_CH6)
+ldr = ADC(Pin(34))
+# Configuration de l'atténuation 11dB (lecture jusqu'à 3.3V)
+ldr.atten(ADC.ATTN_11DB)
+
+while True:
+    val_brute = ldr.read()  # Entier de 0 à 4095
+    tension = (val_brute / 4095.0) * 3.3
+    print("Valeur ADC :", val_brute, "| Tension :", round(tension, 2), "V")
+    time.sleep(1)</code></pre>
+
+          <h3 class="mt-4">2. Acquisition Numérique DHT11 (MicroPython)</h3>
+          <p>Le capteur DHT11 mesure la Température (°C) et l'Humidité (%) sur le <strong>GPIO 15</strong> :</p>
+
+          <pre class="bg-dark text-light p-3 rounded font-mono small"><code>import dht
+from machine import Pin
+import time
+
+# Initialisation du capteur sur le GPIO 15
+capteur = dht.DHT11(Pin(15))
+
+while True:
+    try:
+        capteur.measure()
+        t = capteur.temperature()
+        h = capteur.humidity()
+        print("Température :", t, "°C | Humidité :", h, "%")
+    except OSError:
+        print("Erreur de lecture du capteur")
+    time.sleep(2)</code></pre>
+        </section>
+      </article>
+
+      <!-- Article 4: Station de Télémétrie Virtuelle ESP32 -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-display-fill text-warning me-2"></i> Station de Télémétrie Virtuelle ESP32</h2>
+
+        <section id="section-demo" class="section-pane">
+          <h3>Simulateur d'Acquisition de Données en Temps Réel</h3>
+          <p class="text-muted small">
+            Déplacez les curseurs virtuels de température, d'humidité et de luminosité pour simuler les variations de
+            l'environnement réel et observer en direct les valeurs lues par le CAN (ADC) et transmises dans la console
+            REPL.
+          </p>
+
+          <div class="row g-4 my-2">
+            <!-- Simulated Physical Environment Controls -->
+            <div class="col-lg-6">
+              <div class="telemetry-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="fw-bold mb-0 text-info"><i class="bi bi-sliders2 me-2"></i> Environnement Simulé</h5>
+                  <button class="btn btn-sm" :class="isAutoSampling ? 'btn-success' : 'btn-outline-secondary'"
+                    @click="toggleSampling">
+                    <i class="bi" :class="isAutoSampling ? 'bi-arrow-repeat spin' : 'bi-pause-circle'"></i>
+                    {{ isAutoSampling ? ' Acquisition Active (2.5s)' : ' En Pause' }}
+                  </button>
+                </div>
+
+                <!-- Slider 1: Light / LDR -->
+                <div class="mb-4 p-3 border rounded bg-dark bg-opacity-50">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label class="form-label mb-0 fw-bold text-warning"><i class="bi bi-sun-fill me-1"></i> Luminosité
+                      LDR (GPIO 34 ADC)</label>
+                    <span class="badge bg-warning text-dark font-mono">{{ simLux }} %</span>
+                  </div>
+                  <input type="range" class="form-range" min="0" max="100" v-model.number="simLux">
+                  <div class="d-flex justify-content-between small text-muted font-mono mt-1">
+                    <span>ADC: {{ adcRaw }} / 4095</span>
+                    <span>Tension: {{ voltage }} V</span>
+                  </div>
+                </div>
+
+                <!-- Slider 2: Temperature / DHT11 -->
+                <div class="mb-4 p-3 border rounded bg-dark bg-opacity-50">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label class="form-label mb-0 fw-bold text-danger"><i class="bi bi-thermometer-half me-1"></i>
+                      Température DHT11 (GPIO 15)</label>
+                    <span class="badge bg-danger font-mono">{{ simTemperature }} °C</span>
+                  </div>
+                  <input type="range" class="form-range" min="0" max="50" v-model.number="simTemperature">
+                  <div class="mt-1 small">
+                    <span class="badge" :class="'bg-' + tempStatus.color">{{ tempStatus.text }}</span>
+                  </div>
+                </div>
+
+                <!-- Slider 3: Humidity / DHT11 -->
+                <div class="mb-3 p-3 border rounded bg-dark bg-opacity-50">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label class="form-label mb-0 fw-bold text-primary"><i class="bi bi-droplet-fill me-1"></i> Humidité
+                      DHT11 (GPIO 15)</label>
+                    <span class="badge bg-primary font-mono">{{ simHumidity }} %</span>
+                  </div>
+                  <input type="range" class="form-range" min="20" max="95" v-model.number="simHumidity">
+                </div>
+
+                <!-- Manual Read Button -->
+                <button class="btn btn-outline-info w-100 btn-sm" @click="readSensorsNow">
+                  <i class="bi bi-lightning-fill me-1"></i> Déclencher une Mesure Instantanée
+                </button>
+              </div>
+            </div>
+
+            <!-- Virtual Sensor Gauges & REPL Console -->
+            <div class="col-lg-6">
+              <div class="row g-3 mb-3">
+                <div class="col-4">
+                  <div class="sensor-gauge">
+                    <small class="text-muted d-block mb-1">ADC (0-4095)</small>
+                    <div class="gauge-value text-warning">{{ adcRaw }}</div>
+                    <small class="text-muted font-mono d-block mt-1">{{ voltage }} V</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="sensor-gauge">
+                    <small class="text-muted d-block mb-1">Température</small>
+                    <div class="gauge-value text-danger">{{ simTemperature }}<small class="fs-6">°C</small></div>
+                    <small class="text-muted font-mono d-block mt-1">DHT11</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="sensor-gauge">
+                    <small class="text-muted d-block mb-1">Humidité</small>
+                    <div class="gauge-value text-primary">{{ simHumidity }}<small class="fs-6">%</small></div>
+                    <small class="text-muted font-mono d-block mt-1">DHT11</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- REPL Output Terminal -->
+              <div class="card card-custom">
+                <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+                  <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Console REPL
+                    MicroPython</span>
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-link btn-sm text-muted p-0 text-decoration-none" @click="clearLogs">
+                      <i class="bi bi-trash"></i> Effacer
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body p-2">
+                  <div id="replTerminal" class="repl-terminal">
+                    <div v-for="(log, idx) in replLogs" :key="idx" class="repl-line">
+                      {{ log }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 5: Évaluation Formative -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+
+        <section id="section-quiz" class="section-pane">
+          <h3>Testez vos Connaissances de l'Acquisition Capteurs</h3>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- EvalQuiz Vanilla JS Component -->
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Capteurs IoT (5 Questions)">
+
+                <div class="quiz-question" data-correct="0" data-explanation="Le convertisseur ADC 12 bits de l'ESP32 convertit une tension (0..3.3V) en valeur numérique de 0 à 4095.">
+                  <div class="question-text">1. Quelle est la résolution numérique du convertisseur Analogique-Numérique (ADC) 12 bits de l'ESP32 ?</div>
+                  <ul class="quiz-options">
+                    <li>Valeurs entières de 0 à 4095 (2^12 = 4096 niveaux)</li>
+                    <li>Valeurs de 0 à 1023 (10 bits)</li>
+                    <li>Valeurs de 0 à 255 (8 bits)</li>
+                    <li>Valeurs de 0.0 à 100.0</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="1" data-explanation="Le capteur LDR (Photo-résistance) voit sa résistance varier en fonction de l'intensité lumineuse.">
+                  <div class="question-text">2. Quel composant utilise-t-on pour mesurer l'intensité lumineuse d'un environnement ?</div>
+                  <ul class="quiz-options">
+                    <li>Un capteur DHT11</li>
+                    <li>Une photo-résistance LDR</li>
+                    <li>Un servomoteur SG90</li>
+                    <li>Un buzzer piézoélectrique</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="2" data-explanation="Le capteur numérique DHT11 fournit la température (en °C) et l'humidité relative (en %).">
+                  <div class="question-text">3. Quelles grandeurs physiques fournit le capteur numérique DHT11 ?</div>
+                  <ul class="quiz-options">
+                    <li>La lumière et le son</li>
+                    <li>La tension et le courant</li>
+                    <li>La température et l'humidité relative</li>
+                    <li>La pression et l'altitude</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="ADC(Pin(34)) initialise la lecture analogique sur le GPIO 34.">
+                  <div class="question-text">4. Comment configure-t-on la lecture analogique de la LDR sur le GPIO 34 en MicroPython ?</div>
+                  <ul class="quiz-options">
+                    <li>adc = ADC(Pin(34))</li>
+                    <li>adc = ReadAnalog(34)</li>
+                    <li>adc = Pin(34, Pin.ADC)</li>
+                    <li>adc = Sensor(34)</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Une grandeur physique continue (lumière, température) est dite analogique avant sa numérisation.">
+                  <div class="question-text">5. Comment qualifie-t-on un signal électrique qui varie de manière continue dans le temps (ex: tension LDR) ?</div>
+                  <ul class="quiz-options">
+                    <li>Signal analogique</li>
+                    <li>Signal numérique binaire</li>
+                    <li>Signal logique Tout-ou-Rien</li>
+                    <li>Signal PWM</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+
+  <!-- Application Script for Séance 17 -->
+  <script src="assets/app/seance17.js"></script>
+</body>
+
+</html>

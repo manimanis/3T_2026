@@ -50,7 +50,7 @@ La structure à choix multiples permet de choisir un traitement parmi plusieurs 
 
 ---
 
-### **II. Syntaxe Algorithmique Officielle (Conventions 2024-2025)**
+### **II. Syntaxe Algorithmique Officielle **
 
 ```text
 Selon Sélecteur

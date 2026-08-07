@@ -62,13 +62,6 @@
     <!-- Sub-Header / Breadcrumb -->
     <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container px-lg-4">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-1 small">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
-            <li class="breadcrumb-item">Module 2 : Structures de Contrôle &amp; Données Avancées</li>
-            <li class="breadcrumb-item active" aria-current="page">Séance 5</li>
-          </ol>
-        </nav>
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
           <div>
             <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-50 mb-1">
@@ -76,13 +69,8 @@
             </span>
             <h1 class="h3 mb-0 fw-bold">Tableaux à 1 Dimension (1D) – Déclaration, Saisie &amp; Parcours</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
             </p>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
-              <i class="bi bi-cpu me-1 text-primary"></i> Python (<code>from numpy import array</code>)
-            </span>
           </div>
         </div>
       </div>
@@ -106,10 +94,13 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Comprendre la notion de <strong>tableau à 1 dimension</strong> comme structure de données contiguë, <strong>homogène</strong> (même type) et <strong>statique</strong>.</li>
+                    <li>Comprendre la notion de <strong>tableau à 1 dimension</strong> comme structure de données
+                      contiguë, <strong>homogène</strong> (même type) et <strong>statique</strong>.</li>
                     <li>Maîtriser la déclaration algorithmique : <code>T : Tableau de N Type_élément</code>.</li>
-                    <li>Maîtriser la déclaration officielle en Python avec le module <code>numpy</code> (<code>from numpy import array</code>).</li>
-                    <li>Assimiler la règle absolue d'indexation : le 1er élément est à l'indice <strong>0</strong> et le dernier à l'indice <strong>$N-1$</strong>.</li>
+                    <li>Maîtriser la déclaration officielle en Python avec le module <code>numpy</code>
+                      (<code>from numpy import array</code>).</li>
+                    <li>Assimiler la règle absolue d'indexation : le 1er élément est à l'indice <strong>0</strong> et le
+                      dernier à l'indice <strong>$N-1$</strong>.</li>
                   </ul>
                 </div>
               </div>
@@ -123,9 +114,12 @@
                 <div class="card-body">
                   <ul class="list-custom mb-0">
                     <li>Réaliser le contrôle de saisie de la taille $N$ ($N_{min} \le N \le N_{max}$).</li>
-                    <li>Remplir (saisir) les $N$ éléments d'un tableau à l'aide d'une boucle <code>Pour</code> / <code>for</code>.</li>
+                    <li>Remplir (saisir) les $N$ éléments d'un tableau à l'aide d'une boucle <code>Pour</code> /
+                      <code>for</code>.
+                    </li>
                     <li>Prévenir les erreurs d'indices hors limites (<code>IndexError</code>).</li>
-                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> L'affichage d'un tableau doit **obligatoirement se faire élément par élément** et jamais via `print(T)`.</li>
+                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> L'affichage d'un tableau doit
+                      **obligatoirement se faire élément par élément** et jamais via `print(T)`.</li>
                   </ul>
                 </div>
               </div>
@@ -153,28 +147,33 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Situation Problème</span></td>
                       <td>10 min</td>
-                      <td>Demander comment stocker les températures de 30 jours sans déclarer 30 variables distinctes (<code>t1</code>, <code>t2</code>...).</td>
+                      <td>Demander comment stocker les températures de 30 jours sans déclarer 30 variables distinctes
+                        (<code>t1</code>, <code>t2</code>...).</td>
                       <td>Constate la nécessité d'une structure de données groupée et indexée.</td>
                       <td>Tableau</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
                       <td>25 min</td>
-                      <td>Présentation du Tableau 1D, des indices (0 à $N-1$) et de la déclaration Python avec <code>numpy.array</code>.</td>
+                      <td>Présentation du Tableau 1D, des indices (0 à $N-1$) et de la déclaration Python avec
+                        <code>numpy.array</code>.
+                      </td>
                       <td>Prise de notes et assimilation des règles de la bibliothèque <code>numpy</code>.</td>
                       <td>Projecteur / Fiche</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-success">3. Activité Guidée</span></td>
                       <td>40 min</td>
-                      <td>Présentation du problème pratique (Gestionnaire de températures Station Météo). Encadrement de l'analyse et du TDO.</td>
+                      <td>Présentation du problème pratique (Gestionnaire de températures Station Météo). Encadrement de
+                        l'analyse et du TDO.</td>
                       <td>Élaboration de l'analyse, TDO, algorithme et codage sous Thonny IDE.</td>
                       <td>Thonny Python IDE</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
                       <td>15 min</td>
-                      <td>Vérification de la conformité de l'affichage (élément par élément) et du contrôle de la taille $N$.</td>
+                      <td>Vérification de la conformité de l'affichage (élément par élément) et du contrôle de la taille
+                        $N$.</td>
                       <td>Correction des erreurs d'indices (<code>IndexError</code>) et quiz d'évaluation.</td>
                       <td>Environnement Python</td>
                     </tr>
@@ -193,7 +192,8 @@
         <section id="section-cours-tableaux" class="section-pane">
           <h3>2. Concept &amp; Déclaration des Tableaux à 1 Dimension</h3>
           <p class="text-muted">
-            Un tableau à 1 dimension est une suite de cases mémoire contiguës, identifiées par un même nom d'objet et accessibles individuellement grâce à un **indice** scalaire.
+            Un tableau à 1 dimension est une suite de cases mémoire contiguës, identifiées par un même nom d'objet et
+            accessibles individuellement grâce à un **indice** scalaire.
           </p>
 
           <!-- Diagramme Vectoriel Tableau 1D -->
@@ -295,17 +295,22 @@ for i in range(n):
           <!-- Directives Ministérielles Card -->
           <div class="alert alert-warning border border-warning border-opacity-50 shadow-sm mb-4">
             <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i> Exigences Ministérielles Importantes (Baccalauréat 2024-2025)
+              <i class="bi bi-exclamation-triangle-fill me-2"></i> Exigences Ministérielles Importantes (Baccalauréat
+              2024-2025)
             </h5>
             <ol class="mb-0 small">
               <li class="mb-1">
-                <strong>Importation obligatoire de <code>numpy</code> :</strong> En Tunisie, les tableaux doivent obligatoirement être déclarés à l'aide de <code>from numpy import array</code>.
+                <strong>Importation obligatoire de <code>numpy</code> :</strong> En Tunisie, les tableaux doivent
+                obligatoirement être déclarés à l'aide de <code>from numpy import array</code>.
               </li>
               <li class="mb-1">
-                <strong>Indices de $0$ à $N-1$ :</strong> Le premier élément est toujours localisé à l'indice <code>0</code> et le dernier à l'indice <code>N - 1</code>.
+                <strong>Indices de $0$ à $N-1$ :</strong> Le premier élément est toujours localisé à l'indice
+                <code>0</code> et le dernier à l'indice <code>N - 1</code>.
               </li>
               <li>
-                🚫 <strong>Interdiction d'affichage global :</strong> L'instruction <code>print(T)</code> est <strong>strictement interdite</strong>. L'affichage doit toujours s'effectuer élément par élément dans une boucle.
+                🚫 <strong>Interdiction d'affichage global :</strong> L'instruction <code>print(T)</code> est
+                <strong>strictement interdite</strong>. L'affichage doit toujours s'effectuer élément par élément dans
+                une boucle.
               </li>
             </ol>
           </div>
@@ -314,12 +319,14 @@ for i in range(n):
 
       <!-- Article 3: Activité 1 - Détection & Correction d'Erreurs -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Détection &amp; Correction d'Erreurs Fréquentes</h2>
+        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Détection &amp; Correction d'Erreurs
+          Fréquentes</h2>
 
         <section id="section-activite1" class="section-pane">
           <h3>Correction d'un Code Non Conforme</h3>
           <p class="text-muted">
-            Identifions les 3 erreurs classiques d'un élève (listes standard, indices de 1 à N et `print(T)`) et réécrivons le script conforme aux normes officielles.
+            Identifions les 3 erreurs classiques d'un élève (listes standard, indices de 1 à N et `print(T)`) et
+            réécrivons le script conforme aux normes officielles.
           </p>
 
           <div class="row g-4 mb-4">
@@ -382,7 +389,8 @@ for i in range(n):
 
       <!-- Article 4: Activité 2 - Problème Pratique complet: Station Météo -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-cloud-sun-fill text-warning me-2"></i> Activité 2 : Gestionnaire Météo Quotidien (Station Météo)</h2>
+        <h2><i class="bi bi-cloud-sun-fill text-warning me-2"></i> Activité 2 : Gestionnaire Météo Quotidien (Station
+          Météo)</h2>
 
         <section id="section-activite2" class="section-pane">
           <h3>Problème Pratique Guidé</h3>
@@ -392,7 +400,8 @@ for i in range(n):
               <i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé du problème :
             </h5>
             <p class="mb-2">
-              Une station météorologique enregistre les températures quotidiennes relevées au cours d'une période de $N$ jours ($3 \le N \le 31$).
+              Une station météorologique enregistre les températures quotidiennes relevées au cours d'une période de $N$
+              jours ($3 \le N \le 31$).
             </p>
             <ol class="mb-0 small">
               <li>Saisir le nombre de jours d'observation $N$ avec un contrôle de saisie strict ($3 \le N \le 31$).</li>
@@ -441,7 +450,8 @@ for i in range(n):
           <!-- Simulateur Interactif Tableau 1D Station Météo -->
           <div class="card card-custom mb-4 border border-primary border-opacity-50 shadow-sm">
             <div class="card-header-custom text-primary fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Allocation &amp; Manipulation Mémoire (numpy.array)</span>
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Allocation &amp; Manipulation Mémoire
+                (numpy.array)</span>
               <span class="badge bg-primary">Vue 3 App</span>
             </div>
             <div class="card-body bg-body-tertiary">
@@ -478,7 +488,8 @@ for i in range(n):
 
               <!-- Interactive Memory Grid Display -->
               <div v-if="estAllocated" class="mb-4">
-                <h6 class="small fw-bold text-muted mb-2"><i class="bi bi-layers-fill me-1"></i> Représentation des cases mémoire `Temp[0 ... {{ tempArray.length - 1 }}]` :</h6>
+                <h6 class="small fw-bold text-muted mb-2"><i class="bi bi-layers-fill me-1"></i> Représentation des
+                  cases mémoire `Temp[0 ... {{ tempArray.length - 1 }}]` :</h6>
                 <div class="d-flex flex-wrap gap-2 p-3 bg-dark rounded border border-secondary border-opacity-25">
                   <div v-for="(val, idx) in tempArray" :key="idx"
                     class="p-2 rounded text-center font-mono position-relative transition-all"
@@ -497,7 +508,8 @@ for i in range(n):
               <!-- Element-by-Element Input Console -->
               <div v-if="estAllocated &amp;&amp; tempArray.length > 0" class="row g-3 align-items-center">
                 <div class="col-md-6">
-                  <label class="form-label fw-bold small">Saisir l'élément `Temp[{{ indiceEnCours }}]` (Jour {{ indiceEnCours + 1 }}) :</label>
+                  <label class="form-label fw-bold small">Saisir l'élément `Temp[{{ indiceEnCours }}]` (Jour {{
+                    indiceEnCours + 1 }}) :</label>
                   <div class="input-group">
                     <input type="number" step="0.1" v-model.number="valInput" @keyup.enter="enregistrerTemperature"
                       class="form-control" placeholder="Température en °C...">
@@ -533,7 +545,7 @@ for i in range(n):
           <div class="row g-4">
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Algorithme Officiel (Conventions 2024-2025)</span></div>
+                <div class="code-header"><span>Algorithme</span></div>
                 <pre><code class="language-algorithm">ALGORITHME Station_Meteo
 DEBUT
     Répéter
@@ -592,42 +604,60 @@ for i in range(n):
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°5">
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Tableaux 1D (5 Questions)">
 
-                <!-- Quiz Question 1 -->
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Selon les directives officielles tunisiennes 2024-2025, l'importation 'from numpy import array' est obligatoire pour déclarer les tableaux.">
-                  <div class="question-text">Quelle bibliothèque Python doit être importée pour déclarer un Tableau 1D en Tunisie ?</div>
+                <div class="quiz-question" data-correct="0" data-explanation="En Python/NumPy, le premier élément d'un tableau à 1D est toujours à l'indice 0.">
+                  <div class="question-text">1. Quel est l'indice du tout premier élément d'un tableau à une dimension de N éléments ?</div>
                   <ul class="quiz-options">
+                    <li>0</li>
+                    <li>1</li>
+                    <li>-1</li>
+                    <li>N</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="1" data-explanation="Selon les conventions pédagogiques 2024, on importe la structure tableau via : from numpy import array.">
+                  <div class="question-text">2. Quelle instruction Python permet d'importer la structure de tableau homogène ?</div>
+                  <ul class="quiz-options">
+                    <li>import array</li>
                     <li>from numpy import array</li>
-                    <li>import math</li>
-                    <li>from random import array</li>
+                    <li>include <array></li>
+                    <li>import list as array</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 2 -->
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="Dans un tableau de N éléments indexé à partir de 0, les indices valides vont strictement de 0 à N-1. L'accès à T[N] génère une erreur IndexError.">
-                  <div class="question-text">Quels sont les indices valides d'un tableau `T` contenant `N` éléments ?</div>
+                <div class="quiz-question" data-correct="2" data-explanation="T = array([0]*N, dtype=int) crée un tableau NumPy de N entiers initialisés à 0.">
+                  <div class="question-text">3. Comment crée-t-on un tableau NumPy 'T' de 'N' entiers initialisés à zéro ?</div>
                   <ul class="quiz-options">
-                    <li>De 1 à N</li>
-                    <li>De 0 à N - 1</li>
-                    <li>De 0 à N</li>
+                    <li>T = [0] * N</li>
+                    <li>T = array(N)</li>
+                    <li>T = array([0] * N, dtype=int)</li>
+                    <li>T = new Array(N)</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 3 -->
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="L'instruction direct print(T) est strictement interdite. L'affichage d'un tableau doit impérativement être effectué élément par élément au moyen d'une boucle (ex: for i in range(n): print(T[i])).">
-                  <div class="question-text">Quelle est la règle officielle concernant l'affichage d'un tableau `T` en Python ?</div>
+                <div class="quiz-question" data-correct="0" data-explanation="Les indices d'un tableau de taille N vont de 0 à N-1. Pour N=5, le dernier indice est 4.">
+                  <div class="question-text">4. Pour un tableau de taille N = 5, quel est l'indice du dernier élément ?</div>
                   <ul class="quiz-options">
-                    <li>On utilise directement print(T) pour gagner du temps.</li>
-                    <li>On transforme le tableau en chaîne avec str(T).</li>
-                    <li>L'affichage doit obligatoirement se faire élément par élément via une boucle.</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>1</li>
+                    <li>N</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Un tableau NumPy exige des éléments de même type (homogène) stockés de manière contiguë.">
+                  <div class="question-text">5. Quelle est la caractéristique principale d'un tableau numpy.array par rapport à une liste Python ?</div>
+                  <ul class="quiz-options">
+                    <li>Il est homogène (tous les éléments sont du même type)</li>
+                    <li>Il peut contenir des types mixtes</li>
+                    <li>Il n'a pas d'indices numériques</li>
+                    <li>Il est de taille dynamique illimitée</li>
                   </ul>
                 </div>
 
               </div>
+            </div>
             </div>
           </div>
         </section>

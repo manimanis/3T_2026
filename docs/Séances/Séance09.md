@@ -50,7 +50,7 @@
 
 ## 📝 3. Résumé du Cours (Support Élève)
 
-### **I. Les Modules Prédéfinis Importants (Conventions 2024-2025)**
+### **I. Les Modules Prédéfinis Importants **
 
 | Domaine | En Algorithmique | En Python | Rôle / Exemple |
 | --- | --- | --- | --- |
@@ -142,7 +142,7 @@ On veut réaliser un **Générateur et Analyseur de Performances de Classe** :
 
 ---
 
-#### **2. Algorithmes des Modules (Conventions 2024-2025)**
+#### **2. Algorithmes des Modules **
 
 ```text
 // 1. Fonction Saisir Taille

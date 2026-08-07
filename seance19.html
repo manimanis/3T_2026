@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°19 : Projet Intégré IoT embarqué (Serre Connectée) | 3ème Secondary</title>
+  <meta name="description"
+    content="Séance N°19 : Réalisation du projet intégré IoT embarqué Smart Agro. Connexion Wi-Fi, serveur Web HTTP embarqué MicroPython, acquisition DHT11/LDR et pilotage à distance de la ventilation et de l'irrigation.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- Static CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* Custom Smart Agro & Virtual Smartphone Styles */
+    .smartagro-card {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      border: 2px solid #334155;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      padding: 24px;
+    }
+
+    .phone-simulator {
+      background: #020617;
+      border: 12px solid #1e293b;
+      border-radius: 36px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      max-width: 320px;
+      margin: 0 auto;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .phone-screen {
+      background: #0f172a;
+      min-height: 480px;
+      color: #f8fafc;
+      padding: 16px;
+    }
+
+    .phone-header {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      margin-bottom: 12px;
+    }
+
+    .repl-terminal {
+      background-color: #050811;
+      color: #38bdf8;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+      border-radius: 8px;
+      padding: 15px;
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid #1e293b;
+    }
+
+    .repl-line {
+      line-height: 1.4;
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section / Breadcrumb -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25">
+      <div class="container px-lg-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <span class="badge bg-cyan bg-opacity-25 text-info border border-info border-opacity-50 mb-1"
+              style="color: #38bdf8;">
+              Module 5 • Séance N°19 (Projet Intégré)
+            </span>
+            <h1 class="h3 mb-0 fw-bold">Projet Intégré IoT embarqué (Serre Intelligente Wi-Fi)</h1>
+            <p class="text-muted small mb-0 mt-1">
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container px-lg-4 my-4">
+
+      <!-- Article 1: Fiche Pédagogique -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+
+        <section id="section-objectifs" class="section-pane">
+          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Synthétiser l'ensemble des notions IoT (Capteurs + ESP32 + Réseau + Actionneurs) dans un projet
+                      réel.</li>
+                    <li>Comprendre le fonctionnement d'un **Serveur Web HTTP Embarqué** hébergé sur la mémoire de
+                      l'ESP32.</li>
+                    <li>Gérer la connectivité sans fil **Wi-Fi** avec le module MicroPython **`network`** (`STA_IF`).
+                    </li>
+                    <li>Comprendre la communication par **Sockets TCP/IP** (`usocket`) sur le port Web 80.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Établir et vérifier une connexion Wi-Fi sécurisée en MicroPython.</li>
+                    <li>Connecter simultanément des capteurs (**DHT11**, **LDR**) et actionneurs (**Servo SG90**,
+                      **Relais/Pompe**).</li>
+                    <li>Générer la page Web HTML dynamique du Dashboard de contrôle à distance.</li>
+                    <li>Programmer une régulation hybride (Mode Automatique + Mode Supervision Smartphone).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chronogramme -->
+          <div class="card card-custom">
+            <div class="card-header-custom text-info fw-bold">
+              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Phase</th>
+                      <th>Durée</th>
+                      <th>Activité de l'Enseignant</th>
+                      <th>Activité de l'Élève</th>
+                      <th>Support / Outils</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge bg-primary">1. Cahier des Charges</span></td>
+                      <td>10 min</td>
+                      <td>Présentation du projet *Smart Agro (Serre Intelligente)*. Explication des besoins d'arrosage
+                        et d'aération.</td>
+                      <td>Prise de connaissance des spécifications et affectation des broches GPIO.</td>
+                      <td>Cahier des charges &amp; Diaporama</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-info text-dark">2. Connexion Wi-Fi &amp; HTTP</span></td>
+                      <td>20 min</td>
+                      <td>Présentation du code d'association Wi-Fi (`network.WLAN`) et d'écoute Sockets HTTP sur le port
+                        80.</td>
+                      <td>Saisie des identifiants Wi-Fi, téléversement du script et récupération de l'adresse IP de
+                        l'ESP32.</td>
+                      <td>Thonny IDE / ESP32</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-success">3. TP Intégration sur Machine</span></td>
+                      <td>45 min</td>
+                      <td>Encadrement de l'assemblage complet des capteurs, actionneurs et de la boucle du serveur Web
+                        HTTP.</td>
+                      <td>Câblage sur breadboard, saisie du script complet, test d'accès depuis le navigateur d'un
+                        smartphone.</td>
+                      <td>ESP32, Breadboard, Smartphone</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-warning text-dark">4. Recette &amp; Validation</span></td>
+                      <td>15 min</td>
+                      <td>Validation des projets élèves : démonstration du pilotage à distance et du mode régulation
+                        auto.</td>
+                      <td>Démonstration du contrôle smartphone à distance et correction des bogues de connexion.</td>
+                      <td>Navigateur Smartphone</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 2: Architecture IoT & Connexion Wi-Fi -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-wifi text-info me-2"></i> Architecture du Projet &amp; Connexion Wi-Fi</h2>
+
+        <section id="section-wifi" class="section-pane">
+          <h3>1. Schéma d'Interconnexion du Projet Smart Agro</h3>
+
+          <div class="row g-3 text-center my-3">
+            <div class="col-md-3">
+              <div class="p-3 border rounded bg-body-tertiary">
+                <i class="bi bi-cloud-sun fs-2 text-warning"></i>
+                <h6 class="mt-2 fw-bold mb-0">1. Capteurs</h6>
+                <small class="text-muted">DHT11 (GPIO15)<br>LDR (GPIO34 ADC)</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-3 border rounded bg-body-tertiary border-info">
+                <i class="bi bi-cpu-fill fs-2 text-info"></i>
+                <h6 class="mt-2 fw-bold mb-0 text-info">2. ESP32 Wi-Fi</h6>
+                <small class="text-muted">Régulation Local<br>&amp; Serveur HTTP (80)</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-3 border rounded bg-body-tertiary">
+                <i class="bi bi-phone-vibrate fs-2 text-primary"></i>
+                <h6 class="mt-2 fw-bold mb-0">3. Wi-Fi Client</h6>
+                <small class="text-muted">Smartphone / PC<br>http://192.168.1.105</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-3 border rounded bg-body-tertiary">
+                <i class="bi bi-gear-wide-connected fs-2 text-success"></i>
+                <h6 class="mt-2 fw-bold mb-0">4. Actionneurs</h6>
+                <small class="text-muted">Servo SG90 (GPIO13)<br>Relais Pompe (GPIO4)</small>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="mt-4">2. Connexion au Réseau Wi-Fi en MicroPython</h3>
+          <p>Le module <strong>`network`</strong> permet d'activer l'interface Wi-Fi de l'ESP32 en mode Station
+            (`STA_IF`) :</p>
+
+          <pre class="bg-dark text-light p-3 rounded font-mono small"><code>import network
+import time
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect("Nom_Du_Reseau_WiFi", "MotDePasse")
+
+while not wlan.isconnected():
+    time.sleep(0.5)
+
+print("✅ Connecté au Wi-Fi !")
+print("📍 Adresse IP locale :", wlan.ifconfig()[0])</code></pre>
+        </section>
+      </article>
+
+      <!-- Article 3: Serveur Web HTTP Embarqué -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-globe text-success me-2"></i> Serveur Web HTTP Embarqué &amp; Sockets</h2>
+
+        <section id="section-http" class="section-pane">
+          <h3>1. Principe du Serveur Sockets HTTP</h3>
+          <p>L'ESP32 écoute sur le port 80 les requêtes de type `GET /arrosage/on` envoyées par le navigateur du
+            smartphone :</p>
+
+          <pre class="bg-dark text-light p-3 rounded font-mono small"><code>import usocket as socket
+
+# Création de la socket TCP/IP
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(('', 80)) # Port web 80
+s.listen(5)
+
+while True:
+    conn, addr = s.accept()
+    request = conn.recv(1024).decode('utf-8')
+    
+    if "/arrosage/on" in request:
+        pompe.value(1) # Démarrer l'arrosage
+    elif "/arrosage/off" in request:
+        pompe.value(0) # Arrêter l'arrosage
+        
+    conn.send('HTTP/1.1 200 OK\nContent-Type: text/html\n\n' + html_page)
+    conn.close()</code></pre>
+        </section>
+      </article>
+
+      <!-- Article 4: Laboratoire Virtuel Smart Agro IoT -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-display-fill text-warning me-2"></i> Laboratoire Virtuel Smart Agro IoT</h2>
+
+        <section id="section-demo" class="section-pane">
+          <h3>Simulateur de Serre Connectée &amp; Smartphone Virtuel</h3>
+          <p class="text-muted small">
+            Modifiez l'environnement physique (température, humidité, luminosité) et interagissez directement depuis le
+            smartphone virtuel récepteur de la page web servie par l'ESP32 en Wi-Fi.
+          </p>
+
+          <div class="row g-4 my-2">
+            <!-- Simulated Physical Greenhouse & Network Status -->
+            <div class="col-lg-6">
+              <div class="smartagro-card">
+                <!-- Wi-Fi Status Bar -->
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3 p-2 rounded bg-dark border border-secondary">
+                  <div>
+                    <span class="badge" :class="isWifiConnected ? 'bg-success' : 'bg-danger'">
+                      <i class="bi" :class="isWifiConnected ? 'bi-wifi' : 'bi-wifi-off'"></i>
+                      {{ isWifiConnected ? 'Wi-Fi Connecté' : 'Wi-Fi Déconnecté' }}
+                    </span>
+                    <span class="ms-2 font-mono small text-info">{{ assignedIp }}</span>
+                  </div>
+                  <button class="btn btn-outline-secondary btn-sm" @click="toggleWifiConnection">
+                    {{ isWifiConnected ? 'Déconnecter' : 'Connecter' }}
+                  </button>
+                </div>
+
+                <!-- Greenhouse Environment Sliders -->
+                <h6 class="fw-bold text-info mb-3"><i class="bi bi-sliders me-1"></i> Simuler l'Environnement Physique
+                </h6>
+
+                <!-- Temp Slider -->
+                <div class="mb-3 p-2 border rounded bg-dark bg-opacity-50">
+                  <div class="d-flex justify-content-between small mb-1">
+                    <span class="text-danger fw-bold"><i class="bi bi-thermometer-half"></i> Température Air :</span>
+                    <span class="font-mono text-danger fw-bold">{{ simTemperature }} °C</span>
+                  </div>
+                  <input type="range" class="form-range" min="15" max="40" v-model.number="simTemperature">
+                </div>
+
+                <!-- Hum Slider -->
+                <div class="mb-3 p-2 border rounded bg-dark bg-opacity-50">
+                  <div class="d-flex justify-content-between small mb-1">
+                    <span class="text-primary fw-bold"><i class="bi bi-droplet-fill"></i> Humidité Sol / Air :</span>
+                    <span class="font-mono text-primary fw-bold">{{ simHumidity }} %</span>
+                  </div>
+                  <input type="range" class="form-range" min="10" max="90" v-model.number="simHumidity">
+                </div>
+
+                <!-- Actuators Physical Indicators -->
+                <div class="row g-2 mt-2">
+                  <div class="col-6">
+                    <div class="p-2 border rounded text-center"
+                      :class="isPumpActive ? 'bg-primary bg-opacity-25 border-primary' : 'bg-dark'">
+                      <i class="bi bi-droplet-half fs-3" :class="isPumpActive ? 'text-primary spin' : 'text-muted'"></i>
+                      <div class="small fw-bold mt-1">Pompe Arrosage</div>
+                      <span class="badge" :class="isPumpActive ? 'bg-primary' : 'bg-secondary'">
+                        {{ isPumpActive ? 'IRRIGATION EN COURS' : 'INACTIF' }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-2 border rounded text-center"
+                      :class="isVentOpen ? 'bg-warning bg-opacity-25 border-warning' : 'bg-dark'">
+                      <i class="bi bi-fan fs-3" :class="isVentOpen ? 'text-warning spin' : 'text-muted'"></i>
+                      <div class="small fw-bold mt-1">Clapet Aération</div>
+                      <span class="badge" :class="isVentOpen ? 'bg-warning text-dark' : 'bg-secondary'">
+                        {{ isVentOpen ? 'OUVERT (90°)' : 'FERMÉ (0°)' }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Virtual Smartphone Dashboard Simulator -->
+            <div class="col-lg-6">
+              <div class="phone-simulator">
+                <div class="phone-screen">
+                  <div class="phone-header d-flex justify-content-between align-items-center">
+                    <span class="font-mono">http://{{ assignedIp }}</span>
+                    <span><i class="bi bi-wifi text-success"></i> 100%</span>
+                  </div>
+
+                  <div class="text-center py-2 border-bottom border-secondary mb-3">
+                    <h6 class="fw-bold mb-0 text-success"><i class="bi bi-flower1 me-1"></i> Smart Agro Dashboard</h6>
+                    <small class="text-muted">Serveur HTTP Embarqué ESP32</small>
+                  </div>
+
+                  <!-- Telemetry Widget -->
+                  <div class="p-2 border rounded bg-dark bg-opacity-50 mb-3 text-start small">
+                    <div class="fw-bold text-info mb-1"><i class="bi bi-activity"></i> Télémesures en direct :</div>
+                    <div class="d-flex justify-content-between my-1">
+                      <span>Température :</span>
+                      <strong class="text-danger">{{ simTemperature }} °C</strong>
+                    </div>
+                    <div class="d-flex justify-content-between my-1">
+                      <span>Humidité :</span>
+                      <strong class="text-primary">{{ simHumidity }} %</strong>
+                    </div>
+                    <div class="d-flex justify-content-between my-1">
+                      <span>Luminosité :</span>
+                      <strong class="text-warning">{{ simLux }} %</strong>
+                    </div>
+                  </div>
+
+                  <!-- Remote Control Buttons Widget -->
+                  <div class="p-2 border rounded bg-dark bg-opacity-50 mb-3 text-start small">
+                    <div class="fw-bold text-info mb-2"><i class="bi bi-phone"></i> Commande à Distance :</div>
+
+                    <div class="mb-2">
+                      <small class="d-block text-muted mb-1">Système d'Irrigation :</small>
+                      <div class="btn-group w-100">
+                        <button class="btn btn-sm" :class="isPumpActive ? 'btn-primary' : 'btn-outline-primary'"
+                          @click="togglePumpRemote(true)">
+                          Démarrer
+                        </button>
+                        <button class="btn btn-sm" :class="!isPumpActive ? 'btn-danger' : 'btn-outline-danger'"
+                          @click="togglePumpRemote(false)">
+                          Arrêter
+                        </button>
+                      </div>
+                    </div>
+
+                    <div>
+                      <small class="d-block text-muted mb-1">Ventilation Clapet :</small>
+                      <div class="btn-group w-100">
+                        <button class="btn btn-sm" :class="isVentOpen ? 'btn-warning text-dark' : 'btn-outline-warning'"
+                          @click="toggleVentRemote(true)">
+                          Ouvrir 90°
+                        </button>
+                        <button class="btn btn-sm" :class="!isVentOpen ? 'btn-secondary' : 'btn-outline-secondary'"
+                          @click="toggleVentRemote(false)">
+                          Fermer 0°
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- REPL Sockets Output Terminal -->
+              <div class="card card-custom mt-3">
+                <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+                  <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Sockets HTTP Server
+                    Logs</span>
+                  <button class="btn btn-link btn-sm text-muted p-0 text-decoration-none" @click="clearLogs">
+                    <i class="bi bi-trash"></i> Effacer
+                  </button>
+                </div>
+                <div class="card-body p-2">
+                  <div id="replTerminal" class="repl-terminal">
+                    <div v-for="(log, idx) in replLogs" :key="idx" class="repl-line">
+                      {{ log }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 5: Évaluation Formative -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+
+        <section id="section-quiz" class="section-pane">
+          <h3>Testez vos Connaissances du Projet IoT Embarqué</h3>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- EvalQuiz Vanilla JS Component -->
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Projet IoT Smart Agro (5 Questions)">
+
+                <div class="quiz-question" data-correct="0" data-explanation="Le mode Station (STA_IF) connecte l'ESP32 à un réseau Wi-Fi local existant (routeur).">
+                  <div class="question-text">1. Quel mode Wi-Fi permet à l'ESP32 de se connecter à un réseau Wi-Fi domestique existant ?</div>
+                  <ul class="quiz-options">
+                    <li>Mode Station (network.STA_IF)</li>
+                    <li>Mode Access Point (network.AP_IF)</li>
+                    <li>Mode Bluetooth Mesh</li>
+                    <li>Mode Ethernet Filaire</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="1" data-explanation="Un serveur Web embarqué écoute traditionnellement sur le port HTTP standard 80.">
+                  <div class="question-text">2. Sur quel port réseau standard écoute le serveur Web HTTP embarqué de l'ESP32 ?</div>
+                  <ul class="quiz-options">
+                    <li>Port 21</li>
+                    <li>Port 80</li>
+                    <li>Port 443</li>
+                    <li>Port 8080</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="2" data-explanation="La boucle de régulation fermée lit le capteur, évalue les seuils et déclenche automatiquement l'actionneur.">
+                  <div class="question-text">3. Comment fonctionne le contrôle automatique en boucle fermée dans la serre connectée Smart Agro ?</div>
+                  <ul class="quiz-options">
+                    <li>L'utilisateur doit appuyer sur un bouton physique chaque minute</li>
+                    <li>Le serveur envoie un e-mail au technicien</li>
+                    <li>L'ESP32 lit le capteur, compare au seuil programmé et active/désactive automatiquement l'actionneur</li>
+                    <li>La serre fonctionne sans capteurs</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="socket.socket(socket.AF_INET, socket.SOCK_STREAM) crée une socket TCP/IP pour le serveur Web.">
+                  <div class="question-text">4. Quelle bibliothèque MicroPython permet de créer une Socket réseau pour échanger des requêtes HTTP ?</div>
+                  <ul class="quiz-options">
+                    <li>socket</li>
+                    <li>network_http</li>
+                    <li>web_express</li>
+                    <li>requests_server</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Le serveur Web renvoie des en-têtes HTTP suivis du document HTML représentant le tableau de bord.">
+                  <div class="question-text">5. Que renvoie le serveur Web ESP32 au smartphone de l'utilisateur lors d'une requête HTTP GET ?</div>
+                  <ul class="quiz-options">
+                    <li>Un code de réponse HTTP (200 OK) suivi de la page Web HTML du tableau de bord</li>
+                    <li>Le code source MicroPython brut</li>
+                    <li>Un fichier image binaire</li>
+                    <li>Une commande d'extinction</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+
+  <!-- Application Script for Séance 19 -->
+  <script src="assets/app/seance19.js"></script>
+</body>
+
+</html>

@@ -62,13 +62,6 @@
     <!-- Sub-Header / Breadcrumb -->
     <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container px-lg-4">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-1 small">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
-            <li class="breadcrumb-item">Module 2 : Structures de Contrôle Avancées</li>
-            <li class="breadcrumb-item active" aria-current="page">Séance 3</li>
-          </ol>
-        </nav>
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
           <div>
             <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-50 mb-1">
@@ -78,13 +71,8 @@
               <code>match...case</code>)
             </h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
             </p>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
-              <i class="bi bi-cpu me-1 text-primary"></i> Python 3.10+
-            </span>
           </div>
         </div>
       </div>
@@ -234,7 +222,7 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-code-square me-2"></i> Algorithme (Conventions 2024-2025)
+                  <i class="bi bi-code-square me-2"></i> Algorithme
                 </div>
                 <div class="card-body">
                   <div class="code-container">
@@ -582,45 +570,60 @@ match choix:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°3">
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Structure Selon (5 Questions)">
 
-                <!-- Quiz Question 1 -->
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="Le sélecteur dans la structure Selon doit impérativement être de type scalaire (Entier ou Caractère). Le type Réel (float) est interdit.">
-                  <div class="question-text">Quel type de donnée est AUTORISÉ comme sélecteur dans la structure `Selon`
-                    ?</div>
+                <div class="quiz-question" data-correct="0" data-explanation="La structure 'Selon' s'appuie sur une variable sélecteur de type scalaire (Entier, Caractère, etc.).">
+                  <div class="question-text">1. Quel est le rôle du sélecteur dans la structure algorithmique 'Selon (sélecteur) Faire' ?</div>
                   <ul class="quiz-options">
-                    <li>Type Réel (float)</li>
-                    <li>Type Entier (int) ou Caractère (char)</li>
-                    <li>Seuls les tableaux peuvent servir de sélecteur</li>
+                    <li>Évaluer une valeur scalaire pour choisir la branche correspondante</li>
+                    <li>Évaluer une condition logique complexe</li>
+                    <li>Répéter une instruction N fois</li>
+                    <li>Déclarer une variable locale</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 2 -->
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="En Python 3.10+, la clause par défaut 'Sinon' s'écrit 'case _:' qui capture toutes les valeurs non spécifiées au préalable.">
-                  <div class="question-text">En Python 3.10+, quelle clause correspond à l'option par défaut (`Sinon`)
-                    dans un `match...case` ?</div>
+                <div class="quiz-question" data-correct="1" data-explanation="En Python 3.10+, le tiret bas 'case _:' correspond à la clause par défaut (Sinon).">
+                  <div class="question-text">2. Dans une instruction Python 'match...case', que représente le motif 'case _:' ?</div>
                   <ul class="quiz-options">
-                    <li>case else:</li>
-                    <li>default:</li>
-                    <li>case _:</li>
+                    <li>Une variable nommée _</li>
+                    <li>La branche par défaut (équivalent du Sinon)</li>
+                    <li>Une erreur d'exécution</li>
+                    <li>Une valeur nulle</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 3 -->
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="L'opérateur '|' (OU logique) permet d'associer plusieurs valeurs au même bloc d'instructions dans une clause case en Python.">
-                  <div class="question-text">Quel symbole est utilisé en Python `match...case` pour regrouper plusieurs
-                    valeurs (ex: `case 2 | 3:`) ?</div>
+                <div class="quiz-question" data-correct="2" data-explanation="En Python 3.10+, la structure à choix multiples officielle est match...case.">
+                  <div class="question-text">3. Quelle est la syntaxe Python officielle pour implémenter la structure à choix multiples ?</div>
                   <ul class="quiz-options">
-                    <li>Le symbole barre verticale |</li>
-                    <li>Le mot-clé or</li>
-                    <li>La virgule ,</li>
+                    <li>switch...case</li>
+                    <li>select...case</li>
+                    <li>match...case</li>
+                    <li>choose...case</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Le symbole | (pipe) permet de combiner plusieurs valeurs possibles dans un même bloc case.">
+                  <div class="question-text">4. Dans 'match choix:', que signifie la branche 'case 1 | 2:' ?</div>
+                  <ul class="quiz-options">
+                    <li>Exécute le bloc si choix vaut 1 OU 2</li>
+                    <li>Exécute si choix vaut 1 ET 2</li>
+                    <li>Calcule le résultat de 1 divisé par 2</li>
+                    <li>Génère une exception SyntaxError</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Le sélecteur d'une structure Selon doit être de type scalaire (Ordre dénombrable : Entier, Caractère, Énuméré).">
+                  <div class="question-text">5. Parmi les types suivants, lequel N'EST PAS recommandé comme sélecteur direct d'une structure Selon ?</div>
+                  <ul class="quiz-options">
+                    <li>Réel (float)</li>
+                    <li>Entier (int)</li>
+                    <li>Caractère (str)</li>
+                    <li>Booléen (bool)</li>
                   </ul>
                 </div>
 
               </div>
+            </div>
             </div>
           </div>
         </section>

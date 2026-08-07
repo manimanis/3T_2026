@@ -95,7 +95,7 @@ FIN
 
 ---
 
-### **III. Spécificités de Python (Conventions 2024-2025)**
+### **III. Spécificités de Python **
 
 | Type de donnée en Python | Mode de passage par défaut | Comportement lors des modifications |
 | --- | --- | --- |
@@ -183,7 +183,7 @@ On souhaite concevoir une application de **Conversion de Temps & Permutation** q
 
 ---
 
-#### **2. Algorithmes des Modules (Conventions 2024-2025)**
+#### **2. Algorithmes des Modules **
 
 ```text
 // Procédure de conversion de temps

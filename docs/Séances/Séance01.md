@@ -33,7 +33,7 @@
 | Phase | Durée | Activité de l'Enseignant | Activité de l'Élève | Support / Outil |
 | --- | --- | --- | --- | --- |
 | **1. Diagnostic** | 15 min | Questionnement oral / QCM rapide pour sonder les prérequis de 2ème année. | Réponse aux questions, identification des lacunes sur les types et l'affectation. | Tableau / ProProjecteur |
-| **2. Synthèse Théorique** | 25 min | Présentation structurée du rappel de cours (Conventions 2024-2025). | Prise de notes sur le cahier / support de cours. | Fiche de résumé |
+| **2. Synthèse Théorique** | 25 min | Présentation structurée du rappel de cours . | Prise de notes sur le cahier / support de cours. | Fiche de résumé |
 | **3. Activité Guidée** | 35 min | Proposer l'activité pratique (Calcul de facture/moyenne). Guidage de l'analyse et du TDO. | Analyse du problème, rédaction de l'algorithme et saisie du code sur machine. | Ordinateur (Thonny IDE) |
 | **4. Évaluation Formative** | 15 min | Vérification individuelle des scripts Python, correction collective des erreurs fréquentes. | Exécution du programme, test avec différents jeux d'essais. | Environnement Python |
 
@@ -64,7 +64,7 @@ FIN
 
 ### **II. Correspondance Algorithme ➔ Python**
 
-| Opération / Concept | Syntaxe Algorithmique (Conventions 2024-2025) | Traduction en Python | Remarques |
+| Opération / Concept | Syntaxe Algorithmique  | Traduction en Python | Remarques |
 | --- | --- | --- | --- |
 | **Type Entier** | `Entier` | `int` | Ex: `12`, `-5` |
 | **Type Réel** | `Réel` | `float` | Ex: `14.5`, `3.14` |
@@ -147,8 +147,7 @@ On souhaite concevoir une application pour une bibliothèque scolaire qui calcul
 
 
 * **Traitement :**
-* $Pénalité\_de\_base = nb\_jours \times 0.500$
-* $montant\_total = Pénalité\_de\_base + 1.200$
+* $montant\_total = (nb\_jours \times TARIF\_JOUR) + TAXE\_FIXE$
 
 
 
@@ -179,7 +178,7 @@ DEBUT
     Écrire("Nombre de jours de retard : ")
     Lire(nb_jours)
     
-    montant_total ← (nb_jours * 0.500) + 1.200
+    montant_total ← (nb_jours * TARIF_JOUR) + TAXE_FIXE
     
     Écrire("Élève : ", nom)
     Écrire("Livre : ", titre)

@@ -60,7 +60,7 @@ La recherche séquentielle consiste à comparer l'élément recherché `val` ave
 
 ---
 
-### **II. Syntaxe Algorithmique Officielle (Conventions 2024-2025)**
+### **II. Syntaxe Algorithmique Officielle **
 
 ```text
 Fonction recherche_sequentielle (T : Tableau de N Entier, n : Entier, val : Entier) : Entier
@@ -178,7 +178,7 @@ On demande de concevoir un programme modulaire qui :
 
 ---
 
-#### **2. Algorithmes des Modules (Conventions 2024-2025)**
+#### **2. Algorithmes des Modules **
 
 ```text
 // 1. Fonction Recherche Séquentielle

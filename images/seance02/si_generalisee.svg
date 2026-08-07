@@ -1,35 +1,35 @@
-<svg viewBox="0 0 540 240" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 600 240" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
   <!-- Cond 1 Diamond -->
   <polygon points="100,25 170,70 100,115 30,70" fill="#0891b2" stroke="#0e7490" stroke-width="2.5"/>
-  <text x="100" y="75" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Condition 1 ?</text>
+  <text x="100" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Condition 1 ?</text>
 
   <!-- Vrai 1 Down -->
-  <text x="100" y="138" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#059669" text-anchor="middle">VRAI</text>
-  <line x1="100" y1="115" x2="100" y2="155" stroke="#059669" stroke-width="3"/>
+  <text x="100" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#059669" text-anchor="middle">VRAI</text>
+  <line x1="100" y1="115" x2="100" y2="155" stroke="#059669" stroke-width="2.5"/>
   
-  <rect x="35" y="155" width="130" height="48" rx="8" fill="#059669" stroke="#047857" stroke-width="2"/>
-  <text x="100" y="184" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Traitement 1</text>
+  <rect x="25" y="155" width="150" height="48" rx="8" fill="#059669" stroke="#047857" stroke-width="2"/>
+  <text x="100" y="184" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Traitement 1</text>
 
   <!-- Faux 1 -> Cond 2 -->
-  <text x="195" y="58" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#dc2626" text-anchor="middle">FAUX</text>
-  <line x1="170" y1="70" x2="240" y2="70" stroke="#0891b2" stroke-width="3"/>
+  <text x="195" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#dc2626" text-anchor="middle">FAUX</text>
+  <line x1="170" y1="70" x2="220" y2="70" stroke="#0891b2" stroke-width="2.5"/>
 
   <!-- Cond 2 Diamond -->
-  <polygon points="310,25 380,70 310,115 240,70" fill="#0891b2" stroke="#0e7490" stroke-width="2.5"/>
-  <text x="310" y="75" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Condition 2 ?</text>
+  <polygon points="290,25 360,70 290,115 220,70" fill="#0891b2" stroke="#0e7490" stroke-width="2.5"/>
+  <text x="290" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Condition 2 ?</text>
 
   <!-- Vrai 2 Down -->
-  <text x="310" y="138" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#059669" text-anchor="middle">VRAI</text>
-  <line x1="310" y1="115" x2="310" y2="155" stroke="#059669" stroke-width="3"/>
+  <text x="290" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#059669" text-anchor="middle">VRAI</text>
+  <line x1="290" y1="115" x2="290" y2="155" stroke="#059669" stroke-width="2.5"/>
   
-  <rect x="245" y="155" width="130" height="48" rx="8" fill="#059669" stroke="#047857" stroke-width="2"/>
-  <text x="310" y="184" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Traitement 2</text>
+  <rect x="215" y="155" width="150" height="48" rx="8" fill="#059669" stroke="#047857" stroke-width="2"/>
+  <text x="290" y="184" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Traitement 2</text>
 
   <!-- Faux 2 -> Traitement 3 -->
-  <text x="405" y="58" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#dc2626" text-anchor="middle">FAUX</text>
-  <line x1="380" y1="70" x2="450" y2="70" stroke="#dc2626" stroke-width="3"/>
-  <line x1="450" y1="70" x2="450" y2="155" stroke="#dc2626" stroke-width="3"/>
+  <text x="410" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#dc2626" text-anchor="middle">FAUX</text>
+  <line x1="360" y1="70" x2="480" y2="70" stroke="#dc2626" stroke-width="2.5"/>
+  <line x1="480" y1="70" x2="480" y2="155" stroke="#dc2626" stroke-width="2.5"/>
   
-  <rect x="385" y="155" width="130" height="48" rx="8" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
-  <text x="450" y="184" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Traitement 3</text>
+  <rect x="405" y="155" width="150" height="48" rx="8" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
+  <text x="480" y="184" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Traitement 3</text>
 </svg>

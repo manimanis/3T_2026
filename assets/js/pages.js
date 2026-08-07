@@ -421,7 +421,12 @@ class SectionDrawer {
       { file: 'seance12.html', label: 'Séance 12 : Arithmétique II – Nombres Premiers', icon: 'bi-journal-bookmark' },
       { file: 'seance13.html', label: 'Séance 13 : Recherche Séquentielle', icon: 'bi-journal-bookmark' },
       { file: 'seance14.html', label: 'Séance 14 : Tri d\'un Tableau – Tri à Bulles', icon: 'bi-journal-bookmark' },
-      { file: 'seance15.html', label: 'Séance 15 : Synthèse & Mini-Projet Python', icon: 'bi-journal-bookmark' }
+      { file: 'seance15.html', label: 'Séance 15 : Synthèse & Mini-Projet Python', icon: 'bi-journal-bookmark' },
+      { file: 'seance16.html', label: 'Séance 16 : IoT Concepts & Carte ESP32', icon: 'bi-journal-bookmark' },
+      { file: 'seance17.html', label: 'Séance 17 : Acquisition de Données Capteurs', icon: 'bi-journal-bookmark' },
+      { file: 'seance18.html', label: 'Séance 18 : Contrôle d\'Actionneurs', icon: 'bi-journal-bookmark' },
+      { file: 'seance19.html', label: 'Séance 19 : Projet Intégré IoT Smart Agro', icon: 'bi-journal-bookmark' },
+      { file: 'seance20.html', label: 'Séance 20 : Évaluation Pratique Bilan & Révision', icon: 'bi-journal-bookmark' }
     ];
 
     const currentIndex = seancesList.findIndex(s => s.file === currentFile);
@@ -469,39 +474,7 @@ class SectionDrawer {
 
     let html = '<div class="nav-drawer-list d-flex flex-column gap-3">';
 
-    // 1. Navigation globale entre les Séances (Précédente, Actuelle, Suivante)
-    html += `
-      <div class="drawer-article-group pb-2 mb-2 border-bottom border-secondary border-opacity-25">
-        <div class="drawer-article-header d-flex align-items-center justify-content-between px-2 py-1 mb-2 text-info fw-bold small text-uppercase tracking-wider">
-          <span class="d-flex align-items-center gap-2"><i class="bi bi-journals fs-6 text-info"></i> Navigation Séances</span>
-          <span class="badge bg-info bg-opacity-25 text-info" style="font-size: 0.65rem;">Séquentielle</span>
-        </div>
-        <div class="d-flex flex-column gap-1 ms-1">
-    `;
-
-    itemsToDisplay.forEach((item) => {
-      const isActive = (item.relType === 'current');
-      const activeClass = isActive ? 'active' : '';
-
-      html += `
-        <a href="${item.file}" class="drawer-seance-link ${activeClass} text-start d-flex justify-content-between align-items-center py-2 px-3 text-decoration-none rounded-3 border mb-1">
-          <span class="text-truncate d-flex align-items-center gap-2">
-            ${item.relType === 'prev' ? '<i class="bi bi-arrow-left text-muted me-1"></i>' : ''}
-            <i class="bi ${isActive ? 'bi-journal-bookmark-fill' : item.icon}"></i>
-            <span>${this.escapeHtml(item.label)}</span>
-            ${item.relType === 'next' ? '<i class="bi bi-arrow-right text-info ms-1"></i>' : ''}
-          </span>
-          <span class="badge ${item.badgeClass} rounded-pill px-2" style="font-size: 0.65rem;">${item.badgeText}</span>
-        </a>
-      `;
-    });
-
-    html += `
-        </div>
-      </div>
-    `;
-
-    // 2. Sections de la Séance Actuelle (Sommaire)
+    // 1. Sections de la Séance Actuelle (Sommaire en HAUT du tiroir)
     if (this.articles && this.articles.length > 0) {
       html += `
         <div class="drawer-article-header d-flex align-items-center gap-2 px-2 py-1 mb-2 text-primary fw-bold small text-uppercase tracking-wider">
@@ -543,6 +516,56 @@ class SectionDrawer {
         `;
       });
     }
+
+    // 2. Navigation globale entre les Séances (placée TOUT EN BAS du tiroir, sur une seule ligne)
+    const prevItem = itemsToDisplay.find(i => i.relType === 'prev');
+    const nextItem = itemsToDisplay.find(i => i.relType === 'next');
+
+    const getShortName = (item) => {
+      if (!item) return '';
+      if (item.file === 'index.html') return 'Accueil';
+      const match = item.file.match(/seance(\d+)\.html/i);
+      if (match) {
+        return `Séance ${parseInt(match[1], 10)}`;
+      }
+      return item.label;
+    };
+
+    const prevName = getShortName(prevItem);
+    const nextName = getShortName(nextItem);
+
+    html += `
+      <div class="drawer-article-group pt-3 mt-3 border-top border-secondary border-opacity-25">
+        <div class="drawer-article-header d-flex align-items-center justify-content-between px-1 py-1 mb-2 text-info fw-bold small text-uppercase tracking-wider">
+          <span class="d-flex align-items-center gap-2"><i class="bi bi-journals fs-6 text-info"></i> Navigation Séances</span>
+        </div>
+        <div class="d-flex align-items-center gap-2 justify-content-between mt-1">
+          ${prevItem ? `
+            <a href="${prevItem.file}" class="btn btn-sm btn-outline-secondary flex-fill d-flex align-items-center justify-content-center gap-1 py-2 text-truncate" title="${this.escapeHtml(prevItem.label)}">
+              <i class="bi bi-arrow-left"></i>
+              <span class="small fw-semibold">${prevName}</span>
+            </a>
+          ` : `
+            <button type="button" class="btn btn-sm btn-outline-secondary flex-fill d-flex align-items-center justify-content-center gap-1 py-2 disabled opacity-25" disabled>
+              <i class="bi bi-arrow-left"></i>
+              <span class="small fw-semibold">Début</span>
+            </button>
+          `}
+
+          ${nextItem ? `
+            <a href="${nextItem.file}" class="btn btn-sm btn-outline-info flex-fill d-flex align-items-center justify-content-center gap-1 py-2 text-truncate" title="${this.escapeHtml(nextItem.label)}">
+              <span class="small fw-semibold">${nextName}</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          ` : `
+            <button type="button" class="btn btn-sm btn-outline-secondary flex-fill d-flex align-items-center justify-content-center gap-1 py-2 disabled opacity-25" disabled>
+              <span class="small fw-semibold">Fin</span>
+              <i class="bi bi-arrow-right"></i>
+            </button>
+          `}
+        </div>
+      </div>
+    `;
 
     html += '</div>';
     bodyEl.innerHTML = html;
@@ -687,14 +710,17 @@ if (document.readyState === 'loading') {
  */
 function initKaTeXAutoRender() {
   if (typeof renderMathInElement === 'function') {
-    renderMathInElement(document.body, {
-      delimiters: [
-        { left: '$$', right: '$$', display: true },
-        { left: '$', right: '$', display: false },
-        { left: '\\(', right: '\\)', display: false },
-        { left: '\\[', right: '\\]', display: true }
-      ],
-      throwOnError: false
+    const containers = document.querySelectorAll('.math-expr, .formula-box, .katex-render');
+    containers.forEach(el => {
+      renderMathInElement(el, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\]', display: true }
+        ],
+        throwOnError: false
+      });
     });
   }
 }
@@ -704,3 +730,80 @@ if (document.readyState === 'loading') {
 } else {
   initKaTeXAutoRender();
 }
+
+/**
+ * Gestionnaire universel du Thème (Dark / Light) en Vanilla JS
+ */
+function initThemeToggle() {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  function updateBtnUI(theme) {
+    const btns = document.querySelectorAll('.theme-toggle-btn');
+    btns.forEach(btn => {
+      const icon = btn.querySelector('i');
+      const text = btn.querySelector('span');
+      if (icon) {
+        icon.className = theme === 'dark' ? 'bi bi-sun-fill text-warning' : 'bi bi-moon-stars-fill text-primary';
+      }
+      if (text) {
+        text.textContent = theme === 'dark' ? 'Mode Clair' : 'Mode Sombre';
+      }
+    });
+  }
+
+  updateBtnUI(savedTheme);
+
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.theme-toggle-btn');
+    if (btn) {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateBtnUI(newTheme);
+    }
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initThemeToggle);
+} else {
+  initThemeToggle();
+}
+
+/**
+ * Toggle universel pour l'affichage des blocs de correction
+ */
+window.toggleAct1Correction = function (btn) {
+  if (!btn) return;
+  const colContainer = btn.closest('.col-md-6') || btn.parentElement;
+  if (!colContainer) return;
+  const targetCol = colContainer.nextElementSibling || colContainer.parentElement.querySelector('.correction-block');
+  if (targetCol) {
+    const isHidden = targetCol.style.display === 'none' || targetCol.style.display === '';
+    targetCol.style.display = isHidden ? 'block' : 'none';
+    btn.textContent = isHidden ? 'Masquer la correction' : 'Afficher la correction';
+    if (isHidden && typeof window.safeHighlightAll === 'function') {
+      window.safeHighlightAll();
+    }
+  }
+};
+
+/**
+ * Helper global pour ré-exécuter le surlignage syntaxique sans l'avertissement dataset.highlighted de Highlight.js
+ */
+window.safeHighlightAll = function () {
+  if (typeof hljs !== 'undefined') {
+    document.querySelectorAll('code').forEach(el => {
+      el.removeAttribute('data-highlighted');
+    });
+    hljs.highlightAll();
+  }
+};
+
+document.addEventListener('shown.bs.collapse', function () {
+  if (typeof window.safeHighlightAll === 'function') {
+    window.safeHighlightAll();
+  }
+});

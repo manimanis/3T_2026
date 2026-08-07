@@ -62,27 +62,17 @@
     <!-- Sub-Header / Breadcrumb -->
     <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container px-lg-4">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-1 small">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Accueil</a></li>
-            <li class="breadcrumb-item">Module 2 : Structures de Contrôle Avancées</li>
-            <li class="breadcrumb-item active" aria-current="page">Séance 4</li>
-          </ol>
-        </nav>
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
           <div>
             <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-50 mb-1">
               Module 2 • Séance N°4
             </span>
-            <h1 class="h3 mb-0 fw-bold">Structures Répétitives Conditionnelles (<code>Tant Que</code> &amp; <code>Répéter</code>)</h1>
+            <h1 class="h3 mb-0 fw-bold">Structures Répétitives Conditionnelles (<code>Tant Que</code> &amp;
+              <code>Répéter</code>)
+            </h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
             </p>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
-              <i class="bi bi-cpu me-1 text-primary"></i> Python 3 (<code>while</code>)
-            </span>
           </div>
         </div>
       </div>
@@ -106,10 +96,15 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Distinguer une boucle bornée (<code>Pour</code>) d'une boucle conditionnelle non bornée (<code>Tant Que</code> / <code>Répéter</code>).</li>
-                    <li>Maîtriser la syntaxe algorithmique de <code>Tant que Condition_Poursuite Faire</code> (évaluation préalable).</li>
-                    <li>Maîtriser la syntaxe algorithmique de <code>Répéter ... Jusqu'à Condition_Arrêt</code> (évaluation postérieure).</li>
-                    <li>Comprendre la traduction systématique de <code>Répéter</code> en Python avec <code>while not(Condition_Arrêt)</code>.</li>
+                    <li>Distinguer une boucle bornée (<code>Pour</code>) d'une boucle conditionnelle non bornée
+                      (<code>Tant Que</code> / <code>Répéter</code>).</li>
+                    <li>Maîtriser la syntaxe algorithmique de <code>Tant que Condition_Poursuite Faire</code>
+                      (évaluation préalable).</li>
+                    <li>Maîtriser la syntaxe algorithmique de <code>Répéter ... Jusqu'à Condition_Arrêt</code>
+                      (évaluation postérieure).</li>
+                    <li>Comprendre la traduction systématique de <code>Répéter</code> en Python avec
+                      <code>while not(Condition_Arrêt)</code>.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -122,10 +117,16 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Concevoir un algorithme de <strong>contrôle de saisie</strong> pour forcer la validation d'une donnée selon un domaine.</li>
-                    <li>Utiliser une variable booléenne (drapeau / <em>flag</em>) pour gérer l'arrêt d'une boucle complexe.</li>
-                    <li>Garantir la présence de mécanismes explicites d'initialisation et de mise à jour pour éviter les <strong>boucles infinies</strong>.</li>
-                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> Ne pas utiliser l'instruction <code>break</code>.</li>
+                    <li>Concevoir un algorithme de <strong>contrôle de saisie</strong> pour forcer la validation d'une
+                      donnée selon un domaine.</li>
+                    <li>Utiliser une variable booléenne (drapeau / <em>flag</em>) pour gérer l'arrêt d'une boucle
+                      complexe.</li>
+                    <li>Garantir la présence de mécanismes explicites d'initialisation et de mise à jour pour éviter les
+                      <strong>boucles infinies</strong>.
+                    </li>
+                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> Ne pas utiliser l'instruction
+                      <code>break</code>.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -153,28 +154,33 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Situation Problème</span></td>
                       <td>15 min</td>
-                      <td>Demander de saisir l'âge d'un élève (entre 10 et 20). Illustrer l'inadaptation de la boucle <code>Pour</code>.</td>
+                      <td>Demander de saisir l'âge d'un élève (entre 10 et 20). Illustrer l'inadaptation de la boucle
+                        <code>Pour</code>.
+                      </td>
                       <td>Constate l'impossibilité de prévoir à l'avance le nombre d'erreurs de saisie.</td>
                       <td>Tableau / Projecteur</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
                       <td>20 min</td>
-                      <td>Présentation des structures <code>Tant Que</code> et <code>Répéter</code>. Explication du passage à <code>while</code> en Python.</td>
+                      <td>Présentation des structures <code>Tant Que</code> et <code>Répéter</code>. Explication du
+                        passage à <code>while</code> en Python.</td>
                       <td>Prise de notes, comparaison des conditions de poursuite vs d'arrêt.</td>
                       <td>Fiche de cours</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-success">3. Activité Guidée</span></td>
                       <td>40 min</td>
-                      <td>Présentation du problème pratique (Jeu de devinette du Nombre Secret avec essais limités).</td>
+                      <td>Présentation du problème pratique (Jeu de devinette du Nombre Secret avec essais limités).
+                      </td>
                       <td>Analyse, TDO, algorithme et implémentation sous Thonny IDE.</td>
                       <td>Thonny Python IDE</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
                       <td>15 min</td>
-                      <td>Vérification des codes, détection des boucles infinies (oubli de mise à jour) et élimination de <code>break</code>.</td>
+                      <td>Vérification des codes, détection des boucles infinies (oubli de mise à jour) et élimination
+                        de <code>break</code>.</td>
                       <td>Test sur machine, validation des cas limites et quiz d'évaluation.</td>
                       <td>Environnement Python</td>
                     </tr>
@@ -193,7 +199,8 @@
         <section id="section-cours-boucles" class="section-pane">
           <h3>2. Les Structures Répétitives Conditionnelles</h3>
           <p class="text-muted">
-            Lorsque le nombre de répétitions n'est pas connu à l'avance, on utilise des structures répétitives conditionnelles pilotées par une expression booléenne.
+            Lorsque le nombre de répétitions n'est pas connu à l'avance, on utilise des structures répétitives
+            conditionnelles pilotées par une expression booléenne.
           </p>
 
           <!-- Tableau récapitulatif des 3 boucles -->
@@ -243,8 +250,8 @@
               <i class="bi bi-diagram-3 me-2"></i> Diagramme d'exécution vectoriel : Tant Que vs Répéter
             </div>
             <div class="card-body bg-body-tertiary text-center p-3">
-              <img src="images/seance04/tant_que_repeter.svg" alt="Diagramme Tant Que et Répéter"
-                class="img-fluid" style="max-height: 280px; width: 100%;">
+              <img src="images/seance04/tant_que_repeter.svg" alt="Diagramme Tant Que et Répéter" class="img-fluid"
+                style="max-height: 280px; width: 100%;">
             </div>
           </div>
 
@@ -256,7 +263,8 @@
                   <i class="bi bi-code-square me-2"></i> Structure <code>Tant Que</code> (Algorithme &amp; Python)
                 </div>
                 <div class="card-body">
-                  <p class="small text-muted mb-2">Le traitement est exécuté <strong>TANT QUE</strong> la condition de poursuite reste VRAIE.</p>
+                  <p class="small text-muted mb-2">Le traitement est exécuté <strong>TANT QUE</strong> la condition de
+                    poursuite reste VRAIE.</p>
                   <div class="code-container mb-3">
                     <div class="code-header"><span>Algorithme</span></div>
                     <pre><code class="language-algorithm">Tant que Condition_Poursuite Faire
@@ -278,7 +286,8 @@ Fin Tant que</code></pre>
                   <i class="bi bi-repeat me-2"></i> Structure <code>Répéter...Jusqu'à</code> (Algorithme &amp; Python)
                 </div>
                 <div class="card-body">
-                  <p class="small text-muted mb-2">Le traitement est répété <strong>JUSQU'À CE QUE</strong> la condition d'arrêt devienne VRAIE.</p>
+                  <p class="small text-muted mb-2">Le traitement est répété <strong>JUSQU'À CE QUE</strong> la condition
+                    d'arrêt devienne VRAIE.</p>
                   <div class="code-container mb-3">
                     <div class="code-header"><span>Algorithme</span></div>
                     <pre><code class="language-algorithm">Répéter
@@ -300,17 +309,24 @@ while not (condition_arret):
           <!-- Recommandations Ministérielles Alert Card -->
           <div class="alert alert-danger border border-danger border-opacity-50 shadow-sm mb-4">
             <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i> Recommandations Ministérielles Importantes (Baccalauréat 2024-2025)
+              <i class="bi bi-exclamation-triangle-fill me-2"></i> Recommandations Ministérielles Importantes
+              (Baccalauréat 2024-2025)
             </h5>
             <ol class="mb-0 small">
               <li class="mb-1">
-                <strong>Initialisation préalable :</strong> Les variables intervenant dans la condition d'une boucle <code>while</code> doivent être impérativement initialisées <strong>AVANT</strong> l'entrée dans la boucle.
+                <strong>Initialisation préalable :</strong> Les variables intervenant dans la condition d'une boucle
+                <code>while</code> doivent être impérativement initialisées <strong>AVANT</strong> l'entrée dans la
+                boucle.
               </li>
               <li class="mb-1">
-                <strong>Mise à jour interne :</strong> La valeur contrôlant la condition doit obligatoirement être <strong>modifiée à l'intérieur</strong> de la boucle, sous peine de créer une <strong>boucle infinie</strong>.
+                <strong>Mise à jour interne :</strong> La valeur contrôlant la condition doit obligatoirement être
+                <strong>modifiée à l'intérieur</strong> de la boucle, sous peine de créer une <strong>boucle
+                  infinie</strong>.
               </li>
               <li>
-                🚫 <strong>Interdiction stricte de <code>break</code> :</strong> L'utilisation des instructions de sortie brutale (<code>break</code>, <code>exit()</code>) est <strong>strictement interdite</strong> lors des épreuves pratiques et du baccalauréat.
+                🚫 <strong>Interdiction stricte de <code>break</code> :</strong> L'utilisation des instructions de
+                sortie brutale (<code>break</code>, <code>exit()</code>) est <strong>strictement interdite</strong> lors
+                des épreuves pratiques et du baccalauréat.
               </li>
             </ol>
           </div>
@@ -319,19 +335,22 @@ while not (condition_arret):
 
       <!-- Article 3: Activité 1 - Correction de Boucle Infinie & Suppression de break -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Suppression de <code>break</code> &amp; Contrôle de Saisie</h2>
+        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Suppression de <code>break</code> &amp;
+          Contrôle de Saisie</h2>
 
         <section id="section-activite1" class="section-pane">
           <h3>Correction d'un Code Non Conforme</h3>
           <p class="text-muted">
-            Transformons un script utilisant <code>break</code> en un code algorithmiquement propre et conforme aux exigences officielles.
+            Transformons un script utilisant <code>break</code> en un code algorithmiquement propre et conforme aux
+            exigences officielles.
           </p>
 
           <div class="row g-4 mb-4">
             <div class="col-md-6">
               <div class="card card-custom h-100 border-danger border-opacity-50">
                 <div class="card-header-custom text-danger fw-bold">
-                  <i class="bi bi-x-circle-fill me-2"></i> Code Non Conforme (Utilisation interdite de <code>break</code>)
+                  <i class="bi bi-x-circle-fill me-2"></i> Code Non Conforme (Utilisation interdite de
+                  <code>break</code>)
                 </div>
                 <div class="card-body">
                   <div class="code-container">
@@ -345,7 +364,8 @@ while True:
 print("Nombre valide :", val)</code></pre>
                   </div>
                   <div class="small text-danger mt-2">
-                    <i class="bi bi-info-circle me-1"></i> Inconvénient : Masque la condition logique d'arrêt de la boucle et viole les principes de programmation structurée.
+                    <i class="bi bi-info-circle me-1"></i> Inconvénient : Masque la condition logique d'arrêt de la
+                    boucle et viole les principes de programmation structurée.
                   </div>
                 </div>
               </div>
@@ -369,7 +389,8 @@ while val % 2 != 0:
 print("Nombre valide :", val)</code></pre>
                   </div>
                   <div class="small text-success mt-2">
-                    <i class="bi bi-check-all me-1"></i> Avantage : Première saisie préalable, puis réitération TANT QUE la donnée est invalide (`val % 2 != 0`).
+                    <i class="bi bi-check-all me-1"></i> Avantage : Première saisie préalable, puis réitération TANT QUE
+                    la donnée est invalide (`val % 2 != 0`).
                   </div>
                 </div>
               </div>
@@ -379,7 +400,8 @@ print("Nombre valide :", val)</code></pre>
           <!-- Tester Interactif Saisie -->
           <div class="card card-custom mb-4">
             <div class="card-header-custom text-info fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-play-btn-fill me-2"></i> Démonstrateur Interactif : Simulation de la Boucle de Saisie</span>
+              <span><i class="bi bi-play-btn-fill me-2"></i> Démonstrateur Interactif : Simulation de la Boucle de
+                Saisie</span>
               <span class="badge bg-info">Vue 3 Interactive</span>
             </div>
             <div class="card-body bg-body-tertiary">
@@ -387,7 +409,8 @@ print("Nombre valide :", val)</code></pre>
                 <div class="col-md-6">
                   <label class="form-label fw-bold small">Entrer une valeur d'essai (Entier) :</label>
                   <div class="input-group">
-                    <input type="number" v-model.number="valPair" class="form-control" placeholder="Ex: 7 (impair) ou 14 (pair)">
+                    <input type="number" v-model.number="valPair" class="form-control"
+                      placeholder="Ex: 7 (impair) ou 14 (pair)">
                     <button type="button" class="btn btn-primary" @click="testerSaisiePair">
                       <i class="bi bi-lightning-fill me-1"></i> Tester la Condition
                     </button>
@@ -420,7 +443,8 @@ print("Nombre valide :", val)</code></pre>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="(tr, idx) in traceSaisie" :key="idx" :class="tr.valide ? 'table-success' : 'table-warning'">
+                      <tr v-for="(tr, idx) in traceSaisie" :key="idx"
+                        :class="tr.valide ? 'table-success' : 'table-warning'">
                         <td class="fw-bold">{{ tr.valeur }}</td>
                         <td>
                           <span class="badge" :class="tr.valide ? 'bg-danger' : 'bg-warning text-dark'">
@@ -440,7 +464,8 @@ print("Nombre valide :", val)</code></pre>
 
       <!-- Article 4: Activité 2 - Problème Pratique complet: Le Nombre Secret -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-controller text-warning me-2"></i> Activité 2 : Jeu du Nombre Secret &amp; Essais Limités</h2>
+        <h2><i class="bi bi-controller text-warning me-2"></i> Activité 2 : Jeu du Nombre Secret &amp; Essais Limités
+        </h2>
 
         <section id="section-activite2" class="section-pane">
           <h3>Problème Pratique Guidé</h3>
@@ -453,7 +478,9 @@ print("Nombre valide :", val)</code></pre>
               On souhaite concevoir un jeu interactif <strong>« Le Nombre Secret »</strong> sous Python :
             </p>
             <ol class="mb-0 small">
-              <li>Le programme génère un nombre secret aléatoire compris entre <strong>1 et 50</strong> inclus (via <code>randint(1, 50)</code> du module <code>random</code>).</li>
+              <li>Le programme génère un nombre secret aléatoire compris entre <strong>1 et 50</strong> inclus (via
+                <code>randint(1, 50)</code> du module <code>random</code>).
+              </li>
               <li>Le joueur dispose de <strong>6 essais maximum</strong> pour deviner le secret.</li>
               <li>À chaque proposition :
                 <ul>
@@ -463,7 +490,8 @@ print("Nombre valide :", val)</code></pre>
                   <li>Si elle est égale, le jeu s'arrête immédiatement avec un message de victoire.</li>
                 </ul>
               </li>
-              <li>Si les 6 essais sont épuisés sans succès, afficher un message de défaite et révéler le nombre secret.</li>
+              <li>Si les 6 essais sont épuisés sans succès, afficher un message de défaite et révéler le nombre secret.
+              </li>
             </ol>
           </div>
 
@@ -514,7 +542,8 @@ print("Nombre valide :", val)</code></pre>
             <div class="card-header-custom text-warning fw-bold d-flex justify-content-between align-items-center">
               <span><i class="bi bi-joystick me-2"></i> Simulateur Interactif : Le Nombre Secret</span>
               <div class="d-flex align-items-center gap-2">
-                <span v-if="meilScore" class="badge bg-success font-mono">🏆 Meilleur score : {{ meilScore }} essai(s)</span>
+                <span v-if="meilScore" class="badge bg-success font-mono">🏆 Meilleur score : {{ meilScore }}
+                  essai(s)</span>
                 <span class="badge bg-warning text-dark">Vue 3 App</span>
               </div>
             </div>
@@ -544,16 +573,15 @@ print("Nombre valide :", val)</code></pre>
               <!-- Input Area -->
               <div class="row g-2 mb-3">
                 <div class="col-md-8">
-                  <input type="number" v-model.number="essaiInput" @keyup.enter="soumettreEssai"
-                    :disabled="partieFinie" class="form-control form-control-lg"
-                    placeholder="Entrez votre proposition (1 à 50)...">
+                  <input type="number" v-model.number="essaiInput" @keyup.enter="soumettreEssai" :disabled="partieFinie"
+                    class="form-control form-control-lg" placeholder="Entrez votre proposition (1 à 50)...">
                   <div v-if="validationErreur" class="text-danger small mt-1">
                     {{ validationErreur }}
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <button type="button" class="btn btn-warning btn-lg w-100 text-dark fw-bold"
-                    @click="soumettreEssai" :disabled="partieFinie">
+                  <button type="button" class="btn btn-warning btn-lg w-100 text-dark fw-bold" @click="soumettreEssai"
+                    :disabled="partieFinie">
                     Valider <i class="bi bi-send-fill ms-1"></i>
                   </button>
                 </div>
@@ -587,7 +615,7 @@ print("Nombre valide :", val)</code></pre>
           <div class="row g-4">
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Algorithme Officiel (Conventions 2024-2025)</span></div>
+                <div class="code-header"><span>Algorithme</span></div>
                 <pre><code class="language-algorithm">ALGORITHME Jeu_Nombre_Secret
 DEBUT
     secret ← Aléa(1, 50)
@@ -670,42 +698,60 @@ else:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" data-title="Quiz d'Auto-évaluation - Séance N°4">
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Boucles Conditionnelles (5 Questions)">
 
-                <!-- Quiz Question 1 -->
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="La boucle Tant Que évalue la condition de poursuite AVANT d'exécuter le bloc d'instructions. Si la condition est fausse au départ, les instructions ne sont exécutées aucune fois (0 fois).">
-                  <div class="question-text">Combien de fois le corps d'une boucle `Tant Que` peut-il être exécuté au minimum ?</div>
+                <div class="quiz-question" data-correct="0" data-explanation="Dans 'Répéter...Jusqu'à', le test se fait à la FIN, garantissant au moins une exécution.">
+                  <div class="question-text">1. Quelle est la différence fondamentale entre 'Tant Que' et 'Répéter...Jusqu'à' ?</div>
                   <ul class="quiz-options">
-                    <li>Au moins 1 fois obligatoirement</li>
-                    <li>0 fois (si la condition est fausse au départ)</li>
-                    <li>Un nombre fixe défini par avance</li>
+                    <li>Répéter...Jusqu'à exécute le corps au moins une fois, Tant Que peut ne jamais l'exécuter</li>
+                    <li>Tant Que s'exécute toujours au moins 10 fois</li>
+                    <li>Répéter n'a pas besoin de condition</li>
+                    <li>Elles sont parfaitement identiques</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 2 -->
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="En algorithmique, la boucle Répéter...Jusqu'à utilise une condition d'ARRÊT. En Python, avec 'while', on utilise la condition de POURSUITE, qui est l'inverse logique not(Condition_Arrêt).">
-                  <div class="question-text">Comment traduit-on une boucle `Répéter...Jusqu'à (N >= 0)` en Python ?</div>
+                <div class="quiz-question" data-correct="1" data-explanation="En Python, 'while condition:' répète le bloc TANT QUE la condition est VRAIE.">
+                  <div class="question-text">2. Comment s'écrit la boucle itérative non bornée en langage Python ?</div>
                   <ul class="quiz-options">
-                    <li>while not (N >= 0): (soit while N < 0:)</li>
-                    <li>while (N >= 0):</li>
-                    <li>repeat until N >= 0:</li>
+                    <li>repeat...until</li>
+                    <li>while condition :</li>
+                    <li>loop...until</li>
+                    <li>do...while</li>
                   </ul>
                 </div>
 
-                <!-- Quiz Question 3 -->
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="L'usage de 'break' est strictement interdit selon les directives pédagogiques ministérielles. La sortie de boucle doit être gérée par la condition du 'while' ou par une variable booléenne (drapeau).">
-                  <div class="question-text">Quelle est la règle officielle concernant l'instruction `break` en Python ?</div>
+                <div class="quiz-question" data-correct="2" data-explanation="Le contrôle de saisie force l'utilisateur à entrer une valeur valide en répétant la demande.">
+                  <div class="question-text">3. À quoi sert principalement la boucle 'Répéter...Jusqu'à' lors d'une saisie utilisateur ?</div>
                   <ul class="quiz-options">
-                    <li>Elle est recommandée dans tous les contrôles de saisie.</li>
-                    <li>Elle est obligatoire pour sortir d'une boucle while.</li>
-                    <li>Elle est strictement interdite dans les épreuves et sujets officiels.</li>
+                    <li>Trier un tableau</li>
+                    <li>Calculer une moyenne</li>
+                    <li>Valider la saisie et rejeter les valeurs incorrectes</li>
+                    <li>Convertir les chaînes en réels</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Dans Répéter...Jusqu'à (Condition), la boucle s'arrête lorsque la condition devient VRAIE.">
+                  <div class="question-text">4. Quand s'arrête l'exécution de la boucle algorithmique 'Répéter ... Jusqu'à (Condition)' ?</div>
+                  <ul class="quiz-options">
+                    <li>Dès que la Condition devient VRAIE</li>
+                    <li>Tant que la Condition est VRAIE</li>
+                    <li>Après exactement 10 itérations</li>
+                    <li>Lorsque la mémoire est saturée</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="Si la condition d'un while reste toujours vraie, le programme s'exécute indéfiniment (boucle infinie).">
+                  <div class="question-text">5. Que se produit-il si la condition d'une boucle 'while' en Python reste toujours VRAIE ?</div>
+                  <ul class="quiz-options">
+                    <li>Le programme entre dans une boucle infinie</li>
+                    <li>Le programme s'arrête au bout de 5 secondes</li>
+                    <li>Python lève une exception de syntaxe</li>
+                    <li>La boucle s'exécute 0 fois</li>
                   </ul>
                 </div>
 
               </div>
+            </div>
             </div>
           </div>
         </section>

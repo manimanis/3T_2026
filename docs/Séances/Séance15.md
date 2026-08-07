@@ -81,7 +81,7 @@ On souhaite développer l'application **`GIES` (Gestionnaire Intégré d'Évalua
 
 ---
 
-### **II. Algorithmes des Modules (Conventions 2024-2025)**
+### **II. Algorithmes des Modules **
 
 ```text
 // 1. Fonction Recherche Séquentielle

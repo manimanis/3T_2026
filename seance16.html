@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance N°16 : Concepts de l'IoT &amp; Prise en main de la carte ESP32 | 3ème Secondary</title>
+  <meta name="description"
+    content="Séance N°16 : Découverte des concepts de l'Internet des Objets (IoT), architecture de la carte microcontrôleur ESP32, brochage GPIO et programmation du premier script Blink LED en MicroPython et C++.">
+
+  <!-- Anti-FOUC Early Theme Script -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- Static CSS Assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/highlight-github.min.css">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* Custom ESP32 Hardware Simulator Styles */
+    .esp32-board {
+      background: linear-gradient(145deg, #1b263b, #0d1b2a);
+      border: 3px solid #415a77;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .esp32-chip {
+      background: linear-gradient(135deg, #2b2d42, #1a1a24);
+      border: 2px solid #8d99ae;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .chip-shield {
+      background: #778da9;
+      color: #0d1b2a;
+      font-family: monospace;
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 10px;
+      letter-spacing: 1px;
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    }
+
+    .led-indicator {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.15s ease-in-out;
+      background-color: #2b2d42;
+    }
+
+    .led-blue.active {
+      background-color: #00b4d8;
+      box-shadow: 0 0 18px #00b4d8, 0 0 35px #00b4d8;
+      border-color: #caf0f8;
+    }
+
+    .led-red.active {
+      background-color: #ff4d6d;
+      box-shadow: 0 0 18px #ff4d6d, 0 0 35px #ff4d6d;
+      border-color: #ffccd5;
+    }
+
+    .repl-terminal {
+      background-color: #050811;
+      color: #38bdf8;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+      border-radius: 8px;
+      padding: 15px;
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid #1e293b;
+    }
+
+    .repl-line {
+      line-height: 1.4;
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+
+    .pin-badge {
+      font-family: monospace;
+      font-size: 0.85rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .breadboard {
+      background-color: #f8fafc;
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 20px;
+      color: #1e293b;
+    }
+
+    [data-theme="dark"] .breadboard {
+      background-color: #1e293b;
+      border-color: #334155;
+      color: #f1f5f9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+          <i class="bi bi-code-slash fs-3"></i>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <i class="bi bi-list fs-2"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
+              au Plan</a>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section / Breadcrumb -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25">
+      <div class="container px-lg-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <span class="badge bg-cyan bg-opacity-25 text-info border border-info border-opacity-50 mb-1"
+              style="color: #38bdf8;">
+              Module 5 • Séance N°16
+            </span>
+            <h1 class="h3 mb-0 fw-bold">Concepts de l'IoT &amp; Prise en main de la carte ESP32</h1>
+            <p class="text-muted small mb-0 mt-1">
+              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container px-lg-4 my-4">
+
+      <!-- Article 1: Fiche Pédagogique -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+
+        <section id="section-objectifs" class="section-pane">
+          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-primary fw-bold">
+                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Identifier l'architecture globale d'une chaîne fonctionnelle **IoT** (Capteur ➔ ESP32 ➔ Réseau ➔
+                      Actionneur).</li>
+                    <li>Découvrir les spécifications de l'**ESP32-WROOM-32** (Processeur Dual-Core 32 bits, 240 MHz,
+                      SRAM 520 Ko, Wi-Fi / BLE).</li>
+                    <li>Maîtriser le brochage des ports **GPIO** (Entrées/Sorties numériques, Masse GND, Tension
+                      d'alimentation 3.3V).</li>
+                    <li>⚠️ <strong>Règle de Sécurité :</strong> Respecter la tension logique de **3.3 V max** sur les
+                      broches GPIO.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom text-success fw-bold">
+                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                </div>
+                <div class="card-body">
+                  <ul class="list-custom mb-0">
+                    <li>Configurer une broche GPIO en mode **Sortie Numérique** (`Pin.OUT` / `OUTPUT`).</li>
+                    <li>Écrire le script de clignotement (**Blink LED**) sur la LED intégrée (**GPIO 2**).</li>
+                    <li>Réaliser le montage sécurisé d'une LED externe sur breadboard avec résistance de protection ($R
+                      = 220\,\Omega$).</li>
+                    <li>Gérer la temporisation d'attente (`time.sleep()` / `time.sleep_ms()` en MicroPython).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chronogramme -->
+          <div class="card card-custom">
+            <div class="card-header-custom text-info fw-bold">
+              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0 align-middle small">
+                  <thead>
+                    <tr>
+                      <th>Phase</th>
+                      <th>Durée</th>
+                      <th>Activité de l'Enseignant</th>
+                      <th>Activité de l'Élève</th>
+                      <th>Support / Outils</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge bg-primary">1. Situation Problème</span></td>
+                      <td>15 min</td>
+                      <td>Présentation d'exemples concrets d'IoT (Domotique, Serre connectée). Identification du besoin
+                        de traiter et transmettre des données.</td>
+                      <td>Analyse de la chaîne IoT et identification du rôle central du microcontrôleur embarqué.</td>
+                      <td>Diaporama / Vidéo IoT</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-info text-dark">2. Présentation ESP32</span></td>
+                      <td>20 min</td>
+                      <td>Présentation matérielle de la carte ESP32 DevKit V1, brochage GPIO, LED intégrée (GPIO 2) et
+                        consignes d'alimentation 3.3V.</td>
+                      <td>Observation matérielle de la carte, identification des broches (GPIO2, 3V3, GND) et repérage
+                        sur le schéma de brochage.</td>
+                      <td>Carte ESP32 matériel &amp; Fiche Pinout</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-success">3. Montage &amp; Script Blink</span></td>
+                      <td>40 min</td>
+                      <td>Encadrement du câblage sur Breadboard ($R = 220\,\Omega$) et démonstration du script Blink en
+                        MicroPython (Thonny / Wokwi).</td>
+                      <td>Réalisation du câblage électrique, écriture et exécution du script de clignotement sur la
+                        carte.</td>
+                      <td>Thonny IDE / Wokwi Simulator</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation &amp; Synthèse</span></td>
+                      <td>15 min</td>
+                      <td>Validation des notions clés via le quiz formatif et modification de la fréquence de
+                        clignotement.</td>
+                      <td>Réponse aux questions du quiz et ajustement des délais `time.sleep()`.</td>
+                      <td>Environnement de TP</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 2: Architecture IoT & Carte ESP32 -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-cpu text-info me-2"></i> Architecture IoT &amp; Cartographie de l'ESP32</h2>
+
+        <section id="section-architecture" class="section-pane">
+          <h3>1. La Chaîne Fonctionnelle d'un Système IoT</h3>
+          <p>Un système d'**Internet des Objets (IoT)** connecte le monde physique au monde numérique à travers quatre
+            maillons essentiels :</p>
+
+          <div class="row g-3 text-center my-3">
+            <div class="col-6 col-md-3">
+              <div class="p-3 border rounded bg-body-tertiary">
+                <i class="bi bi-thermometer-half fs-1 text-danger"></i>
+                <h6 class="mt-2 fw-bold mb-0">1. Capteurs</h6>
+                <small class="text-muted">Acquisition (Temp, Humidité, Lux)</small>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="p-3 border rounded bg-body-tertiary border-info">
+                <i class="bi bi-cpu-fill fs-1 text-info"></i>
+                <h6 class="mt-2 fw-bold mb-0 text-info">2. ESP32</h6>
+                <small class="text-muted">Traitement local &amp; Contrôle</small>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="p-3 border rounded bg-body-tertiary">
+                <i class="bi bi-wifi fs-1 text-primary"></i>
+                <h6 class="mt-2 fw-bold mb-0">3. Connectivité</h6>
+                <small class="text-muted">Wi-Fi / BLE ➔ Network</small>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="p-3 border rounded bg-body-tertiary">
+                <i class="bi bi-lightbulb-fill fs-1 text-warning"></i>
+                <h6 class="mt-2 fw-bold mb-0">4. Actionneurs</h6>
+                <small class="text-muted">Commandes (LED, Relais, Moteur)</small>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="mt-4">2. Caractéristiques Techniques de l'ESP32 DevKit V1</h3>
+          <div class="table-responsive">
+            <table class="table table-custom table-bordered align-middle">
+              <thead class="table-dark">
+                <tr>
+                  <th>Composant</th>
+                  <th>Description &amp; Valeurs</th>
+                  <th>Rôle Pédagogique</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong class="text-info">Processeur</strong></td>
+                  <td>Tensilica Xtensa Dual-Core 32 bits (jusqu'à 240 MHz)</td>
+                  <td>Calcul à très haute vitesse et multitâche.</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-info">Mémoires</strong></td>
+                  <td>SRAM : 520 Ko | Flash Externe : 4 Mo</td>
+                  <td>Stockage du firmware MicroPython et des programmes.</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-info">Broches GPIO</strong></td>
+                  <td>30 ou 36 broches (General Purpose Input Output)</td>
+                  <td>Connexion directe des capteurs et actionneurs.</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-info">LED Interne</strong></td>
+                  <td>Connectée physiquement au <strong>GPIO 2</strong> (LED bleue)</td>
+                  <td>Indicateur lumineux pour tests et débogage rapide.</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-danger">Tension Logicielle</strong></td>
+                  <td><strong>3.3 V MAX</strong> (Signal HAUT = 3.3V, Signal BAS = 0V)</td>
+                  <td>⚠️ Ne jamais injecter du 5V directement sur une broche GPIO !</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 3: Montage Électrique & Scripts -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-diagram-3 text-success me-2"></i> Montage Électrique &amp; Programmation</h2>
+
+        <section id="section-montage" class="section-pane">
+          <h3>1. Calcul de la Résistance de Protection $R$</h3>
+          <p>
+            Pour alimenter une LED rouge ($V_{\text{LED}} \approx 2.0\,\text{V}$, courant de sécurité $I \approx
+            6\,\text{mA}$) à partir du <strong>GPIO 4</strong> ($V_{\text{GPIO}} = 3.3\,\text{V}$), nous appliquons la
+            loi d'Ohm :
+          </p>
+
+          <div class="alert alert-info border-info d-flex align-items-center gap-3">
+            <i class="bi bi-calculator-fill fs-2"></i>
+            <div>
+              <strong>Formule de Calcul :</strong>
+              $$R = \frac{V_{\text{GPIO}} - V_{\text{LED}}}{I} = \frac{3.3\,\text{V} - 2.0\,\text{V}}{0.006\,\text{A}} =
+              \frac{1.3\,\text{V}}{0.006\,\text{A}} \approx 216.6\,\Omega \implies \mathbf{Résistance\ standard\
+              220\,\Omega}$$
+            </div>
+          </div>
+
+          <h3 class="mt-4">2. Schéma de Câblage sur Breadboard</h3>
+          <div class="card card-custom mb-4">
+            <div class="card-body">
+              <ul class="mb-0">
+                <li><strong>Broche Anode (+) de la LED (pattes plus longue) :</strong> Reliée à la broche <strong>GPIO
+                    4</strong> de l'ESP32.</li>
+                <li><strong>Broche Cathode (-) de la LED (pattes plus courte) :</strong> Reliée à une extrémité de la
+                  résistance $R = 220\,\Omega$.</li>
+                <li><strong>Autre extrémité de la résistance :</strong> Reliée à la masse <strong>GND</strong> de
+                  l'ESP32.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 4: Laboratoire Virtuel ESP32 (Simulateur) -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-play-circle-fill text-warning me-2"></i> Laboratoire Virtuel &amp; Simulateur ESP32</h2>
+
+        <section id="section-demo" class="section-pane">
+          <h3>Simulateur Interactif Matériel &amp; Script MicroPython / C++</h3>
+          <p class="text-muted small">
+            Interagissez directement avec la carte ESP32 virtuelle ci-dessous. Observez l'état logique des broches
+            <strong>GPIO 2</strong> (LED interne bleue) et <strong>GPIO 4</strong> (LED externe rouge sur breadboard),
+            contrôlez la fréquence et visualisez l'exécution dans la console REPL.
+          </p>
+
+          <div class="row g-4 my-2">
+            <!-- Simulated ESP32 Hardware Card -->
+            <div class="col-lg-6">
+              <div class="esp32-board">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="badge bg-primary font-mono"><i class="bi bi-cpu me-1"></i> ESP32 DevKit V1</span>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted">Statut :</span>
+                    <span class="badge" :class="isRunning ? 'bg-success' : 'bg-secondary'">
+                      {{ isRunning ? 'EN ÉXÉCUTION' : 'STOPPÉ' }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- ESP32 Chip Visual -->
+                <div class="esp32-chip my-3">
+                  <div class="chip-shield mb-3">
+                    ESP-WROOM-32<br>
+                    <small style="font-size: 0.65rem; opacity: 0.8;">CE 0700 • FCC ID: 2AC7Z-ESPWROOM32</small>
+                  </div>
+
+                  <div class="d-flex justify-content-around align-items-center my-2 p-2 rounded bg-dark bg-opacity-50">
+                    <!-- Internal LED (GPIO2) -->
+                    <div class="text-center">
+                      <div class="mb-1 small text-muted font-mono">GPIO 2 (LED In)</div>
+                      <div class="led-indicator led-blue" :class="{ active: gpio2State }"></div>
+                      <div class="mt-1 font-mono small" :class="gpio2State ? 'text-info fw-bold' : 'text-muted'">
+                        {{ gpio2State ? '3.3V (HIGH)' : '0.0V (LOW)' }}
+                      </div>
+                    </div>
+
+                    <!-- Power Indicator -->
+                    <div class="text-center">
+                      <div class="mb-1 small text-muted font-mono">POWER (5V/3V3)</div>
+                      <div class="led-indicator" style="background-color: #22c55e; box-shadow: 0 0 10px #22c55e;"></div>
+                      <div class="mt-1 font-mono small text-success fw-bold">ON</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Breadboard External LED (GPIO4) -->
+                <div class="breadboard my-3">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge bg-secondary font-mono"><i class="bi bi-border-outer me-1"></i> Breadboard
+                      Externe</span>
+                    <span class="badge pin-badge" :class="gpio4State ? 'bg-danger text-white' : 'bg-dark text-muted'">
+                      GPIO 4 : {{ gpio4State ? 'HIGH (3.3V)' : 'LOW (0V)' }}
+                    </span>
+                  </div>
+                  <div
+                    class="d-flex align-items-center justify-content-center gap-4 py-2 border rounded bg-body-tertiary">
+                    <div class="text-center">
+                      <small class="d-block text-muted mb-1">LED Rouge (GPIO 4)</small>
+                      <div class="led-indicator led-red" :class="{ active: gpio4State }"></div>
+                    </div>
+                    <i class="bi bi-arrow-right text-muted fs-4"></i>
+                    <div class="text-center">
+                      <small class="d-block text-muted mb-1">Résistance</small>
+                      <span class="badge bg-warning text-dark font-mono"><i class="bi bi-lightning-charge me-1"></i> R =
+                        220 Ω</span>
+                    </div>
+                    <i class="bi bi-arrow-right text-muted fs-4"></i>
+                    <div class="text-center">
+                      <small class="d-block text-muted mb-1">Masse</small>
+                      <span class="badge bg-dark font-mono text-white">GND (0V)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Control Buttons Panel -->
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <button class="btn btn-sm" :class="isRunning ? 'btn-danger' : 'btn-success'"
+                    @click="toggleSimulation">
+                    <i class="bi" :class="isRunning ? 'bi-stop-circle-fill' : 'bi-play-circle-fill'"></i>
+                    {{ isRunning ? ' Arrêter Script' : ' Lancer Script' }}
+                  </button>
+
+                  <button class="btn btn-outline-info btn-sm" @click="manualToggleGpio(2)">
+                    <i class="bi bi-hand-index-thumb"></i> Tester GPIO 2
+                  </button>
+
+                  <button class="btn btn-outline-danger btn-sm" @click="manualToggleGpio(4)">
+                    <i class="bi bi-hand-index-thumb"></i> Tester GPIO 4
+                  </button>
+                </div>
+
+                <!-- Settings Controls -->
+                <div class="row g-2 mt-3 pt-3 border-top border-secondary border-opacity-25">
+                  <div class="col-6">
+                    <label class="form-label small text-muted mb-1"><i class="bi bi-speedometer2 me-1"></i> Fréquence
+                      (Délai ms) :</label>
+                    <select class="form-select form-select-sm" :value="blinkInterval"
+                      @change="updateInterval(parseInt($event.target.value))">
+                      <option value="100">100 ms (Très Rapide)</option>
+                      <option value="250">250 ms (Rapide)</option>
+                      <option value="500">500 ms (Standard)</option>
+                      <option value="1000">1000 ms (1 seconde)</option>
+                      <option value="2000">2000 ms (Lent)</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label small text-muted mb-1"><i class="bi bi-sliders me-1"></i> Mode de
+                      Clignotement :</label>
+                    <select class="form-select form-select-sm" :value="activeMode"
+                      @change="updateMode($event.target.value)">
+                      <option value="sync">Synchrone (GPIO 2 &amp; 4 en même temps)</option>
+                      <option value="alt">Alterné (Chenillard 2 LEDs)</option>
+                      <option value="sos">Code SOS Morse</option>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Terminal REPL & Code Tabs Panel -->
+            <div class="col-lg-6">
+              <!-- Code Selector Tabs -->
+              <div class="card card-custom h-100">
+                <div class="card-header-custom d-flex justify-content-between align-items-center">
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                      <button class="nav-link py-1 px-3" :class="{ active: activeTab === 'micropython' }"
+                        @click="activeTab = 'micropython'">
+                        <i class="bi bi-filetype-py me-1"></i> MicroPython
+                      </button>
+                    </li>
+                    <li class="nav-item">
+                      <button class="nav-link py-1 px-3" :class="{ active: activeTab === 'cpp' }"
+                        @click="activeTab = 'cpp'">
+                        <i class="bi bi-filetype-cpp me-1"></i> C++ (Arduino)
+                      </button>
+                    </li>
+                  </ul>
+                  <button class="btn btn-outline-secondary btn-sm"
+                    @click="copyToClipboard(activeTab === 'micropython' ? codeMicroPython : codeCpp)">
+                    <i class="bi" :class="copyCodeSuccess ? 'bi-check-lg text-success' : 'bi-clipboard'"></i>
+                    {{ copyCodeSuccess ? 'Copié !' : 'Copier' }}
+                  </button>
+                </div>
+
+                <div class="card-body p-0">
+                  <!-- Code Display -->
+                  <div v-if="activeTab === 'micropython'" class="p-3 bg-dark text-light border-bottom font-mono small">
+                    <pre class="mb-0"><code>from machine import Pin
+import time
+
+# Broches en mode SORTIE (Pin.OUT)
+led_in = Pin(2, Pin.OUT)
+led_ext = Pin(4, Pin.OUT)
+
+while True:
+    led_in.value(1)   # Signal HAUT (3.3V)
+    led_ext.value(1)
+    time.sleep(1)     # Pause 1 seconde
+    
+    led_in.value(0)   # Signal BAS (0V)
+    led_ext.value(0)
+    time.sleep(1)</code></pre>
+                  </div>
+
+                  <div v-else class="p-3 bg-dark text-light border-bottom font-mono small">
+                    <pre class="mb-0"><code>const int LED_IN = 2;
+const int LED_EXT = 4;
+
+void setup() {
+  pinMode(LED_IN, OUTPUT);
+  pinMode(LED_EXT, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED_IN, HIGH);
+  digitalWrite(LED_EXT, HIGH);
+  delay(1000);
+  
+  digitalWrite(LED_IN, LOW);
+  digitalWrite(LED_EXT, LOW);
+  delay(1000);
+}</code></pre>
+                  </div>
+
+                  <!-- Console REPL Simulation -->
+                  <div class="p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Console REPL
+                        (Sortie Série)</span>
+                      <button class="btn btn-link btn-sm text-muted p-0 text-decoration-none" @click="clearLogs">
+                        <i class="bi bi-trash"></i> Effacer
+                      </button>
+                    </div>
+                    <div id="replTerminal" class="repl-terminal">
+                      <div v-for="(log, idx) in replLogs" :key="idx" class="repl-line">
+                        {{ log }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Article 5: Évaluation Formative -->
+      <article class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+
+        <section id="section-quiz" class="section-pane">
+          <h3>Testez vos Connaissances de l'ESP32 &amp; MicroPython</h3>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- EvalQuiz Vanilla JS Component -->
+                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – IoT & ESP32 (5 Questions)">
+
+                <div class="quiz-question" data-correct="0" data-explanation="L'ESP32 intègre un microcontrôleur Dual-Core Tensilica LX6 avec connectivité Wi-Fi & Bluetooth.">
+                  <div class="question-text">1. Quelles sont les caractéristiques principales du microcontrôleur ESP32 ?</div>
+                  <ul class="quiz-options">
+                    <li>Processeur Dual-Core 32 bits avec Wi-Fi et Bluetooth intégrés</li>
+                    <li>Processeur 8 bits sans mémoire sans fil</li>
+                    <li>Carte graphique haute définition 4K</li>
+                    <li>Disque dur mécanique 1To</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="1" data-explanation="GPIO signifie General Purpose Input Output (Broches d'E/S à usage général).">
+                  <div class="question-text">2. Que signifie l'acronyme 'GPIO' sur une carte ESP32 ?</div>
+                  <ul class="quiz-options">
+                    <li>General Python Input Operation</li>
+                    <li>General Purpose Input Output</li>
+                    <li>Global Power Interface Option</li>
+                    <li>Graphics Processing Internal Output</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="2" data-explanation="Pin(2, Pin.OUT) configure le GPIO 2 en mode sortie numérique.">
+                  <div class="question-text">3. Quelle instruction MicroPython configure le GPIO 2 en sortie numérique pour piloter une LED ?</div>
+                  <ul class="quiz-options">
+                    <li>pin = Pin(2, Pin.IN)</li>
+                    <li>pin = DigitalOutput(2)</li>
+                    <li>pin = Pin(2, Pin.OUT)</li>
+                    <li>pin.mode(OUTPUT_2)</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="time.sleep(1) suspend l'exécution pendant 1 seconde.">
+                  <div class="question-text">4. Quelle fonction permet de faire une pause d'une seconde dans un script MicroPython ?</div>
+                  <ul class="quiz-options">
+                    <li>time.sleep(1)</li>
+                    <li>delay(1000)</li>
+                    <li>wait(1)</li>
+                    <li>pause(1)</li>
+                  </ul>
+                </div>
+
+                <div class="quiz-question" data-correct="0" data-explanation="REPL (Read-Eval-Print Loop) est la console interactive de commande MicroPython sur l'ESP32.">
+                  <div class="question-text">5. Qu'est-ce que l'invite de commande REPL sous MicroPython / Thonny IDE ?</div>
+                  <ul class="quiz-options">
+                    <li>La console d'exécution interactive directe sur l'ESP32</li>
+                    <li>Un éditeur d'images 3D</li>
+                    <li>Un compilateur C++</li>
+                    <li>Le nom du câble USB</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS Assets -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/algorithm.highlight.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/clipboard.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/pages.js"></script>
+
+  <!-- Application Script for Séance 16 -->
+  <script src="assets/app/seance16.js"></script>
+</body>
+
+</html>

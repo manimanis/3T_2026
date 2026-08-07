@@ -62,13 +62,6 @@
     <!-- Header Section -->
     <header class="py-3 border-bottom border-secondary border-opacity-25">
       <div class="container">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-2 small text-muted">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">Accueil</a></li>
-            <li class="breadcrumb-item text-muted">Module 1 : Révision & Consolidation</li>
-            <li class="breadcrumb-item active text-primary" aria-current="page">Séance 1</li>
-          </ol>
-        </nav>
 
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
@@ -77,12 +70,7 @@
               <i class="bi bi-bookmark-fill me-1"></i> Module 1 • Séance N°1
             </span>
             <h1 class="h2 fw-bold mb-1">Évaluation Diagnostique & Consolidation des Bases Python</h1>
-            <p class="text-muted mb-0">Niveau : 3ème Année Secondary (Sciences Exp, Tech, Maths) • Durée : 1h 30mn</p>
-          </div>
-          <div class="d-flex gap-2 align-items-center">
-            <span class="badge badge-custom p-2 px-3 d-flex align-items-center gap-2">
-              <i class="bi bi-laptop text-info"></i> Thonny Python IDE / IDLE
-            </span>
+            <p class="text-muted mb-0">Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn</p>
           </div>
         </div>
       </div>
@@ -109,7 +97,7 @@
                     <li>Distinguer les types de données simples : <code>Entier</code>, <code>Réel</code>,
                       <code>Caractère</code>, <code>Booléen</code>, <code>Chaîne de caractères</code>.
                     </li>
-                    <li>Maîtriser la correspondance entre la syntaxe algorithmique officielle (Conventions 2024-2025) et
+                    <li>Maîtriser la correspondance entre la syntaxe algorithmique officielle et
                       sa traduction en Python (<code>int</code>, <code>float</code>, <code>bool</code>,
                       <code>str</code>).
                     </li>
@@ -149,14 +137,13 @@
                         <tr>
                           <td><span class="badge bg-secondary text-white">1. Diagnostic</span></td>
                           <td>15 min</td>
-                          <td class="small">Questionnement oral & QCM sur les prérequis de 2ème année (types &
+                          <td class="small">Vérification des acquis & QCM sur les prérequis de 2ème année (types &
                             affectation).</td>
                         </tr>
                         <tr>
                           <td><span class="badge bg-primary text-white">2. Synthèse</span></td>
                           <td>25 min</td>
-                          <td class="small">Rappel théorique structuré sur les conventions algorithmiques 2024-2025.
-                          </td>
+                          <td class="small">Rappel théorique structuré sur les conventions algorithmiques.</td>
                         </tr>
                         <tr>
                           <td><span class="badge badge-info-custom">3. Guidée</span></td>
@@ -349,13 +336,13 @@ message = "Votre note est : " + str(15.5)</code></pre>
         <h2><i class="bi bi-bug text-danger me-2"></i> Activités Pratiques</h2>
 
         <section class="section-pane">
-          <h3>Activité 1 : Analyse et correction de séquence code</h3>
+          <h3>Activité 1 : Analyse et correction d'une séquence de code</h3>
 
           <!-- Activité 1 -->
           <div class="card card-custom mb-4">
             <div class="card-header-custom d-flex justify-content-between align-items-center">
-              <h3 class="h5 mb-0"><i class="bi bi-bug text-danger me-2"></i> Activité 1 : Analyse et Correction de
-                Séquence Code (10 min)</h3>
+              <h3 class="h5 mb-0"><i class="bi bi-bug text-danger me-2"></i> Analyse et correction d'une séquence de
+                code (10 min)</h3>
               <span class="badge badge-warning-custom">Exercice Diagnostique</span>
             </div>
             <div class="card-body">
@@ -404,8 +391,8 @@ print("La somme est :", somme)</code></pre>
           <!-- Activité 2 -->
           <div class="card card-custom">
             <div class="card-header-custom">
-              <h3 class="h5 mb-0"><i class="bi bi-tools text-primary me-2"></i> Activité 2 : Mini-Projet Calcul de
-                Pénalité de Retard (25 min)</h3>
+              <h3 class="h5 mb-0"><i class="bi bi-tools text-primary me-2"></i> Calcul de pénalité de retard (25
+                min)</h3>
             </div>
             <div class="card-body">
 
@@ -422,7 +409,8 @@ print("La somme est :", somme)</code></pre>
                   <li>Une taxe fixe de gestion de <strong>1.200 DT</strong> est ajoutée au montant total.</li>
                 </ul>
                 <div class="formula-box">
-                  Formule mathématique : $$ \text{montant\_total} = (\text{nb\_jours} \times 0.500) + 1.200 $$
+                  Formule mathématique : $$ \text{montant\_total} = (\text{nb\_jours} \times \text{TARIF\_JOUR}) +
+                  \text{TAXE\_FIXE} $$
                 </div>
               </div>
 
@@ -443,7 +431,9 @@ print("La somme est :", somme)</code></pre>
                         <li><strong>Entrées :</strong> Nom de l'élève (<code>nom</code> : Chaîne), Titre du livre
                           (<code>titre</code> : Chaîne), Jours de retard (<code>nb_jours</code> : Entier).</li>
                         <li><strong>Sortie :</strong> Montant total à payer (<code>montant_total</code> : Réel).</li>
-                        <li><strong>Traitement :</strong> <code>montant_total = (nb_jours * 0.500) + 1.200</code>.</li>
+                        <li><strong>Traitement :</strong>
+                          <code>montant_total = (nb_jours * TARIF_JOUR) + TAXE_FIXE</code>.
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -524,7 +514,7 @@ DEBUT
     Écrire("Nombre de jours de retard : ")
     Lire(nb_jours)
     
-    montant_total ← (nb_jours * 0.500) + 1.200
+    montant_total ← (nb_jours * TARIF_JOUR) + TAXE_FIXE
     
     Écrire("Élève : ", nom)
     Écrire("Livre : ", titre)
@@ -539,9 +529,7 @@ FIN</code></pre>
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button show" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseFour">
-                      4. Code Python Complet (Thonny IDE)
-                    </button>
+                      data-bs-target="#collapseFour">4. Code Python</button>
                   </h2>
                   <div id="collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionProblem">
                     <div class="accordion-body">
@@ -649,12 +637,10 @@ print("Montant total à payer :", montant_total, "DT")</code></pre>
 
           <div class="row justify-content-center">
             <div class="col-lg-8">
-              <div class="eval-quiz" data-title="Quiz Diagnostique (4 Questions)">
+                            <div class="eval-quiz" v-pre data-title="Quiz Diagnostique & Consolidation Python (5 Questions)">
 
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="input() renvoie TOUJOURS une chaîne de caractères (str), même si l'utilisateur saisit des chiffres.">
-                  <div class="question-text">Quelle est la valeur retournée systématiquement par l'instruction input()
-                    en Python ?</div>
+                <div class="quiz-question" data-correct="1" data-explanation="input() renvoie TOUJOURS une chaîne de caractères (str), même si l'utilisateur saisit des chiffres.">
+                  <div class="question-text">1. Quelle est la valeur retournée systématiquement par l'instruction input() en Python ?</div>
                   <ul class="quiz-options">
                     <li>Un entier (int)</li>
                     <li>Une chaîne de caractères (str)</li>
@@ -663,21 +649,18 @@ print("Montant total à payer :", montant_total, "DT")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Dans les conventions 2024-2025, l'affectation est représentée par la flèche ←.">
-                  <div class="question-text">Comment écrit-on l'opération d'affectation en syntaxe algorithmique
-                    officielle 2024-2025 ?</div>
+                <div class="quiz-question" data-correct="2" data-explanation="Dans les conventions 2024-2025, l'affectation est représentée par la flèche ←.">
+                  <div class="question-text">2. Comment écrit-on l'opération d'affectation en syntaxe algorithmique officielle 2024-2025 ?</div>
                   <ul class="quiz-options">
                     <li>Variable = Expression</li>
                     <li>Variable := Expression</li>
                     <li>Variable ← Expression</li>
-                    <li>Variable -&gt; Expression</li>
+                    <li>Variable -> Expression</li>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="L'opérateur + entre deux chaînes réalise la concaténation : '10' + '20' donne '1020'.">
-                  <div class="question-text">Que vaut la variable 'x' après l'exécution de : x = '10' + '20' ?</div>
+                <div class="quiz-question" data-correct="1" data-explanation="L'opérateur + entre deux chaînes réalise la concaténation : '10' + '20' donne '1020'.">
+                  <div class="question-text">3. Que vaut la variable 'x' après l'exécution de : x = '10' + '20' ?</div>
                   <ul class="quiz-options">
                     <li>30</li>
                     <li>1020</li>
@@ -686,10 +669,8 @@ print("Montant total à payer :", montant_total, "DT")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="float('14.5') convertit la chaîne en nombre réel (float) 14.5.">
-                  <div class="question-text">Quelle fonction permet de convertir la chaîne '14.5' en nombre flottant ?
-                  </div>
+                <div class="quiz-question" data-correct="2" data-explanation="float('14.5') convertit la chaîne en nombre réel (float) 14.5.">
+                  <div class="question-text">4. Quelle fonction permet de convertir la chaîne '14.5' en nombre flottant ?</div>
                   <ul class="quiz-options">
                     <li>int('14.5')</li>
                     <li>str('14.5')</li>
@@ -698,7 +679,18 @@ print("Montant total à payer :", montant_total, "DT")</code></pre>
                   </ul>
                 </div>
 
+                <div class="quiz-question" data-correct="0" data-explanation="int('15') convertit la chaîne '15' en entier 15. La somme 15 + 5 donne 20.">
+                  <div class="question-text">5. Quelle est la valeur de la variable 'res' après : res = int('15') + 5 ?</div>
+                  <ul class="quiz-options">
+                    <li>20</li>
+                    <li>'155'</li>
+                    <li>15.5</li>
+                    <li>Une erreur de syntaxe</li>
+                  </ul>
+                </div>
+
               </div>
+            </div>
             </div>
           </div>
         </section>
