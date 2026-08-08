@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -42,8 +42,8 @@ $$\text{PPCM}(a, b) = \frac{a \times b}{\text{PGCD}(a, b)} \quad \text{pour } a,
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème** | 10 min | Poser le problème de la simplification de la fraction $\frac{1071}{1029}$. Comment la simplifier automatiquement sur ordinateur ? | Exprime le besoin de trouver le plus grand diviseur commun aux deux nombres. | Tableau |
 | **2. Synthèse Théorique** | 25 min | Présentation de l'algorithme d'Euclide (`a Mod b`), comparaison avec la méthode par soustraction, et formule du PPCM. | Prise de notes et traçage manuel de l'algorithme d'Euclide sur un exemple. | ProProjecteur / Fiche |
-| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Simplification de fraction & Synchronisation d'autobus). Encadrement de l'analyse et TDO. | Rédaction des modules `PGCD`, `PPCM`, `Simplifier` et codage sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification de la prise en compte des cas limites ($a \le 0$ ou $b \le 0$) et de l'absence de `break`. | Validation du script avec différents jeux d'essais (nombres premiers entre eux, multiples). | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Simplification de fraction & Synchronisation d'autobus). Encadrement de l'analyse et TDO. | Rédaction des modules `PGCD`, `PPCM`, `Simplifier` et codage sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification de la prise en compte des cas limites ($a \le 0$ ou $b \le 0$) et de l'absence de `break`. | Validation du script avec différents jeux d'essais (nombres premiers entre eux, multiples). | Python |
 
 ---
 
@@ -236,7 +236,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

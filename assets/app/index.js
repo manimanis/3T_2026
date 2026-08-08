@@ -64,7 +64,7 @@ createApp({
         {
           id: 4,
           moduleId: 2,
-          title: "Structures répétitives conditionnelles (Tant Que & Répéter)",
+          title: "Structures itératives à condition d'arrêt (Tant Que & Répéter)",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance04.html",

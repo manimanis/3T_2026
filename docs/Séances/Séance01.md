@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -34,8 +34,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Diagnostic** | 15 min | Questionnement oral / QCM rapide pour sonder les prérequis de 2ème année. | Réponse aux questions, identification des lacunes sur les types et l'affectation. | Tableau / ProProjecteur |
 | **2. Synthèse Théorique** | 25 min | Présentation structurée du rappel de cours . | Prise de notes sur le cahier / support de cours. | Fiche de résumé |
-| **3. Activité Guidée** | 35 min | Proposer l'activité pratique (Calcul de facture/moyenne). Guidage de l'analyse et du TDO. | Analyse du problème, rédaction de l'algorithme et saisie du code sur machine. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification individuelle des scripts Python, correction collective des erreurs fréquentes. | Exécution du programme, test avec différents jeux d'essais. | Environnement Python |
+| **3. Activité Guidée** | 35 min | Proposer l'activité pratique (Calcul de facture/moyenne). Guidage de l'analyse et du TDO. | Analyse du problème, rédaction de l'algorithme et saisie du code sur machine. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification individuelle des scripts Python, correction collective des erreurs fréquentes. | Exécution du programme, test avec différents jeux d'essais. | Python |
 
 ---
 
@@ -166,7 +166,7 @@ On souhaite concevoir une application pour une bibliothèque scolaire qui calcul
 
 ---
 
-#### **3. Algorithme (Conventions Ministérielles 2024-2025)**
+#### **3. AlgorithmeConventions**
 
 ```text
 ALGORITHME Calcul_Penalite
@@ -189,7 +189,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

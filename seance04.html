@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance N°4 : Structures Répétitives Conditionnelles (Tant Que & Répéter) | 3ème Secondary</title>
+  <title>Séance N°4 : Structures itératives à condition d'arrêt (Tant Que & Répéter) | 3ème Secondary</title>
   <meta name="description"
-    content="Séance N°4 : Étude et implémentation des structures répétitives conditionnelles (Tant Que & Répéter...Jusqu'à) en Python pour la 3ème Année Secondaire.">
+    content="Séance N°4 : Étude et implémentation des Structures itératives à condition d'arrêt (Tant Que & Répéter...Jusqu'à) en Python pour la 3ème Année Secondaire.">
 
   <!-- Anti-FOUC Early Theme Script -->
   <script>
@@ -67,7 +67,7 @@
             <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-50 mb-1">
               Module 2 • Séance N°4
             </span>
-            <h1 class="h3 mb-0 fw-bold">Structures Répétitives Conditionnelles (<code>Tant Que</code> &amp;
+            <h1 class="h3 mb-0 fw-bold">Structures itératives à condition d'arrêt (<code>Tant Que</code> &amp;
               <code>Répéter</code>)
             </h1>
             <p class="text-muted small mb-0 mt-1">
@@ -96,14 +96,12 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Distinguer une boucle bornée (<code>Pour</code>) d'une boucle conditionnelle non bornée
-                      (<code>Tant Que</code> / <code>Répéter</code>).</li>
-                    <li>Maîtriser la syntaxe algorithmique de <code>Tant que Condition_Poursuite Faire</code>
-                      (évaluation préalable).</li>
-                    <li>Maîtriser la syntaxe algorithmique de <code>Répéter ... Jusqu'à Condition_Arrêt</code>
-                      (évaluation postérieure).</li>
-                    <li>Comprendre la traduction systématique de <code>Répéter</code> en Python avec
-                      <code>while not(Condition_Arrêt)</code>.
+                    <li>Distinguer entre la structure itérative complète (<code>Pour</code>) et les structures
+                      itératives à condition d'arrêt (<code>Tant Que</code> / <code>Répéter</code>).</li>
+                    <li>Maîtriser la syntaxe de <code>Tant que Condition Faire</code> (évaluation préalable).</li>
+                    <li>Maîtriser la syntaxe de <code>Répéter ... Jusqu'à Condition</code> (évaluation
+                      postérieure).</li>
+                    <li>Traduire <code>Répéter</code> en Python en utilisant <code>while not Condition</code>.
                     </li>
                   </ul>
                 </div>
@@ -118,14 +116,12 @@
                 <div class="card-body">
                   <ul class="list-custom mb-0">
                     <li>Concevoir un algorithme de <strong>contrôle de saisie</strong> pour forcer la validation d'une
-                      donnée selon un domaine.</li>
-                    <li>Utiliser une variable booléenne (drapeau / <em>flag</em>) pour gérer l'arrêt d'une boucle
-                      complexe.</li>
+                      donnée.</li>
+                    <li>Utiliser une variable booléenne pour gérer l'arrêt d'une boucle complexe.</li>
                     <li>Garantir la présence de mécanismes explicites d'initialisation et de mise à jour pour éviter les
                       <strong>boucles infinies</strong>.
                     </li>
-                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> Ne pas utiliser l'instruction
-                      <code>break</code>.
+                    <li>🚫 <strong>Règle :</strong> Ne pas utiliser l'instruction <code>break</code> dans une boucle.
                     </li>
                   </ul>
                 </div>
@@ -173,8 +169,8 @@
                       <td>40 min</td>
                       <td>Présentation du problème pratique (Jeu de devinette du Nombre Secret avec essais limités).
                       </td>
-                      <td>Analyse, TDO, algorithme et implémentation sous Thonny IDE.</td>
-                      <td>Thonny Python IDE</td>
+                      <td>Analyse, TDO, algorithme et implémentation sous Python IDE.</td>
+                      <td>Python</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
@@ -182,7 +178,7 @@
                       <td>Vérification des codes, détection des boucles infinies (oubli de mise à jour) et élimination
                         de <code>break</code>.</td>
                       <td>Test sur machine, validation des cas limites et quiz d'évaluation.</td>
-                      <td>Environnement Python</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -197,7 +193,7 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-boucles" class="section-pane">
-          <h3>2. Les Structures Répétitives Conditionnelles</h3>
+          <h3>2. Les Structures itératives à condition d'arrêt</h3>
           <p class="text-muted">
             Lorsque le nombre de répétitions n'est pas connu à l'avance, on utilise des structures répétitives
             conditionnelles pilotées par une expression booléenne.
@@ -309,8 +305,7 @@ while not (condition_arret):
           <!-- Recommandations Ministérielles Alert Card -->
           <div class="alert alert-danger border border-danger border-opacity-50 shadow-sm mb-4">
             <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i> Recommandations Ministérielles Importantes
-              (Baccalauréat 2024-2025)
+              <i class="bi bi-exclamation-triangle-fill me-2"></i> Recommandations Importantes
             </h5>
             <ol class="mb-0 small">
               <li class="mb-1">
@@ -349,8 +344,7 @@ while not (condition_arret):
             <div class="col-md-6">
               <div class="card card-custom h-100 border-danger border-opacity-50">
                 <div class="card-header-custom text-danger fw-bold">
-                  <i class="bi bi-x-circle-fill me-2"></i> Code Non Conforme (Utilisation interdite de
-                  <code>break</code>)
+                  <i class="bi bi-x-circle-fill me-2"></i> Code Non Conforme
                 </div>
                 <div class="card-body">
                   <div class="code-container">
@@ -374,11 +368,11 @@ print("Nombre valide :", val)</code></pre>
             <div class="col-md-6">
               <div class="card card-custom h-100 border-success border-opacity-50">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-check-circle-fill me-2"></i> Code Conforme (Condition de poursuite explicite)
+                  <i class="bi bi-check-circle-fill me-2"></i> Code Conforme
                 </div>
                 <div class="card-body">
                   <div class="code-container">
-                    <pre><code class="language-python"># ✅ Conforme aux conventions ministérielles
+                    <pre><code class="language-python"># ✅ Conforme aux conventions
 val = int(input("Donner un nombre pair : "))
 
 # Condition de poursuite : le nombre est IMPAIR
@@ -650,7 +644,7 @@ FIN</code></pre>
 
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Implémentation Python (Thonny IDE)</span></div>
+                <div class="code-header"><span>Implémentation Python (Python IDE)</span></div>
                 <pre><code class="language-python">from random import randint
 
 # Génération aléatoire du secret (1 à 50)
@@ -698,10 +692,12 @@ else:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Boucles Conditionnelles (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Boucles Conditionnelles (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="Dans 'Répéter...Jusqu'à', le test se fait à la FIN, garantissant au moins une exécution.">
-                  <div class="question-text">1. Quelle est la différence fondamentale entre 'Tant Que' et 'Répéter...Jusqu'à' ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Dans 'Répéter...Jusqu'à', le test se fait à la FIN, garantissant au moins une exécution.">
+                  <div class="question-text">1. Quelle est la différence fondamentale entre 'Tant Que' et
+                    'Répéter...Jusqu'à' ?</div>
                   <ul class="quiz-options">
                     <li>Répéter...Jusqu'à exécute le corps au moins une fois, Tant Que peut ne jamais l'exécuter</li>
                     <li>Tant Que s'exécute toujours au moins 10 fois</li>
@@ -710,7 +706,8 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="En Python, 'while condition:' répète le bloc TANT QUE la condition est VRAIE.">
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="En Python, 'while condition:' répète le bloc TANT QUE la condition est VRAIE.">
                   <div class="question-text">2. Comment s'écrit la boucle itérative non bornée en langage Python ?</div>
                   <ul class="quiz-options">
                     <li>repeat...until</li>
@@ -720,8 +717,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="Le contrôle de saisie force l'utilisateur à entrer une valeur valide en répétant la demande.">
-                  <div class="question-text">3. À quoi sert principalement la boucle 'Répéter...Jusqu'à' lors d'une saisie utilisateur ?</div>
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Le contrôle de saisie force l'utilisateur à entrer une valeur valide en répétant la demande.">
+                  <div class="question-text">3. À quoi sert principalement la boucle 'Répéter...Jusqu'à' lors d'une
+                    saisie utilisateur ?</div>
                   <ul class="quiz-options">
                     <li>Trier un tableau</li>
                     <li>Calculer une moyenne</li>
@@ -730,8 +729,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Dans Répéter...Jusqu'à (Condition), la boucle s'arrête lorsque la condition devient VRAIE.">
-                  <div class="question-text">4. Quand s'arrête l'exécution de la boucle algorithmique 'Répéter ... Jusqu'à (Condition)' ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Dans Répéter...Jusqu'à (Condition), la boucle s'arrête lorsque la condition devient VRAIE.">
+                  <div class="question-text">4. Quand s'arrête l'exécution de la boucle algorithmique 'Répéter ...
+                    Jusqu'à (Condition)' ?</div>
                   <ul class="quiz-options">
                     <li>Dès que la Condition devient VRAIE</li>
                     <li>Tant que la Condition est VRAIE</li>
@@ -740,8 +741,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Si la condition d'un while reste toujours vraie, le programme s'exécute indéfiniment (boucle infinie).">
-                  <div class="question-text">5. Que se produit-il si la condition d'une boucle 'while' en Python reste toujours VRAIE ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Si la condition d'un while reste toujours vraie, le programme s'exécute indéfiniment (boucle infinie).">
+                  <div class="question-text">5. Que se produit-il si la condition d'une boucle 'while' en Python reste
+                    toujours VRAIE ?</div>
                   <ul class="quiz-options">
                     <li>Le programme entre dans une boucle infinie</li>
                     <li>Le programme s'arrête au bout de 5 secondes</li>
@@ -752,20 +755,20 @@ else:
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

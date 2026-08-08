@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE (Python 3.10+) / IDLE
+**Environnement :** Python (Python 3.10+) / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -35,8 +35,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Mise en situation** | 15 min | Présenter un problème nécessitant 5 à 6 choix (ex: Menu d'options) et montrer la lourdeur d'un `Si` généralisé. | Analyser la complexité du code et exprimer le besoin d'une structure plus lisible. | ProProjecteur / Tableau |
 | **2. Synthèse Théorique** | 20 min | Explication de la syntaxe `Selon`, des règles sur le sélecteur (type scalaire) et de l'équivalent Python `match...case`. | Prise de notes et compréhension de la structure du `match...case`. | Fiche de cours |
-| **3. Activité Guidée** | 40 min | Présentation de l'activité pratique (Menu de conversion et de calculs). Encadrement de l'analyse, TDO et algorithme. | Analyse du problème, élaboration du TDO, écriture algorithmique et codage sur machine. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification des programmes sur machine, tests des cas hors limites (gestion de l'option par défaut `_`). | Validation du script, correction des erreurs de syntaxe Python 3.10. | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation de l'activité pratique (Menu de conversion et de calculs). Encadrement de l'analyse, TDO et algorithme. | Analyse du problème, élaboration du TDO, écriture algorithmique et codage sur machine. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification des programmes sur machine, tests des cas hors limites (gestion de l'option par défaut `_`). | Validation du script, correction des erreurs de syntaxe Python 3.10. | Python |
 
 ---
 
@@ -187,7 +187,7 @@ L'utilisateur saisit son choix (`choix` : 1 à 4) puis la taille du fichier en O
 
 ---
 
-#### **3. Algorithme (Conventions Ministérielles 2024-2025)**
+#### **3. AlgorithmeConventions**
 
 ```text
 ALGORITHME Convertisseur_Stockage
@@ -225,7 +225,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

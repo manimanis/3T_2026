@@ -242,7 +242,7 @@
                       <td>40 min</td>
                       <td>Encadrement du câblage du servomoteur SG90 (GPIO 13) et du buzzer (GPIO 12) sous Thonny.</td>
                       <td>Câblage, écriture des fonctions `poser_angle()` et alarme sonore sous Thonny.</td>
-                      <td>Thonny IDE / ESP32 / Servo SG90</td>
+                      <td>Python IDE / ESP32 / Servo SG90</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation &amp; Synthèse</span></td>
@@ -499,9 +499,10 @@ bip_alarme(440, 0.5)</code></pre>
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Actionneurs IoT (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Actionneurs IoT (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="Le rapport cyclique (Duty Cycle) d'un signal PWM définit le pourcentage de temps à l'état HAUT.">
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Le rapport cyclique (Duty Cycle) d'un signal PWM définit le pourcentage de temps à l'état HAUT.">
                   <div class="question-text">1. Qu'est-ce que le rapport cyclique (Duty Cycle) d'un signal PWM ?</div>
                   <ul class="quiz-options">
                     <li>Le pourcentage de temps où le signal est à l'état HAUT (3.3V) sur une période complète</li>
@@ -511,8 +512,10 @@ bip_alarme(440, 0.5)</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Un servomoteur SG90 s'oriente avec précision sur une plage d'angles variant de 0° à 180°.">
-                  <div class="question-text">2. Quelle est la plage d'orientation angulaire d'un servomoteur standard SG90 ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Un servomoteur SG90 s'oriente avec précision sur une plage d'angles variant de 0° à 180°.">
+                  <div class="question-text">2. Quelle est la plage d'orientation angulaire d'un servomoteur standard
+                    SG90 ?</div>
                   <ul class="quiz-options">
                     <li>De 0° à 360° en continu</li>
                     <li>De 0° à 180°</li>
@@ -521,8 +524,10 @@ bip_alarme(440, 0.5)</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="La hauteur de note produite par un buzzer piézoélectrique dépend de la fréquence du signal PWM (Hz).">
-                  <div class="question-text">3. Quel paramètre PWM modifie la hauteur de note (fréquence sonore) émise par un buzzer ?</div>
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="La hauteur de note produite par un buzzer piézoélectrique dépend de la fréquence du signal PWM (Hz).">
+                  <div class="question-text">3. Quel paramètre PWM modifie la hauteur de note (fréquence sonore) émise
+                    par un buzzer ?</div>
                   <ul class="quiz-options">
                     <li>Le rapport cyclique (duty)</li>
                     <li>La tension de la batterie</li>
@@ -531,8 +536,10 @@ bip_alarme(440, 0.5)</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Un signal PWM de 50Hz (période 20ms) avec impulsion 1.5ms commande le servomoteur à 90°.">
-                  <div class="question-text">4. Quelle est la fréquence PWM standard requise pour piloter un servomoteur SG90 ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Un signal PWM de 50Hz (période 20ms) avec impulsion 1.5ms commande le servomoteur à 90°.">
+                  <div class="question-text">4. Quelle est la fréquence PWM standard requise pour piloter un servomoteur
+                    SG90 ?</div>
                   <ul class="quiz-options">
                     <li>50 Hz (Période de 20 ms)</li>
                     <li>1000 Hz (1 kHz)</li>
@@ -541,8 +548,10 @@ bip_alarme(440, 0.5)</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="PWM(Pin(4), freq=1000) configure un signal PWM à 1000Hz sur le GPIO 4 pour faire varier une LED.">
-                  <div class="question-text">5. Comment crée-t-on un objet PWM à 1000 Hz sur la broche GPIO 4 en MicroPython ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="PWM(Pin(4), freq=1000) configure un signal PWM à 1000Hz sur le GPIO 4 pour faire varier une LED.">
+                  <div class="question-text">5. Comment crée-t-on un objet PWM à 1000 Hz sur la broche GPIO 4 en
+                    MicroPython ?</div>
                   <ul class="quiz-options">
                     <li>pwm = PWM(Pin(4), freq=1000)</li>
                     <li>pwm = Pin(4).pwm(1000)</li>
@@ -553,20 +562,20 @@ bip_alarme(440, 0.5)</code></pre>
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

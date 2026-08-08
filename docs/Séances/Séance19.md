@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** MicroPython (Thonny IDE / Wokwi Simulator) & C++ (Arduino IDE)
+**Environnement :** MicroPython (Python IDE / Wokwi Simulator) & C++ (Arduino IDE)
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -39,7 +39,7 @@
 | Phase | Durée | Activité de l'Enseignant | Activité de l'Élève | Support / Outil |
 | --- | --- | --- | --- | --- |
 | **1. Présentation du Cahier des Charges** | 10 min | Présentation du projet *Smart Agro : Serre Intelligente Connectée Wi-Fi*. Explication des besoins d'arrosage et d'aération. | Prise de connaissance des spécifications et identification des broches GPIO attribuées. | Diaporama / ProProjecteur |
-| **2. Connexion Wi-Fi & Serveur HTTP** | 20 min | Démonstration du code d'association Wi-Fi (`network.WLAN`) et de création d'un socket HTTP sur le port 80 sous Thonny. | Configuration du SSID/Password Wi-Fi, téléversement du script et récupération de l'adresse IP de l'ESP32. | Thonny IDE / ESP32 |
+| **2. Connexion Wi-Fi & Serveur HTTP** | 20 min | Démonstration du code d'association Wi-Fi (`network.WLAN`) et de création d'un socket HTTP sur le port 80 sous Thonny. | Configuration du SSID/Password Wi-Fi, téléversement du script et récupération de l'adresse IP de l'ESP32. | Python IDE / ESP32 |
 | **3. Développement & Intégration sur Machine** | 45 min | Encadrement des élèves pour l'assemblage complet des capteurs (DHT11/LDR), actionneurs (Servo/Relais) et de la boucle de service HTTP. | Câblage sur breadboard, saisie des fonctions d'acquisition et de la page HTML embarquée, test d'accès smartphone. | ESP32, Breadboard, Capteurs, Smartphone |
 | **4. Démonstration & Validation (Recette)** | 15 min | Test et recette fonctionnelle des projets élèves : contrôle à distance via smartphone et vérification de la régulation auto. | Démonstration de l'arrosage/aération à distance depuis le smartphone et correction des éventuels d'erreurs. | Navigateur Smartphone |
 

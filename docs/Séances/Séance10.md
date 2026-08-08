@@ -8,7 +8,7 @@
 
 **Type d'activité :** Épreuve pratique individuelle sur machine
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -35,7 +35,7 @@ Cette épreuve de synthèse à mi-parcours permet d'évaluer individuellement le
 | **2. TDO & TDL** | • Tableau de déclaration des objets globaux et locaux complet.<br>
 
 <br>• Types de données corrects. | **/ 2 pts** |
-| **3. Algorithmes / Logique** | • Respect des conventions algorithmiques ministérielles (2024-2025).<br>
+| **3. Algorithmes / Logique** | • Respect des conventions.<br>
 
 <br>• Initialisations correctes des accumulateurs et extrémums. | **/ 5 pts** |
 | **4. Conduite sur Python** | • Utilisation obligatoire de la bibliothèque `numpy`.<br>
@@ -180,7 +180,7 @@ FIN
 
 ---
 
-### **IV. Code Python Complet (Thonny IDE)**
+### **IV. Code Python Complet (Python IDE)**
 
 ```python
 # =========================================================

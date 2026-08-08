@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -34,8 +34,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Rappel & Diagnostic** | 10 min | Rappel rapide des structures alternatives et itératives vues en 2ème année. | Participation orale, identification de la différence entre choix et répétition. | Tableau |
 | **2. Synthèse Théorique** | 25 min | Présentation des règles d'écriture des structures `Si` et `Pour` . Focus sur `range()`. | Prise de notes et analyse des exemples d'accumulation (somme/compteur). | ProProjecteur / Fiche |
-| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Calcul de primes et salaire). Encadrement de l'analyse et du TDO. | Rédaction de l'analyse, élaboration du TDO, écriture de l'algorithme et codage Python. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Test sur machine avec des jeux d'essais variés (ex: cas limites $N = 0$, valeurs négatives). | Validation du script Python, correction des erreurs d'indentation ou de bornes. | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Calcul de primes et salaire). Encadrement de l'analyse et du TDO. | Rédaction de l'analyse, élaboration du TDO, écriture de l'algorithme et codage Python. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Test sur machine avec des jeux d'essais variés (ex: cas limites $N = 0$, valeurs négatives). | Validation du script Python, correction des erreurs d'indentation ou de bornes. | Python |
 
 ---
 
@@ -223,7 +223,7 @@ Une entreprise commerciale calcule le **salaire mensuel net** de ses vendeurs su
 
 ---
 
-#### **3. Algorithme (Conventions Ministérielles 2024-2025)**
+#### **3. AlgorithmeConventions**
 
 ```text
 ALGORITHME Calcul_Salaire_Vendeur
@@ -258,7 +258,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

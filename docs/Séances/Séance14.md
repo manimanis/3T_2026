@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -34,8 +34,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème** | 10 min | Donner un tableau désordonné $T =$. Comment ordonner les cartes à jouer uniquement en comparant 2 cartes voisines ? | Proposer d'échanger les voisins s'ils sont mal placés et répéter. | Tableau |
 | **2. Synthèse Théorique** | 25 min | Explication du Tri à Bulles, rôles des boucles $i$ (passages) et $j$ (paires), et de la variable intermédiaire `aux`. | Prise de notes et simulation manuelle du 1er passage de tri au tableau. | ProProjecteur / Fiche |
-| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Classement d'un marathon sportif avec tableaux synchrones). | Rédaction du TDO/TDL, des algorithmes et codage sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification du tri sur machine. Inversion de la condition ($>$ vs $<$) pour tester le tri croissant et décroissant. | Validation du classement et correction des permutations d'indices. | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Classement d'un marathon sportif avec tableaux synchrones). | Rédaction du TDO/TDL, des algorithmes et codage sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification du tri sur machine. Inversion de la condition ($>$ vs $<$) pour tester le tri croissant et décroissant. | Validation du classement et correction des permutations d'indices. | Python |
 
 ---
 
@@ -209,7 +209,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

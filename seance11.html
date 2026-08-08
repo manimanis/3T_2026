@@ -166,7 +166,7 @@
                       <td>Résolution des activités : Simplification de fraction et Synchronisation de 2 lignes de bus
                         scolaire.</td>
                       <td>Analyse modulaire, TDO, algorithmes et codage sous Thonny Python.</td>
-                      <td>Thonny IDE</td>
+                      <td>Python IDE</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
@@ -174,7 +174,7 @@
                       <td>Vérification de la gestion des entiers $> 0$ et validation des fonctions modulaires `pgcd` et
                         `ppcm`.</td>
                       <td>Validation des scripts sur différents jeux d'essais et quiz d'auto-évaluation.</td>
-                      <td>Environnement Python</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -370,7 +370,7 @@
 
           <!-- Python Code Comparison -->
           <div class="code-container">
-            <div class="code-header"><span>Code Python Comparatif (À tester dans Thonny IDE)</span></div>
+            <div class="code-header"><span>Code Python Comparatif (À tester dans Python IDE)</span></div>
             <pre><code class="language-python"># 1. Méthode par Soustractions (Lente)
 def pgcd_soustractions(a, b):
     count = 0
@@ -584,7 +584,7 @@ FIN</code></pre>
 
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Implémentation Python Officielle (Thonny IDE)</span></div>
+                <div class="code-header"><span>Implémentation Python Officielle (Python IDE)</span></div>
                 <pre><code class="language-python"># 1. Fonction PGCD (Algorithme d'Euclide)
 def pgcd(a, b):
     while b != 0:
@@ -640,10 +640,12 @@ simplifier_fraction(num, den)</code></pre>
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – PGCD & PPCM (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – PGCD & PPCM (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="L'algorithme d'Euclide repose sur les restes successifs des divisions euclidiennes (A % B).">
-                  <div class="question-text">1. Sur quelle opération arithmétique repose l'algorithme d'Euclide efficace pour le calcul du PGCD ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="L'algorithme d'Euclide repose sur les restes successifs des divisions euclidiennes (A % B).">
+                  <div class="question-text">1. Sur quelle opération arithmétique repose l'algorithme d'Euclide efficace
+                    pour le calcul du PGCD ?</div>
                   <ul class="quiz-options">
                     <li>Le reste de la division entière (modulo %)</li>
                     <li>La soustraction répétée</li>
@@ -652,8 +654,10 @@ simplifier_fraction(num, den)</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Le PPCM s'obtient par la formule : PPCM(A, B) = (A * B) / PGCD(A, B).">
-                  <div class="question-text">2. Quelle formule lie le PPCM et le PGCD de deux entiers strictement positifs A et B ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Le PPCM s'obtient par la formule : PPCM(A, B) = (A * B) / PGCD(A, B).">
+                  <div class="question-text">2. Quelle formule lie le PPCM et le PGCD de deux entiers strictement
+                    positifs A et B ?</div>
                   <ul class="quiz-options">
                     <li>PPCM(A, B) = A + B - PGCD(A, B)</li>
                     <li>PPCM(A, B) = (A * B) // PGCD(A, B)</li>
@@ -662,7 +666,8 @@ simplifier_fraction(num, den)</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="Si le PGCD de deux nombres A et B est 1, les deux nombres sont dits premiers entre eux.">
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Si le PGCD de deux nombres A et B est 1, les deux nombres sont dits premiers entre eux.">
                   <div class="question-text">3. Que signifie la propriété : PGCD(A, B) = 1 ?</div>
                   <ul class="quiz-options">
                     <li>A et B sont égaux</li>
@@ -672,7 +677,8 @@ simplifier_fraction(num, den)</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="L'algorithme d'Euclide s'arrête lorsque le reste vaut 0; le PGCD est le dernier reste non nul.">
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="L'algorithme d'Euclide s'arrête lorsque le reste vaut 0; le PGCD est le dernier reste non nul.">
                   <div class="question-text">4. Quand s'arrête l'algorithme d'Euclide par modulo ?</div>
                   <ul class="quiz-options">
                     <li>Lorsque le reste de la division vaut 0</li>
@@ -682,7 +688,8 @@ simplifier_fraction(num, den)</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="17 et 5 n'ont aucun diviseur commun autre que 1, donc PGCD(17, 5) = 1.">
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="17 et 5 n'ont aucun diviseur commun autre que 1, donc PGCD(17, 5) = 1.">
                   <div class="question-text">5. Que vaut le PGCD(17, 5) ?</div>
                   <ul class="quiz-options">
                     <li>1</li>
@@ -694,20 +701,20 @@ simplifier_fraction(num, den)</code></pre>
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

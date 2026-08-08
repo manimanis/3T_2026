@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -37,8 +37,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Rappel & Problématisation** | 10 min | Rappeler la saisie d'un tableau et poser la question : Comment trouver la meilleure note d'une classe stockée dans un tableau ? | Proposer d'initialiser le max au 1er élément et de comparer avec les suivants. | Tableau |
 | **2. Synthèse Théorique** | 20 min | Présentation des schémas algorithmiques de cumul (somme/moyenne), de recherche du Max/Min et de comptage conditionnel. | Prise de notes et analyse des conditions d'initialisation (`somme ← 0`, `max ← T[0]`). | ProProjecteur / Fiche |
-| **3. Activité Guidée** | 45 min | Présentation de l'activité pratique intégrée (Analyse statistique des notes d'un devoir). Encadrement de l'analyse, TDO et algorithme. | Élaboration du TDO, rédaction de l'algorithme complet et codage sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification de la cohérence des résultats statistiques avec des jeux de données variés (ex: notes toutes égales). | Correction des initialisations erronées (ex: initialiser `max` à 0 au lieu de `T[0]`). | Environnement Python |
+| **3. Activité Guidée** | 45 min | Présentation de l'activité pratique intégrée (Analyse statistique des notes d'un devoir). Encadrement de l'analyse, TDO et algorithme. | Élaboration du TDO, rédaction de l'algorithme complet et codage sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification de la cohérence des résultats statistiques avec des jeux de données variés (ex: notes toutes égales). | Correction des initialisations erronées (ex: initialiser `max` à 0 au lieu de `T[0]`). | Python |
 
 ---
 
@@ -178,7 +178,7 @@ Le programme doit :
 
 ---
 
-#### **3. Algorithme (Conventions Ministérielles 2024-2025)**
+#### **3. AlgorithmeConventions**
 
 ```text
 ALGORITHME Analyse_Notes_Classe
@@ -240,7 +240,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

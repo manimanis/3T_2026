@@ -91,10 +91,8 @@
                 <div class="card-body">
                   <h4 class="h5 card-title text-primary"><i class="bi bi-book me-2"></i> A. Savoirs (Connaissances)</h4>
                   <ul class="list-custom mb-0">
-                    <li>Maîtriser la syntaxe algorithmique de la structure conditionnelle alternative
-                      (<code>Si ... Alors ... Sinon</code>) et généralisée (<code>Si ... Sinon Si ...</code>).</li>
-                    <li>Maîtriser la syntaxe de la structure répétitive bornée
-                      (<code>Pour ... De ... À ... Faire</code>).</li>
+                    <li>Maîtriser la syntaxe des structures conditionnelles.</li>
+                    <li>Maîtriser la syntaxe de la structure itérative complète (<code>Pour</code>).</li>
                     <li>Comprendre la fonction <code>range(début, fin + 1, pas)</code> en Python et la gestion des
                       accumulateurs (somme, produit) et compteurs.</li>
                   </ul>
@@ -156,7 +154,7 @@
                     <td>40 min</td>
                     <td>Présentation du problème (Calcul de primes et salaire). Encadrement du TDO.</td>
                     <td>Analyse, TDO, algorithme et codage Python.</td>
-                    <td>Thonny IDE</td>
+                    <td>Python IDE</td>
                   </tr>
                   <tr>
                     <td><span class="badge bg-success">4. Évaluation</span></td>
@@ -208,6 +206,19 @@ FinSi</code></pre>
                     <pre class="m-0"><code class="language-python">if condition:
     traitement</code></pre>
                   </div>
+                  <div class="p-3 border-top border-secondary border-opacity-25 bg-body-tertiary cond-code-cell">
+                    <small class="text-success fw-bold d-block mb-1"><i class="bi bi-lightbulb me-1"></i> Exemple
+                      concret</small>
+                    <small class="text-muted d-block m-1">Algorithme :</small>
+                    <pre class="m-0 mb-2"><code class="language-algorithm">Si note >= 10 Alors
+    Ecrire("Admis")
+FinSi</code></pre>
+                    <div class="cond-code-cell">
+                      <small class="text-muted d-block m-1">Python :</small>
+                      <pre class="m-0"><code class="language-python">if note >= 10:
+    print("Admis")</code></pre>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -238,6 +249,23 @@ FinSi</code></pre>
     traitement1
 else:
     traitement2</code></pre>
+                  </div>
+                  <div class="p-3 border-top border-secondary border-opacity-25 bg-body-tertiary cond-code-cell">
+                    <small class="text-primary fw-bold d-block mb-1"><i class="bi bi-lightbulb me-1"></i> Exemple
+                      concret</small>
+                    <small class="text-muted d-block mb-1">Algorithme :</small>
+                    <pre class="m-0 mb-2"><code class="language-algorithm">Si n mod 2 = 0 Alors
+    Ecrire("Pair")
+Sinon
+    Ecrire("Impair")
+FinSi</code></pre>
+                    <div class="cond-code-cell">
+                      <small class="text-muted d-block m-1">Python :</small>
+                      <pre class="m-0"><code class="language-python">if n % 2 == 0:
+    print("Pair")
+else:
+    print("Impair")</code></pre>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -274,6 +302,27 @@ elif condition2:
 else:
     traitementN</code></pre>
                   </div>
+                  <div class="p-3 border-top border-secondary border-opacity-25 bg-body-tertiary cond-code-cell">
+                    <small class="text-info fw-bold d-block mb-1"><i class="bi bi-lightbulb me-1"></i> Exemple
+                      concret</small>
+                    <small class="text-muted d-block mb-1">Algorithme :</small>
+                    <pre class="m-0 mb-2"><code class="language-algorithm">Si n > 0 Alors
+    Ecrire("Positif")
+Sinon Si n &lt; 0 Alors
+    Ecrire("Négatif")
+Sinon
+    Ecrire("Nul")
+FinSi</code></pre>
+                    <div class="cond-code-cell">
+                      <small class="text-muted d-block m-1">Python :</small>
+                      <pre class="m-0"><code class="language-python">if n > 0:
+    print("Positif")
+elif n &lt; 0:
+    print("Négatif")
+else:
+    print("Nul")</code></pre>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -289,7 +338,7 @@ else:
 
           <div class="row g-4 mb-4">
             <div class="col-md-6">
-              <div class="code-container">
+              <div class="code-container h-100 m-0">
                 <div class="code-header"><span>Algorithme</span></div>
                 <pre><code class="language-algorithm">Pour compteur de Début à Fin [Pas = v_pas] Faire
     Traitement
@@ -297,7 +346,7 @@ Fin Pour</code></pre>
               </div>
             </div>
             <div class="col-md-6">
-              <div class="code-container">
+              <div class="code-container h-100 m-0">
                 <div class="code-header"><span>Python (Fonction range)</span></div>
                 <pre><code class="language-python">for compteur in range(début, fin + 1, pas):
     traitement</code></pre>
@@ -360,12 +409,14 @@ Fin Pour</code></pre>
                   <p class="small text-main mb-3">
                     Servant à <strong>dénombrer</strong> des éléments ou des événements satisfaisant une condition.
                   </p>
-                  <div class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
+                  <div
+                    class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
                     <div><span class="fw-semibold text-primary">Initialisation :</span> <code>c &larr; 0</code></div>
                     <div><span class="fw-semibold text-primary">Mise à jour :</span> <code>c &larr; c + 1</code></div>
                   </div>
                   <div class="small mb-3">
-                    <strong class="text-primary">Principe :</strong> L'élément neutre du comptage est <code>0</code>. À chaque élément valide trouvé, on ajoute <code>1</code> au compteur.
+                    <strong class="text-primary">Principe :</strong> L'élément neutre du comptage est <code>0</code>. À
+                    chaque élément valide trouvé, on ajoute <code>1</code> au compteur.
                   </div>
                   <div class="border-top border-secondary border-opacity-25 pt-2">
                     <span class="badge bg-primary bg-opacity-25 text-primary mb-1">Exemple Concret :</span>
@@ -391,12 +442,17 @@ for i in range(1, n + 1):
                   <p class="small text-main mb-3">
                     Servant à <strong>cumuler la somme</strong> de plusieurs valeurs successives.
                   </p>
-                  <div class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
-                    <div><span class="fw-semibold text-success">Initialisation :</span> <code>somme &larr; 0</code></div>
-                    <div><span class="fw-semibold text-success">Mise à jour :</span> <code>somme &larr; somme + val</code></div>
+                  <div
+                    class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
+                    <div><span class="fw-semibold text-success">Initialisation :</span> <code>somme &larr; 0</code>
+                    </div>
+                    <div><span class="fw-semibold text-success">Mise à jour :</span>
+                      <code>somme &larr; somme + val</code>
+                    </div>
                   </div>
                   <div class="small mb-3">
-                    <strong class="text-success">Principe :</strong> L'élément neutre de l'addition est <code>0</code>. À chaque tour, on ajoute la nouvelle valeur à la somme totale accumulée.
+                    <strong class="text-success">Principe :</strong> L'élément neutre de l'addition est <code>0</code>.
+                    À chaque tour, on ajoute la nouvelle valeur à la somme totale accumulée.
                   </div>
                   <div class="border-top border-secondary border-opacity-25 pt-2">
                     <span class="badge bg-success bg-opacity-25 text-success mb-1">Exemple Concret :</span>
@@ -421,12 +477,14 @@ for i in range(1, n + 1):
                   <p class="small text-main mb-3">
                     Servant à <strong>multiplier</strong> successivement une série de facteurs (ex: Factorielle).
                   </p>
-                  <div class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
+                  <div
+                    class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
                     <div><span class="fw-semibold text-warning">Initialisation :</span> <code>p &larr; 1</code></div>
                     <div><span class="fw-semibold text-warning">Mise à jour :</span> <code>p &larr; p * val</code></div>
                   </div>
                   <div class="small mb-3">
-                    <strong class="text-warning">Principe :</strong> L'élément neutre de la multiplication est <code>1</code> (initialiser à 0 annulerait tout le produit !).
+                    <strong class="text-warning">Principe :</strong> L'élément neutre de la multiplication est
+                    <code>1</code> (initialiser à 0 annulerait tout le produit !).
                   </div>
                   <div class="border-top border-secondary border-opacity-25 pt-2">
                     <span class="badge bg-warning bg-opacity-25 text-warning mb-1">Exemple Concret :</span>
@@ -439,44 +497,6 @@ for i in range(1, n + 1):
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- Tableau récapitulatif comparatif -->
-          <div class="table-responsive mb-3">
-            <table class="table table-custom">
-              <thead>
-                <tr>
-                  <th>Motif</th>
-                  <th>Valeur Initiale (Neutre)</th>
-                  <th>Formule Algorithmique</th>
-                  <th>Code Python (Conventions)</th>
-                  <th>Exemple d'utilisation</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Compteur</strong></td>
-                  <td><code>0</code></td>
-                  <td><code>c &larr; c + 1</code></td>
-                  <td><code>c = c + 1</code></td>
-                  <td>Compter les nombres pairs entre 1 et N</td>
-                </tr>
-                <tr>
-                  <td><strong>Accumulateur</strong></td>
-                  <td><code>0</code></td>
-                  <td><code>somme &larr; somme + val</code></td>
-                  <td><code>somme = somme + i</code></td>
-                  <td>Calculer la somme des entiers de 1 à N</td>
-                </tr>
-                <tr>
-                  <td><strong>Produit</strong></td>
-                  <td><code>1</code> (Piège si 0 !)</td>
-                  <td><code>p &larr; p * val</code></td>
-                  <td><code>fact = fact * i</code></td>
-                  <td>Calculer la factorielle de N (N! = 1 * 2 * ... * N)</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </section>
       </article>
@@ -537,7 +557,7 @@ print("Somme des nombres pairs =", somme)</code></pre>
             </p>
             <ul class="mb-0 small">
               <li>Le salaire de base quotidien est de <strong>35.000 DT</strong>.</li>
-              <li>Pour chaque jour i (1 <= i <= N), l'utilisateur saisit le nombre de ventes réalisées.</li>
+              <li>Pour chaque jour i (1 &lt;= i &lt;= N), l'utilisateur saisit le nombre de ventes réalisées.</li>
               <li>Si le nombre de ventes d'un jour est <strong>supérieur à 10</strong>, le vendeur touche une
                 <strong>prime journalière de 15.000 DT</strong>.
               </li>
@@ -705,7 +725,7 @@ FIN</code></pre>
               <h2 class="accordion-header" id="headingPy">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                   data-bs-target="#collapsePy">
-                  <i class="bi bi-filetype-py me-2"></i> 4. Implémentation Python (Thonny IDE)
+                  <i class="bi bi-filetype-py me-2"></i> 4. Implémentation Python (Python IDE)
                 </button>
               </h2>
               <div id="collapsePy" class="accordion-collapse collapse" data-bs-parent="#accordionSalaire">
@@ -755,31 +775,38 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
           <!-- Simulateur Interactif Vue.js -->
           <div id="app" class="card card-custom mt-4">
             <div class="card-header-custom d-flex justify-content-between align-items-center">
-              <h4 class="h6 mb-0 text-success"><i class="bi bi-play-circle-fill me-2"></i> Simulateur en direct :
-                Salaire & Primes Vendeur</h4>
+              <h4 class="h6 mb-0 text-success">
+                <i class="bi bi-play-circle-fill me-2"></i> Simulateur en direct : Salaire & Primes Vendeur
+              </h4>
               <span class="badge bg-success bg-opacity-25 text-success">Interactif</span>
             </div>
             <div class="card-body">
               <div class="row g-3 align-items-center mb-3">
                 <div class="col-md-4">
                   <label class="form-label small fw-bold">Nombre de jours ouvrables (N) :</label>
-                  <input type="number" class="form-control form-control-sm" v-model.number="simJours" min="1" max="15">
+                  <input type="number" class="form-control form-control-sm" v-model.number.lazy="simJours" min="1"
+                    max="15">
                 </div>
                 <div class="col-md-8">
-                  <p class="small text-muted mb-0">Saisissez les ventes journalières ci-dessous pour calculer les primes
-                    automatiques :</p>
+                  <p class="small text-muted mb-0">
+                    Saisissez les ventes journalières ci-dessous pour calculer les primes automatiques :
+                  </p>
                 </div>
               </div>
 
               <!-- Jours Inputs -->
               <div class="row g-2 mb-3">
+                <!-- On boucle sur joursAffiches et on attache :key="item.id" -->
                 <div v-for="(item, idx) in simVentesJour" :key="item.id" class="col-6 col-sm-4 col-md-2">
-                  <div class="p-2 border border-secondary border-opacity-25 rounded bg-subtle text-center">
+                  <div class="p-2 border border-secondary border-opacity-25 rounded bg-subtle text-center"
+                    v-if="idx < simJours">
                     <small class="d-block text-muted">Jour {{ idx + 1 }}</small>
+                    <!-- v-model lié à la propriété d'objet item.ventes -->
                     <input type="number" class="form-control form-control-sm text-center font-mono mt-1"
                       v-model.number="item.ventes" min="0">
-                    <span v-if="item.ventes > 10" class="badge bg-success mt-1" style="font-size: 0.65rem;">+15
-                      DT</span>
+                    <span v-if="item?.ventes > 10" class="badge bg-success mt-1" style="font-size: 0.65rem;">
+                      +15 DT
+                    </span>
                   </div>
                 </div>
               </div>
@@ -806,7 +833,6 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
               </div>
             </div>
           </div>
-
         </section>
       </article>
 
@@ -883,19 +909,18 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
               </div>
             </div>
           </div>
-  </div>
-  </section>
-  </article>
+        </section>
+      </article>
 
-  </main>
+    </main>
 
-  <!-- Footer -->
-  <footer class="footer-custom">
-    <div class="container text-center">
-      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+      </div>
+    </footer>
   </div>
 
   <!-- JS Assets -->

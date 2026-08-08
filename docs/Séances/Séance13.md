@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -39,8 +39,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème** | 10 min | Demander comment retrouver un numéro de téléphone à partir d'un identifiant parmi $N$ élèves enregistrés. | Proposer de parcourir la liste case par case jusqu'à trouver le numéro. | Tableau |
 | **2. Synthèse Théorique** | 25 min | Explication du schéma de la boucle `Tant que` avec l'indicateur `trouve`. Présentation de l'algorithme sans `break`. | Prise de notes et traçage manuel de la recherche sur un exemple avec élément présent / absent. | ProProjecteur / Fiche |
-| **3. Activité Guidée** | 40 min | Présentation de l'activité pratique (Système de recherche dans un registre d'élèves avec tableaux parallèles). | Élaboration du TDO/TDL, écriture des algorithmes et codage sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification sur machine du bon retour de la position (`pos`) ou du code d'absence (`-1`). | Correction des erreurs d'indexation et validation des tests. | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation de l'activité pratique (Système de recherche dans un registre d'élèves avec tableaux parallèles). | Élaboration du TDO/TDL, écriture des algorithmes et codage sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification sur machine du bon retour de la position (`pos`) ou du code d'absence (`-1`). | Correction des erreurs d'indexation et validation des tests. | Python |
 
 ---
 
@@ -259,7 +259,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

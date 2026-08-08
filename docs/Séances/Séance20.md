@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min) ➔ [60 min Épreuve sur machine + 30 min Bilan Annuel]
 
-**Environnement :** Thonny Python IDE / MicroPython / ESP32
+**Environnement :** Python / MicroPython / ESP32
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -35,7 +35,7 @@
 | Phase | Durée | Activité de l'Enseignant | Activité de l'Élève | Support / Outil |
 | --- | --- | --- | --- | --- |
 | **1. Lancement de l'Épreuve Bilan** | 05 min | Distribution des sujets d'évaluation pratique et rappel des consignes d'examen sur machine. | Prise de connaissance du sujet et ouverture de l'environnement Thonny. | Sujet d'Épreuve imprimé / Postes |
-| **2. Épreuve Pratique Individuelle** | 55 min | Surveillance, gestion du chronomètre et assistance technique de premier niveau (problème matériel). | Résolution sur machine des Dossiers 1 (Python Modulaire) et 2 (IoT ESP32). | Micro-ordinateur, Thonny IDE, ESP32 |
+| **2. Épreuve Pratique Individuelle** | 55 min | Surveillance, gestion du chronomètre et assistance technique de premier niveau (problème matériel). | Résolution sur machine des Dossiers 1 (Python Modulaire) et 2 (IoT ESP32). | Micro-ordinateur, Python IDE, ESP32 |
 | **3. Bilan Annuel & Auto-évaluation** | 30 min | Correction collective des points clés, présentation de la synthèse des 6 modules de l'année et échange d'orientation Bac. | Auto-évaluation de la prestation, prise de notes des conseils et bilan général de l'année. | Grille d'évaluation & Tableau |
 
 ---

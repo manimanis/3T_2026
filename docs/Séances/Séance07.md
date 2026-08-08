@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -38,8 +38,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème** | 10 min | Présenter un programme monolithe de 60 lignes mélangées. Montrer la difficulté de relecture et de correction. | Constate le manque de structure et exprime le besoin de diviser le code en tâches. | Tableau / ProProjecteur |
 | **2. Synthèse Théorique** | 25 min | Explication de la modularité, des fonctions (`Retourner` / `return`) et des procédures. Distinction `print` vs `return`. | Prise de notes et assimilation des syntaxes officielles de déclaration et d'appel. | Fiche de cours |
-| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Analyse géométrique d'un rectangle). Encadrement de la décomposition modulaire. | Rédaction des analyses des modules, TDO/TDL, algorithmes et codage sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification des appels de modules, détection des erreurs de retour (`NoneType`) et de concordance de paramètres. | Correction des erreurs d'appel et validation de l'exécution modulaire. | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Analyse géométrique d'un rectangle). Encadrement de la décomposition modulaire. | Rédaction des analyses des modules, TDO/TDL, algorithmes et codage sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification des appels de modules, détection des erreurs de retour (`NoneType`) et de concordance de paramètres. | Correction des erreurs d'appel et validation de l'exécution modulaire. | Python |
 
 ---
 
@@ -253,7 +253,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

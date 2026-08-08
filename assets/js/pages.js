@@ -779,10 +779,11 @@ window.toggleAct1Correction = function (btn) {
   if (!btn) return;
   const colContainer = btn.closest('.col-md-6') || btn.parentElement;
   if (!colContainer) return;
-  const targetCol = colContainer.nextElementSibling || colContainer.parentElement.querySelector('.correction-block');
-  if (targetCol) {
-    const isHidden = targetCol.style.display === 'none' || targetCol.style.display === '';
-    targetCol.style.display = isHidden ? 'block' : 'none';
+  const parent = colContainer.parentElement || document;
+  const correctionTarget = parent.querySelector('.correction-block') || colContainer.nextElementSibling;
+  if (correctionTarget) {
+    const isHidden = correctionTarget.style.display === 'none' || getComputedStyle(correctionTarget).display === 'none';
+    correctionTarget.style.display = isHidden ? 'block' : 'none';
     btn.textContent = isHidden ? 'Masquer la correction' : 'Afficher la correction';
     if (isHidden && typeof window.safeHighlightAll === 'function') {
       window.safeHighlightAll();

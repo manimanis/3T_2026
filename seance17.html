@@ -217,7 +217,7 @@
                       <td>Encadrement des montages LDR (GPIO 34) et DHT11 (GPIO 15) et codage sous Thonny.</td>
                       <td>Réalisation des câblages, écriture des scripts MicroPython et affichage des données en direct.
                       </td>
-                      <td>Thonny IDE / Wokwi / ESP32</td>
+                      <td>Python IDE / Wokwi / ESP32</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation &amp; Synthèse</span></td>
@@ -506,10 +506,12 @@ while True:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Capteurs IoT (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Capteurs IoT (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="Le convertisseur ADC 12 bits de l'ESP32 convertit une tension (0..3.3V) en valeur numérique de 0 à 4095.">
-                  <div class="question-text">1. Quelle est la résolution numérique du convertisseur Analogique-Numérique (ADC) 12 bits de l'ESP32 ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Le convertisseur ADC 12 bits de l'ESP32 convertit une tension (0..3.3V) en valeur numérique de 0 à 4095.">
+                  <div class="question-text">1. Quelle est la résolution numérique du convertisseur Analogique-Numérique
+                    (ADC) 12 bits de l'ESP32 ?</div>
                   <ul class="quiz-options">
                     <li>Valeurs entières de 0 à 4095 (2^12 = 4096 niveaux)</li>
                     <li>Valeurs de 0 à 1023 (10 bits)</li>
@@ -518,8 +520,10 @@ while True:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Le capteur LDR (Photo-résistance) voit sa résistance varier en fonction de l'intensité lumineuse.">
-                  <div class="question-text">2. Quel composant utilise-t-on pour mesurer l'intensité lumineuse d'un environnement ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Le capteur LDR (Photo-résistance) voit sa résistance varier en fonction de l'intensité lumineuse.">
+                  <div class="question-text">2. Quel composant utilise-t-on pour mesurer l'intensité lumineuse d'un
+                    environnement ?</div>
                   <ul class="quiz-options">
                     <li>Un capteur DHT11</li>
                     <li>Une photo-résistance LDR</li>
@@ -528,7 +532,8 @@ while True:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="Le capteur numérique DHT11 fournit la température (en °C) et l'humidité relative (en %).">
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Le capteur numérique DHT11 fournit la température (en °C) et l'humidité relative (en %).">
                   <div class="question-text">3. Quelles grandeurs physiques fournit le capteur numérique DHT11 ?</div>
                   <ul class="quiz-options">
                     <li>La lumière et le son</li>
@@ -538,8 +543,10 @@ while True:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="ADC(Pin(34)) initialise la lecture analogique sur le GPIO 34.">
-                  <div class="question-text">4. Comment configure-t-on la lecture analogique de la LDR sur le GPIO 34 en MicroPython ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="ADC(Pin(34)) initialise la lecture analogique sur le GPIO 34.">
+                  <div class="question-text">4. Comment configure-t-on la lecture analogique de la LDR sur le GPIO 34 en
+                    MicroPython ?</div>
                   <ul class="quiz-options">
                     <li>adc = ADC(Pin(34))</li>
                     <li>adc = ReadAnalog(34)</li>
@@ -548,8 +555,10 @@ while True:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Une grandeur physique continue (lumière, température) est dite analogique avant sa numérisation.">
-                  <div class="question-text">5. Comment qualifie-t-on un signal électrique qui varie de manière continue dans le temps (ex: tension LDR) ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Une grandeur physique continue (lumière, température) est dite analogique avant sa numérisation.">
+                  <div class="question-text">5. Comment qualifie-t-on un signal électrique qui varie de manière continue
+                    dans le temps (ex: tension LDR) ?</div>
                   <ul class="quiz-options">
                     <li>Signal analogique</li>
                     <li>Signal numérique binaire</li>
@@ -560,20 +569,20 @@ while True:
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

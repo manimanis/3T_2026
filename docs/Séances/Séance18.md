@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** MicroPython (Thonny IDE / Wokwi Simulator) & C++ (Arduino IDE)
+**Environnement :** MicroPython (Python IDE / Wokwi Simulator) & C++ (Arduino IDE)
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -44,7 +44,7 @@
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème & Notion d'Actionneur** | 15 min | Présentation de mécanismes automatisés (Barrière automatique de parking, Climatisation autorégulée). Identification des actionneurs (Servo, Buzzer, LED). | Identification du rôle de l'actionneur et de la nécessité de convertir une consigne logique en action physique. | Vidéo / Diaporama |
 | **2. Théorie PWM & Servomoteur SG90** | 20 min | Explication de la PWM (Rapport cyclique $0\dots1023$, fréquence $50\,\text{Hz}$) et calcul des durées d'impulsion pour le servomoteur SG90 ($0^\circ$, $90^\circ$, $180^\circ$). | Prise de notes et calcul des valeurs de Duty Cycle pour la commande angulaire du servomoteur. | Tableau / Fiche élève |
-| **3. Travaux Pratiques sur Machine** | 40 min | Encadrement des élèves pour le montage et le codage sous Thonny :<br>1. Balayage du servomoteur SG90 sur **GPIO 13**.<br>2. Alarme sonore Buzzer sur **GPIO 12**.<br>3. Boucle de régulation Capteur DHT11 ➔ Actionneurs. | Réalisation des montages sur breadboard, saisie des scripts MicroPython et test des mouvements/sons. | Thonny IDE, ESP32, Servo SG90, Buzzer |
+| **3. Travaux Pratiques sur Machine** | 40 min | Encadrement des élèves pour le montage et le codage sous Thonny :<br>1. Balayage du servomoteur SG90 sur **GPIO 13**.<br>2. Alarme sonore Buzzer sur **GPIO 12**.<br>3. Boucle de régulation Capteur DHT11 ➔ Actionneurs. | Réalisation des montages sur breadboard, saisie des scripts MicroPython et test des mouvements/sons. | Python IDE, ESP32, Servo SG90, Buzzer |
 | **4. Synthèse & Évaluation Formative** | 15 min | Quiz de validation et défi pratique (Système de barrière intelligente avec détection et alarme). | Réponse au quiz et assemblage du script global de régulation. | Environnement de TP |
 
 ---

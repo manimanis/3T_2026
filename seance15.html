@@ -97,7 +97,8 @@
                   <ul class="list-custom mb-0">
                     <li>Mobiliser et synthétiser l'ensemble des notions de programmation modulaire du Module 4.</li>
                     <li>Maîtriser la gestion des menus d'application console via la structure
-                      <code>match ... case</code>.</li>
+                      <code>match ... case</code>.
+                    </li>
                     <li>Consolider les algorithmes fondamentaux : Recherche Séquentielle, Tri à Bulles Synchrone et
                       Statistiques.</li>
                   </ul>
@@ -161,15 +162,15 @@
                       <td><span class="badge bg-success">3. Développement Guidé</span></td>
                       <td>50 min</td>
                       <td>Suivi individuel, assistance au codage des modules et du menu sous Thonny.</td>
-                      <td>Écriture des modules, assemblage et tests pas-à-pas sous Thonny IDE.</td>
-                      <td>Thonny IDE</td>
+                      <td>Écriture des modules, assemblage et tests pas-à-pas sous Python IDE.</td>
+                      <td>Python IDE</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation &amp; Recette</span></td>
                       <td>15 min</td>
                       <td>Recette fonctionnelle sur machine (validation des cas d'erreur et menus).</td>
                       <td>Démonstration de l'application et correction des bugs.</td>
-                      <td>Environnement Python</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -301,7 +302,7 @@
                 class="simulator-val-box bg-dark text-light border-secondary border-opacity-50 font-mono small text-start p-3 mb-4 shadow-sm"
                 style="min-height: 180px;">
                 <div class="text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2">
-                  <i class="bi bi-terminal me-2 text-success"></i> Terminal Python Thonny IDE — Sortie Console GIES
+                  <i class="bi bi-terminal me-2 text-success"></i> Terminal Python Python IDE — Sortie Console GIES
                 </div>
                 <div v-for="(line, idx) in consoleLogs" :key="idx" class="mb-1"
                   :class="line.includes('===') ? 'text-purple fw-bold' : (line.includes('✅') ? 'text-success fw-bold' : (line.includes('❌') ? 'text-danger fw-bold' : 'text-light'))">
@@ -344,7 +345,7 @@
         <h2><i class="bi bi-code-square text-primary me-2"></i> Implementation Python Officielle (GIES)</h2>
 
         <section id="section-code-python" class="section-pane">
-          <h3>Code Source Complet (Format Thonny IDE)</h3>
+          <h3>Code Source Complet (Format Python IDE)</h3>
 
           <div class="code-container">
             <div class="code-header"><span>Code Python Officiel GIES (Intégration du Menu match...case)</span></div>
@@ -513,10 +514,12 @@ while choix != 6:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Mini-Projet Python (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Mini-Projet Python (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="Une application modulaire d'envergure intègre la validation de saisie, les structures de données (tableaux) et les algorithmes de recherche/tri.">
-                  <div class="question-text">1. Quelles compétences sont synthétisées lors du développement d'un mini-projet modulaire Python ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Une application modulaire d'envergure intègre la validation de saisie, les structures de données (tableaux) et les algorithmes de recherche/tri.">
+                  <div class="question-text">1. Quelles compétences sont synthétisées lors du développement d'un
+                    mini-projet modulaire Python ?</div>
                   <ul class="quiz-options">
                     <li>Modularité, structures de données, contrôle de saisie et algorithmes de traitement</li>
                     <li>Seulement le dessin de graphiques</li>
@@ -525,8 +528,10 @@ while choix != 6:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Le menu principal répète l'affichage des choix tant que l'utilisateur n'a pas sélectionné l'option de sortie.">
-                  <div class="question-text">2. Quelle structure algorithmique orchestre le menu principal d'une application interactive ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Le menu principal répète l'affichage des choix tant que l'utilisateur n'a pas sélectionné l'option de sortie.">
+                  <div class="question-text">2. Quelle structure algorithmique orchestre le menu principal d'une
+                    application interactive ?</div>
                   <ul class="quiz-options">
                     <li>Une boucle Pour s'exécutant 10 fois</li>
                     <li>Une boucle Répéter...Jusqu'à (ou Tant Que) contrôlant le choix de l'utilisateur</li>
@@ -535,8 +540,10 @@ while choix != 6:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="Le découpage en modules garantit que chaque fonction réalise une tâche précise et autonome.">
-                  <div class="question-text">3. Pourquoi préconise-t-on de limiter chaque sous-programme à une seule tâche bien définie ?</div>
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Le découpage en modules garantit que chaque fonction réalise une tâche précise et autonome.">
+                  <div class="question-text">3. Pourquoi préconise-t-on de limiter chaque sous-programme à une seule
+                    tâche bien définie ?</div>
                   <ul class="quiz-options">
                     <li>Pour consommer plus de mémoire</li>
                     <li>Pour cacher le code au professeur</li>
@@ -545,18 +552,23 @@ while choix != 6:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="La réutilisabilité permet d'appeler les mêmes modules de tri ou de recherche dans différents projets.">
-                  <div class="question-text">4. Quel est l'un des bénéfices majeurs de la réutilisabilité du code modulaire ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="La réutilisabilité permet d'appeler les mêmes modules de tri ou de recherche dans différents projets.">
+                  <div class="question-text">4. Quel est l'un des bénéfices majeurs de la réutilisabilité du code
+                    modulaire ?</div>
                   <ul class="quiz-options">
-                    <li>Réutiliser des modules validés (ex: Tri à bulles, Recherche) dans d'autres projets sans tout réécrire</li>
+                    <li>Réutiliser des modules validés (ex: Tri à bulles, Recherche) dans d'autres projets sans tout
+                      réécrire</li>
                     <li>Accélérer l'affichage de l'écran</li>
                     <li>Empêcher l'exécution des boucles</li>
                     <li>Créer des variables sans type</li>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Un jeu d'essai comporte des cas normaux, des cas limites (tableaux vides, min/max) et des données invalides.">
-                  <div class="question-text">5. Que doit comporter un jeu d'essai complet pour valider une application modulaire ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Un jeu d'essai comporte des cas normaux, des cas limites (tableaux vides, min/max) et des données invalides.">
+                  <div class="question-text">5. Que doit comporter un jeu d'essai complet pour valider une application
+                    modulaire ?</div>
                   <ul class="quiz-options">
                     <li>Des données standards, des valeurs limites et des saisies erronées</li>
                     <li>Uniquement des nombres positifs</li>
@@ -567,20 +579,20 @@ while choix != 6:
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

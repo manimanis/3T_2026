@@ -163,14 +163,14 @@
                       <td>40 min</td>
                       <td>Annuaire de Contact des Élèves (Tableaux parallèles `IDs` et `Moyennes`).</td>
                       <td>Élaboration du TDO/TDL, algorithme modulaire et codage sous Thonny.</td>
-                      <td>Thonny IDE</td>
+                      <td>Python IDE</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
                       <td>15 min</td>
                       <td>Vérification du retour de la position (`pos`) ou du code sentinelle d'absence (`-1`).</td>
                       <td>Correction des erreurs d'indexation et quiz d'auto-évaluation.</td>
-                      <td>Environnement Python</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -468,7 +468,7 @@ FIN</code></pre>
 
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Implémentation Python Officielle (Thonny IDE)</span></div>
+                <div class="code-header"><span>Implémentation Python Officielle (Python IDE)</span></div>
                 <pre><code class="language-python">from numpy import array
 
 def recherche_sequentielle(T, n, val):
@@ -525,10 +525,12 @@ else:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Recherche Séquentielle (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Recherche Séquentielle (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="La recherche séquentielle parcourt le tableau élément par élément de l'indice 0 jusqu'à trouver l'élément ou atteindre la fin.">
-                  <div class="question-text">1. Quel est le principe de la recherche séquentielle dans un tableau ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="La recherche séquentielle parcourt le tableau élément par élément de l'indice 0 jusqu'à trouver l'élément ou atteindre la fin.">
+                  <div class="question-text">1. Quel est le principe de la recherche séquentielle dans un tableau ?
+                  </div>
                   <ul class="quiz-options">
                     <li>Examiner chaque élément séquentiellement du début à la fin</li>
                     <li>Diviser le tableau en deux à chaque étape</li>
@@ -537,8 +539,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Dans le pire des cas (élément absent ou à la fin), on effectue N comparaisons.">
-                  <div class="question-text">2. Dans un tableau non trié de N éléments, combien de comparaisons sont effectuées au maximum ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Dans le pire des cas (élément absent ou à la fin), on effectue N comparaisons.">
+                  <div class="question-text">2. Dans un tableau non trié de N éléments, combien de comparaisons sont
+                    effectuées au maximum ?</div>
                   <ul class="quiz-options">
                     <li>1 comparaison</li>
                     <li>N comparaisons</li>
@@ -547,8 +551,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="Renvoyer -1 ou False indique clairement que l'élément n'existe pas dans le tableau (indices 0..N-1).">
-                  <div class="question-text">3. Quelle valeur de retour indique traditionnellement que l'élément recherché n'a pas été trouvé ?</div>
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Renvoyer -1 ou False indique clairement que l'élément n'existe pas dans le tableau (indices 0..N-1).">
+                  <div class="question-text">3. Quelle valeur de retour indique traditionnellement que l'élément
+                    recherché n'a pas été trouvé ?</div>
                   <ul class="quiz-options">
                     <li>0</li>
                     <li>N</li>
@@ -557,8 +563,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="La boucle de recherche s'arrête dès que l'élément est trouvé (Trouve == Vrai) ou que la fin du tableau est atteinte (i >= N).">
-                  <div class="question-text">4. Quelle est la condition d'arrêt optimale d'une boucle de recherche séquentielle ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="La boucle de recherche s'arrête dès que l'élément est trouvé (Trouve == Vrai) ou que la fin du tableau est atteinte (i >= N).">
+                  <div class="question-text">4. Quelle est la condition d'arrêt optimale d'une boucle de recherche
+                    séquentielle ?</div>
                   <ul class="quiz-options">
                     <li>(Trouve == Vrai) OU (i >= N)</li>
                     <li>i == N</li>
@@ -567,8 +575,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="La recherche séquentielle s'applique sur tout tableau, trié ou non trié.">
-                  <div class="question-text">5. Le tableau doit-il être obligatoirement trié pour effectuer une recherche séquentielle ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="La recherche séquentielle s'applique sur tout tableau, trié ou non trié.">
+                  <div class="question-text">5. Le tableau doit-il être obligatoirement trié pour effectuer une
+                    recherche séquentielle ?</div>
                   <ul class="quiz-options">
                     <li>Non, elle fonctionne sur n'importe quel tableau (trié ou non trié)</li>
                     <li>Oui, le tableau doit être trié en ordre croissant</li>
@@ -579,20 +589,20 @@ else:
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

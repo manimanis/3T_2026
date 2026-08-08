@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -37,8 +37,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème** | 10 min | Demander comment vérifier si $N = 1000000007$ est premier sans faire 1 milliard de divisions. | Comprendre que la recherche s'arrête à $\sqrt{N} \approx 31622$. | Tableau |
 | **2. Synthèse Théorique** | 25 min | Présentation de la fonction `est_premier` optimisée et de la boucle de décomposition en facteurs premiers. | Prise de notes et traçage manuel de la décomposition de $N = 60$ ($2^2 \times 3 \times 5$). | ProProjecteur / Fiche |
-| **3. Activité Guidée** | 40 min | Présentation de l'activité pratique (Analyseur Arithmétique d'un Entier). Encadrement de l'analyse et du TDO. | Écriture des modules `est_premier`, `decomposer` et codage sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification de la gestion des cas limites ($N \le 1$, $N = 2$) et du test de sortie de boucle sans `break`. | Validation du programme avec des nombres premiers et composés variés. | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation de l'activité pratique (Analyseur Arithmétique d'un Entier). Encadrement de l'analyse et du TDO. | Écriture des modules `est_premier`, `decomposer` et codage sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification de la gestion des cas limites ($N \le 1$, $N = 2$) et du test de sortie de boucle sans `break`. | Validation du programme avec des nombres premiers et composés variés. | Python |
 
 ---
 
@@ -278,7 +278,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

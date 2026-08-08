@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** MicroPython (Thonny IDE / Wokwi Simulator) & C++ (Arduino IDE)
+**Environnement :** MicroPython (Python IDE / Wokwi Simulator) & C++ (Arduino IDE)
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -41,7 +41,7 @@
 | --- | --- | --- | --- | --- |
 | **1. Classification des Capteurs** | 15 min | Présentation de capteurs réels (LDR, DHT11, Bouton, Infrarouge). Explication de la différence entre signal analogique continu et signal numérique binaire. | Classement des capteurs présentés en 2 catégories (Analogique vs Numérique). | Diaporama / Matériel de démonstration |
 | **2. Le Convertisseur ADC 12 bits de l'ESP32** | 20 min | Démonstration théorique et calcul de la résolution ADC 12 bits ($2^{12} = 4096$). Présentation de la formule de calcul de la tension $V_{in}$. | Résolution d'exercices d'application (convertir $N_{ADC} = 2048$ et $N_{ADC} = 4095$ en Volts). | Tableau / Fiche élève |
-| **3. Travaux Pratiques sur Machine** | 40 min | Guidage des élèves pour la réalisation de deux montages :<br>1. Photorésistance LDR sur **GPIO 34** (ADC).<br>2. Capteur DHT11 sur **GPIO 15**. | Câblage sur breadboard, saisie des scripts MicroPython, exécution et lecture des mesures en temps réel. | Ordinateur (Thonny IDE), ESP32, LDR, DHT11 |
+| **3. Travaux Pratiques sur Machine** | 40 min | Guidage des élèves pour la réalisation de deux montages :<br>1. Photorésistance LDR sur **GPIO 34** (ADC).<br>2. Capteur DHT11 sur **GPIO 15**. | Câblage sur breadboard, saisie des scripts MicroPython, exécution et lecture des mesures en temps réel. | Ordinateur (Python IDE), ESP32, LDR, DHT11 |
 | **4. Synthèse & Évaluation Formative** | 15 min | Animation du quiz formatif et défi pratique (déclencher une alerte si la température dépasse 30°C ou si la lumière chute). | Réponse au quiz et ajout de la condition `if temp > 30:` dans le script. | Environnement de TP |
 
 ---

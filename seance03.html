@@ -96,14 +96,15 @@
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Comprendre l'intérêt de la structure à choix multiples par rapport à une suite de
+                    <li>Comprendre l'avanatge de la structure à choix multiples par rapport à une suite de
                       <code>Si ... Sinon Si</code> imbriqués.
                     </li>
-                    <li>Maîtriser la syntaxe algorithmique officielle de la structure <code>Selon</code> avec un
+                    <li>Maîtriser la syntaxe algorithmique de la structure <code>Selon</code> avec un
                       sélecteur <strong>scalaire</strong>.</li>
                     <li>Manipuler les listes de valeurs (<code>v1, v2</code>) et les intervalles
                       (<code>v1 .. v2</code>).</li>
-                    <li>Apprendre la traduction moderne en Python avec <code>match ... case</code> (Python 3.10+).</li>
+                    <li>Traduire la structure <code>Selon</code> en Python avec <code>match ... case</code>
+                      (Python 3.10+).</li>
                   </ul>
                 </div>
               </div>
@@ -120,7 +121,7 @@
                     <li>Valider le sélecteur et gérer l'option par défaut avec la clause <code>Sinon</code> /
                       <code>case _</code>.
                     </li>
-                    <li>Implémenter et tester un script Python avec branchements multiples sur Thonny IDE.</li>
+                    <li>Implémenter et tester un script Python avec branchements multiples sur Python.</li>
                   </ul>
                 </div>
               </div>
@@ -168,14 +169,14 @@
                       <td>Présentation de l'activité (Convertisseur de Stockage & réseau). Encadrement de l'analyse, TDO
                         et code.</td>
                       <td>Analyse, TDO, algorithme et implémentation sur ordinateur.</td>
-                      <td>Thonny Python IDE</td>
+                      <td>Python</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
                       <td>Vérification des programmes, test de la branche par défaut <code>case _</code>.</td>
                       <td>Test sur machine, correction des erreurs de syntaxe.</td>
-                      <td>Environnement Python</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -200,9 +201,9 @@
             <h5 class="alert-heading h6 fw-bold mb-1"><i class="bi bi-lightbulb-fill me-2"></i> Règle fondamentale sur
               le Sélecteur</h5>
             <p class="mb-0 small">
-              Le sélecteur doit être impérativement de <strong>type scalaire</strong> (<code>Entier</code> ou
-              <code>Caractère</code>). Les types <code>Réel</code> et <code>Chaîne de caractères</code> doivent être
-              évités comme sélecteur en algorithmique officielle ministérielle.
+              Le sélecteur doit être impérativement de <strong>type scalaire</strong> (<code>Entier</code>,
+              <code>Caractère</code> ou <code>Booléen</code>). Les types <code>Réel</code> et <code>Chaîne de
+                caractères</code> ne sont pas des types scalaires.
             </p>
           </div>
 
@@ -224,8 +225,8 @@
                 <div class="card-header-custom text-primary fw-bold">
                   <i class="bi bi-code-square me-2"></i> Algorithme
                 </div>
-                <div class="card-body">
-                  <div class="code-container">
+                <div class="card-body d-flex flex-column">
+                  <div class="code-container h-100 m-0">
                     <pre><code class="language-algorithm">Selon Sélecteur
     Valeur1 : Traitement1
     Valeur2, Valeur3 : Traitement2
@@ -243,14 +244,14 @@ Fin Selon</code></pre>
                 <div class="card-header-custom text-warning fw-bold">
                   <i class="bi bi-filetype-py me-2"></i> Python 3.10+ (<code>match ... case</code>)
                 </div>
-                <div class="card-body">
-                  <div class="code-container">
+                <div class="card-body d-flex flex-column">
+                  <div class="code-container h-100 m-0">
                     <pre><code class="language-python">match selecteur:
     case valeur1:
         traitement1
     case valeur2 | valeur3:
         traitement2
-    case s if valeur4 <= s <= valeur5:
+    case s if valeur4 &lt;= s &lt;= valeur5:
         traitement3
     case _:
         traitement_par_defaut</code></pre>
@@ -260,7 +261,48 @@ Fin Selon</code></pre>
             </div>
           </div>
 
-          <!-- Tableau récapitulatif des notations -->
+          <!-- Exemples Concrets d'Application -->
+          <div class="card card-custom mb-4">
+            <div class="card-header-custom text-success fw-bold">
+              <i class="bi bi-lightbulb-fill me-2"></i> Exemple Concret : Détermination de Mention selon la Note
+            </div>
+            <div class="card-body">
+              <div class="row g-4">
+                <div class="col-md-6 d-flex flex-column">
+                  <small class="text-primary fw-bold d-block mb-1">Algorithme :</small>
+                  <div class="code-container h-100 m-0">
+                    <pre><code class="language-algorithm">Selon note
+    0 .. 9 : mention ← "Ajourné"
+    10 .. 11 : mention ← "Passable"
+    12 .. 13 : mention ← "Assez Bien"
+    14 .. 15 : mention ← "Bien"
+    16 .. 20 : mention ← "Très Bien"
+    Sinon : mention ← "Note invalide"
+Fin Selon</code></pre>
+                  </div>
+                </div>
+                <div class="col-md-6 d-flex flex-column">
+                  <small class="text-warning fw-bold d-block mb-1">Python 3.10+ (match ... case) :</small>
+                  <div class="code-container h-100 m-0">
+                    <pre><code class="language-python">match note:
+    case n if 0 &lt;= n &lt;= 9:
+        mention = "Ajourné"
+    case n if 10 &lt;= n &lt;= 11:
+        mention = "Passable"
+    case n if 12 &lt;= n &lt;= 13:
+        mention = "Assez Bien"
+    case n if 14 &lt;= n &lt;= 15:
+        mention = "Bien"
+    case n if 16 &lt;= n &lt;= 20:
+        mention = "Très Bien"
+    case _:
+        mention = "Note invalide"</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="card card-custom mb-4">
             <div class="card-header-custom text-success fw-bold">
               <i class="bi bi-list-check me-2"></i> Correspondance des Notations Algorithmiques et Python
@@ -292,7 +334,7 @@ Fin Selon</code></pre>
                     <tr>
                       <td><strong>Intervalle de valeurs</strong></td>
                       <td><code>10 .. 20 : Traitement</code></td>
-                      <td><code>case x if 10 <= x <= 20:</code></td>
+                      <td><code>case x if 10 &lt;= x &lt;= 20:</code></td>
                       <td>Note suffisante entre 10 et 20</td>
                     </tr>
                     <tr>
@@ -311,24 +353,22 @@ Fin Selon</code></pre>
 
       <!-- Article 3: Activité 1 - Refactoring Code -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Refactoring de Code (<code>if...elif</code>
-          &rarr; <code>match...case</code>)</h2>
+        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Analyse Comparée & Refactoring (<code>if...elif</code> &rarr; <code>match...case</code>)</h2>
 
         <section id="section-activite1" class="section-pane">
-          <h3>Analyse & Modernisation de Code</h3>
-          <p class="text-muted">
-            Comparaison entre l'ancienne syntaxe à blocs <code>if...elif</code> et la structure moderne
-            <code>match...case</code> de Python 3.10.
+          <h3>Analyse, Observation & Modernisation de Code (10 min)</h3>
+          <p class="text-muted mb-4">
+            <strong>Énoncé :</strong> Observez et comparez les deux versions de code ci-dessous (l'ancienne syntaxe avec <code>if...elif</code> répétitifs et sa version optimisée en Python 3.10+ avec <code>match...case</code>), puis répondez aux questions de réflexion.
           </p>
 
           <div class="row g-4 mb-4">
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-danger fw-bold">
-                  <i class="bi bi-x-circle me-2"></i> Code initial (Lourd avec <code>if / elif</code>)
+                  <i class="bi bi-x-circle me-2"></i> Version 1 : Code initial (avec <code>if / elif</code>)
                 </div>
-                <div class="card-body">
-                  <div class="code-container">
+                <div class="card-body d-flex flex-column">
+                  <div class="code-container h-100 m-0">
                     <pre><code class="language-python">code = int(input("Entrez le code tarifaire (1-4) : "))
 
 if code == 1:
@@ -339,7 +379,9 @@ elif code == 4:
     tarif = 20.0
 else:
     tarif = 0.0
-    print("Code invalide")</code></pre>
+    print("Code invalide")
+
+print("Tarif appliqué :", tarif, "DT")</code></pre>
                   </div>
                 </div>
               </div>
@@ -348,10 +390,10 @@ else:
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-check-circle me-2"></i> Code modernisé avec <code>match...case</code>
+                  <i class="bi bi-check-circle me-2"></i> Version 2 : Code modernisé (avec <code>match...case</code>)
                 </div>
-                <div class="card-body">
-                  <div class="code-container">
+                <div class="card-body d-flex flex-column">
+                  <div class="code-container h-100 m-0">
                     <pre><code class="language-python">code = int(input("Entrez le code tarifaire (1-4) : "))
 
 match code:
@@ -369,6 +411,29 @@ print("Tarif appliqué :", tarif, "DT")</code></pre>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Questions de réflexion guidée -->
+          <div class="card card-custom">
+            <div class="card-header-custom text-info fw-bold">
+              <i class="bi bi-question-circle me-2"></i> Questions d'Analyse et de Réflexion
+            </div>
+            <div class="card-body">
+              <ol class="list-group list-group-numbered mb-0">
+                <li class="list-group-item bg-transparent border-0 ps-0 text-body">
+                  <strong>Identification du Sélecteur :</strong> Quelle est la variable testée dans la structure <code>match</code> et quel est son type ?
+                </li>
+                <li class="list-group-item bg-transparent border-0 ps-0 text-body">
+                  <strong>Traduction de la liste de valeurs :</strong> Comment l'instruction alternative <code>elif code == 2 or code == 3:</code> a-t-elle été simplifiée dans le bloc <code>match...case</code> ?
+                </li>
+                <li class="list-group-item bg-transparent border-0 ps-0 text-body">
+                  <strong>Traitement par défaut :</strong> À quoi correspond le motif <code>case _:</code> et quel est son rôle ?
+                </li>
+                <li class="list-group-item bg-transparent border-0 ps-0 text-body">
+                  <strong>Avantage de lisibilité :</strong> Pourquoi la structure <code>match...case</code> est-elle préférée à une longue suite de <code>if...elif</code> lorsque l'on teste les valeurs d'une seule variable ?
+                </li>
+              </ol>
             </div>
           </div>
         </section>
@@ -496,8 +561,8 @@ print("Tarif appliqué :", tarif, "DT")</code></pre>
 
           <!-- Code Implementations -->
           <div class="row g-4">
-            <div class="col-md-6">
-              <div class="code-container">
+            <div class="col-md-6 d-flex flex-column">
+              <div class="code-container h-100 m-0">
                 <div class="code-header"><span>Algorithme Officiel (Conventions 2024)</span></div>
                 <pre><code class="language-algorithm">ALGORITHME Convertisseur_Stockage
 DEBUT
@@ -519,7 +584,7 @@ DEBUT
             resultat ← taille_octets / (1024 * 1024 * 1024)
             Écrire("Taille en Go : ", resultat)
         4 : 
-            resultat ← (taille_octets / (1024 * 1024)) / 10.0
+            resultat ← (taille_octets / (1024 * 1024)) / VITESSE_MO_S
             Écrire("Durée : ", resultat, " s")
         Sinon
             Écrire("Erreur : Choix invalide !")
@@ -528,9 +593,9 @@ FIN</code></pre>
               </div>
             </div>
 
-            <div class="col-md-6">
-              <div class="code-container">
-                <div class="code-header"><span>Implémentation Python 3.10+ (Thonny IDE)</span></div>
+            <div class="col-md-6 d-flex flex-column">
+              <div class="code-container h-100 m-0">
+                <div class="code-header"><span>Implémentation Python 3.10+ (Python IDE)</span></div>
                 <pre><code class="language-python"># Constantes
 VITESSE_MO_S = 10.0
 
@@ -570,10 +635,12 @@ match choix:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Structure Selon (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Structure Selon (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="La structure 'Selon' s'appuie sur une variable sélecteur de type scalaire (Entier, Caractère, etc.).">
-                  <div class="question-text">1. Quel est le rôle du sélecteur dans la structure algorithmique 'Selon (sélecteur) Faire' ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="La structure 'Selon' s'appuie sur une variable sélecteur de type scalaire (Entier, Caractère, etc.).">
+                  <div class="question-text">1. Quel est le rôle du sélecteur dans la structure algorithmique 'Selon
+                    (sélecteur) Faire' ?</div>
                   <ul class="quiz-options">
                     <li>Évaluer une valeur scalaire pour choisir la branche correspondante</li>
                     <li>Évaluer une condition logique complexe</li>
@@ -582,8 +649,10 @@ match choix:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="En Python 3.10+, le tiret bas 'case _:' correspond à la clause par défaut (Sinon).">
-                  <div class="question-text">2. Dans une instruction Python 'match...case', que représente le motif 'case _:' ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="En Python 3.10+, le tiret bas 'case _:' correspond à la clause par défaut (Sinon).">
+                  <div class="question-text">2. Dans une instruction Python 'match...case', que représente le motif
+                    'case _:' ?</div>
                   <ul class="quiz-options">
                     <li>Une variable nommée _</li>
                     <li>La branche par défaut (équivalent du Sinon)</li>
@@ -592,8 +661,10 @@ match choix:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="En Python 3.10+, la structure à choix multiples officielle est match...case.">
-                  <div class="question-text">3. Quelle est la syntaxe Python officielle pour implémenter la structure à choix multiples ?</div>
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="En Python 3.10+, la structure à choix multiples officielle est match...case.">
+                  <div class="question-text">3. Quelle est la syntaxe Python officielle pour implémenter la structure à
+                    choix multiples ?</div>
                   <ul class="quiz-options">
                     <li>switch...case</li>
                     <li>select...case</li>
@@ -602,7 +673,8 @@ match choix:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Le symbole | (pipe) permet de combiner plusieurs valeurs possibles dans un même bloc case.">
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Le symbole | (pipe) permet de combiner plusieurs valeurs possibles dans un même bloc case.">
                   <div class="question-text">4. Dans 'match choix:', que signifie la branche 'case 1 | 2:' ?</div>
                   <ul class="quiz-options">
                     <li>Exécute le bloc si choix vaut 1 OU 2</li>
@@ -612,8 +684,10 @@ match choix:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Le sélecteur d'une structure Selon doit être de type scalaire (Ordre dénombrable : Entier, Caractère, Énuméré).">
-                  <div class="question-text">5. Parmi les types suivants, lequel N'EST PAS recommandé comme sélecteur direct d'une structure Selon ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Le sélecteur d'une structure Selon doit être de type scalaire (Ordre dénombrable : Entier, Caractère, Énuméré).">
+                  <div class="question-text">5. Parmi les types suivants, lequel N'EST PAS recommandé comme sélecteur
+                    direct d'une structure Selon ?</div>
                   <ul class="quiz-options">
                     <li>Réel (float)</li>
                     <li>Entier (int)</li>
@@ -624,20 +698,19 @@ match choix:
 
               </div>
             </div>
-            </div>
           </div>
         </section>
-      </article>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

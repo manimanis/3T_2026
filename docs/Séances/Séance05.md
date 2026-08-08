@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -35,8 +35,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème** | 10 min | Demander comment stocker les températures de 30 jours sans déclarer 30 variables différentes (`t1`, `t2`, ...). | Constate la nécessité d'une structure groupée indexée. | Tableau |
 | **2. Synthèse Théorique** | 25 min | Présentation de la structure Tableau 1D, des indices (0 à $N-1$) et de la déclaration Python avec `numpy.array`. | Prise de notes et assimilation des règles de la bibliothèque `numpy`. | ProProjecteur / Fiche |
-| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Gestionnaire de températures station météo). Encadrement de l'analyse, TDO et algorithme. | Élaboration de l'analyse, du TDO, écriture de l'algorithme et codage sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification de la conformité de l'affichage (élément par élément) et du contrôle de la taille $N$. | Correction des erreurs d'indices (`IndexError`) et validation du script. | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Gestionnaire de températures station météo). Encadrement de l'analyse, TDO et algorithme. | Élaboration de l'analyse, du TDO, écriture de l'algorithme et codage sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification de la conformité de l'affichage (élément par élément) et du contrôle de la taille $N$. | Correction des erreurs d'indices (`IndexError`) et validation du script. | Python |
 
 ---
 
@@ -191,7 +191,7 @@ On demande d'écrire un programme qui :
 
 ---
 
-#### **3. Algorithme (Conventions Ministérielles 2024-2025)**
+#### **3. AlgorithmeConventions**
 
 ```text
 ALGORITHME Station_Meteo
@@ -216,7 +216,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

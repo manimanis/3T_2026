@@ -163,7 +163,7 @@
                       <td>40 min</td>
                       <td>Classement du Marathon de Hammam Sousse (Tri à Bulles Synchrone).</td>
                       <td>Rédaction du TDO/TDL, des algorithmes et codage sous Thonny.</td>
-                      <td>Thonny IDE</td>
+                      <td>Python IDE</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
@@ -171,7 +171,7 @@
                       <td>Vérification du tri sur machine. Inversion de la condition ($>$ vs $<$) pour tester les
                           ordres.</td>
                       <td>Validation du classement et correction des permutations.</td>
-                      <td>Environnement Python</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -482,7 +482,7 @@ FIN</code></pre>
 
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Implémentation Python Officielle (Thonny IDE)</span></div>
+                <div class="code-header"><span>Implémentation Python Officielle (Python IDE)</span></div>
                 <pre><code class="language-python">from numpy import array
 
 def tri_a_bulles_synchrone(Noms, Temps, n):
@@ -533,9 +533,10 @@ print("🥉 Bronze :", Noms[2], "(", Temps[2], "sec )")</code></pre>
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Tri à Bulles (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Tri à Bulles (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="Le tri à bulles compare et échange les éléments adjacents (T[i] et T[i+1]) s'ils sont mal ordonnés.">
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Le tri à bulles compare et échange les éléments adjacents (T[i] et T[i+1]) s'ils sont mal ordonnés.">
                   <div class="question-text">1. Quel est le principe du Tri à Bulles ?</div>
                   <ul class="quiz-options">
                     <li>Comparer et échanger répétitivement les éléments adjacents mal ordonnés</li>
@@ -545,8 +546,10 @@ print("🥉 Bronze :", Noms[2], "(", Temps[2], "sec )")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Un indicateur booléen (ex. Permut) permet d'arrêter le tri dès qu'aucun échange n'a été effectué lors d'un passage.">
-                  <div class="question-text">2. Comment optimise-t-on le Tri à Bulles pour arrêter l'exécution si le tableau est déjà trié ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Un indicateur booléen (ex. Permut) permet d'arrêter le tri dès qu'aucun échange n'a été effectué lors d'un passage.">
+                  <div class="question-text">2. Comment optimise-t-on le Tri à Bulles pour arrêter l'exécution si le
+                    tableau est déjà trié ?</div>
                   <ul class="quiz-options">
                     <li>En utilisant une variable réelles</li>
                     <li>En utilisant une variable booléenne de permutation (ex: Permut)</li>
@@ -555,8 +558,10 @@ print("🥉 Bronze :", Noms[2], "(", Temps[2], "sec )")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="La complexité temporelle du tri à bulles dans le pire des cas est quadratique O(N^2).">
-                  <div class="question-text">3. Quelle est la complexité dans le pire des cas de l'algorithme du Tri à Bulles ?</div>
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="La complexité temporelle du tri à bulles dans le pire des cas est quadratique O(N^2).">
+                  <div class="question-text">3. Quelle est la complexité dans le pire des cas de l'algorithme du Tri à
+                    Bulles ?</div>
                   <ul class="quiz-options">
                     <li>O(N)</li>
                     <li>O(log N)</li>
@@ -565,8 +570,10 @@ print("🥉 Bronze :", Noms[2], "(", Temps[2], "sec )")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Après le premier passage, le plus grand élément 'remonte' à la dernière position T[N-1].">
-                  <div class="question-text">4. Que se passe-t-il au terme du tout premier passage complet du Tri à Bulles ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Après le premier passage, le plus grand élément 'remonte' à la dernière position T[N-1].">
+                  <div class="question-text">4. Que se passe-t-il au terme du tout premier passage complet du Tri à
+                    Bulles ?</div>
                   <ul class="quiz-options">
                     <li>Le plus grand élément est garanti d'être à sa position finale à la fin du tableau</li>
                     <li>Le tableau entier est trié</li>
@@ -575,8 +582,10 @@ print("🥉 Bronze :", Noms[2], "(", Temps[2], "sec )")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Pour permuter A et B : Aux = A ; A = B ; B = Aux.">
-                  <div class="question-text">5. Quelle est la séquence correcte de permutation de deux variables A et B avec une variable Aux ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Pour permuter A et B : Aux = A ; A = B ; B = Aux.">
+                  <div class="question-text">5. Quelle est la séquence correcte de permutation de deux variables A et B
+                    avec une variable Aux ?</div>
                   <ul class="quiz-options">
                     <li>Aux = A ; A = B ; B = Aux</li>
                     <li>A = B ; B = A</li>
@@ -587,20 +596,20 @@ print("🥉 Bronze :", Noms[2], "(", Temps[2], "sec )")</code></pre>
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

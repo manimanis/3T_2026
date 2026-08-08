@@ -31,7 +31,7 @@
   * Conception d'un menu interactif à choix multiples.
   * Application sur des problèmes de conversion de notes ou de choix d'opérations.
 
-### 📍 Séance 4 : Structures répétitives conditionnelles (`Tant Que` & `Répéter`)
+### 📍 Séance 4 : Structures itératives à condition d'arrêt (`Tant Que` & `Répéter`)
 * **Objectifs :** Comprendre et utiliser les boucles non bornées (`Tant Que ... Faire` et `Répéter ... Jusqu'à`). Différencier une boucle bornée d'une boucle conditionnelle.
 * **Contenu / Activités :**
   * Contrôle de la saisie d'une donnée (ex: forcer la saisie d'un nombre positif).

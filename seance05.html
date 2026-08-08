@@ -166,8 +166,8 @@
                       <td>40 min</td>
                       <td>Présentation du problème pratique (Gestionnaire de températures Station Météo). Encadrement de
                         l'analyse et du TDO.</td>
-                      <td>Élaboration de l'analyse, TDO, algorithme et codage sous Thonny IDE.</td>
-                      <td>Thonny Python IDE</td>
+                      <td>Élaboration de l'analyse, TDO, algorithme et codage sous Python IDE.</td>
+                      <td>Python</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
@@ -175,7 +175,7 @@
                       <td>Vérification de la conformité de l'affichage (élément par élément) et du contrôle de la taille
                         $N$.</td>
                       <td>Correction des erreurs d'indices (<code>IndexError</code>) et quiz d'évaluation.</td>
-                      <td>Environnement Python</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -568,7 +568,7 @@ FIN</code></pre>
 
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Implémentation Python (Thonny IDE)</span></div>
+                <div class="code-header"><span>Implémentation Python (Python IDE)</span></div>
                 <pre><code class="language-python">from numpy import array
 
 # 1. Saisie et controle de N
@@ -604,10 +604,12 @@ for i in range(n):
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Tableaux 1D (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Tableaux 1D (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="En Python/NumPy, le premier élément d'un tableau à 1D est toujours à l'indice 0.">
-                  <div class="question-text">1. Quel est l'indice du tout premier élément d'un tableau à une dimension de N éléments ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="En Python/NumPy, le premier élément d'un tableau à 1D est toujours à l'indice 0.">
+                  <div class="question-text">1. Quel est l'indice du tout premier élément d'un tableau à une dimension
+                    de N éléments ?</div>
                   <ul class="quiz-options">
                     <li>0</li>
                     <li>1</li>
@@ -616,18 +618,23 @@ for i in range(n):
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Selon les conventions pédagogiques 2024, on importe la structure tableau via : from numpy import array.">
-                  <div class="question-text">2. Quelle instruction Python permet d'importer la structure de tableau homogène ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Selon les conventions pédagogiques 2024, on importe la structure tableau via : from numpy import array.">
+                  <div class="question-text">2. Quelle instruction Python permet d'importer la structure de tableau
+                    homogène ?</div>
                   <ul class="quiz-options">
                     <li>import array</li>
                     <li>from numpy import array</li>
-                    <li>include <array></li>
+                    <li>include <array>
+                    </li>
                     <li>import list as array</li>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="T = array([0]*N, dtype=int) crée un tableau NumPy de N entiers initialisés à 0.">
-                  <div class="question-text">3. Comment crée-t-on un tableau NumPy 'T' de 'N' entiers initialisés à zéro ?</div>
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="T = array([0]*N, dtype=int) crée un tableau NumPy de N entiers initialisés à 0.">
+                  <div class="question-text">3. Comment crée-t-on un tableau NumPy 'T' de 'N' entiers initialisés à zéro
+                    ?</div>
                   <ul class="quiz-options">
                     <li>T = [0] * N</li>
                     <li>T = array(N)</li>
@@ -636,8 +643,10 @@ for i in range(n):
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Les indices d'un tableau de taille N vont de 0 à N-1. Pour N=5, le dernier indice est 4.">
-                  <div class="question-text">4. Pour un tableau de taille N = 5, quel est l'indice du dernier élément ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Les indices d'un tableau de taille N vont de 0 à N-1. Pour N=5, le dernier indice est 4.">
+                  <div class="question-text">4. Pour un tableau de taille N = 5, quel est l'indice du dernier élément ?
+                  </div>
                   <ul class="quiz-options">
                     <li>4</li>
                     <li>5</li>
@@ -646,8 +655,10 @@ for i in range(n):
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Un tableau NumPy exige des éléments de même type (homogène) stockés de manière contiguë.">
-                  <div class="question-text">5. Quelle est la caractéristique principale d'un tableau numpy.array par rapport à une liste Python ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Un tableau NumPy exige des éléments de même type (homogène) stockés de manière contiguë.">
+                  <div class="question-text">5. Quelle est la caractéristique principale d'un tableau numpy.array par
+                    rapport à une liste Python ?</div>
                   <ul class="quiz-options">
                     <li>Il est homogène (tous les éléments sont du même type)</li>
                     <li>Il peut contenir des types mixtes</li>
@@ -658,20 +669,20 @@ for i in range(n):
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

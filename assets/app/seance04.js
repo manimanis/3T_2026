@@ -1,6 +1,6 @@
 /**
  * 3T_2026 - Informatique 3ème Année Secondary
- * Application Vue.js pour Séance N°4 (Structures Répétitives Conditionnelles: Tant Que & Répéter)
+ * Application Vue.js pour Séance N°4 (Structures itératives à condition d'arrêt: Tant Que & Répéter)
  */
 
 const { createApp, ref, computed, onMounted } = Vue;

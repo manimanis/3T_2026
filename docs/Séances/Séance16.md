@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** MicroPython (Thonny IDE / Wokwi Simulator) & C++ (Arduino IDE)
+**Environnement :** MicroPython (Python IDE / Wokwi Simulator) & C++ (Arduino IDE)
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -44,7 +44,7 @@
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème & Découverte IoT** | 15 min | Présentation de cas d'usage IoT réels (Serre intelligente, Domotique, Station météo connectée). Définition des rôles capteur / contrôleur / réseau / actionneur. | Analyse de l'architecture d'un système connecté et identification du rôle central du microcontrôleur. | Vidéo / Diaporama / ProProjecteur |
 | **2. Présentation Matérielle de l'ESP32** | 20 min | Présentation de la carte ESP32 DevKit V1. Explication du brochage (Pinout GPIO, 3V3, GND), de la LED interne GPIO 2 et des précautions d'alimentation (3.3V max). | Observation du module matériel, identification des broches GPIO2, GND, 3V3 et lecture du schéma de brochage. | Carte ESP32 matériel / Fiche Pinout |
-| **3. Montage Électrique & Script Blink** | 40 min | Guidage du câblage de la LED externe avec résistance $R=220\,\Omega$. Démonstration de l'écriture du script Blink en MicroPython sous Thonny / Wokwi. | Réalisation du câblage sur Breadboard. Saisie, téléversement et exécution du script de clignotement sur l'ESP32. | Carte ESP32, Breadboard, LED, Résistance $220\,\Omega$, Thonny IDE |
+| **3. Montage Électrique & Script Blink** | 40 min | Guidage du câblage de la LED externe avec résistance $R=220\,\Omega$. Démonstration de l'écriture du script Blink en MicroPython sous Thonny / Wokwi. | Réalisation du câblage sur Breadboard. Saisie, téléversement et exécution du script de clignotement sur l'ESP32. | Carte ESP32, Breadboard, LED, Résistance $220\,\Omega$, Python IDE |
 | **4. Évaluation Formative & Synthèse** | 15 min | Quiz de validation des notions GPIO/IoT et modification de la fréquence de clignotement (Blink rapide vs lent). | Résolution des questions du quiz et ajustement de la vitesse de clignotement dans le script. | Fiche de TP / Environnement de test |
 
 ---

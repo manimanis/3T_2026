@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -43,8 +43,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Rappel & Diagnostic** | 10 min | Rappeler comment remplir un tableau et introduire le remplissage aléatoire (`randint`) pour gagner du temps lors des tests. | Découvre l'intérêt de la génération automatique pour tester des tableaux de grande taille ($N = 50$). | Tableau / ProProjecteur |
 | **2. Synthèse Théorique** | 25 min | Présentation des fonctions prédéfinies de l'Aide Pédagogique 2024-2025 et de la syntaxe de transmission d'un tableau `numpy` en paramètre. | Prise de notes sur les équivalences Algorithmique / Python et le passage par référence des tableaux. | Fiche de cours |
-| **3. Activité Guidée** | 40 min | Présentation de l'activité pratique (Générateur et Analyseur de Notes avec extraction d'un second tableau). | Rédaction des analyses des modules, TDO/TDL, algorithmes et codage sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Test des scripts sur machine. Vérification que la modification du tableau dans la procédure impacte bien le programme principal. | Validation de l'exécution modulaire et correction des signatures de fonctions/procédures. | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation de l'activité pratique (Générateur et Analyseur de Notes avec extraction d'un second tableau). | Rédaction des analyses des modules, TDO/TDL, algorithmes et codage sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Test des scripts sur machine. Vérification que la modification du tableau dans la procédure impacte bien le programme principal. | Validation de l'exécution modulaire et correction des signatures de fonctions/procédures. | Python |
 
 ---
 
@@ -228,7 +228,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

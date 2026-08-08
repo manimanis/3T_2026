@@ -213,7 +213,7 @@
                         80.</td>
                       <td>Saisie des identifiants Wi-Fi, téléversement du script et récupération de l'adresse IP de
                         l'ESP32.</td>
-                      <td>Thonny IDE / ESP32</td>
+                      <td>Python IDE / ESP32</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-success">3. TP Intégration sur Machine</span></td>
@@ -506,10 +506,12 @@ while True:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Projet IoT Smart Agro (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Projet IoT Smart Agro (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="Le mode Station (STA_IF) connecte l'ESP32 à un réseau Wi-Fi local existant (routeur).">
-                  <div class="question-text">1. Quel mode Wi-Fi permet à l'ESP32 de se connecter à un réseau Wi-Fi domestique existant ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Le mode Station (STA_IF) connecte l'ESP32 à un réseau Wi-Fi local existant (routeur).">
+                  <div class="question-text">1. Quel mode Wi-Fi permet à l'ESP32 de se connecter à un réseau Wi-Fi
+                    domestique existant ?</div>
                   <ul class="quiz-options">
                     <li>Mode Station (network.STA_IF)</li>
                     <li>Mode Access Point (network.AP_IF)</li>
@@ -518,8 +520,10 @@ while True:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Un serveur Web embarqué écoute traditionnellement sur le port HTTP standard 80.">
-                  <div class="question-text">2. Sur quel port réseau standard écoute le serveur Web HTTP embarqué de l'ESP32 ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Un serveur Web embarqué écoute traditionnellement sur le port HTTP standard 80.">
+                  <div class="question-text">2. Sur quel port réseau standard écoute le serveur Web HTTP embarqué de
+                    l'ESP32 ?</div>
                   <ul class="quiz-options">
                     <li>Port 21</li>
                     <li>Port 80</li>
@@ -528,18 +532,23 @@ while True:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="La boucle de régulation fermée lit le capteur, évalue les seuils et déclenche automatiquement l'actionneur.">
-                  <div class="question-text">3. Comment fonctionne le contrôle automatique en boucle fermée dans la serre connectée Smart Agro ?</div>
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="La boucle de régulation fermée lit le capteur, évalue les seuils et déclenche automatiquement l'actionneur.">
+                  <div class="question-text">3. Comment fonctionne le contrôle automatique en boucle fermée dans la
+                    serre connectée Smart Agro ?</div>
                   <ul class="quiz-options">
                     <li>L'utilisateur doit appuyer sur un bouton physique chaque minute</li>
                     <li>Le serveur envoie un e-mail au technicien</li>
-                    <li>L'ESP32 lit le capteur, compare au seuil programmé et active/désactive automatiquement l'actionneur</li>
+                    <li>L'ESP32 lit le capteur, compare au seuil programmé et active/désactive automatiquement
+                      l'actionneur</li>
                     <li>La serre fonctionne sans capteurs</li>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="socket.socket(socket.AF_INET, socket.SOCK_STREAM) crée une socket TCP/IP pour le serveur Web.">
-                  <div class="question-text">4. Quelle bibliothèque MicroPython permet de créer une Socket réseau pour échanger des requêtes HTTP ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="socket.socket(socket.AF_INET, socket.SOCK_STREAM) crée une socket TCP/IP pour le serveur Web.">
+                  <div class="question-text">4. Quelle bibliothèque MicroPython permet de créer une Socket réseau pour
+                    échanger des requêtes HTTP ?</div>
                   <ul class="quiz-options">
                     <li>socket</li>
                     <li>network_http</li>
@@ -548,8 +557,10 @@ while True:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Le serveur Web renvoie des en-têtes HTTP suivis du document HTML représentant le tableau de bord.">
-                  <div class="question-text">5. Que renvoie le serveur Web ESP32 au smartphone de l'utilisateur lors d'une requête HTTP GET ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Le serveur Web renvoie des en-têtes HTTP suivis du document HTML représentant le tableau de bord.">
+                  <div class="question-text">5. Que renvoie le serveur Web ESP32 au smartphone de l'utilisateur lors
+                    d'une requête HTTP GET ?</div>
                   <ul class="quiz-options">
                     <li>Un code de réponse HTTP (200 OK) suivi de la page Web HTML du tableau de bord</li>
                     <li>Le code source MicroPython brut</li>
@@ -560,20 +571,20 @@ while True:
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

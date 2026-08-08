@@ -1,4 +1,4 @@
-# 📖 Fiche de Séance N°4 : Structures Répétitives Conditionnelles (`Tant Que` & `Répéter`)
+# 📖 Fiche de Séance N°4 : Structures itératives à condition d'arrêt (`Tant Que` & `Répéter`)
 
 **Module 2 :** Structures de Contrôle et de Données Avancées
 
@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -39,8 +39,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème** | 15 min | Demander de saisir l'âge d'un élève (doit être entre 10 et 20). Pourquoi la boucle `Pour` est-elle inadaptée ? | Constate qu'on ne sait pas d'avance combien de fois l'utilisateur va se tromper. | Tableau / ProProjecteur |
 | **2. Synthèse Théorique** | 20 min | Présentation des structures `Tant Que` et `Répéter`. Explication de la traduction de `Répéter...Jusqu'à` en Python (`while not(...)`). | Prise de notes, comparaison des conditions de poursuite vs d'arrêt. | Fiche de cours |
-| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Jeu de devinette d'un nombre secret avec nombre d'essais limité). | Analyse, élaboration du TDO, écriture de l'algorithme et codage Python sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Vérification des codes sur machine, détection des boucles infinies (oubli de réinitialisation/incrémentation). | Correction des boucles et validation des tests limites. | Environnement Python |
+| **3. Activité Guidée** | 40 min | Présentation du problème pratique (Jeu de devinette d'un nombre secret avec nombre d'essais limité). | Analyse, élaboration du TDO, écriture de l'algorithme et codage Python sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Vérification des codes sur machine, détection des boucles infinies (oubli de réinitialisation/incrémentation). | Correction des boucles et validation des tests limites. | Python |
 
 ---
 
@@ -204,7 +204,7 @@ On souhaite concevoir le jeu **« Le Nombre Secret »** :
 
 ---
 
-#### **3. Algorithme (Conventions Ministérielles 2024-2025)**
+#### **3. AlgorithmeConventions**
 
 ```text
 ALGORITHME Jeu_Nombre_Secret
@@ -242,7 +242,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 ```python
 # =========================================================

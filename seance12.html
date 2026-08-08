@@ -165,7 +165,7 @@
                       <td>Problème d'Analyse Arithmétique d'un Entier $N$ (Statut, Prochain premier ou Facteurs
                         premiers).</td>
                       <td>Analyse modulaire, TDO, rédaction des algorithmes et codage sous Thonny.</td>
-                      <td>Thonny IDE</td>
+                      <td>Python IDE</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
@@ -173,7 +173,7 @@
                       <td>Vérification des cas limites ($N \le 1$, $N = 2$) et de l'absence totale de l'instruction
                         `break`.</td>
                       <td>Validation des scripts sur différents entiers et quiz d'auto-évaluation.</td>
-                      <td>Environnement Python</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -358,7 +358,7 @@
 
           <!-- Python Test Script -->
           <div class="code-container">
-            <div class="code-header"><span>Script Python Comparatif des Itérations (À tester dans Thonny IDE)</span>
+            <div class="code-header"><span>Script Python Comparatif des Itérations (À tester dans Python IDE)</span>
             </div>
             <pre><code class="language-python">from math import sqrt
 
@@ -559,7 +559,7 @@ FIN</code></pre>
 
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Implémentation Python Officielle (Thonny IDE)</span></div>
+                <div class="code-header"><span>Implémentation Python Officielle (Python IDE)</span></div>
                 <pre><code class="language-python">from math import sqrt
 
 def est_premier(n):
@@ -620,9 +620,10 @@ else:
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Nombres Premiers (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Nombres Premiers (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="Un nombre entier N > 1 est premier s'il possède exactement deux diviseurs distincts : 1 et lui-même.">
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Un nombre entier N > 1 est premier s'il possède exactement deux diviseurs distincts : 1 et lui-même.">
                   <div class="question-text">1. Quelle est la définition exacte d'un nombre entier premier ?</div>
                   <ul class="quiz-options">
                     <li>Un entier N > 1 qui admet exactement deux diviseurs : 1 et N</li>
@@ -632,8 +633,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Il suffit de tester les diviseurs de 2 jusqu'à sqrt(N) inclus pour valider la primalité.">
-                  <div class="question-text">2. Pour vérifier si un entier N est premier, jusqu'à quel nombre limite suffit-il de tester les diviseurs ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Il suffit de tester les diviseurs de 2 jusqu'à sqrt(N) inclus pour valider la primalité.">
+                  <div class="question-text">2. Pour vérifier si un entier N est premier, jusqu'à quel nombre limite
+                    suffit-il de tester les diviseurs ?</div>
                   <ul class="quiz-options">
                     <li>N - 1</li>
                     <li>La racine carrée de N (int(sqrt(N)))</li>
@@ -642,7 +645,8 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="2 est le seul nombre entier pair qui soit également premier.">
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="2 est le seul nombre entier pair qui soit également premier.">
                   <div class="question-text">3. Quel est le seul nombre pair qui soit un nombre premier ?</div>
                   <ul class="quiz-options">
                     <li>0</li>
@@ -652,8 +656,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Les diviseurs s'associent par paires d x d' = N. Si aucun diviseur n'existe <= sqrt(N), N est premier.">
-                  <div class="question-text">4. Pourquoi est-il inutile de tester les diviseurs au-delà de sqrt(N) ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Les diviseurs s'associent par paires d x d' = N. Si aucun diviseur n'existe <= sqrt(N), N est premier.">
+                  <div class="question-text">4. Pourquoi est-il inutile de tester les diviseurs au-delà de sqrt(N) ?
+                  </div>
                   <ul class="quiz-options">
                     <li>Car tout diviseur d > sqrt(N) possède un diviseur complémentaire d' <= sqrt(N)</li>
                     <li>Car Python ne le permet pas</li>
@@ -662,8 +668,10 @@ else:
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="La décomposition en facteurs premiers exprime N comme produit de nombres premiers.">
-                  <div class="question-text">5. En quoi consiste la décomposition d'un entier N en facteurs premiers ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="La décomposition en facteurs premiers exprime N comme produit de nombres premiers.">
+                  <div class="question-text">5. En quoi consiste la décomposition d'un entier N en facteurs premiers ?
+                  </div>
                   <ul class="quiz-options">
                     <li>Exprimer N sous la forme d'un produit de nombres premiers</li>
                     <li>Additionner tous les diviseurs de N</li>
@@ -674,20 +682,20 @@ else:
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

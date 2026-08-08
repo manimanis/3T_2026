@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -38,8 +38,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Présentation du Projet** | 10 min | Présentation du cahier des charges de l'application *Gestionnaire Intégré d'Évaluation Scolaire (GIES)*. | Prise de connaissance des spécifications et de l'architecture modulaire attendue. | ProProjecteur / Fiche |
 | **2. Conception & Décomposition** | 15 min | Encadrement de la décomposition modulaire, de la structuration des tableaux et du TDO/TDL. | Rédaction du TDO/TDL et définition de la signature des 6 modules. | Cahier de TP |
-| **3. Développpement Guidé sur Machine** | 50 min | Suivi individuel des élèves, assistance au codage des modules et de la boucle principale sous Thonny. | Écriture des modules, assemblage dans le programme principal et exécution étape par étape. | Ordinateur (Thonny IDE) |
-| **4. Évaluation & Recette** | 15 min | Test et recette fonctionnelle des projets élèves sur machine (validation des cas d'erreur et menus). | Démonstration du fonctionnement de l'application et correction des bugs de saisie. | Environnement Python |
+| **3. Développpement Guidé sur Machine** | 50 min | Suivi individuel des élèves, assistance au codage des modules et de la boucle principale sous Thonny. | Écriture des modules, assemblage dans le programme principal et exécution étape par étape. | Ordinateur (Python IDE) |
+| **4. Évaluation & Recette** | 15 min | Test et recette fonctionnelle des projets élèves sur machine (validation des cas d'erreur et menus). | Démonstration du fonctionnement de l'application et correction des bugs de saisie. | Python |
 
 ---
 
@@ -189,7 +189,7 @@ FIN
 
 ---
 
-### **III. Code Python Complet (Thonny IDE)**
+### **III. Code Python Complet (Python IDE)**
 
 ```python
 # =========================================================

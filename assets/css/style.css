@@ -205,6 +205,8 @@ pre code.hljs {
 }
 
 .code-container {
+  display: flex;
+  flex-direction: column;
   position: relative;
   border-radius: 0.75rem;
   overflow: hidden;
@@ -229,6 +231,7 @@ pre code.hljs {
 }
 
 .code-container pre {
+  flex: 1;
   margin: 0;
   padding: 1.25rem;
   font-family: var(--font-mono);
@@ -1439,7 +1442,8 @@ footer p {
 
 /* Conditional Cards Natural Proportional Code Blocks */
 .cond-card-body {
-  display: grid;
+	display: grid;
+	grid-template-rows: 300px 300px auto;
 }
 
 .cond-code-cell {

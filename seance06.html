@@ -174,7 +174,7 @@
                       <td>Présentation du problème d'Analyse Statistique des Notes d'un Devoir. Encadrement du TDO et de
                         l'algorithme.</td>
                       <td>Rédaction du TDO, écriture de l'algorithme et codage Python sous Thonny.</td>
-                      <td>Thonny Python IDE</td>
+                      <td>Python</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
@@ -182,7 +182,7 @@
                       <td>Vérification de la cohérence des statistiques avec des séries variées (notes négatives ou
                         égales).</td>
                       <td>Correction des erreurs et validation du quiz d'évaluation.</td>
-                      <td>Environnement Python</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -600,7 +600,7 @@ FIN</code></pre>
 
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Implémentation Python (Thonny IDE)</span></div>
+                <div class="code-header"><span>Implémentation Python (Python IDE)</span></div>
                 <pre><code class="language-python">from numpy import array
 
 n = int(input("Donner N (5 à 30) : "))
@@ -655,10 +655,12 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-                            <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Traitements Tableaux 1D (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Traitements Tableaux 1D (5 Questions)">
 
-                <div class="quiz-question" data-correct="0" data-explanation="Pour chercher le Maximum, on initialise Max avec le premier élément T[0] du tableau.">
-                  <div class="question-text">1. Comment initialise-t-on la variable 'Max' pour chercher le plus grand élément d'un tableau 'T' ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Pour chercher le Maximum, on initialise Max avec le premier élément T[0] du tableau.">
+                  <div class="question-text">1. Comment initialise-t-on la variable 'Max' pour chercher le plus grand
+                    élément d'un tableau 'T' ?</div>
                   <ul class="quiz-options">
                     <li>Max = T[0]</li>
                     <li>Max = 0</li>
@@ -667,8 +669,10 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="1" data-explanation="Pour accumuler les valeurs d'un tableau, l'accumulateur 'S' s'initialise à 0 avant la boucle.">
-                  <div class="question-text">2. Quelle est l'initialisation correcte de la variable de somme 'S' avant de calculer la somme d'un tableau ?</div>
+                <div class="quiz-question" data-correct="1"
+                  data-explanation="Pour accumuler les valeurs d'un tableau, l'accumulateur 'S' s'initialise à 0 avant la boucle.">
+                  <div class="question-text">2. Quelle est l'initialisation correcte de la variable de somme 'S' avant
+                    de calculer la somme d'un tableau ?</div>
                   <ul class="quiz-options">
                     <li>S = 1</li>
                     <li>S = 0</li>
@@ -677,8 +681,10 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="2" data-explanation="Dans la boucle, chaque élément T[i] valide ajoute 1 au compteur : Nbr = Nbr + 1.">
-                  <div class="question-text">3. Quelle instruction permet d'incrémenter un compteur 'Nbr' de notes supérieures ou égales à 10 ?</div>
+                <div class="quiz-question" data-correct="2"
+                  data-explanation="Dans la boucle, chaque élément T[i] valide ajoute 1 au compteur : Nbr = Nbr + 1.">
+                  <div class="question-text">3. Quelle instruction permet d'incrémenter un compteur 'Nbr' de notes
+                    supérieures ou égales à 10 ?</div>
                   <ul class="quiz-options">
                     <li>Nbr = T[i]</li>
                     <li>Nbr = Nbr + T[i]</li>
@@ -687,8 +693,10 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="La moyenne arithmétique est égale à la somme totale divisée par le nombre d'éléments N.">
-                  <div class="question-text">4. Quelle est la formule correcte pour calculer la moyenne 'Moy' d'un tableau de N éléments ?</div>
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="La moyenne arithmétique est égale à la somme totale divisée par le nombre d'éléments N.">
+                  <div class="question-text">4. Quelle est la formule correcte pour calculer la moyenne 'Moy' d'un
+                    tableau de N éléments ?</div>
                   <ul class="quiz-options">
                     <li>Moy = Somme / N</li>
                     <li>Moy = Somme * N</li>
@@ -697,7 +705,8 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
                   </ul>
                 </div>
 
-                <div class="quiz-question" data-correct="0" data-explanation="Pour échanger T[i] et T[j], on sauvegarde T[i] dans une variable temporaire Aux.">
+                <div class="quiz-question" data-correct="0"
+                  data-explanation="Pour échanger T[i] et T[j], on sauvegarde T[i] dans une variable temporaire Aux.">
                   <div class="question-text">5. Comment permute-t-on deux éléments T[i] et T[j] d'un tableau ?</div>
                   <ul class="quiz-options">
                     <li>Aux = T[i] ; T[i] = T[j] ; T[j] = Aux</li>
@@ -709,20 +718,20 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
 
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </article>
+  </div>
+  </section>
+  </article>
 
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
+      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    </div>
+  </footer>
   </div>
 
   <!-- JS Assets -->

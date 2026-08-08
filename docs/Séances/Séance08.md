@@ -6,7 +6,7 @@
 
 **Durée :** 1 heure 30 minutes (90 min)
 
-**Environnement :** Thonny Python IDE / IDLE
+**Environnement :** Python / IDLE
 
 **Référence :** Ministère de l'Éducation – Direction Générale des Programmes (2024-2025)
 
@@ -43,8 +43,8 @@
 | --- | --- | --- | --- | --- |
 | **1. Situation Problème** | 15 min | Exécuter un script où une variable modifiée dans une fonction garde sa valeur initiale dans le programme principal. | Constate que la variable du programme principal n'a pas changé et cherche l'explication. | ProProjecteur / Tableau |
 | **2. Synthèse Théorique** | 25 min | Explication des concepts : Portée locale vs globale, passage par valeur vs par référence (`@`), et rôle du mot-clé `global` en Python. | Prise de notes et analyse du tableau comparatif des modes de passage. | Fiche de cours |
-| **3. Activité Guidée** | 35 min | Proposer la résolution d'un problème de conversion de temps et de permutation de variables. | Analyse, élaboration du TDO/TDL, écriture des algorithmes et codage sous Thonny. | Ordinateur (Thonny IDE) |
-| **4. Évaluation Formative** | 15 min | Test de prédiction d'affichage sur des scripts modulaires avec variables locales/globales. | Correction des erreurs de portée et validation des programmes sur machine. | Environnement Python |
+| **3. Activité Guidée** | 35 min | Proposer la résolution d'un problème de conversion de temps et de permutation de variables. | Analyse, élaboration du TDO/TDL, écriture des algorithmes et codage sous Thonny. | Ordinateur (Python IDE) |
+| **4. Évaluation Formative** | 15 min | Test de prédiction d'affichage sur des scripts modulaires avec variables locales/globales. | Correction des erreurs de portée et validation des programmes sur machine. | Python |
 
 ---
 
@@ -247,7 +247,7 @@ FIN
 
 ---
 
-#### **4. Implémentation Python (Thonny IDE)**
+#### **4. Implémentation Python (Python IDE)**
 
 En Python, pour simuler le passage par référence de variables de type simple (`int`), une procédure peut retourner un **tuple de valeurs** :
 
