@@ -91,23 +91,12 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
-                </div>
-                <div class="card-body">
+                  <h4 class="h5 card-title text-primary"><i class="bi bi-bullseye me-2"></i> A. Savoirs (Connaissances)</h4>
                   <ul class="list-custom mb-0">
-                    <li>Comprendre la portée (*scope*) : <strong>Variable locale</strong> (détruite après exécution) vs
-                      <strong>Variable globale</strong> (dans le programme principal).
-                    </li>
-                    <li>Maîtriser les 2 modes de passage :
-                      <ul>
-                        <li><strong>Passage par Valeur :</strong> Le module reçoit une copie (les types simples `int`,
-                          `float`, `str`, `bool` sont immuables).</li>
-                        <li><strong>Passage par Adresse :</strong> Transmet l'adresse mémoire (symbole <code>@</code> en
-                          algorithmique, automatique en Python pour les objets mutables comme <code>numpy.array</code>
-                          et <code>dict</code>).</li>
-                      </ul>
-                    </li>
-                    <li>Connaître le rôle du mot-clé <strong><code>global</code></strong> en Python.</li>
+                    <li>Portée : <strong>variable locale</strong> vs <strong>variable globale</strong>.</li>
+                    <li><strong>Passage par valeur :</strong> copie de la donnée (types simples immuables).</li>
+                    <li><strong>Passage par adresse :</strong> transmission de l'adresse (<code>@</code> en algorithmique).</li>
+                    <li>Rôle du mot-clé <code>global</code> en Python.</li>
                   </ul>
                 </div>
               </div>
@@ -116,16 +105,13 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Identifier la portée de chaque variable et éviter les effets de bord indésirables.</li>
-                    <li>Simuler le passage par adresse de plusieurs variables réelles en Python grâce aux retours
-                      multiples (<code>return h, m, s</code>).</li>
-                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> Si une variable globale est déclarée
-                      <code>global</code> dans un module, elle ne doit **jamais** figurer dans ses paramètres.
-                    </li>
+                    <li>Identification de la portée pour éviter les effets de bord.</li>
+                    <li>Retours multiples en Python (<code>return h, m, s</code>).</li>
+                    <li>🚫 <strong>Règle :</strong> Une variable <code>global</code> ne doit jamais figurer en paramètre.</li>
                   </ul>
                 </div>
               </div>
@@ -135,7 +121,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Déroulement (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -144,8 +130,8 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
                       <th>Support</th>
                     </tr>
                   </thead>
@@ -153,34 +139,29 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Situation Problème</span></td>
                       <td>15 min</td>
-                      <td>Exécuter un script où une variable modifiée dans une fonction garde sa valeur initiale dans le
-                        programme principal.</td>
-                      <td>Constate la non-modification de la variable globale et s'interroge sur les espaces mémoire.
-                      </td>
-                      <td>Tableau / ProProjecteur</td>
+                      <td>Variable non modifiée hors fonction : espaces mémoire.</td>
+                      <td>Constat de non-modification et espaces mémoire.</td>
+                      <td>Tableau</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td><span class="badge bg-primary">2. Synthèse</span></td>
                       <td>25 min</td>
-                      <td>Explication : Portée locale vs globale, passage par valeur vs par référence (<code>@</code>),
-                        et règle du mot-clé <code>global</code>.</td>
-                      <td>Prise de notes, analyse du tableau comparatif des modes de transmission.</td>
-                      <td>Fiche de cours</td>
+                      <td>Portée locale/globale, valeur vs adresse (<code>@</code>), <code>global</code>.</td>
+                      <td>Modes de transmission et règles.</td>
+                      <td>Fiche</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td><span class="badge bg-success">3. Pratique</span></td>
                       <td>35 min</td>
-                      <td>Résolution du problème de Conversion de Temps ($sec \to H, M, S$) et de Permutation de
-                        variables.</td>
-                      <td>Rédaction du TDO, écriture des algorithmes avec <code>@</code> et codage Python avec retours
-                        multiples.</td>
+                      <td>Conversion temps ($sec \to H, M, S$), permutation et TDO.</td>
+                      <td>Algorithmes avec <code>@</code> et retours multiples.</td>
                       <td>Python</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Test de prédiction d'affichage sur des scripts modulaires (portée et passage par valeur).</td>
-                      <td>Validation des programmes et correction des erreurs de portée.</td>
+                      <td>Prédiction d'affichage sur scripts modulaires et quiz.</td>
+                      <td>Correction des erreurs et validation quiz.</td>
                       <td>Python</td>
                     </tr>
                   </tbody>
@@ -196,10 +177,9 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-portee" class="section-pane">
-          <h3>2. Portée des Variables &amp; Modes de Transmission</h3>
+          <h3>2. Portée & Transmission de Paramètres</h3>
           <p class="text-muted">
-            L'exécution d'un module crée un espace mémoire isolé pour ses variables locales. La transmission
-            d'information entre le programme principal et les modules dépend du mode de passage.
+            Espace mémoire isolé des variables locales et modes de passage entre appelant et appelé.
           </p>
 
           <!-- SVG Diagram Portée & Paramètres -->
@@ -557,17 +537,14 @@ print("Après permutation : A =", v1, ", B =", v2)</code></pre>
         <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances sur la Portée et les Paramètres</h3>
-          <p class="text-muted">Sélectionnez la bonne réponse pour chaque question.</p>
-
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Paramètres & Portée (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Une variable locale est créée dans une fonction et n'est accessible que dans le corps de cette fonction.">
-                  <div class="question-text">1. Qu'est-ce qu'une variable locale ?</div>
+                  data-explanation="Une variable locale n'existe que dans sa fonction.">
+                  <div class="question-text">1. Définition d'une variable locale ?</div>
                   <ul class="quiz-options">
                     <li>Une variable accessible uniquement dans le corps du sous-programme où elle est créée</li>
                     <li>Une variable accessible dans tout le programme</li>
@@ -577,21 +554,19 @@ print("Après permutation : A =", v1, ", B =", v2)</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="Les paramètres formels sont déclarés dans la définition; les paramètres effectifs sont transmis lors de l'appel.">
-                  <div class="question-text">2. Quelle est la différence entre paramètres formels et paramètres
-                    effectifs ?</div>
+                  data-explanation="Paramètres formels dans la définition ; effectifs lors de l'appel.">
+                  <div class="question-text">2. Paramètres formels vs paramètres effectifs ?</div>
                   <ul class="quiz-options">
-                    <li>Les paramètres effectifs sont dans la définition, les formels lors de l'appel</li>
-                    <li>Les paramètres formels sont dans l'en-tête de définition, les effectifs lors de l'appel</li>
-                    <li>Ce sont exactement les mêmes variables</li>
-                    <li>Les paramètres effectifs sont toujours globaux</li>
+                    <li>Effectifs dans la définition, formels à l'appel</li>
+                    <li>Formels dans la définition, effectifs à l'appel</li>
+                    <li>Mêmes variables</li>
+                    <li>Effectifs toujours globaux</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="Lors de l'appel d'un sous-programme, la correspondance se fait en nombre, en ordre et en type.">
-                  <div class="question-text">3. Comment se fait la correspondance entre paramètres effectifs et
-                    paramètres formels ?</div>
+                  data-explanation="Correspondance par ordre de position, nombre et type.">
+                  <div class="question-text">3. Correspondance entre paramètres effectifs et formels ?</div>
                   <ul class="quiz-options">
                     <li>Uniquement par le nom des variables</li>
                     <li>De manière totalement aléatoire</li>
@@ -601,21 +576,19 @@ print("Après permutation : A =", v1, ", B =", v2)</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="En algorithmique, un paramètre transmis par adresse (variable) permet au sous-programme de modifier la variable d'origine.">
-                  <div class="question-text">4. En algorithmique, que permet le passage de paramètre par adresse (ou par
-                    variable VAR) ?</div>
+                  data-explanation="Passage par variable/adresse permet de modifier la variable d'origine.">
+                  <div class="question-text">4. Effet du passage par adresse (@) ?</div>
                   <ul class="quiz-options">
-                    <li>De modifier directement la valeur de la variable d'origine transmise par l'appelant</li>
-                    <li>De transmettre une copie en lecture seule</li>
-                    <li>D'accélérer uniquement la vitesse du processeur</li>
-                    <li>De rendre la variable globale</li>
+                    <li>Modifie la variable d'origine de l'appelant</li>
+                    <li>Transmet une copie en lecture seule</li>
+                    <li>Accélère le processeur</li>
+                    <li>Rend la variable globale</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="En Python, modifier une variable du même nom dans une fonction crée par défaut une nouvelle variable locale.">
-                  <div class="question-text">5. En Python, que se passe-t-il si l'on assigne une valeur à une variable
-                    dans une fonction sans mot-clé global ?</div>
+                  data-explanation="Affecter sans mot-clé global crée une variable locale.">
+                  <div class="question-text">5. Affectation dans une fonction sans le mot-clé global ?</div>
                   <ul class="quiz-options">
                     <li>Python crée une variable locale propre à cette fonction</li>
                     <li>Python modifie la variable globale du même nom</li>

@@ -91,25 +91,11 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
-                </div>
-                <div class="card-body">
+                  <h4 class="h5 card-title text-primary"><i class="bi bi-bullseye me-2"></i> A. Savoirs (Connaissances)</h4>
                   <ul class="list-custom mb-0">
-                    <li>Exploiter les modules prédéfinis des bibliothèques standards :
-                      <ul>
-                        <li><strong>Mathématiques (<code>math</code>) :</strong> <code>sqrt(x)</code> (racine carrée).
-                        </li>
-                        <li><strong>Aléatoire (<code>random</code>) :</strong> <code>randint(vi, vf)</code> (tirage d'un
-                          entier dans $[vi, vf]$).</li>
-                        <li><strong>Fonctions sur Chaînes :</strong> <code>len(ch)</code>, <code>ch.find(ch1)</code>,
-                          <code>ch.upper()</code>, <code>ch.isdecimal()</code>, <code>str(x)</code>.
-                        </li>
-                      </ul>
-                    </li>
-                    <li>Maîtriser la transmission d'un tableau 1D (<code>numpy.array</code>) en paramètre d'un
-                      sous-programme.</li>
-                    <li>Savoir qu'en Python, un tableau <code>numpy</code> est <strong>passé par adresse par
-                        défaut</strong> (les modifications d'éléments affectent directement le tableau d'origine).</li>
+                    <li>Modules prédéfinis : <code>math</code> (<code>sqrt</code>), <code>random</code> (<code>randint</code>), chaînes (<code>len</code>, <code>upper</code>, <code>find</code>).</li>
+                    <li>Transmission de tableaux 1D (<code>numpy.array</code>) en paramètre.</li>
+                    <li>Passage par adresse par défaut des tableaux <code>numpy</code> en Python.</li>
                   </ul>
                 </div>
               </div>
@@ -118,20 +104,12 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Écrire la signature et le corps de modules spécialisés sur les tableaux :
-                      <ul>
-                        <li>Procédure de remplissage aléatoire avec <code>randint</code>.</li>
-                        <li>Procédure d'affichage élément par élément (<code>print(T[i])</code>).</li>
-                        <li>Fonction de calcul statistique ou d'extraction dans un second tableau.</li>
-                      </ul>
-                    </li>
-                    <li>Organiser l'exécution modulaire d'un programme gérant plusieurs tableaux (ex:
-                      <code>T_notes</code> et <code>T_admis</code>).
-                    </li>
+                    <li>Signature de modules spécialisés (remplissage aléatoire, affichage, extraction).</li>
+                    <li>Gestion modulaire multi-tableaux (ex: <code>T_notes</code> et <code>T_admis</code>).</li>
                   </ul>
                 </div>
               </div>
@@ -141,7 +119,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Déroulement (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -150,42 +128,38 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
                       <th>Support</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><span class="badge bg-secondary">1. Rappel &amp; Diagnostic</span></td>
+                      <td><span class="badge bg-secondary">1. Rappel</span></td>
                       <td>10 min</td>
-                      <td>Présenter le remplissage manuel vs le remplissage aléatoire avec <code>randint</code> pour
-                        gagner du temps lors des tests sur de grands tableaux ($N=40$).</td>
-                      <td>Comprend l'intérêt d'automatiser les données de test avec <code>randint</code>.</td>
-                      <td>Tableau / ProProjecteur</td>
+                      <td>Remplissage aléatoire vs manuel (grands tableaux $N=40$).</td>
+                      <td>Automatisation des données de test (<code>randint</code>).</td>
+                      <td>Tableau</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td><span class="badge bg-primary">2. Synthèse</span></td>
                       <td>25 min</td>
-                      <td>Présentation des fonctions prédéfinies des conventions 2024-2025 et de la syntaxe de
-                        transmission d'un tableau <code>numpy</code>.</td>
-                      <td>Prise de notes, analyse des équivalences Algorithmique / Python.</td>
-                      <td>Fiche de cours</td>
+                      <td>Fonctions prédéfinies et passage de tableaux <code>numpy</code>.</td>
+                      <td>Équivalences Algorithme &harr; Python.</td>
+                      <td>Fiche</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td><span class="badge bg-success">3. Pratique</span></td>
                       <td>40 min</td>
-                      <td>Problème du Générateur &amp; Analyseur de Notes de Classe avec extraction dans un second
-                        tableau <code>T_admis</code>.</td>
-                      <td>Écriture du TDO, rédaction des algorithmes des 5 modules et codage sous Thonny.</td>
+                      <td>Analyseur de Notes avec extraction dans <code>T_admis</code>.</td>
+                      <td>TDO, algorithmes des 5 modules et codage.</td>
                       <td>Python</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Test des scripts. Vérification du passage par adresse des tableaux et validation de
-                        l'extraction.</td>
-                      <td>Correction des signatures et validation du quiz d'évaluation.</td>
+                      <td>Validation passage par adresse et quiz.</td>
+                      <td>Correction des signatures et quiz.</td>
                       <td>Python</td>
                     </tr>
                   </tbody>
@@ -201,8 +175,10 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-modules" class="section-pane">
-          <h3>2. Modules Prédéfinis &amp; Passage de Tableaux en Paramètres</h3>
+          <h3>2. Modules Prédéfinis &amp; Tableaux</h3>
           <p class="text-muted">
+            Bibliothèques standards (<code>math</code>, <code>random</code>) et passage par référence des tableaux.
+          </p>
             Les fonctions prédéfinies permettent d'effectuer rapidement des calculs mathématiques, de la génération
             aléatoire et des manipulations de chaînes sans réinventer la roue.
           </p>
@@ -647,18 +623,14 @@ print("\nTotal admis :", m, "/", n)</code></pre>
         <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances sur les Modules Prédéfinis &amp; les Tableaux</h3>
-          <p class="text-muted">Sélectionnez la bonne réponse pour chaque question.</p>
-
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Modules Prédéfinis (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="math.sqrt(x) calcule la racine carrée du nombre x.">
-                  <div class="question-text">1. Quelle fonction du module 'math' permet de calculer la racine carrée
-                    d'un nombre ?</div>
+                  data-explanation="math.sqrt(x) calcule la racine carrée.">
+                  <div class="question-text">1. Fonction racine carrée du module 'math' ?</div>
                   <ul class="quiz-options">
                     <li>math.sqrt(x)</li>
                     <li>math.square(x)</li>
@@ -668,20 +640,19 @@ print("\nTotal admis :", m, "/", n)</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="random.randint(a, b) génère un entier aléatoire N tel que a <= N <= b (bornes incluses).">
-                  <div class="question-text">2. Que renvoie l'instruction : random.randint(1, 6) ?</div>
+                  data-explanation="randint(a, b) tire un entier entre a et b (bornes incluses).">
+                  <div class="question-text">2. Résultat de random.randint(1, 6) ?</div>
                   <ul class="quiz-options">
-                    <li>Un réel entre 1.0 et 6.0</li>
-                    <li>Un entier aléatoire N compris entre 1 et 6 inclus</li>
-                    <li>Un entier entre 1 et 5 excluant 6</li>
-                    <li>Une liste de 6 entiers</li>
+                    <li>Réel entre 1.0 et 6.0</li>
+                    <li>Entier entre 1 et 6 inclus</li>
+                    <li>Entier entre 1 et 5</li>
+                    <li>Liste de 6 entiers</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="len(ch) retourne le nombre de caractères de la chaîne ch.">
-                  <div class="question-text">3. Quelle fonction intégrée permet d'obtenir la longueur d'une chaîne de
-                    caractères 'ch' ?</div>
+                  data-explanation="len(ch) donne la longueur d'une chaîne.">
+                  <div class="question-text">3. Longueur d'une chaîne ch ?</div>
                   <ul class="quiz-options">
                     <li>ch.length()</li>
                     <li>size(ch)</li>
@@ -691,9 +662,8 @@ print("\nTotal admis :", m, "/", n)</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="ch.upper() renvoie une copie de la chaîne ch convertie en majuscules.">
-                  <div class="question-text">4. Quelle méthode de chaîne permet de convertir tous ses caractères en
-                    majuscules ?</div>
+                  data-explanation="ch.upper() convertit en majuscules.">
+                  <div class="question-text">4. Conversion en majuscules d'une chaîne ?</div>
                   <ul class="quiz-options">
                     <li>ch.upper()</li>
                     <li>ch.toUpper()</li>
@@ -703,9 +673,8 @@ print("\nTotal admis :", m, "/", n)</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="math.fabs(x) ou abs(x) calcule la valeur absolue d'un nombre réel.">
-                  <div class="question-text">5. Quelle fonction permet de calculer la valeur absolue d'un nombre 'x' ?
-                  </div>
+                  data-explanation="fabs ou abs donne la valeur absolue.">
+                  <div class="question-text">5. Valeur absolue d'un nombre x ?</div>
                   <ul class="quiz-options">
                     <li>math.fabs(x)</li>
                     <li>math.floor(x)</li>

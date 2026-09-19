@@ -162,9 +162,9 @@
               style="color: #38bdf8;">
               Module 5 • Séance N°16
             </span>
-            <h1 class="h3 mb-0 fw-bold">Concepts de l'IoT &amp; Prise en main de la carte ESP32</h1>
+            <h1 class="h3 mb-0 fw-bold">Concepts de l'IoT &amp; Carte ESP32</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
+              3<sup>e</sup> Sc. • 1h30
             </p>
           </div>
         </div>
@@ -176,27 +176,23 @@
 
       <!-- Article 1: Fiche Pédagogique -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Fiche Pédagogique</h2>
 
         <section id="section-objectifs" class="section-pane">
-          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+          <h3>1. Objectifs &amp; Chronogramme</h3>
 
           <div class="row g-4 mb-4">
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                  <i class="bi bi-bullseye me-2"></i> Savoirs
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Identifier l'architecture globale d'une chaîne fonctionnelle **IoT** (Capteur ➔ ESP32 ➔ Réseau ➔
-                      Actionneur).</li>
-                    <li>Découvrir les spécifications de l'**ESP32-WROOM-32** (Processeur Dual-Core 32 bits, 240 MHz,
-                      SRAM 520 Ko, Wi-Fi / BLE).</li>
-                    <li>Maîtriser le brochage des ports **GPIO** (Entrées/Sorties numériques, Masse GND, Tension
-                      d'alimentation 3.3V).</li>
-                    <li>⚠️ <strong>Règle de Sécurité :</strong> Respecter la tension logique de **3.3 V max** sur les
-                      broches GPIO.</li>
+                    <li>Chaîne fonctionnelle **IoT** : Capteur ➔ ESP32 ➔ Réseau ➔ Actionneur.</li>
+                    <li>Spécifications **ESP32** : Dual-Core 32 bits, 240 MHz, SRAM 520 Ko, Wi-Fi/BLE.</li>
+                    <li>Brochage **GPIO** : E/S logiques, Masse GND, tension 3.3V.</li>
+                    <li>⚠️ Sécurité : tension logique de **3.3 V max** sur les GPIO.</li>
                   </ul>
                 </div>
               </div>
@@ -205,15 +201,14 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> Savoir-faire
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Configurer une broche GPIO en mode **Sortie Numérique** (`Pin.OUT` / `OUTPUT`).</li>
-                    <li>Écrire le script de clignotement (**Blink LED**) sur la LED intégrée (**GPIO 2**).</li>
-                    <li>Réaliser le montage sécurisé d'une LED externe sur breadboard avec résistance de protection ($R
-                      = 220\,\Omega$).</li>
-                    <li>Gérer la temporisation d'attente (`time.sleep()` / `time.sleep_ms()` en MicroPython).</li>
+                    <li>Configurer une broche en sortie : <code>Pin.OUT</code>.</li>
+                    <li>Script **Blink LED** sur la LED intégrée (**GPIO 2**).</li>
+                    <li>Câblage sur breadboard avec résistance ($R = 220\,\Omega$).</li>
+                    <li>Temporisation avec <code>time.sleep()</code>.</li>
                   </ul>
                 </div>
               </div>
@@ -223,7 +218,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Chronogramme (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -232,45 +227,39 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
-                      <th>Support / Outils</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
+                      <th>Support</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><span class="badge bg-primary">1. Situation Problème</span></td>
+                      <td><span class="badge bg-primary">1. Problème</span></td>
                       <td>15 min</td>
-                      <td>Présentation d'exemples concrets d'IoT (Domotique, Serre connectée). Identification du besoin
-                        de traiter et transmettre des données.</td>
-                      <td>Analyse de la chaîne IoT et identification du rôle central du microcontrôleur embarqué.</td>
-                      <td>Diaporama / Vidéo IoT</td>
+                      <td>Exemples IoT (domotique, serre). Rôle du microcontrôleur.</td>
+                      <td>Analyse de la chaîne IoT.</td>
+                      <td>Diaporama</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-info text-dark">2. Présentation ESP32</span></td>
+                      <td><span class="badge bg-info text-dark">2. ESP32</span></td>
                       <td>20 min</td>
-                      <td>Présentation matérielle de la carte ESP32 DevKit V1, brochage GPIO, LED intégrée (GPIO 2) et
-                        consignes d'alimentation 3.3V.</td>
-                      <td>Observation matérielle de la carte, identification des broches (GPIO2, 3V3, GND) et repérage
-                        sur le schéma de brochage.</td>
-                      <td>Carte ESP32 matériel &amp; Fiche Pinout</td>
+                      <td>Carte DevKit V1, brochage GPIO, LED interne (GPIO 2), alim 3.3V.</td>
+                      <td>Repérage des broches (GPIO 2, 3V3, GND).</td>
+                      <td>ESP32 &amp; Pinout</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. Montage &amp; Script Blink</span></td>
+                      <td><span class="badge bg-success">3. Montage &amp; Code</span></td>
                       <td>40 min</td>
-                      <td>Encadrement du câblage sur Breadboard ($R = 220\,\Omega$) et démonstration du script Blink en
-                        MicroPython (Thonny / Wokwi).</td>
-                      <td>Réalisation du câblage électrique, écriture et exécution du script de clignotement sur la
-                        carte.</td>
-                      <td>Python IDE / Wokwi Simulator</td>
+                      <td>Câblage breadboard ($R = 220\,\Omega$) et script Blink.</td>
+                      <td>Câblage et exécution sous Thonny.</td>
+                      <td>Python IDE / Wokwi</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation &amp; Synthèse</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Validation des notions clés via le quiz formatif et modification de la fréquence de
-                        clignotement.</td>
-                      <td>Réponse aux questions du quiz et ajustement des délais `time.sleep()`.</td>
-                      <td>Environnement de TP</td>
+                      <td>Validation et ajustement des délais.</td>
+                      <td>Modification de la fréquence et quiz.</td>
+                      <td>Python</td>
                     </tr>
                   </tbody>
                 </table>
@@ -282,79 +271,78 @@
 
       <!-- Article 2: Architecture IoT & Carte ESP32 -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-cpu text-info me-2"></i> Architecture IoT &amp; Cartographie de l'ESP32</h2>
+        <h2><i class="bi bi-cpu text-info me-2"></i> Architecture IoT &amp; ESP32</h2>
 
         <section id="section-architecture" class="section-pane">
-          <h3>1. La Chaîne Fonctionnelle d'un Système IoT</h3>
-          <p>Un système d'**Internet des Objets (IoT)** connecte le monde physique au monde numérique à travers quatre
-            maillons essentiels :</p>
+          <h3>1. Chaîne Fonctionnelle IoT</h3>
+          <p class="text-muted">Quatre maillons essentiels :</p>
 
           <div class="row g-3 text-center my-3">
             <div class="col-6 col-md-3">
               <div class="p-3 border rounded bg-body-tertiary">
                 <i class="bi bi-thermometer-half fs-1 text-danger"></i>
                 <h6 class="mt-2 fw-bold mb-0">1. Capteurs</h6>
-                <small class="text-muted">Acquisition (Temp, Humidité, Lux)</small>
+                <small class="text-muted">Acquisition</small>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="p-3 border rounded bg-body-tertiary border-info">
                 <i class="bi bi-cpu-fill fs-1 text-info"></i>
                 <h6 class="mt-2 fw-bold mb-0 text-info">2. ESP32</h6>
-                <small class="text-muted">Traitement local &amp; Contrôle</small>
+                <small class="text-muted">Traitement local</small>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="p-3 border rounded bg-body-tertiary">
                 <i class="bi bi-wifi fs-1 text-primary"></i>
-                <h6 class="mt-2 fw-bold mb-0">3. Connectivité</h6>
-                <small class="text-muted">Wi-Fi / BLE ➔ Network</small>
+                <h6 class="mt-2 fw-bold mb-0">3. Réseau</h6>
+                <small class="text-muted">Wi-Fi / BLE</small>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="p-3 border rounded bg-body-tertiary">
                 <i class="bi bi-lightbulb-fill fs-1 text-warning"></i>
                 <h6 class="mt-2 fw-bold mb-0">4. Actionneurs</h6>
-                <small class="text-muted">Commandes (LED, Relais, Moteur)</small>
+                <small class="text-muted">Commandes (LED, Moteur)</small>
               </div>
             </div>
           </div>
 
-          <h3 class="mt-4">2. Caractéristiques Techniques de l'ESP32 DevKit V1</h3>
+          <h3 class="mt-4">2. Caractéristiques de l'ESP32 DevKit V1</h3>
           <div class="table-responsive">
-            <table class="table table-custom table-bordered align-middle">
+            <table class="table table-custom table-bordered align-middle small">
               <thead class="table-dark">
                 <tr>
                   <th>Composant</th>
-                  <th>Description &amp; Valeurs</th>
-                  <th>Rôle Pédagogique</th>
+                  <th>Spécifications</th>
+                  <th>Rôle</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong class="text-info">Processeur</strong></td>
-                  <td>Tensilica Xtensa Dual-Core 32 bits (jusqu'à 240 MHz)</td>
-                  <td>Calcul à très haute vitesse et multitâche.</td>
+                  <td>Dual-Core 32 bits (240 MHz)</td>
+                  <td>Calcul rapide et multitâche.</td>
                 </tr>
                 <tr>
                   <td><strong class="text-info">Mémoires</strong></td>
-                  <td>SRAM : 520 Ko | Flash Externe : 4 Mo</td>
-                  <td>Stockage du firmware MicroPython et des programmes.</td>
+                  <td>SRAM : 520 Ko | Flash : 4 Mo</td>
+                  <td>MicroPython et scripts.</td>
                 </tr>
                 <tr>
-                  <td><strong class="text-info">Broches GPIO</strong></td>
-                  <td>30 ou 36 broches (General Purpose Input Output)</td>
-                  <td>Connexion directe des capteurs et actionneurs.</td>
+                  <td><strong class="text-info">GPIO</strong></td>
+                  <td>Broches d'E/S configurables</td>
+                  <td>Connexion capteurs/actionneurs.</td>
                 </tr>
                 <tr>
                   <td><strong class="text-info">LED Interne</strong></td>
-                  <td>Connectée physiquement au <strong>GPIO 2</strong> (LED bleue)</td>
-                  <td>Indicateur lumineux pour tests et débogage rapide.</td>
+                  <td>Broche <strong>GPIO 2</strong> (bleue)</td>
+                  <td>Tests et débogage rapide.</td>
                 </tr>
                 <tr>
-                  <td><strong class="text-danger">Tension Logicielle</strong></td>
-                  <td><strong>3.3 V MAX</strong> (Signal HAUT = 3.3V, Signal BAS = 0V)</td>
-                  <td>⚠️ Ne jamais injecter du 5V directement sur une broche GPIO !</td>
+                  <td><strong class="text-danger">Tension</strong></td>
+                  <td><strong>3.3 V MAX</strong> (0V / 3.3V)</td>
+                  <td>⚠️ Ne jamais injecter du 5V sur un GPIO !</td>
                 </tr>
               </tbody>
             </table>
@@ -364,36 +352,27 @@
 
       <!-- Article 3: Montage Électrique & Scripts -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-diagram-3 text-success me-2"></i> Montage Électrique &amp; Programmation</h2>
+        <h2><i class="bi bi-diagram-3 text-success me-2"></i> Montage Électrique</h2>
 
         <section id="section-montage" class="section-pane">
-          <h3>1. Calcul de la Résistance de Protection $R$</h3>
-          <p>
-            Pour alimenter une LED rouge ($V_{\text{LED}} \approx 2.0\,\text{V}$, courant de sécurité $I \approx
-            6\,\text{mA}$) à partir du <strong>GPIO 4</strong> ($V_{\text{GPIO}} = 3.3\,\text{V}$), nous appliquons la
-            loi d'Ohm :
+          <h3>Calcul de la Résistance $R$ &amp; Câblage</h3>
+          <p class="text-muted">
+            Pour une LED rouge ($V_{\text{LED}} \approx 2.0\,\text{V}$, $I \approx 6\,\text{mA}$) sur le <strong>GPIO 4</strong> ($3.3\,\text{V}$) :
           </p>
 
-          <div class="alert alert-info border-info d-flex align-items-center gap-3">
-            <i class="bi bi-calculator-fill fs-2"></i>
-            <div>
-              <strong>Formule de Calcul :</strong>
-              $$R = \frac{V_{\text{GPIO}} - V_{\text{LED}}}{I} = \frac{3.3\,\text{V} - 2.0\,\text{V}}{0.006\,\text{A}} =
-              \frac{1.3\,\text{V}}{0.006\,\text{A}} \approx 216.6\,\Omega \implies \mathbf{Résistance\ standard\
-              220\,\Omega}$$
+          <div class="alert alert-info border-info d-flex align-items-center gap-3 py-2">
+            <i class="bi bi-calculator-fill fs-3"></i>
+            <div class="small">
+              $$R = \frac{V_{\text{GPIO}} - V_{\text{LED}}}{I} = \frac{3.3\,\text{V} - 2.0\,\text{V}}{0.006\,\text{A}} \approx 217\,\Omega \implies \mathbf{220\,\Omega}$$
             </div>
           </div>
 
-          <h3 class="mt-4">2. Schéma de Câblage sur Breadboard</h3>
           <div class="card card-custom mb-4">
-            <div class="card-body">
+            <div class="card-body small">
               <ul class="mb-0">
-                <li><strong>Broche Anode (+) de la LED (pattes plus longue) :</strong> Reliée à la broche <strong>GPIO
-                    4</strong> de l'ESP32.</li>
-                <li><strong>Broche Cathode (-) de la LED (pattes plus courte) :</strong> Reliée à une extrémité de la
-                  résistance $R = 220\,\Omega$.</li>
-                <li><strong>Autre extrémité de la résistance :</strong> Reliée à la masse <strong>GND</strong> de
-                  l'ESP32.</li>
+                <li><strong>Anode (+) :</strong> Broche <strong>GPIO 4</strong>.</li>
+                <li><strong>Cathode (-) :</strong> Vers résistance $R = 220\,\Omega$.</li>
+                <li><strong>Résistance :</strong> Vers la masse <strong>GND</strong>.</li>
               </ul>
             </div>
           </div>
@@ -402,14 +381,12 @@
 
       <!-- Article 4: Laboratoire Virtuel ESP32 (Simulateur) -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-play-circle-fill text-warning me-2"></i> Laboratoire Virtuel &amp; Simulateur ESP32</h2>
+        <h2><i class="bi bi-play-circle-fill text-warning me-2"></i> Simulateur ESP32</h2>
 
         <section id="section-demo" class="section-pane">
-          <h3>Simulateur Interactif Matériel &amp; Script MicroPython / C++</h3>
+          <h3>Simulateur &amp; Scripts</h3>
           <p class="text-muted small">
-            Interagissez directement avec la carte ESP32 virtuelle ci-dessous. Observez l'état logique des broches
-            <strong>GPIO 2</strong> (LED interne bleue) et <strong>GPIO 4</strong> (LED externe rouge sur breadboard),
-            contrôlez la fréquence et visualisez l'exécution dans la console REPL.
+            Testez l'état des broches <strong>GPIO 2</strong> (LED bleue) et <strong>GPIO 4</strong> (LED rouge), réglez la fréquence et observez la console REPL.
           </p>
 
           <div class="row g-4 my-2">
@@ -455,8 +432,7 @@
                 <!-- Breadboard External LED (GPIO4) -->
                 <div class="breadboard my-3">
                   <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="badge bg-secondary font-mono"><i class="bi bi-border-outer me-1"></i> Breadboard
-                      Externe</span>
+                    <span class="badge bg-secondary font-mono"><i class="bi bi-border-outer me-1"></i> Breadboard Externe</span>
                     <span class="badge pin-badge" :class="gpio4State ? 'bg-danger text-white' : 'bg-dark text-muted'">
                       GPIO 4 : {{ gpio4State ? 'HIGH (3.3V)' : 'LOW (0V)' }}
                     </span>
@@ -470,8 +446,7 @@
                     <i class="bi bi-arrow-right text-muted fs-4"></i>
                     <div class="text-center">
                       <small class="d-block text-muted mb-1">Résistance</small>
-                      <span class="badge bg-warning text-dark font-mono"><i class="bi bi-lightning-charge me-1"></i> R =
-                        220 Ω</span>
+                      <span class="badge bg-warning text-dark font-mono"><i class="bi bi-lightning-charge me-1"></i> R = 220 Ω</span>
                     </div>
                     <i class="bi bi-arrow-right text-muted fs-4"></i>
                     <div class="text-center">
@@ -501,25 +476,23 @@
                 <!-- Settings Controls -->
                 <div class="row g-2 mt-3 pt-3 border-top border-secondary border-opacity-25">
                   <div class="col-6">
-                    <label class="form-label small text-muted mb-1"><i class="bi bi-speedometer2 me-1"></i> Fréquence
-                      (Délai ms) :</label>
+                    <label class="form-label small text-muted mb-1"><i class="bi bi-speedometer2 me-1"></i> Délai (ms) :</label>
                     <select class="form-select form-select-sm" :value="blinkInterval"
                       @change="updateInterval(parseInt($event.target.value))">
-                      <option value="100">100 ms (Très Rapide)</option>
-                      <option value="250">250 ms (Rapide)</option>
-                      <option value="500">500 ms (Standard)</option>
-                      <option value="1000">1000 ms (1 seconde)</option>
-                      <option value="2000">2000 ms (Lent)</option>
+                      <option value="100">100 ms</option>
+                      <option value="250">250 ms</option>
+                      <option value="500">500 ms</option>
+                      <option value="1000">1000 ms</option>
+                      <option value="2000">2000 ms</option>
                     </select>
                   </div>
                   <div class="col-6">
-                    <label class="form-label small text-muted mb-1"><i class="bi bi-sliders me-1"></i> Mode de
-                      Clignotement :</label>
+                    <label class="form-label small text-muted mb-1"><i class="bi bi-sliders me-1"></i> Mode :</label>
                     <select class="form-select form-select-sm" :value="activeMode"
                       @change="updateMode($event.target.value)">
-                      <option value="sync">Synchrone (GPIO 2 &amp; 4 en même temps)</option>
-                      <option value="alt">Alterné (Chenillard 2 LEDs)</option>
-                      <option value="sos">Code SOS Morse</option>
+                      <option value="sync">Synchrone</option>
+                      <option value="alt">Alterné</option>
+                      <option value="sos">Code SOS</option>
                     </select>
                   </div>
                 </div>
@@ -559,16 +532,14 @@
                     <pre class="mb-0"><code>from machine import Pin
 import time
 
-# Broches en mode SORTIE (Pin.OUT)
 led_in = Pin(2, Pin.OUT)
 led_ext = Pin(4, Pin.OUT)
 
 while True:
-    led_in.value(1)   # Signal HAUT (3.3V)
+    led_in.value(1)
     led_ext.value(1)
-    time.sleep(1)     # Pause 1 seconde
-    
-    led_in.value(0)   # Signal BAS (0V)
+    time.sleep(1)
+    led_in.value(0)
     led_ext.value(0)
     time.sleep(1)</code></pre>
                   </div>
@@ -586,7 +557,6 @@ void loop() {
   digitalWrite(LED_IN, HIGH);
   digitalWrite(LED_EXT, HIGH);
   delay(1000);
-  
   digitalWrite(LED_IN, LOW);
   digitalWrite(LED_EXT, LOW);
   delay(1000);
@@ -596,8 +566,7 @@ void loop() {
                   <!-- Console REPL Simulation -->
                   <div class="p-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                      <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Console REPL
-                        (Sortie Série)</span>
+                      <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Console REPL</span>
                       <button class="btn btn-link btn-sm text-muted p-0 text-decoration-none" @click="clearLogs">
                         <i class="bi bi-trash"></i> Effacer
                       </button>
@@ -617,31 +586,30 @@ void loop() {
 
       <!-- Article 5: Évaluation Formative -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances de l'ESP32 &amp; MicroPython</h3>
+          <h3>QCM d'Auto-évaluation</h3>
 
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – IoT & ESP32 (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Auto-évaluation – ESP32 &amp; MicroPython">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="L'ESP32 intègre un microcontrôleur Dual-Core Tensilica LX6 avec connectivité Wi-Fi & Bluetooth.">
-                  <div class="question-text">1. Quelles sont les caractéristiques principales du microcontrôleur ESP32 ?
-                  </div>
+                  data-explanation="Dual-Core 32 bits avec Wi-Fi et Bluetooth intégrés.">
+                  <div class="question-text">1. Caractéristiques principales de l'ESP32 :</div>
                   <ul class="quiz-options">
-                    <li>Processeur Dual-Core 32 bits avec Wi-Fi et Bluetooth intégrés</li>
-                    <li>Processeur 8 bits sans mémoire sans fil</li>
-                    <li>Carte graphique haute définition 4K</li>
-                    <li>Disque dur mécanique 1To</li>
+                    <li>Dual-Core 32 bits, Wi-Fi et Bluetooth</li>
+                    <li>8 bits sans connectivité sans fil</li>
+                    <li>Carte graphique 4K</li>
+                    <li>Disque mécanique 1 To</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="GPIO signifie General Purpose Input Output (Broches d'E/S à usage général).">
-                  <div class="question-text">2. Que signifie l'acronyme 'GPIO' sur une carte ESP32 ?</div>
+                  data-explanation="GPIO = General Purpose Input Output.">
+                  <div class="question-text">2. Signification de GPIO :</div>
                   <ul class="quiz-options">
                     <li>General Python Input Operation</li>
                     <li>General Purpose Input Output</li>
@@ -651,21 +619,19 @@ void loop() {
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="Pin(2, Pin.OUT) configure le GPIO 2 en mode sortie numérique.">
-                  <div class="question-text">3. Quelle instruction MicroPython configure le GPIO 2 en sortie numérique
-                    pour piloter une LED ?</div>
+                  data-explanation="Pin(2, Pin.OUT) configure le GPIO 2 en sortie numérique.">
+                  <div class="question-text">3. Configuration du GPIO 2 en sortie :</div>
                   <ul class="quiz-options">
-                    <li>pin = Pin(2, Pin.IN)</li>
-                    <li>pin = DigitalOutput(2)</li>
-                    <li>pin = Pin(2, Pin.OUT)</li>
+                    <li>Pin(2, Pin.IN)</li>
+                    <li>DigitalOutput(2)</li>
+                    <li>Pin(2, Pin.OUT)</li>
                     <li>pin.mode(OUTPUT_2)</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="time.sleep(1) suspend l'exécution pendant 1 seconde.">
-                  <div class="question-text">4. Quelle fonction permet de faire une pause d'une seconde dans un script
-                    MicroPython ?</div>
+                  data-explanation="time.sleep(1) marque une pause d'1 seconde.">
+                  <div class="question-text">4. Pause d'une seconde en MicroPython :</div>
                   <ul class="quiz-options">
                     <li>time.sleep(1)</li>
                     <li>delay(1000)</li>
@@ -675,23 +641,21 @@ void loop() {
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="REPL (Read-Eval-Print Loop) est la console interactive de commande MicroPython sur l'ESP32.">
-                  <div class="question-text">5. Qu'est-ce que l'invite de commande REPL sous MicroPython / Python IDE ?
-                  </div>
+                  data-explanation="REPL = console interactive d'exécution directe sur l'ESP32.">
+                  <div class="question-text">5. Rôle de la console REPL :</div>
                   <ul class="quiz-options">
-                    <li>La console d'exécution interactive directe sur l'ESP32</li>
-                    <li>Un éditeur d'images 3D</li>
-                    <li>Un compilateur C++</li>
-                    <li>Le nom du câble USB</li>
+                    <li>Console interactive directe sur la carte</li>
+                    <li>Éditeur graphique 3D</li>
+                    <li>Compilateur C++</li>
+                    <li>Gestionnaire USB</li>
                   </ul>
                 </div>
 
               </div>
             </div>
           </div>
-  </div>
-  </section>
-  </article>
+        </section>
+      </article>
 
   </main>
 

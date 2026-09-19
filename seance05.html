@@ -90,17 +90,12 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
-                </div>
-                <div class="card-body">
+                  <h4 class="h5 card-title text-primary"><i class="bi bi-bullseye me-2"></i> A. Savoirs (Connaissances)</h4>
                   <ul class="list-custom mb-0">
-                    <li>Comprendre la notion de <strong>tableau à 1 dimension</strong> comme structure de données
-                      contiguë, <strong>homogène</strong> (même type) et <strong>statique</strong>.</li>
-                    <li>Maîtriser la déclaration algorithmique : <code>T : Tableau de N Type_élément</code>.</li>
-                    <li>Maîtriser la déclaration officielle en Python avec le module <code>numpy</code>
-                      (<code>from numpy import array</code>).</li>
-                    <li>Assimiler la règle absolue d'indexation : le 1er élément est à l'indice <strong>0</strong> et le
-                      dernier à l'indice <strong>$N-1$</strong>.</li>
+                    <li>Tableau 1D : structure homogène, contiguë et statique.</li>
+                    <li>Déclaration algorithmique : <code>T : Tableau de N Type</code>.</li>
+                    <li>Déclaration Python : <code>from numpy import array</code>.</li>
+                    <li>Indexation : premier élément à <strong>0</strong>, dernier à <strong>$N-1$</strong>.</li>
                   </ul>
                 </div>
               </div>
@@ -109,17 +104,14 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Réaliser le contrôle de saisie de la taille $N$ ($N_{min} \le N \le N_{max}$).</li>
-                    <li>Remplir (saisir) les $N$ éléments d'un tableau à l'aide d'une boucle <code>Pour</code> /
-                      <code>for</code>.
-                    </li>
-                    <li>Prévenir les erreurs d'indices hors limites (<code>IndexError</code>).</li>
-                    <li>🚫 <strong>Règle Ministérielle Stricte :</strong> L'affichage d'un tableau doit
-                      **obligatoirement se faire élément par élément** et jamais via `print(T)`.</li>
+                    <li>Contrôle de saisie de la taille $N$ ($N_{min} \le N \le N_{max}$).</li>
+                    <li>Remplissage et parcours séquentiel avec boucle <code>Pour</code>.</li>
+                    <li>Prévention des erreurs d'indices (<code>IndexError</code>).</li>
+                    <li>🚫 <strong>Règle :</strong> Affichage obligatoire élément par élément (pas de <code>print(T)</code>).</li>
                   </ul>
                 </div>
               </div>
@@ -129,7 +121,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Déroulement (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -138,8 +130,8 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
                       <th>Support</th>
                     </tr>
                   </thead>
@@ -147,34 +139,29 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Situation Problème</span></td>
                       <td>10 min</td>
-                      <td>Demander comment stocker les températures de 30 jours sans déclarer 30 variables distinctes
-                        (<code>t1</code>, <code>t2</code>...).</td>
-                      <td>Constate la nécessité d'une structure de données groupée et indexée.</td>
+                      <td>Stockage de 30 températures : besoin d'une structure indexée.</td>
+                      <td>Constat des limites des variables simples.</td>
                       <td>Tableau</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td><span class="badge bg-primary">2. Synthèse</span></td>
                       <td>25 min</td>
-                      <td>Présentation du Tableau 1D, des indices (0 à $N-1$) et de la déclaration Python avec
-                        <code>numpy.array</code>.
-                      </td>
-                      <td>Prise de notes et assimilation des règles de la bibliothèque <code>numpy</code>.</td>
-                      <td>Projecteur / Fiche</td>
+                      <td>Tableau 1D, indices (0..N-1) et <code>numpy.array</code>.</td>
+                      <td>Règles de la bibliothèque <code>numpy</code>.</td>
+                      <td>Fiche</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td><span class="badge bg-success">3. Pratique</span></td>
                       <td>40 min</td>
-                      <td>Présentation du problème pratique (Gestionnaire de températures Station Météo). Encadrement de
-                        l'analyse et du TDO.</td>
-                      <td>Élaboration de l'analyse, TDO, algorithme et codage sous Python IDE.</td>
+                      <td>Problème Station Météo et TDO.</td>
+                      <td>Analyse, TDO, algorithme et codage.</td>
                       <td>Python</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Vérification de la conformité de l'affichage (élément par élément) et du contrôle de la taille
-                        $N$.</td>
-                      <td>Correction des erreurs d'indices (<code>IndexError</code>) et quiz d'évaluation.</td>
+                      <td>Contrôle affichage élément par élément et contrôle N.</td>
+                      <td>Correction des erreurs et quiz.</td>
                       <td>Python</td>
                     </tr>
                   </tbody>
@@ -190,10 +177,9 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-tableaux" class="section-pane">
-          <h3>2. Concept &amp; Déclaration des Tableaux à 1 Dimension</h3>
+          <h3>2. Tableaux à 1 Dimension</h3>
           <p class="text-muted">
-            Un tableau à 1 dimension est une suite de cases mémoire contiguës, identifiées par un même nom d'objet et
-            accessibles individuellement grâce à un **indice** scalaire.
+            Structure contiguë d'éléments de même type, indexés de <strong>0</strong> à <strong>$N-1$</strong>.
           </p>
 
           <!-- Diagramme Vectoriel Tableau 1D -->
@@ -598,18 +584,14 @@ for i in range(n):
         <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances sur les Tableaux 1D</h3>
-          <p class="text-muted">Sélectionnez la bonne réponse pour chaque question.</p>
-
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Tableaux 1D (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="En Python/NumPy, le premier élément d'un tableau à 1D est toujours à l'indice 0.">
-                  <div class="question-text">1. Quel est l'indice du tout premier élément d'un tableau à une dimension
-                    de N éléments ?</div>
+                  data-explanation="En Python/NumPy, le premier indice est toujours 0.">
+                  <div class="question-text">1. Indice du premier élément d'un tableau à 1D ?</div>
                   <ul class="quiz-options">
                     <li>0</li>
                     <li>1</li>
@@ -619,22 +601,19 @@ for i in range(n):
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="Selon les conventions pédagogiques 2024, on importe la structure tableau via : from numpy import array.">
-                  <div class="question-text">2. Quelle instruction Python permet d'importer la structure de tableau
-                    homogène ?</div>
+                  data-explanation="Conventions officielles : from numpy import array.">
+                  <div class="question-text">2. Importation du tableau NumPy en Python ?</div>
                   <ul class="quiz-options">
                     <li>import array</li>
                     <li>from numpy import array</li>
-                    <li>include <array>
-                    </li>
+                    <li>include &lt;array&gt;</li>
                     <li>import list as array</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="T = array([0]*N, dtype=int) crée un tableau NumPy de N entiers initialisés à 0.">
-                  <div class="question-text">3. Comment crée-t-on un tableau NumPy 'T' de 'N' entiers initialisés à zéro
-                    ?</div>
+                  data-explanation="T = array([0]*N, dtype=int) crée un tableau de N entiers initialisés à 0.">
+                  <div class="question-text">3. Création d'un tableau NumPy T de N entiers à 0 ?</div>
                   <ul class="quiz-options">
                     <li>T = [0] * N</li>
                     <li>T = array(N)</li>
@@ -644,9 +623,8 @@ for i in range(n):
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Les indices d'un tableau de taille N vont de 0 à N-1. Pour N=5, le dernier indice est 4.">
-                  <div class="question-text">4. Pour un tableau de taille N = 5, quel est l'indice du dernier élément ?
-                  </div>
+                  data-explanation="Indices de 0 à N-1. Pour N=5, le dernier est 4.">
+                  <div class="question-text">4. Dernier indice pour N = 5 ?</div>
                   <ul class="quiz-options">
                     <li>4</li>
                     <li>5</li>
@@ -656,9 +634,8 @@ for i in range(n):
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Un tableau NumPy exige des éléments de même type (homogène) stockés de manière contiguë.">
-                  <div class="question-text">5. Quelle est la caractéristique principale d'un tableau numpy.array par
-                    rapport à une liste Python ?</div>
+                  data-explanation="numpy.array est homogène (un seul type).">
+                  <div class="question-text">5. Caractéristique d'un tableau numpy.array vs liste Python ?</div>
                   <ul class="quiz-options">
                     <li>Il est homogène (tous les éléments sont du même type)</li>
                     <li>Il peut contenir des types mixtes</li>

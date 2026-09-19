@@ -70,7 +70,7 @@
             </span>
             <h1 class="h3 mb-0 fw-bold">Arithmétique II – Nombres Premiers &amp; Décomposition</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
+              3<sup>e</sup> Sc. • 1h30
             </p>
           </div>
         </div>
@@ -82,25 +82,22 @@
 
       <!-- Article 1: Fiche Pédagogique -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Fiche Pédagogique</h2>
 
         <section id="section-objectifs" class="section-pane">
-          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+          <h3>1. Objectifs &amp; Chronogramme</h3>
 
           <div class="row g-4 mb-4">
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                  <i class="bi bi-bullseye me-2"></i> Savoirs
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Connaître la définition d'un **nombre premier** ($N > 1$ ayant exactement 2 diviseurs : $1$ et
-                      $N$).</li>
-                    <li>Comprendre l'**optimisation de la borne $\le \sqrt{N}$** : si un nombre est composé, il possède
-                      au moins un diviseur $d \le \lfloor\sqrt{N}\rfloor$.</li>
-                    <li>Connaître le **Théorème Fondamental de l'Arithmétique** : tout entier $N > 1$ se décompose de
-                      façon unique en produit de facteurs premiers.</li>
+                    <li>Définition d'un **nombre premier** ($N > 1$ admettant 2 diviseurs : $1$ et $N$).</li>
+                    <li>**Borne $\le \sqrt{N}$** : tout nombre composé admet un diviseur $d \le \lfloor\sqrt{N}\rfloor$.</li>
+                    <li>**Décomposition unique** en produit de facteurs premiers ($N > 1$).</li>
                   </ul>
                 </div>
               </div>
@@ -109,15 +106,13 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> Savoir-faire
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Implémenter la fonction <code>est_premier(n)</code> avec la boucle
-                      <code>while i <= int(sqrt(n)) and test:</code> (sans <code>break</code>).
-                    </li>
-                    <li>Implémenter la procédure <code>decomposer_facteurs_premiers(n)</code>.</li>
-                    <li>Concevoir la fonction <code>prochain_premier(n)</code> réutilisant le module de primalité.</li>
+                    <li>Fonction <code>est_premier(n)</code> avec <code>while i <= int(sqrt(n)) and test:</code>.</li>
+                    <li>Procédure <code>decomposer_facteurs_premiers(n)</code>.</li>
+                    <li>Fonction <code>prochain_premier(n)</code> réutilisant la primalité.</li>
                   </ul>
                 </div>
               </div>
@@ -127,7 +122,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Chronogramme (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -136,43 +131,38 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
                       <th>Support</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><span class="badge bg-secondary">1. Situation Problème</span></td>
+                      <td><span class="badge bg-secondary">1. Problème</span></td>
                       <td>10 min</td>
-                      <td>Demander comment vérifier si $N = 1\ 000\ 000\ 007$ est premier sans faire 1 milliard de
-                        divisions.</td>
-                      <td>Découvre que la recherche s'arrête à $\sqrt{N} \approx 31\ 622$.</td>
-                      <td>Tableau / ProProjecteur</td>
+                      <td>Tester $N = 10^9+7$ sans $10^9$ divisions.</td>
+                      <td>Découverte de la borne $\sqrt{N} \approx 31\ 622$.</td>
+                      <td>Tableau</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td><span class="badge bg-primary">2. Synthèse</span></td>
                       <td>25 min</td>
-                      <td>Présentation de la fonction `est_premier` optimisée et de la décomposition en facteurs
-                        premiers.</td>
-                      <td>Prise de notes et traçage manuel de la décomposition de $N = 60$ ($2^2 \times 3 \times 5$).
-                      </td>
-                      <td>Fiche de cours</td>
+                      <td>Fonction `est_premier` optimisée et décomposition de 60 ($2^2 \times 3 \times 5$).</td>
+                      <td>Trace de la boucle et prise de notes.</td>
+                      <td>Fiche cours</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td><span class="badge bg-success">3. Activité</span></td>
                       <td>40 min</td>
-                      <td>Problème d'Analyse Arithmétique d'un Entier $N$ (Statut, Prochain premier ou Facteurs
-                        premiers).</td>
-                      <td>Analyse modulaire, TDO, rédaction des algorithmes et codage sous Thonny.</td>
+                      <td>Analyseur d'entier (primalité, prochain premier ou décomposition).</td>
+                      <td>Analyse, TDO, algorithmes et codage.</td>
                       <td>Python IDE</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Vérification des cas limites ($N \le 1$, $N = 2$) et de l'absence totale de l'instruction
-                        `break`.</td>
-                      <td>Validation des scripts sur différents entiers et quiz d'auto-évaluation.</td>
+                      <td>Cas limites ($N \le 1$, $N = 2$) et absence de `break`.</td>
+                      <td>Jeux d'essais et quiz.</td>
                       <td>Python</td>
                     </tr>
                   </tbody>
@@ -188,17 +178,15 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-primalite" class="section-pane">
-          <h3>2. Test de Primalité Optimisé ($\le \sqrt{N}$) &amp; Facteurs Premiers</h3>
+          <h3>2. Test de Primalité ($\le \sqrt{N}$) &amp; Facteurs Premiers</h3>
           <p class="text-muted">
-            Tester les diviseurs jusqu'à $\lfloor\sqrt{N}\rfloor$ au lieu de $N-1$ réduit de manière drastique le temps
-            de calcul lors de l'analyse arithmétique.
+            Tester les diviseurs jusqu'à $\lfloor\sqrt{N}\rfloor$ au lieu de $N-1$ réduit drastiquement les opérations.
           </p>
 
           <!-- SVG Diagram Vector Nombres Premiers -->
           <div class="card card-custom mb-4">
             <div class="card-header-custom text-success fw-bold">
-              <i class="bi bi-diagram-3 me-2"></i> Diagramme Vectoriel : Borne $\sqrt{N}$ &amp; Décomposition en
-              Facteurs
+              <i class="bi bi-diagram-3 me-2"></i> Diagramme Vectoriel : Borne $\sqrt{N}$ &amp; Décomposition
             </div>
             <div class="card-body bg-body-tertiary text-center p-3">
               <img src="images/seance12/nombres_premiers.svg" alt="Borne racine carrée de N et Décomposition"
@@ -209,13 +197,10 @@
           <!-- Algorithm rules alert -->
           <div class="alert alert-success border border-success border-opacity-50 shadow-sm mb-4">
             <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-shield-check me-2"></i> Règle Ministérielle : Sortie de Boucle sans `break`
+              <i class="bi bi-shield-check me-2"></i> Règle Ministérielle : Sortie sans `break`
             </h5>
             <p class="mb-0 small">
-              En algorithmique et en Python, la sortie anticipée de la boucle <code>Tant Que</code> (dès qu'un diviseur
-              est trouvé) doit impérativement utiliser une variable booléenne <code>test</code> :<br>
-              <code>while i <= int(sqrt(n)) and test:</code>. L'instruction <code>break</code> est strictement
-              interdite.
+              Utiliser une variable booléenne : <code>while i <= int(sqrt(n)) and test:</code>. L'instruction <code>break</code> est strictement interdite.
             </p>
           </div>
         </section>
@@ -223,35 +208,24 @@
 
       <!-- Article 3: Activité 1 - Démonstration d'Efficacité -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-speedometer2 text-warning me-2"></i> Activité 1 : Démonstration d'Efficacité &amp; Preuve
-          Mathématique ($\le \sqrt{N}$ vs $\le N-1$)</h2>
+        <h2><i class="bi bi-speedometer2 text-warning me-2"></i> Activité 1 : Borne $\le \sqrt{N}$ vs $\le N-1$</h2>
 
         <section id="section-activite1" class="section-pane">
-          <h3>1. Justification Mathématique de la Borne $\lfloor\sqrt{N}\rfloor$</h3>
+          <h3>Justification Mathématique de la Borne $\lfloor\sqrt{N}\rfloor$</h3>
 
           <div class="alert alert-info border border-info border-opacity-50 shadow-sm mb-4">
             <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-lightbulb-fill me-2"></i> Pourquoi est-il inutile de tester les diviseurs au-delà de
-              $\sqrt{N}$ ?
+              <i class="bi bi-lightbulb-fill me-2"></i> Pourquoi s'arrêter à $\sqrt{N}$ ?
             </h5>
             <p class="mb-2 small">
-              Soit un entier $N > 1$ non premier (un nombre composé). Il s'écrit sous la forme d'un produit de deux
-              entiers $a$ et $b$ tels que :
-              $$N = a \times b \quad \text{avec } 1 < a \le b < N$$ </p>
-                <p class="mb-2 small">
-                  Si les deux facteurs étaient strictement supérieurs à $\sqrt{N}$ ($a > \sqrt{N}$ et $b > \sqrt{N}$),
-                  leur produit vérifierait :
-                  $$a \times b > \sqrt{N} \times \sqrt{N} = N$$
-                  Ce qui est impossible car $a \times b = N$ !
-                </p>
-                <p class="mb-0 small fw-bold text-success">
-                  👉 <strong>Conclusion :</strong> Tout nombre composé $N$ possède obligatoirement au moins un diviseur
-                  $a \le \sqrt{N}$. Si nous n'en trouvons aucun entre $2$ et $\lfloor\sqrt{N}\rfloor$, alors $N$ est
-                  obligatoirement **PREMIER** !
-                </p>
+              Tout composé $N = a \times b$ ($1 < a \le b < N$) vérifie $a \le \sqrt{N}$ (sinon $a \times b > N$).
+            </p>
+            <p class="mb-0 small fw-bold text-success">
+              👉 Sans diviseur dans $[2, \lfloor\sqrt{N}\rfloor]$, $N$ est **premier** !
+            </p>
           </div>
 
-          <h3>2. Analyse Comparative sur le Nombre $N = 1\ 000\ 003$</h3>
+          <h3>Comparaison sur $N = 1\ 000\ 003$</h3>
 
           <div class="row g-4 mb-4">
             <!-- Method 1: Naive -->
@@ -259,27 +233,23 @@
               <div class="card card-custom border-danger border-opacity-50 h-100">
                 <div class="card-header-custom text-danger fw-bold d-flex justify-content-between align-items-center">
                   <span><i class="bi bi-x-circle me-2"></i> Méthode Naïve ($i \le N - 1$)</span>
-                  <span class="badge bg-danger">1 000 001 ÉTAPES</span>
+                  <span class="badge bg-danger">1 000 001 étapes</span>
                 </div>
                 <div class="card-body">
                   <p class="small text-muted mb-2">
-                    <strong>Principe :</strong> Teste tous les diviseurs possibles de $i = 2$ jusqu'à $N - 1$.
+                    <strong>Principe :</strong> Teste $i$ de $2$ à $N - 1$.
                   </p>
 
                   <div
                     class="p-2 bg-body-tertiary rounded border border-secondary border-opacity-25 mb-3 font-mono small">
-                    <div class="text-danger fw-bold mb-1">Trace d'exécution pour N = 1 000 003 :</div>
-                    <div>- Test $i = 2$ : $1\ 000\ 003 \pmod 2 \neq 0$</div>
-                    <div>- Test $i = 3$ : $1\ 000\ 003 \pmod 3 \neq 0$</div>
-                    <div>- Test $i = 4$ : $1\ 000\ 003 \pmod 4 \neq 0$</div>
-                    <div class="text-muted opacity-75">... [ 999 997 itérations inutiles ] ...</div>
-                    <div class="text-danger fw-bold">- Test $i = 1\ 000\ 002$ : Boucle terminée (1 000 001 tests !)
-                    </div>
+                    <div class="text-danger fw-bold mb-1">Itérations pour $N = 1\ 000\ 003$ :</div>
+                    <div>- $i = 2, 3, 4, \dots$</div>
+                    <div class="text-muted opacity-75">... 999 997 tests inutiles ...</div>
+                    <div class="text-danger fw-bold">- Fin au test $1\ 000\ 002$ (1 000 001 divisions !)</div>
                   </div>
 
                   <div class="alert alert-danger mb-0 py-2 small">
-                    <i class="bi bi-exclamation-triangle-fill me-1"></i> <strong>Inconvénient :</strong> Exécute
-                    <strong>1 000 001 divisions</strong>. Extrêmement lent si $N$ dépasse $10^9$.
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i> <strong>Inconvénient :</strong> 1 000 001 divisions, impraticable au-delà de $10^9$.
                   </div>
                 </div>
               </div>
@@ -289,29 +259,24 @@
             <div class="col-md-6">
               <div class="card card-custom border-success border-opacity-50 h-100">
                 <div class="card-header-custom text-success fw-bold d-flex justify-content-between align-items-center">
-                  <span><i class="bi bi-check-circle me-2"></i> Méthode Optimisée ($i \le
-                    \lfloor\sqrt{N}\rfloor$)</span>
-                  <span class="badge bg-success">1 000 ÉTAPES</span>
+                  <span><i class="bi bi-check-circle me-2"></i> Méthode Optimisée ($i \le \lfloor\sqrt{N}\rfloor$)</span>
+                  <span class="badge bg-success">1 000 étapes</span>
                 </div>
                 <div class="card-body">
                   <p class="small text-muted mb-2">
-                    <strong>Principe :</strong> Teste la divisibilité de $i = 2$ uniquement jusqu'à $\lfloor\sqrt{1\
-                    000\ 003}\rfloor = 1000$.
+                    <strong>Principe :</strong> Teste $i$ jusqu'à $\lfloor\sqrt{1\ 000\ 003}\rfloor = 1000$.
                   </p>
 
                   <div
                     class="p-2 bg-body-tertiary rounded border border-secondary border-opacity-25 mb-3 font-mono small">
-                    <div class="text-success fw-bold mb-1">Trace d'exécution pour N = 1 000 003 :</div>
-                    <div>- Borne max calculée : $\lfloor\sqrt{1\ 000\ 003}\rfloor = 1000$</div>
-                    <div>- Test $i = 2, 3, 4, \dots$ jusqu'à $i = 1000$</div>
-                    <div class="text-success fw-bold mt-2">- $i > 1000 \implies$ Fin de la boucle ! <strong>1000 tests
-                        seulement !</strong></div>
-                    <div class="text-muted opacity-0" style="font-size: 0.6rem;">.</div>
+                    <div class="text-success fw-bold mb-1">Itérations pour $N = 1\ 000\ 003$ :</div>
+                    <div>- Borne max : $\lfloor\sqrt{N}\rfloor = 1000$</div>
+                    <div>- Test de $i = 2$ à $1000$</div>
+                    <div class="text-success fw-bold mt-2">- $i > 1000 \implies$ Premier en **1000 tests** !</div>
                   </div>
 
                   <div class="alert alert-success mb-0 py-2 small">
-                    <i class="bi bi-check-circle-fill me-1"></i> <strong>Gain Spectaculaire :</strong> Algorithme
-                    <strong>1 000 fois plus rapide</strong> (1 000 tests au lieu de 1 000 001).
+                    <i class="bi bi-check-circle-fill me-1"></i> <strong>Gain :</strong> $1\ 000\times$ plus rapide.
                   </div>
                 </div>
               </div>
@@ -321,7 +286,7 @@
           <!-- Comparison Table -->
           <div class="card card-custom mb-4">
             <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-table me-2"></i> Tableau Synthétique de Comparaison
+              <i class="bi bi-table me-2"></i> Comparaison Synthétique
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -329,26 +294,26 @@
                   <thead>
                     <tr>
                       <th>Méthode</th>
-                      <th>Borne d'Arrêt de la Boucle</th>
-                      <th>Nombre d'Itérations ($N = 10^6+3$)</th>
-                      <th>Efficacité de Calcul</th>
-                      <th>Verdict Ministériel</th>
+                      <th>Borne d'arrêt</th>
+                      <th>Itérations ($10^6+3$)</th>
+                      <th>Efficacité</th>
+                      <th>Norme</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><strong>Approche Naïve</strong></td>
-                      <td><code>i &lt; n</code> (ou <code>i &lt;= n - 1</code>)</td>
-                      <td>1 000 001 divisions</td>
+                      <td><strong>Naïve</strong></td>
+                      <td><code>i &lt;= n - 1</code></td>
+                      <td>1 000 001</td>
                       <td><span class="badge bg-danger">Inappropriée</span></td>
-                      <td>❌ Déconseillée (Trop d'opérations)</td>
+                      <td>❌ Déconseillée</td>
                     </tr>
                     <tr class="table-success bg-opacity-25">
-                      <td><strong>Approche Optimisée</strong></td>
+                      <td><strong>Optimisée</strong></td>
                       <td><code>i &lt;= int(sqrt(n))</code></td>
-                      <td><strong>1 000 divisions</strong></td>
+                      <td><strong>1 000</strong></td>
                       <td><span class="badge bg-success">Maximale</span></td>
-                      <td>✔️ <strong>Norme Officielle Ministérielle</strong></td>
+                      <td>✔️ <strong>Norme Officielle</strong></td>
                     </tr>
                   </tbody>
                 </table>
@@ -404,34 +369,30 @@ print("Gain d'efficacité    : ", count1 // count2, "fois moins d'itérations !"
 
       <!-- Article 4: Activité 2 - Problème Pratique complet: Analyseur Arithmétique -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-cpu-fill text-success me-2"></i> Activité 2 : Analyseur Arithmétique d'un Entier $N$</h2>
+        <h2><i class="bi bi-cpu-fill text-success me-2"></i> Activité 2 : Analyseur Arithmétique</h2>
 
         <section id="section-activite2" class="section-pane">
           <h3>Problème Pratique Modulaire</h3>
 
           <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
             <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé du problème :
+              <i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé :
             </h5>
             <p class="mb-2">
-              On souhaite réaliser une application modulaire d'analyse arithmétique d'un entier $N > 1$ :
+              Application modulaire d'analyse arithmétique pour un entier $N > 1$ :
             </p>
             <ol class="mb-0 small">
-              <li>Saisir $N > 1$ via une fonction <code>saisir_entier_gt1</code>.</li>
-              <li>Tester si $N$ est premier via la fonction <code>est_premier</code>.</li>
-              <li>Si $N$ est **premier** : afficher qu'il est premier et chercher le **prochain premier** $> N$ via
-                <code>prochain_premier</code>.
-              </li>
-              <li>Si $N$ est **composé** : afficher sa **décomposition en facteurs premiers** via la procédure
-                <code>decomposer_facteurs_premiers</code>.
-              </li>
+              <li>Saisie contrôlée de $N > 1$ (<code>saisir_entier_gt1</code>).</li>
+              <li>Test de primalité (<code>est_premier</code>).</li>
+              <li>Si premier : afficher le prochain premier $> N$ (<code>prochain_premier</code>).</li>
+              <li>Si composé : afficher la décomposition en facteurs premiers (<code>decomposer_facteurs_premiers</code>).</li>
             </ol>
           </div>
 
           <!-- Simulateur Vue 3 Réactif -->
           <div class="card card-custom mb-4 border border-success border-opacity-50 shadow-sm">
             <div class="card-header-custom text-success fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Analyseur Arithmétique N &gt; 1</span>
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur : Analyseur Arithmétique</span>
               <span class="badge bg-success">Vue 3 App</span>
             </div>
             <div class="card-body simulator-card-body">
@@ -445,7 +406,7 @@ print("Gain d'efficacité    : ", count1 // count2, "fois moins d'itérations !"
                 <div class="col-md-7 d-flex align-items-center justify-content-md-end gap-2">
                   <div class="simulator-val-box border-opacity-50 text-center font-mono shadow-sm"
                     :class="analyseResult.isPrime ? 'border-success' : 'border-primary'">
-                    <span class="simulator-sublabel d-block">Statut de Primalité</span>
+                    <span class="simulator-sublabel d-block">Statut</span>
                     <span class="fw-bold fs-6" :class="analyseResult.isPrime ? 'text-success' : 'text-primary'">
                       {{ analyseResult.isPrime ? '✔️ NOMBRE PREMIER' : '🧩 NOMBRE COMPOSÉ' }}
                     </span>
@@ -458,15 +419,12 @@ print("Gain d'efficacité    : ", count1 // count2, "fois moins d'itérations !"
                 <div class="col-md-6">
                   <div class="simulator-val-box text-start h-100">
                     <span class="simulator-sublabel d-block mb-2 fw-bold"><i
-                        class="bi bi-speedometer me-1 text-primary"></i> Détails de l'Optimisation ($\le \sqrt{N}$)
-                      :</span>
+                        class="bi bi-speedometer me-1 text-primary"></i> Optimisation ($\le \sqrt{N}$) :</span>
                     <ul class="list-unstyled small mb-0 font-mono">
                       <li>• Borne max $\lfloor\sqrt{ {{ analyseResult.n }} }\rfloor$ : <strong>{{ analyseResult.bound
                           }}</strong></li>
-                      <li>• Divisions avec optimisation ($\le \sqrt{N}$) : <strong>{{ analyseResult.iterationsOptimized
-                          }}</strong></li>
-                      <li>• Divisions sans optimisation ($\le N-1$) : <strong>{{ analyseResult.iterationsUnoptimized
-                          }}</strong></li>
+                      <li>• Divisions ($\le \sqrt{N}$) : <strong>{{ analyseResult.iterationsOptimized }}</strong></li>
+                      <li>• Divisions ($\le N-1$) : <strong>{{ analyseResult.iterationsUnoptimized }}</strong></li>
                     </ul>
                   </div>
                 </div>
@@ -474,15 +432,13 @@ print("Gain d'efficacité    : ", count1 // count2, "fois moins d'itérations !"
                 <div class="col-md-6">
                   <div class="simulator-val-box text-start h-100">
                     <span class="simulator-sublabel d-block mb-2 fw-bold"><i
-                        class="bi bi-diagram-3-fill me-1 text-success"></i> Résultat du Traitement Modulaire :</span>
+                        class="bi bi-diagram-3-fill me-1 text-success"></i> Résultat :</span>
                     <div v-if="analyseResult.isPrime" class="alert alert-success mb-0 py-2 font-mono small">
-                      Prochain nombre premier après {{ analyseResult.n }} : <strong>{{ analyseResult.nextPrime
-                        }}</strong>
+                      Prochain premier : <strong>{{ analyseResult.nextPrime }}</strong>
                     </div>
                     <div v-else class="alert alert-primary mb-0 py-2 font-mono small">
-                      Produit de facteurs premiers :<br>
-                      <strong class="fs-6 text-primary">{{ analyseResult.n }} = {{ analyseResult.decomp.formatted
-                        }}</strong>
+                      Facteurs premiers :<br>
+                      <strong class="fs-6 text-primary">{{ analyseResult.n }} = {{ analyseResult.decomp.formatted }}</strong>
                     </div>
                   </div>
                 </div>
@@ -559,7 +515,7 @@ FIN</code></pre>
 
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Implémentation Python Officielle (Python IDE)</span></div>
+                <div class="code-header"><span>Implémentation Python</span></div>
                 <pre><code class="language-python">from math import sqrt
 
 def est_premier(n):
@@ -612,42 +568,41 @@ else:
 
       <!-- Article 5: Évaluation Formative -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances sur la Primalité &amp; la Décomposition</h3>
+          <h3>Quiz Interactif</h3>
 
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Nombres Premiers (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz – Nombres Premiers">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Un nombre entier N > 1 est premier s'il possède exactement deux diviseurs distincts : 1 et lui-même.">
-                  <div class="question-text">1. Quelle est la définition exacte d'un nombre entier premier ?</div>
+                  data-explanation="Admet exactement deux diviseurs distincts : 1 et lui-même.">
+                  <div class="question-text">1. Définition d'un nombre entier premier ?</div>
                   <ul class="quiz-options">
-                    <li>Un entier N > 1 qui admet exactement deux diviseurs : 1 et N</li>
-                    <li>Un nombre impair</li>
-                    <li>Un nombre qui n'est pas divisible par 2</li>
-                    <li>Un entier négatif sans diviseur</li>
+                    <li>Entier N > 1 admettant exactement 2 diviseurs (1 et N)</li>
+                    <li>Nombre impair quelconque</li>
+                    <li>Nombre non divisible par 2</li>
+                    <li>Entier négatif sans diviseur</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="Il suffit de tester les diviseurs de 2 jusqu'à sqrt(N) inclus pour valider la primalité.">
-                  <div class="question-text">2. Pour vérifier si un entier N est premier, jusqu'à quel nombre limite
-                    suffit-il de tester les diviseurs ?</div>
+                  data-explanation="Tester de 2 jusqu'à int(sqrt(N)) suffit.">
+                  <div class="question-text">2. Borne limite pour tester la primalité de N ?</div>
                   <ul class="quiz-options">
                     <li>N - 1</li>
-                    <li>La racine carrée de N (int(sqrt(N)))</li>
+                    <li>Racine carrée de N (int(sqrt(N)))</li>
                     <li>N / 2</li>
                     <li>100</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="2 est le seul nombre entier pair qui soit également premier.">
-                  <div class="question-text">3. Quel est le seul nombre pair qui soit un nombre premier ?</div>
+                  data-explanation="2 est le seul entier pair premier.">
+                  <div class="question-text">3. Seul nombre pair premier ?</div>
                   <ul class="quiz-options">
                     <li>0</li>
                     <li>4</li>
@@ -657,35 +612,32 @@ else:
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Les diviseurs s'associent par paires d x d' = N. Si aucun diviseur n'existe <= sqrt(N), N est premier.">
-                  <div class="question-text">4. Pourquoi est-il inutile de tester les diviseurs au-delà de sqrt(N) ?
-                  </div>
+                  data-explanation="Tout diviseur > sqrt(N) est couplé à un diviseur <= sqrt(N).">
+                  <div class="question-text">4. Pourquoi s'arrêter à sqrt(N) ?</div>
                   <ul class="quiz-options">
-                    <li>Car tout diviseur d > sqrt(N) possède un diviseur complémentaire d' <= sqrt(N)</li>
-                    <li>Car Python ne le permet pas</li>
-                    <li>Car la racine carrée est toujours un entier</li>
-                    <li>Par simple convention</li>
+                    <li>Tout diviseur > sqrt(N) a un diviseur associé <= sqrt(N)</li>
+                    <li>Python l'impose</li>
+                    <li>La racine carrée est toujours entière</li>
+                    <li>Simple convention d'affichage</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="La décomposition en facteurs premiers exprime N comme produit de nombres premiers.">
-                  <div class="question-text">5. En quoi consiste la décomposition d'un entier N en facteurs premiers ?
-                  </div>
+                  data-explanation="Exprimer N comme produit de facteurs premiers.">
+                  <div class="question-text">5. En quoi consiste la décomposition ?</div>
                   <ul class="quiz-options">
-                    <li>Exprimer N sous la forme d'un produit de nombres premiers</li>
-                    <li>Additionner tous les diviseurs de N</li>
+                    <li>Exprimer N sous forme d'un produit de nombres premiers</li>
+                    <li>Sommer tous les diviseurs</li>
                     <li>Calculer le carré de N</li>
-                    <li>Diviser N par 10</li>
+                    <li>Diviser par 10</li>
                   </ul>
                 </div>
 
               </div>
             </div>
           </div>
-  </div>
-  </section>
-  </article>
+        </section>
+      </article>
 
   </main>
 

@@ -90,21 +90,10 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
-                </div>
-                <div class="card-body">
+                  <h4 class="h5 card-title text-primary"><i class="bi bi-bullseye me-2"></i> A. Savoirs (Connaissances)</h4>
                   <ul class="list-custom mb-0">
-                    <li>Maîtriser les 3 motifs algorithmiques fondamentaux appliqués aux Tableaux 1D :
-                      <ul>
-                        <li>Calculs cumulatifs : <strong>Somme</strong> et <strong>Moyenne</strong>.</li>
-                        <li>Recherche d'extrémums : <strong>Valeur Maximale</strong> et <strong>Valeur
-                            Minimale</strong>.</li>
-                        <li><strong>Comptage conditionnel</strong> : Nombre d'éléments vérifiant un critère (ex: notes
-                          $\ge 10.0$).</li>
-                      </ul>
-                    </li>
-                    <li>Comprendre la règle d'initialisation du Max/Min sur le 1er élément du tableau
-                      (<code>max_val ← T[0]</code>).</li>
+                    <li>3 motifs sur Tableaux 1D : <strong>Somme/Moyenne</strong>, <strong>Extrémums</strong> (Max/Min) et <strong>Comptage conditionnel</strong>.</li>
+                    <li>Initialisation des extrémums sur le 1<sup>er</sup> élément : <code>max_val ← T[0]</code>.</li>
                   </ul>
                 </div>
               </div>
@@ -113,16 +102,13 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Initialiser correctement les accumulateurs et variables d'extrémums avant d'entrer dans la
-                      boucle.</li>
-                    <li>Effectuer un parcours complet d'un tableau <code>numpy</code> pour extraire des statistiques en
-                      un seul passage.</li>
-                    <li>🚫 <strong>Règle Algorithmique :</strong> Écrire les boucles de calcul explicites et <strong>ne
-                        pas utiliser</strong> les fonctions masquées de haut niveau (`sum()`, `max()`, `min()`).</li>
+                    <li>Initialisation correcte des accumulateurs avant la boucle.</li>
+                    <li>Parcours séquentiel complet pour extraction statistique.</li>
+                    <li>🚫 <strong>Règle :</strong> Boucles explicites obligatoires (fonctions <code>sum()</code>, <code>max()</code>, <code>min()</code> interdites).</li>
                   </ul>
                 </div>
               </div>
@@ -132,7 +118,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Déroulement (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -141,47 +127,38 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
                       <th>Support</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><span class="badge bg-secondary">1. Rappel &amp; Problématisation</span></td>
+                      <td><span class="badge bg-secondary">1. Rappel</span></td>
                       <td>10 min</td>
-                      <td>Demander comment trouver la meilleure note de la classe dans un tableau. Pourquoi
-                        <code>max = 0</code> est un piège ?
-                      </td>
-                      <td>Comprend la nécessité d'initialiser le Max avec le premier élément du tableau
-                        <code>T[0]</code>.
-                      </td>
+                      <td>Recherche meilleure note : piège de <code>max = 0</code>.</td>
+                      <td>Nécessité de <code>max ← T[0]</code>.</td>
                       <td>Tableau</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td><span class="badge bg-primary">2. Synthèse</span></td>
                       <td>20 min</td>
-                      <td>Présentation des 3 motifs : Cumul (Somme/Moyenne), Extrémums (Max/Min) et Comptage
-                        conditionnel.</td>
-                      <td>Prise de notes, analyse des conditions d'initialisation (<code>somme ← 0</code> vs
-                        <code>max ← T[0]</code>).
-                      </td>
-                      <td>Projecteur / Fiche</td>
+                      <td>Motifs Somme, Extrémums et Comptage.</td>
+                      <td>Analyse des conditions d'initialisation.</td>
+                      <td>Fiche</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td><span class="badge bg-success">3. Pratique</span></td>
                       <td>45 min</td>
-                      <td>Présentation du problème d'Analyse Statistique des Notes d'un Devoir. Encadrement du TDO et de
-                        l'algorithme.</td>
-                      <td>Rédaction du TDO, écriture de l'algorithme et codage Python sous Thonny.</td>
+                      <td>Statistiques des Notes d'un Devoir et TDO.</td>
+                      <td>TDO, algorithme et codage.</td>
                       <td>Python</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Vérification de la cohérence des statistiques avec des séries variées (notes négatives ou
-                        égales).</td>
-                      <td>Correction des erreurs et validation du quiz d'évaluation.</td>
+                      <td>Vérification cohérence séries et quiz.</td>
+                      <td>Correction et validation quiz.</td>
                       <td>Python</td>
                     </tr>
                   </tbody>
@@ -197,10 +174,9 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-traitements" class="section-pane">
-          <h3>2. Les 3 Motifs Algorithmiques Fondamentaux sur Tableau 1D</h3>
+          <h3>2. Motifs Fondamentaux sur Tableau 1D</h3>
           <p class="text-muted">
-            Le parcours d'un tableau permet d'effectuer des calculs cumulatifs, des filtres et des recherches
-            d'extrémums en parcourant les éléments de l'indice 0 à $N-1$.
+            Calculs cumulatifs, filtres et recherche d'extrémums de l'indice 0 à $N-1$.
           </p>
 
           <!-- Diagramme Vectoriel Les 3 Traitements -->
@@ -646,21 +622,17 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
 
       <!-- Article 5: Évaluation Formative -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances sur les Traitements de Tableaux 1D</h3>
-          <p class="text-muted">Sélectionnez la bonne réponse pour chaque question.</p>
-
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Traitements Tableaux 1D (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Pour chercher le Maximum, on initialise Max avec le premier élément T[0] du tableau.">
-                  <div class="question-text">1. Comment initialise-t-on la variable 'Max' pour chercher le plus grand
-                    élément d'un tableau 'T' ?</div>
+                  data-explanation="Max s'initialise avec T[0].">
+                  <div class="question-text">1. Initialisation de Max pour chercher le plus grand élément de T ?</div>
                   <ul class="quiz-options">
                     <li>Max = T[0]</li>
                     <li>Max = 0</li>
@@ -670,9 +642,8 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="Pour accumuler les valeurs d'un tableau, l'accumulateur 'S' s'initialise à 0 avant la boucle.">
-                  <div class="question-text">2. Quelle est l'initialisation correcte de la variable de somme 'S' avant
-                    de calculer la somme d'un tableau ?</div>
+                  data-explanation="L'élément neutre de l'addition est 0.">
+                  <div class="question-text">2. Initialisation de la somme S ?</div>
                   <ul class="quiz-options">
                     <li>S = 1</li>
                     <li>S = 0</li>
@@ -682,9 +653,8 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="Dans la boucle, chaque élément T[i] valide ajoute 1 au compteur : Nbr = Nbr + 1.">
-                  <div class="question-text">3. Quelle instruction permet d'incrémenter un compteur 'Nbr' de notes
-                    supérieures ou égales à 10 ?</div>
+                  data-explanation="On ajoute 1 au compteur à chaque élément valide.">
+                  <div class="question-text">3. Incrémentation d'un compteur Nbr ?</div>
                   <ul class="quiz-options">
                     <li>Nbr = T[i]</li>
                     <li>Nbr = Nbr + T[i]</li>
@@ -694,9 +664,8 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="La moyenne arithmétique est égale à la somme totale divisée par le nombre d'éléments N.">
-                  <div class="question-text">4. Quelle est la formule correcte pour calculer la moyenne 'Moy' d'un
-                    tableau de N éléments ?</div>
+                  data-explanation="Moyenne = Somme / N.">
+                  <div class="question-text">4. Calcul de la moyenne Moy d'un tableau de N éléments ?</div>
                   <ul class="quiz-options">
                     <li>Moy = Somme / N</li>
                     <li>Moy = Somme * N</li>
@@ -706,8 +675,8 @@ print("Taux de réussite :", round(taux, 1), "%")</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Pour échanger T[i] et T[j], on sauvegarde T[i] dans une variable temporaire Aux.">
-                  <div class="question-text">5. Comment permute-t-on deux éléments T[i] et T[j] d'un tableau ?</div>
+                  data-explanation="Permutation via variable auxiliaire Aux.">
+                  <div class="question-text">5. Permutation de T[i] et T[j] ?</div>
                   <ul class="quiz-options">
                     <li>Aux = T[i] ; T[i] = T[j] ; T[j] = Aux</li>
                     <li>T[i] = T[j] ; T[j] = T[i]</li>

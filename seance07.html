@@ -91,23 +91,14 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                  <i class="bi bi-bullseye me-2"></i> A. Savoirs (Connaissances)
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Comprendre les enjeux de la <strong>décomposition modulaire</strong> (approche descendante /
-                      <em>Top-Down</em>) : lisibilité, réutilisabilité et débogage ciblé.
-                    </li>
-                    <li>Distinguer les 2 grands types de sous-programmes :
-                      <ul>
-                        <li><strong>La Fonction :</strong> Sous-programme qui effectue des calculs et <strong>retourne
-                            un résultat unique</strong> (<code>return</code>).</li>
-                        <li><strong>La Procédure :</strong> Sous-programme réalisant une suite d'instructions
-                          (affichage, saisie) <strong>sans retourner de valeur</strong>.</li>
-                      </ul>
-                    </li>
-                    <li>Distinguer <strong>Paramètres Formels (pf)</strong> (définition) et <strong>Paramètres Effectifs
-                        (pe)</strong> (appel).</li>
+                    <li>Décomposition modulaire (<em>Top-Down</em>) : lisibilité et réutilisabilité.</li>
+                    <li><strong>Fonction :</strong> calcul et retour d'une valeur unique (<code>return</code>).</li>
+                    <li><strong>Procédure :</strong> suite d'instructions sans valeur de retour.</li>
+                    <li>Paramètres formels (définition) vs effectifs (appel).</li>
                   </ul>
                 </div>
               </div>
@@ -116,16 +107,14 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Décomposer un problème complexe en modules autonomes.</li>
-                    <li>Déclarer des fonctions et procédures en Python avec la syntaxe <code>def</code>.</li>
-                    <li>Effectuer des appels de sous-programmes conformes en respectant le nombre, l'ordre et le type
-                      des paramètres.</li>
-                    <li>Éviter l'erreur classique d'utiliser <code>print()</code> au lieu de <code>return</code> dans
-                      une fonction.</li>
+                    <li>Décomposition d'un problème en modules autonomes.</li>
+                    <li>Déclaration avec <code>def</code> en Python.</li>
+                    <li>Conformité des appels (nombre, ordre, type).</li>
+                    <li>Distinction stricte entre <code>return</code> et <code>print()</code>.</li>
                   </ul>
                 </div>
               </div>
@@ -135,7 +124,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Déroulement (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -144,8 +133,8 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
                       <th>Support</th>
                     </tr>
                   </thead>
@@ -153,35 +142,29 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Situation Problème</span></td>
                       <td>10 min</td>
-                      <td>Présenter un script monolithe de 60 lignes mélangées. Montrer la difficulté de correction et
-                        de réutilisation.</td>
-                      <td>Exprime le besoin d'isoler les blocs de calcul dans des modules séparés.</td>
-                      <td>Tableau / ProProjecteur</td>
+                      <td>Script monolithe : limites de maintenance.</td>
+                      <td>Besoin d'isoler les blocs de calcul.</td>
+                      <td>Tableau</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td><span class="badge bg-primary">2. Synthèse</span></td>
                       <td>25 min</td>
-                      <td>Présentation des fonctions (<code>return</code>) vs procédures (affichage/saisie). Distinction
-                        <code>print()</code> vs <code>return</code>.
-                      </td>
-                      <td>Prise de notes, assimilation des syntaxes <code>def</code> et des appels de modules.</td>
-                      <td>Fiche de cours</td>
+                      <td>Fonctions (<code>return</code>) vs procédures (<code>print</code>).</td>
+                      <td>Syntaxe <code>def</code> et appels de modules.</td>
+                      <td>Fiche</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td><span class="badge bg-success">3. Pratique</span></td>
                       <td>40 min</td>
-                      <td>Problème d'Analyse Géométrique d'un Rectangle. Encadrement de la décomposition modulaire et du
-                        TDO.</td>
-                      <td>Conception des fonctions <code>perimetre</code>, <code>surface</code>, <code>diagonale</code>
-                        et de la procédure <code>afficher_bilan</code>.</td>
+                      <td>Analyse Géométrique d'un Rectangle et TDO.</td>
+                      <td>Fonctions géométriques et procédure bilan.</td>
                       <td>Python</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Détection des erreurs d'appel (<code>NoneType</code>) et vérification de l'exécution
-                        modulaire.</td>
-                      <td>Correction des erreurs et validation du quiz interactif.</td>
+                      <td>Erreurs d'appel (<code>NoneType</code>) et quiz.</td>
+                      <td>Correction et validation quiz.</td>
                       <td>Python</td>
                     </tr>
                   </tbody>
@@ -197,10 +180,9 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-modularite" class="section-pane">
-          <h3>2. Principes de la Décomposition Modulaire</h3>
+          <h3>2. Décomposition Modulaire</h3>
           <p class="text-muted">
-            La décomposition modulaire (ou approche <em>Top-Down</em>) consiste à découper un problème complexe en
-            plusieurs sous-programmes réutilisables.
+            Découpage d'un problème complexe en sous-programmes autonomes (<em>Top-Down</em>).
           </p>
 
           <!-- SVG Diagram Vector Modularité -->
@@ -612,18 +594,14 @@ afficher_bilan(larg, long, p, s, d)</code></pre>
         <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances sur la Modularité</h3>
-          <p class="text-muted">Sélectionnez la bonne réponse pour chaque question.</p>
-
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Modularité (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="En Python, le mot-clé 'def' sert à définir une fonction ou une procédure.">
-                  <div class="question-text">1. Quel mot-clé Python permet de déclarer une fonction ou une procédure ?
-                  </div>
+                  data-explanation="def définit fonctions et procédures.">
+                  <div class="question-text">1. Mot-clé Python pour déclarer une fonction/procédure ?</div>
                   <ul class="quiz-options">
                     <li>def</li>
                     <li>function</li>
@@ -633,44 +611,41 @@ afficher_bilan(larg, long, p, s, d)</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="Une fonction retourne obligatoirement une valeur via 'return', alors qu'une procédure réalise une action.">
-                  <div class="question-text">2. Quelle est la différence fondamentale entre une fonction et une
-                    procédure ?</div>
+                  data-explanation="La fonction retourne une valeur (return) ; la procédure exécute une action sans retour.">
+                  <div class="question-text">2. Différence entre fonction et procédure ?</div>
                   <ul class="quiz-options">
                     <li>La procédure utilise return, pas la fonction</li>
-                    <li>La fonction retourne une valeur avec return, la procédure exécute une action sans retour</li>
-                    <li>La fonction ne peut pas avoir de paramètres</li>
-                    <li>Il n'y a aucune différence</li>
+                    <li>La fonction retourne une valeur avec return, la procédure non</li>
+                    <li>La fonction n'a pas de paramètres</li>
+                    <li>Aucune différence</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="La décomposition descendante (Top-Down) consiste à découper un problème complexe en sous-problèmes plus simples.">
-                  <div class="question-text">3. Qu'est-ce que l'analyse modulaire descendante (Top-Down) ?</div>
+                  data-explanation="Top-Down = découper en sous-problèmes plus simples.">
+                  <div class="question-text">3. Analyse modulaire descendante (Top-Down) ?</div>
                   <ul class="quiz-options">
-                    <li>Écrire tout le code dans une seule fonction main</li>
-                    <li>Compiler le programme de bas en haut</li>
-                    <li>Découper le problème principal en sous-problèmes plus simples</li>
-                    <li>Exécuter les instructions de la fin au début</li>
+                    <li>Code dans un seul bloc main</li>
+                    <li>Compilation de bas en haut</li>
+                    <li>Découper le problème en sous-problèmes plus simples</li>
+                    <li>Exécuter de la fin au début</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="En Python, une fonction sans return explicite renvoie implicitement la valeur None.">
-                  <div class="question-text">4. Que renvoie une fonction Python si elle ne contient pas l'instruction
-                    'return' ?</div>
+                  data-explanation="Une fonction sans return renvoie None.">
+                  <div class="question-text">4. Valeur retournée par une fonction Python sans return ?</div>
                   <ul class="quiz-options">
-                    <li>La valeur spéciale None</li>
-                    <li>La valeur 0</li>
-                    <li>La valeur False</li>
-                    <li>Une erreur de syntaxe</li>
+                    <li>None</li>
+                    <li>0</li>
+                    <li>False</li>
+                    <li>Erreur de syntaxe</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="L'en-tête algorithmique d'une fonction précise son nom, ses paramètres et son type de retour.">
-                  <div class="question-text">5. Quelle est la syntaxe algorithmique correcte pour l'en-tête d'une
-                    fonction ?</div>
+                  data-explanation="FONCTION Nom(paramètres) : Type_Retour.">
+                  <div class="question-text">5. Syntaxe algorithmique de l'en-tête d'une fonction ?</div>
                   <ul class="quiz-options">
                     <li>FONCTION Nom(p : Type) : Type_Retour</li>
                     <li>PROCÉDURE Nom(p : Type) : Type_Retour</li>

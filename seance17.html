@@ -118,9 +118,9 @@
               style="color: #38bdf8;">
               Module 5 • Séance N°17
             </span>
-            <h1 class="h3 mb-0 fw-bold">Acquisition de données via les Capteurs (ADC &amp; DHT11)</h1>
+            <h1 class="h3 mb-0 fw-bold">Capteurs &amp; Acquisition de Données (ADC &amp; DHT11)</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
+              3<sup>e</sup> Sections Scientifiques • 1h 30mn
             </p>
           </div>
         </div>
@@ -135,24 +135,20 @@
         <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
 
         <section id="section-objectifs" class="section-pane">
-          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+          <h3>Objectifs &amp; Déroulement</h3>
 
           <div class="row g-4 mb-4">
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                  <i class="bi bi-bullseye me-2"></i> Savoirs
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Distinguer les **Capteurs Numériques** (binaires/sériels) et **Capteurs Analogiques** (variation
-                      continue de tension).</li>
-                    <li>Comprendre la résolution de l'**ADC 12 bits** de l'ESP32 : $N_{\text{ADC}} \in [0, 4095]$
-                      correspondant à $0 \dots 3.3\,\text{V}$.</li>
-                    <li>Maîtriser la formule de conversion tension : $V_{\text{in}} = \frac{N_{\text{ADC}}}{4095} \times
-                      3.3\,\text{V}$.</li>
-                    <li>Identifier les broches d'entrée analogique (ex: **GPIO 34**) et de communication DHT11 (ex:
-                      **GPIO 15**).</li>
+                    <li>Signaux analogiques (variation continue) vs numériques (états discrets).</li>
+                    <li>Résolution de l'ADC 12 bits : $N_{\text{ADC}} \in [0, 4095]$ pour $0 \dots 3.3\,\text{V}$.</li>
+                    <li>Formule : $V_{\text{in}} = \frac{N_{\text{ADC}}}{4095} \times 3.3\,\text{V}$.</li>
+                    <li>Broches : GPIO 34 (ADC) et GPIO 15 (DHT11).</li>
                   </ul>
                 </div>
               </div>
@@ -161,16 +157,13 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> Savoir-faire
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Configurer et lire une entrée analogique ADC en MicroPython (`ADC(Pin(34))`, `read()`).</li>
-                    <li>Appliquer l'atténuation 11 dB pour lire l'échelle complète $3.3\,\text{V}$
-                      (`atten(ADC.ATTN_11DB)`).</li>
-                    <li>Acquérir la température et l'humidité avec le capteur **DHT11** (`dht.DHT11(Pin(15))`,
-                      `measure()`).</li>
-                    <li>Formater l'affichage des données dans la console REPL et programmer des seuils d'alerte.</li>
+                    <li>Lire une entrée ADC : <code>ADC(Pin(34))</code>, <code>atten(ADC.ATTN_11DB)</code>, <code>read()</code>.</li>
+                    <li>Acquérir température et humidité avec le DHT11 (<code>dht.DHT11</code>).</li>
+                    <li>Afficher les grandeurs mesurées et appliquer des seuils d'alerte.</li>
                   </ul>
                 </div>
               </div>
@@ -180,7 +173,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Chronogramme (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -189,42 +182,39 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
-                      <th>Support / Outils</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
+                      <th>Support</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><span class="badge bg-primary">1. Classification Capteurs</span></td>
+                      <td><span class="badge bg-primary">1. Classification</span></td>
                       <td>15 min</td>
-                      <td>Présentation de capteurs réels (LDR, DHT11, Bouton). Différence entre signal analogique
-                        continu et numérique binaire.</td>
-                      <td>Classification des capteurs en deux catégories (Analogique vs Numérique).</td>
-                      <td>Diaporama &amp; Échantillons</td>
+                      <td>Présente les capteurs (LDR, DHT11) et les types de signaux.</td>
+                      <td>Distingue capteur analogique et numérique.</td>
+                      <td>Échantillons</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-info text-dark">2. Convertisseur ADC 12 bits</span></td>
+                      <td><span class="badge bg-info text-dark">2. ADC 12 bits</span></td>
                       <td>20 min</td>
-                      <td>Présentation de l'ADC 12 bits ($2^{12}=4096$ niveaux) et explications de la formule de
-                        conversion de tension $V_{\text{in}}$.</td>
-                      <td>Résolution des exercices de calcul de tension ($N_{\text{ADC}} \to V_{\text{in}}$).</td>
-                      <td>Tableau &amp; Fiche d'activités</td>
+                      <td>Explique la conversion et la formule de tension.</td>
+                      <td>Calcule la tension $V_{\text{in}}$ pour plusieurs valeurs ADC.</td>
+                      <td>Tableau</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. TP Acquisition sur ESP32</span></td>
+                      <td><span class="badge bg-success">3. TP Acquisition</span></td>
                       <td>40 min</td>
-                      <td>Encadrement des montages LDR (GPIO 34) et DHT11 (GPIO 15) et codage sous Thonny.</td>
-                      <td>Réalisation des câblages, écriture des scripts MicroPython et affichage des données en direct.
-                      </td>
-                      <td>Python IDE / Wokwi / ESP32</td>
+                      <td>Guide les montages LDR et DHT11 sous MicroPython.</td>
+                      <td>Câble les capteurs et affiche les mesures en temps réel.</td>
+                      <td>ESP32 / IDE</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation &amp; Synthèse</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Animation du quiz formatif et défi pratique (déclencher une alerte si Temp > 30°C).</td>
-                      <td>Réponse aux questions et écriture de la condition d'alerte `if temp > 30:`.</td>
-                      <td>Environnement de TP</td>
+                      <td>Anime le quiz et propose un défi seuil d'alerte.</td>
+                      <td>Répond au quiz et code la condition d'alerte.</td>
+                      <td>Quiz</td>
                     </tr>
                   </tbody>
                 </table>
@@ -236,22 +226,20 @@
 
       <!-- Article 2: Classification Capteurs & ADC -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-sliders text-info me-2"></i> Capteurs Analogiques vs Numériques &amp; ADC 12 bits</h2>
+        <h2><i class="bi bi-sliders text-info me-2"></i> Capteurs &amp; Convertisseur ADC 12 bits</h2>
 
         <section id="section-adc" class="section-pane">
-          <h3>1. Différence Fondamentale entre Capteurs</h3>
+          <h3>Signaux Analogiques vs Numériques</h3>
 
           <div class="row g-4 my-2">
             <div class="col-md-6">
               <div class="p-3 border rounded bg-body-tertiary h-100">
-                <h5 class="text-info fw-bold"><i class="bi bi-wave-charter me-2"></i> Capteurs Analogiques (ex: LDR)
-                </h5>
+                <h5 class="text-info fw-bold"><i class="bi bi-wave-charter me-2"></i> Capteurs Analogiques (ex: LDR)</h5>
                 <p class="small text-muted mb-2">
-                  Délivrent une **tension électrique continue** comprise entre $0.0\,\text{V}$ et $3.3\,\text{V}$
-                  proportionnelle à la grandeur physique mesurée.
+                  Délivrent une tension continue $V_{\text{in}} \in [0.0\,\text{V}, 3.3\,\text{V}]$ proportionnelle à la grandeur physique.
                 </p>
                 <div class="alert alert-secondary py-2 small mb-0 font-mono">
-                  Luminosité ➔ Tension $V_{\text{in}} \in [0.0\text{V}, 3.3\text{V}]$ ➔ Broche ADC ESP32
+                  Luminosité &rarr; Tension $[0\,\text{V}, 3.3\,\text{V}]$ &rarr; Broche ADC
                 </div>
               </div>
             </div>
@@ -260,27 +248,24 @@
               <div class="p-3 border rounded bg-body-tertiary h-100">
                 <h5 class="text-success fw-bold"><i class="bi bi-binary me-2"></i> Capteurs Numériques (ex: DHT11)</h5>
                 <p class="small text-muted mb-2">
-                  Délivrent directement une **trame de bits numériques** (série de 0 et 1) codant les grandeurs
-                  physiques (Température, Humidité).
+                  Transmettent directement une trame binaire codant les mesures (Température, Humidité).
                 </p>
                 <div class="alert alert-secondary py-2 small mb-0 font-mono">
-                  Temp &amp; Humidité ➔ Trame de bits ➔ Broche GPIO numérique
+                  Temp &amp; Humidité &rarr; Trame binaire &rarr; Broche GPIO
                 </div>
               </div>
             </div>
           </div>
 
-          <h3 class="mt-4">2. Le Convertisseur Analogique-Numérique (ADC 12 bits) de l'ESP32</h3>
-          <p>
-            L'ESP32 intègre un **CAN / ADC de 12 bits**. Il convertit la tension d'entrée analogique $V_{\text{in}}$
-            (entre $0\,\text{V}$ et $3.3\,\text{V}$) en une valeur entière brute $N_{\text{ADC}}$ variant de **0 à
-            4095** ($2^{12} = 4096$ valeurs).
+          <h3 class="mt-4">Convertisseur ADC 12 bits</h3>
+          <p class="small text-muted">
+            L'ADC convertit la tension analogique $V_{\text{in}} \in [0, 3.3\,\text{V}]$ en un entier $N_{\text{ADC}} \in [0, 4095]$ ($2^{12} = 4096$ niveaux) :
           </p>
 
           <div class="alert alert-info border-info d-flex align-items-center gap-3 my-3">
             <i class="bi bi-calculator-fill fs-2"></i>
             <div>
-              <strong>Formule de Conversion de Tension :</strong>
+              <strong>Formule de Conversion :</strong>
               $$V_{\text{in}} = \frac{N_{\text{ADC}}}{4095} \times 3.3\,\text{V}$$
             </div>
           </div>
@@ -290,42 +275,42 @@
             <table class="table table-custom table-bordered align-middle small text-center">
               <thead class="table-dark">
                 <tr>
-                  <th>Valeur Brute $N_{\text{ADC}}$</th>
-                  <th>Calcul Tension $V_{\text{in}}$</th>
-                  <th>Tension Mesurée</th>
-                  <th>Niveau de Luminosité LDR</th>
+                  <th>$N_{\text{ADC}}$</th>
+                  <th>Calcul</th>
+                  <th>Tension $V_{\text{in}}$</th>
+                  <th>État LDR</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td class="font-mono fw-bold">0</td>
-                  <td class="font-mono">(0 / 4095) × 3.3 V</td>
+                  <td class="font-mono">(0 / 4095) &times; 3.3 V</td>
                   <td class="text-info font-mono fw-bold">0.00 V</td>
                   <td>Obscurité totale</td>
                 </tr>
                 <tr>
                   <td class="font-mono fw-bold">1024</td>
-                  <td class="font-mono">(1024 / 4095) × 3.3 V</td>
+                  <td class="font-mono">(1024 / 4095) &times; 3.3 V</td>
                   <td class="text-info font-mono fw-bold">0.83 V</td>
                   <td>Faible luminosité</td>
                 </tr>
                 <tr>
                   <td class="font-mono fw-bold">2048</td>
-                  <td class="font-mono">(2048 / 4095) × 3.3 V</td>
+                  <td class="font-mono">(2048 / 4095) &times; 3.3 V</td>
                   <td class="text-info font-mono fw-bold">1.65 V</td>
-                  <td>Lumière ambiante moyenne</td>
+                  <td>Lumière moyenne</td>
                 </tr>
                 <tr>
                   <td class="font-mono fw-bold">3072</td>
-                  <td class="font-mono">(3072 / 4095) × 3.3 V</td>
+                  <td class="font-mono">(3072 / 4095) &times; 3.3 V</td>
                   <td class="text-info font-mono fw-bold">2.48 V</td>
                   <td>Lumière forte</td>
                 </tr>
                 <tr>
                   <td class="font-mono fw-bold">4095</td>
-                  <td class="font-mono">(4095 / 4095) × 3.3 V</td>
+                  <td class="font-mono">(4095 / 4095) &times; 3.3 V</td>
                   <td class="text-info font-mono fw-bold">3.30 V</td>
-                  <td>Plein soleil / Saturation</td>
+                  <td>Plein soleil</td>
                 </tr>
               </tbody>
             </table>
@@ -335,34 +320,29 @@
 
       <!-- Article 3: Câblage & Scripts d'Acquisition -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-code-square text-success me-2"></i> Scripts d'Acquisition MicroPython &amp; C++</h2>
+        <h2><i class="bi bi-code-square text-success me-2"></i> Scripts d'Acquisition MicroPython</h2>
 
         <section id="section-cablage" class="section-pane">
-          <h3>1. Acquisition Analogique LDR (MicroPython)</h3>
-          <p>La photorésistance LDR est branchée en pont diviseur de tension sur le <strong>GPIO 34</strong> :</p>
+          <h3>LDR (Pont Diviseur — GPIO 34)</h3>
 
           <pre class="bg-dark text-light p-3 rounded font-mono small"><code>from machine import ADC, Pin
 import time
 
-# Initialisation du CAN sur le GPIO 34 (ADC1_CH6)
 ldr = ADC(Pin(34))
-# Configuration de l'atténuation 11dB (lecture jusqu'à 3.3V)
-ldr.atten(ADC.ATTN_11DB)
+ldr.atten(ADC.ATTN_11DB)  # Échelle 0-3.3V
 
 while True:
-    val_brute = ldr.read()  # Entier de 0 à 4095
+    val_brute = ldr.read()  # 0 à 4095
     tension = (val_brute / 4095.0) * 3.3
-    print("Valeur ADC :", val_brute, "| Tension :", round(tension, 2), "V")
+    print("ADC :", val_brute, "| Tension :", round(tension, 2), "V")
     time.sleep(1)</code></pre>
 
-          <h3 class="mt-4">2. Acquisition Numérique DHT11 (MicroPython)</h3>
-          <p>Le capteur DHT11 mesure la Température (°C) et l'Humidité (%) sur le <strong>GPIO 15</strong> :</p>
+          <h3 class="mt-4">DHT11 (Température &amp; Humidité — GPIO 15)</h3>
 
           <pre class="bg-dark text-light p-3 rounded font-mono small"><code>import dht
 from machine import Pin
 import time
 
-# Initialisation du capteur sur le GPIO 15
 capteur = dht.DHT11(Pin(15))
 
 while True:
@@ -370,23 +350,21 @@ while True:
         capteur.measure()
         t = capteur.temperature()
         h = capteur.humidity()
-        print("Température :", t, "°C | Humidité :", h, "%")
+        print("T :", t, "°C | H :", h, "%")
     except OSError:
-        print("Erreur de lecture du capteur")
+        print("Erreur capteur")
     time.sleep(2)</code></pre>
         </section>
       </article>
 
       <!-- Article 4: Station de Télémétrie Virtuelle ESP32 -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-display-fill text-warning me-2"></i> Station de Télémétrie Virtuelle ESP32</h2>
+        <h2><i class="bi bi-display-fill text-warning me-2"></i> Station de Télémétrie Virtuelle</h2>
 
         <section id="section-demo" class="section-pane">
-          <h3>Simulateur d'Acquisition de Données en Temps Réel</h3>
+          <h3>Simulateur d'Acquisition</h3>
           <p class="text-muted small">
-            Déplacez les curseurs virtuels de température, d'humidité et de luminosité pour simuler les variations de
-            l'environnement réel et observer en direct les valeurs lues par le CAN (ADC) et transmises dans la console
-            REPL.
+            Réglez les curseurs de luminosité (LDR / ADC) et de température/humidité (DHT11) pour observer les conversions en direct.
           </p>
 
           <div class="row g-4 my-2">
@@ -398,15 +376,14 @@ while True:
                   <button class="btn btn-sm" :class="isAutoSampling ? 'btn-success' : 'btn-outline-secondary'"
                     @click="toggleSampling">
                     <i class="bi" :class="isAutoSampling ? 'bi-arrow-repeat spin' : 'bi-pause-circle'"></i>
-                    {{ isAutoSampling ? ' Acquisition Active (2.5s)' : ' En Pause' }}
+                    {{ isAutoSampling ? ' Actif (2.5s)' : ' En Pause' }}
                   </button>
                 </div>
 
                 <!-- Slider 1: Light / LDR -->
                 <div class="mb-4 p-3 border rounded bg-dark bg-opacity-50">
                   <div class="d-flex justify-content-between align-items-center mb-1">
-                    <label class="form-label mb-0 fw-bold text-warning"><i class="bi bi-sun-fill me-1"></i> Luminosité
-                      LDR (GPIO 34 ADC)</label>
+                    <label class="form-label mb-0 fw-bold text-warning"><i class="bi bi-sun-fill me-1"></i> Luminosité LDR (GPIO 34)</label>
                     <span class="badge bg-warning text-dark font-mono">{{ simLux }} %</span>
                   </div>
                   <input type="range" class="form-range" min="0" max="100" v-model.number="simLux">
@@ -419,8 +396,7 @@ while True:
                 <!-- Slider 2: Temperature / DHT11 -->
                 <div class="mb-4 p-3 border rounded bg-dark bg-opacity-50">
                   <div class="d-flex justify-content-between align-items-center mb-1">
-                    <label class="form-label mb-0 fw-bold text-danger"><i class="bi bi-thermometer-half me-1"></i>
-                      Température DHT11 (GPIO 15)</label>
+                    <label class="form-label mb-0 fw-bold text-danger"><i class="bi bi-thermometer-half me-1"></i> Température DHT11 (GPIO 15)</label>
                     <span class="badge bg-danger font-mono">{{ simTemperature }} °C</span>
                   </div>
                   <input type="range" class="form-range" min="0" max="50" v-model.number="simTemperature">
@@ -432,8 +408,7 @@ while True:
                 <!-- Slider 3: Humidity / DHT11 -->
                 <div class="mb-3 p-3 border rounded bg-dark bg-opacity-50">
                   <div class="d-flex justify-content-between align-items-center mb-1">
-                    <label class="form-label mb-0 fw-bold text-primary"><i class="bi bi-droplet-fill me-1"></i> Humidité
-                      DHT11 (GPIO 15)</label>
+                    <label class="form-label mb-0 fw-bold text-primary"><i class="bi bi-droplet-fill me-1"></i> Humidité DHT11 (GPIO 15)</label>
                     <span class="badge bg-primary font-mono">{{ simHumidity }} %</span>
                   </div>
                   <input type="range" class="form-range" min="20" max="95" v-model.number="simHumidity">
@@ -441,7 +416,7 @@ while True:
 
                 <!-- Manual Read Button -->
                 <button class="btn btn-outline-info w-100 btn-sm" @click="readSensorsNow">
-                  <i class="bi bi-lightning-fill me-1"></i> Déclencher une Mesure Instantanée
+                  <i class="bi bi-lightning-fill me-1"></i> Mesure Instantanée
                 </button>
               </div>
             </div>
@@ -451,7 +426,7 @@ while True:
               <div class="row g-3 mb-3">
                 <div class="col-4">
                   <div class="sensor-gauge">
-                    <small class="text-muted d-block mb-1">ADC (0-4095)</small>
+                    <small class="text-muted d-block mb-1">ADC</small>
                     <div class="gauge-value text-warning">{{ adcRaw }}</div>
                     <small class="text-muted font-mono d-block mt-1">{{ voltage }} V</small>
                   </div>
@@ -475,8 +450,7 @@ while True:
               <!-- REPL Output Terminal -->
               <div class="card card-custom">
                 <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-                  <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Console REPL
-                    MicroPython</span>
+                  <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Console REPL</span>
                   <div class="d-flex align-items-center gap-2">
                     <button class="btn btn-link btn-sm text-muted p-0 text-decoration-none" @click="clearLogs">
                       <i class="bi bi-trash"></i> Effacer
@@ -498,55 +472,52 @@ while True:
 
       <!-- Article 5: Évaluation Formative -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances de l'Acquisition Capteurs</h3>
+          <h3>QCM d'Auto-évaluation</h3>
 
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Capteurs IoT (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Auto-évaluation – Capteurs &amp; ADC">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Le convertisseur ADC 12 bits de l'ESP32 convertit une tension (0..3.3V) en valeur numérique de 0 à 4095.">
-                  <div class="question-text">1. Quelle est la résolution numérique du convertisseur Analogique-Numérique
-                    (ADC) 12 bits de l'ESP32 ?</div>
+                  data-explanation="L'ADC 12 bits convertit la tension en entier de 0 à 4095 (2^12 niveaux).">
+                  <div class="question-text">1. Plage de sortie de l'ADC 12 bits de l'ESP32 :</div>
                   <ul class="quiz-options">
-                    <li>Valeurs entières de 0 à 4095 (2^12 = 4096 niveaux)</li>
-                    <li>Valeurs de 0 à 1023 (10 bits)</li>
-                    <li>Valeurs de 0 à 255 (8 bits)</li>
-                    <li>Valeurs de 0.0 à 100.0</li>
+                    <li>0 à 4095 (4096 niveaux)</li>
+                    <li>0 à 1023 (10 bits)</li>
+                    <li>0 à 255 (8 bits)</li>
+                    <li>0.0 à 100.0</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="Le capteur LDR (Photo-résistance) voit sa résistance varier en fonction de l'intensité lumineuse.">
-                  <div class="question-text">2. Quel composant utilise-t-on pour mesurer l'intensité lumineuse d'un
-                    environnement ?</div>
+                  data-explanation="La photorésistance LDR varie selon l'éclairement lumineux.">
+                  <div class="question-text">2. Capteur utilisé pour mesurer la luminosité :</div>
                   <ul class="quiz-options">
-                    <li>Un capteur DHT11</li>
-                    <li>Une photo-résistance LDR</li>
-                    <li>Un servomoteur SG90</li>
-                    <li>Un buzzer piézoélectrique</li>
+                    <li>DHT11</li>
+                    <li>Photorésistance LDR</li>
+                    <li>Servomoteur SG90</li>
+                    <li>Buzzer</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="Le capteur numérique DHT11 fournit la température (en °C) et l'humidité relative (en %).">
-                  <div class="question-text">3. Quelles grandeurs physiques fournit le capteur numérique DHT11 ?</div>
+                  data-explanation="Le DHT11 mesure simultanément la température et l'humidité relative.">
+                  <div class="question-text">3. Grandeurs physiques mesurées par le DHT11 :</div>
                   <ul class="quiz-options">
-                    <li>La lumière et le son</li>
-                    <li>La tension et le courant</li>
-                    <li>La température et l'humidité relative</li>
-                    <li>La pression et l'altitude</li>
+                    <li>Lumière et son</li>
+                    <li>Tension et courant</li>
+                    <li>Température et humidité relative</li>
+                    <li>Pression et altitude</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="ADC(Pin(34)) initialise la lecture analogique sur le GPIO 34.">
-                  <div class="question-text">4. Comment configure-t-on la lecture analogique de la LDR sur le GPIO 34 en
-                    MicroPython ?</div>
+                  data-explanation="ADC(Pin(34)) initialise l'ADC sur la broche 34.">
+                  <div class="question-text">4. Configuration de la lecture ADC sur le GPIO 34 :</div>
                   <ul class="quiz-options">
                     <li>adc = ADC(Pin(34))</li>
                     <li>adc = ReadAnalog(34)</li>
@@ -556,13 +527,12 @@ while True:
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Une grandeur physique continue (lumière, température) est dite analogique avant sa numérisation.">
-                  <div class="question-text">5. Comment qualifie-t-on un signal électrique qui varie de manière continue
-                    dans le temps (ex: tension LDR) ?</div>
+                  data-explanation="Un signal à variation continue est analogique.">
+                  <div class="question-text">5. Nature d'un signal électrique variant de façon continue :</div>
                   <ul class="quiz-options">
                     <li>Signal analogique</li>
-                    <li>Signal numérique binaire</li>
-                    <li>Signal logique Tout-ou-Rien</li>
+                    <li>Signal binaire</li>
+                    <li>Signal Tout-ou-Rien</li>
                     <li>Signal PWM</li>
                   </ul>
                 </div>
@@ -570,9 +540,8 @@ while True:
               </div>
             </div>
           </div>
-  </div>
-  </section>
-  </article>
+        </section>
+      </article>
 
   </main>
 

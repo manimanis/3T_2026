@@ -73,8 +73,7 @@
         </span>
         <h1 class="hero-title">Pensée Computationnelle & Programmation</h1>
         <p class="hero-subtitle">
-          Plateforme interactive d'apprentissage de l'Algorithmique, du langage Python et de l'Internet des Objets (IoT
-          ESP32) pour les sections Sciences Expérimentales, Sciences Techniques et Mathématiques.
+          Algorithmique, Python et IoT (ESP32) — 3<sup>e</sup> Sections Scientifiques.
         </p>
 
         <!-- Search & Quick Filter -->
@@ -83,7 +82,7 @@
             <div class="input-group shadow-lg">
               <span class="input-group-text"><i class="bi bi-search"></i></span>
               <input type="text" v-model="searchQuery" class="form-control"
-                placeholder="Rechercher une séance, un concept (Python, TDO, Tableau, PGCD, ESP32)...">
+                placeholder="Rechercher une séance ou un concept...">
               <button class="btn btn-primary px-4" type="button" @click="searchQuery = ''">Réinitialiser</button>
             </div>
           </div>
@@ -136,8 +135,8 @@
         <!-- Empty State Warning if No Results -->
         <div v-show="filteredSeances.length === 0" class="text-center py-5 border rounded bg-body-tertiary my-4">
           <i class="bi bi-search-heart fs-1 text-muted d-block mb-2"></i>
-          <h4 class="h5">Aucune séance ne correspond à votre recherche</h4>
-          <p class="text-muted small">Essayez de modifier votre mot-clé ou réinitialisez le filtre des modules.</p>
+          <h4 class="h5">Aucune séance trouvée</h4>
+          <p class="text-muted small">Modifiez votre recherche ou réinitialisez les filtres.</p>
           <button type="button" class="btn btn-primary rounded-pill btn-sm px-4 mt-2" @click="resetFilters">
             <i class="bi bi-arrow-counterclockwise me-1"></i> Afficher Toutes les Séances
           </button>
@@ -164,8 +163,7 @@
                 <p class="text-muted small mb-3">{{ seance.description }}</p>
 
                 <div class="mb-3">
-                  <span class="text-xs text-uppercase tracking-wider text-muted fw-bold d-block mb-1">Objectifs Clés
-                    :</span>
+                  <span class="text-xs text-uppercase tracking-wider text-muted fw-bold d-block mb-1">Objectifs :</span>
                   <ul class="list-unstyled mb-0 small">
                     <li v-for="(obj, idx) in seance.objectives" :key="idx" class="mb-1">
                       <i class="bi bi-check2-circle text-primary me-1"></i> {{ obj }}
@@ -195,15 +193,14 @@
           <div class="col-lg-7">
             <h3 class="h4 mb-3"><i class="bi bi-journal-code text-info me-2"></i> Conventions Algorithmiques</h3>
             <p class="text-muted">
-              Le programme de 3ème Année s'appuie sur la référence pédagogique 2024-2025. Retrouvez ici la syntaxe
-              exacte des déclarations TDO, des boucles, des fonctions et des opérations d'entrée/sortie.
+              Conventions 2024-2025 : déclarations TDO, boucles, fonctions et entrées/sorties.
             </p>
             <div class="d-flex gap-3 mt-3">
               <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#cheatsheetModal">
-                <i class="bi bi-card-checklist me-1"></i> Consulter le Guide Complet
+                <i class="bi bi-card-checklist me-1"></i> Guide Complet
               </button>
               <a href="seance01.html" class="btn btn-outline-primary">
-                <i class="bi bi-play-circle me-1"></i> Tester la Séance 1
+                <i class="bi bi-play-circle me-1"></i> Séance 1
               </a>
             </div>
           </div>

@@ -91,10 +91,9 @@
                 <div class="card-body">
                   <h4 class="h5 card-title text-primary"><i class="bi bi-book me-2"></i> A. Savoirs (Connaissances)</h4>
                   <ul class="list-custom mb-0">
-                    <li>Maîtriser la syntaxe des structures conditionnelles.</li>
-                    <li>Maîtriser la syntaxe de la structure itérative complète (<code>Pour</code>).</li>
-                    <li>Comprendre la fonction <code>range(début, fin + 1, pas)</code> en Python et la gestion des
-                      accumulateurs (somme, produit) et compteurs.</li>
+                    <li>Structures conditionnelles (<code>Si...Alors...Sinon</code>).</li>
+                    <li>Boucle itérative complète (<code>Pour</code>).</li>
+                    <li>Fonction <code>range(début, fin + 1, pas)</code>, accumulateurs et compteurs.</li>
                   </ul>
                 </div>
               </div>
@@ -102,14 +101,11 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-body">
-                  <h4 class="h5 card-title text-info"><i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences
-                    pratiques)</h4>
+                  <h4 class="h5 card-title text-info"><i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)</h4>
                   <ul class="list-custom mb-0">
-                    <li>Traduire des conditions complexes avec opérateurs logiques (<code>Et</code>, <code>Ou</code>,
-                      <code>Non</code> &rarr; <code>and</code>, <code>or</code>, <code>not</code>).
-                    </li>
-                    <li>Concevoir un algorithme utilisant une boucle <code>Pour</code> pour des calculs cumulatifs.</li>
-                    <li>Saisir, exécuter et débugger un script Python avec des conditions et boucles bornées.</li>
+                    <li>Conditions logiques (<code>Et</code>, <code>Ou</code>, <code>Non</code> &rarr; <code>and</code>, <code>or</code>, <code>not</code>).</li>
+                    <li>Calculs cumulatifs avec boucle <code>Pour</code>.</li>
+                    <li>Écriture et test de scripts à boucles bornées sous Python.</li>
                   </ul>
                 </div>
               </div>
@@ -119,7 +115,7 @@
           <!-- Deroulement Table -->
           <div class="card card-custom">
             <div class="card-header-custom">
-              <h4 class="h6 mb-0"><i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)</h4>
+              <h4 class="h6 mb-0"><i class="bi bi-clock-history me-2"></i> Déroulement (90 min)</h4>
             </div>
             <div class="table-responsive">
               <table class="table table-custom mb-0">
@@ -127,8 +123,8 @@
                   <tr>
                     <th>Phase</th>
                     <th>Durée</th>
-                    <th>Activité de l'Enseignant</th>
-                    <th>Activité de l'Élève</th>
+                    <th>Activité Enseignant</th>
+                    <th>Activité Élève</th>
                     <th>Support</th>
                   </tr>
                 </thead>
@@ -136,32 +132,30 @@
                   <tr>
                     <td><span class="badge bg-secondary">1. Diagnostic</span></td>
                     <td>10 min</td>
-                    <td>Rappel rapide des structures conditionnelles et itératives.</td>
-                    <td>Participation orale, choix vs répétition.</td>
+                    <td>Rappel conditionnelles et boucles.</td>
+                    <td>Réponses orales, choix vs répétition.</td>
                     <td>Tableau</td>
                   </tr>
                   <tr>
                     <td><span class="badge bg-primary">2. Synthèse</span></td>
                     <td>25 min</td>
-                    <td>Présentation des instructions <code>Si</code> et <code>Pour</code>. Concentration sur
-                      <code>range()</code>.
-                    </td>
-                    <td>Prise de notes, analyse des motifs d'accumulation.</td>
-                    <td>Projection / Fiche</td>
+                    <td>Syntaxe <code>Si</code> et <code>Pour</code> (<code>range</code>).</td>
+                    <td>Prise de notes, motifs d'accumulation.</td>
+                    <td>Fiche</td>
                   </tr>
                   <tr>
                     <td><span class="badge bg-info">3. Pratique</span></td>
                     <td>40 min</td>
-                    <td>Présentation du problème (Calcul de primes et salaire). Encadrement du TDO.</td>
-                    <td>Analyse, TDO, algorithme et codage Python.</td>
-                    <td>Python IDE</td>
+                    <td>Présentation problème salaire vendeur et TDO.</td>
+                    <td>Analyse, TDO, algorithme et codage.</td>
+                    <td>Python</td>
                   </tr>
                   <tr>
                     <td><span class="badge bg-success">4. Évaluation</span></td>
                     <td>15 min</td>
-                    <td>Test sur machine avec jeux d'essais variés (cas limites N=0).</td>
-                    <td>Validation du script, correction des bornes/indentation.</td>
-                    <td>Python IDE</td>
+                    <td>Tests avec jeux d'essais.</td>
+                    <td>Validation et correction d'indentation.</td>
+                    <td>Python</td>
                   </tr>
                 </tbody>
               </table>
@@ -177,9 +171,7 @@
         <section id="section-cours-conditionnelle" class="section-pane">
           <h3>2. Les Structures Conditionnelles</h3>
           <p class="text-muted">
-            Une structure conditionnelle permet d'exécuter un bloc d'instructions uniquement si une <strong>condition
-              logique</strong> est vraie (<code>True</code>). On distingue <strong>trois formes</strong> de structures
-            conditionnelles :
+            Exécute un bloc d'instructions si une condition logique est vraie (<code>True</code>). Trois formes :
           </p>
 
           <div class="row g-4 mb-4">
@@ -332,8 +324,7 @@ else:
         <section id="section-cours-boucle" class="section-pane">
           <h3>3. La Structure Itérative Complète</h3>
           <p class="text-muted">
-            La structure itérative <code>Pour</code> est utilisée lorsque le <strong>nombre d'itérations est connu à
-              l'avance</strong>.
+            La structure <code>Pour</code> répète un bloc d'instructions un nombre d'itérations connu d'avance.
           </p>
 
           <div class="row g-4 mb-4">
@@ -367,35 +358,18 @@ Fin Pour</code></pre>
 
           <!-- Alert Box Piège classique -->
           <div class="alert alert-warning border border-warning border-opacity-25 mb-4">
-            <h5 class="alert-heading h6 fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i> Piège classique en
-              Python : Exclusion de la borne finale !</h5>
-            <p class="mb-2 small">
-              La borne finale dans <code>range(début, fin, pas)</code> est <strong>toujours exclue</strong> :
-            </p>
+            <h5 class="alert-heading h6 fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i> Exclusion de la borne finale dans range()</h5>
             <ul class="mb-0 small ps-3">
-              <li class="mb-1">
-                <strong>Ordre croissant (de 1 à N inclus) :</strong> Écrire <code>range(1, N + 1)</code> (le pas vaut
-                <code>1</code> par défaut).
-              </li>
-              <li>
-                <strong>Ordre décroissant (de N à 1 inclus) :</strong> Écrire <code>range(N, 0, -1)</code> (la borne
-                <code>0</code> est exclue, l'itération s'arrête bien à <code>1</code> avec un pas négatif de
-                <code>-1</code>).
-              </li>
+              <li class="mb-1"><strong>Croissant (1 à N) :</strong> <code>range(1, N + 1)</code></li>
+              <li><strong>Décroissant (N à 1) :</strong> <code>range(N, 0, -1)</code> (borne 0 exclue)</li>
             </ul>
           </div>
 
           <!-- Motifs Classiques Detailed Explanation -->
-          <h4 class="h5 fw-bold mt-4 mb-3"><i class="bi bi-layers text-primary me-2"></i> Les Motifs Classiques :
-            Compteur, Accumulateur & Produit</h4>
-          <p class="text-muted">
-            En algorithmique et programmation, un <strong>motif classique</strong> est un schéma de calcul récurrent
-            dans une boucle. Pour fonctionner correctement, chaque motif exige deux étapes clés :</p>
-          <ul class="mb-0 small ps-3">
-            <li class="mb-1"><strong>l'initialisation obligatoire AVANT d'entrer dans la boucle</strong> (élément
-              neutre)</li>
-            <li class="mb-1"><strong>la mise à jour À L'INTÉRIEUR de la boucle</strong></li>
-          </ul>
+          <h4 class="h5 fw-bold mt-4 mb-3"><i class="bi bi-layers text-primary me-2"></i> Motifs Classiques : Compteur & Accumulateur</h4>
+          <p class="text-muted small">
+            Schémas récurrents exigeant une initialisation (élément neutre) avant la boucle et une mise à jour dans la boucle :
+          </p>
 
           <div class="row g-3 mb-4">
             <!-- 1. Compteur -->
@@ -506,11 +480,9 @@ for i in range(1, n + 1):
         <h2><i class="bi bi-code-slash text-info me-2"></i> Travaux Pratiques sur Machine</h2>
 
         <section id="section-act1-debogage" class="section-pane">
-          <h3>Activité 1 : Débogage & Analyse de Code (10 min)</h3>
+          <h3>Activité 1 : Débogage (10 min)</h3>
           <p class="text-muted">
-            <strong>Énoncé :</strong> L'élève doit analyser ce script Python censé calculer et afficher la somme des
-            nombres pairs entre <code>1</code> et <code>N</code>, et corriger les <strong>3 erreurs</strong> glissées
-            dans le code.
+            Corriger les <strong>3 erreurs</strong> du script calculant la somme des nombres pairs entre <code>1</code> et <code>N</code> :
           </p>
 
           <div class="row g-4">
@@ -546,24 +518,18 @@ print("Somme des nombres pairs =", somme)</code></pre>
         </section>
 
         <section id="section-act2-probleme" class="section-pane">
-          <h3>Activité 2 : Résolution du Problème - Salaire Mensuel Vendeur (30 min)</h3>
+          <h3>Activité 2 : Salaire mensuel vendeur (30 min)</h3>
 
           <!-- Problème Description -->
           <div class="box-custom mb-4">
-            <h4 class="h6 text-warning fw-bold mb-2"><i class="bi bi-building me-2"></i> Énoncé de l'exercice :</h4>
+            <h4 class="h6 text-warning fw-bold mb-2"><i class="bi bi-building me-2"></i> Énoncé :</h4>
             <p class="mb-2">
-              Une entreprise commerciale calcule le <strong>salaire mensuel net</strong> de ses vendeurs sur une période
-              de <strong>N jours ouvrables</strong> (saisi par l'utilisateur).
+              Calculer le salaire mensuel net d'un vendeur sur <strong>N jours ouvrables</strong> :
             </p>
             <ul class="mb-0 small">
-              <li>Le salaire de base quotidien est de <strong>35.000 DT</strong>.</li>
-              <li>Pour chaque jour i (1 &lt;= i &lt;= N), l'utilisateur saisit le nombre de ventes réalisées.</li>
-              <li>Si le nombre de ventes d'un jour est <strong>supérieur à 10</strong>, le vendeur touche une
-                <strong>prime journalière de 15.000 DT</strong>.
-              </li>
-              <li>À la fin du mois, si le total des ventes réalisées dépasse <strong>150 articles</strong>, une
-                <strong>prime de performance globale de 100.000 DT</strong> est ajoutée au salaire net.
-              </li>
+              <li>Base quotidienne fixe : <strong>35.000 DT</strong>.</li>
+              <li>Prime journalière : <strong>+15.000 DT</strong> si ventes du jour &gt; 10.</li>
+              <li>Prime de performance mensuelle : <strong>+100.000 DT</strong> si total ventes &gt; 150.</li>
             </ul>
           </div>
 
@@ -574,39 +540,25 @@ print("Somme des nombres pairs =", somme)</code></pre>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingAnal">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnal">
-                  <i class="bi bi-search me-2"></i> 1. Analyse du Problème
+                  <i class="bi bi-search me-2"></i> 1. Analyse
                 </button>
               </h2>
               <div id="collapseAnal" class="accordion-collapse collapse show" data-bs-parent="#accordionSalaire">
                 <div class="accordion-body">
                   <ul>
-                    <li><strong>Données d'entrée (Entrées) :</strong>
-                      <ul>
-                        <li><code>n</code> : Nombre de jours ouvrables (Entier)</li>
-                        <li><code>nb_ventes</code> : Ventes quotidiennes (Entier, saisi N fois)</li>
-                      </ul>
-                    </li>
-                    <li><strong>Données de sortie (Sorties) :</strong>
-                      <ul>
-                        <li><code>total_ventes</code> : Total d'articles vendus (Entier)</li>
-                        <li><code>salaire_net</code> : Salaire mensuel net (Réel)</li>
-                      </ul>
-                    </li>
+                    <li><strong>Entrées :</strong> <code>n</code> (Entier), <code>nb_ventes</code> (Entier, N fois).</li>
+                    <li><strong>Sorties :</strong> <code>total_ventes</code> (Entier), <code>salaire_net</code> (Réel).</li>
                     <li><strong>Traitements :</strong>
                       <ol>
                         <li>Initialiser <code>total_ventes &larr; 0</code> et <code>salaire_net &larr; 0.0</code>.</li>
-                        <li>Pour chaque jour i de 1 à n :
+                        <li>Pour i de 1 à n :
                           <ul>
                             <li><code>total_ventes &larr; total_ventes + nb_ventes</code></li>
                             <li><code>salaire_net &larr; salaire_net + BASE_JOUR</code></li>
-                            <li>Si <code>nb_ventes > 10</code> Alors
-                              <code>salaire_net &larr; salaire_net + PRIME_JOUR</code>
-                            </li>
+                            <li>Si <code>nb_ventes > 10</code> : <code>salaire_net &larr; salaire_net + PRIME_JOUR</code></li>
                           </ul>
                         </li>
-                        <li>Si <code>total_ventes > 150</code> Alors
-                          <code>salaire_net &larr; salaire_net + PRIME_GLOBALE</code>
-                        </li>
+                        <li>Si <code>total_ventes > 150</code> : <code>salaire_net &larr; salaire_net + PRIME_GLOBALE</code></li>
                       </ol>
                     </li>
                   </ul>
@@ -619,7 +571,7 @@ print("Somme des nombres pairs =", somme)</code></pre>
               <h2 class="accordion-header" id="headingTdo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                   data-bs-target="#collapseTdo">
-                  <i class="bi bi-table me-2"></i> 2. Tableau de Déclaration des Objets (TDO)
+                  <i class="bi bi-table me-2"></i> 2. TDO
                 </button>
               </h2>
               <div id="collapseTdo" class="accordion-collapse collapse" data-bs-parent="#accordionSalaire">
@@ -725,7 +677,7 @@ FIN</code></pre>
               <h2 class="accordion-header" id="headingPy">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                   data-bs-target="#collapsePy">
-                  <i class="bi bi-filetype-py me-2"></i> 4. Implémentation Python (Python IDE)
+                  <i class="bi bi-filetype-py me-2"></i> 4. Code Python
                 </button>
               </h2>
               <div id="collapsePy" class="accordion-collapse collapse" data-bs-parent="#accordionSalaire">
@@ -846,11 +798,11 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Structures Simples (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="L'opérateur modulo % calcule le reste de la division entière. Si x % 2 == 0, le nombre est pair.">
-                  <div class="question-text">1. Quelle condition teste si un nombre entier 'x' est pair ?</div>
+                  data-explanation="Le modulo % calcule le reste. Si x % 2 == 0, x est pair.">
+                  <div class="question-text">1. Condition pour tester si un entier 'x' est pair ?</div>
                   <ul class="quiz-options">
                     <li>x % 2 == 0</li>
                     <li>x / 2 == 0</li>
@@ -860,9 +812,8 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="range(1, 5) génère les entiers de 1 inclus à 5 exclus, soit : 1, 2, 3, 4.">
-                  <div class="question-text">2. Quelles sont les valeurs prises par 'i' dans la boucle : for i in
-                    range(1, 5) ?</div>
+                  data-explanation="range(1, 5) génère de 1 à 4 (5 exclu).">
+                  <div class="question-text">2. Valeurs de 'i' dans : for i in range(1, 5) ?</div>
                   <ul class="quiz-options">
                     <li>1, 2, 3, 4, 5</li>
                     <li>1, 2, 3, 4</li>
@@ -872,9 +823,8 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="En algorithmique officielle, la structure conditionnelle complète s'écrit : Si...Alors...Sinon...FinSi.">
-                  <div class="question-text">3. Quelle est la syntaxe algorithmique d'une alternative conditionnelle ?
-                  </div>
+                  data-explanation="Conventions : Si...Alors...Sinon...FinSi.">
+                  <div class="question-text">3. Syntaxe algorithmique de l'alternative ?</div>
                   <ul class="quiz-options">
                     <li>If...Then...Else</li>
                     <li>Si...Faire...Sinon</li>
@@ -884,9 +834,8 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Pour i de 1 à N Faire s'exécute pour i allant de 1 jusqu'à N inclus avec un pas de 1.">
-                  <div class="question-text">4. Dans 'Pour i de 1 à N Faire', combien de fois le corps de la boucle
-                    est-il exécuté ?</div>
+                  data-explanation="De 1 à N inclus avec pas de 1 = N exécutions.">
+                  <div class="question-text">4. Nombre d'exécutions de 'Pour i de 1 à N Faire' ?</div>
                   <ul class="quiz-options">
                     <li>N fois</li>
                     <li>N - 1 fois</li>
@@ -896,8 +845,8 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="En Python, une boucle for sur une chaîne de caractères parcourt directement chaque caractère un par un.">
-                  <div class="question-text">5. Que fait l'instruction Python : for c in 'PYTHON' : ?</div>
+                  data-explanation="Une boucle for sur chaîne parcourt chaque caractère.">
+                  <div class="question-text">5. Effet de : for c in 'PYTHON' : ?</div>
                   <ul class="quiz-options">
                     <li>Parcourt chaque caractère de la chaîne un par un</li>
                     <li>Répète 6 fois sans variable</li>

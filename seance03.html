@@ -92,19 +92,12 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
-                </div>
-                <div class="card-body">
+                  <h4 class="h5 card-title text-primary"><i class="bi bi-bullseye me-2"></i> A. Savoirs (Connaissances)</h4>
                   <ul class="list-custom mb-0">
-                    <li>Comprendre l'avanatge de la structure à choix multiples par rapport à une suite de
-                      <code>Si ... Sinon Si</code> imbriqués.
-                    </li>
-                    <li>Maîtriser la syntaxe algorithmique de la structure <code>Selon</code> avec un
-                      sélecteur <strong>scalaire</strong>.</li>
-                    <li>Manipuler les listes de valeurs (<code>v1, v2</code>) et les intervalles
-                      (<code>v1 .. v2</code>).</li>
-                    <li>Traduire la structure <code>Selon</code> en Python avec <code>match ... case</code>
-                      (Python 3.10+).</li>
+                    <li>Choix multiples (<code>Selon</code>) vs <code>Si</code> imbriqués.</li>
+                    <li>Syntaxe <code>Selon</code> avec sélecteur <strong>scalaire</strong>.</li>
+                    <li>Listes de valeurs (<code>v1, v2</code>) et intervalles (<code>v1 .. v2</code>).</li>
+                    <li>Traduction Python avec <code>match ... case</code> (Python 3.10+).</li>
                   </ul>
                 </div>
               </div>
@@ -113,15 +106,13 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Concevoir un menu interactif d'options à choix multiples.</li>
-                    <li>Valider le sélecteur et gérer l'option par défaut avec la clause <code>Sinon</code> /
-                      <code>case _</code>.
-                    </li>
-                    <li>Implémenter et tester un script Python avec branchements multiples sur Python.</li>
+                    <li>Conception de menus interactifs à choix multiples.</li>
+                    <li>Gestion de l'option par défaut (<code>Sinon</code> / <code>case _</code>).</li>
+                    <li>Implémentation et test de scripts Python avec branchements multiples.</li>
                   </ul>
                 </div>
               </div>
@@ -131,7 +122,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Déroulement (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -140,8 +131,8 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
                       <th>Support</th>
                     </tr>
                   </thead>
@@ -149,33 +140,29 @@
                     <tr>
                       <td><span class="badge bg-secondary">1. Mise en situation</span></td>
                       <td>15 min</td>
-                      <td>Présenter un problème avec un menu à 5 choix et illustrer la lourdeur d'un <code>Si</code>
-                        généralisé.</td>
-                      <td>Analyser le besoin d'une structure plus lisible à choix multiples.</td>
-                      <td>Tableau / ProProjecteur</td>
+                      <td>Menu à 5 choix : limites du <code>Si</code> imbriqué.</td>
+                      <td>Besoin d'une structure à choix multiples.</td>
+                      <td>Tableau</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td><span class="badge bg-primary">2. Synthèse</span></td>
                       <td>20 min</td>
-                      <td>Explication de la syntaxe <code>Selon</code>, du sélecteur scalaire et de l'équivalent
-                        <code>match...case</code>.
-                      </td>
-                      <td>Prise de notes, compréhension des motifs <code>case</code>.</td>
-                      <td>Fiche de cours</td>
+                      <td>Syntaxe <code>Selon</code> et <code>match...case</code>.</td>
+                      <td>Prise de notes, motifs <code>case</code>.</td>
+                      <td>Fiche</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. Activité Guidée</span></td>
+                      <td><span class="badge bg-success">3. Pratique</span></td>
                       <td>40 min</td>
-                      <td>Présentation de l'activité (Convertisseur de Stockage & réseau). Encadrement de l'analyse, TDO
-                        et code.</td>
-                      <td>Analyse, TDO, algorithme et implémentation sur ordinateur.</td>
+                      <td>Activité convertisseur stockage et TDO.</td>
+                      <td>Analyse, TDO, algorithme et codage.</td>
                       <td>Python</td>
                     </tr>
                     <tr>
                       <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Vérification des programmes, test de la branche par défaut <code>case _</code>.</td>
-                      <td>Test sur machine, correction des erreurs de syntaxe.</td>
+                      <td>Vérification et test de la clause <code>case _</code>.</td>
+                      <td>Tests machine et correction.</td>
                       <td>Python</td>
                     </tr>
                   </tbody>
@@ -191,19 +178,14 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-selon" class="section-pane">
-          <h3>2. La Structure Conditionnelle à Choix Multiples (<code>Selon</code> / <code>match...case</code>)</h3>
+          <h3>2. Structure Selon / match...case</h3>
           <p class="text-muted">
-            La structure à choix multiples permet de sélectionner un traitement parmi plusieurs en fonction de la valeur
-            d'une seule expression appelée <strong>Sélecteur</strong>.
+            Sélectionne un traitement selon la valeur d'une variable unique (<strong>sélecteur</strong>).
           </p>
 
           <div class="alert alert-info border border-info border-opacity-25 mb-4">
-            <h5 class="alert-heading h6 fw-bold mb-1"><i class="bi bi-lightbulb-fill me-2"></i> Règle fondamentale sur
-              le Sélecteur</h5>
             <p class="mb-0 small">
-              Le sélecteur doit être impérativement de <strong>type scalaire</strong> (<code>Entier</code>,
-              <code>Caractère</code> ou <code>Booléen</code>). Les types <code>Réel</code> et <code>Chaîne de
-                caractères</code> ne sont pas des types scalaires.
+              <i class="bi bi-lightbulb-fill me-1"></i> Le sélecteur doit être de <strong>type scalaire</strong> (<code>Entier</code>, <code>Caractère</code>, <code>Booléen</code>). <code>Réel</code> et <code>Chaîne</code> sont exclus.
             </p>
           </div>
 
@@ -356,9 +338,9 @@ Fin Selon</code></pre>
         <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Analyse Comparée & Refactoring (<code>if...elif</code> &rarr; <code>match...case</code>)</h2>
 
         <section id="section-activite1" class="section-pane">
-          <h3>Analyse, Observation & Modernisation de Code (10 min)</h3>
+          <h3>Activité 1 : Refactoring if/elif &rarr; match/case (10 min)</h3>
           <p class="text-muted mb-4">
-            <strong>Énoncé :</strong> Observez et comparez les deux versions de code ci-dessous (l'ancienne syntaxe avec <code>if...elif</code> répétitifs et sa version optimisée en Python 3.10+ avec <code>match...case</code>), puis répondez aux questions de réflexion.
+            Comparez les deux versions (<code>if...elif</code> vs <code>match...case</code>) et répondez aux questions :
           </p>
 
           <div class="row g-4 mb-4">
@@ -445,25 +427,18 @@ print("Tarif appliqué :", tarif, "DT")</code></pre>
         </h2>
 
         <section id="section-activite2" class="section-pane">
-          <h3>Problème Pratique complet</h3>
+          <h3>Activité 2 : Convertisseur de Stockage & Réseau</h3>
 
           <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
-            <h5 class="alert-heading h6 fw-bold mb-2"><i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé du
-              problème :</h5>
+            <h5 class="alert-heading h6 fw-bold mb-2"><i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé :</h5>
             <p class="mb-2">
-              On souhaite concevoir une application interactive pour convertir des tailles de stockage mémoire (en
-              Octets) et calculer la durée estimée de téléchargement réseau.
+              Convertir des tailles de stockage (Octets) et calculer la durée de téléchargement (10 Mo/s) :
             </p>
             <ul class="mb-0 small">
-              <li><strong>Option 1 :</strong> Convertir des Octets en <strong>Kilo-Octets (Ko)</strong> ($1 \text{ Ko} =
-                1024 \text{ Octets}$).</li>
-              <li><strong>Option 2 :</strong> Convertir des Octets en <strong>Méga-Octets (Mo)</strong> ($1 \text{ Mo} =
-                1024 \times 1024 \text{ Octets}$).</li>
-              <li><strong>Option 3 :</strong> Convertir des Octets en <strong>Giga-Octets (Go)</strong> ($1 \text{ Go} =
-                1024^3 \text{ Octets}$).</li>
-              <li><strong>Option 4 :</strong> Calculer la durée de téléchargement en secondes sur une ligne de
-                <strong>10 Mo/s</strong>.
-              </li>
+              <li><strong>Option 1 :</strong> Octets &rarr; <strong>Ko</strong> ($1 \text{ Ko} = 1024 \text{ Octets}$).</li>
+              <li><strong>Option 2 :</strong> Octets &rarr; <strong>Mo</strong> ($1 \text{ Mo} = 1024^2 \text{ Octets}$).</li>
+              <li><strong>Option 3 :</strong> Octets &rarr; <strong>Go</strong> ($1 \text{ Go} = 1024^3 \text{ Octets}$).</li>
+              <li><strong>Option 4 :</strong> Durée de téléchargement (vitesse fixe <strong>10 Mo/s</strong>).</li>
             </ul>
           </div>
 
@@ -629,18 +604,14 @@ match choix:
         <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances sur la Structure `Selon` / `match...case`</h3>
-          <p class="text-muted">Sélectionnez la bonne réponse pour chaque question.</p>
-
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Structure Selon (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="La structure 'Selon' s'appuie sur une variable sélecteur de type scalaire (Entier, Caractère, etc.).">
-                  <div class="question-text">1. Quel est le rôle du sélecteur dans la structure algorithmique 'Selon
-                    (sélecteur) Faire' ?</div>
+                  data-explanation="Selon s'appuie sur une variable sélecteur scalaire.">
+                  <div class="question-text">1. Rôle du sélecteur dans la structure Selon ?</div>
                   <ul class="quiz-options">
                     <li>Évaluer une valeur scalaire pour choisir la branche correspondante</li>
                     <li>Évaluer une condition logique complexe</li>
@@ -650,21 +621,19 @@ match choix:
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="En Python 3.10+, le tiret bas 'case _:' correspond à la clause par défaut (Sinon).">
-                  <div class="question-text">2. Dans une instruction Python 'match...case', que représente le motif
-                    'case _:' ?</div>
+                  data-explanation="case _: correspond à la clause par défaut (Sinon).">
+                  <div class="question-text">2. Que représente 'case _:' dans match...case ?</div>
                   <ul class="quiz-options">
                     <li>Une variable nommée _</li>
-                    <li>La branche par défaut (équivalent du Sinon)</li>
+                    <li>La branche par défaut (Sinon)</li>
                     <li>Une erreur d'exécution</li>
                     <li>Une valeur nulle</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="En Python 3.10+, la structure à choix multiples officielle est match...case.">
-                  <div class="question-text">3. Quelle est la syntaxe Python officielle pour implémenter la structure à
-                    choix multiples ?</div>
+                  data-explanation="Python 3.10+ : match...case.">
+                  <div class="question-text">3. Syntaxe Python officielle du choix multiple ?</div>
                   <ul class="quiz-options">
                     <li>switch...case</li>
                     <li>select...case</li>
@@ -674,20 +643,19 @@ match choix:
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Le symbole | (pipe) permet de combiner plusieurs valeurs possibles dans un même bloc case.">
-                  <div class="question-text">4. Dans 'match choix:', que signifie la branche 'case 1 | 2:' ?</div>
+                  data-explanation="| combine plusieurs valeurs (OU).">
+                  <div class="question-text">4. Signification de 'case 1 | 2:' ?</div>
                   <ul class="quiz-options">
-                    <li>Exécute le bloc si choix vaut 1 OU 2</li>
+                    <li>Exécute si choix vaut 1 OU 2</li>
                     <li>Exécute si choix vaut 1 ET 2</li>
-                    <li>Calcule le résultat de 1 divisé par 2</li>
-                    <li>Génère une exception SyntaxError</li>
+                    <li>Calcule 1 / 2</li>
+                    <li>Erreur de syntaxe</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Le sélecteur d'une structure Selon doit être de type scalaire (Ordre dénombrable : Entier, Caractère, Énuméré).">
-                  <div class="question-text">5. Parmi les types suivants, lequel N'EST PAS recommandé comme sélecteur
-                    direct d'une structure Selon ?</div>
+                  data-explanation="Le sélecteur Selon doit être scalaire. Réel (float) est exclu.">
+                  <div class="question-text">5. Quel type est exclu comme sélecteur Selon ?</div>
                   <ul class="quiz-options">
                     <li>Réel (float)</li>
                     <li>Entier (int)</li>

@@ -70,7 +70,7 @@
             </span>
             <h1 class="h3 mb-0 fw-bold">Arithmétique I – PGCD &amp; PPCM</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
+              3<sup>e</sup> Sc. • 1h30
             </p>
           </div>
         </div>
@@ -82,24 +82,22 @@
 
       <!-- Article 1: Fiche Pédagogique -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> Fiche Pédagogique</h2>
 
         <section id="section-objectifs" class="section-pane">
-          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+          <h3>1. Objectifs &amp; Chronogramme</h3>
 
           <div class="row g-4 mb-4">
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                  <i class="bi bi-bullseye me-2"></i> Savoirs
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Connaître la définition du **PGCD** (Plus Grand Commun Diviseur) et du **PPCM** (Plus Petit
-                      Commun Multiple) de deux entiers $> 0$.</li>
-                    <li>Étudier l'**Algorithme d'Euclide** par divisions euclidiennes successives ($\text{PGCD}(a, b) =
-                      \text{PGCD}(b, a \pmod b)$).</li>
-                    <li>Connaître la relation mathématique fondamentale :
+                    <li>Définition du **PGCD** et du **PPCM** ($a, b > 0$).</li>
+                    <li>**Algorithme d'Euclide** : $\text{PGCD}(a, b) = \text{PGCD}(b, a \pmod b)$.</li>
+                    <li>Relation fondamentale :
                       $$\text{PPCM}(a, b) = \frac{a \times b}{\text{PGCD}(a, b)}$$
                     </li>
                   </ul>
@@ -110,16 +108,13 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> Savoir-faire
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Concevoir les fonctions modulaires <code>pgcd(a, b)</code> et <code>ppcm(a, b)</code> en Python.
-                    </li>
-                    <li>Appliquer le calcul du PGCD à la **simplification irréductible de fractions**
-                      ($\frac{num/g}{den/g}$).</li>
-                    <li>Appliquer le calcul du PPCM à la **synchronisation d'événements périodiques** (ex: fréquences de
-                      départ des bus).</li>
+                    <li>Concevoir les fonctions <code>pgcd(a, b)</code> et <code>ppcm(a, b)</code>.</li>
+                    <li>Application : **simplification irréductible de fractions** ($\frac{num/g}{den/g}$).</li>
+                    <li>Application : **synchronisation d'événements périodiques**.</li>
                   </ul>
                 </div>
               </div>
@@ -129,7 +124,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Chronogramme (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -138,42 +133,38 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
                       <th>Support</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><span class="badge bg-secondary">1. Situation Problème</span></td>
+                      <td><span class="badge bg-secondary">1. Problème</span></td>
                       <td>10 min</td>
-                      <td>Poser la simplification automatique de la fraction $\frac{1071}{1029}$. Comment la simplifier
-                        sans calculatrice ?</td>
-                      <td>Recherche du plus grand diviseur commun à $1071$ et $1029$.</td>
-                      <td>Tableau / ProProjecteur</td>
+                      <td>Simplification de $\frac{1071}{1029}$ sans calculatrice.</td>
+                      <td>Recherche du plus grand diviseur commun.</td>
+                      <td>Tableau</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-primary">2. Synthèse Théorique</span></td>
+                      <td><span class="badge bg-primary">2. Synthèse</span></td>
                       <td>25 min</td>
-                      <td>Présentation de l'algorithme d'Euclide (`a Mod b`), comparaison avec la méthode par
-                        soustraction, et formule du PPCM.</td>
-                      <td>Prise de notes, traçage de la boucle <code>while b != 0</code> sur un exemple.</td>
-                      <td>Fiche de cours</td>
+                      <td>Algorithme d'Euclide (`a Mod b`), comparaison avec soustractions, relation PPCM.</td>
+                      <td>Trace de la boucle <code>while b != 0</code>.</td>
+                      <td>Fiche cours</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. Activités Guidées</span></td>
+                      <td><span class="badge bg-success">3. Activités</span></td>
                       <td>40 min</td>
-                      <td>Résolution des activités : Simplification de fraction et Synchronisation de 2 lignes de bus
-                        scolaire.</td>
-                      <td>Analyse modulaire, TDO, algorithmes et codage sous Thonny Python.</td>
+                      <td>Guidage : fractions et bus scolaire.</td>
+                      <td>Analyse modulaire, TDO, algorithmes et codage.</td>
                       <td>Python IDE</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation Formative</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
                       <td>15 min</td>
-                      <td>Vérification de la gestion des entiers $> 0$ et validation des fonctions modulaires `pgcd` et
-                        `ppcm`.</td>
-                      <td>Validation des scripts sur différents jeux d'essais et quiz d'auto-évaluation.</td>
+                      <td>Validation des modules `pgcd` et `ppcm`.</td>
+                      <td>Jeux d'essais et quiz.</td>
                       <td>Python</td>
                     </tr>
                   </tbody>
@@ -189,10 +180,9 @@
         <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
 
         <section id="section-cours-pgcd" class="section-pane">
-          <h3>2. Algorithme d'Euclide &amp; Relation PGCD / PPCM</h3>
+          <h3>2. Algorithme d'Euclide &amp; PGCD / PPCM</h3>
           <p class="text-muted">
-            L'algorithme d'Euclide permet d'obtenir le PGCD de deux entiers avec un nombre minimal d'opérations en
-            remplaçant successivement $a$ et $b$ par $b$ et $a \pmod b$.
+            L'algorithme d'Euclide remplace $(a, b)$ par $(b, a \pmod b)$ jusqu'à ce que $b = 0$ ; le PGCD est alors $a$.
           </p>
 
           <!-- SVG Diagram Vector PGCD PPCM -->
@@ -255,14 +245,12 @@
 
       <!-- Article 3: Activité 1 - Comparaison Soustractions vs Euclide -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-speedometer2 text-warning me-2"></i> Activité 1 : Comparaison Détaillée (Soustractions vs
-          Euclide)</h2>
+        <h2><i class="bi bi-speedometer2 text-warning me-2"></i> Activité 1 : Soustractions vs Euclide</h2>
 
         <section id="section-activite1" class="section-pane">
-          <h3>Analyse Comparative de la Complexité pour $a = 1\ 000\ 000$ et $b = 2$</h3>
+          <h3>Complexité pour $a = 1\ 000\ 000$ et $b = 2$</h3>
           <p class="text-muted">
-            Pour comprendre la supériorité de l'algorithme d'Euclide, analysons la trace d'exécution détaillée des deux
-            méthodes pour $a = 1\ 000\ 000$ et $b = 2$.
+            Comparaison d'exécution entre soustractions successives et divisions d'Euclide.
           </p>
 
           <div class="row g-4 mb-4">
@@ -270,29 +258,24 @@
             <div class="col-md-6">
               <div class="card card-custom border-danger border-opacity-50 h-100">
                 <div class="card-header-custom text-danger fw-bold d-flex justify-content-between align-items-center">
-                  <span><i class="bi bi-dash-circle me-2"></i> Méthode 1 : Soustractions Successives</span>
-                  <span class="badge bg-danger">500 000 ÉTAPES</span>
+                  <span><i class="bi bi-dash-circle me-2"></i> Soustractions Successives</span>
+                  <span class="badge bg-danger">500 000 étapes</span>
                 </div>
                 <div class="card-body">
                   <p class="small text-muted mb-2">
-                    <strong>Principe :</strong> Tant que $a \neq b$, on soustrait le plus petit du plus grand ($a
-                    \leftarrow a - b$).
+                    <strong>Principe :</strong> $a \leftarrow a - b$ tant que $a \neq b$.
                   </p>
 
                   <div
                     class="p-2 bg-body-tertiary rounded border border-secondary border-opacity-25 mb-3 font-mono small">
-                    <div class="text-danger fw-bold mb-1">Trace pas-à-pas des itérations :</div>
-                    <div>- Étape 1 : $1\ 000\ 000 - 2 = 999\ 998$ ($a = 999\ 998, b = 2$)</div>
-                    <div>- Étape 2 : $999\ 998 - 2 = 999\ 996$ ($a = 999\ 996, b = 2$)</div>
-                    <div>- Étape 3 : $999\ 996 - 2 = 999\ 994$ ($a = 999\ 994, b = 2$)</div>
-                    <div class="text-muted opacity-75">... [ 499 995 itérations intermédiaires ] ...</div>
-                    <div>- Étape 499 999 : $4 - 2 = 2$ ($a = 2, b = 2$)</div>
+                    <div class="text-danger fw-bold mb-1">Itérations :</div>
+                    <div>- Étape 1 : $1\ 000\ 000 - 2 = 999\ 998$</div>
+                    <div class="text-muted opacity-75">... 499 998 itérations ...</div>
                     <div class="text-success fw-bold">- Étape 500 000 : $a = b = 2 \implies \text{PGCD} = 2$</div>
                   </div>
 
                   <div class="alert alert-danger mb-0 py-2 small">
-                    <i class="bi bi-exclamation-triangle-fill me-1"></i> <strong>Inconvénient Majeur :</strong> Exécute
-                    <strong>500 000 soustractions</strong> ! Très lent si $a$ est très grand devant $b$.
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i> <strong>Inconvénient :</strong> 500 000 soustractions, inefficace pour les grands nombres.
                   </div>
                 </div>
               </div>
@@ -302,28 +285,24 @@
             <div class="col-md-6">
               <div class="card card-custom border-success border-opacity-50 h-100">
                 <div class="card-header-custom text-success fw-bold d-flex justify-content-between align-items-center">
-                  <span><i class="bi bi-lightning-charge me-2"></i> Méthode 2 : Divisions d'Euclide</span>
-                  <span class="badge bg-success">1 SEULE ÉTAPE</span>
+                  <span><i class="bi bi-lightning-charge me-2"></i> Divisions d'Euclide</span>
+                  <span class="badge bg-success">1 seule étape</span>
                 </div>
                 <div class="card-body">
                   <p class="small text-muted mb-2">
-                    <strong>Principe :</strong> Tant que $b \neq 0$, on remplace $(a, b)$ par $(b, a \pmod b)$.
+                    <strong>Principe :</strong> $(a, b) \leftarrow (b, a \pmod b)$ tant que $b \neq 0$.
                   </p>
 
                   <div
                     class="p-2 bg-body-tertiary rounded border border-secondary border-opacity-25 mb-3 font-mono small">
-                    <div class="text-success fw-bold mb-1">Trace pas-à-pas des itérations :</div>
+                    <div class="text-success fw-bold mb-1">Itérations :</div>
                     <div>- Étape 1 : $1\ 000\ 000 \pmod 2 = 0$ ($r = 0$)</div>
-                    <div>- Mise à jour : $a \leftarrow 2, b \leftarrow 0$</div>
-                    <div class="text-success fw-bold mt-2">- $b = 0 \implies$ Fin de la boucle ! $\text{PGCD} = a = 2$
-                    </div>
-                    <div class="text-muted opacity-0" style="font-size: 0.6rem;">.</div>
-                    <div class="text-muted opacity-0" style="font-size: 0.6rem;">.</div>
+                    <div>- $a \leftarrow 2, b \leftarrow 0$</div>
+                    <div class="text-success fw-bold mt-2">- $b = 0 \implies \text{PGCD} = 2$</div>
                   </div>
 
                   <div class="alert alert-success mb-0 py-2 small">
-                    <i class="bi bi-check-circle-fill me-1"></i> <strong>Avantage Énorme :</strong> Exécute <strong>1
-                      seule division</strong> ! $500\ 000 \times$ plus rapide.
+                    <i class="bi bi-check-circle-fill me-1"></i> <strong>Avantage :</strong> 1 seule division, complexité logarithmique.
                   </div>
                 </div>
               </div>
@@ -333,7 +312,7 @@
           <!-- Comparison Table -->
           <div class="card card-custom mb-4">
             <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-table me-2"></i> Tableau Synthétique de Comparaison
+              <i class="bi bi-table me-2"></i> Comparaison Synthétique
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -341,26 +320,26 @@
                   <thead>
                     <tr>
                       <th>Méthode</th>
-                      <th>Opération Récurrente</th>
-                      <th>Nombre d'Itérations ($a=10^6, b=2$)</th>
-                      <th>Efficacité de Calcul</th>
-                      <th>Verdict Ministériel</th>
+                      <th>Opération</th>
+                      <th>Itérations ($10^6, 2$)</th>
+                      <th>Efficacité</th>
+                      <th>Norme</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><strong>Soustractions Successives</strong></td>
+                      <td><strong>Soustractions</strong></td>
                       <td><code>a ← a - b</code></td>
-                      <td>500 000 soustractions</td>
+                      <td>500 000</td>
                       <td><span class="badge bg-danger">Inappropriée</span></td>
-                      <td>❌ Déconseillée pour les grands nombres</td>
+                      <td>❌ Déconseillée</td>
                     </tr>
                     <tr class="table-success bg-opacity-25">
-                      <td><strong>Divisions d'Euclide</strong></td>
+                      <td><strong>Euclide</strong></td>
                       <td><code>r ← a Mod b</code></td>
-                      <td><strong>1 seule division</strong></td>
+                      <td><strong>1</strong></td>
                       <td><span class="badge bg-success">Maximale</span></td>
-                      <td>✔️ <strong>Norme Officielle Ministérielle</strong></td>
+                      <td>✔️ <strong>Norme Officielle</strong></td>
                     </tr>
                   </tbody>
                 </table>
@@ -370,7 +349,7 @@
 
           <!-- Python Code Comparison -->
           <div class="code-container">
-            <div class="code-header"><span>Code Python Comparatif (À tester dans Python IDE)</span></div>
+            <div class="code-header"><span>Code Python Comparatif</span></div>
             <pre><code class="language-python"># 1. Méthode par Soustractions (Lente)
 def pgcd_soustractions(a, b):
     count = 0
@@ -397,8 +376,8 @@ a, b = 1000000, 2
 res1, it1 = pgcd_soustractions(a, b)
 res2, it2 = pgcd_euclide(a, b)
 
-print("Soustractions : PGCD =", res1, "en", it1, "itérations")  # 500 000 itérations
-print("Euclide       : PGCD =", res2, "en", it2, "itération")   # 1 seule itération !</code></pre>
+print("Soustractions : PGCD =", res1, "en", it1, "itérations")
+print("Euclide       : PGCD =", res2, "en", it2, "itération")</code></pre>
           </div>
 
         </section>
@@ -406,24 +385,21 @@ print("Euclide       : PGCD =", res2, "en", it2, "itération")   # 1 seule itér
 
       <!-- Article 4: Activité 2 - Problème Pratique complet: Fractions & Bus Sync -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-calculator-fill text-purple me-2" style="color: #a78bfa;"></i> Activité 2 : Simplification
-          de Fractions &amp; Synchronisation des Bus</h2>
+        <h2><i class="bi bi-calculator-fill text-purple me-2" style="color: #a78bfa;"></i> Activité 2 : Fractions &amp; Synchronisation</h2>
 
         <section id="section-activite2" class="section-pane">
           <h3>Problème Pratique Modulaire</h3>
 
           <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
             <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-bus-front-fill me-2"></i> Énoncé du problème :
+              <i class="bi bi-bus-front-fill me-2"></i> Énoncé :
             </h5>
             <p class="mb-2">
-              Deux lignes de bus scolaire partent de la même station de Hammam Sousse à <strong>07:00</strong> du matin.
-              La Ligne A passe toutes les $A$ minutes et la Ligne B toutes les $B$ minutes. On souhaite :
+              Deux bus partent à <strong>07:00</strong> (fréquences $A$ et $B$ min). On souhaite :
             </p>
             <ol class="mb-0 small">
-              <li>Calculer la prochaine heure exacte de croisement des deux bus (grâce au <strong>PPCM</strong>).</li>
-              <li>Saisir une fraction $\frac{N}{D}$ et afficher sa forme irréductible (grâce au <strong>PGCD</strong>).
-              </li>
+              <li>Calculer l'heure du prochain croisement (<strong>PPCM</strong>).</li>
+              <li>Simplifier une fraction $\frac{N}{D}$ sous forme irréductible (<strong>PGCD</strong>).</li>
             </ol>
           </div>
 
@@ -432,7 +408,7 @@ print("Euclide       : PGCD =", res2, "en", it2, "itération")   # 1 seule itér
             style="border-color: #a78bfa !important;">
             <div class="card-header-custom text-purple fw-bold d-flex justify-content-between align-items-center"
               style="color: #a78bfa;">
-              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : PGCD, PPCM &amp; Applications</span>
+              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur : PGCD, PPCM &amp; Applications</span>
               <span class="badge bg-primary">Vue 3 App</span>
             </div>
             <div class="card-body simulator-card-body">
@@ -440,7 +416,7 @@ print("Euclide       : PGCD =", res2, "en", it2, "itération")   # 1 seule itér
               <!-- Module 1: Trace d'Euclide -->
               <div class="simulator-box mb-4">
                 <h6 class="fw-bold text-primary mb-3">
-                  <i class="bi bi-diagram-2 me-2"></i> 1. Trace d'Euclide : PGCD(a, b) &amp; PPCM(a, b)
+                  <i class="bi bi-diagram-2 me-2"></i> 1. Trace d'Euclide : PGCD &amp; PPCM
                 </h6>
                 <div class="row g-3 align-items-center mb-3">
                   <div class="col-md-4">
@@ -467,8 +443,7 @@ print("Euclide       : PGCD =", res2, "en", it2, "itération")   # 1 seule itér
 
                 <!-- Trace steps table -->
                 <div class="simulator-val-box text-start">
-                  <span class="simulator-sublabel d-block mb-2 fw-bold">Historique des itérations de la boucle `while b
-                    != 0` :</span>
+                  <span class="simulator-sublabel d-block mb-2 fw-bold">Itérations `while b != 0` :</span>
                   <div class="d-flex flex-wrap gap-2">
                     <span v-for="st in traceEuclide.steps" :key="st.step"
                       class="badge bg-body-secondary text-body border border-secondary border-opacity-25 p-2 font-mono">
@@ -584,7 +559,7 @@ FIN</code></pre>
 
             <div class="col-md-6">
               <div class="code-container">
-                <div class="code-header"><span>Implémentation Python Officielle (Python IDE)</span></div>
+                <div class="code-header"><span>Implémentation Python</span></div>
                 <pre><code class="language-python"># 1. Fonction PGCD (Algorithme d'Euclide)
 def pgcd(a, b):
     while b != 0:
@@ -632,32 +607,30 @@ simplifier_fraction(num, den)</code></pre>
 
       <!-- Article 5: Évaluation Formative -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances sur le PGCD &amp; le PPCM</h3>
+          <h3>Quiz Interactif</h3>
 
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – PGCD & PPCM (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz – PGCD & PPCM">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="L'algorithme d'Euclide repose sur les restes successifs des divisions euclidiennes (A % B).">
-                  <div class="question-text">1. Sur quelle opération arithmétique repose l'algorithme d'Euclide efficace
-                    pour le calcul du PGCD ?</div>
+                  data-explanation="Repose sur les restes successifs (A % B).">
+                  <div class="question-text">1. Sur quelle opération repose l'algorithme d'Euclide ?</div>
                   <ul class="quiz-options">
-                    <li>Le reste de la division entière (modulo %)</li>
-                    <li>La soustraction répétée</li>
-                    <li>La multiplication</li>
-                    <li>L'élévation à la puissance</li>
+                    <li>Reste de la division entière (modulo %)</li>
+                    <li>Soustraction répétée</li>
+                    <li>Multiplication</li>
+                    <li>Élévation à la puissance</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="Le PPCM s'obtient par la formule : PPCM(A, B) = (A * B) / PGCD(A, B).">
-                  <div class="question-text">2. Quelle formule lie le PPCM et le PGCD de deux entiers strictement
-                    positifs A et B ?</div>
+                  data-explanation="PPCM(A, B) = (A * B) // PGCD(A, B).">
+                  <div class="question-text">2. Formule liant PPCM et PGCD ($A, B > 0$) ?</div>
                   <ul class="quiz-options">
                     <li>PPCM(A, B) = A + B - PGCD(A, B)</li>
                     <li>PPCM(A, B) = (A * B) // PGCD(A, B)</li>
@@ -667,30 +640,30 @@ simplifier_fraction(num, den)</code></pre>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="Si le PGCD de deux nombres A et B est 1, les deux nombres sont dits premiers entre eux.">
-                  <div class="question-text">3. Que signifie la propriété : PGCD(A, B) = 1 ?</div>
+                  data-explanation="Deux nombres ayant PGCD = 1 sont dits premiers entre eux.">
+                  <div class="question-text">3. Que signifie PGCD(A, B) = 1 ?</div>
                   <ul class="quiz-options">
                     <li>A et B sont égaux</li>
                     <li>A divise B</li>
                     <li>A et B sont premiers entre eux</li>
-                    <li>A et B sont deux nombres pairs</li>
+                    <li>A et B sont pairs</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="L'algorithme d'Euclide s'arrête lorsque le reste vaut 0; le PGCD est le dernier reste non nul.">
-                  <div class="question-text">4. Quand s'arrête l'algorithme d'Euclide par modulo ?</div>
+                  data-explanation="Arrêt dès que le reste vaut 0.">
+                  <div class="question-text">4. Condition d'arrêt d'Euclide par modulo ?</div>
                   <ul class="quiz-options">
-                    <li>Lorsque le reste de la division vaut 0</li>
-                    <li>Lorsque A devient supérieur à B</li>
-                    <li>Lorsque le quotient vaut 1</li>
-                    <li>Après exactement 2 itérations</li>
+                    <li>Reste de la division vaut 0</li>
+                    <li>A devient supérieur à B</li>
+                    <li>Quotient vaut 1</li>
+                    <li>Après 2 itérations</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="17 et 5 n'ont aucun diviseur commun autre que 1, donc PGCD(17, 5) = 1.">
-                  <div class="question-text">5. Que vaut le PGCD(17, 5) ?</div>
+                  data-explanation="17 et 5 sont premiers entre eux, PGCD = 1.">
+                  <div class="question-text">5. Que vaut PGCD(17, 5) ?</div>
                   <ul class="quiz-options">
                     <li>1</li>
                     <li>5</li>
@@ -702,9 +675,8 @@ simplifier_fraction(num, den)</code></pre>
               </div>
             </div>
           </div>
-  </div>
-  </section>
-  </article>
+        </section>
+      </article>
 
   </main>
 

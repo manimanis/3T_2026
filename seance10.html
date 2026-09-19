@@ -70,7 +70,7 @@
             </span>
             <h1 class="h3 mb-0 fw-bold">Évaluation Pratique Intermédiaire (1h30)</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn • Sujet type Bac (STEG)
+              3<sup>e</sup> Sc. • 1h30 • Sujet type Bac (STEG)
             </p>
           </div>
         </div>
@@ -82,59 +82,53 @@
 
       <!-- Article 1: Fiche d'Évaluation & Barème -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-file-earmark-check text-primary me-2"></i> Contexte &amp; Barème de Notation</h2>
+        <h2><i class="bi bi-file-earmark-check text-primary me-2"></i> Contexte &amp; Barème</h2>
 
         <section id="section-bareme" class="section-pane">
-          <h3>1. Objectifs &amp; Grille d'Évaluation (Sur 20 Points)</h3>
+          <h3>1. Grille d'Évaluation (20 pts)</h3>
           <p class="text-muted">
-            Cette épreuve individuelle sur machine synthétise les acquis des <strong>Séances 1 à 9</strong> (Contrôle de
-            saisie, Tableaux 1D <code>numpy.array</code>, Traitements statistiques et Décomposition modulaire).
+            Synthèse sur machine des séances 1 à 9 : contrôle de saisie, tableaux 1D, statistiques et modularité.
           </p>
 
           <!-- Rating Grid Table -->
           <div class="card card-custom mb-4">
             <div class="card-header-custom text-warning fw-bold">
-              <i class="bi bi-clipboard-check me-2"></i> Grille d'Évaluation Ministérielle (Sur 20 Points)
+              <i class="bi bi-clipboard-check me-2"></i> Grille d'Évaluation (20 pts)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
                 <table class="table table-custom table-hover mb-0 align-middle small">
                   <thead>
                     <tr>
-                      <th>Critère d'évaluation</th>
-                      <th>Indicateurs de Réussite</th>
+                      <th>Critère</th>
+                      <th>Indicateurs</th>
                       <th>Barème</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td><strong>1. Analyse &amp; Modularité</strong></td>
-                      <td>Décomposition pertinente du problème en sous-programmes autonomes. Choix adéquat entre
-                        Fonction (<code>return</code>) et Procédure.</td>
+                      <td>Décomposition en sous-programmes autonomes. Choix Fonction / Procédure.</td>
                       <td><span class="badge bg-primary fs-6">/ 4 pts</span></td>
                     </tr>
                     <tr>
                       <td><strong>2. TDO &amp; TDL</strong></td>
-                      <td>Tableau de déclaration des objets globaux et locaux complet. Types de données et rôles définis
-                        avec précision.</td>
+                      <td>Objets globaux et locaux complets (types et rôles).</td>
                       <td><span class="badge bg-info text-dark fs-6">/ 2 pts</span></td>
                     </tr>
                     <tr>
-                      <td><strong>3. Logique &amp; Algorithmique</strong></td>
-                      <td>Respect des conventions. Initialisations correctes des
-                        accumulateurs et extrémums.</td>
+                      <td><strong>3. Algorithmique</strong></td>
+                      <td>Conventions, accumulateurs et extrémums.</td>
                       <td><span class="badge bg-warning text-dark fs-6">/ 5 pts</span></td>
                     </tr>
                     <tr>
-                      <td><strong>4. Conduite sur Python</strong></td>
-                      <td>Utilisation obligatoire de <code>numpy.array</code>. Respect de l'affichage élément par
-                        élément. <strong>Absence totale de l'instruction `break`</strong>.</td>
+                      <td><strong>4. Code Python</strong></td>
+                      <td><code>numpy.array</code>, affichage élément par élément, sans <code>break</code>.</td>
                       <td><span class="badge bg-success fs-6">/ 5 pts</span></td>
                     </tr>
                     <tr>
-                      <td><strong>5. Exécution &amp; Validation</strong></td>
-                      <td>Script sans erreur de syntaxe, saisie contrôlée opérationnelle, résultats exacts sur machine.
-                      </td>
+                      <td><strong>5. Validation</strong></td>
+                      <td>Syntaxe, saisie contrôlée et résultats corrects.</td>
                       <td><span class="badge bg-secondary fs-6">/ 4 pts</span></td>
                     </tr>
                   </tbody>
@@ -147,34 +141,26 @@
 
       <!-- Article 2: Sujet de l'Épreuve Pratique STEG -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> Sujet de l'Épreuve Pratique (Sujet type Bac STEG)
-        </h2>
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> Sujet de l'Épreuve (STEG)</h2>
 
         <section id="section-sujet" class="section-pane">
-          <h3>Mise en situation : Analyse de la Consommation Électrique</h3>
+          <h3>Mise en situation : Bilan Énergétique STEG</h3>
 
           <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
             <h5 class="alert-heading h6 fw-bold mb-2 text-warning">
               <i class="bi bi-building me-2"></i> Société Tunisienne de l'Électricité et du Gaz (STEG)
             </h5>
             <p class="mb-2">
-              La STEG souhaite réaliser une étude statistique sur la consommation électrique quotidienne d'un foyer sur
-              une période de $N$ jours ($7 \le N \le 30$).
+              Étude statistique de la consommation électrique d'un foyer sur $N$ jours ($7 \le N \le 30$).
             </p>
             <p class="mb-0 small fw-bold">Travail demandé :</p>
             <ol class="mb-0 small">
-              <li><code>saisir_taille(min_v, max_v)</code> <strong>[Fonction]</strong> : Saisit et retourne le nombre de
-                jours $N$ avec contrôle de saisie ($7 \le N \le 30$).</li>
-              <li><code>saisir_consommations(T, n)</code> <strong>[Procédure]</strong> : Remplit le tableau $T$ avec les
-                consommations (en kWh). Chaque valeur réelle doit être contrôlée dans $[0.5, 50.0]$.</li>
-              <li><code>afficher_consommations(T, n)</code> <strong>[Procédure]</strong> : Affiche le relevé jour par
-                jour sous la forme : <code>Jour i : X kWh</code>.</li>
-              <li><code>calculer_moyenne(T, n)</code> <strong>[Fonction]</strong> : Calcule et retourne la consommation
-                moyenne quotidienne de la période.</li>
-              <li><code>rechercher_pic(T, n)</code> <strong>[Fonction]</strong> : Recherche et retourne l'indice du jour
-                ayant enregistré la <strong>consommation maximale</strong> (jour de pic).</li>
-              <li><code>compter_surconsommations(T, n, seuil)</code> <strong>[Fonction]</strong> : Compte et retourne le
-                nombre de jours ayant strictement dépassé le `seuil`.</li>
+              <li><code>saisir_taille(min_v, max_v)</code> : Saisit et valide $N \in [7, 30]$ (Fonction).</li>
+              <li><code>saisir_consommations(T, n)</code> : Remplit $T$ avec les valeurs dans $[0.5, 50.0]$ kWh (Procédure).</li>
+              <li><code>afficher_consommations(T, n)</code> : Affiche : <code>Jour i : X kWh</code> (Procédure).</li>
+              <li><code>calculer_moyenne(T, n)</code> : Calcule et retourne la moyenne (Fonction).</li>
+              <li><code>rechercher_pic(T, n)</code> : Retourne l'indice du jour maximal (Fonction).</li>
+              <li><code>compter_surconsommations(T, n, seuil)</code> : Compte les jours où $T[i] > seuil$ (Fonction).</li>
             </ol>
           </div>
 
@@ -193,14 +179,14 @@
 
       <!-- Article 3: Dossier de Conception (TDO) -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-journal-check text-success me-2"></i> Dossier de Conception Modulaire (TDO)</h2>
+        <h2><i class="bi bi-journal-check text-success me-2"></i> Dossier de Conception (TDO)</h2>
 
         <section id="section-tdo" class="section-pane">
-          <h3>Tableau de Déclaration des Objets Globaux (TDO)</h3>
+          <h3>Tableau de Déclaration des Objets Globaux</h3>
 
           <div class="card card-custom mb-4">
             <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-table me-2"></i> Objects Globaux du Programme Principal
+              <i class="bi bi-table me-2"></i> Objets Globaux
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -216,17 +202,17 @@
                     <tr>
                       <td><code>n</code></td>
                       <td>Entier</td>
-                      <td>Nombre de jours d'analyse ($7 \le N \le 30$)</td>
+                      <td>Nombre de jours ($7 \le N \le 30$)</td>
                     </tr>
                     <tr>
                       <td><code>Conso</code></td>
                       <td>Tableau de <code>N</code> Réel</td>
-                      <td>Tableau de stockage des consommations quotidiennes (kWh)</td>
+                      <td>Consommations quotidiennes (kWh)</td>
                     </tr>
                     <tr>
                       <td><code>moy_conso</code></td>
                       <td>Réel</td>
-                      <td>Consommation moyenne calculée sur la période</td>
+                      <td>Consommation moyenne calculée</td>
                     </tr>
                     <tr>
                       <td><code>jour_pic</code></td>
@@ -236,37 +222,37 @@
                     <tr>
                       <td><code>nb_jours_eleves</code></td>
                       <td>Entier</td>
-                      <td>Nombre de jours de surconsommation par rapport à la moyenne</td>
+                      <td>Jours dépassant la moyenne</td>
                     </tr>
                     <tr>
                       <td><code>saisir_taille</code></td>
                       <td>Fonction</td>
-                      <td>Module de saisie contrôlée de la taille $N$</td>
+                      <td>Saisie contrôlée de $N$</td>
                     </tr>
                     <tr>
                       <td><code>saisir_consommations</code></td>
                       <td>Procédure</td>
-                      <td>Module de saisie contrôlée du tableau</td>
+                      <td>Remplissage contrôlé de $T$</td>
                     </tr>
                     <tr>
                       <td><code>afficher_consommations</code></td>
                       <td>Procédure</td>
-                      <td>Module d'affichage élément par élément</td>
+                      <td>Affichage élément par élément</td>
                     </tr>
                     <tr>
                       <td><code>calculer_moyenne</code></td>
                       <td>Fonction</td>
-                      <td>Module de calcul de la moyenne de la période</td>
+                      <td>Calcul de la moyenne</td>
                     </tr>
                     <tr>
                       <td><code>rechercher_pic</code></td>
                       <td>Fonction</td>
-                      <td>Module de recherche du jour de pic maximal</td>
+                      <td>Recherche de l'indice max</td>
                     </tr>
                     <tr>
                       <td><code>compter_surconsommations</code></td>
                       <td>Fonction</td>
-                      <td>Module de comptage des jours dépassant le seuil</td>
+                      <td>Comptage des jours $> seuil$</td>
                     </tr>
                   </tbody>
                 </table>
@@ -499,23 +485,21 @@ print("Nombre de jours > moyenne         :", nb_jours_eleves, "jour(s)")</code><
 
       <!-- Article 5: Évaluation Formative & Pièges à Éviter -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-exclamation-triangle-fill text-danger me-2"></i> Évaluation Formative &amp; Pièges
-          Classiques à l'Épreuve</h2>
+        <h2><i class="bi bi-exclamation-triangle-fill text-danger me-2"></i> Pièges Classiques</h2>
 
         <section id="section-pieges" class="section-pane">
-          <h3>Auto-vérification &amp; Directives Ministérielles</h3>
+          <h3>Pièges à Éviter</h3>
 
           <!-- Common Pitfalls Card -->
           <div class="row g-4 mb-4">
             <div class="col-md-4">
               <div class="card card-custom border-danger border-opacity-50 h-100">
                 <div class="card-header-custom text-danger fw-bold">
-                  <i class="bi bi-x-circle me-1"></i> Piège N°1 : Usage de `break`
+                  <i class="bi bi-x-circle me-1"></i> Piège 1 : Usage de `break`
                 </div>
                 <div class="card-body">
                   <p class="small text-muted mb-0">
-                    L'utilisation de l'instruction <code>break</code> est strictement interdite dans les épreuves
-                    ministérielles. Toujours utiliser une condition booléenne dans la boucle <code>while</code>.
+                    Interdit aux épreuves. Utiliser une condition booléenne dans la boucle <code>while</code>.
                   </p>
                 </div>
               </div>
@@ -524,13 +508,11 @@ print("Nombre de jours > moyenne         :", nb_jours_eleves, "jour(s)")</code><
             <div class="col-md-4">
               <div class="card card-custom border-warning border-opacity-50 h-100">
                 <div class="card-header-custom text-warning fw-bold">
-                  <i class="bi bi-x-circle me-1"></i> Piège N°2 : `print(T)`
+                  <i class="bi bi-x-circle me-1"></i> Piège 2 : `print(T)`
                 </div>
                 <div class="card-body">
                   <p class="small text-muted mb-0">
-                    Afficher directement le tableau avec <code>print(T)</code> prive l'élève des points de conformité.
-                    L'affichage doit se faire élément par élément via une boucle
-                    <code>for i in range(n): print(T[i])</code>.
+                    Afficher chaque élément via une boucle : <code>for i in range(n): print(T[i])</code>.
                   </p>
                 </div>
               </div>
@@ -539,13 +521,11 @@ print("Nombre de jours > moyenne         :", nb_jours_eleves, "jour(s)")</code><
             <div class="col-md-4">
               <div class="card card-custom border-info border-opacity-50 h-100">
                 <div class="card-header-custom text-info fw-bold">
-                  <i class="bi bi-x-circle me-1"></i> Piège N°3 : Initialisation du Max
+                  <i class="bi bi-x-circle me-1"></i> Piège 3 : `max = 0`
                 </div>
                 <div class="card-body">
                   <p class="small text-muted mb-0">
-                    Initialiser le maximum à 0 (<code>max = 0</code>) est une erreur si le tableau contient des valeurs
-                    négatives ou très spécifiques. Initialiser <code>idx_max = 0</code> et démarrer la boucle à
-                    <code>i = 1</code>.
+                    Ne pas initialiser à 0. Poser <code>idx_max = 0</code> et boucler à partir de <code>i = 1</code>.
                   </p>
                 </div>
               </div>
@@ -555,65 +535,60 @@ print("Nombre de jours > moyenne         :", nb_jours_eleves, "jour(s)")</code><
           <!-- Quiz Component -->
           <div class="row justify-content-center">
             <div class="col-lg-8">
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Évaluation Intermédiaire (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Quiz – Évaluation Intermédiaire">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="La modularité permet de tester, maintenir et réutiliser plus facilement le code.">
-                  <div class="question-text">1. Quel est le principal avantage de la conception modulaire lors d'un
-                    projet de programmation ?</div>
+                  data-explanation="Facilite les tests, la maintenance et la réutilisation.">
+                  <div class="question-text">1. Avantage principal de la modularité ?</div>
                   <ul class="quiz-options">
-                    <li>Faciliter le débogage, la réutilisabilité et la lisibilité</li>
-                    <li>Réduire la mémoire vive du PC</li>
-                    <li>Supprimer le besoin d'analyser le problème</li>
-                    <li>Remplacer l'utilisation des tableaux</li>
+                    <li>Lisibilité, maintenance et réutilisation</li>
+                    <li>Réduire la RAM</li>
+                    <li>Supprimer le besoin d'analyse</li>
+                    <li>Remplacer les tableaux</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="La démarche méthodique démarre toujours par l'analyse et la structuration TDO/TDL.">
-                  <div class="question-text">2. Quelle est la première étape indispensable avant d'écrire du code Python
-                    dans un sujet pratique ?</div>
+                  data-explanation="Toujours identifier Entrées/Sorties et dresser le TDO/TDL.">
+                  <div class="question-text">2. Première étape avant de coder ?</div>
                   <ul class="quiz-options">
-                    <li>Ouvrir Thonny et taper le code</li>
-                    <li>Analyser le problème, identifier Entrées/Sorties et dresser TDO/TDL</li>
+                    <li>Taper le code dans Thonny</li>
+                    <li>Analyser Entrées/Sorties et dresser TDO/TDL</li>
                     <li>Exécuter un script vierge</li>
-                    <li>Créer un dossier sur le bureau</li>
+                    <li>Créer un dossier</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="Le contrôle de saisie sécurise le programme en rejetant toute donnée invalide.">
-                  <div class="question-text">3. Pourquoi intègre-t-on systématiquement un contrôle de saisie pour les
-                    données d'entrée ?</div>
+                  data-explanation="Rejeter toute donnée non conforme.">
+                  <div class="question-text">3. Rôle du contrôle de saisie ?</div>
                   <ul class="quiz-options">
-                    <li>Pour accélérer le processeur</li>
-                    <li>Pour consommer moins de lignes de code</li>
-                    <li>Pour empêcher l'introduction de valeurs hors limites ou invalides</li>
-                    <li>Pour forcer l'affichage en couleur</li>
+                    <li>Accélérer le CPU</li>
+                    <li>Réduire les lignes</li>
+                    <li>Rejeter les valeurs hors limites</li>
+                    <li>Colorer la console</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Tester chaque sous-programme avec un jeu d'essai valide la conformité aux spécifications.">
-                  <div class="question-text">4. Comment s'assure-t-on du bon fonctionnement d'un module avant son
-                    intégration dans le programme principal ?</div>
+                  data-explanation="Validation unitaire avec jeu d'essai ciblé.">
+                  <div class="question-text">4. Comment valider un sous-programme ?</div>
                   <ul class="quiz-options">
-                    <li>En effectuant des tests unitaires avec un jeu d'essai ciblé</li>
-                    <li>En supposant qu'il fonctionne sans l'exécuter</li>
-                    <li>En imprimant le code source</li>
-                    <li>En renommant les variables</li>
+                    <li>Tests unitaires avec jeu d'essai</li>
+                    <li>Supposer qu'il fonctionne</li>
+                    <li>Imprimer le code</li>
+                    <li>Renommer les variables</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Les fonctions spécialisées rendent le programme principal très court et lisible.">
-                  <div class="question-text">5. À quoi ressemble le programme principal dans une application modulaire
-                    bien conçue ?</div>
+                  data-explanation="Programme court composé d'appels ordonnés.">
+                  <div class="question-text">5. Structure d'un bon programme principal ?</div>
                   <ul class="quiz-options">
-                    <li>Une suite d'appels clairs aux modules et aux procédures de menu</li>
-                    <li>Un bloc de 500 lignes de code sans fonctions</li>
-                    <li>Uniquement des commentaires</li>
-                    <li>Un fichier vide</li>
+                    <li>Suite d'appels clairs aux modules</li>
+                    <li>Bloc monolithique de 500 lignes</li>
+                    <li>Commentaires seuls</li>
+                    <li>Fichier vide</li>
                   </ul>
                 </div>
 

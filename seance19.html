@@ -121,11 +121,11 @@
           <div>
             <span class="badge bg-cyan bg-opacity-25 text-info border border-info border-opacity-50 mb-1"
               style="color: #38bdf8;">
-              Module 5 • Séance N°19 (Projet Intégré)
+              Module 5 • Séance N°19
             </span>
-            <h1 class="h3 mb-0 fw-bold">Projet Intégré IoT embarqué (Serre Intelligente Wi-Fi)</h1>
+            <h1 class="h3 mb-0 fw-bold">Projet Intégré IoT (Serre Intelligente Wi-Fi)</h1>
             <p class="text-muted small mb-0 mt-1">
-              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
+              3<sup>e</sup> Sections Scientifiques • 1h 30mn
             </p>
           </div>
         </div>
@@ -140,23 +140,20 @@
         <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
 
         <section id="section-objectifs" class="section-pane">
-          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+          <h3>Objectifs &amp; Déroulement</h3>
 
           <div class="row g-4 mb-4">
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs (Connaissances)
+                  <i class="bi bi-bullseye me-2"></i> Savoirs
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Synthétiser l'ensemble des notions IoT (Capteurs + ESP32 + Réseau + Actionneurs) dans un projet
-                      réel.</li>
-                    <li>Comprendre le fonctionnement d'un **Serveur Web HTTP Embarqué** hébergé sur la mémoire de
-                      l'ESP32.</li>
-                    <li>Gérer la connectivité sans fil **Wi-Fi** avec le module MicroPython **`network`** (`STA_IF`).
-                    </li>
-                    <li>Comprendre la communication par **Sockets TCP/IP** (`usocket`) sur le port Web 80.</li>
+                    <li>Chaîne IoT complète : Capteurs &rarr; ESP32 &rarr; Wi-Fi &rarr; Actionneurs.</li>
+                    <li>Serveur Web HTTP embarqué sur l'ESP32.</li>
+                    <li>Module MicroPython <code>network</code> (mode Station <code>STA_IF</code>).</li>
+                    <li>Sockets TCP/IP (<code>usocket</code>) sur le port 80.</li>
                   </ul>
                 </div>
               </div>
@@ -165,15 +162,14 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire (Compétences pratiques)
+                  <i class="bi bi-tools me-2"></i> Savoir-faire
                 </div>
                 <div class="card-body">
                   <ul class="list-custom mb-0">
-                    <li>Établir et vérifier une connexion Wi-Fi sécurisée en MicroPython.</li>
-                    <li>Connecter simultanément des capteurs (**DHT11**, **LDR**) et actionneurs (**Servo SG90**,
-                      **Relais/Pompe**).</li>
-                    <li>Générer la page Web HTML dynamique du Dashboard de contrôle à distance.</li>
-                    <li>Programmer une régulation hybride (Mode Automatique + Mode Supervision Smartphone).</li>
+                    <li>Établir une connexion Wi-Fi en MicroPython.</li>
+                    <li>Connecter capteurs (DHT11, LDR) et actionneurs (Servo, Pompe).</li>
+                    <li>Générer la page HTML du tableau de bord embarqué.</li>
+                    <li>Programmer une régulation automatique et une commande à distance.</li>
                   </ul>
                 </div>
               </div>
@@ -183,7 +179,7 @@
           <!-- Chronogramme -->
           <div class="card card-custom">
             <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement de la Séance (90 minutes)
+              <i class="bi bi-clock-history me-2"></i> Chronogramme (90 min)
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -192,45 +188,39 @@
                     <tr>
                       <th>Phase</th>
                       <th>Durée</th>
-                      <th>Activité de l'Enseignant</th>
-                      <th>Activité de l'Élève</th>
-                      <th>Support / Outils</th>
+                      <th>Activité Enseignant</th>
+                      <th>Activité Élève</th>
+                      <th>Support</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><span class="badge bg-primary">1. Cahier des Charges</span></td>
+                      <td><span class="badge bg-primary">1. Cahier des charges</span></td>
                       <td>10 min</td>
-                      <td>Présentation du projet *Smart Agro (Serre Intelligente)*. Explication des besoins d'arrosage
-                        et d'aération.</td>
-                      <td>Prise de connaissance des spécifications et affectation des broches GPIO.</td>
-                      <td>Cahier des charges &amp; Diaporama</td>
+                      <td>Présente le projet Smart Agro (arrosage, aération).</td>
+                      <td>Identifie les broches GPIO nécessaires.</td>
+                      <td>Diaporama</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-info text-dark">2. Connexion Wi-Fi &amp; HTTP</span></td>
+                      <td><span class="badge bg-info text-dark">2. Wi-Fi &amp; HTTP</span></td>
                       <td>20 min</td>
-                      <td>Présentation du code d'association Wi-Fi (`network.WLAN`) et d'écoute Sockets HTTP sur le port
-                        80.</td>
-                      <td>Saisie des identifiants Wi-Fi, téléversement du script et récupération de l'adresse IP de
-                        l'ESP32.</td>
+                      <td>Expose la connexion Wi-Fi et les sockets HTTP (port 80).</td>
+                      <td>Configure le réseau et relève l'IP de la carte.</td>
                       <td>Python IDE / ESP32</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-success">3. TP Intégration sur Machine</span></td>
+                      <td><span class="badge bg-success">3. TP Intégration</span></td>
                       <td>45 min</td>
-                      <td>Encadrement de l'assemblage complet des capteurs, actionneurs et de la boucle du serveur Web
-                        HTTP.</td>
-                      <td>Câblage sur breadboard, saisie du script complet, test d'accès depuis le navigateur d'un
-                        smartphone.</td>
-                      <td>ESP32, Breadboard, Smartphone</td>
+                      <td>Supervise le câblage complet et le serveur Web.</td>
+                      <td>Câble les composants et teste l'interface sur smartphone.</td>
+                      <td>ESP32 / Breadboard</td>
                     </tr>
                     <tr>
-                      <td><span class="badge bg-warning text-dark">4. Recette &amp; Validation</span></td>
+                      <td><span class="badge bg-warning text-dark">4. Validation</span></td>
                       <td>15 min</td>
-                      <td>Validation des projets élèves : démonstration du pilotage à distance et du mode régulation
-                        auto.</td>
-                      <td>Démonstration du contrôle smartphone à distance et correction des bogues de connexion.</td>
-                      <td>Navigateur Smartphone</td>
+                      <td>Évalue la régulation automatique et la commande à distance.</td>
+                      <td>Démontre le bon fonctionnement du système.</td>
+                      <td>Smartphone</td>
                     </tr>
                   </tbody>
                 </table>
@@ -242,75 +232,69 @@
 
       <!-- Article 2: Architecture IoT & Connexion Wi-Fi -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-wifi text-info me-2"></i> Architecture du Projet &amp; Connexion Wi-Fi</h2>
+        <h2><i class="bi bi-wifi text-info me-2"></i> Architecture &amp; Connexion Wi-Fi</h2>
 
         <section id="section-wifi" class="section-pane">
-          <h3>1. Schéma d'Interconnexion du Projet Smart Agro</h3>
+          <h3>Schéma d'Interconnexion</h3>
 
           <div class="row g-3 text-center my-3">
             <div class="col-md-3">
               <div class="p-3 border rounded bg-body-tertiary">
                 <i class="bi bi-cloud-sun fs-2 text-warning"></i>
                 <h6 class="mt-2 fw-bold mb-0">1. Capteurs</h6>
-                <small class="text-muted">DHT11 (GPIO15)<br>LDR (GPIO34 ADC)</small>
+                <small class="text-muted">DHT11 (GPIO 15)<br>LDR (GPIO 34)</small>
               </div>
             </div>
             <div class="col-md-3">
               <div class="p-3 border rounded bg-body-tertiary border-info">
                 <i class="bi bi-cpu-fill fs-2 text-info"></i>
-                <h6 class="mt-2 fw-bold mb-0 text-info">2. ESP32 Wi-Fi</h6>
-                <small class="text-muted">Régulation Local<br>&amp; Serveur HTTP (80)</small>
+                <h6 class="mt-2 fw-bold mb-0 text-info">2. ESP32</h6>
+                <small class="text-muted">Régulation<br>Serveur HTTP (port 80)</small>
               </div>
             </div>
             <div class="col-md-3">
               <div class="p-3 border rounded bg-body-tertiary">
                 <i class="bi bi-phone-vibrate fs-2 text-primary"></i>
-                <h6 class="mt-2 fw-bold mb-0">3. Wi-Fi Client</h6>
-                <small class="text-muted">Smartphone / PC<br>http://192.168.1.105</small>
+                <h6 class="mt-2 fw-bold mb-0">3. Client Web</h6>
+                <small class="text-muted">Smartphone / PC<br>http://IP_ESP32</small>
               </div>
             </div>
             <div class="col-md-3">
               <div class="p-3 border rounded bg-body-tertiary">
                 <i class="bi bi-gear-wide-connected fs-2 text-success"></i>
                 <h6 class="mt-2 fw-bold mb-0">4. Actionneurs</h6>
-                <small class="text-muted">Servo SG90 (GPIO13)<br>Relais Pompe (GPIO4)</small>
+                <small class="text-muted">Servo SG90 (GPIO 13)<br>Relais Pompe (GPIO 4)</small>
               </div>
             </div>
           </div>
 
-          <h3 class="mt-4">2. Connexion au Réseau Wi-Fi en MicroPython</h3>
-          <p>Le module <strong>`network`</strong> permet d'activer l'interface Wi-Fi de l'ESP32 en mode Station
-            (`STA_IF`) :</p>
+          <h3 class="mt-4">Connexion Wi-Fi (MicroPython)</h3>
 
           <pre class="bg-dark text-light p-3 rounded font-mono small"><code>import network
 import time
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
-wlan.connect("Nom_Du_Reseau_WiFi", "MotDePasse")
+wlan.connect("Mon_WiFi", "MotDePasse")
 
 while not wlan.isconnected():
     time.sleep(0.5)
 
-print("✅ Connecté au Wi-Fi !")
-print("📍 Adresse IP locale :", wlan.ifconfig()[0])</code></pre>
+print("Connecté ! IP :", wlan.ifconfig()[0])</code></pre>
         </section>
       </article>
 
       <!-- Article 3: Serveur Web HTTP Embarqué -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-globe text-success me-2"></i> Serveur Web HTTP Embarqué &amp; Sockets</h2>
+        <h2><i class="bi bi-globe text-success me-2"></i> Serveur Web HTTP Embarqué</h2>
 
         <section id="section-http" class="section-pane">
-          <h3>1. Principe du Serveur Sockets HTTP</h3>
-          <p>L'ESP32 écoute sur le port 80 les requêtes de type `GET /arrosage/on` envoyées par le navigateur du
-            smartphone :</p>
+          <h3>Écoute et Traitement des Requêtes HTTP (Port 80)</h3>
 
           <pre class="bg-dark text-light p-3 rounded font-mono small"><code>import usocket as socket
 
-# Création de la socket TCP/IP
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('', 80)) # Port web 80
+s.bind(('', 80))
 s.listen(5)
 
 while True:
@@ -318,9 +302,9 @@ while True:
     request = conn.recv(1024).decode('utf-8')
     
     if "/arrosage/on" in request:
-        pompe.value(1) # Démarrer l'arrosage
+        pompe.value(1)
     elif "/arrosage/off" in request:
-        pompe.value(0) # Arrêter l'arrosage
+        pompe.value(0)
         
     conn.send('HTTP/1.1 200 OK\nContent-Type: text/html\n\n' + html_page)
     conn.close()</code></pre>
@@ -329,13 +313,12 @@ while True:
 
       <!-- Article 4: Laboratoire Virtuel Smart Agro IoT -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-display-fill text-warning me-2"></i> Laboratoire Virtuel Smart Agro IoT</h2>
+        <h2><i class="bi bi-display-fill text-warning me-2"></i> Simulateur Serre Connectée</h2>
 
         <section id="section-demo" class="section-pane">
-          <h3>Simulateur de Serre Connectée &amp; Smartphone Virtuel</h3>
+          <h3>Tableau de Bord &amp; Smartphone Virtuel</h3>
           <p class="text-muted small">
-            Modifiez l'environnement physique (température, humidité, luminosité) et interagissez directement depuis le
-            smartphone virtuel récepteur de la page web servie par l'ESP32 en Wi-Fi.
+            Modifiez la température et l'humidité pour observer les réactions des actionneurs et piloter la serre depuis le smartphone.
           </p>
 
           <div class="row g-4 my-2">
@@ -358,13 +341,12 @@ while True:
                 </div>
 
                 <!-- Greenhouse Environment Sliders -->
-                <h6 class="fw-bold text-info mb-3"><i class="bi bi-sliders me-1"></i> Simuler l'Environnement Physique
-                </h6>
+                <h6 class="fw-bold text-info mb-3"><i class="bi bi-sliders me-1"></i> Environnement Physique</h6>
 
                 <!-- Temp Slider -->
                 <div class="mb-3 p-2 border rounded bg-dark bg-opacity-50">
                   <div class="d-flex justify-content-between small mb-1">
-                    <span class="text-danger fw-bold"><i class="bi bi-thermometer-half"></i> Température Air :</span>
+                    <span class="text-danger fw-bold"><i class="bi bi-thermometer-half"></i> Température :</span>
                     <span class="font-mono text-danger fw-bold">{{ simTemperature }} °C</span>
                   </div>
                   <input type="range" class="form-range" min="15" max="40" v-model.number="simTemperature">
@@ -373,7 +355,7 @@ while True:
                 <!-- Hum Slider -->
                 <div class="mb-3 p-2 border rounded bg-dark bg-opacity-50">
                   <div class="d-flex justify-content-between small mb-1">
-                    <span class="text-primary fw-bold"><i class="bi bi-droplet-fill"></i> Humidité Sol / Air :</span>
+                    <span class="text-primary fw-bold"><i class="bi bi-droplet-fill"></i> Humidité :</span>
                     <span class="font-mono text-primary fw-bold">{{ simHumidity }} %</span>
                   </div>
                   <input type="range" class="form-range" min="10" max="90" v-model.number="simHumidity">
@@ -476,8 +458,7 @@ while True:
               <!-- REPL Sockets Output Terminal -->
               <div class="card card-custom mt-3">
                 <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-                  <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Sockets HTTP Server
-                    Logs</span>
+                  <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Console REPL</span>
                   <button class="btn btn-link btn-sm text-muted p-0 text-decoration-none" @click="clearLogs">
                     <i class="bi bi-trash"></i> Effacer
                   </button>
@@ -498,32 +479,30 @@ while True:
 
       <!-- Article 5: Évaluation Formative -->
       <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative</h2>
 
         <section id="section-quiz" class="section-pane">
-          <h3>Testez vos Connaissances du Projet IoT Embarqué</h3>
+          <h3>QCM d'Auto-évaluation</h3>
 
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz d'Auto-évaluation – Projet IoT Smart Agro (5 Questions)">
+              <div class="eval-quiz" v-pre data-title="Auto-évaluation – Projet IoT Serre">
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Le mode Station (STA_IF) connecte l'ESP32 à un réseau Wi-Fi local existant (routeur).">
-                  <div class="question-text">1. Quel mode Wi-Fi permet à l'ESP32 de se connecter à un réseau Wi-Fi
-                    domestique existant ?</div>
+                  data-explanation="Le mode Station (STA_IF) connecte l'ESP32 au réseau Wi-Fi local existant.">
+                  <div class="question-text">1. Mode Wi-Fi reliant l'ESP32 à un réseau existant :</div>
                   <ul class="quiz-options">
-                    <li>Mode Station (network.STA_IF)</li>
-                    <li>Mode Access Point (network.AP_IF)</li>
-                    <li>Mode Bluetooth Mesh</li>
-                    <li>Mode Ethernet Filaire</li>
+                    <li>Station (network.STA_IF)</li>
+                    <li>Access Point (network.AP_IF)</li>
+                    <li>Bluetooth Mesh</li>
+                    <li>Ethernet Filaire</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="1"
-                  data-explanation="Un serveur Web embarqué écoute traditionnellement sur le port HTTP standard 80.">
-                  <div class="question-text">2. Sur quel port réseau standard écoute le serveur Web HTTP embarqué de
-                    l'ESP32 ?</div>
+                  data-explanation="Le port standard HTTP pour un serveur Web est le port 80.">
+                  <div class="question-text">2. Port réseau standard du serveur Web HTTP :</div>
                   <ul class="quiz-options">
                     <li>Port 21</li>
                     <li>Port 80</li>
@@ -533,24 +512,21 @@ while True:
                 </div>
 
                 <div class="quiz-question" data-correct="2"
-                  data-explanation="La boucle de régulation fermée lit le capteur, évalue les seuils et déclenche automatiquement l'actionneur.">
-                  <div class="question-text">3. Comment fonctionne le contrôle automatique en boucle fermée dans la
-                    serre connectée Smart Agro ?</div>
+                  data-explanation="La boucle fermée lit le capteur, teste le seuil et active/désactive l'actionneur.">
+                  <div class="question-text">3. Principe d'une régulation en boucle fermée :</div>
                   <ul class="quiz-options">
-                    <li>L'utilisateur doit appuyer sur un bouton physique chaque minute</li>
-                    <li>Le serveur envoie un e-mail au technicien</li>
-                    <li>L'ESP32 lit le capteur, compare au seuil programmé et active/désactive automatiquement
-                      l'actionneur</li>
-                    <li>La serre fonctionne sans capteurs</li>
+                    <li>Pression manuelle chaque minute</li>
+                    <li>Envoi d'un e-mail</li>
+                    <li>Lecture capteur &rarr; test de seuil &rarr; commande automatique actionneur</li>
+                    <li>Fonctionnement sans capteurs</li>
                   </ul>
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="socket.socket(socket.AF_INET, socket.SOCK_STREAM) crée une socket TCP/IP pour le serveur Web.">
-                  <div class="question-text">4. Quelle bibliothèque MicroPython permet de créer une Socket réseau pour
-                    échanger des requêtes HTTP ?</div>
+                  data-explanation="Le module socket permet de gérer les connexions TCP/IP HTTP.">
+                  <div class="question-text">4. Bibliothèque pour créer une Socket réseau HTTP en MicroPython :</div>
                   <ul class="quiz-options">
-                    <li>socket</li>
+                    <li>socket (ou usocket)</li>
                     <li>network_http</li>
                     <li>web_express</li>
                     <li>requests_server</li>
@@ -558,23 +534,21 @@ while True:
                 </div>
 
                 <div class="quiz-question" data-correct="0"
-                  data-explanation="Le serveur Web renvoie des en-têtes HTTP suivis du document HTML représentant le tableau de bord.">
-                  <div class="question-text">5. Que renvoie le serveur Web ESP32 au smartphone de l'utilisateur lors
-                    d'une requête HTTP GET ?</div>
+                  data-explanation="Le serveur retourne l'en-tête HTTP 200 OK suivi du code HTML du tableau de bord.">
+                  <div class="question-text">5. Réponse du serveur Web ESP32 à une requête HTTP GET :</div>
                   <ul class="quiz-options">
-                    <li>Un code de réponse HTTP (200 OK) suivi de la page Web HTML du tableau de bord</li>
-                    <li>Le code source MicroPython brut</li>
-                    <li>Un fichier image binaire</li>
-                    <li>Une commande d'extinction</li>
+                    <li>Code HTTP 200 OK suivi de la page HTML du tableau de bord</li>
+                    <li>Code MicroPython brut</li>
+                    <li>Image binaire</li>
+                    <li>Ordre d'extinction</li>
                   </ul>
                 </div>
 
               </div>
             </div>
           </div>
-  </div>
-  </section>
-  </article>
+        </section>
+      </article>
 
   </main>
 
