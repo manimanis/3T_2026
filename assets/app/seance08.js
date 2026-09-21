@@ -1,85 +1,107 @@
 /**
  * 3T_2026 - Informatique 3ème Année Secondary
- * Application Vue.js pour Séance N°8 (Paramètres, Valeurs de Retour et Portée)
+ * Application Logic for Séance N°8 - APPRENTISSAGE
+ * Tableaux 1D statiques : Déclaration, Saisie & Traitements cumulatifs (90 min)
+ * Version sujet élève (réponses sur cahier)
  */
 
-const { createApp, ref, computed, onMounted } = Vue;
+const { createApp } = Vue;
 
 createApp({
-  setup() {
-    const theme = ref(localStorage.getItem('theme') || 'dark');
-
-    const toggleTheme = () => {
-      theme.value = theme.value === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme.value);
-      localStorage.setItem('theme', theme.value);
-    };
-
-    // =========================================================
-    // SIMULATEUR 1 : CONVERTISSEUR DE TEMPS (sec -> H:M:S)
-    // =========================================================
-    const dureeSecInput = ref(7385); // Default 7385s = 2h 3m 5s
-
-    const tempsConverti = computed(() => {
-      const sec = Math.max(0, parseInt(dureeSecInput.value) || 0);
-
-      const h = Math.floor(sec / 3600);
-      const reste = sec % 3600;
-      const m = Math.floor(reste / 60);
-      const s = reste % 60;
-
-      return {
-        secTotales: sec,
-        h,
-        reste,
-        m,
-        s
-      };
-    });
-
-    // =========================================================
-    // SIMULATEUR 2 : PERMUTATION DE DEUX VARIABLES (A <-> B)
-    // =========================================================
-    const valA = ref(42);
-    const valB = ref(99);
-    const auxMemory = ref(null);
-    const stepMessage = ref('Cliquez sur "Exécuter la Permutation" pour simuler l\'échange.');
-
-    const executePermutation = () => {
-      const initialA = valA.value;
-      const initialB = valB.value;
-
-      auxMemory.value = initialA;
-      stepMessage.value = `1. aux = A (${initialA}) | 2. A = B (${initialB}) | 3. B = aux (${initialA})`;
-
-      valA.value = initialB;
-      valB.value = initialA;
-    };
-
-    const reinitialiserPermutation = () => {
-      valA.value = 42;
-      valB.value = 99;
-      auxMemory.value = null;
-      stepMessage.value = 'Valeurs réinitialisées (A = 42, B = 99).';
-    };
-
-    onMounted(() => {
-      document.documentElement.setAttribute('data-theme', theme.value);
-    });
-
+  data() {
     return {
-      theme,
-      toggleTheme,
+      theme: localStorage.getItem('theme') || 'dark',
 
-      dureeSecInput,
-      tempsConverti,
+      codeAlgoDeclaration: `// En algorithmique officielle :
+// Dans le Tableau de Déclaration des Objets (TDO) :
+// Objet | Type / Nature
+// T     | Tableau de 10 Réel
+// i, N  | Entier
 
-      valA,
-      valB,
-      auxMemory,
-      stepMessage,
-      executePermutation,
-      reinitialiserPermutation
+Pour i de 0 à N - 1 Faire
+  Écrire("Donner l'élément [", i, "] : ")
+  Lire(T[i])
+Fin Pour`,
+
+      codePythonDeclaration: `# En Python officiel (numpy statique obligatoire) :
+from numpy import array
+
+# Allocation d'un tableau statique de N réels :
+N = 10
+T = array([0.0] * N)
+
+# Remplissage séquentiel case par case :
+for i in range(N):
+    T[i] = float(input(f"Donner l'élément [{i}] : "))
+
+# Affichage case par case (INTERDICTION DE print(T) brut) :
+for i in range(N):
+    print(f"T[{i}] = {T[i]}")`
     };
+  },
+
+  methods: {
+    toggleTheme() {
+      this.theme = this.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      localStorage.setItem('theme', this.theme);
+    },
+
+    copyCode(text, event) {
+      let codeEl = null;
+      let btnEl = null;
+      if (event && event.currentTarget) {
+        btnEl = event.currentTarget;
+        const container = btnEl.closest('.code-container') || btnEl.parentNode;
+        if (container) {
+          codeEl = container.querySelector('code');
+        }
+      }
+      if (window.codeClipboardInstance) {
+        window.codeClipboardInstance.copyToClipboard(text, btnEl, codeEl);
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        if (typeof window.showToast === 'function') {
+          window.showToast("Code copié !");
+        }
+      }
+    },
+
+    renderMath() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    },
+
+    jumpToSection(sectionId) {
+      if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
+        window.sectionDrawerInstance.showSection(sectionId);
+      } else {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  },
+
+  mounted() {
+    document.documentElement.setAttribute('data-theme', this.theme);
+    this.$nextTick(() => {
+      if (typeof window.safeHighlightAll === 'function') {
+        window.safeHighlightAll();
+      } else if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+      this.renderMath();
+    });
   }
 }).mount('#app');

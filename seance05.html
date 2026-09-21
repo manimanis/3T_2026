@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance N°5 : Tableaux 1D – Déclaration, Saisie &amp; Parcours | 3ème Secondary</title>
+  <title>Séance 5 · TP Évalué N°2 : Menus interactifs & Boucles combinées — 3e Sciences</title>
   <meta name="description"
-    content="Séance N°5 : Étude et manipulation des tableaux à 1 dimension (1D) avec la bibliothèque numpy en Python pour la 3ème Année Secondaire.">
+    content="Séance 5 d'informatique pour 3e Sciences : Évaluation pratique sur machine N°2 (TP noté) sur les menus interactifs, match...case et les boucles de répétition.">
 
   <!-- Anti-FOUC Early Theme Script -->
   <script>
@@ -16,7 +16,7 @@
     })();
   </script>
 
-  <!-- Static CSS Assets -->
+  <!-- CSS Assets -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/highlight-github.min.css">
   <link rel="stylesheet" href="assets/css/katex.min.css">
@@ -24,17 +24,44 @@
 
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    .phase-pill-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 1020;
+      background: var(--bg-navbar);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cahier-zone {
+      border: 1px dashed var(--border-color);
+      border-radius: 0.4rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .empty-cell {
+      color: var(--text-dim);
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 
 <body>
 
   <div id="app">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand navbar-brand-custom" href="index.html">
           <i class="bi bi-code-slash fs-3"></i>
-          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Sciences</small></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <i class="bi bi-list fs-2"></i>
@@ -46,12 +73,9 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
-              au Plan</a>
-            <!-- Theme Toggle Button -->
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi"
-                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -59,607 +83,205 @@
       </div>
     </nav>
 
-    <!-- Sub-Header / Breadcrumb -->
-    <header class="py-3 border-bottom border-secondary border-opacity-25">
-      <div class="container px-lg-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <!-- Header Section -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-50 mb-1">
-              Module 2 • Séance N°5
-            </span>
-            <h1 class="h3 mb-0 fw-bold">Tableaux à 1 Dimension (1D) – Déclaration, Saisie &amp; Parcours</h1>
-            <p class="text-muted small mb-0 mt-1">
-              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
-            </p>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-25">
+                SÉANCE 5 · ÉVALUATION PRATIQUE N° 2
+              </span>
+              <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
+                <i class="bi bi-clock me-1"></i> 90 min
+              </span>
+              <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25">
+                Barème : /20 pts (Épreuve sur Machine)
+              </span>
+            </div>
+            <h1 class="h3 fw-bold mb-1">TP Évalué : Menus interactifs & Boucles combinées sur Machine</h1>
+            <p class="text-muted small mb-0">Évaluation individuelle sur poste de travail — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Main Content Layout -->
-    <main class="container px-lg-4 my-4">
+    <!-- Phase Quick Selector Bar -->
+    <div class="phase-pill-nav d-none d-md-block">
+      <div class="container d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp2')">
+          Consignes
+        </button>
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp2')">
+          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp2')">
+          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp2')">
+          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+        </button>
+      </div>
+    </div>
 
-      <!-- Article 1: Fiche Pédagogique -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+    <!-- Main Content Container -->
+    <main class="container my-4">
 
-        <section id="section-objectifs" class="section-pane">
-          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
+      <!-- =========================================================================
+           ARTICLE 1: CONSIGNES GÉNÉRALES
+           ========================================================================= -->
+      <article id="consignes" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP ÉVALUÉ N°2</h2>
 
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-primary fw-bold">
-                  <h4 class="h5 card-title text-primary"><i class="bi bi-bullseye me-2"></i> A. Savoirs (Connaissances)</h4>
-                  <ul class="list-custom mb-0">
-                    <li>Tableau 1D : structure homogène, contiguë et statique.</li>
-                    <li>Déclaration algorithmique : <code>T : Tableau de N Type</code>.</li>
-                    <li>Déclaration Python : <code>from numpy import array</code>.</li>
-                    <li>Indexation : premier élément à <strong>0</strong>, dernier à <strong>$N-1$</strong>.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)
-                </div>
-                <div class="card-body">
-                  <ul class="list-custom mb-0">
-                    <li>Contrôle de saisie de la taille $N$ ($N_{min} \le N \le N_{max}$).</li>
-                    <li>Remplissage et parcours séquentiel avec boucle <code>Pour</code>.</li>
-                    <li>Prévention des erreurs d'indices (<code>IndexError</code>).</li>
-                    <li>🚫 <strong>Règle :</strong> Affichage obligatoire élément par élément (pas de <code>print(T)</code>).</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Chronogramme -->
-          <div class="card card-custom">
-            <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement (90 min)
-            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
-                    <tr>
-                      <th>Phase</th>
-                      <th>Durée</th>
-                      <th>Activité Enseignant</th>
-                      <th>Activité Élève</th>
-                      <th>Support</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><span class="badge bg-secondary">1. Situation Problème</span></td>
-                      <td>10 min</td>
-                      <td>Stockage de 30 températures : besoin d'une structure indexée.</td>
-                      <td>Constat des limites des variables simples.</td>
-                      <td>Tableau</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-primary">2. Synthèse</span></td>
-                      <td>25 min</td>
-                      <td>Tableau 1D, indices (0..N-1) et <code>numpy.array</code>.</td>
-                      <td>Règles de la bibliothèque <code>numpy</code>.</td>
-                      <td>Fiche</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-success">3. Pratique</span></td>
-                      <td>40 min</td>
-                      <td>Problème Station Météo et TDO.</td>
-                      <td>Analyse, TDO, algorithme et codage.</td>
-                      <td>Python</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
-                      <td>15 min</td>
-                      <td>Contrôle affichage élément par élément et contrôle N.</td>
-                      <td>Correction des erreurs et quiz.</td>
-                      <td>Python</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        <section id="consignes-tp2" class="section-pane mb-4">
+          <div class="alert alert-secondary py-2 small mb-3">
+            <strong>Durée :</strong> 90 minutes. Travail strictement individuel. Enregistrez votre code sous le nom <code>TP2_Nom_Prenom.py</code> sur le bureau.
           </div>
         </section>
       </article>
 
-      <!-- Article 2: Synthèse du Cours -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
+      <!-- =========================================================================
+           ARTICLE 2: PALIER SOCLE (8 PTS)
+           ========================================================================= -->
+      <article id="palier-socle-tp2" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 SOCLE DE RÉUSSITE (8 points)</h2>
 
-        <section id="section-cours-tableaux" class="section-pane">
-          <h3>2. Tableaux à 1 Dimension</h3>
-          <p class="text-muted">
-            Structure contiguë d'éléments de même type, indexés de <strong>0</strong> à <strong>$N-1$</strong>.
-          </p>
-
-          <!-- Diagramme Vectoriel Tableau 1D -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-diagram-3 me-2"></i> Diagramme Mémoire Vectoriel : Représentation d'un Tableau 1D
-            </div>
-            <div class="card-body bg-body-tertiary text-center p-3">
-              <img src="images/seance05/tableau_1d.svg" alt="Représentation d'un Tableau 1D en Mémoire"
-                class="img-fluid" style="max-height: 220px; width: 100%;">
-            </div>
-          </div>
-
-          <!-- Tableau récapitulatif des Déclarations -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-table me-2"></i> Correspondance des Déclarations Algorithme vs Python (<code>numpy</code>)
-            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
-                    <tr>
-                      <th>Type des Élément</th>
-                      <th>Déclaration Algorithmique (TDO)</th>
-                      <th>Déclaration Python (<code>from numpy import array</code>)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Entiers</strong></td>
-                      <td><code>T : Tableau de N Entier</code></td>
-                      <td><code>T = array([0] * N)</code></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Réels</strong></td>
-                      <td><code>T : Tableau de N Réel</code></td>
-                      <td><code>T = array([float()] * N)</code> ou <code>T = array([0.0] * N)</code></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Chaînes de car.</strong></td>
-                      <td><code>T : Tableau de N Chaîne</code></td>
-                      <td><code>T = array([''] * N, dtype='U20')</code></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Booléens</strong></td>
-                      <td><code>T : Tableau de N Booléen</code></td>
-                      <td><code>T = array([False] * N)</code></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Les 3 étapes systématiques -->
-          <div class="card card-custom mb-4 border border-info border-opacity-50">
-            <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-list-ol me-2"></i> Les 3 Étapes Systématiques de Manipulation d'un Tableau 1D
+        <!-- Activité 1 -->
+        <section id="act1-affichage-menu" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 1 — Procédure d'affichage du menu interactif</h3>
+              <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
-              <div class="row g-4">
-                <div class="col-md-4">
-                  <div class="p-3 bg-body-tertiary rounded border h-100">
-                    <h6 class="fw-bold text-primary mb-2">1. Contrôle de la taille $N$</h6>
-                    <div class="code-container mb-0">
-                      <pre><code class="language-python">n = int(input("N (3 à 30) : "))
-while not (3 <= n <= 30):
-    n = int(input("Invalide ! : "))</code></pre>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="p-3 bg-body-tertiary rounded border h-100">
-                    <h6 class="fw-bold text-success mb-2">2. Saisie (Remplissage)</h6>
-                    <div class="code-container mb-0">
-                      <pre><code class="language-python"># Indices de 0 à n-1
-for i in range(n):
-    T[i] = float(input(...))</code></pre>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="p-3 bg-body-tertiary rounded border h-100">
-                    <h6 class="fw-bold text-warning mb-2">3. Affichage Élement par Élement</h6>
-                    <div class="code-container mb-0">
-                      <pre><code class="language-python">print("Contenu :")
-for i in range(n):
-    print("T[", i, "] =", T[i])</code></pre>
-                    </div>
-                  </div>
-                </div>
+              <p class="small mb-2">Écrire sous Python la procédure affichant le menu suivant :</p>
+              <pre class="bg-body-tertiary p-2 rounded small mb-3"><code>==========================================
+   SIMULATEUR DE MÉCANIQUE DES FLUIDES   
+==========================================
+1 : Calcul de la Pression (P = F / S)
+2 : Calcul du Débit volumique (D = V / t)
+0 : Quitter l'application
+------------------------------------------</code></pre>
+              <div class="cahier-zone">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez la procédure dans <code>TP2_Nom_Prenom.py</code>.
               </div>
             </div>
-          </div>
-
-          <!-- Directives Ministérielles Card -->
-          <div class="alert alert-warning border border-warning border-opacity-50 shadow-sm mb-4">
-            <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i> Exigences Ministérielles Importantes (Baccalauréat
-              2024-2025)
-            </h5>
-            <ol class="mb-0 small">
-              <li class="mb-1">
-                <strong>Importation obligatoire de <code>numpy</code> :</strong> En Tunisie, les tableaux doivent
-                obligatoirement être déclarés à l'aide de <code>from numpy import array</code>.
-              </li>
-              <li class="mb-1">
-                <strong>Indices de $0$ à $N-1$ :</strong> Le premier élément est toujours localisé à l'indice
-                <code>0</code> et le dernier à l'indice <code>N - 1</code>.
-              </li>
-              <li>
-                🚫 <strong>Interdiction d'affichage global :</strong> L'instruction <code>print(T)</code> est
-                <strong>strictement interdite</strong>. L'affichage doit toujours s'effectuer élément par élément dans
-                une boucle.
-              </li>
-            </ol>
           </div>
         </section>
-      </article>
 
-      <!-- Article 3: Activité 1 - Détection & Correction d'Erreurs -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Détection &amp; Correction d'Erreurs
-          Fréquentes</h2>
-
-        <section id="section-activite1" class="section-pane">
-          <h3>Correction d'un Code Non Conforme</h3>
-          <p class="text-muted">
-            Identifions les 3 erreurs classiques d'un élève (listes standard, indices de 1 à N et `print(T)`) et
-            réécrivons le script conforme aux normes officielles.
-          </p>
-
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100 border-danger border-opacity-50">
-                <div class="card-header-custom text-danger fw-bold">
-                  <i class="bi bi-x-circle-fill me-2"></i> Code Invalide (3 Erreurs Majeures)
-                </div>
-                <div class="card-body">
-                  <div class="code-container">
-                    <pre><code class="language-python"># ❌ 3 Erreurs classiques à éviter !
-T = [0] * 10            # Erreur 1: Liste standard au lieu de numpy
-n = int(input("N : "))
-
-for i in range(1, n + 1): # Erreur 2: Indices 1 à n (IndexError !)
-    T[i] = input("Val : ")
-
-print(T)                # Erreur 3: Affichage direct interdit !</code></pre>
-                  </div>
-                  <ul class="text-danger small mt-2 mb-0">
-                    <li>Erreur 1 : Utilisation d'une liste Python standard au lieu de <code>numpy.array</code>.</li>
-                    <li>Erreur 2 : La boucle tente d'accéder à <code>T[n]</code> (hors limites !).</li>
-                    <li>Erreur 3 : L'instruction <code>print(T)</code> viole la règle d'affichage ministérielle.</li>
-                  </ul>
-                </div>
-              </div>
+        <!-- Activité 2 -->
+        <section id="act2-controle-choix" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 2 — Saisie sécurisée du choix utilisateur</h3>
+              <span class="badge bg-secondary">4 points</span>
             </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100 border-success border-opacity-50">
-                <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-check-circle-fill me-2"></i> Code Corrigé &amp; Conforme
-                </div>
-                <div class="card-body">
-                  <div class="code-container">
-                    <pre><code class="language-python">from numpy import array
-
-n = int(input("Taille (1 à 10) : "))
-while not (1 <= n <= 10):
-    n = int(input("Taille invalide (1 à 10) : "))
-
-# ✅ 1. Déclaration numpy obligatoire
-T = array([0] * n)
-
-# ✅ 2. Indices exacts de 0 à n - 1
-for i in range(n):
-    T[i] = int(input("Donner T[" + str(i) + "] : "))
-
-# ✅ 3. Affichage élément par élément
-print("\nContenu du tableau :")
-for i in range(n):
-    print("Élément N°", i, ":", T[i])</code></pre>
-                  </div>
-                </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                Écrire la boucle forçant la saisie du choix entre 0, 1 et 2. En cas de choix invalide, afficher un message d'erreur et renouveler la demande.
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-pencil-square me-1"></i> Intégrez le contrôle de saisie dans votre script.
               </div>
             </div>
           </div>
         </section>
       </article>
 
-      <!-- Article 4: Activité 2 - Problème Pratique complet: Station Météo -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-cloud-sun-fill text-warning me-2"></i> Activité 2 : Gestionnaire Météo Quotidien (Station
-          Météo)</h2>
+      <!-- =========================================================================
+           ARTICLE 3: PALIER MAÎTRISE (8 PTS)
+           ========================================================================= -->
+      <article id="palier-maitrise-tp2" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 MAÎTRISE DU NIVEAU ATTENDU (8 points)</h2>
 
-        <section id="section-activite2" class="section-pane">
-          <h3>Problème Pratique Guidé</h3>
-
-          <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
-            <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé du problème :
-            </h5>
-            <p class="mb-2">
-              Une station météorologique enregistre les températures quotidiennes relevées au cours d'une période de $N$
-              jours ($3 \le N \le 31$).
-            </p>
-            <ol class="mb-0 small">
-              <li>Saisir le nombre de jours d'observation $N$ avec un contrôle de saisie strict ($3 \le N \le 31$).</li>
-              <li>Remplir un tableau <code>Temp</code> de $N$ réels contenant les températures quotidiennes.</li>
-              <li>Affichez un bulletin météo complet structuré listing chaque jour et sa température associée.</li>
-            </ol>
-          </div>
-
-          <!-- TDO Table -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-table me-2"></i> Tableau de Déclaration des Objets (TDO)
+        <!-- Activité 3 -->
+        <section id="act3-calcul-pression" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 3 — Implémentation de l'Option 1 : Calcul de Pression</h3>
+              <span class="badge bg-secondary">4 points</span>
             </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
-                    <tr>
-                      <th>Objet</th>
-                      <th>Type / Nature</th>
-                      <th>Rôle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><code>n</code></td>
-                      <td>Entier</td>
-                      <td>Nombre de jours d'observation ($3 \le N \le 31$)</td>
-                    </tr>
-                    <tr>
-                      <td><code>i</code></td>
-                      <td>Entier</td>
-                      <td>Compteur d'indice du tableau ($0 \le i < N$)</td>
-                    </tr>
-                    <tr>
-                      <td><code>Temp</code></td>
-                      <td>Tableau de <code>N</code> Réel</td>
-                      <td>Stockage contigu des $N$ températures relevées</td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div class="card-body">
+              <p class="small mb-3">
+                Pour le choix 1, demander la force $F > 0$ (en Newtons) et la surface $S > 0$ (en $\text{m}^2$). Calculer puis afficher la pression $P = F / S$ en Pascals et en Bars ($1\text{ bar} = 10^5\text{ Pa}$).
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme sur votre feuille et testez-le sous Python.
               </div>
             </div>
           </div>
+        </section>
 
-          <!-- Simulateur Interactif Tableau 1D Station Météo -->
-          <div class="card card-custom mb-4 border border-primary border-opacity-50 shadow-sm">
-            <div class="card-header-custom text-primary fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif : Allocation &amp; Manipulation Mémoire
-                (numpy.array)</span>
-              <span class="badge bg-primary">Vue 3 App</span>
+        <!-- Activité 4 -->
+        <section id="act4-calcul-debit" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 4 — Implémentation de l'Option 2 : Calcul de Débit</h3>
+              <span class="badge bg-secondary">4 points</span>
             </div>
-            <div class="card-body bg-body-tertiary">
-
-              <!-- Step 1: Config Size N -->
-              <div class="row g-3 align-items-end mb-4">
-                <div class="col-md-5">
-                  <label class="form-label fw-bold small">1. Définir le nombre de jours $N$ ($3 \le N \le 31$) :</label>
-                  <div class="input-group">
-                    <input type="number" v-model.number="nJours" class="form-control" placeholder="Taille N...">
-                    <button type="button" class="btn btn-primary" @click="allouerTableau">
-                      <i class="bi bi-memory me-1"></i> Initialiser `Temp`
-                    </button>
-                  </div>
-                  <div v-if="validationErreur" class="text-danger small mt-1">
-                    {{ validationErreur }}
-                  </div>
-                </div>
-
-                <div class="col-md-7 d-flex gap-2 justify-content-md-end">
-                  <button type="button" class="btn btn-outline-info btn-sm" @click="chargerPresetSemaine">
-                    <i class="bi bi-calendar-week me-1"></i> Preset 7 Jours
-                  </button>
-                  <button type="button" class="btn btn-outline-success btn-sm" @click="genererAleatoire">
-                    <i class="bi bi-dice-5 me-1"></i> Remplir Aléatoire
-                  </button>
-                </div>
-              </div>
-
-              <!-- Notification Banner -->
-              <div class="alert mb-4 font-mono small" :class="'alert-' + notificationSysteme.type">
-                {{ notificationSysteme.text }}
-              </div>
-
-              <!-- Interactive Memory Grid Display -->
-              <div v-if="estAllocated" class="mb-4">
-                <h6 class="small fw-bold text-muted mb-2"><i class="bi bi-layers-fill me-1"></i> Représentation des
-                  cases mémoire `Temp[0 ... {{ tempArray.length - 1 }}]` :</h6>
-                <div class="d-flex flex-wrap gap-2 p-3 bg-dark rounded border border-secondary border-opacity-25">
-                  <div v-for="(val, idx) in tempArray" :key="idx"
-                    class="p-2 rounded text-center font-mono position-relative transition-all"
-                    :class="idx === indiceEnCours ? 'bg-primary text-white shadow-lg scale-105' : 'bg-body-tertiary text-body border border-secondary border-opacity-25'"
-                    style="min-width: 85px; flex: 1;">
-                    <span class="badge position-absolute top-0 start-50 translate-middle-x mt-1"
-                      :class="idx === indiceEnCours ? 'bg-white text-primary' : 'bg-secondary'">
-                      i = {{ idx }}
-                    </span>
-                    <div class="mt-3 fw-bold fs-6">{{ val }} °C</div>
-                    <small class="text-muted d-block text-xs">Temp[{{ idx }}]</small>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Element-by-Element Input Console -->
-              <div v-if="estAllocated &amp;&amp; tempArray.length > 0" class="row g-3 align-items-center">
-                <div class="col-md-6">
-                  <label class="form-label fw-bold small">Saisir l'élément `Temp[{{ indiceEnCours }}]` (Jour {{
-                    indiceEnCours + 1 }}) :</label>
-                  <div class="input-group">
-                    <input type="number" step="0.1" v-model.number="valInput" @keyup.enter="enregistrerTemperature"
-                      class="form-control" placeholder="Température en °C...">
-                    <button type="button" class="btn btn-success" @click="enregistrerTemperature">
-                      Affecter `Temp[{{ indiceEnCours }}]` <i class="bi bi-arrow-right-short ms-1"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Stats summary -->
-                <div class="col-md-6">
-                  <div class="p-2 rounded bg-body border font-mono small d-flex justify-content-around text-center">
-                    <div>
-                      <span class="text-muted d-block text-xs">Moyenne</span>
-                      <strong class="text-primary fs-6">{{ statistiques.moy }} °C</strong>
-                    </div>
-                    <div>
-                      <span class="text-muted d-block text-xs">Minimum</span>
-                      <strong class="text-info fs-6">{{ statistiques.min }} °C</strong>
-                    </div>
-                    <div>
-                      <span class="text-muted d-block text-xs">Maximum</span>
-                      <strong class="text-danger fs-6">{{ statistiques.max }} °C</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Code Implementations -->
-          <div class="row g-4">
-            <div class="col-md-6">
-              <div class="code-container">
-                <div class="code-header"><span>Algorithme</span></div>
-                <pre><code class="language-algorithm">ALGORITHME Station_Meteo
-DEBUT
-    Répéter
-        Écrire("Nombre de jours (3 à 31) : ")
-        Lire(n)
-    Jusqu'à (3 ≤ n ET n ≤ 31)
-    
-    Pour i de 0 à n - 1 Faire
-        Écrire("Température jour ", i + 1, " : ")
-        Lire(Temp[i])
-    Fin Pour
-    
-    Écrire_nl("=== BULLETIN MÉTÉO RÉCAPITULATIF ===")
-    Pour i de 0 à n - 1 Faire
-        Écrire("Jour ", i + 1, " : ", Temp[i], " °C")
-    Fin Pour
-FIN</code></pre>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="code-container">
-                <div class="code-header"><span>Implémentation Python (Python IDE)</span></div>
-                <pre><code class="language-python">from numpy import array
-
-# 1. Saisie et controle de N
-n = int(input("Donner N (3 à 31) : "))
-while not (3 <= n <= 31):
-    n = int(input("Invalide ! Saisir N (3 à 31) : "))
-
-# 2. Declaration du tableau numpy de N réels
-Temp = array([0.0] * n)
-
-# 3. Remplissage du tableau
-for i in range(n):
-    Temp[i] = float(input("Jour " + str(i + 1) + " : "))
-
-# 4. Affichage element par element (Obligatoire)
-print("\n=== BULLETIN MÉTÉO RÉCAPITULATIF ===")
-for i in range(n):
-    print("Jour", i + 1, ":", Temp[i], "°C")</code></pre>
+            <div class="card-body">
+              <p class="small mb-3">
+                Pour le choix 2, demander le volume $V > 0$ (en Litres) et la durée d'écoulement $t > 0$ (en secondes). Calculer et afficher le débit $D = V / t$ en $\text{L/s}$ et en $\text{m}^3/\text{s}$.
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme sur votre feuille et testez-le sous Python.
               </div>
             </div>
           </div>
         </section>
       </article>
 
-      <!-- Article 5: Évaluation Formative -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
+      <!-- =========================================================================
+           ARTICLE 4: PALIER DÉPASSEMENT & EXCELLENCE (4 PTS)
+           ========================================================================= -->
+      <article id="palier-excellence-tp2" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-trophy text-success me-2"></i> PALIER 🔴 DÉPASSEMENT & EXCELLENCE (4 points)</h2>
 
-        <section id="section-quiz" class="section-pane">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="En Python/NumPy, le premier indice est toujours 0.">
-                  <div class="question-text">1. Indice du premier élément d'un tableau à 1D ?</div>
-                  <ul class="quiz-options">
-                    <li>0</li>
-                    <li>1</li>
-                    <li>-1</li>
-                    <li>N</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="Conventions officielles : from numpy import array.">
-                  <div class="question-text">2. Importation du tableau NumPy en Python ?</div>
-                  <ul class="quiz-options">
-                    <li>import array</li>
-                    <li>from numpy import array</li>
-                    <li>include &lt;array&gt;</li>
-                    <li>import list as array</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="T = array([0]*N, dtype=int) crée un tableau de N entiers initialisés à 0.">
-                  <div class="question-text">3. Création d'un tableau NumPy T de N entiers à 0 ?</div>
-                  <ul class="quiz-options">
-                    <li>T = [0] * N</li>
-                    <li>T = array(N)</li>
-                    <li>T = array([0] * N, dtype=int)</li>
-                    <li>T = new Array(N)</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Indices de 0 à N-1. Pour N=5, le dernier est 4.">
-                  <div class="question-text">4. Dernier indice pour N = 5 ?</div>
-                  <ul class="quiz-options">
-                    <li>4</li>
-                    <li>5</li>
-                    <li>1</li>
-                    <li>N</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="numpy.array est homogène (un seul type).">
-                  <div class="question-text">5. Caractéristique d'un tableau numpy.array vs liste Python ?</div>
-                  <ul class="quiz-options">
-                    <li>Il est homogène (tous les éléments sont du même type)</li>
-                    <li>Il peut contenir des types mixtes</li>
-                    <li>Il n'a pas d'indices numériques</li>
-                    <li>Il est de taille dynamique illimitée</li>
-                  </ul>
-                </div>
-
+        <!-- Activité 5 -->
+        <section id="act5-boucle-globale" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 5 — Boucle globale de maintien du simulateur</h3>
+              <span class="badge bg-success text-white">Excellence · 2 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                Envelopper les choix dans un bloc <code>match...case</code> et assurer la réapparition automatique du menu après chaque calcul tant que l'utilisateur n'a pas sélectionné <code>0</code>.
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-pencil-square me-1"></i> Complétez le programme principal dans <code>TP2_Nom_Prenom.py</code>.
               </div>
             </div>
           </div>
-  </div>
-  </section>
-  </article>
+        </section>
 
-  </main>
+        <!-- Activité 6 -->
+        <section id="act6-compteur-statistique" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 6 — Compteur d'opérations & Recette logicielle</h3>
+              <span class="badge bg-success text-white">Excellence · 2 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                Ajouter un compteur <code>nb_simulations</code> affichant à la sortie le total de calculs réalisés au cours de la session. Valider devant l'enseignant avec un enchaînement : Option 1, Option 2, Option 0.
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-pencil-square me-1"></i> Faites valider vos tests et remettez votre fichier.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
 
-  <!-- Footer -->
-  <footer class="footer-custom">
-    <div class="container text-center">
-      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-    </div>
-  </footer>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-muted">
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 5 : TP Évalué N°2 (Menus interactifs & Selon) · Algorithmique & Python</p>
+      </div>
+    </footer>
   </div>
 
   <!-- JS Assets -->
@@ -672,8 +294,6 @@ for i in range(n):
   <script src="assets/js/clipboard.js"></script>
   <script src="assets/js/draggable.js"></script>
   <script src="assets/js/pages.js"></script>
-
-  <!-- Application Script for Séance 5 -->
   <script src="assets/app/seance05.js"></script>
 </body>
 

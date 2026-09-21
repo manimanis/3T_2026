@@ -1,180 +1,109 @@
 /**
  * 3T_2026 - Informatique 3ème Année Secondary
- * Application Vue.js pour Séance N°6 (Traitements Élémentaires sur Tableaux 1D)
+ * Application Logic for Séance N°6 - APPRENTISSAGE
+ * Chaînes de caractères & Fonctions prédéfinies normalisées (90 min)
+ * Version sujet élève (réponses sur cahier)
  */
 
-const { createApp, ref, computed, onMounted } = Vue;
+const { createApp } = Vue;
 
 createApp({
-  setup() {
-    const theme = ref(localStorage.getItem('theme') || 'dark');
-
-    const toggleTheme = () => {
-      theme.value = theme.value === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme.value);
-      localStorage.setItem('theme', theme.value);
-    };
-
-    // =========================================================
-    // SIMULATEUR : ANALYSEUR STATISTIQUE DE NOTES DE CLASSE
-    // =========================================================
-    const minN = 5;
-    const maxN = 30;
-
-    const nEleves = ref(7); // Default 7 élèves
-    const estAllocated = ref(true);
-    const notesArray = ref([12.5, 15.0, 8.5, 18.0, 11.5, 9.0, 14.5]); // Pre-filled default
-    const indiceEnCours = ref(0);
-    const noteInput = ref(12.0);
-    const validationErreur = ref('');
-    const notificationSysteme = ref({ text: 'Tableau Notes de 7 réels prêt en mémoire.', type: 'info' });
-
-    const validerTaille = () => {
-      const n = Number(nEleves.value);
-      if (isNaN(n) || n < minN || n > maxN) {
-        validationErreur.value = `⚠️ Nombre invalide ! N doit être compris entre ${minN} et ${maxN}.`;
-        estAllocated.value = false;
-        return false;
-      }
-
-      validationErreur.value = '';
-      return true;
-    };
-
-    const allouerTableau = () => {
-      if (!validerTaille()) return;
-
-      const n = Number(nEleves.value);
-      notesArray.value = new Array(n).fill(10.0);
-      estAllocated.value = true;
-      indiceEnCours.value = 0;
-      noteInput.value = 12.0;
-
-      notificationSysteme.value = {
-        text: `✅ Allocation réussie : Tableau Notes de ${n} élèves (numpy.array) prêt en mémoire.`,
-        type: 'success'
-      };
-    };
-
-    const enregistrerNote = () => {
-      if (!estAllocated.value) return;
-
-      const i = indiceEnCours.value;
-      const v = Number(noteInput.value);
-
-      if (isNaN(v) || v < 0 || v > 20) {
-        notificationSysteme.value = {
-          text: '⚠️ Note invalide ! Une note doit être comprise entre 0.0 et 20.0.',
-          type: 'warning'
-        };
-        return;
-      }
-
-      notesArray.value[i] = parseFloat(v.toFixed(2));
-
-      if (i < notesArray.value.length - 1) {
-        indiceEnCours.value++;
-        noteInput.value = parseFloat((Math.random() * 15 + 5).toFixed(1));
-        notificationSysteme.value = {
-          text: `Note de l'élève N°${i + 1} enregistrée (Notes[${i}] = ${notesArray.value[i]} / 20). Passage à l'élève N°${i + 2}.`,
-          type: 'info'
-        };
-      } else {
-        notificationSysteme.value = {
-          text: `🎉 Saisie terminée pour l'ensemble des ${notesArray.value.length} élèves !`,
-          type: 'success'
-        };
-      }
-    };
-
-    const genererNotesAleatoires = () => {
-      if (!validerTaille()) return;
-      const n = Number(nEleves.value);
-      const arr = [];
-      for (let i = 0; i < n; i++) {
-        // Notes entre 4.0 et 19.5
-        arr.push(parseFloat((4 + Math.random() * 15.5).toFixed(1)));
-      }
-      notesArray.value = arr;
-      estAllocated.value = true;
-      indiceEnCours.value = n - 1;
-      notificationSysteme.value = {
-        text: `🎲 ${n} notes aléatoires (0 à 20) générées dans le tableau Notes.`,
-        type: 'success'
-      };
-    };
-
-    const chargerPresetClasse = () => {
-      nEleves.value = 7;
-      notesArray.value = [14.0, 16.5, 9.0, 18.5, 11.0, 7.5, 13.0];
-      estAllocated.value = true;
-      indiceEnCours.value = 6;
-      validationErreur.value = '';
-      notificationSysteme.value = {
-        text: '📋 Jeu de données type de 7 élèves chargé.',
-        type: 'info'
-      };
-    };
-
-    // Calculs statistiques (Moyenne, Max, Min, Nb d'admis, Taux)
-    const statistiques = computed(() => {
-      if (!notesArray.value || notesArray.value.length === 0) {
-        return { somme: 0, moy: 0, max: 0, min: 0, admis: 0, taux: 0 };
-      }
-
-      const arr = notesArray.value;
-      const n = arr.length;
-
-      let sum = arr[0];
-      let maxV = arr[0];
-      let minV = arr[0];
-      let nbAdmis = arr[0] >= 10.0 ? 1 : 0;
-
-      for (let i = 1; i < n; i++) {
-        sum += arr[i];
-        if (arr[i] > maxV) maxV = arr[i];
-        if (arr[i] < minV) minV = arr[i];
-        if (arr[i] >= 10.0) nbAdmis++;
-      }
-
-      const moy = sum / n;
-      const tx = (nbAdmis / n) * 100;
-
-      return {
-        somme: sum.toFixed(2),
-        moy: moy.toFixed(2),
-        max: maxV.toFixed(2),
-        min: minV.toFixed(2),
-        admis: nbAdmis,
-        nTotal: n,
-        taux: tx.toFixed(1)
-      };
-    });
-
-    onMounted(() => {
-      document.documentElement.setAttribute('data-theme', theme.value);
-    });
-
+  data() {
     return {
-      theme,
-      toggleTheme,
+      theme: localStorage.getItem('theme') || 'dark',
 
-      minN,
-      maxN,
-      nEleves,
-      estAllocated,
-      notesArray,
-      indiceEnCours,
-      noteInput,
-      validationErreur,
-      notificationSysteme,
-      statistiques,
+      fonctionsPredefinies: [
+        { nom: "Long(ch)", description: "Retourne le nombre de caractères de la chaîne ch", exemple: "Long(\"SCIENCE\") = 7" },
+        { nom: "Pos(motif, ch)", description: "Retourne l'indice (base 0) de la 1ère occurrence du motif dans ch, ou -1 si absent", exemple: "Pos(\"EN\", \"SCIENCE\") = 3" },
+        { nom: "Sous_chaine(ch, deb, fin)", description: "Extrait la sous-chaîne allant de l'indice deb à fin inclus", exemple: "Sous_chaine(\"SCIENCE\", 2, 4) = \"IEN\"" },
+        { nom: "Effacer(ch, deb, fin)", description: "Supprime les caractères de deb à fin inclus dans la variable ch", exemple: "Effacer(ch, 1, 2)" },
+        { nom: "Convch(valeur)", description: "Convertit une valeur numérique entière ou réelle en chaîne de caractères", exemple: "Convch(25) = \"25\"" },
+        { nom: "Valeur(ch, x, err)", description: "Convertit la chaîne ch en valeur numérique x (err = 0 si succès)", exemple: "Valeur(\"128\", x, err)" },
+        { nom: "Estnum(ch)", description: "Retourne Vrai si la chaîne ch représente un nombre valide, Faux sinon", exemple: "Estnum(\"2026\") = Vrai" },
+        { nom: "Majus(ch)", description: "Retourne la chaîne ch convertie en lettres majuscules", exemple: "Majus(\"chimie\") = \"CHIMIE\"" },
+        { nom: "Ord(c)", description: "Retourne le code ASCII (entier) du caractère c", exemple: "Ord('A') = 65" },
+        { nom: "Chr(code)", description: "Retourne le caractère correspondant au code ASCII spécifié", exemple: "Chr(65) = 'A'" }
+      ],
 
-      validerTaille,
-      allouerTableau,
-      enregistrerNote,
-      genererNotesAleatoires,
-      chargerPresetClasse
+      codeIndexationAlgo: `// En algorithmique officielle 2024-2025 :
+// Une chaîne Ch est indexée de 0 à Long(Ch) - 1.
+Ch ← "SCIENCE"
+Afficher(Long(Ch))        // 7
+Afficher(Ch[0])            // 'S' (premier caractère)
+Afficher(Ch[Long(Ch) - 1]) // 'E' (dernier caractère)
+Afficher(Sous_chaine(Ch, 2, 4)) // "IEN" (inclusif)`,
+
+      codeIndexationPy: `# En Python officiel :
+ch = "SCIENCE"
+print(len(ch))       # 7
+print(ch[0])         # 'S'
+print(ch[len(ch)-1]) # 'E'
+print(ch[2:5])       # "IEN" (le 5 est exclu, équivalent à Sous_chaine(ch, 2, 4))`
     };
+  },
+
+  methods: {
+    toggleTheme() {
+      this.theme = this.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      localStorage.setItem('theme', this.theme);
+    },
+
+    copyCode(text, event) {
+      let codeEl = null;
+      let btnEl = null;
+      if (event && event.currentTarget) {
+        btnEl = event.currentTarget;
+        const container = btnEl.closest('.code-container') || btnEl.parentNode;
+        if (container) {
+          codeEl = container.querySelector('code');
+        }
+      }
+      if (window.codeClipboardInstance) {
+        window.codeClipboardInstance.copyToClipboard(text, btnEl, codeEl);
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        if (typeof window.showToast === 'function') {
+          window.showToast("Code copié !");
+        }
+      }
+    },
+
+    renderMath() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    },
+
+    jumpToSection(sectionId) {
+      if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
+        window.sectionDrawerInstance.showSection(sectionId);
+      } else {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  },
+
+  mounted() {
+    document.documentElement.setAttribute('data-theme', this.theme);
+    this.$nextTick(() => {
+      if (typeof window.safeHighlightAll === 'function') {
+        window.safeHighlightAll();
+      } else if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+      this.renderMath();
+    });
   }
 }).mount('#app');

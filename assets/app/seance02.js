@@ -1,6 +1,8 @@
 /**
- * 3T_2026 - Séance N°2 (assets/app/seance02.js)
- * Script Vue.js pour la Séance 2 : Simulateur Interactif Vendeur
+ * 3T_2026 - Informatique 3ème Année Secondary
+ * Application Logic for Séance N°2 - APPRENTISSAGE
+ * La boucle Tant Que (while) & Contrôle de saisie (90 min)
+ * Version sujet élève (réponses sur cahier)
  */
 
 const { createApp } = Vue;
@@ -8,52 +10,123 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      simJours: 5,
-      simVentesJour: [], // Stocke 15 objets { id, ventes }
-      simBaseJour: 35.000,
-      simPrimeJour: 15.000,
-      simPrimeGlobale: 100.000
+      theme: localStorage.getItem('theme') || 'dark',
+
+      // Codes algorithmiques types pour la séance 2
+      codeControleSaisieAlgo: `Lire(n)
+Tant que n ≤ 0 Faire
+  Écrire("Erreur : n doit être strictement positif !")
+  Lire(n)
+Fin Tant que`,
+
+      codeTraceAlgo: `x ← 18
+cpt ← 0
+Tant que x > 2 Faire
+  x ← x Div 2
+  cpt ← cpt + 1
+  Écrire("Étape ", cpt, " : x = ", x)
+Fin Tant que`,
+
+      codeDebogagePython: `# Code contenant une erreur logique de terminaison
+n = int(input("Donner un entier positif : "))
+while n <= 0:
+    print("Valeur invalide !")
+    # ERREUR : La nouvelle saisie n'a pas été demandée ici !`,
+
+      codeSentinelleAlgo: `s ← 0.0
+nb ← 0
+Lire(t)
+Tant que t ≠ -999.0 Faire
+  Si t ≥ 0 Alors
+    s ← s + t
+    nb ← nb + 1
+  FinSi
+  Lire(t)
+Fin Tant que
+Si nb > 0 Alors
+  moy ← s / nb
+  Écrire("Moyenne = ", moy)
+Sinon
+  Écrire("Aucune température valide saisie")
+FinSi`,
+
+      codeDecroissanceAlgo: `ALGORITHME DemiVie
+DEBUT
+  N ← 100000
+  seuil ← N / 2
+  annees ← 0
+  Tant que N > seuil Faire
+    N ← N * 0.95
+    annees ← annees + 1
+  Fin Tant que
+  Écrire("Demi-vie atteinte en ", annees, " ans")
+FIN`
     };
   },
-  computed: {
-    // Isole proprement la portion de tableau à afficher dans le template
-    joursAffiches() {
-      const n = parseInt(this.simJours) || 1;
-      const count = Math.min(Math.max(n, 1), 15);
-      return this.simVentesJour.slice(0, count);
-    },
-    totalVentesSim() {
-      return this.joursAffiches.reduce((acc, item) => acc + (parseInt(item.ventes) || 0), 0);
-    },
-    nbJoursPrimeSim() {
-      return this.joursAffiches.filter(item => (parseInt(item.ventes) || 0) > 10).length;
-    },
-    salaireNetSim() {
-      const n = parseInt(this.simJours) || 0;
-      let total = n * this.simBaseJour;
-      total += this.nbJoursPrimeSim * this.simPrimeJour;
-      if (this.totalVentesSim > 150) {
-        total += this.simPrimeGlobale;
-      }
-      return total;
-    },
-    hasPrimeGlobaleSim() {
-      return this.totalVentesSim > 150;
-    }
-  },
-  mounted() {
-    console.log("mounted : simulateur vendeur");
-    this.initializeArray();
-  },
+
   methods: {
-    initializeArray() {
-      // Génère 15 objets avec un 'id' immuable pour servir de clé fixe
-      this.simVentesJour = Array(15)
-        .fill(0)
-        .map((_, index) => ({
-          id: index + 1,
-          ventes: Math.floor(Math.random() * 20) + 10
-        }));
+    toggleTheme() {
+      this.theme = this.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      localStorage.setItem('theme', this.theme);
+    },
+
+    copyCode(text, event) {
+      let codeEl = null;
+      let btnEl = null;
+      if (event && event.currentTarget) {
+        btnEl = event.currentTarget;
+        const container = btnEl.closest('.code-container') || btnEl.parentNode;
+        if (container) {
+          codeEl = container.querySelector('code');
+        }
+      }
+      if (window.codeClipboardInstance) {
+        window.codeClipboardInstance.copyToClipboard(text, btnEl, codeEl);
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        if (typeof window.showToast === 'function') {
+          window.showToast("Code copié !");
+        }
+      }
+    },
+
+    renderMath() {
+      if (typeof renderMathInElement === 'function') {
+        const containers = document.querySelectorAll('.math-expr, .formula-box, .katex-render, body');
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    },
+
+    jumpToSection(sectionId) {
+      if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
+        window.sectionDrawerInstance.showSection(sectionId);
+      } else {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
+  },
+
+  mounted() {
+    document.documentElement.setAttribute('data-theme', this.theme);
+    this.$nextTick(() => {
+      if (typeof window.safeHighlightAll === 'function') {
+        window.safeHighlightAll();
+      } else if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+      this.renderMath();
+    });
   }
 }).mount('#app');

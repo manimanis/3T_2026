@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance N°1 : Évaluation Diagnostique & Bases Python - 3ème Année</title>
+  <title>Série de Rentrée N°0 · Révision & Évaluation diagnostique — Algorithmique & Python (3e Sciences)</title>
   <meta name="description"
-    content="Fiche de séance N°1 interactive : Évaluation Diagnostique et Consolidation des Bases Python pour la 3ème Année Secondaire.">
+    content="Série de rentrée N°0 : Révision, Réactivation et Évaluation Diagnostique en Algorithmique & Python pour les 3e Sciences expérimentales.">
 
   <!-- Anti-FOUC Early Theme Script -->
   <script>
@@ -24,17 +24,50 @@
 
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    .phase-pill-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 1020;
+      background: var(--bg-navbar);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cahier-zone {
+      border: 1px dashed var(--border-color);
+      border-radius: 0.4rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .table-diag th,
+    .table-diag td {
+      vertical-align: middle;
+      font-size: 0.875rem;
+    }
+
+    .empty-cell {
+      color: var(--text-dim);
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 
 <body>
 
   <div id="app">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand navbar-brand-custom" href="index.html">
           <i class="bi bi-code-slash fs-3"></i>
-          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Sciences</small></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <i class="bi bi-list fs-2"></i>
@@ -46,12 +79,9 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
-              au Plan</a>
-            <!-- Theme Toggle Button -->
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi"
-                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -60,539 +90,284 @@
     </nav>
 
     <!-- Header Section -->
-    <header class="py-3 border-bottom border-secondary border-opacity-25">
+    <header class="py-3 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
       <div class="container">
-
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span
-              class="badge bg-primary bg-opacity-25 text-primary-light border border-primary border-opacity-25 mb-2">
-              <i class="bi bi-bookmark-fill me-1"></i> Module 1 • Séance N°1
-            </span>
-            <h1 class="h2 fw-bold mb-1">Évaluation Diagnostique & Consolidation des Bases Python</h1>
-            <p class="text-muted mb-0">Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn</p>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="badge bg-primary bg-opacity-25 text-primary-light border border-primary border-opacity-25">
+                SÉRIE DE RENTRÉE N° 0
+              </span>
+              <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
+                <i class="bi bi-clock me-1"></i> 90 min
+              </span>
+            </div>
+            <h1 class="h3 fw-bold mb-1">Révision · Réactivation · Évaluation diagnostique</h1>
+            <p class="text-muted small mb-0">Algorithmique & Python — 3<sup>e</sup> Sciences expérimentales</p>
           </div>
+
         </div>
       </div>
     </header>
 
+    <!-- Phase Quick Selector Bar -->
+    <div class="phase-pill-nav d-none d-md-block">
+      <div class="container d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('phase0-cadre')">
+          Phase 0 : Cadre (C1-C10)
+        </button>
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('ex1-lire-probleme')">
+          Phase A : À froid (Ex 1-3 • 20 min)
+        </button>
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('ex4-boucle-pour')">
+          Phase B : Réactivation (Ex 4-7 • 40 min)
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('ex8-comparer-solutions')">
+          Phase C : Synthèse (Ex 8-10 • 30 min)
+        </button>
+      </div>
+    </div>
+
     <!-- Main Content Container -->
     <main class="container my-4">
-      <!-- Section Content Panes -->
-      <article class="article-content-wrapper">
-        <h2><i class="bi bi-check2-square text-success me-2"></i> Objectifs & Déroulement</h2>
 
-        <section class="section-pane">
-          <div class="row g-4">
-            <div class="col-lg-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom">
-                  <h3 class="h5 mb-0"><i class="bi bi-check2-square text-success me-2"></i> Objectifs Pédagogiques</h3>
-                </div>
-                <div class="card-body">
-                  <h5 class="h6 text-primary mb-2">A. Savoirs (Connaissances)</h5>
-                  <ul class="text-muted small mb-4">
-                    <li>Structure d'un algorithme et déclaration d'objets (variables, constantes).</li>
-                    <li>Types simples : <code>Entier</code>, <code>Réel</code>, <code>Caractère</code>, <code>Booléen</code>, <code>Chaîne</code>.</li>
-                    <li>Correspondance algorithmique &harr; Python (<code>int</code>, <code>float</code>, <code>bool</code>, <code>str</code>).</li>
-                  </ul>
+      <!-- =========================================================================
+           ARTICLE 1: PHASE 0 — CADRE DE TRAVAIL
+           ========================================================================= -->
+      <article id="phase0" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-compass text-primary me-2"></i> PHASE 0 — Cadre de travail</h2>
 
-                  <h5 class="h6 text-primary mb-2">B. Savoir-faire (Compétences pratiques)</h5>
-                  <ul class="text-muted small mb-0">
-                    <li>Entrées/sorties (<code>Lire</code> / <code>input()</code>, <code>Écrire</code> / <code>print()</code>) et affectation (<code>←</code> / <code>=</code>).</li>
-                    <li>Conversions de types explicites (<code>int()</code>, <code>float()</code>, <code>str()</code>).</li>
-                    <li>Écriture et exécution d'un script élémentaire en Python.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom">
-                  <h3 class="h5 mb-0"><i class="bi bi-clock-history text-warning me-2"></i> Déroulement (90 min)</h3>
-                </div>
-                <div class="card-body p-0">
-                  <div class="table-responsive">
-                    <table class="table table-custom mb-0 align-middle">
-                      <thead>
-                        <tr>
-                          <th>Phase</th>
-                          <th>Durée</th>
-                          <th>Activité</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><span class="badge bg-secondary text-white">1. Diagnostic</span></td>
-                          <td>15 min</td>
-                          <td class="small">QCM prérequis (types et affectation).</td>
-                        </tr>
-                        <tr>
-                          <td><span class="badge bg-primary text-white">2. Synthèse</span></td>
-                          <td>25 min</td>
-                          <td class="small">Rappel : conventions algorithmiques 2024-2025.</td>
-                        </tr>
-                        <tr>
-                          <td><span class="badge badge-info-custom">3. Guidée</span></td>
-                          <td>35 min</td>
-                          <td class="small">Problème pénalité de retard, TDO et codage.</td>
-                        </tr>
-                        <tr>
-                          <td><span class="badge bg-success text-white">4. Évaluation</span></td>
-                          <td>15 min</td>
-                          <td class="small">Test des scripts et jeux d'essais.</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!-- Section 0.1 : Périmètre & Consignes -->
+        <section id="phase0-cadre" class="section-pane mb-4">
+          <div class="alert alert-secondary py-2 small mb-3">
+            <strong>Périmètre :</strong> Prérequis de 2<sup>e</sup> année dans le domaine « Pensée computationnelle et programmation ». La robotique, l'ESP32 et les objets connectés sont explicitement exclus de cette série.
           </div>
-        </section>
-      </article>
 
-
-      <article class="article-content-wrapper">
-        <h2><i class="bi bi-book text-info me-2"></i> Résumé de Cours</h2>
-
-        <section class="section-pane">
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom">
-              <h3 class="h5 mb-0"><i class="bi bi-book text-info me-2"></i> I. Structure d'un Algorithme & TDO</h3>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom py-2">
+                  <h3 class="h6 mb-0 text-primary">Objectifs de la série</h3>
+                </div>
+                <div class="card-body small">
+                  <ul class="mb-0 ps-3 text-muted">
+                    <li>Réactiver les acquis de 2<sup>e</sup> sans introduire les nouvelles notions de 3<sup>e</sup>.</li>
+                    <li>Observer la manière dont l'élève lit, simule, corrige, modifie et construit une solution.</li>
+                    <li>Évaluer la continuité entre algorithme et Python ainsi que la capacité à tester une solution.</li>
+                    <li>Dégager un profil de besoins pour organiser les premières remédiations de l'année.</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-12 mb-3">
-                  <div class="p-3 border border-secondary border-opacity-25 rounded bg-body-tertiary text-center">
-                    <small class="text-muted d-block mb-2 font-mono" style="font-size: 0.75rem;">Diagramme Vectoriel :
-                      Architecture d'un Algorithme (Entrées &rarr; Traitement &rarr; Sorties)</small>
-                    <img src="images/seance01/architecture_algorithme.svg" alt="Architecture générale d'un algorithme"
-                      class="img-fluid" style="max-height: 180px; width: 100%;">
-                  </div>
-                </div>
 
-                <div class="col-md-6">
-                  <h6>Algorithme (Pseudo-code) :</h6>
-                  <div class="code-container">
-                    <pre><code class="language-algorithm">ALGORITHME Nom_Algorithme
-DEBUT
-    // Séquence d'instructions
-FIN</code></pre>
-                  </div>
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom py-2">
+                  <h3 class="h6 mb-0 text-warning">Consignes générales</h3>
                 </div>
-                <div class="col-md-6">
-                  <h6>Tableau de Déclaration des Objets (TDO) :</h6>
-                  <table class="table table-custom table-bordered small">
-                    <thead>
-                      <tr>
-                        <th>Objet</th>
-                        <th>Type / Nature</th>
-                        <th>Rôle</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><code>nom</code></td>
-                        <td>Chaîne de caractères</td>
-                        <td>Nom de l'utilisateur</td>
-                      </tr>
-                      <tr>
-                        <td><code>age</code></td>
-                        <td>Entier</td>
-                        <td>Âge de l'utilisateur</td>
-                      </tr>
-                      <tr>
-                        <td><code>moyenne</code></td>
-                        <td>Réel</td>
-                        <td>Moyenne calculée</td>
-                      </tr>
-                      <tr>
-                        <td><code>PI</code></td>
-                        <td>Constante = 3.14</td>
-                        <td>Valeur constante</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div class="card-body small">
+                  <ul class="mb-0 ps-3 text-muted">
+                    <li><strong>Phase A :</strong> travailler sans exécuter de programme (mobilisation « à froid »).</li>
+                    <li><strong>Phase B :</strong> utiliser le rappel express fourni, puis corriger ou compléter.</li>
+                    <li><strong>Phase C :</strong> travailler sans rappel détaillé et justifier les choix importants.</li>
+                    <li><strong>Règle :</strong> quand un résultat est demandé, écrire l'attendu avant toute exécution.</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom">
-              <h3 class="h5 mb-0"><i class="bi bi-arrow-left-right text-warning me-2"></i> II. Correspondance Algorithme
-                ➔ Python</h3>
+          <div class="p-2 border border-warning border-opacity-50 rounded bg-warning bg-opacity-10 small text-warning-emphasis mb-3">
+            <strong>Important :</strong> Cette série est diagnostique : une erreur n'est pas seulement « un point perdu », elle aide à repérer ce qui doit être réactivé. Le barème /40 est indicatif et ne remplace pas l'analyse par compétences. Rédigez toutes vos réponses sur votre cahier.
+          </div>
+
+          <!-- Compétences C1 à C10 -->
+          <div class="card card-custom">
+            <div class="card-header-custom py-2">
+              <h3 class="h6 mb-0 text-primary">Compétences de 2<sup>e</sup> ciblées</h3>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle">
+                <table class="table table-custom table-diag table-sm table-hover align-middle mb-0">
                   <thead>
                     <tr>
-                      <th>Concept</th>
-                      <th>Syntaxe Algorithmique (2024-2025)</th>
-                      <th>Traduction Python</th>
-                      <th>Remarques</th>
+                      <th style="width: 70px;">Code</th>
+                      <th>Compétence diagnostiquée</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td><strong>Type Entier</strong></td>
-                      <td><code>Entier</code></td>
-                      <td><code>int</code></td>
-                      <td>Ex: <code>12</code>, <code>-5</code></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Type Réel</strong></td>
-                      <td><code>Réel</code></td>
-                      <td><code>float</code></td>
-                      <td>Ex: <code>14.5</code>, <code>3.14</code></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Type Chaîne</strong></td>
-                      <td><code>Chaîne de caractères</code></td>
-                      <td><code>str</code></td>
-                      <td>Ex: <code>"Tunisie"</code></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Type Booléen</strong></td>
-                      <td><code>Booléen</code></td>
-                      <td><code>bool</code></td>
-                      <td><code>True</code> ou <code>False</code></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Affectation</strong></td>
-                      <td><code>Variable ← Expression</code></td>
-                      <td><code>Variable = Expression</code></td>
-                      <td><code>x = 5</code></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Saisie (Entrée)</strong></td>
-                      <td><code>Lire(Variable)</code></td>
-                      <td><code>Variable = input("Message : ")</code></td>
-                      <td><code>input()</code> renvoie toujours un <code>str</code></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Affichage (Sortie)</strong></td>
-                      <td><code>Écrire("Message", Variable)</code></td>
-                      <td><code>print("Message", Variable)</code></td>
-                      <td>Virgule comme séparateur</td>
-                    </tr>
+                    <tr><td><span class="badge bg-primary">C1</span></td><td>Lire un problème : but, entrées, sorties, contraintes, traitements.</td></tr>
+                    <tr><td><span class="badge bg-primary">C2</span></td><td>Choisir et utiliser constantes, variables et types simples : entier, réel, caractère, booléen, chaîne.</td></tr>
+                    <tr><td><span class="badge bg-primary">C3</span></td><td>Comprendre l'affectation, l'ordre d'exécution et les expressions.</td></tr>
+                    <tr><td><span class="badge bg-primary">C4</span></td><td>Utiliser lecture, affichage et affectation.</td></tr>
+                    <tr><td><span class="badge bg-primary">C5</span></td><td>Utiliser une condition simple ou complète.</td></tr>
+                    <tr><td><span class="badge bg-primary">C6</span></td><td>Utiliser la boucle Pour.</td></tr>
+                    <tr><td><span class="badge bg-primary">C7</span></td><td>Prédire, tracer et expliquer une séquence algorithmique.</td></tr>
+                    <tr><td><span class="badge bg-primary">C8</span></td><td>Corriger une erreur logique et modifier une solution existante.</td></tr>
+                    <tr><td><span class="badge bg-primary">C9</span></td><td>Passer de l'algorithme au programme Python.</td></tr>
+                    <tr><td><span class="badge bg-primary">C10</span></td><td>Tester, valider et comparer des solutions ; construire une solution autonome.</td></tr>
                   </tbody>
                 </table>
               </div>
             </div>
+            <div class="card-footer py-2 small text-muted bg-body-tertiary">
+              <em>Nouvelles notions de 3<sup>e</sup> volontairement absentes :</em> Tableaux à une dimension, Selon, Tant Que, Répéter et modularité.
+            </div>
           </div>
+        </section>
+      </article>
 
+
+      <!-- =========================================================================
+           ARTICLE 2: PHASE A — DIAGNOSTIC À FROID
+           ========================================================================= -->
+      <article id="phaseA" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-thermometer-snow text-info me-2"></i> PHASE A — Diagnostic à froid</h2>
+        <p class="text-muted small mb-3">Lire, prédire et raisonner avant toute réactivation explicite · 3 exercices · 20 min · Travail sans machine</p>
+
+        <!-- Exercice 1 -->
+        <section id="ex1-lire-probleme" class="section-pane mb-4">
           <div class="card card-custom">
-            <div class="card-header-custom">
-              <h3 class="h5 mb-0"><i class="bi bi-lightning-charge text-danger me-2"></i> III. Conversions de Types en
-                Python</h3>
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 1 — Lire un problème avant de coder</h3>
+              <span class="badge bg-secondary">4 pts · 6 min</span>
             </div>
             <div class="card-body">
-              <p class="text-muted">
-                <code>input()</code> renvoie une chaîne (<code>str</code>) : conversion explicite requise avant tout calcul numérique.
+              <p class="small mb-3">
+                <strong>Situation :</strong> Lors d'une expérience de mouvement, on relève une distance $d$ (en mètres) et une durée $t$ (en secondes), avec $t > 0$. On veut calculer puis afficher la vitesse moyenne $v = d / t$.
               </p>
 
-              <div class="code-container">
-                <div class="code-header">
-                  <span>Exemples de conversions explicites</span>
-                  <button class="btn-copy" @click="copyCode(conversionCode)">Copier</button>
-                </div>
-                <pre><code class="language-python"># Conversion d'une chaîne vers un entier
-nb = int(input("Donner un nombre entier : "))
-
-# Conversion d'une chaîne vers un réel
-prix = float(input("Donner le prix : "))
-
-# Conversion d'un nombre vers une chaîne (pour concaténation)
-message = "Votre note est : " + str(15.5)</code></pre>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-
-      <article class="article-content-wrapper">
-        <h2><i class="bi bi-bug text-danger me-2"></i> Activités Pratiques</h2>
-
-        <section class="section-pane">
-          <!-- Activité 1 -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom d-flex justify-content-between align-items-center">
-              <h3 class="h5 mb-0"><i class="bi bi-bug text-danger me-2"></i> Activité 1 : Analyse d'erreurs (10 min)</h3>
-              <span class="badge badge-warning-custom">Exercice Diagnostique</span>
-            </div>
-            <div class="card-body">
-              <p class="text-muted">Pourquoi ce script produit-il un résultat inattendu ?</p>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <h6>Séquence erronée :</h6>
-                  <div class="code-container">
-                    <pre><code class="language-python">a = input("Donner a : ")
-b = input("Donner b : ")
-somme = a + b
-print("La somme est :", somme)</code></pre>
+              <ol class="small mb-0 ps-3">
+                <li class="mb-2">Indiquer le but du problème en une phrase.</li>
+                <li class="mb-2">Compléter : entrées = … ; sortie = … ; contrainte = …</li>
+                <li class="mb-2">
+                  Proposer le type algorithmique de $d$, $t$ et $v$, puis compléter les trois exemples supplémentaires :
+                  <div class="table-responsive my-2">
+                    <table class="table table-custom table-sm table-bordered mb-0" style="max-width: 600px;">
+                      <thead>
+                        <tr><th>Objet / information</th><th>Exemple</th><th>Type</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>d</code>, <code>t</code>, <code>v</code></td><td>mesures numériques avec décimales</td><td class="empty-cell">.........................</td></tr>
+                        <tr><td><code>initialeGroupe</code></td><td><code>'A'</code></td><td class="empty-cell">.........................</td></tr>
+                        <tr><td><code>estValide</code></td><td><code>Vrai</code> ou <code>Faux</code></td><td class="empty-cell">.........................</td></tr>
+                        <tr><td><code>nomExperience</code></td><td><code>'Chute libre'</code></td><td class="empty-cell">.........................</td></tr>
+                      </tbody>
+                    </table>
                   </div>
-                </div>
-                <div class="col-md-6">
-                  <h6>Analyse & Solution :</h6>
-                  <div class="box-custom mb-3">
-                    <p class="small mb-2">
-                      <strong class="text-warning">Analyse de l'erreur :</strong> Si l'utilisateur saisit <code>5</code>
-                      pour <code>a</code> et <code>3</code> pour <code>b</code>, la variable <code>somme</code> vaudra
-                      <code>"53"</code> (concaténation de chaînes) au lieu de <code>8</code> !
-                    </p>
-                    <button class="btn btn-sm btn-outline-success mt-2" @click="toggleCorrectionAct1()">
-                      {{ showCorrectionAct1 ? 'Masquer la correction' : 'Afficher la correction' }}
-                    </button>
-                  </div>
+                </li>
+                <li>Écrire les quatre actions principales de la solution, sans utiliser Python.</li>
+              </ol>
 
-                  <div v-show="showCorrectionAct1" class="code-container">
-                    <div class="code-header text-success"><span>Séquence corrigée</span></div>
-                    <pre><code class="language-python">a = int(input("Donner a : "))
-b = int(input("Donner b : "))
-somme = a + b
-print("La somme est :", somme)</code></pre>
-                  </div>
-                </div>
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez les réponses aux questions 1 à 4 sur votre cahier.
               </div>
             </div>
           </div>
         </section>
 
-        <section class="section-pane">
-          <!-- Activité 2 -->
+        <!-- Exercice 2 -->
+        <section id="ex2-etat-variables" class="section-pane mb-4">
           <div class="card card-custom">
-            <div class="card-header-custom">
-              <h3 class="h5 mb-0"><i class="bi bi-tools text-primary me-2"></i> Activité 2 : Pénalité de retard (25 min)</h3>
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 2 — Suivre l'état des variables</h3>
+              <span class="badge bg-secondary">3 pts · 5 min</span>
             </div>
             <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-5">
+                  <div class="code-container">
+                    <div class="code-header"><span>Algorithme Etat</span></div>
+                    <pre><code class="language-algorithm" v-pre>ALGORITHME Etat
+DEBUT
+  a ← 4
+  b ← a + 3
+  a ← b * 2
+  c ← a - b
+  Écrire(a, b, c)
+FIN</code></pre>
+                  </div>
+                </div>
 
-              <!-- Énoncé -->
-              <div class="box-custom mb-4">
-                <h6 class="text-primary"><i class="bi bi-journal-bookmark-fill me-2"></i> Énoncé :</h6>
-                <p class="text-muted mb-2">
-                  Calculer la pénalité de retard d'emprunt d'un livre :
-                </p>
-                <ul class="text-muted small mb-2">
-                  <li>Saisie : nom de l'élève, titre du livre, jours de retard.</li>
-                  <li>Tarif : <strong>0.500 DT/jour</strong> de retard + taxe fixe de <strong>1.200 DT</strong>.</li>
-                </ul>
-                <div class="formula-box">
-                  Formule : $$ \text{montant\_total} = (\text{nb\_jours} \times \text{TARIF\_JOUR}) + \text{TAXE\_FIXE} $$
+                <div class="col-md-7">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">
+                      Compléter la trace suivante :
+                      <div class="table-responsive my-2">
+                        <table class="table table-custom table-sm table-bordered text-center mb-0">
+                          <thead>
+                            <tr><th>Après l'instruction</th><th>a</th><th>b</th><th>c</th></tr>
+                          </thead>
+                          <tbody>
+                            <tr><td class="text-start font-mono">a ← 4</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                            <tr><td class="text-start font-mono">b ← a + 3</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                            <tr><td class="text-start font-mono">a ← b * 2</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                            <tr><td class="text-start font-mono">c ← a - b</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </li>
+                    <li class="mb-2">Quel affichage obtient-on ?</li>
+                    <li>Après la modification de <code>a</code>, pourquoi <code>b</code> ne change-t-il pas automatiquement ?</li>
+                  </ol>
                 </div>
               </div>
 
-              <!-- Accordion de Résolution -->
-              <div class="accordion accordion-custom" id="accordionProblem">
-
-                <!-- 1. Analyse -->
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne">
-                      1. Analyse
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionProblem">
-                    <div class="accordion-body text-muted small">
-                      <ul>
-                        <li><strong>Entrées :</strong> Nom (<code>nom</code> : Chaîne), Titre (<code>titre</code> : Chaîne), Jours (<code>nb_jours</code> : Entier).</li>
-                        <li><strong>Sortie :</strong> Montant (<code>montant_total</code> : Réel).</li>
-                        <li><strong>Traitement :</strong>
-                          <code>montant_total = (nb_jours * TARIF_JOUR) + TAXE_FIXE</code>.
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 2. TDO -->
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseTwo">
-                      2. TDO
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionProblem">
-                    <div class="accordion-body">
-                      <table class="table table-custom table-bordered small">
-                        <thead>
-                          <tr>
-                            <th>Objet</th>
-                            <th>Type / Nature</th>
-                            <th>Rôle</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td><code>nom</code></td>
-                            <td>Chaîne de caractères</td>
-                            <td>Nom de l'élève</td>
-                          </tr>
-                          <tr>
-                            <td><code>titre</code></td>
-                            <td>Chaîne de caractères</td>
-                            <td>Titre du livre</td>
-                          </tr>
-                          <tr>
-                            <td><code>nb_jours</code></td>
-                            <td>Entier</td>
-                            <td>Jours de retard</td>
-                          </tr>
-                          <tr>
-                            <td><code>montant_total</code></td>
-                            <td>Réel</td>
-                            <td>Montant total final</td>
-                          </tr>
-                          <tr>
-                            <td><code>TARIF_JOUR</code></td>
-                            <td>Constante = 0.500</td>
-                            <td>Tarif journalier</td>
-                          </tr>
-                          <tr>
-                            <td><code>TAXE_FIXE</code></td>
-                            <td>Constante = 1.200</td>
-                            <td>Frais de gestion</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 3. Algorithme -->
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseThree">
-                      3. Algorithme
-                    </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionProblem">
-                    <div class="accordion-body">
-                      <div class="code-container">
-                        <pre><code class="language-algorithm">ALGORITHME Calcul_Penalite
-DEBUT
-    Écrire("Nom de l'élève : ")
-    Lire(nom)
-    Écrire("Titre du livre : ")
-    Lire(titre)
-    Écrire("Nombre de jours de retard : ")
-    Lire(nb_jours)
-    
-    montant_total ← (nb_jours * TARIF_JOUR) + TAXE_FIXE
-    
-    Écrire("Élève : ", nom)
-    Écrire("Livre : ", titre)
-    Écrire("Montant total de la pénalité : ", montant_total, " DT")
-FIN</code></pre>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 4. Python -->
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button show" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseFour">4. Code Python</button>
-                  </h2>
-                  <div id="collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionProblem">
-                    <div class="accordion-body">
-                      <div class="code-container">
-                        <div class="code-header">
-                          <span>script_penalite.py</span>
-                          <button class="btn-copy" @click="copyCode(pyCodeAct2, $event)">Copier le code</button>
-                        </div>
-                        <pre><code class="language-python"># Declarations des constantes
-TARIF_JOUR = 0.500
-TAXE_FIXE = 1.200
-
-# Saisie des donnees
-nom = input("Nom de l'élève : ")
-titre = input("Titre du livre : ")
-nb_jours = int(input("Nombre de jours de retard : "))
-
-# Traitement
-montant_total = (nb_jours * TARIF_JOUR) + TAXE_FIXE
-
-# Affichage des resultats
-print("\n--- FICHE DE PÉNALITÉ ---")
-print("Élève :", nom)
-print("Livre :", titre)
-print("Montant total à payer :", montant_total, "DT")</code></pre>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Reproduisez le tableau de trace et justifiez sur votre cahier.
               </div>
             </div>
           </div>
+        </section>
 
-          <div class="row justify-content-center my-4">
-            <div class="col-lg-10">
-              <div class="card card-custom">
-                <div class="card-header-custom d-flex justify-content-between align-items-center">
-                  <h3 class="h5 mb-0"><i class="bi bi-terminal-fill text-success me-2"></i> Simulateur Python</h3>
-                  <span class="badge bg-success bg-opacity-25 text-success">Thonny</span>
-                </div>
-                <div class="card-body">
-                  <p class="text-muted small mb-4">
-                    Testez l'exécution du script :
-                  </p>
+        <!-- Exercice 3 -->
+        <section id="ex3-condition-tests" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 3 — Décider avec une condition et choisir des tests</h3>
+              <span class="badge bg-secondary">4 pts · 9 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                On considère comme plage de référence l'intervalle $[10 ; 20]$. Une valeur $x$ est « dans la plage » si elle appartient à cet intervalle, <strong>bornes comprises</strong>.
+              </p>
 
-                  <div class="row g-3 mb-4">
-                    <div class="col-md-4">
-                      <label class="form-label small fw-bold">Nom de l'élève :</label>
-                      <input type="text" v-model="simNom" class="form-control" placeholder="Ex: Mohamed Ben Ali">
-                    </div>
-                    <div class="col-md-4">
-                      <label class="form-label small fw-bold">Titre du livre :</label>
-                      <input type="text" v-model="simTitre" class="form-control" placeholder="Ex: Les Misérables">
-                    </div>
-                    <div class="col-md-4">
-                      <label class="form-label small fw-bold">Jours de retard :</label>
-                      <input type="number" v-model.number="simJours" min="0" class="form-control">
-                    </div>
+              <div class="row g-3">
+                <div class="col-md-5">
+                  <div class="code-container">
+                    <pre><code class="language-algorithm" v-pre>Lire(x)
+Si (x ≥ 10) Et (x ≤ 20) Alors
+  Écrire("Dans la plage")
+Sinon
+  Écrire("Hors de la plage")
+FinSi</code></pre>
                   </div>
-
-                  <!-- Terminal Display Window -->
-                  <div class="terminal-window">
-                    <div class="terminal-header">
-                      <span class="dot dot-red"></span>
-                      <span class="dot dot-yellow"></span>
-                      <span class="dot dot-green"></span>
-                      <span class="text-muted small ms-2">Console Python 3.11 - Thonny</span>
-                    </div>
-                    <div class="terminal-body">
-                      <div class="terminal-prompt">>>> %Run script_penalite.py</div>
-                      <div>Nom de l'élève : <span class="text-warning">{{ simNom || '...' }}</span></div>
-                      <div>Titre du livre : <span class="text-warning">{{ simTitre || '...' }}</span></div>
-                      <div>Nombre de jours de retard : <span class="text-warning">{{ simJours !== null ? simJours :
-                          '...' }}</span></div>
-
-                      <div v-if="simNom && simTitre && simJours !== null"
-                        class="mt-3 text-white border-top border-secondary pt-2">
-                        <div class="text-info fw-bold">--- FICHE DE PÉNALITÉ ---</div>
-                        <div>Élève : {{ simNom }}</div>
-                        <div>Livre : {{ simTitre }}</div>
-                        <div>Montant total à payer : <span class="text-success fw-bold">{{ computedPenalite.toFixed(3)
-                            }} DT</span></div>
-                        <div class="text-muted text-xs mt-2">>>> Process finished with exit code 0</div>
-                      </div>
-                      <div v-else class="text-muted small mt-2">
-                        <em>Remplissez tous les champs ci-dessus pour afficher la console d'exécution...</em>
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
+
+                <div class="col-md-7">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">
+                      Donner l'affichage pour $x = 9,5$ ; $x = 10$ ; $x = 20$ ; $x = 20,1$ :
+                      <div class="table-responsive my-2">
+                        <table class="table table-custom table-sm table-bordered text-center mb-0">
+                          <thead>
+                            <tr><th>x</th><th>9,5</th><th>10</th><th>20</th><th>20,1</th></tr>
+                          </thead>
+                          <tbody>
+                            <tr><td class="fw-bold">Affichage</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </li>
+                    <li class="mb-2">Pourquoi les valeurs 10 et 20 sont-elles des tests importants ?</li>
+                    <li class="mb-2">Si on remplace <code>x &le; 20</code> par <code>x &lt; 20</code>, quel test permet de mettre immédiatement l'erreur en évidence ?</li>
+                    <li>Dans cet exercice, 10 et 20 sont des valeurs de référence fixes. Les considéreriez-vous comme des constantes ou des variables ? Justifier brièvement.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez le tableau et vos justifications sur votre cahier.
               </div>
             </div>
           </div>
@@ -600,86 +375,397 @@ print("Montant total à payer :", montant_total, "DT")</code></pre>
       </article>
 
 
-      <article class="article-content-wrapper">
-        <h2><i class="bi bi-patch-question-fill text-warning me-2"></i> Auto-évaluation</h2>
+      <!-- =========================================================================
+           ARTICLE 3: PHASE B — RÉACTIVATION ACTIVE
+           ========================================================================= -->
+      <article id="phaseB" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PHASE B — Réactivation active</h2>
+        <p class="text-muted small mb-3">Un rappel express est maintenant autorisé · compléter, corriger et modifier · 4 exercices · 40 min</p>
 
-        <section class="section-pane">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
+        <!-- Rappel express -->
+        <div class="card card-custom border-warning border-opacity-50 mb-4 bg-body-tertiary">
+          <div class="card-header-custom py-2 bg-warning bg-opacity-10">
+            <h4 class="h6 mb-0 text-warning"><i class="bi bi-journal-code me-2"></i> Rappel express — conventions utilisées dans cette série</h4>
+          </div>
+          <div class="card-body py-2 small">
+            <ul class="mb-0 ps-3 text-muted">
+              <li><strong>Algorithmique :</strong> <code>Objet ← Expression</code> ; <code>Si Condition Alors … [Sinon …] FinSi</code> ; <code>Pour i de Début à Fin Faire … Fin Pour</code>.</li>
+              <li><strong>Python :</strong> <code>objet = expression</code> ; <code>if condition: … else: …</code> ; <code>for i in range(Début, Fin+1): …</code>.</li>
+              <li><strong>Entrée Python :</strong> <code>input()</code> retourne une chaîne ; utiliser <code>int(input())</code> ou <code>float(input())</code> lorsque la donnée est numérique.</li>
+            </ul>
+          </div>
+        </div>
 
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="input() renvoie toujours un str, même pour des chiffres.">
-                  <div class="question-text">1. Que renvoie systématiquement input() en Python ?</div>
-                  <ul class="quiz-options">
-                    <li>Un entier (int)</li>
-                    <li>Une chaîne de caractères (str)</li>
-                    <li>Un réel (float)</li>
-                    <li>Dépend de la saisie de l'utilisateur</li>
-                  </ul>
+        <!-- Exercice 4 -->
+        <section id="ex4-boucle-pour" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 4 — Comprendre une boucle Pour</h3>
+              <span class="badge bg-secondary">4 pts · 8 min</span>
+            </div>
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-5">
+                  <div class="code-container">
+                    <pre><code class="language-algorithm" v-pre>Lire(n)
+s ← 0
+Pour i de 1 à n Faire
+  s ← s + i
+Fin Pour
+Écrire(s)</code></pre>
+                  </div>
                 </div>
 
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Conventions 2024-2025 : affectation notée ←.">
-                  <div class="question-text">2. Notation de l'affectation en algorithmique (2024-2025) ?</div>
-                  <ul class="quiz-options">
-                    <li>Variable = Expression</li>
-                    <li>Variable := Expression</li>
-                    <li>Variable ← Expression</li>
-                    <li>Variable -> Expression</li>
-                  </ul>
+                <div class="col-md-7">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">
+                      Pour $n = 4$, compléter la trace :
+                      <div class="table-responsive my-2">
+                        <table class="table table-custom table-sm table-bordered text-center mb-0">
+                          <thead>
+                            <tr><th>i</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
+                          </thead>
+                          <tbody>
+                            <tr><td class="fw-bold">s après mise à jour</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </li>
+                    <li class="mb-2">Quel résultat est affiché ? Quel est le rôle général de cet algorithme ?</li>
+                    <li>On veut calculer le produit $1 \times 2 \times \dots \times n$ au lieu de la somme. Indiquer exactement les <strong>deux lignes à modifier</strong>.</li>
+                  </ol>
                 </div>
+              </div>
 
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="+ entre deux chaînes réalise une concaténation ('1020').">
-                  <div class="question-text">3. Valeur de x après : x = '10' + '20' ?</div>
-                  <ul class="quiz-options">
-                    <li>30</li>
-                    <li>1020</li>
-                    <li>Une erreur de type (TypeError)</li>
-                    <li>None</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="float('14.5') convertit en réel 14.5.">
-                  <div class="question-text">4. Fonction de conversion de '14.5' en nombre flottant ?</div>
-                  <ul class="quiz-options">
-                    <li>int('14.5')</li>
-                    <li>str('14.5')</li>
-                    <li>float('14.5')</li>
-                    <li>real('14.5')</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="int('15') donne 15, puis 15 + 5 donne 20.">
-                  <div class="question-text">5. Valeur de res après : res = int('15') + 5 ?</div>
-                  <ul class="quiz-options">
-                    <li>20</li>
-                    <li>'155'</li>
-                    <li>15.5</li>
-                    <li>Une erreur de syntaxe</li>
-                  </ul>
-                </div>
-
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Complétez la trace et indiquez les deux lignes sur votre cahier.
               </div>
             </div>
           </div>
-  </div>
-  </section>
+        </section>
 
-  </article>
+        <!-- Exercice 5 -->
+        <section id="ex5-completer-moyenne" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 5 — Compléter une solution : moyenne de mesures</h3>
+              <span class="badge bg-secondary">4 pts · 10 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                On saisit $n$ mesures réelles, avec $n \ge 1$. On veut afficher leur moyenne. Compléter uniquement les décisions manquantes.
+              </p>
 
-  </main>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="code-container">
+                    <pre><code class="language-algorithm" v-pre>ALGORITHME MoyenneMesures
+DEBUT
+  Lire(n)
+  s ← [ A ]
+  Pour i de 1 à n Faire
+    Lire(x)
+    [ B ]
+  Fin Pour
+  m ← [ C ]
+  Écrire(m)
+FIN</code></pre>
+                  </div>
+                </div>
 
-  <!-- Footer -->
-  <footer class="footer-custom">
-    <div class="container text-center">
-      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-    </div>
-  </footer>
+                <div class="col-md-6">
+                  <div class="table-responsive mb-3">
+                    <table class="table table-custom table-sm table-bordered mb-0" style="max-width: 320px;">
+                      <thead>
+                        <tr><th>objet</th><th>type/nature</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>n</code></td><td class="empty-cell">.........................</td></tr>
+                        <tr><td><code>i</code></td><td class="empty-cell">.........................</td></tr>
+                        <tr><td><code>x</code></td><td class="empty-cell">.........................</td></tr>
+                        <tr><td><code>s</code></td><td class="empty-cell">.........................</td></tr>
+                        <tr><td><code>m</code></td><td class="empty-cell">.........................</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Donner $[A]$, $[B]$ et $[C]$.</li>
+                    <li class="mb-2">Compléter le TDO ci-contre avec les types adaptés.</li>
+                    <li>Pour $n = 3$ et les mesures $12,5$ ; $13,0$ ; $16,5$, écrire l'attendu avant toute exécution.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Écrivez A, B, C, le TDO et le calcul attendu sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Exercice 6 -->
+        <section id="ex6-deboguer-positifs" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 6 — Déboguer : compter les valeurs strictement positives</h3>
+              <span class="badge bg-secondary">4 pts · 12 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                <strong>Objectif :</strong> parmi $n$ valeurs réelles saisies une à une, afficher le nombre de valeurs <strong>strictement positives</strong>. La solution suivante contient <strong>deux erreurs logiques</strong>.
+              </p>
+
+              <div class="row g-3">
+                <div class="col-md-5">
+                  <div class="code-container">
+                    <pre><code class="language-algorithm" v-pre>Lire(n)
+nbPos ← 1
+Pour i de 1 à n Faire
+  Lire(x)
+  Si x ≥ 0 Alors
+    nbPos ← nbPos + 1
+  FinSi
+Fin Pour
+Écrire(nbPos)</code></pre>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Avec $n = 3$ et les valeurs $-2$ ; $0$ ; $5$, quel résultat devrait être obtenu ?</li>
+                    <li class="mb-2">Tracer rapidement <code>nbPos</code> et repérer la première divergence entre l'attendu et le comportement de l'algorithme.</li>
+                    <li class="mb-2">Identifier les deux erreurs puis écrire les deux corrections.</li>
+                    <li>Retester mentalement avec $-2$ ; $0$ ; $5$ et donner le nouveau résultat.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Notez l'attendu, le tracé de divergence et les deux corrections sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Exercice 7 -->
+        <section id="ex7-modifier-multiples3" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 7 — Modifier une solution existante</h3>
+              <span class="badge bg-secondary">4 pts · 10 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                La solution suivante calcule la somme de $n$ entiers saisis. On veut la modifier pour calculer seulement la somme des <strong>valeurs multiples de 3</strong>.
+              </p>
+
+              <div class="row g-3">
+                <div class="col-md-5">
+                  <div class="code-container">
+                    <pre><code class="language-algorithm" v-pre>Lire(n)
+s ← 0
+Pour i de 1 à n Faire
+  Lire(x)
+  s ← s + x
+Fin Pour
+Écrire(s)</code></pre>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Réécrire uniquement la partie à modifier, sans changer inutilement le reste de la solution.</li>
+                    <li class="mb-2">Pour $n = 4$ et les valeurs $3$ ; $4$ ; $6$ ; $7$, donner le résultat attendu.</li>
+                    <li>Écrire en Python la condition qui teste « $x$ est multiple de 3 ».</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Réécrivez le bloc modifié, l'attendu et la condition Python sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+
+      <!-- =========================================================================
+           ARTICLE 4: PHASE C — SYNTHÈSE ET TRANSFERT
+           ========================================================================= -->
+      <article id="phaseC" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-rocket-takeoff text-success me-2"></i> PHASE C — Synthèse et transfert</h2>
+        <p class="text-muted small mb-3">Le rappel détaillé disparaît : comparer, traduire, construire et tester · 3 exercices · 30 min</p>
+
+        <!-- Exercice 8 -->
+        <section id="ex8-comparer-solutions" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 8 — Comparer deux solutions</h3>
+              <span class="badge bg-secondary">3 pts · 7 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                On a déjà lu trois réels $a$, $b$ et $c$. On veut afficher leur maximum. Deux élèves proposent les solutions suivantes.
+              </p>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <div class="code-container">
+                    <div class="code-header"><span>Solution A</span></div>
+                    <pre><code class="language-algorithm" v-pre>maxi ← a
+Si b > maxi Alors
+  maxi ← b
+FinSi
+Si c > maxi Alors
+  maxi ← c
+FinSi
+Écrire(maxi)</code></pre>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="code-container">
+                    <div class="code-header"><span>Solution B</span></div>
+                    <pre><code class="language-algorithm" v-pre>Si a > b Alors
+  maxi ← a
+Sinon
+  maxi ← b
+FinSi
+Si c > maxi Alors
+  maxi ← c
+FinSi
+Écrire(maxi)</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <ol class="small mb-0 ps-3">
+                <li class="mb-2">Tester les deux solutions avec au moins trois jeux de valeurs, dont un cas d'égalité.</li>
+                <li class="mb-2">Les deux solutions sont-elles valides ? Justifier sans se contenter de « ça marche sur mon exemple ».</li>
+                <li>Décrire en une phrase la stratégie commune aux deux solutions.</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Présentez vos 3 jeux d'essais et vos justifications sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Exercice 9 -->
+        <section id="ex9-traduire-python" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 9 — Passer de l'algorithme à Python</h3>
+              <span class="badge bg-secondary">4 pts · 9 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">Traduire fidèlement l'algorithme suivant en Python.</p>
+
+              <div class="row g-3">
+                <div class="col-md-5">
+                  <div class="code-container">
+                    <pre><code class="language-algorithm" v-pre>Lire(n)
+nbPairs ← 0
+Pour i de 1 à n Faire
+  Lire(x)
+  Si x Mod 2 = 0 Alors
+    nbPairs ← nbPairs + 1
+  FinSi
+Fin Pour
+Écrire(nbPairs)</code></pre>
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+                  <div class="border rounded p-3 bg-body-tertiary h-100">
+                    <h6 class="small fw-bold text-muted mb-2">Programme Python :</h6>
+                    <p class="text-muted small fst-italic mb-3">
+                      Écrivez le script complet sur votre cahier en respectant l'indentation, les conversions numériques explicites et la fonction <code>range()</code>.
+                    </p>
+                    <div class="alert alert-secondary py-2 small mb-0">
+                      <strong>Test :</strong> Pour $n = 5$ et les valeurs $4$ ; $7$ ; $0$ ; $-2$ ; $9$, quel résultat doit être affiché ?
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Écrivez le code Python et la réponse au test sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Exercice 10 -->
+        <section id="ex10-synthese-campagne" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Exercice 10 — Synthèse finale autonome : campagne de mesures</h3>
+              <span class="badge bg-success text-white">6 pts · 14 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                Dans un laboratoire scolaire, on effectue $n$ mesures de température, avec $n \ge 1$. Pour cet exercice, la plage de référence est <strong>$[18 ; 25] \ ^\circ\text{C}$</strong>. Les mesures sont saisies une à une. On veut : <strong>(1)</strong> calculer la moyenne des $n$ températures ; <strong>(2)</strong> compter combien de mesures sont hors de la plage de référence ; <strong>(3)</strong> afficher la moyenne et ce nombre.
+              </p>
+
+              <ol class="small mb-0 ps-3">
+                <li class="mb-2">Identifier les entrées, les sorties et la contrainte principale.</li>
+                <li class="mb-2">Écrire un algorithme complet respectant les conventions étudiées. <em>Ne pas utiliser de tableau.</em></li>
+                <li class="mb-2">
+                  Ajouter le TDO après FIN :
+                  <div class="table-responsive my-2">
+                    <table class="table table-custom table-sm table-bordered mb-0" style="max-width: 500px;">
+                      <thead>
+                        <tr><th>Objet</th><th>Type / Nature</th><th>Rôle</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </li>
+                <li class="mb-2">Écrire ensuite le programme Python correspondant.</li>
+                <li>
+                  Proposer trois jeux d'essai avec résultats attendus : (a) toutes les mesures dans la plage ; (b) au moins une mesure hors plage ; (c) valeurs exactement égales à 18 et 25 :
+                  <div class="table-responsive my-2">
+                    <table class="table table-custom table-sm table-bordered text-center mb-0" style="max-width: 600px;">
+                      <thead>
+                        <tr><th>Jeu d'essai</th><th>Moyenne attendue</th><th>Nombre hors plage</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme complet, le TDO, le programme Python et les 3 jeux d'essais sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-muted">
+        <p class="mb-0">3<sup>e</sup> Sciences expérimentales · Série 0 · Algorithmique & Python</p>
+      </div>
+    </footer>
   </div>
 
   <!-- JS Assets -->
@@ -692,7 +778,6 @@ print("Montant total à payer :", montant_total, "DT")</code></pre>
   <script src="assets/js/clipboard.js"></script>
   <script src="assets/js/draggable.js"></script>
   <script src="assets/js/pages.js"></script>
-  <!-- Application Script for Séance 1 -->
   <script src="assets/app/seance01.js"></script>
 </body>
 

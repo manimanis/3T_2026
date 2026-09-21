@@ -1,190 +1,106 @@
 /**
  * 3T_2026 - Informatique 3ème Année Secondary
- * Application Vue.js pour Séance N°4 (Structures itératives à condition d'arrêt: Tant Que & Répéter)
+ * Application Logic for Séance N°4 - APPRENTISSAGE
+ * Boucle Répéter ... Jusqu'à & Structure conditionnelle Selon (90 min)
+ * Version sujet élève (réponses sur cahier)
  */
 
-const { createApp, ref, computed, onMounted } = Vue;
+const { createApp } = Vue;
 
 createApp({
-  setup() {
-    const theme = ref(localStorage.getItem('theme') || 'dark');
-
-    const toggleTheme = () => {
-      theme.value = theme.value === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme.value);
-      localStorage.setItem('theme', theme.value);
-    };
-
-    // =========================================================
-    // SIMULATEUR 1 : LE JEU DU NOMBRE SECRET
-    // =========================================================
-    const minSecret = 1;
-    const maxSecret = 50;
-    const maxEssais = 6;
-
-    const secret = ref(Math.floor(Math.random() * (maxSecret - minSecret + 1)) + minSecret);
-    const essaiInput = ref(null);
-    const nbEssais = ref(0);
-    const trouve = ref(false);
-    const meilScore = ref(localStorage.getItem('secret_best_score') || null);
-    const historique = ref([]);
-    const messageFeedback = ref({ text: 'Devinez le nombre secret entre 1 et 50.', type: 'info' });
-    const validationErreur = ref('');
-
-    const partieFinie = computed(() => {
-      return trouve.value || nbEssais.value >= maxEssais;
-    });
-
-    const essaisRestants = computed(() => {
-      return Math.max(0, maxEssais - nbEssais.value);
-    });
-
-    const nouveauJeu = () => {
-      secret.value = Math.floor(Math.random() * (maxSecret - minSecret + 1)) + minSecret;
-      essaiInput.value = null;
-      nbEssais.value = 0;
-      trouve.value = false;
-      historique.value = [];
-      validationErreur.value = '';
-      messageFeedback.value = {
-        text: 'Nouveau jeu démarré ! Saisissez une proposition entre 1 et 50.',
-        type: 'info'
-      };
-    };
-
-    const soumettreEssai = () => {
-      if (partieFinie.value) return;
-
-      const val = Number(essaiInput.value);
-
-      // Contrôle de saisie strict (Simule le while not (1 <= val <= 50))
-      if (isNaN(val) || val < minSecret || val > maxSecret) {
-        validationErreur.value = `⚠️ Proposition invalide ! La valeur doit être comprise entre ${minSecret} et ${maxSecret}.`;
-        return;
-      }
-
-      validationErreur.value = '';
-      nbEssais.value++;
-
-      let textFb = '';
-      let typeFb = '';
-
-      if (val === secret.value) {
-        trouve.value = true;
-        textFb = `🎉 Bravo ! Vous avez trouvé le nombre secret (${secret.value}) en ${nbEssais.value} essai(s) !`;
-        typeFb = 'success';
-
-        // Sauvegarde meilleur score
-        if (!meilScore.value || nbEssais.value < meilScore.value) {
-          meilScore.value = nbEssais.value;
-          localStorage.setItem('secret_best_score', nbEssais.value);
-        }
-      } else if (val < secret.value) {
-        textFb = `↗️ C'est PLUS ! (${val} est trop petit)`;
-        typeFb = 'warning';
-      } else {
-        textFb = `↘️ C'est MOINS ! (${val} est trop grand)`;
-        typeFb = 'primary';
-      }
-
-      historique.value.unshift({
-        num: nbEssais.value,
-        valeur: val,
-        indication: val === secret.value ? 'ÉGAL' : (val < secret.value ? 'PLUS' : 'MOINS'),
-        type: typeFb
-      });
-
-      if (!trouve.value && nbEssais.value >= maxEssais) {
-        textFb = `❌ Perdu ! Vous avez épuisé vos ${maxEssais} essais. Le nombre secret était : ${secret.value}`;
-        typeFb = 'danger';
-      }
-
-      messageFeedback.value = { text: textFb, type: typeFb };
-      essaiInput.value = null;
-    };
-
-    // =========================================================
-    // SIMULATEUR 2 : CONTRÔLE DE SAISIE PAR PAS
-    // =========================================================
-    const valPair = ref(null);
-    const traceSaisie = ref([]);
-    const statutSaisie = ref({ valide: false, message: 'En attente d\'une saisie...', code: 'while val % 2 != 0:' });
-
-    const testerSaisiePair = () => {
-      const v = Number(valPair.value);
-      if (isNaN(v)) {
-        statutSaisie.value = {
-          valide: false,
-          message: 'Veuillez entrer un nombre entier valide.',
-          code: 'while val % 2 != 0: # Condition VRAIE (Non numérique)'
-        };
-        return;
-      }
-
-      const conditionPoursuite = (v % 2 !== 0);
-
-      if (conditionPoursuite) {
-        statutSaisie.value = {
-          valide: false,
-          message: `❌ ${v} est IMPAIR. Condition (val % 2 != 0) = VRAI. Réitération de la boucle !`,
-          code: `val = ${v} -> val % 2 != 0 est VRAI -> On demande à nouveau !`
-        };
-        traceSaisie.value.unshift({
-          valeur: v,
-          valide: false,
-          explication: 'Impair (Rejeté par la boucle while)'
-        });
-      } else {
-        statutSaisie.value = {
-          valide: true,
-          message: `✅ ${v} est PAIR. Condition (val % 2 != 0) = FAUX. Sortie de la boucle !`,
-          code: `val = ${v} -> val % 2 != 0 est FAUX -> Boucle terminée avec succès !`
-        };
-        traceSaisie.value.unshift({
-          valeur: v,
-          valide: true,
-          explication: 'Pair (Accepté - Sortie de boucle)'
-        });
-      }
-    };
-
-    const reinitialiserSaisie = () => {
-      valPair.value = null;
-      traceSaisie.value = [];
-      statutSaisie.value = { valide: false, message: 'En attente d\'une saisie...', code: 'while val % 2 != 0:' };
-    };
-
-    onMounted(() => {
-      document.documentElement.setAttribute('data-theme', theme.value);
-    });
-
+  data() {
     return {
-      theme,
-      toggleTheme,
+      theme: localStorage.getItem('theme') || 'dark',
 
-      // Jeu Nombre Secret
-      minSecret,
-      maxSecret,
-      maxEssais,
-      secret,
-      essaiInput,
-      nbEssais,
-      trouve,
-      meilScore,
-      partieFinie,
-      essaisRestants,
-      historique,
-      messageFeedback,
-      validationErreur,
-      nouveauJeu,
-      soumettreEssai,
+      codeRepeterAlgo: `Répéter
+  Écrire("Voulez-vous continuer (O/N) ? ")
+  Lire(rep)
+Jusqu'à (rep = 'O') Ou (rep = 'N')`,
 
-      // Contrôle de saisie
-      valPair,
-      traceSaisie,
-      statutSaisie,
-      testerSaisiePair,
-      reinitialiserSaisie
+      codeSelonAlgo: `Selon Choix
+  1 : Ecrire("Vitesse v = ", d / t)
+  2 : Ecrire("Énergie Ec = ", 0.5 * m * v * v)
+  3 : Ecrire("Puissance P = ", E / dt)
+  0 : Ecrire("Fin de la session.")
+  Sinon Ecrire("Choix invalide !")
+Fin Selon`,
+
+      codeMatchCasePython: `match choix:
+    case 1:
+        print("Vitesse v =", d / t)
+    case 2:
+        print("Énergie Ec =", 0.5 * m * v * v)
+    case 3:
+        print("Puissance P =", E / dt)
+    case 0:
+        print("Fin de la session.")
+    case _:
+        print("Choix invalide !")`
     };
+  },
+
+  methods: {
+    toggleTheme() {
+      this.theme = this.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      localStorage.setItem('theme', this.theme);
+    },
+
+    copyCode(text, event) {
+      let codeEl = null;
+      let btnEl = null;
+      if (event && event.currentTarget) {
+        btnEl = event.currentTarget;
+        const container = btnEl.closest('.code-container') || btnEl.parentNode;
+        if (container) {
+          codeEl = container.querySelector('code');
+        }
+      }
+      if (window.codeClipboardInstance) {
+        window.codeClipboardInstance.copyToClipboard(text, btnEl, codeEl);
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        if (typeof window.showToast === 'function') {
+          window.showToast("Code copié !");
+        }
+      }
+    },
+
+    renderMath() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    },
+
+    jumpToSection(sectionId) {
+      if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
+        window.sectionDrawerInstance.showSection(sectionId);
+      } else {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  },
+
+  mounted() {
+    document.documentElement.setAttribute('data-theme', this.theme);
+    this.$nextTick(() => {
+      if (typeof window.safeHighlightAll === 'function') {
+        window.safeHighlightAll();
+      } else if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+      this.renderMath();
+    });
   }
 }).mount('#app');

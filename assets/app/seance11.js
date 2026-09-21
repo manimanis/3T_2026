@@ -1,140 +1,90 @@
 /**
  * 3T_2026 - Informatique 3ème Année Secondary
- * Application Vue.js pour Séance N°11 (Arithmétique I : PGCD & PPCM)
+ * Application Logic for Séance N°11 - ÉVALUATION PRATIQUE N°5
+ * TP Noté sur Machine : Filtrage, Éclatement & Séparation (90 min)
+ * Barème : /20 points - TP5_Nom_Prenom.py
  */
 
-const { createApp, ref, computed, onMounted } = Vue;
+const { createApp } = Vue;
 
 createApp({
-  setup() {
-    const theme = ref(localStorage.getItem('theme') || 'dark');
-
-    const toggleTheme = () => {
-      theme.value = theme.value === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme.value);
-      localStorage.setItem('theme', theme.value);
-    };
-
-    // Helper: PGCD Euclide
-    const fnPgcd = (a, b) => {
-      let x = Math.abs(a);
-      let y = Math.abs(b);
-      while (y !== 0) {
-        let r = x % y;
-        x = y;
-        y = r;
-      }
-      return x;
-    };
-
-    // =========================================================
-    // MODULE 1 : CALCULATEUR PGCD (TRACE D'EUCLIDE) & PPCM
-    // =========================================================
-    const inputA = ref(48);
-    const inputB = ref(18);
-
-    const traceEuclide = computed(() => {
-      let a = Math.max(1, parseInt(inputA.value) || 1);
-      let b = Math.max(1, parseInt(inputB.value) || 1);
-
-      const steps = [];
-      let currentA = a;
-      let currentB = b;
-      let stepNum = 1;
-
-      while (currentB !== 0) {
-        const r = currentA % currentB;
-        steps.push({
-          step: stepNum++,
-          a: currentA,
-          b: currentB,
-          r: r,
-          eq: `${currentA} = ${currentB} × ${Math.floor(currentA / currentB)} + ${r}`
-        });
-        currentA = currentB;
-        currentB = r;
-      }
-
-      const pgcdResult = currentA;
-      const ppcmResult = (a * b) / pgcdResult;
-
-      return {
-        aOriginal: a,
-        bOriginal: b,
-        steps: steps,
-        pgcd: pgcdResult,
-        ppcm: ppcmResult
-      };
-    });
-
-    // =========================================================
-    // MODULE 2 : APPLICATION 1 - SIMPLIFICATION DE FRACTIONS
-    // =========================================================
-    const numInput = ref(1071);
-    const denInput = ref(1029);
-
-    const fractionInfo = computed(() => {
-      const n = Math.max(1, parseInt(numInput.value) || 1);
-      const d = Math.max(1, parseInt(denInput.value) || 1);
-
-      const g = fnPgcd(n, d);
-      return {
-        num: n,
-        den: d,
-        g: g,
-        numSimp: n / g,
-        denSimp: d / g,
-        estIrreductible: g === 1
-      };
-    });
-
-    // =========================================================
-    // MODULE 2 : APPLICATION 2 - SYNCHRONISATION DE BUS
-    // =========================================================
-    const freqA = ref(15); // Ligne A (minutes)
-    const freqB = ref(20); // Ligne B (minutes)
-
-    const busSyncInfo = computed(() => {
-      const fA = Math.max(1, parseInt(freqA.value) || 1);
-      const fB = Math.max(1, parseInt(freqB.value) || 1);
-
-      const g = fnPgcd(fA, fB);
-      const intervalle = (fA * fB) / g; // PPCM
-
-      // Départ à 07:00
-      const minTotales = intervalle;
-      const hRencontre = 7 + Math.floor(minTotales / 60);
-      const mRencontre = minTotales % 60;
-
-      const formatHeure = `${String(hRencontre).padStart(2, '0')}h : ${String(mRencontre).padStart(2, '0')}min`;
-
-      return {
-        freqA: fA,
-        freqB: fB,
-        intervalleMin: intervalle,
-        heureFormat: formatHeure
-      };
-    });
-
-    onMounted(() => {
-      document.documentElement.setAttribute('data-theme', theme.value);
-    });
-
+  data() {
     return {
-      theme,
-      toggleTheme,
+      theme: localStorage.getItem('theme') || 'dark',
 
-      inputA,
-      inputB,
-      traceEuclide,
-
-      numInput,
-      denInput,
-      fractionInfo,
-
-      freqA,
-      freqB,
-      busSyncInfo
+      criteresEvaluation: [
+        { niveau: "Socle (8 pts)", critere: "Act 1 : Contrôle de N in [6; 25] et allocation statique des 3 tableaux numpy", points: "4 pts" },
+        { niveau: "Socle (8 pts)", critere: "Act 2 : Remplissage contrôlé des masses physiques in [100.0; 200.0] g", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 3 : Filtrage conditionnel dans Acceptes avec gestion de l'indice j1", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 4 : Transfert des rebuts dans Rejetes avec gestion de l'indice j2", points: "4 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 5 : Calcul du taux d'acceptation (%) et de la masse moyenne conforme", points: "2 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 6 : Affichage séquentiel strict des deux sous-tableaux selon j1 et j2", points: "2 pts" }
+      ]
     };
+  },
+
+  methods: {
+    toggleTheme() {
+      this.theme = this.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      localStorage.setItem('theme', this.theme);
+    },
+
+    copyCode(text, event) {
+      let codeEl = null;
+      let btnEl = null;
+      if (event && event.currentTarget) {
+        btnEl = event.currentTarget;
+        const container = btnEl.closest('.code-container') || btnEl.parentNode;
+        if (container) {
+          codeEl = container.querySelector('code');
+        }
+      }
+      if (window.codeClipboardInstance) {
+        window.codeClipboardInstance.copyToClipboard(text, btnEl, codeEl);
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        if (typeof window.showToast === 'function') {
+          window.showToast("Code copié !");
+        }
+      }
+    },
+
+    renderMath() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    },
+
+    jumpToSection(sectionId) {
+      if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
+        window.sectionDrawerInstance.showSection(sectionId);
+      } else {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  },
+
+  mounted() {
+    document.documentElement.setAttribute('data-theme', this.theme);
+    this.$nextTick(() => {
+      if (typeof window.safeHighlightAll === 'function') {
+        window.safeHighlightAll();
+      } else if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+      this.renderMath();
+    });
   }
 }).mount('#app');

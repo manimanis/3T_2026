@@ -1,132 +1,90 @@
 /**
  * 3T_2026 - Informatique 3ème Année Secondary
- * Application Vue.js pour Séance N°7 (Introduction à la Modularité)
+ * Application Logic for Séance N°7 - ÉVALUATION PRATIQUE N°3
+ * TP Noté sur Machine : Traitement textuel & Validation de formats (90 min)
+ * Barème : /20 points - TP3_Nom_Prenom.py
  */
 
-const { createApp, ref, computed, onMounted } = Vue;
+const { createApp } = Vue;
 
 createApp({
-  setup() {
-    const theme = ref(localStorage.getItem('theme') || 'dark');
-
-    const toggleTheme = () => {
-      theme.value = theme.value === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme.value);
-      localStorage.setItem('theme', theme.value);
-    };
-
-    // =========================================================
-    // SIMULATEUR : CALCULATEUR GÉOMÉTRIQUE MODULAIRE DU RECTANGLE
-    // =========================================================
-    const largeurInput = ref(6.0);
-    const longueurInput = ref(10.0);
-    const validationErreur = ref('');
-
-    // Validation des règles géométriques (0 < Largeur <= Longueur)
-    const validerDimensions = () => {
-      const l = Number(largeurInput.value);
-      const h = Number(longueurInput.value);
-
-      if (isNaN(l) || isNaN(h) || l <= 0) {
-        validationErreur.value = '⚠️ La largeur doit être un nombre strictement positif (> 0).';
-        return false;
-      }
-
-      if (h < l) {
-        validationErreur.value = '⚠️ La longueur doit être supérieure ou égale à la largeur (H ≥ L).';
-        return false;
-      }
-
-      validationErreur.value = '';
-      return true;
-    };
-
-    // Module 1 : Fonction perimetre(l, h) -> Réel
-    const fnPerimetre = (l, h) => {
-      return 2 * (l + h);
-    };
-
-    // Module 2 : Fonction surface(l, h) -> Réel
-    const fnSurface = (l, h) => {
-      return l * h;
-    };
-
-    // Module 3 : Fonction diagonale(l, h) -> Réel
-    const fnDiagonale = (l, h) => {
-      return Math.sqrt(l * l + h * h);
-    };
-
-    // Calculs réactifs simulés
-    const resultatsGeometriques = computed(() => {
-      const l = Number(largeurInput.value) || 0;
-      const h = Number(longueurInput.value) || 0;
-
-      if (!validerDimensions()) {
-        return { p: 0, s: 0, d: 0, valide: false };
-      }
-
-      const pVal = fnPerimetre(l, h);
-      const sVal = fnSurface(l, h);
-      const dVal = fnDiagonale(l, h);
-
-      return {
-        p: pVal.toFixed(2),
-        s: sVal.toFixed(2),
-        d: dVal.toFixed(2),
-        valide: true
-      };
-    });
-
-    // Dimensions normalisées pour le canevas SVG réactif
-    const dimensionsSvg = computed(() => {
-      const l = Number(largeurInput.value) || 6;
-      const h = Number(longueurInput.value) || 10;
-
-      const maxDim = Math.max(l, h, 1);
-      const scale = 140 / maxDim;
-
-      const rectW = Math.max(40, Math.min(220, h * scale));
-      const rectH = Math.max(30, Math.min(140, l * scale));
-
-      return {
-        w: rectW,
-        h: rectH,
-        x: (280 - rectW) / 2,
-        y: (170 - rectH) / 2
-      };
-    });
-
-    // Chargeurs de Presets
-    const chargerPreset = (type) => {
-      if (type === 'standard') {
-        largeurInput.value = 6.0;
-        longueurInput.value = 10.0;
-      } else if (type === 'carre') {
-        largeurInput.value = 8.0;
-        longueurInput.value = 8.0;
-      } else if (type === 'grand') {
-        largeurInput.value = 15.5;
-        longueurInput.value = 30.0;
-      }
-      validerDimensions();
-    };
-
-    onMounted(() => {
-      document.documentElement.setAttribute('data-theme', theme.value);
-    });
-
+  data() {
     return {
-      theme,
-      toggleTheme,
+      theme: localStorage.getItem('theme') || 'dark',
 
-      largeurInput,
-      longueurInput,
-      validationErreur,
-      resultatsGeometriques,
-      dimensionsSvg,
-
-      validerDimensions,
-      chargerPreset
+      criteresEvaluation: [
+        { niveau: "Socle (8 pts)", critere: "Act 1 : Contrôle de la longueur exacte (7 caractères) via Long()", points: "4 pts" },
+        { niveau: "Socle (8 pts)", critere: "Act 2 : Validation des 2 premiers caractères majuscules via Ord() ou Majus()", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 3 : Détection et validation du séparateur tiret '-' en position 2", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 4 : Extraction des 4 derniers caractères et vérification avec Estnum()", points: "4 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 5 : Conversion en entier avec Valeur() et calcul de la clé Modulo 19", points: "2 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 6 : Validation rigoureuse par 4 jeux d'essais et robustesse logicielle", points: "2 pts" }
+      ]
     };
+  },
+
+  methods: {
+    toggleTheme() {
+      this.theme = this.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      localStorage.setItem('theme', this.theme);
+    },
+
+    copyCode(text, event) {
+      let codeEl = null;
+      let btnEl = null;
+      if (event && event.currentTarget) {
+        btnEl = event.currentTarget;
+        const container = btnEl.closest('.code-container') || btnEl.parentNode;
+        if (container) {
+          codeEl = container.querySelector('code');
+        }
+      }
+      if (window.codeClipboardInstance) {
+        window.codeClipboardInstance.copyToClipboard(text, btnEl, codeEl);
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        if (typeof window.showToast === 'function') {
+          window.showToast("Code copié !");
+        }
+      }
+    },
+
+    renderMath() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    },
+
+    jumpToSection(sectionId) {
+      if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
+        window.sectionDrawerInstance.showSection(sectionId);
+      } else {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  },
+
+  mounted() {
+    document.documentElement.setAttribute('data-theme', this.theme);
+    this.$nextTick(() => {
+      if (typeof window.safeHighlightAll === 'function') {
+        window.safeHighlightAll();
+      } else if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+      this.renderMath();
+    });
   }
 }).mount('#app');

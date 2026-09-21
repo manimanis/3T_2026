@@ -1,138 +1,90 @@
 /**
  * 3T_2026 - Informatique 3ème Année Secondary
- * Application Vue.js pour Séance N°13 (Recherche Séquentielle dans un Tableau 1D)
+ * Application Logic for Séance N°13 - ÉVALUATION PRATIQUE N°6
+ * TP Noté sur Machine : Conception modulaire d'une application (90 min)
+ * Barème : /20 points - TP6_Nom_Prenom.py
  */
 
-const { createApp, ref, computed, onMounted } = Vue;
+const { createApp } = Vue;
 
 createApp({
-  setup() {
-    const theme = ref(localStorage.getItem('theme') || 'dark');
+  data() {
+    return {
+      theme: localStorage.getItem('theme') || 'dark',
 
-    const toggleTheme = () => {
-      theme.value = theme.value === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme.value);
-      localStorage.setItem('theme', theme.value);
+      criteresEvaluation: [
+        { niveau: "Socle (8 pts)", critere: "Act 1 : Fonction de saisie paramétrée Saisie_Taille(bornInf, bornSup)", points: "4 pts" },
+        { niveau: "Socle (8 pts)", critere: "Act 2 : Procédure Afficher_Tableau(T, N) élément par élément", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 3 : Procédure Remplir_Tableau(@T, N) avec contrôles de saisie", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 4 : Fonction pure Calculer_Moyenne(T, N) avec return unique et sans print", points: "4 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 5 : Fonction sélective Compter_Superieurs(T, N, seuil)", points: "2 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 6 : Programme principal orchestrant les 5 modules et recette logicielle", points: "2 pts" }
+      ]
     };
+  },
 
-    // Parallel Arrays initial data
-    const students = ref([
-      { id: 101, moy: 14.5 },
-      { id: 104, moy: 17.0 },
-      { id: 109, moy: 16.5 },
-      { id: 112, moy: 12.0 },
-      { id: 115, moy: 15.2 },
-      { id: 120, moy: 18.5 }
-    ]);
+  methods: {
+    toggleTheme() {
+      this.theme = this.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      localStorage.setItem('theme', this.theme);
+    },
 
-    // Official Sequential Search Function (No break)
-    const fnRechercheSequentielle = (arr, val) => {
-      let i = 0;
-      let trouve = false;
-      let pos = -1;
-      const steps = [];
-
-      while (i < arr.length && !trouve) {
-        const currentVal = arr[i].id;
-        const match = (currentVal === val);
-        steps.push({
-          index: i,
-          id: currentVal,
-          match: match
-        });
-
-        if (match) {
-          trouve = true;
-          pos = i;
-        } else {
-          i++;
+    copyCode(text, event) {
+      let codeEl = null;
+      let btnEl = null;
+      if (event && event.currentTarget) {
+        btnEl = event.currentTarget;
+        const container = btnEl.closest('.code-container') || btnEl.parentNode;
+        if (container) {
+          codeEl = container.querySelector('code');
         }
       }
-
-      return { pos, steps, totalComparisons: steps.length };
-    };
-
-    // Search Reactive State
-    const searchIdInput = ref(109);
-
-    const searchResult = computed(() => {
-      const targetId = parseInt(searchIdInput.value) || 0;
-      if (targetId <= 0) {
-        return { pos: -1, steps: [], totalComparisons: 0, foundStudent: null };
+      if (window.codeClipboardInstance) {
+        window.codeClipboardInstance.copyToClipboard(text, btnEl, codeEl);
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        if (typeof window.showToast === 'function') {
+          window.showToast("Code copié !");
+        }
       }
+    },
 
-      const res = fnRechercheSequentielle(students.value, targetId);
-      const foundStudent = res.pos !== -1 ? students.value[res.pos] : null;
+    renderMath() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    },
 
-      return {
-        pos: res.pos,
-        steps: res.steps,
-        totalComparisons: res.totalComparisons,
-        foundStudent: foundStudent
-      };
+    jumpToSection(sectionId) {
+      if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
+        window.sectionDrawerInstance.showSection(sectionId);
+      } else {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  },
+
+  mounted() {
+    document.documentElement.setAttribute('data-theme', this.theme);
+    this.$nextTick(() => {
+      if (typeof window.safeHighlightAll === 'function') {
+        window.safeHighlightAll();
+      } else if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+      this.renderMath();
     });
-
-    // Add Student Form State (with uniqueness check)
-    const newId = ref(125);
-    const newMoy = ref(15.5);
-    const addMessage = ref('');
-    const isAddError = ref(false);
-
-    const addStudent = () => {
-      const idVal = parseInt(newId.value);
-      const moyVal = parseFloat(newMoy.value);
-
-      if (!idVal || idVal <= 0) {
-        addMessage.value = "⚠️ L'ID doit être un entier positif (> 0).";
-        isAddError.value = true;
-        return;
-      }
-
-      if (isNaN(moyVal) || moyVal < 0 || moyVal > 20) {
-        addMessage.value = "⚠️ La moyenne doit être comprise entre 0.0 et 20.0.";
-        isAddError.value = true;
-        return;
-      }
-
-      // Check uniqueness using recherche_sequentielle
-      const existingCheck = fnRechercheSequentielle(students.value, idVal);
-      if (existingCheck.pos !== -1) {
-        addMessage.value = `❌ Erreur : L'ID ${idVal} existe déjà à la position N° ${existingCheck.pos + 1} !`;
-        isAddError.value = true;
-        return;
-      }
-
-      // Add to parallel arrays
-      students.value.push({ id: idVal, moy: moyVal });
-      addMessage.value = `✅ Élève ID ${idVal} ajouté avec succès !`;
-      isAddError.value = false;
-      newId.value = idVal + 5;
-    };
-
-    const removeStudent = (index) => {
-      if (students.value.length > 3) {
-        students.value.splice(index, 1);
-      }
-    };
-
-    onMounted(() => {
-      document.documentElement.setAttribute('data-theme', theme.value);
-    });
-
-    return {
-      theme,
-      toggleTheme,
-
-      students,
-      searchIdInput,
-      searchResult,
-
-      newId,
-      newMoy,
-      addMessage,
-      isAddError,
-      addStudent,
-      removeStudent
-    };
   }
 }).mount('#app');

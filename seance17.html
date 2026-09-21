@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance N°17 : Acquisition de données via les Capteurs | 3ème Secondary</title>
+  <title>Séance 17 · TP Noté : Primalité, Crible & Facteurs premiers — 3e Sciences</title>
   <meta name="description"
-    content="Séance N°17 : Interfaçage de capteurs analogiques (LDR Photorésistance, ADC 12 bits) et numériques (DHT11 Température & Humidité) avec la carte microcontrôleur ESP32 en MicroPython et C++.">
+    content="Séance 17 d'informatique pour 3e Sciences : Évaluation pratique sur machine (TP Noté /20) sur la primalité optimisée, tableau numpy de nombres premiers et décomposition en facteurs.">
 
   <!-- Anti-FOUC Early Theme Script -->
   <script>
@@ -16,7 +16,7 @@
     })();
   </script>
 
-  <!-- Static CSS Assets -->
+  <!-- CSS Assets -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/highlight-github.min.css">
   <link rel="stylesheet" href="assets/css/katex.min.css">
@@ -26,52 +26,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
-    /* Custom Telemetry Dashboard & Sensor Styles */
-    .telemetry-card {
-      background: linear-gradient(145deg, #1e293b, #0f172a);
-      border: 2px solid #334155;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      padding: 24px;
+    .phase-pill-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 1020;
+      background: var(--bg-navbar);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .sensor-gauge {
-      background: #090d16;
-      border: 1px solid #1e293b;
-      border-radius: 12px;
-      padding: 16px;
-      text-align: center;
-      transition: all 0.25s ease;
-    }
-
-    .sensor-gauge:hover {
-      border-color: #38bdf8;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
-    }
-
-    .gauge-value {
-      font-size: 2rem;
-      font-weight: 800;
-      font-family: monospace;
-      line-height: 1;
-    }
-
-    .repl-terminal {
-      background-color: #050811;
-      color: #38bdf8;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.88rem;
-      border-radius: 8px;
-      padding: 15px;
-      max-height: 280px;
-      overflow-y: auto;
-      border: 1px solid #1e293b;
-    }
-
-    .repl-line {
-      line-height: 1.4;
-      margin-bottom: 4px;
-      word-break: break-all;
+    .cahier-zone {
+      border: 1px dashed var(--border-color);
+      border-radius: 0.4rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.85rem;
+      color: var(--text-dim);
     }
   </style>
 </head>
@@ -80,11 +51,11 @@
 
   <div id="app">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand navbar-brand-custom" href="index.html">
           <i class="bi bi-code-slash fs-3"></i>
-          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Sciences</small></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <i class="bi bi-list fs-2"></i>
@@ -96,12 +67,9 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
-              au Plan</a>
-            <!-- Theme Toggle Button -->
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi"
-                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -109,449 +77,280 @@
       </div>
     </nav>
 
-    <!-- Header Section / Breadcrumb -->
-    <header class="py-3 border-bottom border-secondary border-opacity-25">
-      <div class="container px-lg-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <!-- Header Section -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span class="badge bg-cyan bg-opacity-25 text-info border border-info border-opacity-50 mb-1"
-              style="color: #38bdf8;">
-              Module 5 • Séance N°17
-            </span>
-            <h1 class="h3 mb-0 fw-bold">Capteurs &amp; Acquisition de Données (ADC &amp; DHT11)</h1>
-            <p class="text-muted small mb-0 mt-1">
-              3<sup>e</sup> Sections Scientifiques • 1h 30mn
-            </p>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-25">
+                SÉANCE 17 · ÉVALUATION PRATIQUE N° 8
+              </span>
+              <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
+                <i class="bi bi-clock me-1"></i> 90 min
+              </span>
+              <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25">
+                Barème : /20 pts (Épreuve sur Machine)
+              </span>
+            </div>
+            <h1 class="h3 fw-bold mb-1">TP Évalué : Primalité, Crible & Facteurs premiers sur Machine</h1>
+            <p class="text-muted small mb-0">Algorithmes d'optimisation arithmétique et factorisation — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Main Content Layout -->
-    <main class="container px-lg-4 my-4">
+    <!-- Phase Quick Selector Bar -->
+    <div class="phase-pill-nav d-none d-md-block">
+      <div class="container d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp8')">
+          Consignes
+        </button>
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp8')">
+          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp8')">
+          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp8')">
+          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp8')">
+          Grille d'évaluation
+        </button>
+      </div>
+    </div>
 
-      <!-- Article 1: Fiche Pédagogique -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+    <!-- Main Content Container -->
+    <main class="container my-4">
 
-        <section id="section-objectifs" class="section-pane">
-          <h3>Objectifs &amp; Déroulement</h3>
+      <!-- =========================================================================
+           ARTICLE 1: CONSIGNES GÉNÉRALES
+           ========================================================================= -->
+      <article id="consignes" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP ÉVALUÉ N°8</h2>
 
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs
-                </div>
-                <div class="card-body">
-                  <ul class="list-custom mb-0">
-                    <li>Signaux analogiques (variation continue) vs numériques (états discrets).</li>
-                    <li>Résolution de l'ADC 12 bits : $N_{\text{ADC}} \in [0, 4095]$ pour $0 \dots 3.3\,\text{V}$.</li>
-                    <li>Formule : $V_{\text{in}} = \frac{N_{\text{ADC}}}{4095} \times 3.3\,\text{V}$.</li>
-                    <li>Broches : GPIO 34 (ADC) et GPIO 15 (DHT11).</li>
-                  </ul>
-                </div>
-              </div>
+        <section id="consignes-tp8" class="section-pane mb-4">
+          <div class="alert alert-secondary py-2 small mb-3">
+            <strong>Modalités :</strong> 90 minutes. Travail individuel sur machine.
+            Fichier script : <code>TP8_Nom_Prenom.py</code> sur le Bureau.
+            L'algorithme de primalité doit obligatoirement être optimisé avec la borne $\sqrt{n}$ (le test naïf $1 \dots n$ ne sera pas comptabilisé).
+          </div>
+
+          <div class="card card-custom p-3">
+            <h3 class="h6 text-primary mb-2"><i class="bi bi-shield-lock me-1"></i> Contexte : Cryptographie & Nombres premiers</h3>
+            <p class="small text-muted mb-0">
+              Les algorithmes cryptographiques modernes reposent sur la difficulté de décomposer de grands entiers en facteurs premiers.
+              Ce TP évalue votre capacité à construire des fonctions d'analyse arithmétique rigoureuses et à générer des séquences numériques dans des tableaux statiques <code>numpy</code>.
+            </p>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 2: PALIER SOCLE (8 POINTS)
+           ========================================================================= -->
+      <article id="palier-socle-tp8" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 SOCLE DE RÉUSSITE (8 points)</h2>
+
+        <!-- Activité 1 -->
+        <section id="act1-est-premier" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 1 — Fonction <code>Est_Premier(n)</code> optimisée</h3>
+              <span class="badge bg-secondary">4 points</span>
             </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire
-                </div>
-                <div class="card-body">
-                  <ul class="list-custom mb-0">
-                    <li>Lire une entrée ADC : <code>ADC(Pin(34))</code>, <code>atten(ADC.ATTN_11DB)</code>, <code>read()</code>.</li>
-                    <li>Acquérir température et humidité avec le DHT11 (<code>dht.DHT11</code>).</li>
-                    <li>Afficher les grandeurs mesurées et appliquer des seuils d'alerte.</li>
-                  </ul>
-                </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Écrire la fonction pure <code>Est_Premier(n : Entier) : Booléen</code> :
+              </p>
+              <ul class="small mb-3">
+                <li>Traiter immédiatement le cas $n < 2$ (renvoyer <code>False</code>).</li>
+                <li>Utiliser une boucle <code>Tant Que</code> avec la condition d'arrêt optimisée $d \times d \le n$ et $n \pmod d \neq 0$.</li>
+                <li>Renvoyer le résultat booléen sans aucun <code>print()</code> interne.</li>
+              </ul>
+              <div class="cahier-zone">
+                <i class="bi bi-terminal me-1"></i> Implémentez la fonction dans <code>TP8_Nom_Prenom.py</code>.
               </div>
             </div>
           </div>
+        </section>
 
-          <!-- Chronogramme -->
+        <!-- Activité 2 -->
+        <section id="act2-validation-primalite" class="section-pane mb-4">
           <div class="card card-custom">
-            <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Chronogramme (90 min)
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 2 — Validation sur le jeu d'essais imposé</h3>
+              <span class="badge bg-secondary">4 points</span>
             </div>
-            <div class="card-body p-0">
+            <div class="card-body">
+              <p class="small mb-2">
+                Tester votre fonction avec les 5 valeurs suivantes et consigner les résultats :
+              </p>
               <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
+                <table class="table table-sm table-bordered small">
+                  <thead class="table-dark">
                     <tr>
-                      <th>Phase</th>
-                      <th>Durée</th>
-                      <th>Activité Enseignant</th>
-                      <th>Activité Élève</th>
-                      <th>Support</th>
+                      <th>Valeur $n$</th>
+                      <th>Résultat attendu</th>
+                      <th>Justification mathématique</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td><span class="badge bg-primary">1. Classification</span></td>
-                      <td>15 min</td>
-                      <td>Présente les capteurs (LDR, DHT11) et les types de signaux.</td>
-                      <td>Distingue capteur analogique et numérique.</td>
-                      <td>Échantillons</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-info text-dark">2. ADC 12 bits</span></td>
-                      <td>20 min</td>
-                      <td>Explique la conversion et la formule de tension.</td>
-                      <td>Calcule la tension $V_{\text{in}}$ pour plusieurs valeurs ADC.</td>
-                      <td>Tableau</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-success">3. TP Acquisition</span></td>
-                      <td>40 min</td>
-                      <td>Guide les montages LDR et DHT11 sous MicroPython.</td>
-                      <td>Câble les capteurs et affiche les mesures en temps réel.</td>
-                      <td>ESP32 / IDE</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
-                      <td>15 min</td>
-                      <td>Anime le quiz et propose un défi seuil d'alerte.</td>
-                      <td>Répond au quiz et code la condition d'alerte.</td>
-                      <td>Quiz</td>
-                    </tr>
+                    <tr><td>$n = 1$</td><td><code>False</code></td><td>1 n'est pas un nombre premier</td></tr>
+                    <tr><td>$n = 2$</td><td><code>True</code></td><td>Le seul nombre premier pair</td></tr>
+                    <tr><td>$n = 17$</td><td><code>True</code></td><td>Nombre premier</td></tr>
+                    <tr><td>$n = 91$</td><td><code>False</code></td><td>Composé ($91 = 7 \times 13$)</td></tr>
+                    <tr><td>$n = 97$</td><td><code>True</code></td><td>Plus grand premier à 2 chiffres</td></tr>
                   </tbody>
                 </table>
               </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 2: Classification Capteurs & ADC -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-sliders text-info me-2"></i> Capteurs &amp; Convertisseur ADC 12 bits</h2>
-
-        <section id="section-adc" class="section-pane">
-          <h3>Signaux Analogiques vs Numériques</h3>
-
-          <div class="row g-4 my-2">
-            <div class="col-md-6">
-              <div class="p-3 border rounded bg-body-tertiary h-100">
-                <h5 class="text-info fw-bold"><i class="bi bi-wave-charter me-2"></i> Capteurs Analogiques (ex: LDR)</h5>
-                <p class="small text-muted mb-2">
-                  Délivrent une tension continue $V_{\text{in}} \in [0.0\,\text{V}, 3.3\,\text{V}]$ proportionnelle à la grandeur physique.
-                </p>
-                <div class="alert alert-secondary py-2 small mb-0 font-mono">
-                  Luminosité &rarr; Tension $[0\,\text{V}, 3.3\,\text{V}]$ &rarr; Broche ADC
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="p-3 border rounded bg-body-tertiary h-100">
-                <h5 class="text-success fw-bold"><i class="bi bi-binary me-2"></i> Capteurs Numériques (ex: DHT11)</h5>
-                <p class="small text-muted mb-2">
-                  Transmettent directement une trame binaire codant les mesures (Température, Humidité).
-                </p>
-                <div class="alert alert-secondary py-2 small mb-0 font-mono">
-                  Temp &amp; Humidité &rarr; Trame binaire &rarr; Broche GPIO
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <h3 class="mt-4">Convertisseur ADC 12 bits</h3>
-          <p class="small text-muted">
-            L'ADC convertit la tension analogique $V_{\text{in}} \in [0, 3.3\,\text{V}]$ en un entier $N_{\text{ADC}} \in [0, 4095]$ ($2^{12} = 4096$ niveaux) :
-          </p>
-
-          <div class="alert alert-info border-info d-flex align-items-center gap-3 my-3">
-            <i class="bi bi-calculator-fill fs-2"></i>
-            <div>
-              <strong>Formule de Conversion :</strong>
-              $$V_{\text{in}} = \frac{N_{\text{ADC}}}{4095} \times 3.3\,\text{V}$$
-            </div>
-          </div>
-
-          <!-- Table of ADC values -->
-          <div class="table-responsive">
-            <table class="table table-custom table-bordered align-middle small text-center">
-              <thead class="table-dark">
-                <tr>
-                  <th>$N_{\text{ADC}}$</th>
-                  <th>Calcul</th>
-                  <th>Tension $V_{\text{in}}$</th>
-                  <th>État LDR</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="font-mono fw-bold">0</td>
-                  <td class="font-mono">(0 / 4095) &times; 3.3 V</td>
-                  <td class="text-info font-mono fw-bold">0.00 V</td>
-                  <td>Obscurité totale</td>
-                </tr>
-                <tr>
-                  <td class="font-mono fw-bold">1024</td>
-                  <td class="font-mono">(1024 / 4095) &times; 3.3 V</td>
-                  <td class="text-info font-mono fw-bold">0.83 V</td>
-                  <td>Faible luminosité</td>
-                </tr>
-                <tr>
-                  <td class="font-mono fw-bold">2048</td>
-                  <td class="font-mono">(2048 / 4095) &times; 3.3 V</td>
-                  <td class="text-info font-mono fw-bold">1.65 V</td>
-                  <td>Lumière moyenne</td>
-                </tr>
-                <tr>
-                  <td class="font-mono fw-bold">3072</td>
-                  <td class="font-mono">(3072 / 4095) &times; 3.3 V</td>
-                  <td class="text-info font-mono fw-bold">2.48 V</td>
-                  <td>Lumière forte</td>
-                </tr>
-                <tr>
-                  <td class="font-mono fw-bold">4095</td>
-                  <td class="font-mono">(4095 / 4095) &times; 3.3 V</td>
-                  <td class="text-info font-mono fw-bold">3.30 V</td>
-                  <td>Plein soleil</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 3: Câblage & Scripts d'Acquisition -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-code-square text-success me-2"></i> Scripts d'Acquisition MicroPython</h2>
-
-        <section id="section-cablage" class="section-pane">
-          <h3>LDR (Pont Diviseur — GPIO 34)</h3>
-
-          <pre class="bg-dark text-light p-3 rounded font-mono small"><code>from machine import ADC, Pin
-import time
-
-ldr = ADC(Pin(34))
-ldr.atten(ADC.ATTN_11DB)  # Échelle 0-3.3V
-
-while True:
-    val_brute = ldr.read()  # 0 à 4095
-    tension = (val_brute / 4095.0) * 3.3
-    print("ADC :", val_brute, "| Tension :", round(tension, 2), "V")
-    time.sleep(1)</code></pre>
-
-          <h3 class="mt-4">DHT11 (Température &amp; Humidité — GPIO 15)</h3>
-
-          <pre class="bg-dark text-light p-3 rounded font-mono small"><code>import dht
-from machine import Pin
-import time
-
-capteur = dht.DHT11(Pin(15))
-
-while True:
-    try:
-        capteur.measure()
-        t = capteur.temperature()
-        h = capteur.humidity()
-        print("T :", t, "°C | H :", h, "%")
-    except OSError:
-        print("Erreur capteur")
-    time.sleep(2)</code></pre>
-        </section>
-      </article>
-
-      <!-- Article 4: Station de Télémétrie Virtuelle ESP32 -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-display-fill text-warning me-2"></i> Station de Télémétrie Virtuelle</h2>
-
-        <section id="section-demo" class="section-pane">
-          <h3>Simulateur d'Acquisition</h3>
-          <p class="text-muted small">
-            Réglez les curseurs de luminosité (LDR / ADC) et de température/humidité (DHT11) pour observer les conversions en direct.
-          </p>
-
-          <div class="row g-4 my-2">
-            <!-- Simulated Physical Environment Controls -->
-            <div class="col-lg-6">
-              <div class="telemetry-card">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h5 class="fw-bold mb-0 text-info"><i class="bi bi-sliders2 me-2"></i> Environnement Simulé</h5>
-                  <button class="btn btn-sm" :class="isAutoSampling ? 'btn-success' : 'btn-outline-secondary'"
-                    @click="toggleSampling">
-                    <i class="bi" :class="isAutoSampling ? 'bi-arrow-repeat spin' : 'bi-pause-circle'"></i>
-                    {{ isAutoSampling ? ' Actif (2.5s)' : ' En Pause' }}
-                  </button>
-                </div>
-
-                <!-- Slider 1: Light / LDR -->
-                <div class="mb-4 p-3 border rounded bg-dark bg-opacity-50">
-                  <div class="d-flex justify-content-between align-items-center mb-1">
-                    <label class="form-label mb-0 fw-bold text-warning"><i class="bi bi-sun-fill me-1"></i> Luminosité LDR (GPIO 34)</label>
-                    <span class="badge bg-warning text-dark font-mono">{{ simLux }} %</span>
-                  </div>
-                  <input type="range" class="form-range" min="0" max="100" v-model.number="simLux">
-                  <div class="d-flex justify-content-between small text-muted font-mono mt-1">
-                    <span>ADC: {{ adcRaw }} / 4095</span>
-                    <span>Tension: {{ voltage }} V</span>
-                  </div>
-                </div>
-
-                <!-- Slider 2: Temperature / DHT11 -->
-                <div class="mb-4 p-3 border rounded bg-dark bg-opacity-50">
-                  <div class="d-flex justify-content-between align-items-center mb-1">
-                    <label class="form-label mb-0 fw-bold text-danger"><i class="bi bi-thermometer-half me-1"></i> Température DHT11 (GPIO 15)</label>
-                    <span class="badge bg-danger font-mono">{{ simTemperature }} °C</span>
-                  </div>
-                  <input type="range" class="form-range" min="0" max="50" v-model.number="simTemperature">
-                  <div class="mt-1 small">
-                    <span class="badge" :class="'bg-' + tempStatus.color">{{ tempStatus.text }}</span>
-                  </div>
-                </div>
-
-                <!-- Slider 3: Humidity / DHT11 -->
-                <div class="mb-3 p-3 border rounded bg-dark bg-opacity-50">
-                  <div class="d-flex justify-content-between align-items-center mb-1">
-                    <label class="form-label mb-0 fw-bold text-primary"><i class="bi bi-droplet-fill me-1"></i> Humidité DHT11 (GPIO 15)</label>
-                    <span class="badge bg-primary font-mono">{{ simHumidity }} %</span>
-                  </div>
-                  <input type="range" class="form-range" min="20" max="95" v-model.number="simHumidity">
-                </div>
-
-                <!-- Manual Read Button -->
-                <button class="btn btn-outline-info w-100 btn-sm" @click="readSensorsNow">
-                  <i class="bi bi-lightning-fill me-1"></i> Mesure Instantanée
-                </button>
-              </div>
-            </div>
-
-            <!-- Virtual Sensor Gauges & REPL Console -->
-            <div class="col-lg-6">
-              <div class="row g-3 mb-3">
-                <div class="col-4">
-                  <div class="sensor-gauge">
-                    <small class="text-muted d-block mb-1">ADC</small>
-                    <div class="gauge-value text-warning">{{ adcRaw }}</div>
-                    <small class="text-muted font-mono d-block mt-1">{{ voltage }} V</small>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="sensor-gauge">
-                    <small class="text-muted d-block mb-1">Température</small>
-                    <div class="gauge-value text-danger">{{ simTemperature }}<small class="fs-6">°C</small></div>
-                    <small class="text-muted font-mono d-block mt-1">DHT11</small>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="sensor-gauge">
-                    <small class="text-muted d-block mb-1">Humidité</small>
-                    <div class="gauge-value text-primary">{{ simHumidity }}<small class="fs-6">%</small></div>
-                    <small class="text-muted font-mono d-block mt-1">DHT11</small>
-                  </div>
-                </div>
-              </div>
-
-              <!-- REPL Output Terminal -->
-              <div class="card card-custom">
-                <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-                  <span class="small fw-bold text-info"><i class="bi bi-terminal-fill me-1"></i> Console REPL</span>
-                  <div class="d-flex align-items-center gap-2">
-                    <button class="btn btn-link btn-sm text-muted p-0 text-decoration-none" @click="clearLogs">
-                      <i class="bi bi-trash"></i> Effacer
-                    </button>
-                  </div>
-                </div>
-                <div class="card-body p-2">
-                  <div id="replTerminal" class="repl-terminal">
-                    <div v-for="(log, idx) in replLogs" :key="idx" class="repl-line">
-                      {{ log }}
-                    </div>
-                  </div>
-                </div>
+              <div class="cahier-zone mt-2">
+                <i class="bi bi-terminal me-1"></i> Validez ces 5 appels dans la console.
               </div>
             </div>
           </div>
         </section>
       </article>
 
-      <!-- Article 5: Évaluation Formative -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative</h2>
+      <!-- =========================================================================
+           ARTICLE 3: PALIER MAÎTRISE (8 POINTS)
+           ========================================================================= -->
+      <article id="palier-maitrise-tp8" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-star-fill text-warning me-2"></i> PALIER 🟡 MAÎTRISE DU SUJET (8 points)</h2>
 
-        <section id="section-quiz" class="section-pane">
-          <h3>QCM d'Auto-évaluation</h3>
+        <!-- Activité 3 -->
+        <section id="act3-remplir-premiers" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 3 — Procédure <code>Remplir_Premiers(@T, N)</code></h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Écrire la procédure <code>Remplir_Premiers(T, N)</code> qui remplit un tableau statique <code>numpy</code> avec les $N$ premiers entiers premiers consécutifs ($N \in [5 ; 20]$).
+              </p>
+              <p class="small mb-2">
+                <em>Principe :</em> Partir de $k = 2$ et incrémenter $k$ d'une unité tant que le tableau n'est pas totalement rempli (compteur $j < N$). Chaque fois que <code>Est_Premier(k)</code> est vrai, stocker $k$ dans $T[j]$ et incrémenter $j$.
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-terminal me-1"></i> Implémentez la procédure avec passage de tableau par référence.
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Auto-évaluation – Capteurs &amp; ADC">
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="L'ADC 12 bits convertit la tension en entier de 0 à 4095 (2^12 niveaux).">
-                  <div class="question-text">1. Plage de sortie de l'ADC 12 bits de l'ESP32 :</div>
-                  <ul class="quiz-options">
-                    <li>0 à 4095 (4096 niveaux)</li>
-                    <li>0 à 1023 (10 bits)</li>
-                    <li>0 à 255 (8 bits)</li>
-                    <li>0.0 à 100.0</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="La photorésistance LDR varie selon l'éclairement lumineux.">
-                  <div class="question-text">2. Capteur utilisé pour mesurer la luminosité :</div>
-                  <ul class="quiz-options">
-                    <li>DHT11</li>
-                    <li>Photorésistance LDR</li>
-                    <li>Servomoteur SG90</li>
-                    <li>Buzzer</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Le DHT11 mesure simultanément la température et l'humidité relative.">
-                  <div class="question-text">3. Grandeurs physiques mesurées par le DHT11 :</div>
-                  <ul class="quiz-options">
-                    <li>Lumière et son</li>
-                    <li>Tension et courant</li>
-                    <li>Température et humidité relative</li>
-                    <li>Pression et altitude</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="ADC(Pin(34)) initialise l'ADC sur la broche 34.">
-                  <div class="question-text">4. Configuration de la lecture ADC sur le GPIO 34 :</div>
-                  <ul class="quiz-options">
-                    <li>adc = ADC(Pin(34))</li>
-                    <li>adc = ReadAnalog(34)</li>
-                    <li>adc = Pin(34, Pin.ADC)</li>
-                    <li>adc = Sensor(34)</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Un signal à variation continue est analogique.">
-                  <div class="question-text">5. Nature d'un signal électrique variant de façon continue :</div>
-                  <ul class="quiz-options">
-                    <li>Signal analogique</li>
-                    <li>Signal binaire</li>
-                    <li>Signal Tout-ou-Rien</li>
-                    <li>Signal PWM</li>
-                  </ul>
-                </div>
-
+        <!-- Activité 4 -->
+        <section id="act4-cumul-premiers" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 4 — Affichage séquentiel et somme cumulée</h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Afficher les $N$ nombres premiers générés élément par élément sous la forme :
+              </p>
+              <pre class="bg-body-tertiary p-2 rounded small mb-2"><code>Premier [0] = 2
+Premier [1] = 3
+Premier [2] = 5
+...</code></pre>
+              <p class="small mb-2">
+                Calculer et afficher simultanément la <strong>somme cumulée</strong> de ces $N$ nombres premiers.
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-terminal me-1"></i> Pour $N = 5$, le tableau contient <code>[2, 3, 5, 7, 11]</code> et la somme vaut 28.
               </div>
             </div>
           </div>
         </section>
       </article>
 
-  </main>
+      <!-- =========================================================================
+           ARTICLE 4: PALIER DÉPASSEMENT (4 POINTS)
+           ========================================================================= -->
+      <article id="palier-excellence-tp8" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-trophy-fill text-danger me-2"></i> PALIER 🔴 DÉPASSEMENT / EXCELLENCE (4 points)</h2>
 
-  <!-- Footer -->
-  <footer class="footer-custom">
-    <div class="container text-center">
-      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-    </div>
-  </footer>
+        <!-- Activité 5 -->
+        <section id="act5-decomposer" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 5 — Procédure de décomposition <code>Decomposer(n)</code></h3>
+              <span class="badge bg-secondary">2 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Implémenter la procédure <code>Decomposer(n : Entier)</code> qui extrait tous les facteurs premiers de $n$ avec leur multiplicité (exposant) et affiche la formule arithmétique.
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-terminal me-1"></i> Intégrez l'algorithme des deux boucles <code>while</code> imbriquées.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 6 -->
+        <section id="act6-nombres-remarquables" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 6 — Recette sur nombres remarquables</h3>
+              <span class="badge bg-secondary">2 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Tester la procédure <code>Decomposer</code> avec les trois entiers suivants :
+              </p>
+              <ul class="small mb-3">
+                <li>$n = 360 \implies 2^3 \times 3^2 \times 5^1$</li>
+                <li>$n = 1024 \implies 2^{10}$</li>
+                <li>$n = 1729$ (Nombre de Hardy-Ramanujan) $\implies 7^1 \times 13^1 \times 19^1$</li>
+              </ul>
+              <div class="cahier-zone mt-2">
+                <i class="bi bi-check2-all me-1"></i> Présentez vos résultats d'exécution à l'enseignant.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 5: GRILLE D'ÉVALUATION
+           ========================================================================= -->
+      <article id="bareme-tp8" class="article-content-wrapper mb-4">
+        <h2><i class="bi bi-clipboard-check text-primary me-2"></i> GRILLE D'ÉVALUATION DU TP N°8</h2>
+        <div class="card card-custom">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover mb-0 small">
+                <thead class="table-dark">
+                  <tr>
+                    <th style="width: 20%;">Palier</th>
+                    <th style="width: 65%;">Critère d'évaluation</th>
+                    <th style="width: 15%;">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="c in criteresEvaluation" :key="c.critere">
+                    <td><span class="badge bg-secondary">{{ c.niveau }}</span></td>
+                    <td>{{ c.critere }}</td>
+                    <td class="fw-bold text-success">{{ c.points }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-muted">
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 17 : TP Noté N°8 — Primalité & Facteurs premiers · Barème : /20 pts</p>
+      </div>
+    </footer>
   </div>
 
   <!-- JS Assets -->
@@ -564,8 +363,6 @@ while True:
   <script src="assets/js/clipboard.js"></script>
   <script src="assets/js/draggable.js"></script>
   <script src="assets/js/pages.js"></script>
-
-  <!-- Application Script for Séance 17 -->
   <script src="assets/app/seance17.js"></script>
 </body>
 

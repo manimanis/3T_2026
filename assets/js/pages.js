@@ -406,27 +406,27 @@ class SectionDrawer {
     if (!currentFile || currentFile === '') currentFile = 'index.html';
 
     const seancesList = [
-      { file: 'index.html', label: 'Accueil & Planification', icon: 'bi-house-door' },
-      { file: 'seance01.html', label: 'Séance 1 : Bases Python & Diagnostic', icon: 'bi-journal-bookmark' },
-      { file: 'seance02.html', label: 'Séance 2 : Structures Simples (Si / Pour)', icon: 'bi-journal-bookmark' },
-      { file: 'seance03.html', label: 'Séance 3 : Structure Selon (match...case)', icon: 'bi-journal-bookmark' },
-      { file: 'seance04.html', label: 'Séance 4 : Tant Que & Répéter', icon: 'bi-journal-bookmark' },
-      { file: 'seance05.html', label: 'Séance 5 : Tableaux 1D – Saisie & Parcours', icon: 'bi-journal-bookmark' },
-      { file: 'seance06.html', label: 'Séance 6 : Traitements Élémentaires Tableaux 1D', icon: 'bi-journal-bookmark' },
-      { file: 'seance07.html', label: 'Séance 7 : Introduction à la Modularité', icon: 'bi-journal-bookmark' },
-      { file: 'seance08.html', label: 'Séance 8 : Paramètres, Valeurs de Retour & Portée', icon: 'bi-journal-bookmark' },
-      { file: 'seance09.html', label: 'Séance 9 : Modules Prédéfinis & Tableaux', icon: 'bi-journal-bookmark' },
-      { file: 'seance10.html', label: 'Séance 10 : Évaluation Pratique Intermédiaire', icon: 'bi-journal-bookmark' },
-      { file: 'seance11.html', label: 'Séance 11 : Arithmétique I – PGCD & PPCM', icon: 'bi-journal-bookmark' },
-      { file: 'seance12.html', label: 'Séance 12 : Arithmétique II – Nombres Premiers', icon: 'bi-journal-bookmark' },
-      { file: 'seance13.html', label: 'Séance 13 : Recherche Séquentielle', icon: 'bi-journal-bookmark' },
-      { file: 'seance14.html', label: 'Séance 14 : Tri d\'un Tableau – Tri à Bulles', icon: 'bi-journal-bookmark' },
-      { file: 'seance15.html', label: 'Séance 15 : Synthèse & Mini-Projet Python', icon: 'bi-journal-bookmark' },
-      { file: 'seance16.html', label: 'Séance 16 : IoT Concepts & Carte ESP32', icon: 'bi-journal-bookmark' },
-      { file: 'seance17.html', label: 'Séance 17 : Acquisition de Données Capteurs', icon: 'bi-journal-bookmark' },
-      { file: 'seance18.html', label: 'Séance 18 : Contrôle d\'Actionneurs', icon: 'bi-journal-bookmark' },
-      { file: 'seance19.html', label: 'Séance 19 : Projet Intégré IoT Smart Agro', icon: 'bi-journal-bookmark' },
-      { file: 'seance20.html', label: 'Séance 20 : Évaluation Pratique Bilan & Révision', icon: 'bi-journal-bookmark' }
+      { file: 'index.html', label: 'Accueil & Sommaire', icon: 'bi-house-door' },
+      { file: 'seance01.html', label: 'Séance 1 : Série N°0 (Diagnostic)', icon: 'bi-journal-bookmark' },
+      { file: 'seance02.html', label: 'Séance 2 : Boucle Tant Que (Apprentissage)', icon: 'bi-repeat' },
+      { file: 'seance03.html', label: 'Séance 3 : TP Évalué N°1 (Tant Que)', icon: 'bi-laptop' },
+      { file: 'seance04.html', label: 'Séance 4 : Répéter & Selon (Apprentissage)', icon: 'bi-arrow-repeat' },
+      { file: 'seance05.html', label: 'Séance 5 : TP Évalué N°2 (Menus & Boucles)', icon: 'bi-laptop' },
+      { file: 'seance06.html', label: 'Séance 6 : Chaînes de caractères (Apprentissage)', icon: 'bi-fonts' },
+      { file: 'seance07.html', label: 'Séance 7 : TP Évalué N°3 (Traitements textuels)', icon: 'bi-laptop' },
+      { file: 'seance08.html', label: 'Séance 8 : Tableaux 1D statiques (Apprentissage)', icon: 'bi-grid-1x2' },
+      { file: 'seance09.html', label: 'Séance 9 : TP Évalué N°4 (Tableaux 1D & Extrema)', icon: 'bi-laptop' },
+      { file: 'seance10.html', label: 'Séance 10 : Filtrage sélectif sur tableaux (Apprentissage)', icon: 'bi-funnel' },
+      { file: 'seance11.html', label: 'Séance 11 : TP Évalué N°5 (Filtrage & Séparation)', icon: 'bi-laptop' },
+      { file: 'seance12.html', label: 'Séance 12 : Modularité logicielle (Apprentissage)', icon: 'bi-diagram-3' },
+      { file: 'seance13.html', label: 'Séance 13 : TP Évalué N°6 (Application modulaire)', icon: 'bi-laptop' },
+      { file: 'seance14.html', label: 'Séance 14 : Arithmétique I : PGCD & PPCM (Apprentissage)', icon: 'bi-calculator' },
+      { file: 'seance15.html', label: 'Séance 15 : TP Évalué N°7 (PGCD & PPCM)', icon: 'bi-laptop' },
+      { file: 'seance16.html', label: 'Séance 16 : Arithmétique II : Primalité (Apprentissage)', icon: 'bi-shield-check' },
+      { file: 'seance17.html', label: 'Séance 17 : TP Évalué N°8 (Primalité & Facteurs)', icon: 'bi-laptop' },
+      { file: 'seance18.html', label: 'Séance 18 : Recherche & Tri à Bulles (Apprentissage)', icon: 'bi-sort-numeric-down' },
+      { file: 'seance19.html', label: 'Séance 19 : TP Évalué N°9 (Recherche & Tri)', icon: 'bi-laptop' },
+      { file: 'seance20.html', label: 'Séance 20 : Épreuve Finale de Synthèse & Bilan', icon: 'bi-award' }
     ];
 
     const currentIndex = seancesList.findIndex(s => s.file === currentFile);

@@ -1,6 +1,6 @@
 /**
  * 3T_2026 - Informatique 3ème Année Secondary
- * Application Logic for Index Page (Syllabus & Course Planning)
+ * Application Logic for Index Page (Syllabus & Course Planning - 20 Séances)
  */
 
 const { createApp } = Vue;
@@ -13,278 +13,296 @@ createApp({
       selectedModule: 0,
       activePreview: null,
       modules: [
-        { id: 1, shortTitle: "Révision & Acquis" },
-        { id: 2, shortTitle: "Structures Avancées" },
-        { id: 3, shortTitle: "Modularité" },
-        { id: 4, shortTitle: "Algorithmes Classiques" },
-        { id: 5, shortTitle: "IoT & ESP32" },
-        { id: 6, shortTitle: "Évaluation Bilan" }
+        { id: 1, shortTitle: "Cycle 1 · Diagnostic & Réactivation" },
+        { id: 2, shortTitle: "Cycle 2 · Boucle Tant Que" },
+        { id: 3, shortTitle: "Cycle 3 · Répéter & Selon" },
+        { id: 4, shortTitle: "Cycle 4 · Chaînes de caractères" },
+        { id: 5, shortTitle: "Cycle 5 · Tableaux 1D (numpy)" },
+        { id: 6, shortTitle: "Cycle 6 · Filtrage sélectif sur Tableaux" },
+        { id: 7, shortTitle: "Cycle 7 · Modularité logicielle" },
+        { id: 8, shortTitle: "Cycle 8 · Arithmétique I (PGCD & PPCM)" },
+        { id: 9, shortTitle: "Cycle 9 · Arithmétique II (Primalité)" },
+        { id: 10, shortTitle: "Cycle 10 · Recherche, Tri & Bilan" }
       ],
       seances: [
         {
           id: 1,
           moduleId: 1,
-          title: "Évaluation Diagnostique & Consolidation Python",
-          duration: "1h 30mn",
+          title: "Séance 1 : Série N°0 · Révision, Réactivation & Évaluation Diagnostique",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance01.html",
-          description: "Révision des constantes, variables, types de données simples, affectation et instructions d'entrée/sortie.",
+          description: "Diagnostic à froid sans machine (types, affectation, conditions), réactivation active guidée (boucle Pour, accumulation, débogage) et synthèse autonome (campagne de mesures, barème /40).",
           objectives: [
-            "Structure générale d'un algorithme et TDO",
-            "Correspondance Algorithmique ➔ Python",
-            "Conversions explicites avec int(), float(), str()"
+            "Diagnostic à froid sans machine (types simples, affectation, tests aux limites)",
+            "Réactivation active guidée (boucle Pour, accumulation, débogage et modification)",
+            "Synthèse et transfert autonome vers Python (campagne de mesures, TDO, banc d'essai)"
           ]
         },
         {
           id: 2,
-          moduleId: 1,
-          title: "Consolidation des structures de contrôle simples",
-          duration: "1h 30mn",
+          moduleId: 2,
+          title: "Séance 2 : La boucle Tant Que & Contrôle de saisie",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance02.html",
-          description: "Révision des structures conditionnelles (Si...Alors) et itératives bornées (Pour).",
+          description: "Découverte des itérations non bornées, patron universel de contrôle de saisie avec TDO, tracé sur cahier, débogage de boucle infinie et modélisation scientifique.",
           objectives: [
-            "Choix conditionnels et comptage répétitif",
-            "Traduction et exécution de scripts Python"
+            "Différencier boucle bornée (Pour) et boucle non bornée (Tant Que)",
+            "Maîtriser le patron de contrôle de saisie avec rejet et réitération",
+            "Tracer l'état des variables et modéliser la demi-vie d'un isotope radioactif"
           ]
         },
         {
           id: 3,
           moduleId: 2,
-          title: "Structure conditionnelle à choix multiple (Selon)",
-          duration: "1h 30mn",
+          title: "Séance 3 : [TP Évalué N°1] Contrôle de saisie & Tant Que sur Machine",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance03.html",
-          description: "Conception de menus interactifs et traduction en Python (match...case ou if...elif...else).",
+          description: "Évaluation pratique individuelle sur machine (/20 pts) : validation de concentrations chimiques, détection de sentinelle et simulation de vidange de réservoir.",
           objectives: [
-            "Sélecteur de type scalaire",
-            "Applications sur menus de conversion"
+            "Sécuriser la saisie d'une concentration molaire en Python (float)",
+            "Traiter une suite d'absorbances arrêtée par une sentinelle négative",
+            "Modéliser la vidange d'un réservoir à débit décroissant et valider par jeux d'essais"
           ]
         },
         {
           id: 4,
-          moduleId: 2,
-          title: "Structures itératives à condition d'arrêt (Tant Que & Répéter)",
-          duration: "1h 30mn",
+          moduleId: 3,
+          title: "Séance 4 : Boucle Répéter & Structure conditionnelle Selon",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance04.html",
-          description: "Boucles non bornées avec conditions d'arrêt et contrôle de saisie.",
+          description: "Boucle à post-condition Répéter...Jusqu'à, structure à choix multiples Selon, traduction Python 3.10+ avec match...case et conception de menus interactifs.",
           objectives: [
-            "Saisie sécurisée d'une donnée",
-            "Jeu de devinette du nombre secret"
+            "Maîtriser la condition d'arrêt de la boucle Répéter...Jusqu'à",
+            "Structurer les alternatives multiples avec Selon et match...case",
+            "Construire un menu interactif de formules physiques maintenu par boucle"
           ]
         },
         {
           id: 5,
-          moduleId: 2,
-          title: "Tableaux 1D – Saisie & Parcours",
-          duration: "1h 30mn",
+          moduleId: 3,
+          title: "Séance 5 : [TP Évalué N°2] Menus interactifs & Boucles combinées",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance05.html",
-          description: "Déclaration (numpy.array), initialisation et parcours des tableaux à une dimension (Tableaux 1D).",
+          description: "Évaluation pratique individuelle sur machine (/20 pts) : simulateur de mécanique des fluides, contrôle de saisie du menu, calculs de pression et débits.",
           objectives: [
-            "Stockage contigu de N éléments (from numpy import array)",
-            "Indices de 0 à N-1 et affichage élément par élément"
+            "Programmer un menu interactif complet sous Python",
+            "Forcer la saisie des choix dans l'ensemble des options valides",
+            "Maintenir l'exécution continue jusqu'à l'option explicite de sortie"
           ]
         },
         {
           id: 6,
-          moduleId: 2,
-          title: "Traitements élémentaires sur Tableaux 1D",
-          duration: "1h 30mn",
+          moduleId: 4,
+          title: "Séance 6 : Chaînes de caractères & Fonctions prédéfinies normalisées",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance06.html",
-          description: "Calculs cumulatifs (Somme, Moyenne), extrémums (Max, Min) et comptage conditionnel sur un tableau 1D.",
+          description: "Indexation base 0, répertoire des fonctions officielles (Long, Pos, Sous_chaine, Ord, Chr), dénombrements conditionnels et algorithme du palindrome.",
           objectives: [
-            "Somme, moyenne et recherche de Max/Min",
-            "Comptage conditionnel (notes >= 10.0)"
+            "Manipuler les chaînes avec indexation base 0 (de 0 à Long-1)",
+            "Exploiter rigoureusement les fonctions normalisées autorisées",
+            "Concevoir l'algorithme optimisé de vérification d'un palindrome"
           ]
         },
         {
           id: 7,
-          moduleId: 3,
-          title: "Introduction à la Modularité (Fonction & Procédure)",
-          duration: "1h 30mn",
+          moduleId: 4,
+          title: "Séance 7 : [TP Évalué N°3] Traitement textuel & Validation de formats",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance07.html",
-          description: "Décomposition descendante (Top-Down), définition de fonctions (def / return) et de procédures.",
+          description: "Évaluation pratique sur machine (/20 pts) : contrôle et certification de codes de réactifs de laboratoire (LL-NNNN), séparateur tiret et clé modulo 19.",
           objectives: [
-            "Définition (def) et appel de fonctions vs procédures",
-            "Distinction entre print() et return"
+            "Contrôler la longueur et la composition alphanumérique d'une chaîne",
+            "Extraire et valider les sous-chaînes avec Sous_chaine et Estnum",
+            "Calculer une clé de contrôle arithmétique et valider par jeux d'essais"
           ]
         },
         {
           id: 8,
-          moduleId: 3,
-          title: "Paramètres, Valeurs de retour et Portée",
-          duration: "1h 30mn",
+          moduleId: 5,
+          title: "Séance 8 : Tableaux 1D statiques : Déclaration, Saisie & Cumuls",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance08.html",
-          description: "Portée locale vs globale, passage par valeur vs par référence (@), mot-clé global et retours multiples.",
+          description: "Structure statique homogène avec numpy.array, parcours séquentiel avec boucle Pour, calculs cumulatifs (somme, moyenne) et recherche du maximum avec indice.",
           objectives: [
-            "Passage par valeur vs par référence (@)",
-            "Portée des variables et règle du mot-clé global"
+            "Allouer un tableau statique de taille N avec numpy",
+            "Parcourir et afficher le tableau case par case (print(T) brut proscrit)",
+            "Rechercher la valeur maximale et conserver l'indice de son emplacement"
           ]
         },
         {
           id: 9,
-          moduleId: 3,
-          title: "Modules prédéfinis et Passage de Tableaux",
-          duration: "1h 30mn",
+          moduleId: 5,
+          title: "Séance 9 : [TP Évalué N°4] Tableaux 1D (numpy), Cumuls & Extrema",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance09.html",
-          description: "Utilisation des modules math, random (randint), chaînes et transmission de tableaux numpy.array.",
+          description: "Évaluation pratique sur machine (/20 pts) : traitement des mesures de tension d'un banc expérimental, moyenne, extrema avec positions et relevés aberrants.",
           objectives: [
-            "Remplissage aléatoire de tableaux (randint)",
-            "Passage par adresse de numpy.array en paramètre"
+            "Contrôler la taille statique N in [5; 30] et allouer le tableau numpy",
+            "Effectuer les calculs de moyenne et identifier minimum et maximum",
+            "Dénombrer les valeurs anormales présentant un écart relatif supérieur à 20%"
           ]
         },
         {
           id: 10,
-          moduleId: 3,
-          title: "Évaluation Pratique Intermédiaire",
-          duration: "1h 30mn",
+          moduleId: 6,
+          title: "Séance 10 : Tableaux 1D : Comptages conditionnels & Filtrage sélectif",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance10.html",
-          description: "Épreuve pratique individuelle sur machine (Sujet type Bac STEG) évaluant la décomposition modulaire, les boucles et les tableaux numpy.",
+          description: "Gestion rigoureuse du double indice (i source, j destination), transfert sélectif vers un second tableau, éclatement pairs/impairs et tassement in-place.",
           objectives: [
-            "Évaluation synthétique sur 20 points",
-            "Implémentation d'un problème modulaire complet sur machine"
+            "Comprendre l'asynchronisme entre indice source et indice destination",
+            "Transférer conditionnellement des éléments et gérer la taille effective",
+            "Éclater un tableau en sous-ensembles et éliminer les valeurs résiduelles"
           ]
         },
         {
           id: 11,
-          moduleId: 4,
-          title: "Arithmétique I – PGCD et PPCM",
-          duration: "1h 30mn",
+          moduleId: 6,
+          title: "Séance 11 : [TP Évalué N°5] Filtrage, Éclatement & Séparation",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance11.html",
-          description: "Algorithme d'Euclide (divisions successives), formule du PPCM, simplification de fractions et synchronisation d'intervalles.",
+          description: "Évaluation pratique sur machine (/20 pts) : tri automatisé d'un lot de pièces mécaniques, séparation pièces acceptées vs rebuts et bilan de conformité.",
           objectives: [
-            "Implémentation de PGCD(a, b) par l'algorithme d'Euclide",
-            "Simplification irréductible de fractions et PPCM"
+            "Manipuler simultanément trois tableaux statiques numpy",
+            "Gérer deux indices d'insertion indépendants j1 et j2",
+            "Calculer le taux de conformité et éditer les sous-tableaux utiles"
           ]
         },
         {
           id: 12,
-          moduleId: 4,
-          title: "Arithmétique II – Nombres Premiers & Décomposition",
-          duration: "1h 30mn",
+          moduleId: 7,
+          title: "Séance 12 : Modularité : Décomposition, Procédures, Fonctions & Paramètres",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance12.html",
-          description: "Test de primalité optimisé (borne racine carrée de N), prochain nombre premier et décomposition en facteurs premiers.",
+          description: "Décomposition descendante, distinctions Fonctions vs Procédures, règle du return unique, passage par référence (@), TDOL et portée locale.",
           objectives: [
-            "Fonction est_premier(n) optimisée (bornée par sqrt(N))",
-            "Décomposition en facteurs premiers et premier suivant"
+            "Établir l'arbre de décomposition hiérarchique d'un problème",
+            "Distinguer fonction pure et procédure avec effets de bord",
+            "Maîtriser le passage de paramètres par référence avec le préfixe @"
           ]
         },
         {
           id: 13,
-          moduleId: 4,
-          title: "Recherche Séquentielle dans un Tableau",
-          duration: "1h 30mn",
+          moduleId: 7,
+          title: "Séance 13 : [TP Évalué N°6] Conception modulaire d'une application",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance13.html",
-          description: "Recherche linéaire avec sortie anticipée booléenne (sans break) et application aux tableaux parallèles (registre d'élèves).",
+          description: "Évaluation pratique sur machine (/20 pts) : application d'analyse pluviométrique architecturée en 5 sous-programmes indépendants et programme principal.",
           objectives: [
-            "Parcours conditionnel while i < n and not trouve (zéro break)",
-            "Recherche dans des tableaux parallèles et vérification d'unicité"
+            "Concevoir des fonctions pures et des procédures avec passage par référence",
+            "Assurer l'absence d'effets de bord parasites dans les fonctions calculatoires",
+            "Orchestrer l'enchaînement des modules dans le programme principal"
           ]
         },
         {
           id: 14,
-          moduleId: 4,
-          title: "Tri d'un Tableau – Le Tri à Bulles",
-          duration: "1h 30mn",
+          moduleId: 8,
+          title: "Séance 14 : Arithmétique I : Divisibilité, Algorithmes du PGCD & PPCM",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance14.html",
-          description: "Comparaison des paires adjacentes, permutations sécurisées avec variable aux et tri synchrone de tableaux parallèles (Marathon).",
+          description: "Divisibilité euclidienne (Div, Mod), comparaison soustractions vs divisions successives (Euclide), relation PGCD-PPCM et fractions irréductibles.",
           objectives: [
-            "Procédure tri_a_bulles avec variable intermédiaire aux",
-            "Tri synchrone de tableaux parallèles (Croissant / Décroissant)"
+            "Implémenter l'algorithme officiel d'Euclide par divisions successives",
+            "Exploiter l'identité reliant le PGCD et le PPCM",
+            "Simplifier des fractions sous forme irréductible et généraliser à 3 nombres"
           ]
         },
         {
           id: 15,
-          moduleId: 4,
-          title: "Synthèse & Mini-projet modulaire Python (GIES)",
-          duration: "1h 30mn",
+          moduleId: 8,
+          title: "Séance 15 : [TP Évalué N°7] Fonctions arithmétiques modulaires (PGCD & PPCM)",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance15.html",
-          description: "Application GIES intégrée avec menu interactif match...case, tableaux parallèles, tri à bulles, recherche séquentielle et statistiques.",
+          description: "Évaluation pratique sur machine (/20 pts) : fonctions PGCD et PPCM autonomes, calcul fractionnaire exact et synchronisation orbitale de satellites.",
           objectives: [
-            "Projet modulaire complet avec menu interactif match...case",
-            "Synthèse du Module 4 (Tri, recherche, statistiques et contrôle)"
+            "Implémenter de manière autonome les fonctions pures PGCD et PPCM",
+            "Résoudre un problème de synchronisation de périodes orbitales",
+            "Valider la robustesse algorithmique sur des cas d'essais critiques"
           ]
         },
         {
           id: 16,
-          moduleId: 5,
-          title: "Concepts IoT & Carte ESP32",
-          duration: "1h 30mn",
+          moduleId: 9,
+          title: "Séance 16 : Arithmétique II : Nombres Premiers & Décomposition",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance16.html",
-          description: "Architecture IoT, carte ESP32-WROOM-32, brochage GPIO (3.3V), montage breadboard et premier script Blink LED en MicroPython et C++.",
+          description: "Test de primalité optimisé avec borne racine carrée (d*d <= n), génération dans un tableau statique numpy et factorisation en facteurs premiers successifs.",
           objectives: [
-            "Chaîne fonctionnelle IoT & Matériel ESP32 Dual-Core",
-            "Brochage GPIO, sécurité 3.3V & résistance 220Ω",
-            "Premier script Blink LED (GPIO 2 & GPIO 4) en MicroPython & C++"
+            "Démontrer et implémenter la borne d*d <= n pour le test de primalité",
+            "Générer une table de nombres premiers dans un tableau numpy",
+            "Décomposer un entier avec deux boucles imbriquées et formater le résultat"
           ]
         },
         {
           id: 17,
-          moduleId: 5,
-          title: "Acquisition de données via les Capteurs",
-          duration: "1h 30mn",
+          moduleId: 9,
+          title: "Séance 17 : [TP Évalué N°8] Primalité, Crible & Facteurs premiers",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance17.html",
-          description: "Interfaçage de capteurs analogiques (LDR Photorésistance, ADC 12 bits) et numériques (DHT11 Température & Humidité) avec l'ESP32.",
+          description: "Évaluation pratique sur machine (/20 pts) : fonction de primalité optimisée, tableau numpy de premiers et factorisation des nombres 360, 1024 et 1729.",
           objectives: [
-            "Classification Capteurs Analogiques vs Numériques",
-            "Convertisseur ADC 12 bits (0..4095) & Tension Vin",
-            "Acquisition LDR & DHT11 en temps réel (MicroPython & C++)"
+            "Programmer un prédicat booléen Est_Premier sans faille",
+            "Remplir un tableau numpy avec les N premiers nombres premiers",
+            "Décomposer en facteurs premiers et valider sur des nombres remarquables"
           ]
         },
         {
           id: 18,
-          moduleId: 5,
-          title: "Contrôle des Actionneurs",
-          duration: "1h 30mn",
+          moduleId: 10,
+          title: "Séance 18 : Recherche Séquentielle & Tri à Bulles sur Tableaux 1D",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance18.html",
-          description: "Modulation de largeur d'impulsion PWM, commande du servomoteur SG90 (0 à 180°), buzzer piezo et boucle de régulation automatique.",
+          description: "Recherche séquentielle avec arrêt immédiat (drapeau trouve), mécanique de permutation avec variable temporaire aux et tri à bulles officiel optimisé.",
           objectives: [
-            "Principe de la PWM (Fréquence & Rapport Cyclique Duty)",
-            "Commande du Servomoteur SG90 (50Hz) & Buzzer Piezo",
-            "Boucle de Régulation Automatique Capteur ➔ Actionneur"
+            "Programmer une recherche avec arrêt immédiat dès détection",
+            "Maîtriser le principe des permutations in-place avec variable intermédiaire",
+            "Implémenter le tri à bulles avec indicateur booléen d'échange"
           ]
         },
         {
           id: 19,
-          moduleId: 5,
-          title: "Projet Intégré IoT embarqué",
-          duration: "1h 30mn",
+          moduleId: 10,
+          title: "Séance 19 : [TP Évalué N°9] Recherche & Tri à Bulles modulaires",
+          duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance19.html",
-          description: "Projet Smart Agro (Serre Intelligente) : Connexion Wi-Fi, serveur HTTP embarqué Sockets, capteurs DHT11/LDR et supervision par smartphone.",
+          description: "Évaluation pratique sur machine (/20 pts) : classement d'un concours scientifique, recherche de position, tri à bulles croissant/décroissant et gestion des ex aequo.",
           objectives: [
-            "Connexion Wi-Fi Station (network.WLAN) & Adresse IP",
-            "Serveur Web HTTP Embarqué (usocket) & Sockets Port 80",
-            "Projet Intégré Autonome avec Supervision par Smartphone"
+            "Programmer les modules de recherche de présence et de position",
+            "Implémenter le tri à bulles décroissant avec affichage du rang",
+            "Dénombrer les occurrences d'une note cible en cas d'ex aequo"
           ]
         },
         {
           id: 20,
-          moduleId: 6,
-          title: "Évaluation Pratique Bilan & Bilan Annuel",
-          duration: "1h 30mn",
+          moduleId: 10,
+          title: "Séance 20 : [ÉVALUATION FINALE & BILAN] Épreuve Pratique de Synthèse",
+          duration: "90 min (60 min TP + 30 min Bilan)",
           status: "Disponible",
           link: "seance20.html",
-          description: "Épreuve pratique bilan sur machine (1h00), évaluation sur 20 points des compétences Python & ESP32 et synthèse des 20 séances (0h30).",
+          description: "Épreuve pratique finale individuelle en conditions d'examen (/20 pts, 60 min) suivie de l'auto-évaluation du profil de sortie de 3e et perspectives 4e Bac (30 min).",
           objectives: [
-            "Épreuve Pratique Bilan sur Machine (60 min / 20 pts)",
-            "Synthèse Générale des 6 Modules (20/20 Séances complétées)",
-            "Auto-évaluation & Bilan d'orientation vers la 4ème Bac"
+            "Mobiliser l'ensemble des compétences de l'année sur un sujet d'examen complet",
+            "Concevoir une architecture logicielle sans faille (TDO, TDOL, modularité)",
+            "Valider le profil de sortie de 3e Année Secondaire et aborder la 4e Année"
           ]
         }
       ]

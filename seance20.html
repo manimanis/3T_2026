@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance N°20 : Évaluation Pratique Bilan &amp; Bilan Annuel | 3ème Secondary</title>
+  <title>Séance 20 · Épreuve Pratique Finale de Synthèse & Bilan Annuel — 3e Sciences</title>
   <meta name="description"
-    content="Séance N°20 : Évaluation pratique bilan sur machine (1h00), validation des compétences en Programmation Modulaire Python et Objets Connectés ESP32, et synthèse générale du programme de 3ème Année Secondary.">
+    content="Séance 20 d'informatique pour 3e Sciences : Épreuve pratique finale sur machine (60 min, TP Noté /20) et Bilan Annuel des compétences scientifiques (30 min).">
 
   <!-- Anti-FOUC Early Theme Script -->
   <script>
@@ -16,7 +16,7 @@
     })();
   </script>
 
-  <!-- Static CSS Assets -->
+  <!-- CSS Assets -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/highlight-github.min.css">
   <link rel="stylesheet" href="assets/css/katex.min.css">
@@ -26,28 +26,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
-    /* Custom Exam & Annual Review Styles */
-    .exam-card {
-      background: linear-gradient(145deg, #1e293b, #0f172a);
-      border: 2px solid #334155;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      padding: 24px;
+    .phase-pill-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 1020;
+      background: var(--bg-navbar);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .exam-timer {
-      font-family: monospace;
-      font-size: 2.8rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: #38bdf8;
-      text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-    }
-
-    .score-badge {
-      font-size: 2.2rem;
-      font-weight: 800;
-      font-family: monospace;
+    .cahier-zone {
+      border: 1px dashed var(--border-color);
+      border-radius: 0.4rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.85rem;
+      color: var(--text-dim);
     }
   </style>
 </head>
@@ -56,11 +51,11 @@
 
   <div id="app">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand navbar-brand-custom" href="index.html">
           <i class="bi bi-code-slash fs-3"></i>
-          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Sciences</small></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <i class="bi bi-list fs-2"></i>
@@ -72,12 +67,9 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
-              au Plan</a>
-            <!-- Theme Toggle Button -->
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi"
-                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -85,422 +77,250 @@
       </div>
     </nav>
 
-    <!-- Header Section / Breadcrumb -->
-    <header class="py-3 border-bottom border-secondary border-opacity-25">
-      <div class="container px-lg-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <!-- Header Section -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span class="badge bg-purple bg-opacity-25 text-purple border border-purple border-opacity-50 mb-1"
-              style="color: #c084fc;">
-              Module 6 • Séance N°20
-            </span>
-            <h1 class="h3 mb-0 fw-bold">Évaluation Pratique Bilan &amp; Synthèse</h1>
-            <p class="text-muted small mb-0 mt-1">
-              3<sup>e</sup> Sections Scientifiques • 1h 30mn
-            </p>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="badge bg-danger text-white border border-danger">
+                SÉANCE 20 · ÉVALUATION PRATIQUE FINALE & BILAN
+              </span>
+              <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
+                <i class="bi bi-clock me-1"></i> 90 min (60 min TP + 30 min Bilan)
+              </span>
+              <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                Barème TP : /20 pts (Conditions d'examen)
+              </span>
+            </div>
+            <h1 class="h3 fw-bold mb-1">Épreuve Pratique Finale de Synthèse & Bilan Annuel</h1>
+            <p class="text-muted small mb-0">Synthèse des compétences de 3<sup>e</sup> Année Secondaire et validation du profil de sortie — Algorithmique & Python</p>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Main Content Layout -->
-    <main class="container px-lg-4 my-4">
+    <!-- Phase Quick Selector Bar -->
+    <div class="phase-pill-nav d-none d-md-block">
+      <div class="container d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-epreuve')">
+          Consignes
+        </button>
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp20')">
+          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp20')">
+          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp20')">
+          Palier 🔴 Dépassement (Act 5 • 4 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-primary rounded-pill" @click="jumpToSection('bilan-annuel')">
+          Bilan & Perspectives 4e (Act 6)
+        </button>
+      </div>
+    </div>
 
-      <!-- Article 1: Fiche Pédagogique -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
+    <!-- Main Content Container -->
+    <main class="container my-4">
 
-        <section id="section-objectifs" class="section-pane">
-          <h3>Objectifs &amp; Déroulement</h3>
+      <!-- =========================================================================
+           ARTICLE 1: CONSIGNES GÉNÉRALES
+           ========================================================================= -->
+      <article id="consignes" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> MODALITÉS DE L'ÉPREUVE PRATIQUE DE SYNTHÈSE</h2>
 
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-bullseye me-2"></i> Savoirs
-                </div>
-                <div class="card-body">
-                  <ul class="list-custom mb-0">
-                    <li>Bilan du programme de 3<sup>e</sup> Année (Modules 1 à 5).</li>
-                    <li>Programmation modulaire Python (Tableaux, Recherche, Tri à bulles).</li>
-                    <li>Systèmes embarqués ESP32 (Capteurs, PWM, Actionneurs).</li>
-                    <li>Préparation aux exigences du Baccalauréat.</li>
-                  </ul>
-                </div>
-              </div>
+        <section id="consignes-epreuve" class="section-pane mb-4">
+          <div class="alert alert-secondary py-2 small mb-3">
+            <strong>Organisation horaire :</strong>
+            <ul class="mb-0 ps-3">
+              <li><strong>Partie 1 (60 minutes) :</strong> Réalisation de l'épreuve pratique individuelle sur machine enregistrée sous le nom <code>Synthese_Nom_Prenom.py</code>.</li>
+              <li><strong>Partie 2 (30 minutes) :</strong> Restitution, auto-évaluation du profil de compétences et présentation du programme de 4<sup>e</sup> année (Baccalauréat).</li>
+            </ul>
+          </div>
+
+          <div class="card card-custom p-3">
+            <h3 class="h6 text-primary mb-2"><i class="bi bi-cpu me-1"></i> Sujet de Synthèse : Analyseur de signaux physiques échantillonnés</h3>
+            <p class="small text-muted mb-0">
+              Un système d'acquisition numérique recueille une série de $N$ mesures physiques d'un capteur ($N \in [5 ; 25]$).
+              Le programme doit :
+              (1) Valider l'intégrité de la série par un contrôle de saisie,
+              (2) Vérifier la signature d'un identifiant scientifique,
+              (3) Réaliser un filtrage ou un tri séquentiel optimisé,
+              (4) Éditer un rapport d'inspection dans la console.
+            </p>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 2: PALIER SOCLE (8 POINTS)
+           ========================================================================= -->
+      <article id="palier-socle-tp20" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 SOCLE DE RÉUSSITE (8 points)</h2>
+
+        <!-- Activité 1 -->
+        <section id="act1-analyse-modulaire" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 1 — Analyse modulaire, TDO et TDOL sur copie</h3>
+              <span class="badge bg-secondary">4 points</span>
             </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> Savoir-faire
-                </div>
-                <div class="card-body">
-                  <ul class="list-custom mb-0">
-                    <li>Résoudre un sujet sur machine en 60 minutes.</li>
-                    <li>Structurer une solution modulaire sans instruction <code>break</code>.</li>
-                    <li>Programmer la régulation d'un système embarqué ESP32.</li>
-                  </ul>
-                </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Avant toute saisie de code, formaliser sur votre cahier :
+              </p>
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">L'arbre hiérarchique de décomposition modulaire comprenant les modules de saisie, de calcul et de tri.</li>
+                <li class="mb-2">Le Tableau de Déclaration des Objets (TDO) du programme principal.</li>
+                <li>Le Tableau de Déclaration des Objets Locaux (TDOL) pour chaque sous-programme.</li>
+              </ol>
+              <div class="cahier-zone">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'analyse préparatoire sur votre cahier d'examen.
               </div>
             </div>
           </div>
+        </section>
 
-          <!-- Chronogramme -->
+        <!-- Activité 2 -->
+        <section id="act2-saisie-echantillons" class="section-pane mb-4">
           <div class="card card-custom">
-            <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Chronogramme (90 min)
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 2 — Acquisition de la série d'échantillons avec numpy</h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Écrire la fonction <code>Saisie_N() : Entier</code> contrôlant $N \in [5 ; 25]$ puis la procédure <code>Acquisition_Mesures(@Signaux, N)</code> remplissant le tableau statique <code>numpy</code> avec des valeurs réelles strictement positives.
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-terminal me-1"></i> Implémentez l'acquisition dans <code>Synthese_Nom_Prenom.py</code>.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 3: PALIER MAÎTRISE (8 POINTS)
+           ========================================================================= -->
+      <article id="palier-maitrise-tp20" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-star-fill text-warning me-2"></i> PALIER 🟡 MAÎTRISE DU SUJET (8 points)</h2>
+
+        <!-- Activité 3 -->
+        <section id="act3-traitement-scientifique" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 3 — Module de traitement scientifique (Primalité / Validation)</h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Concevoir la fonction pure qui valide l'étalonnage de l'appareil :
+              </p>
+              <ul class="small mb-3">
+                <li>Elle reçoit le code de calibration fourni par l'opérateur (ex: <code>"CALIB-2026"</code>) et vérifie sa conformité structurelle avec les fonctions officielles sur les chaînes (<code>Long</code>, <code>Sous_chaine</code>, <code>Estnum</code>).</li>
+                <li>Elle calcule la clé de contrôle de calibration $C = \text{valeur} \pmod{17}$.</li>
+              </ul>
+              <div class="cahier-zone">
+                <i class="bi bi-terminal me-1"></i> Validez le module de conformité.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 4 -->
+        <section id="act4-tri-recherche" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 4 — Module algorithmique : Tri à Bulles ou Recherche de Seuil</h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Implémenter la procédure officielle de <strong>Tri à bulles optimisé</strong> qui réordonne les signaux dans l'ordre croissant avec l'indicateur d'arrêt prématuré <code>echange</code>, ou une fonction de <strong>recherche avec arrêt immédiat</strong> localisant le premier dépassement de seuil critique.
+              </p>
+              <div class="cahier-zone">
+                <i class="bi bi-terminal me-1"></i> Coder l'algorithme avec permutation via variable temporaire <code>aux</code>.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 4: PALIER DÉPASSEMENT (4 POINTS)
+           ========================================================================= -->
+      <article id="palier-excellence-tp20" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-trophy-fill text-danger me-2"></i> PALIER 🔴 DÉPASSEMENT / EXCELLENCE (4 points)</h2>
+
+        <!-- Activité 5 -->
+        <section id="act5-integration-recette" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 5 — Intégration dans le programme principal & Validation des jeux d'essais</h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Articuler l'ensemble des modules dans le bloc principal <code>if __name__ == '__main__':</code>.
+                Exécuter la recette logicielle complète avec 3 jeux d'essais imposés (série nominale, série avec doublons, série avec rejets de saisie).
+              </p>
+              <div class="cahier-zone mt-2">
+                <i class="bi bi-check2-all me-1"></i> Soumettez votre fichier <code>Synthese_Nom_Prenom.py</code> à l'examinateur.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 5: CLÔTURE & BILAN ANNUEL (30 MIN)
+           ========================================================================= -->
+      <article id="bilan-annuel" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-mortarboard-fill text-success me-2"></i> BILAN ANNUEL DES COMPÉTENCES & PERSPECTIVES 4e BAC</h2>
+
+        <!-- Activité 6 -->
+        <section id="act6-auto-evaluation" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom py-2">
+              <h3 class="h6 mb-0 text-success">Activité 6 — Grille d'auto-évaluation du profil de sortie de 3<sup>e</sup> Année</h3>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
+                <table class="table table-bordered table-hover mb-0 small">
+                  <thead class="table-dark">
                     <tr>
-                      <th>Phase</th>
-                      <th>Durée</th>
-                      <th>Activité Enseignant</th>
-                      <th>Activité Élève</th>
-                      <th>Support</th>
+                      <th style="width: 25%;">Domaine Fondamental</th>
+                      <th style="width: 75%;">Acquis majeurs & Savoirs associés consolidés</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td><span class="badge bg-primary">1. Lancement</span></td>
-                      <td>05 min</td>
-                      <td>Distribue le sujet et rappelle les consignes.</td>
-                      <td>Prend connaissance du sujet et ouvre l'IDE.</td>
-                      <td>Sujet</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-danger">2. Épreuve pratique</span></td>
-                      <td>55 min</td>
-                      <td>Gère le chronomètre (60 min).</td>
-                      <td>Traite les Dossiers 1 (Python) et 2 (ESP32).</td>
-                      <td>Python IDE / ESP32</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-success">3. Bilan &amp; Synthèse</span></td>
-                      <td>30 min</td>
-                      <td>Anime la correction collective et le bilan annuel.</td>
-                      <td>Auto-évaluation et synthèse de l'année.</td>
-                      <td>Grille</td>
+                    <tr v-for="b in competencesBilan" :key="b.domaine">
+                      <td class="fw-bold text-info">{{ b.domaine }}</td>
+                      <td>{{ b.acquis }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-        </section>
-      </article>
 
-      <!-- Article 2: Sujet Officiel de l'Épreuve Pratique -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-file-earmark-code text-info me-2"></i> Sujet Pratique Bilan</h2>
-
-        <section id="section-sujet" class="section-pane">
-          <h3>Projet « OceanLab » (20 points)</h3>
-          <p class="small text-muted">
-            Traitement des mesures de $N$ bouées météo ($3 \le N \le 20$) et régulation embarquée sur ESP32 :
-          </p>
-
-          <div class="row g-4 my-2">
-            <div class="col-md-6">
-              <div class="card card-custom h-100 border-primary">
-                <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-filetype-py me-2"></i> DOSSIER 1 : Python Modulaire (10 pts)
-                </div>
-                <div class="card-body small">
-                  <ul class="mb-0">
-                    <li class="mb-2"><strong>1. <code>recherche_seq(T, n, val)</code> :</strong> Recherche sans <code>break</code> (indice ou <code>-1</code>). <em>(2.5 pts)</em></li>
-                    <li class="mb-2"><strong>2. <code>saisir_donnees(IDs, Temp, n)</code> :</strong> Remplissage avec contrôle ($-10.0 \le t \le 50.0$) et unicité des IDs. <em>(3.5 pts)</em></li>
-                    <li class="mb-0"><strong>3. <code>tri_bulles_synchrone(IDs, Temp, n)</code> :</strong> Tri à bulles décroissant synchrone sur les deux tableaux. <em>(4 pts)</em></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100 border-info">
-                <div class="card-header-custom text-info fw-bold">
-                  <i class="bi bi-cpu me-2"></i> DOSSIER 2 : Embarqué MicroPython (10 pts)
-                </div>
-                <div class="card-body small">
-                  <ul class="mb-0">
-                    <li class="mb-2"><strong>Capteur :</strong> GPIO 15 &rarr; DHT11.</li>
-                    <li class="mb-2"><strong>Actionneurs :</strong> GPIO 13 &rarr; Servomoteur SG90, GPIO 12 &rarr; Buzzer.</li>
-                    <li class="mb-0"><strong>Régulation :</strong> Si $T > 30^\circ\text{C}$, ouvrir le clapet à $90^\circ$ (duty = 77) et biper à $880\,\text{Hz}$. Sinon, fermer ($0^\circ$) et éteindre le buzzer. <em>(10 pts)</em></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+          <div class="alert alert-info py-2 small mt-3">
+            <i class="bi bi-lightbulb-fill me-1"></i>
+            <strong>Félicitations pour votre investissement annuel !</strong> Vous maîtrisez désormais l'ensemble des fondements de l'algorithmique procédurale et du langage Python normalisé. Vous êtes parfaitement préparés pour aborder en 4<sup>e</sup> année les structures de données avancées (enregistrements, fichiers de données, récursivité et algorithmes de tri élaborés) dans le cadre de l'épreuve du Baccalauréat.
           </div>
         </section>
       </article>
 
-      <!-- Article 3: Grille d'Évaluation Officielle -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-journal-check text-success me-2"></i> Grille d'Évaluation &amp; Barème</h2>
+    </main>
 
-        <section id="section-bareme" class="section-pane">
-          <h3>Barème de Notation (Total : 20 Points)</h3>
-
-          <div class="table-responsive">
-            <table class="table table-custom table-bordered align-middle small">
-              <thead class="table-dark">
-                <tr>
-                  <th>Dossier</th>
-                  <th>Critères d'Évaluation</th>
-                  <th>Points</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td rowspan="3"><strong class="text-primary">Dossier 1 : Python</strong></td>
-                  <td>Fonction <code>recherche_seq</code> (parcours sans <code>break</code>)</td>
-                  <td class="font-mono fw-bold text-primary">2.5 pts</td>
-                </tr>
-                <tr>
-                  <td>Procédure <code>saisir_donnees</code> (contrôles intervalle et unicité)</td>
-                  <td class="font-mono fw-bold text-primary">3.5 pts</td>
-                </tr>
-                <tr>
-                  <td>Procédure <code>tri_bulles_synchrone</code> (permutations synchrones)</td>
-                  <td class="font-mono fw-bold text-primary">4.0 pts</td>
-                </tr>
-                <tr>
-                  <td rowspan="2"><strong class="text-info">Dossier 2 : ESP32</strong></td>
-                  <td>Initialisation GPIO 15 (DHT11), GPIO 13 (PWM) et GPIO 12 (Buzzer)</td>
-                  <td class="font-mono fw-bold text-info">5.0 pts</td>
-                </tr>
-                <tr>
-                  <td>Calcul duty, seuil $30^\circ\text{C}$ et pilotage des actionneurs</td>
-                  <td class="font-mono fw-bold text-info">5.0 pts</td>
-                </tr>
-                <tr class="table-secondary">
-                  <td colspan="2"><strong>TOTAL ÉPREUVE PRATIQUE</strong></td>
-                  <td class="font-mono fw-bold text-success">20.0 PTS</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 4: Laboratoire Virtuel & Calculateur de Bilan -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-display-fill text-warning me-2"></i> Chronomètre &amp; Calculateur de Bilan</h2>
-
-        <section id="section-demo" class="section-pane">
-          <h3>Chronomètre &amp; Estimation de Note</h3>
-          <p class="text-muted small">
-            Gérez les 60 minutes d'épreuve et estimez votre note sur 20 points.
-          </p>
-
-          <div class="row g-4 my-2">
-            <!-- Exam Timer Card -->
-            <div class="col-lg-6">
-              <div class="exam-card text-center mb-4">
-                <h5 class="fw-bold mb-2 text-info"><i class="bi bi-stopwatch me-2"></i> Chronomètre (60 min)</h5>
-                <div class="exam-timer my-2">{{ timerFormatted }}</div>
-
-                <div class="d-flex justify-content-center gap-2 mt-3">
-                  <button class="btn btn-sm" :class="isTimerRunning ? 'btn-danger' : 'btn-success'"
-                    @click="isTimerRunning ? pauseTimer() : startTimer()">
-                    <i class="bi" :class="isTimerRunning ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'"></i>
-                    {{ isTimerRunning ? ' Pause' : ' Démarrer 60 min' }}
-                  </button>
-                  <button class="btn btn-outline-secondary btn-sm" @click="resetTimer">
-                    <i class="bi bi-arrow-counterclockwise"></i> Réinitialiser
-                  </button>
-                </div>
-              </div>
-
-              <!-- Interactive Grading Calculator -->
-              <div class="exam-card">
-                <h5 class="fw-bold mb-3 text-warning"><i class="bi bi-calculator me-2"></i> Calculateur de Note / 20</h5>
-
-                <div class="mb-2">
-                  <label class="form-label small text-muted mb-0">1. Recherche Séquentielle (0 à 2.5 pts) :</label>
-                  <input type="number" step="0.5" min="0" max="2.5" class="form-control form-control-sm"
-                    v-model.number="ptsRecherche">
-                </div>
-
-                <div class="mb-2">
-                  <label class="form-label small text-muted mb-0">2. Saisie &amp; Unicité (0 à 3.5 pts) :</label>
-                  <input type="number" step="0.5" min="0" max="3.5" class="form-control form-control-sm"
-                    v-model.number="ptsSaisie">
-                </div>
-
-                <div class="mb-2">
-                  <label class="form-label small text-muted mb-0">3. Tri à Bulles Synchrone (0 à 4.0 pts) :</label>
-                  <input type="number" step="0.5" min="0" max="4.0" class="form-control form-control-sm"
-                    v-model.number="ptsTri">
-                </div>
-
-                <div class="mb-2">
-                  <label class="form-label small text-muted mb-0">4. MicroPython DHT11 (0 à 5.0 pts) :</label>
-                  <input type="number" step="0.5" min="0" max="5.0" class="form-control form-control-sm"
-                    v-model.number="ptsDht11">
-                </div>
-
-                <div class="mb-3">
-                  <label class="form-label small text-muted mb-0">5. Servo SG90 &amp; Buzzer (0 à 5.0 pts) :</label>
-                  <input type="number" step="0.5" min="0" max="5.0" class="form-control form-control-sm"
-                    v-model.number="ptsServo">
-                </div>
-
-                <!-- Final Score Display -->
-                <div class="p-3 border rounded bg-dark text-center">
-                  <small class="text-muted d-block">NOTE ESTIMÉE :</small>
-                  <div class="score-badge text-success">{{ totalScore }} / 20</div>
-                  <div class="mt-1">
-                    <span class="badge" :class="'bg-' + appreciation.color">{{ appreciation.text }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Annual Syllabus Panorama & Correction -->
-            <div class="col-lg-6">
-              <!-- Annual Modules Overview Matrix -->
-              <div class="card card-custom mb-4">
-                <div class="card-header-custom text-purple fw-bold" style="color: #c084fc;">
-                  <i class="bi bi-grid-3x3-gap-fill me-2"></i> Panorama des 6 Modules
-                </div>
-                <div class="card-body p-2">
-                  <div class="list-group list-group-flush small">
-                    <div v-for="mod in annualModules" :key="mod.id"
-                      class="list-group-item bg-transparent d-flex justify-content-between align-items-center">
-                      <div>
-                        <strong>{{ mod.name }}</strong>
-                      </div>
-                      <span class="badge bg-purple bg-opacity-25 text-purple border border-purple border-opacity-50"
-                        style="color: #c084fc;">
-                        {{ mod.badge }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Code Solution Viewer -->
-              <div class="card card-custom">
-                <div class="card-header-custom d-flex justify-content-between align-items-center">
-                  <ul class="nav nav-pills card-header-pills">
-                    <li class="nav-item">
-                      <button class="nav-link py-1 px-3" :class="{ active: activeTab === 'python' }"
-                        @click="activeTab = 'python'">
-                        <i class="bi bi-filetype-py me-1"></i> Dossier 1 (Python)
-                      </button>
-                    </li>
-                    <li class="nav-item">
-                      <button class="nav-link py-1 px-3" :class="{ active: activeTab === 'esp32' }"
-                        @click="activeTab = 'esp32'">
-                        <i class="bi bi-cpu me-1"></i> Dossier 2 (ESP32)
-                      </button>
-                    </li>
-                  </ul>
-                  <button class="btn btn-outline-secondary btn-sm"
-                    @click="copyToClipboard(activeTab === 'python' ? codePython : codeEsp32)">
-                    <i class="bi" :class="copyCodeSuccess ? 'bi-check-lg text-success' : 'bi-clipboard'"></i>
-                    {{ copyCodeSuccess ? 'Copié !' : 'Copier' }}
-                  </button>
-                </div>
-
-                <div class="card-body p-0">
-                  <div class="p-3 bg-dark text-light font-mono small overflow-auto" style="max-height: 260px;">
-                    <pre class="mb-0"><code>{{ activeTab === 'python' ? codePython : codeEsp32 }}</code></pre>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 5: Évaluation Formative & Bilan Final -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative</h2>
-
-        <section id="section-quiz" class="section-pane">
-          <h3>QCM de Synthèse Finale</h3>
-
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Auto-évaluation – Bilan Annuel">
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="L'épreuve pratique dure 60 minutes et est notée sur 20 points.">
-                  <div class="question-text">1. Durée et barème de l'épreuve pratique bilan :</div>
-                  <ul class="quiz-options">
-                    <li>60 minutes / 20 points</li>
-                    <li>30 minutes / 10 points</li>
-                    <li>120 minutes / 40 points</li>
-                    <li>15 minutes / 5 points</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="L'examen évalue la programmation modulaire Python et les systèmes embarqués ESP32.">
-                  <div class="question-text">2. Volets évalués lors de l'examen pratique bilan :</div>
-                  <ul class="quiz-options">
-                    <li>Bureautique et traitement de texte</li>
-                    <li>Algorithmique / Python modulaire ET Systèmes embarqués ESP32</li>
-                    <li>Réseaux théoriques uniquement</li>
-                    <li>Histoire de l'informatique</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="La conformité à la syntaxe algorithmique ministérielle et au TDO est obligatoire.">
-                  <div class="question-text">3. Exigence de rigueur algorithmique ministérielle :</div>
-                  <ul class="quiz-options">
-                    <li>Ne pas déclarer de TDO</li>
-                    <li>Tout coder dans un seul bloc sans sous-programmes</li>
-                    <li>Respecter la syntaxe ministérielle 2024 et la structuration TDO</li>
-                    <li>Utiliser des instructions d'interruption brute (break)</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="La console REPL affiche les messages d'erreur et retours de débogage MicroPython.">
-                  <div class="question-text">4. Outil de diagnostic des erreurs d'exécution MicroPython :</div>
-                  <ul class="quiz-options">
-                    <li>La console REPL sous Python IDE</li>
-                    <li>La calculatrice système</li>
-                    <li>Le gestionnaire de tâches</li>
-                    <li>L'explorateur de fichiers</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Répartir son temps entre analyse (20 min), codage (30 min) et tests (10 min).">
-                  <div class="question-text">5. Gestion optimale des 60 minutes de l'épreuve :</div>
-                  <ul class="quiz-options">
-                    <li>20 min d'analyse/TDO, 30 min de codage modulaire, 10 min de tests</li>
-                    <li>59 minutes de codage direct sans concevoir</li>
-                    <li>45 minutes d'attente</li>
-                    <li>Tout reporter à la fin</li>
-                  </ul>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer-custom">
-    <div class="container text-center">
-      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-muted">
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 20 : Épreuve Pratique Finale de Synthèse & Bilan Annuel</p>
+      </div>
+    </footer>
   </div>
 
   <!-- JS Assets -->
@@ -513,8 +333,6 @@
   <script src="assets/js/clipboard.js"></script>
   <script src="assets/js/draggable.js"></script>
   <script src="assets/js/pages.js"></script>
-
-  <!-- Application Script for Séance 20 -->
   <script src="assets/app/seance20.js"></script>
 </body>
 

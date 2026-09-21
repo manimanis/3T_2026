@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance N°2 : Consolidation des Structures de Contrôle Simples - 3ème Année</title>
+  <title>Séance 2 · La boucle Tant Que (while) & Contrôle de saisie — 3e Sciences</title>
   <meta name="description"
-    content="Fiche de séance N°2 interactive : Consolidation des structures conditionnelles et itératives bornées (Si, Pour, range) pour la 3ème Année Secondaire.">
+    content="Séance 2 d'informatique pour 3e Sciences : Structures itératives non bornées, boucle Tant Que (while), contrôle de saisie robuste et modélisation scientifique.">
 
   <!-- Anti-FOUC Early Theme Script -->
   <script>
@@ -24,17 +24,44 @@
 
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    .phase-pill-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 1020;
+      background: var(--bg-navbar);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cahier-zone {
+      border: 1px dashed var(--border-color);
+      border-radius: 0.4rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .empty-cell {
+      color: var(--text-dim);
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div>
+  <div id="app">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand navbar-brand-custom" href="index.html">
           <i class="bi bi-code-slash fs-3"></i>
-          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Sciences</small></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <i class="bi bi-list fs-2"></i>
@@ -46,12 +73,10 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
-              au Plan</a>
-            <!-- Theme Toggle Button -->
-            <button class="theme-toggle-btn ms-lg-2" title="Changer de thème">
-              <i class="bi bi-sun-fill text-warning"></i>
-              <span>Mode Clair</span>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
+            <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
+              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
         </div>
@@ -59,802 +84,354 @@
     </nav>
 
     <!-- Header Section -->
-    <header class="py-3 border-bottom border-secondary border-opacity-25">
+    <header class="py-3 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
       <div class="container">
-
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span
-              class="badge bg-primary bg-opacity-25 text-primary-light border border-primary border-opacity-25 mb-2">
-              <i class="bi bi-bookmark-fill me-1"></i> Module 1 • Séance N°2
-            </span>
-            <h1 class="h2 fw-bold mb-1">Consolidation des Structures de Contrôle Simples</h1>
-            <p class="text-muted mb-0">Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn</p>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="badge bg-primary bg-opacity-25 text-primary-light border border-primary border-opacity-25">
+                SÉANCE 2 · APPRENTISSAGE
+              </span>
+              <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
+                <i class="bi bi-clock me-1"></i> 90 min
+              </span>
+              <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                Pédagogie Différenciée (3 Paliers)
+              </span>
+            </div>
+            <h1 class="h3 fw-bold mb-1">Les structures itératives non bornées : La boucle Tant Que</h1>
+            <p class="text-muted small mb-0">Contrôle de saisie robuste, condition d'arrêt et itérations non bornées — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
       </div>
     </header>
 
+    <!-- Phase Quick Selector Bar -->
+    <div class="phase-pill-nav d-none d-md-block">
+      <div class="container d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('cadre-conventions')">
+          Cadre & Syntaxe
+        </button>
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
+          Palier 🟢 Débutant (Act 1-2)
+        </button>
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
+          Palier 🟡 Intermédiaire (Act 3-4)
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
+          Palier 🔴 Avancé (Act 5-6)
+        </button>
+      </div>
+    </div>
+
     <!-- Main Content Container -->
     <main class="container my-4">
 
-      <!-- Article 1: Objectifs & Déroulement -->
-      <article class="article-content-wrapper">
-        <h2><i class="bi bi-check2-square text-success me-2"></i> Objectifs & Déroulement</h2>
+      <!-- =========================================================================
+           ARTICLE 1: CADRE & CONVENTIONS OFFICIELLES
+           ========================================================================= -->
+      <article id="cadre" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-compass text-primary me-2"></i> CADRE THÉORIQUE — La boucle Tant Que</h2>
 
-        <section id="section-objectifs" class="section-pane">
-          <h3>1. Objectifs Pédagogiques & Organisation</h3>
+        <section id="cadre-conventions" class="section-pane mb-4">
+          <div class="alert alert-secondary py-2 small mb-3">
+            <strong>Règle fondamentale :</strong> Lorsque le nombre de répétitions n'est pas connu à l'avance et dépend d'une condition dynamique qui évolue au cours du traitement, on utilise une <strong>structure itérative à condition d'arrêt</strong> (boucle non bornée).
+          </div>
 
-          <div class="row g-4 mb-4">
+          <div class="row g-3">
             <div class="col-md-6">
               <div class="card card-custom h-100">
-                <div class="card-body">
-                  <h4 class="h5 card-title text-primary"><i class="bi bi-book me-2"></i> A. Savoirs (Connaissances)</h4>
-                  <ul class="list-custom mb-0">
-                    <li>Structures conditionnelles (<code>Si...Alors...Sinon</code>).</li>
-                    <li>Boucle itérative complète (<code>Pour</code>).</li>
-                    <li>Fonction <code>range(début, fin + 1, pas)</code>, accumulateurs et compteurs.</li>
+                <div class="card-header-custom py-2">
+                  <h3 class="h6 mb-0 text-primary"><i class="bi bi-code-square me-1"></i> Syntaxe Algorithmique</h3>
+                </div>
+                <div class="card-body py-2 small">
+                  <pre><code class="language-algorithm" v-pre>Tant que Condition Faire
+  Traitements
+Fin Tant que</code></pre>
+                  <ul class="mb-0 ps-3 text-muted">
+                    <li>La condition est évaluée <strong>avant</strong> d'entrer dans la boucle (pré-condition).</li>
+                    <li>Si la condition est fausse au départ, le corps n'est <strong>jamais exécuté</strong>.</li>
                   </ul>
                 </div>
               </div>
             </div>
+
             <div class="col-md-6">
               <div class="card card-custom h-100">
-                <div class="card-body">
-                  <h4 class="h5 card-title text-info"><i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)</h4>
-                  <ul class="list-custom mb-0">
-                    <li>Conditions logiques (<code>Et</code>, <code>Ou</code>, <code>Non</code> &rarr; <code>and</code>, <code>or</code>, <code>not</code>).</li>
-                    <li>Calculs cumulatifs avec boucle <code>Pour</code>.</li>
-                    <li>Écriture et test de scripts à boucles bornées sous Python.</li>
+                <div class="card-header-custom py-2">
+                  <h3 class="h6 mb-0 text-success"><i class="bi bi-filetype-py me-1"></i> Traduction Python 3</h3>
+                </div>
+                <div class="card-body py-2 small">
+                  <pre><code class="language-python" v-pre>while Condition:
+    Traitements</code></pre>
+                  <ul class="mb-0 ps-3 text-muted">
+                    <li><strong>Règle d'or :</strong> La variable de contrôle doit impérativement être initialisée <em>avant</em> le <code>while</code> et mise à jour <em>à l'intérieur</em>.</li>
+                    <li><strong>Interdiction formelle :</strong> Il est strictement interdit d'utiliser <code>break</code> pour forcer la sortie d'une boucle.</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
+        </section>
+      </article>
 
-          <!-- Deroulement Table -->
+      <!-- =========================================================================
+           ARTICLE 2: PALIER DÉBUTANT (SOCLE & GUIDAGE)
+           ========================================================================= -->
+      <article id="palier-debutant" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 DÉBUTANT — Socle & Guidage</h2>
+        <p class="text-muted small mb-3">Comprendre la nécessité d'une boucle non bornée et maîtriser le patron universel de saisie contrôlée.</p>
+
+        <!-- Activité 1 -->
+        <section id="act1-obstacle-cognitif" class="section-pane mb-4">
           <div class="card card-custom">
-            <div class="card-header-custom">
-              <h4 class="h6 mb-0"><i class="bi bi-clock-history me-2"></i> Déroulement (90 min)</h4>
-            </div>
-            <div class="table-responsive">
-              <table class="table table-custom mb-0">
-                <thead>
-                  <tr>
-                    <th>Phase</th>
-                    <th>Durée</th>
-                    <th>Activité Enseignant</th>
-                    <th>Activité Élève</th>
-                    <th>Support</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="badge bg-secondary">1. Diagnostic</span></td>
-                    <td>10 min</td>
-                    <td>Rappel conditionnelles et boucles.</td>
-                    <td>Réponses orales, choix vs répétition.</td>
-                    <td>Tableau</td>
-                  </tr>
-                  <tr>
-                    <td><span class="badge bg-primary">2. Synthèse</span></td>
-                    <td>25 min</td>
-                    <td>Syntaxe <code>Si</code> et <code>Pour</code> (<code>range</code>).</td>
-                    <td>Prise de notes, motifs d'accumulation.</td>
-                    <td>Fiche</td>
-                  </tr>
-                  <tr>
-                    <td><span class="badge bg-info">3. Pratique</span></td>
-                    <td>40 min</td>
-                    <td>Présentation problème salaire vendeur et TDO.</td>
-                    <td>Analyse, TDO, algorithme et codage.</td>
-                    <td>Python</td>
-                  </tr>
-                  <tr>
-                    <td><span class="badge bg-success">4. Évaluation</span></td>
-                    <td>15 min</td>
-                    <td>Tests avec jeux d'essais.</td>
-                    <td>Validation et correction d'indentation.</td>
-                    <td>Python</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 2: Synthèse du Cours -->
-      <article class="article-content-wrapper">
-        <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
-
-        <section id="section-cours-conditionnelle" class="section-pane">
-          <h3>2. Les Structures Conditionnelles</h3>
-          <p class="text-muted">
-            Exécute un bloc d'instructions si une condition logique est vraie (<code>True</code>). Trois formes :
-          </p>
-
-          <div class="row g-4 mb-4">
-            <!-- Forme Reduite -->
-            <div class="col-lg-4 col-md-6">
-              <div class="card card-custom h-100">
-                <div
-                  class="card-image text-center p-2 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
-                  <img src="images/seance02/si_reduite.svg" alt="Forme réduite" class="img-fluid"
-                    style="max-height: 200px; width: 100%;">
-                </div>
-                <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-arrow-right-short me-2"></i> Forme Réduite
-                </div>
-                <div class="card-body p-0 cond-card-body">
-                  <div class="p-3 border-bottom border-secondary border-opacity-25 cond-code-cell">
-                    <small class="text-muted d-block mb-1">Algorithme</small>
-                    <pre class="m-0"><code class="language-algorithm">Si Condition Alors
-    Traitement
-FinSi</code></pre>
-                  </div>
-                  <div class="p-3 cond-code-cell">
-                    <small class="text-muted d-block mb-1">Python (Instruction if)</small>
-                    <pre class="m-0"><code class="language-python">if condition:
-    traitement</code></pre>
-                  </div>
-                  <div class="p-3 border-top border-secondary border-opacity-25 bg-body-tertiary cond-code-cell">
-                    <small class="text-success fw-bold d-block mb-1"><i class="bi bi-lightbulb me-1"></i> Exemple
-                      concret</small>
-                    <small class="text-muted d-block m-1">Algorithme :</small>
-                    <pre class="m-0 mb-2"><code class="language-algorithm">Si note >= 10 Alors
-    Ecrire("Admis")
-FinSi</code></pre>
-                    <div class="cond-code-cell">
-                      <small class="text-muted d-block m-1">Python :</small>
-                      <pre class="m-0"><code class="language-python">if note >= 10:
-    print("Admis")</code></pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Forme Alternative -->
-            <div class="col-lg-4 col-md-6">
-              <div class="card card-custom h-100">
-                <div
-                  class="card-image text-center p-2 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
-                  <img src="images/seance02/si_alternative.svg" alt="Forme alternative" class="img-fluid"
-                    style="max-height: 200px; width: 100%;">
-                </div>
-                <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-signpost-split me-2"></i> Forme Alternative
-                </div>
-                <div class="card-body p-0 cond-card-body">
-                  <div class="p-3 border-bottom border-secondary border-opacity-25 cond-code-cell">
-                    <small class="text-muted d-block mb-1">Algorithme</small>
-                    <pre class="m-0"><code class="language-algorithm">Si Condition Alors
-    Traitement1
-Sinon
-    Traitement2
-FinSi</code></pre>
-                  </div>
-                  <div class="p-3 cond-code-cell">
-                    <small class="text-muted d-block mb-1">Python (Instructions if ... else)</small>
-                    <pre class="m-0"><code class="language-python">if condition:
-    traitement1
-else:
-    traitement2</code></pre>
-                  </div>
-                  <div class="p-3 border-top border-secondary border-opacity-25 bg-body-tertiary cond-code-cell">
-                    <small class="text-primary fw-bold d-block mb-1"><i class="bi bi-lightbulb me-1"></i> Exemple
-                      concret</small>
-                    <small class="text-muted d-block mb-1">Algorithme :</small>
-                    <pre class="m-0 mb-2"><code class="language-algorithm">Si n mod 2 = 0 Alors
-    Ecrire("Pair")
-Sinon
-    Ecrire("Impair")
-FinSi</code></pre>
-                    <div class="cond-code-cell">
-                      <small class="text-muted d-block m-1">Python :</small>
-                      <pre class="m-0"><code class="language-python">if n % 2 == 0:
-    print("Pair")
-else:
-    print("Impair")</code></pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Forme Generalisee -->
-            <div class="col-lg-4 col-md-12">
-              <div class="card card-custom h-100">
-                <div
-                  class="card-image text-center p-2 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
-                  <img src="images/seance02/si_generalisee.svg" alt="Forme généralisée" class="img-fluid"
-                    style="max-height: 200px; width: 100%;">
-                </div>
-                <div class="card-header-custom text-info fw-bold">
-                  <i class="bi bi-diagram-3 me-2"></i> Forme Généralisée
-                </div>
-                <div class="card-body p-0 cond-card-body">
-                  <div class="p-3 border-bottom border-secondary border-opacity-25 cond-code-cell">
-                    <small class="text-muted d-block mb-1">Algorithme</small>
-                    <pre class="m-0"><code class="language-algorithm">Si Condition1 Alors
-    Traitement1
-Sinon Si Condition2 Alors
-    Traitement2
-Sinon
-    TraitementN
-FinSi</code></pre>
-                  </div>
-                  <div class="p-3 cond-code-cell">
-                    <small class="text-muted d-block mb-1">Python (Instruction elif)</small>
-                    <pre class="m-0"><code class="language-python">if condition1:
-    traitement1
-elif condition2:
-    traitement2
-else:
-    traitementN</code></pre>
-                  </div>
-                  <div class="p-3 border-top border-secondary border-opacity-25 bg-body-tertiary cond-code-cell">
-                    <small class="text-info fw-bold d-block mb-1"><i class="bi bi-lightbulb me-1"></i> Exemple
-                      concret</small>
-                    <small class="text-muted d-block mb-1">Algorithme :</small>
-                    <pre class="m-0 mb-2"><code class="language-algorithm">Si n > 0 Alors
-    Ecrire("Positif")
-Sinon Si n &lt; 0 Alors
-    Ecrire("Négatif")
-Sinon
-    Ecrire("Nul")
-FinSi</code></pre>
-                    <div class="cond-code-cell">
-                      <small class="text-muted d-block m-1">Python :</small>
-                      <pre class="m-0"><code class="language-python">if n > 0:
-    print("Positif")
-elif n &lt; 0:
-    print("Négatif")
-else:
-    print("Nul")</code></pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="section-cours-boucle" class="section-pane">
-          <h3>3. La Structure Itérative Complète</h3>
-          <p class="text-muted">
-            La structure <code>Pour</code> répète un bloc d'instructions un nombre d'itérations connu d'avance.
-          </p>
-
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="code-container h-100 m-0">
-                <div class="code-header"><span>Algorithme</span></div>
-                <pre><code class="language-algorithm">Pour compteur de Début à Fin [Pas = v_pas] Faire
-    Traitement
-Fin Pour</code></pre>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="code-container h-100 m-0">
-                <div class="code-header"><span>Python (Fonction range)</span></div>
-                <pre><code class="language-python">for compteur in range(début, fin + 1, pas):
-    traitement</code></pre>
-              </div>
-            </div>
-          </div>
-
-          <!-- SVG Flowchart pour la Boucle Pour -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-warning fw-bold">
-              <i class="bi bi-arrow-repeat me-2"></i> Diagramme de flux d'exécution : Boucle Pour / for range()
-            </div>
-            <div class="card-body bg-body-tertiary text-center p-3">
-              <img src="images/seance02/boucle_pour.svg" alt="Diagramme Boucle Pour / for range" class="img-fluid"
-                style="max-height: 220px; width: 100%;">
-            </div>
-          </div>
-
-          <!-- Alert Box Piège classique -->
-          <div class="alert alert-warning border border-warning border-opacity-25 mb-4">
-            <h5 class="alert-heading h6 fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i> Exclusion de la borne finale dans range()</h5>
-            <ul class="mb-0 small ps-3">
-              <li class="mb-1"><strong>Croissant (1 à N) :</strong> <code>range(1, N + 1)</code></li>
-              <li><strong>Décroissant (N à 1) :</strong> <code>range(N, 0, -1)</code> (borne 0 exclue)</li>
-            </ul>
-          </div>
-
-          <!-- Motifs Classiques Detailed Explanation -->
-          <h4 class="h5 fw-bold mt-4 mb-3"><i class="bi bi-layers text-primary me-2"></i> Motifs Classiques : Compteur & Accumulateur</h4>
-          <p class="text-muted small">
-            Schémas récurrents exigeant une initialisation (élément neutre) avant la boucle et une mise à jour dans la boucle :
-          </p>
-
-          <div class="row g-3 mb-4">
-            <!-- 1. Compteur -->
-            <div class="col-md-4">
-              <div class="card card-custom h-100 border-start border-primary border-4">
-                <div class="card-body">
-                  <div class="d-flex align-items-center gap-2 mb-2 text-primary fw-bold">
-                    <i class="bi bi-plus-circle-fill fs-5"></i>
-                    <span class="fs-6">1. Le Compteur</span>
-                  </div>
-                  <p class="small text-main mb-3">
-                    Servant à <strong>dénombrer</strong> des éléments ou des événements satisfaisant une condition.
-                  </p>
-                  <div
-                    class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
-                    <div><span class="fw-semibold text-primary">Initialisation :</span> <code>c &larr; 0</code></div>
-                    <div><span class="fw-semibold text-primary">Mise à jour :</span> <code>c &larr; c + 1</code></div>
-                  </div>
-                  <div class="small mb-3">
-                    <strong class="text-primary">Principe :</strong> L'élément neutre du comptage est <code>0</code>. À
-                    chaque élément valide trouvé, on ajoute <code>1</code> au compteur.
-                  </div>
-                  <div class="border-top border-secondary border-opacity-25 pt-2">
-                    <span class="badge bg-primary bg-opacity-25 text-primary mb-1">Exemple Concret :</span>
-                    <p class="small text-muted mb-1">Compter les nombres pairs entre 1 et N :</p>
-                    <pre class="m-0 p-2 rounded bg-body-tertiary border border-secondary border-opacity-25"><code class="language-python">nb_pairs = 0
-n = int(input("Donner N : "))
-for i in range(1, n + 1):
-    if i % 2 == 0:
-        nb_pairs = nb_pairs + 1</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 2. Accumulateur de Somme -->
-            <div class="col-md-4">
-              <div class="card card-custom h-100 border-start border-success border-4">
-                <div class="card-body">
-                  <div class="d-flex align-items-center gap-2 mb-2 text-success fw-bold">
-                    <i class="bi bi-calculator-fill fs-5"></i>
-                    <span class="fs-6">2. L'Accumulateur (Somme)</span>
-                  </div>
-                  <p class="small text-main mb-3">
-                    Servant à <strong>cumuler la somme</strong> de plusieurs valeurs successives.
-                  </p>
-                  <div
-                    class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
-                    <div><span class="fw-semibold text-success">Initialisation :</span> <code>somme &larr; 0</code>
-                    </div>
-                    <div><span class="fw-semibold text-success">Mise à jour :</span>
-                      <code>somme &larr; somme + val</code>
-                    </div>
-                  </div>
-                  <div class="small mb-3">
-                    <strong class="text-success">Principe :</strong> L'élément neutre de l'addition est <code>0</code>.
-                    À chaque tour, on ajoute la nouvelle valeur à la somme totale accumulée.
-                  </div>
-                  <div class="border-top border-secondary border-opacity-25 pt-2">
-                    <span class="badge bg-success bg-opacity-25 text-success mb-1">Exemple Concret :</span>
-                    <p class="small text-muted mb-1">Calculer la somme des entiers de 1 à N :</p>
-                    <pre class="m-0 p-2 rounded bg-body-tertiary border border-secondary border-opacity-25"><code class="language-python">somme = 0
-n = int(input("Donner N : "))
-for i in range(1, n + 1):
-    somme = somme + i</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 3. Produit Cumulé -->
-            <div class="col-md-4">
-              <div class="card card-custom h-100 border-start border-warning border-4">
-                <div class="card-body">
-                  <div class="d-flex align-items-center gap-2 mb-2 text-warning fw-bold">
-                    <i class="bi bi-x-circle-fill fs-5"></i>
-                    <span class="fs-6">3. Le Produit Cumulé</span>
-                  </div>
-                  <p class="small text-main mb-3">
-                    Servant à <strong>multiplier</strong> successivement une série de facteurs (ex: Factorielle).
-                  </p>
-                  <div
-                    class="p-2 bg-body-tertiary border border-secondary border-opacity-25 rounded small font-mono mb-3">
-                    <div><span class="fw-semibold text-warning">Initialisation :</span> <code>p &larr; 1</code></div>
-                    <div><span class="fw-semibold text-warning">Mise à jour :</span> <code>p &larr; p * val</code></div>
-                  </div>
-                  <div class="small mb-3">
-                    <strong class="text-warning">Principe :</strong> L'élément neutre de la multiplication est
-                    <code>1</code> (initialiser à 0 annulerait tout le produit !).
-                  </div>
-                  <div class="border-top border-secondary border-opacity-25 pt-2">
-                    <span class="badge bg-warning bg-opacity-25 text-warning mb-1">Exemple Concret :</span>
-                    <p class="small text-muted mb-1">Calculer la factorielle de N (N!) :</p>
-                    <pre class="m-0 p-2 rounded bg-body-tertiary border border-secondary border-opacity-25"><code class="language-python">fact = 1
-n = int(input("Donner N : "))
-for i in range(1, n + 1):
-    fact = fact * i</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 3: Travaux Pratiques -->
-      <article class="article-content-wrapper">
-        <h2><i class="bi bi-code-slash text-info me-2"></i> Travaux Pratiques sur Machine</h2>
-
-        <section id="section-act1-debogage" class="section-pane">
-          <h3>Activité 1 : Débogage (10 min)</h3>
-          <p class="text-muted">
-            Corriger les <strong>3 erreurs</strong> du script calculant la somme des nombres pairs entre <code>1</code> et <code>N</code> :
-          </p>
-
-          <div class="row g-4">
-            <div class="col-md-6">
-              <div class="code-container">
-                <div class="code-header text-danger"><span>script_errone.py (Contient des erreurs)</span></div>
-                <pre><code class="language-python"># Script contenant des erreurs
-n = input("Donner N : ")
-somme = 0
-for i in range(1, n):
-    if i % 2 == 1:
-        somme = i
-print("Somme =", somme)</code></pre>
-              </div>
-              <button class="btn btn-sm btn-outline-success mt-2" onclick="toggleAct1Correction(this)">
-                Afficher la correction
-              </button>
-            </div>
-
-            <div class="col-md-6">
-              <div class="code-container correction-block" style="display: none;">
-                <div class="code-header text-success"><span>script_corrige.py (Code Corrigé)</span></div>
-                <pre><code class="language-python"># Code corrigé et fonctionnel
-n = int(input("Donner N : "))
-somme = 0
-for i in range(1, n + 1):
-    if i % 2 == 0:
-        somme = somme + i
-print("Somme des nombres pairs =", somme)</code></pre>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="section-act2-probleme" class="section-pane">
-          <h3>Activité 2 : Salaire mensuel vendeur (30 min)</h3>
-
-          <!-- Problème Description -->
-          <div class="box-custom mb-4">
-            <h4 class="h6 text-warning fw-bold mb-2"><i class="bi bi-building me-2"></i> Énoncé :</h4>
-            <p class="mb-2">
-              Calculer le salaire mensuel net d'un vendeur sur <strong>N jours ouvrables</strong> :
-            </p>
-            <ul class="mb-0 small">
-              <li>Base quotidienne fixe : <strong>35.000 DT</strong>.</li>
-              <li>Prime journalière : <strong>+15.000 DT</strong> si ventes du jour &gt; 10.</li>
-              <li>Prime de performance mensuelle : <strong>+100.000 DT</strong> si total ventes &gt; 150.</li>
-            </ul>
-          </div>
-
-          <!-- Accordion for Resolution Steps -->
-          <div class="accordion accordion-custom mb-4" id="accordionSalaire" v-pre>
-
-            <!-- 1. Analyse -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingAnal">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnal">
-                  <i class="bi bi-search me-2"></i> 1. Analyse
-                </button>
-              </h2>
-              <div id="collapseAnal" class="accordion-collapse collapse show" data-bs-parent="#accordionSalaire">
-                <div class="accordion-body">
-                  <ul>
-                    <li><strong>Entrées :</strong> <code>n</code> (Entier), <code>nb_ventes</code> (Entier, N fois).</li>
-                    <li><strong>Sorties :</strong> <code>total_ventes</code> (Entier), <code>salaire_net</code> (Réel).</li>
-                    <li><strong>Traitements :</strong>
-                      <ol>
-                        <li>Initialiser <code>total_ventes &larr; 0</code> et <code>salaire_net &larr; 0.0</code>.</li>
-                        <li>Pour i de 1 à n :
-                          <ul>
-                            <li><code>total_ventes &larr; total_ventes + nb_ventes</code></li>
-                            <li><code>salaire_net &larr; salaire_net + BASE_JOUR</code></li>
-                            <li>Si <code>nb_ventes > 10</code> : <code>salaire_net &larr; salaire_net + PRIME_JOUR</code></li>
-                          </ul>
-                        </li>
-                        <li>Si <code>total_ventes > 150</code> : <code>salaire_net &larr; salaire_net + PRIME_GLOBALE</code></li>
-                      </ol>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- 2. TDO -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTdo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTdo">
-                  <i class="bi bi-table me-2"></i> 2. TDO
-                </button>
-              </h2>
-              <div id="collapseTdo" class="accordion-collapse collapse" data-bs-parent="#accordionSalaire">
-                <div class="accordion-body">
-                  <table class="table table-custom mb-0">
-                    <thead>
-                      <tr>
-                        <th>Objet</th>
-                        <th>Type / Nature</th>
-                        <th>Rôle</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><code>n</code></td>
-                        <td>Entier</td>
-                        <td>Nombre de jours ouvrables du mois</td>
-                      </tr>
-                      <tr>
-                        <td><code>i</code></td>
-                        <td>Entier</td>
-                        <td>Compteur de la boucle Pour</td>
-                      </tr>
-                      <tr>
-                        <td><code>nb_ventes</code></td>
-                        <td>Entier</td>
-                        <td>Nombre de ventes du jour i</td>
-                      </tr>
-                      <tr>
-                        <td><code>total_ventes</code></td>
-                        <td>Entier</td>
-                        <td>Accumulateur des ventes totales</td>
-                      </tr>
-                      <tr>
-                        <td><code>salaire_net</code></td>
-                        <td>Réel</td>
-                        <td>Accumulateur du salaire net mensuel</td>
-                      </tr>
-                      <tr>
-                        <td><code>BASE_JOUR</code></td>
-                        <td>Constante = 35.000</td>
-                        <td>Salaire de base fixe quotidien (DT)</td>
-                      </tr>
-                      <tr>
-                        <td><code>PRIME_JOUR</code></td>
-                        <td>Constante = 15.000</td>
-                        <td>Prime journalière si ventes > 10 (DT)</td>
-                      </tr>
-                      <tr>
-                        <td><code>PRIME_GLOBALE</code></td>
-                        <td>Constante = 100.000</td>
-                        <td>Prime de performance mensuelle si total > 150 (DT)</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-            <!-- 3. Algorithme -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingAlgo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseAlgo">
-                  <i class="bi bi-file-earmark-code me-2"></i> 3. Algorithme
-                </button>
-              </h2>
-              <div id="collapseAlgo" class="accordion-collapse collapse" data-bs-parent="#accordionSalaire">
-                <div class="accordion-body">
-                  <pre><code class="language-algorithm">ALGORITHME Calcul_Salaire_Vendeur
-DEBUT
-    Écrire("Donner le nombre de jours ouvrables (N) : ")
-    Lire(n)
-    
-    total_ventes ← 0
-    salaire_net ← 0.0
-    
-    Pour i de 1 à n Faire
-        Écrire("Nombre de ventes pour le jour ", i, " : ")
-        Lire(nb_ventes)
-        
-        total_ventes ← total_ventes + nb_ventes
-        salaire_net ← salaire_net + BASE_JOUR
-        
-        Si (nb_ventes > 10) Alors
-            salaire_net ← salaire_net + PRIME_JOUR
-        FinSi
-    Fin Pour
-    
-    Si (total_ventes > 150) Alors
-        salaire_net ← salaire_net + PRIME_GLOBALE
-    FinSi
-    
-    Écrire("Total des ventes du mois : ", total_ventes)
-    Écrire("Salaire net mensuel : ", salaire_net, " DT")
-FIN</code></pre>
-                </div>
-              </div>
-            </div>
-
-            <!-- 4. Implémentation Python -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingPy">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsePy">
-                  <i class="bi bi-filetype-py me-2"></i> 4. Code Python
-                </button>
-              </h2>
-              <div id="collapsePy" class="accordion-collapse collapse" data-bs-parent="#accordionSalaire">
-                <div class="accordion-body">
-                  <div class="code-container">
-                    <div class="code-header">
-                      <span>script_vendeur.py</span>
-                    </div>
-                    <pre><code class="language-python"># Constantes
-BASE_JOUR = 35.000
-PRIME_JOUR = 15.000
-PRIME_GLOBALE = 100.000
-
-# Entrée principale
-n = int(input("Donner le nombre de jours ouvrables (N) : "))
-
-# Initialisation des accumulateurs
-total_ventes = 0
-salaire_net = 0.0
-
-# Boucle pour traiter chaque jour
-for i in range(1, n + 1):
-    nb_ventes = int(input("Nombre de ventes pour le jour " + str(i) + " : "))
-    
-    total_ventes = total_ventes + nb_ventes
-    salaire_net = salaire_net + BASE_JOUR
-    
-    if nb_ventes > 10:
-        salaire_net = salaire_net + PRIME_JOUR
-
-# Test de la prime globale
-if total_ventes > 150:
-    salaire_net = salaire_net + PRIME_GLOBALE
-    print("Félicitations ! Prime globale de 100.000 DT accordée.")
-
-# Affichage des résultats
-print("\n--- BILAN MENSUEL ---")
-print("Total d'articles vendus :", total_ventes)
-print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Simulateur Interactif Vue.js -->
-          <div id="app" class="card card-custom mt-4">
-            <div class="card-header-custom d-flex justify-content-between align-items-center">
-              <h4 class="h6 mb-0 text-success">
-                <i class="bi bi-play-circle-fill me-2"></i> Simulateur en direct : Salaire & Primes Vendeur
-              </h4>
-              <span class="badge bg-success bg-opacity-25 text-success">Interactif</span>
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 1 — Obstacle cognitif : Pourquoi la boucle Pour est-elle insuffisante ?</h3>
+              <span class="badge bg-secondary">Socle · 15 min</span>
             </div>
             <div class="card-body">
-              <div class="row g-3 align-items-center mb-3">
-                <div class="col-md-4">
-                  <label class="form-label small fw-bold">Nombre de jours ouvrables (N) :</label>
-                  <input type="number" class="form-control form-control-sm" v-model.number.lazy="simJours" min="1"
-                    max="15">
+              <p class="small mb-3">
+                Un élève veut s'assurer que l'utilisateur saisit bien une masse molaire $M$ strictement positive ($M > 0$). Il propose le code algorithmique suivant avec une boucle <code>Pour</code> :
+              </p>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="code-container">
+                    <pre><code class="language-algorithm" v-pre>Lire(M)
+Pour i de 1 à 3 Faire
+  Si M ≤ 0 Alors
+    Écrire("Erreur ! Recommencez :")
+    Lire(M)
+  FinSi
+Fin Pour</code></pre>
+                  </div>
                 </div>
-                <div class="col-md-8">
-                  <p class="small text-muted mb-0">
-                    Saisissez les ventes journalières ci-dessous pour calculer les primes automatiques :
-                  </p>
+
+                <div class="col-md-6">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Que se passe-t-il si l'utilisateur saisit 4 fois de suite une valeur négative (ex: $-5$, $-2$, $-10$, $-3$) ? La valeur finale $M$ est-elle garantie positive ?</li>
+                    <li class="mb-2">Est-il possible à l'avance de prévoir le nombre exact d'erreurs que commettra un utilisateur ?</li>
+                    <li>Pourquoi la boucle <code>Pour</code> est-elle fondamentalement inadaptée pour sécuriser une saisie ?</li>
+                  </ol>
                 </div>
               </div>
 
-              <!-- Jours Inputs -->
-              <div class="row g-2 mb-3">
-                <!-- On boucle sur joursAffiches et on attache :key="item.id" -->
-                <div v-for="(item, idx) in simVentesJour" :key="item.id" class="col-6 col-sm-4 col-md-2">
-                  <div class="p-2 border border-secondary border-opacity-25 rounded bg-subtle text-center"
-                    v-if="idx < simJours">
-                    <small class="d-block text-muted">Jour {{ idx + 1 }}</small>
-                    <!-- v-model lié à la propriété d'objet item.ventes -->
-                    <input type="number" class="form-control form-control-sm text-center font-mono mt-1"
-                      v-model.number="item.ventes" min="0">
-                    <span v-if="item?.ventes > 10" class="badge bg-success mt-1" style="font-size: 0.65rem;">
-                      +15 DT
-                    </span>
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Répondez aux trois questions sur votre cahier et formulez le principe d'une boucle non bornée.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 2 -->
+        <section id="act2-patron-controle" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 2 — Le patron universel de saisie contrôlée</h3>
+              <span class="badge bg-secondary">Socle · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                On souhaite saisir un entier $n$ et s'assurer qu'il est <strong>strictement positif</strong> ($n > 0$). Voici le patron algorithmique normalisé :
+              </p>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="code-container">
+                    <div class="code-header"><span>Patron algorithmique officiel</span></div>
+                    <pre><code class="language-algorithm" v-pre>Lire(n)
+Tant que n ≤ 0 Faire
+  Écrire("Erreur : n doit être strictement positif !")
+  Lire(n)
+Fin Tant que</code></pre>
                   </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="table-responsive mb-2">
+                    <table class="table table-custom table-sm table-bordered mb-0">
+                      <thead>
+                        <tr><th>Objet</th><th>Type / Nature</th><th>Rôle</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>n</code></td><td class="empty-cell">.........................</td><td class="empty-cell">Entier strictement positif saisi</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Quelle est la <strong>condition de continuation</strong> de la boucle ? En quoi est-elle l'inverse de la condition de validité ?</li>
+                    <li class="mb-2">Compléter le TDO ci-dessus sur votre cahier.</li>
+                    <li>Traduire ce patron en langage Python avec conversion numérique explicite <code>int(input())</code>.</li>
+                  </ol>
                 </div>
               </div>
 
-              <!-- Simulator Results -->
-              <div class="p-3 rounded bg-body-tertiary border border-secondary border-opacity-25">
-                <div class="row text-center g-2">
-                  <div class="col-md-4">
-                    <small class="text-muted d-block">Total Articles Vendus</small>
-                    <span class="fs-5 fw-bold font-mono text-info">{{ totalVentesSim }}</span>
-                  </div>
-                  <div class="col-md-4">
-                    <small class="text-muted d-block">Jours avec Prime (&gt;10)</small>
-                    <span class="fs-5 fw-bold font-mono text-warning">{{ nbJoursPrimeSim }} / {{ simJours }}</span>
-                  </div>
-                  <div class="col-md-4">
-                    <small class="text-muted d-block">Salaire Net Mensuel</small>
-                    <span class="fs-4 fw-bold font-mono text-success">{{ salaireNetSim.toFixed(3) }} DT</span>
-                  </div>
-                </div>
-                <div v-if="hasPrimeGlobaleSim" class="alert alert-success m-0 mt-3 p-2 text-center small fw-bold">
-                  <i class="bi bi-trophy-fill me-1"></i> Prime Globale de 100.000 DT débloquée ! (Total &gt; 150 ventes)
-                </div>
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez le TDO et le script Python sur votre cahier, puis testez-le sur machine.
               </div>
             </div>
           </div>
         </section>
       </article>
 
-      <!-- Article 4: Auto-évaluation -->
-      <article class="article-content-wrapper">
-        <h2><i class="bi bi-patch-question-fill text-warning me-2"></i> Auto-évaluation</h2>
+      <!-- =========================================================================
+           ARTICLE 3: PALIER INTERMÉDIAIRE (MAÎTRISE & AUTONOMIE)
+           ========================================================================= -->
+      <article id="palier-intermediaire" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 INTERMÉDIAIRE — Maîtrise & Autonomie</h2>
+        <p class="text-muted small mb-3">Tracer pas à pas le déroulement des itérations et déboguer les erreurs logiques de terminaison.</p>
 
-        <section id="section-quiz" class="section-pane">
-          <h3>Quiz Diagnostique & Consolidation</h3>
-
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Le modulo % calcule le reste. Si x % 2 == 0, x est pair.">
-                  <div class="question-text">1. Condition pour tester si un entier 'x' est pair ?</div>
-                  <ul class="quiz-options">
-                    <li>x % 2 == 0</li>
-                    <li>x / 2 == 0</li>
-                    <li>x // 2 == 0</li>
-                    <li>x % 2 == 1</li>
-                  </ul>
+        <!-- Activité 3 -->
+        <section id="act3-trace-variables" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 3 — Tracé d'exécution pas à pas et suivi de variables</h3>
+              <span class="badge bg-secondary">Maîtrise · 15 min</span>
+            </div>
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-5">
+                  <div class="code-container">
+                    <div class="code-header"><span>Algorithme DivisionIterative</span></div>
+                    <pre><code class="language-algorithm" v-pre>x ← 18
+cpt ← 0
+Tant que x > 2 Faire
+  x ← x Div 2
+  cpt ← cpt + 1
+Fin Tant que
+Écrire("x final = ", x)
+Écrire("Itérations = ", cpt)</code></pre>
+                  </div>
                 </div>
 
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="range(1, 5) génère de 1 à 4 (5 exclu).">
-                  <div class="question-text">2. Valeurs de 'i' dans : for i in range(1, 5) ?</div>
-                  <ul class="quiz-options">
-                    <li>1, 2, 3, 4, 5</li>
-                    <li>1, 2, 3, 4</li>
-                    <li>0, 1, 2, 3, 4</li>
-                    <li>1, 5</li>
-                  </ul>
+                <div class="col-md-7">
+                  <p class="small mb-2">Reproduire et compléter sur votre cahier le tableau de trace suivant :</p>
+                  <div class="table-responsive my-2">
+                    <table class="table table-custom table-sm table-bordered text-center mb-0">
+                      <thead>
+                        <tr><th>Itération N°</th><th>Condition <code>x > 2</code></th><th><code>x ← x Div 2</code></th><th><code>cpt</code></th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Initialisation</td><td>—</td><td><code>18</code></td><td><code>0</code></td></tr>
+                        <tr><td>Itération 1</td><td class="empty-cell">Vrai (18 > 2)</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td>Itération 2</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td>Itération 3</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td>Itération 4</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <ol class="small mb-0 ps-3 mt-2">
+                    <li>Quelles sont les valeurs finales affichées pour <code>x</code> et <code>cpt</code> ?</li>
+                    <li>Pour quelle valeur de $x$ la condition devient-elle fausse ?</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Remplissez le tableau de trace et donnez les affichages finaux sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 4 -->
+        <section id="act4-debogage-boucle-infinie" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 4 — Débogage d'une boucle infinie (erreur de terminaison)</h3>
+              <span class="badge bg-secondary">Maîtrise · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Un élève a écrit le script Python ci-dessous pour forcer la saisie d'un entier strictement positif. Lorsqu'il saisit une valeur négative (ex: <code>-3</code>), la console affiche indéfiniment <code>"Valeur invalide !"</code> et la machine semble bloquée.
+              </p>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="code-container">
+                    <div class="code-header"><span>Script Python erroné</span></div>
+                    <pre><code class="language-python" v-pre># Saisie d'un entier strictement positif
+n = int(input("Donner un entier positif : "))
+while n <= 0:
+    print("Valeur invalide !")
+
+print("Merci, vous avez saisi :", n)</code></pre>
+                  </div>
                 </div>
 
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Conventions : Si...Alors...Sinon...FinSi.">
-                  <div class="question-text">3. Syntaxe algorithmique de l'alternative ?</div>
-                  <ul class="quiz-options">
-                    <li>If...Then...Else</li>
-                    <li>Si...Faire...Sinon</li>
-                    <li>Si...Alors...Sinon...FinSi</li>
-                    <li>Selon...Cas...FinSelon</li>
-                  </ul>
+                <div class="col-md-6">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Expliquer précisément pourquoi ce script provoque une <strong>boucle infinie</strong>.</li>
+                    <li class="mb-2">Quelle instruction obligatoire manque-t-il à l'intérieur du bloc <code>while</code> pour assurer la terminaison de l'algorithme ?</li>
+                    <li>Réécrire le script Python corrigé sur votre cahier puis le tester sur machine.</li>
+                  </ol>
                 </div>
+              </div>
 
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="De 1 à N inclus avec pas de 1 = N exécutions.">
-                  <div class="question-text">4. Nombre d'exécutions de 'Pour i de 1 à N Faire' ?</div>
-                  <ul class="quiz-options">
-                    <li>N fois</li>
-                    <li>N - 1 fois</li>
-                    <li>N + 1 fois</li>
-                    <li>Indéfiniment</li>
-                  </ul>
-                </div>
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Notez l'explication de l'anomalie et le code Python corrigé sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
 
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Une boucle for sur chaîne parcourt chaque caractère.">
-                  <div class="question-text">5. Effet de : for c in 'PYTHON' : ?</div>
-                  <ul class="quiz-options">
-                    <li>Parcourt chaque caractère de la chaîne un par un</li>
-                    <li>Répète 6 fois sans variable</li>
-                    <li>Génère une erreur de type</li>
-                    <li>Convertit la chaîne en entier</li>
-                  </ul>
-                </div>
+      <!-- =========================================================================
+           ARTICLE 4: PALIER AVANCÉ (DÉPASSEMENT & DÉFI SCIENTIFIQUE)
+           ========================================================================= -->
+      <article id="palier-avance" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-rocket-takeoff text-success me-2"></i> PALIER 🔴 AVANCÉ — Dépassement & Défi scientifique</h2>
+        <p class="text-muted small mb-3">Gérer des sentinelles dynamiques et modéliser des phénomènes physiques réels.</p>
 
+        <!-- Activité 5 -->
+        <section id="act5-sentinelle-dynamique" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 5 — Accumulation continue arrêtée par sentinelle</h3>
+              <span class="badge bg-secondary">Avancé · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                Dans un laboratoire, on saisit au clavier une suite de températures réelles positives $t$ relevées lors d'une réaction exothermique. Le nombre de mesures n'est pas fixé à l'avance : la saisie se termine dès que l'opérateur introduit la valeur sentinelle <strong>$-999.0$</strong>.
+              </p>
+
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Écrire l'algorithme permettant de calculer et d'afficher la moyenne arithmétique de ces températures. <em>Attention : la valeur sentinelle $-999.0$ ne doit pas être comptabilisée dans la somme ni dans le nombre de mesures !</em></li>
+                <li class="mb-2">Établir le TDO complet de votre solution.</li>
+                <li><strong>Cas limite :</strong> Comment votre algorithme se comporte-t-il si l'opérateur tape directement $-999.0$ dès la première saisie ? Quelle condition protectrice devez-vous ajouter pour éviter une erreur fatale de division par zéro (<code>ZeroDivisionError</code>) ?</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme complet avec la protection contre la division par zéro sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 6 -->
+        <section id="act6-decroissance-radioactive" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 6 — Modélisation scientifique : Décroissance radioactive et Demi-vie</h3>
+              <span class="badge bg-success text-white">Défi Avancé · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                <strong>Contexte physique :</strong> Un échantillon radioactif contient initialement $N_0 = 100\,000$ noyaux instables. Chaque année, par désintégration nucléaire, le nombre de noyaux diminue de $5\%$ par rapport à l'année précédente :
+                $$N_{t+1} = N_t \times (1 - 0.05) = N_t \times 0.95$$
+                La <strong>période radioactive (ou demi-vie)</strong> correspond à la durée nécessaire pour que le nombre de noyaux restants devienne strictement inférieur à la moitié de la quantité initiale, soit $N < N_0 / 2 = 50\,000$.
+              </p>
+
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Identifier la variable d'accumulation temporelle (nombre d'années) et la condition d'arrêt de la simulation.</li>
+                <li class="mb-2">Écrire l'algorithme complet <code>DemiVie</code> utilisant une boucle <code>Tant Que</code> pour déterminer le nombre d'années nécessaires pour atteindre la demi-vie.</li>
+                <li class="mb-2">Dresser le Tableau de Déclaration des Objets (TDO).</li>
+                <li>Implémenter et exécuter ce programme sous Python. Quel est le résultat obtenu ? (Vérifier que la demi-vie est d'environ 14 ans).</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme complet, le TDO et le résultat du calcul de demi-vie sur votre cahier.
               </div>
             </div>
           </div>
@@ -864,10 +441,9 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
     </main>
 
     <!-- Footer -->
-    <footer class="footer-custom">
-      <div class="container text-center">
-        <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-        <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-muted">
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 2 : Boucle Tant Que & Contrôle de saisie · Algorithmique & Python</p>
       </div>
     </footer>
   </div>
@@ -882,7 +458,6 @@ print("Salaire net mensuel :", salaire_net, "DT")</code></pre>
   <script src="assets/js/clipboard.js"></script>
   <script src="assets/js/draggable.js"></script>
   <script src="assets/js/pages.js"></script>
-  <!-- Application Script for Séance 2 -->
   <script src="assets/app/seance02.js"></script>
 </body>
 

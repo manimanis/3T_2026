@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance N°3 : Structure Conditionnelle à Choix Multiples (Selon / match...case) | 3ème Secondary</title>
+  <title>Séance 3 · TP Évalué N°1 : Contrôle de saisie & Boucle Tant Que — 3e Sciences</title>
   <meta name="description"
-    content="Séance N°3 : Étude et implémentation de la structure conditionnelle à choix multiples (Selon / match...case en Python 3.10) pour la 3ème Année Secondary.">
+    content="Séance 3 d'informatique pour 3e Sciences : Évaluation pratique sur machine N°1 (TP noté individuel) sur les boucles itératives non bornées et le contrôle de saisie.">
 
   <!-- Anti-FOUC Early Theme Script -->
   <script>
@@ -16,7 +16,7 @@
     })();
   </script>
 
-  <!-- Static CSS Assets -->
+  <!-- CSS Assets -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/highlight-github.min.css">
   <link rel="stylesheet" href="assets/css/katex.min.css">
@@ -24,17 +24,44 @@
 
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    .phase-pill-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 1020;
+      background: var(--bg-navbar);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cahier-zone {
+      border: 1px dashed var(--border-color);
+      border-radius: 0.4rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .empty-cell {
+      color: var(--text-dim);
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 
 <body>
 
   <div id="app">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand navbar-brand-custom" href="index.html">
           <i class="bi bi-code-slash fs-3"></i>
-          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Sciences</small></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <i class="bi bi-list fs-2"></i>
@@ -46,12 +73,9 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
-              au Plan</a>
-            <!-- Theme Toggle Button -->
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi"
-                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -59,626 +83,292 @@
       </div>
     </nav>
 
-    <!-- Sub-Header / Breadcrumb -->
-    <header class="py-3 border-bottom border-secondary border-opacity-25">
-      <div class="container px-lg-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <!-- Header Section -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-50 mb-1">
-              Module 2 • Séance N°3
-            </span>
-            <h1 class="h3 mb-0 fw-bold">Structure Conditionnelle à Choix Multiples (<code>Selon</code> /
-              <code>match...case</code>)
-            </h1>
-            <p class="text-muted small mb-0 mt-1">
-              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
-            </p>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-25">
+                SÉANCE 3 · ÉVALUATION PRATIQUE N° 1
+              </span>
+              <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
+                <i class="bi bi-clock me-1"></i> 90 min
+              </span>
+              <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25">
+                Barème : /20 pts (Épreuve sur Machine)
+              </span>
+            </div>
+            <h1 class="h3 fw-bold mb-1">TP Évalué : Contrôle de saisie & Boucle Tant Que sur Machine</h1>
+            <p class="text-muted small mb-0">Évaluation individuelle sur poste de travail — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Main Content Layout -->
-    <main class="container px-lg-4 my-4">
-
-      <!-- Article 1: Fiche Pédagogique -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte & Fiche Pédagogique</h2>
-
-        <section id="section-objectifs" class="section-pane">
-          <h3>1. Objectifs & Déroulement de la Séance</h3>
-
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-primary fw-bold">
-                  <h4 class="h5 card-title text-primary"><i class="bi bi-bullseye me-2"></i> A. Savoirs (Connaissances)</h4>
-                  <ul class="list-custom mb-0">
-                    <li>Choix multiples (<code>Selon</code>) vs <code>Si</code> imbriqués.</li>
-                    <li>Syntaxe <code>Selon</code> avec sélecteur <strong>scalaire</strong>.</li>
-                    <li>Listes de valeurs (<code>v1, v2</code>) et intervalles (<code>v1 .. v2</code>).</li>
-                    <li>Traduction Python avec <code>match ... case</code> (Python 3.10+).</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)
-                </div>
-                <div class="card-body">
-                  <ul class="list-custom mb-0">
-                    <li>Conception de menus interactifs à choix multiples.</li>
-                    <li>Gestion de l'option par défaut (<code>Sinon</code> / <code>case _</code>).</li>
-                    <li>Implémentation et test de scripts Python avec branchements multiples.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Chronogramme -->
-          <div class="card card-custom">
-            <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement (90 min)
-            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
-                    <tr>
-                      <th>Phase</th>
-                      <th>Durée</th>
-                      <th>Activité Enseignant</th>
-                      <th>Activité Élève</th>
-                      <th>Support</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><span class="badge bg-secondary">1. Mise en situation</span></td>
-                      <td>15 min</td>
-                      <td>Menu à 5 choix : limites du <code>Si</code> imbriqué.</td>
-                      <td>Besoin d'une structure à choix multiples.</td>
-                      <td>Tableau</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-primary">2. Synthèse</span></td>
-                      <td>20 min</td>
-                      <td>Syntaxe <code>Selon</code> et <code>match...case</code>.</td>
-                      <td>Prise de notes, motifs <code>case</code>.</td>
-                      <td>Fiche</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-success">3. Pratique</span></td>
-                      <td>40 min</td>
-                      <td>Activité convertisseur stockage et TDO.</td>
-                      <td>Analyse, TDO, algorithme et codage.</td>
-                      <td>Python</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
-                      <td>15 min</td>
-                      <td>Vérification et test de la clause <code>case _</code>.</td>
-                      <td>Tests machine et correction.</td>
-                      <td>Python</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 2: Synthèse du Cours -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
-
-        <section id="section-cours-selon" class="section-pane">
-          <h3>2. Structure Selon / match...case</h3>
-          <p class="text-muted">
-            Sélectionne un traitement selon la valeur d'une variable unique (<strong>sélecteur</strong>).
-          </p>
-
-          <div class="alert alert-info border border-info border-opacity-25 mb-4">
-            <p class="mb-0 small">
-              <i class="bi bi-lightbulb-fill me-1"></i> Le sélecteur doit être de <strong>type scalaire</strong> (<code>Entier</code>, <code>Caractère</code>, <code>Booléen</code>). <code>Réel</code> et <code>Chaîne</code> sont exclus.
-            </p>
-          </div>
-
-          <!-- Diagramme Vectoriel Selon Multiples -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-diagram-3 me-2"></i> Diagramme d'exécution vectoriel : Structure Selon / match...case
-            </div>
-            <div class="card-body bg-body-tertiary text-center p-3">
-              <img src="images/seance03/selon_multiples.svg" alt="Diagramme Structure Selon / match case"
-                class="img-fluid" style="max-height: 220px; width: 100%;">
-            </div>
-          </div>
-
-          <!-- Comparaison Syntaxe Algorithme vs Python -->
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-code-square me-2"></i> Algorithme
-                </div>
-                <div class="card-body d-flex flex-column">
-                  <div class="code-container h-100 m-0">
-                    <pre><code class="language-algorithm">Selon Sélecteur
-    Valeur1 : Traitement1
-    Valeur2, Valeur3 : Traitement2
-    Valeur4 .. Valeur5 : Traitement3
-    Sinon
-        TraitementParDéfaut
-Fin Selon</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-warning fw-bold">
-                  <i class="bi bi-filetype-py me-2"></i> Python 3.10+ (<code>match ... case</code>)
-                </div>
-                <div class="card-body d-flex flex-column">
-                  <div class="code-container h-100 m-0">
-                    <pre><code class="language-python">match selecteur:
-    case valeur1:
-        traitement1
-    case valeur2 | valeur3:
-        traitement2
-    case s if valeur4 &lt;= s &lt;= valeur5:
-        traitement3
-    case _:
-        traitement_par_defaut</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Exemples Concrets d'Application -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-success fw-bold">
-              <i class="bi bi-lightbulb-fill me-2"></i> Exemple Concret : Détermination de Mention selon la Note
-            </div>
-            <div class="card-body">
-              <div class="row g-4">
-                <div class="col-md-6 d-flex flex-column">
-                  <small class="text-primary fw-bold d-block mb-1">Algorithme :</small>
-                  <div class="code-container h-100 m-0">
-                    <pre><code class="language-algorithm">Selon note
-    0 .. 9 : mention ← "Ajourné"
-    10 .. 11 : mention ← "Passable"
-    12 .. 13 : mention ← "Assez Bien"
-    14 .. 15 : mention ← "Bien"
-    16 .. 20 : mention ← "Très Bien"
-    Sinon : mention ← "Note invalide"
-Fin Selon</code></pre>
-                  </div>
-                </div>
-                <div class="col-md-6 d-flex flex-column">
-                  <small class="text-warning fw-bold d-block mb-1">Python 3.10+ (match ... case) :</small>
-                  <div class="code-container h-100 m-0">
-                    <pre><code class="language-python">match note:
-    case n if 0 &lt;= n &lt;= 9:
-        mention = "Ajourné"
-    case n if 10 &lt;= n &lt;= 11:
-        mention = "Passable"
-    case n if 12 &lt;= n &lt;= 13:
-        mention = "Assez Bien"
-    case n if 14 &lt;= n &lt;= 15:
-        mention = "Bien"
-    case n if 16 &lt;= n &lt;= 20:
-        mention = "Très Bien"
-    case _:
-        mention = "Note invalide"</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-success fw-bold">
-              <i class="bi bi-list-check me-2"></i> Correspondance des Notations Algorithmiques et Python
-            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
-                    <tr>
-                      <th>Cas de figure</th>
-                      <th>Syntaxe Algorithmique</th>
-                      <th>Syntaxe Python (<code>match...case</code>)</th>
-                      <th>Exemple concret</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Valeur isolée</strong></td>
-                      <td><code>1 : Traitement</code></td>
-                      <td><code>case 1:</code></td>
-                      <td>Option 1 de menu</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Liste de valeurs</strong></td>
-                      <td><code>'A', 'E', 'I', 'O' : Traitement</code></td>
-                      <td><code>case 'A' | 'E' | 'I' | 'O':</code></td>
-                      <td>Test des voyelles</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Intervalle de valeurs</strong></td>
-                      <td><code>10 .. 20 : Traitement</code></td>
-                      <td><code>case x if 10 &lt;= x &lt;= 20:</code></td>
-                      <td>Note suffisante entre 10 et 20</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Option par défaut</strong></td>
-                      <td><code>Sinon : Traitement</code></td>
-                      <td><code>case _:</code></td>
-                      <td>Saisie incorrecte ou hors limites</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 3: Activité 1 - Refactoring Code -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Analyse Comparée & Refactoring (<code>if...elif</code> &rarr; <code>match...case</code>)</h2>
-
-        <section id="section-activite1" class="section-pane">
-          <h3>Activité 1 : Refactoring if/elif &rarr; match/case (10 min)</h3>
-          <p class="text-muted mb-4">
-            Comparez les deux versions (<code>if...elif</code> vs <code>match...case</code>) et répondez aux questions :
-          </p>
-
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-danger fw-bold">
-                  <i class="bi bi-x-circle me-2"></i> Version 1 : Code initial (avec <code>if / elif</code>)
-                </div>
-                <div class="card-body d-flex flex-column">
-                  <div class="code-container h-100 m-0">
-                    <pre><code class="language-python">code = int(input("Entrez le code tarifaire (1-4) : "))
-
-if code == 1:
-    tarif = 10.0
-elif code == 2 or code == 3:
-    tarif = 15.0
-elif code == 4:
-    tarif = 20.0
-else:
-    tarif = 0.0
-    print("Code invalide")
-
-print("Tarif appliqué :", tarif, "DT")</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-check-circle me-2"></i> Version 2 : Code modernisé (avec <code>match...case</code>)
-                </div>
-                <div class="card-body d-flex flex-column">
-                  <div class="code-container h-100 m-0">
-                    <pre><code class="language-python">code = int(input("Entrez le code tarifaire (1-4) : "))
-
-match code:
-    case 1:
-        tarif = 10.0
-    case 2 | 3:
-        tarif = 15.0
-    case 4:
-        tarif = 20.0
-    case _:
-        tarif = 0.0
-        print("Code invalide")
-
-print("Tarif appliqué :", tarif, "DT")</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Questions de réflexion guidée -->
-          <div class="card card-custom">
-            <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-question-circle me-2"></i> Questions d'Analyse et de Réflexion
-            </div>
-            <div class="card-body">
-              <ol class="list-group list-group-numbered mb-0">
-                <li class="list-group-item bg-transparent border-0 ps-0 text-body">
-                  <strong>Identification du Sélecteur :</strong> Quelle est la variable testée dans la structure <code>match</code> et quel est son type ?
-                </li>
-                <li class="list-group-item bg-transparent border-0 ps-0 text-body">
-                  <strong>Traduction de la liste de valeurs :</strong> Comment l'instruction alternative <code>elif code == 2 or code == 3:</code> a-t-elle été simplifiée dans le bloc <code>match...case</code> ?
-                </li>
-                <li class="list-group-item bg-transparent border-0 ps-0 text-body">
-                  <strong>Traitement par défaut :</strong> À quoi correspond le motif <code>case _:</code> et quel est son rôle ?
-                </li>
-                <li class="list-group-item bg-transparent border-0 ps-0 text-body">
-                  <strong>Avantage de lisibilité :</strong> Pourquoi la structure <code>match...case</code> est-elle préférée à une longue suite de <code>if...elif</code> lorsque l'on teste les valeurs d'une seule variable ?
-                </li>
-              </ol>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 4: Activité 2 - Problème & Simulateur Interactif -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-laptop text-warning me-2"></i> Activité 2 : Convertisseur de Stockage & Calculateur Réseau
-        </h2>
-
-        <section id="section-activite2" class="section-pane">
-          <h3>Activité 2 : Convertisseur de Stockage & Réseau</h3>
-
-          <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
-            <h5 class="alert-heading h6 fw-bold mb-2"><i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé :</h5>
-            <p class="mb-2">
-              Convertir des tailles de stockage (Octets) et calculer la durée de téléchargement (10 Mo/s) :
-            </p>
-            <ul class="mb-0 small">
-              <li><strong>Option 1 :</strong> Octets &rarr; <strong>Ko</strong> ($1 \text{ Ko} = 1024 \text{ Octets}$).</li>
-              <li><strong>Option 2 :</strong> Octets &rarr; <strong>Mo</strong> ($1 \text{ Mo} = 1024^2 \text{ Octets}$).</li>
-              <li><strong>Option 3 :</strong> Octets &rarr; <strong>Go</strong> ($1 \text{ Go} = 1024^3 \text{ Octets}$).</li>
-              <li><strong>Option 4 :</strong> Durée de téléchargement (vitesse fixe <strong>10 Mo/s</strong>).</li>
-            </ul>
-          </div>
-
-          <!-- TDO Table -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-table me-2"></i> Tableau de Déclaration des Objets (TDO)
-            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
-                    <tr>
-                      <th>Objet</th>
-                      <th>Type / Nature</th>
-                      <th>Rôle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><code>choix</code></td>
-                      <td>Entier</td>
-                      <td>Sélecteur d'option de menu (1 à 4)</td>
-                    </tr>
-                    <tr>
-                      <td><code>taille_octets</code></td>
-                      <td>Réel</td>
-                      <td>Taille du fichier saisie en Octets</td>
-                    </tr>
-                    <tr>
-                      <td><code>resultat</code></td>
-                      <td>Réel</td>
-                      <td>Résultat du calcul de conversion ou de durée</td>
-                    </tr>
-                    <tr>
-                      <td><code>VITESSE_MO_S</code></td>
-                      <td>Constante = 10.0</td>
-                      <td>Vitesse de connexion réseau fixe (Mo/s)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Simulateur Interactif Vue 3 -->
-          <div class="card card-custom mb-4 border border-primary border-opacity-50 shadow-sm">
-            <div class="card-header-custom text-primary fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-cpu-fill me-2"></i> Simulateur Interactif de Conversions & Calcul Réseau</span>
-              <span class="badge bg-primary">Vue 3 App</span>
-            </div>
-            <div class="card-body bg-body-tertiary">
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label fw-bold small">1. Sélectionner l'Option (Sélecteur `choix`) :</label>
-                  <select v-model.number="choix" class="form-select">
-                    <option :value="1">1. Convertir en Kilo-Octets (Ko)</option>
-                    <option :value="2">2. Convertir en Méga-Octets (Mo)</option>
-                    <option :value="3">3. Convertir en Giga-Octets (Go)</option>
-                    <option :value="4">4. Calculer la durée de téléchargement (10 Mo/s)</option>
-                    <option :value="99">99. Choix Invalide (Test branche Sinon / case _)</option>
-                  </select>
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label fw-bold small">2. Taille du Fichier en Octets (`taille_octets`) :</label>
-                  <input type="number" v-model.number="tailleOctets" class="form-control"
-                    placeholder="Entrez le nombre d'octets...">
-                  <div class="d-flex gap-1 mt-1">
-                    <button type="button" class="btn btn-xs btn-outline-secondary" @click="presetOctets(1048576)">1 Mo
-                      (1048576 B)</button>
-                    <button type="button" class="btn btn-xs btn-outline-secondary" @click="presetOctets(1073741824)">1
-                      Go (1073741824 B)</button>
-                    <button type="button" class="btn btn-xs btn-outline-secondary" @click="presetOctets(500000000)">500
-                      Mo</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Output Display Card -->
-              <div class="card card-custom mt-3 border border-secondary border-opacity-25">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="badge bg-dark font-mono">{{ calculResultat.pythonCase }}</span>
-                    <span class="small text-muted font-mono">{{ calculResultat.details }}</span>
-                  </div>
-                  <div class="display-6 fw-bold text-primary font-mono mb-1">
-                    {{ calculResultat.valeur }} <span class="fs-5 text-muted">{{ calculResultat.unite }}</span>
-                  </div>
-                  <small class="text-muted d-block">Taille saisie : <strong>{{ formatOctets }} Octets</strong></small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Code Implementations -->
-          <div class="row g-4">
-            <div class="col-md-6 d-flex flex-column">
-              <div class="code-container h-100 m-0">
-                <div class="code-header"><span>Algorithme Officiel (Conventions 2024)</span></div>
-                <pre><code class="language-algorithm">ALGORITHME Convertisseur_Stockage
-DEBUT
-    Écrire("1. Convertir en Ko")
-    Écrire("2. Convertir en Mo")
-    Écrire("3. Convertir en Go")
-    Écrire("4. Calculer la durée (10 Mo/s)")
-    Lire(choix)
-    Lire(taille_octets)
-    
-    Selon choix
-        1 : 
-            resultat ← taille_octets / 1024
-            Écrire("Taille en Ko : ", resultat)
-        2 : 
-            resultat ← taille_octets / (1024 * 1024)
-            Écrire("Taille en Mo : ", resultat)
-        3 : 
-            resultat ← taille_octets / (1024 * 1024 * 1024)
-            Écrire("Taille en Go : ", resultat)
-        4 : 
-            resultat ← (taille_octets / (1024 * 1024)) / VITESSE_MO_S
-            Écrire("Durée : ", resultat, " s")
-        Sinon
-            Écrire("Erreur : Choix invalide !")
-    Fin Selon
-FIN</code></pre>
-              </div>
-            </div>
-
-            <div class="col-md-6 d-flex flex-column">
-              <div class="code-container h-100 m-0">
-                <div class="code-header"><span>Implémentation Python 3.10+ (Python IDE)</span></div>
-                <pre><code class="language-python"># Constantes
-VITESSE_MO_S = 10.0
-
-choix = int(input("Votre choix (1-4) : "))
-taille_octets = float(input("Donner la taille en Octets : "))
-
-match choix:
-    case 1:
-        resultat = taille_octets / 1024
-        print("Taille en Ko :", round(resultat, 3))
-    case 2:
-        resultat = taille_octets / (1024 * 1024)
-        print("Taille en Mo :", round(resultat, 3))
-    case 3:
-        resultat = taille_octets / (1024 * 1024 * 1024)
-        print("Taille en Go :", round(resultat, 4))
-    case 4:
-        taille_mo = taille_octets / (1024 * 1024)
-        resultat = taille_mo / VITESSE_MO_S
-        print("Durée estimée :", round(resultat, 2), "s")
-    case _:
-        print("Erreur : Choix invalide !")</code></pre>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 5: Évaluation Formative -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
-
-        <section id="section-quiz" class="section-pane">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Selon s'appuie sur une variable sélecteur scalaire.">
-                  <div class="question-text">1. Rôle du sélecteur dans la structure Selon ?</div>
-                  <ul class="quiz-options">
-                    <li>Évaluer une valeur scalaire pour choisir la branche correspondante</li>
-                    <li>Évaluer une condition logique complexe</li>
-                    <li>Répéter une instruction N fois</li>
-                    <li>Déclarer une variable locale</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="case _: correspond à la clause par défaut (Sinon).">
-                  <div class="question-text">2. Que représente 'case _:' dans match...case ?</div>
-                  <ul class="quiz-options">
-                    <li>Une variable nommée _</li>
-                    <li>La branche par défaut (Sinon)</li>
-                    <li>Une erreur d'exécution</li>
-                    <li>Une valeur nulle</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Python 3.10+ : match...case.">
-                  <div class="question-text">3. Syntaxe Python officielle du choix multiple ?</div>
-                  <ul class="quiz-options">
-                    <li>switch...case</li>
-                    <li>select...case</li>
-                    <li>match...case</li>
-                    <li>choose...case</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="| combine plusieurs valeurs (OU).">
-                  <div class="question-text">4. Signification de 'case 1 | 2:' ?</div>
-                  <ul class="quiz-options">
-                    <li>Exécute si choix vaut 1 OU 2</li>
-                    <li>Exécute si choix vaut 1 ET 2</li>
-                    <li>Calcule 1 / 2</li>
-                    <li>Erreur de syntaxe</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Le sélecteur Selon doit être scalaire. Réel (float) est exclu.">
-                  <div class="question-text">5. Quel type est exclu comme sélecteur Selon ?</div>
-                  <ul class="quiz-options">
-                    <li>Réel (float)</li>
-                    <li>Entier (int)</li>
-                    <li>Caractère (str)</li>
-                    <li>Booléen (bool)</li>
-                  </ul>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </section>
-  </article>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer-custom">
-    <div class="container text-center">
-      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    <!-- Phase Quick Selector Bar -->
+    <div class="phase-pill-nav d-none d-md-block">
+      <div class="container d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp')">
+          Consignes de l'Épreuve
+        </button>
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle')">
+          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise')">
+          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence')">
+          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+        </button>
+      </div>
     </div>
-  </footer>
+
+    <!-- Main Content Container -->
+    <main class="container my-4">
+
+      <!-- =========================================================================
+           ARTICLE 1: CONSIGNES GÉNÉRALES
+           ========================================================================= -->
+      <article id="consignes" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DE L'ÉPREUVE PRATIQUE</h2>
+
+        <section id="consignes-tp" class="section-pane mb-4">
+          <div class="alert alert-secondary py-2 small mb-3">
+            <strong>Durée :</strong> 90 minutes. Le travail est strictement individuel sur machine. Créez sur votre bureau un fichier nommé <code>TP1_Nom_Prenom.py</code> dans lequel vous écrirez vos codes Python.
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="card card-custom h-100">
+                <div class="card-body py-2 small">
+                  <h6 class="text-primary mb-1"><i class="bi bi-check2-circle me-1"></i> Respect des Conventions</h6>
+                  <p class="text-muted mb-0">Nomenclature signifiante, types simples explicites, indentation rigoureuse, interdiction absolue de l'instruction <code>break</code>.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-custom h-100">
+                <div class="card-body py-2 small">
+                  <h6 class="text-warning mb-1"><i class="bi bi-pencil-square me-1"></i> Trace Écrite (Copie)</h6>
+                  <p class="text-muted mb-0">Rédigez sur votre feuille les analyses, les algorithmes demandés et les Tableaux de Déclaration des Objets (TDO).</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-custom h-100">
+                <div class="card-body py-2 small">
+                  <h6 class="text-success mb-1"><i class="bi bi-laptop me-1"></i> Validation Machine</h6>
+                  <p class="text-muted mb-0">Chaque module doit être testé avec les jeux d'essais du sujet avant validation par l'enseignant.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 2: PALIER SOCLE (8 PTS)
+           ========================================================================= -->
+      <article id="palier-socle" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 SOCLE DE RÉUSSITE (8 points)</h2>
+        <p class="text-muted small mb-3">Sécuriser la saisie des données d'un protocole expérimental et formaliser les déclarations d'objets.</p>
+
+        <!-- Activité 1 -->
+        <section id="act1-saisie-concentration" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 1 — Saisie filtrée d'une concentration molaire sous Python</h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                Dans un laboratoire de chimie, un protocole d'analyse exige la saisie d'une concentration molaire $C$ exprimée en $\text{mol/L}$. La valeur doit obligatoirement être comprise dans l'intervalle $[0.01 ; 2.50]$.
+              </p>
+
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Écrire sous Python la boucle de saisie avec <code>while</code> forçant l'utilisateur à introduire une valeur valide.</li>
+                <li class="mb-2">En cas de valeur hors plage, afficher le message d'avertissement : <code>"Erreur : la concentration doit être comprise entre 0.01 et 2.50 mol/L !"</code> et redemander la saisie.</li>
+                <li>Tester la boucle en entrant successivement <code>-0.5</code>, <code>0.005</code>, <code>3.2</code>, puis <code>0.15</code>.</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez le script de l'Activité 1 dans <code>TP1_Nom_Prenom.py</code> et notez l'algorithme sur votre feuille.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 2 -->
+        <section id="act2-tdo-justification" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 2 — Tableau de Déclaration des Objets & Justification des types</h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Dresser le Tableau de Déclaration des Objets (TDO) de l'Activité 1 sur votre feuille d'examen :
+              </p>
+
+              <div class="table-responsive my-3">
+                <table class="table table-custom table-sm table-bordered mb-0" style="max-width: 500px;">
+                  <thead>
+                    <tr><th>Objet</th><th>Type / Nature</th><th>Rôle & Justification du type</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><code>C</code></td><td class="empty-cell">.........................</td><td class="empty-cell">...........................................................................</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <ol class="small mb-0 ps-3">
+                <li>Pourquoi est-il impératif d'utiliser <code>float(input())</code> plutôt que <code>int(input())</code> pour cette grandeur ?</li>
+                <li>Que contiendrait la variable <code>C</code> si la conversion explicite <code>float()</code> avait été omise ?</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Remplissez le TDO et justifiez vos choix sur votre feuille d'évaluation.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 3: PALIER MAÎTRISE (8 PTS)
+           ========================================================================= -->
+      <article id="palier-maitrise" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 MAÎTRISE DU NIVEAU ATTENDU (8 points)</h2>
+        <p class="text-muted small mb-3">Traiter une série de relevés par sentinelle et implémenter des calculs statistiques conditionnels.</p>
+
+        <!-- Activité 3 -->
+        <section id="act3-absorbance-sentinelle" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 3 — Saisie d'une suite d'absorbances optiques par sentinelle</h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                On réalise un dosage spectrophotométrique (loi de Beer-Lambert). On saisit au clavier une suite de mesures d'absorbance réelles positives $A \ge 0$. L'opérateur arrête la saisie en entrant n'importe quelle <strong>valeur strictement négative</strong> (sentinelle, ex: <code>-1</code>).
+              </p>
+
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Écrire la boucle <code>while</code> permettant de lire cette série de mesures.</li>
+                <li class="mb-2">Comptabiliser le nombre total de mesures valides saisies à l'aide d'un compteur <code>nb_mesures</code>.</li>
+                <li>Afficher en sortie le nombre total de mesures enregistrées. <em>Rappel : la valeur négative d'arrêt ne doit pas être comptabilisée !</em></li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Ajoutez ce code dans <code>TP1_Nom_Prenom.py</code> et notez l'algorithme sur votre feuille.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 4 -->
+        <section id="act4-moyenne-protection" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 4 — Calcul cumulatif et gestion du cas limite sans mesure</h3>
+              <span class="badge bg-secondary">4 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                Compléter le programme de l'Activité 3 pour calculer la somme et la moyenne arithmétique de toutes les absorbances valides saisies.
+              </p>
+
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Initialiser et mettre à jour la somme cumulée des absorbances valides.</li>
+                <li class="mb-2"><strong>Sécurité division par zéro :</strong> Si <code>nb_mesures > 0</code>, calculer et afficher la moyenne sous la forme : <code>"Absorbance moyenne = [valeur]"</code>. Sinon, afficher : <code>"Aucune mesure valide enregistrée."</code>.</li>
+                <li>Tester le cas limite où l'utilisateur saisit <code>-1</code> dès le début. Vérifier que la machine n'affiche pas d'erreur <code>ZeroDivisionError</code>.</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Intégrez la condition protectrice dans votre script Python et justifiez-la sur votre feuille.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 4: PALIER DÉPASSEMENT & EXCELLENCE (4 PTS)
+           ========================================================================= -->
+      <article id="palier-excellence" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-trophy text-success me-2"></i> PALIER 🔴 DÉPASSEMENT & EXCELLENCE (4 points)</h2>
+        <p class="text-muted small mb-3">Modéliser un processus dynamique de laboratoire et valider la recette logicielle.</p>
+
+        <!-- Activité 5 -->
+        <section id="act5-simulation-vidange" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 5 — Modélisation dynamique : Vidange d'un réservoir à débit variable</h3>
+              <span class="badge bg-success text-white">Excellence · 2 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                Un réservoir de laboratoire contient initialement $V_0 = 100.0\text{ litres}$ d'eau distillée. Une fuite se déclare à la base : au cours de la première minute, le volume perdu est $q_0 = 2.0\text{ L}$. En raison de la baisse de pression hydrostatique, le débit de fuite diminue de $5\%$ chaque minute :
+                $$q_{t+1} = q_t \times 0.95$$
+                $$V_{t+1} = V_t - q_t$$
+                On souhaite déterminer le temps (en minutes) nécessaire pour que le volume restant devienne strictement inférieur au seuil critique $V_{seuil} = 5.0\text{ litres}$.
+              </p>
+
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Écrire l'algorithme complet utilisant une boucle <code>Tant Que</code> modélisant cette vidange minute par minute.</li>
+                <li class="mb-2">Implémenter et exécuter la simulation sous Python.</li>
+                <li>Afficher le temps final de vidange ainsi que le volume d'eau exact restant dans le réservoir.</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme sur votre feuille et enregistrez la fonction dans votre fichier Python.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 6 -->
+        <section id="act6-recette-validation" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 6 — Recette logicielle et validation par jeux d'essais</h3>
+              <span class="badge bg-success text-white">Excellence · 2 points</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Exécuter votre programme devant l'enseignant pour les 3 jeux d'essais imposés ci-dessous et consigner les résultats :
+              </p>
+
+              <div class="table-responsive my-2">
+                <table class="table table-custom table-sm table-bordered text-center mb-0">
+                  <thead>
+                    <tr><th>N° Test</th><th>Jeu de données injecté</th><th>Résultat attendu</th><th>Résultat obtenu sur machine</th><th>Statut</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Test 1</strong></td><td>$C = 0.50$ ; Mesures : $0.12$, $0.34$, $0.20$, $-1$</td><td>Moyenne absorbances $= 0.22$</td><td class="empty-cell">.....</td><td class="empty-cell">Conforme / Non conforme</td></tr>
+                    <tr><td><strong>Test 2</strong></td><td>$C = 1.25$ ; Mesure immédiate : $-5$</td><td>Message d'absence de mesure</td><td class="empty-cell">.....</td><td class="empty-cell">Conforme / Non conforme</td></tr>
+                    <tr><td><strong>Test 3</strong></td><td>Simulation vidange ($V_0 = 100$, $q_0 = 2.0$, seuil $5.0$)</td><td>Temps $\approx 78\text{ min}$</td><td class="empty-cell">.....</td><td class="empty-cell">Conforme / Non conforme</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Faites valider vos tests par l'enseignant et remettez votre copie d'examen ainsi que votre fichier <code>TP1_Nom_Prenom.py</code>.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-muted">
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 3 : TP Évalué N°1 (Tant Que & Contrôle de saisie) · Algorithmique & Python</p>
+      </div>
+    </footer>
   </div>
 
   <!-- JS Assets -->
@@ -691,8 +381,6 @@ match choix:
   <script src="assets/js/clipboard.js"></script>
   <script src="assets/js/draggable.js"></script>
   <script src="assets/js/pages.js"></script>
-
-  <!-- Application Script for Séance 3 -->
   <script src="assets/app/seance03.js"></script>
 </body>
 

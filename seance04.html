@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance N°4 : Structures itératives à condition d'arrêt (Tant Que & Répéter) | 3ème Secondary</title>
+  <title>Séance 4 · Boucle Répéter & Structure Selon — 3e Sciences</title>
   <meta name="description"
-    content="Séance N°4 : Étude et implémentation des Structures itératives à condition d'arrêt (Tant Que & Répéter...Jusqu'à) en Python pour la 3ème Année Secondaire.">
+    content="Séance 4 d'informatique pour 3e Sciences : Boucle à post-condition Répéter ... Jusqu'à, structure conditionnelle à choix multiples Selon (match...case) et menus interactifs.">
 
   <!-- Anti-FOUC Early Theme Script -->
   <script>
@@ -16,7 +16,7 @@
     })();
   </script>
 
-  <!-- Static CSS Assets -->
+  <!-- CSS Assets -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/highlight-github.min.css">
   <link rel="stylesheet" href="assets/css/katex.min.css">
@@ -24,17 +24,44 @@
 
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    .phase-pill-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 1020;
+      background: var(--bg-navbar);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cahier-zone {
+      border: 1px dashed var(--border-color);
+      border-radius: 0.4rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .empty-cell {
+      color: var(--text-dim);
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 
 <body>
 
   <div id="app">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand navbar-brand-custom" href="index.html">
           <i class="bi bi-code-slash fs-3"></i>
-          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Scientifiques</small></span>
+          <span>Informatique <small class="fs-6 text-muted fw-normal">3<sup>e</sup> Sciences</small></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <i class="bi bi-list fs-2"></i>
@@ -46,12 +73,9 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour
-              au Plan</a>
-            <!-- Theme Toggle Button -->
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi"
-                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -59,694 +83,322 @@
       </div>
     </nav>
 
-    <!-- Sub-Header / Breadcrumb -->
-    <header class="py-3 border-bottom border-secondary border-opacity-25">
-      <div class="container px-lg-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <!-- Header Section -->
+    <header class="py-3 border-bottom border-secondary border-opacity-25 bg-body-tertiary">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div>
-            <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-50 mb-1">
-              Module 2 • Séance N°4
-            </span>
-            <h1 class="h3 mb-0 fw-bold">Structures itératives à condition d'arrêt (<code>Tant Que</code> &amp;
-              <code>Répéter</code>)
-            </h1>
-            <p class="text-muted small mb-0 mt-1">
-              Niveau : 3<sup>e</sup> Sections Scientifiques • Durée : 1h 30mn
-            </p>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="badge bg-primary bg-opacity-25 text-primary-light border border-primary border-opacity-25">
+                SÉANCE 4 · APPRENTISSAGE
+              </span>
+              <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
+                <i class="bi bi-clock me-1"></i> 90 min
+              </span>
+              <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                Pédagogie Différenciée (3 Paliers)
+              </span>
+            </div>
+            <h1 class="h3 fw-bold mb-1">Boucle Répéter ... Jusqu'à & Structure Selon</h1>
+            <p class="text-muted small mb-0">Itérations post-test, sélecteurs scalaires, match...case et conception de menus interactifs — 3<sup>e</sup> Sciences</p>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Main Content Layout -->
-    <main class="container px-lg-4 my-4">
-
-      <!-- Article 1: Fiche Pédagogique -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> Contexte &amp; Fiche Pédagogique</h2>
-
-        <section id="section-objectifs" class="section-pane">
-          <h3>1. Objectifs &amp; Déroulement de la Séance</h3>
-
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-primary fw-bold">
-                  <h4 class="h5 card-title text-primary"><i class="bi bi-bullseye me-2"></i> A. Savoirs (Connaissances)</h4>
-                  <ul class="list-custom mb-0">
-                    <li>Boucles à condition d'arrêt (<code>Tant Que</code>, <code>Répéter</code>) vs <code>Pour</code>.</li>
-                    <li>Syntaxe <code>Tant Que</code> (évaluation préalable).</li>
-                    <li>Syntaxe <code>Répéter ... Jusqu'à</code> (évaluation postérieure).</li>
-                    <li>Traduction de <code>Répéter</code> en Python (<code>while not Condition</code>).</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-tools me-2"></i> B. Savoir-faire (Compétences pratiques)
-                </div>
-                <div class="card-body">
-                  <ul class="list-custom mb-0">
-                    <li>Algorithmes de <strong>contrôle de saisie</strong>.</li>
-                    <li>Arrêt d'une boucle par variable booléenne.</li>
-                    <li>Prévention des <strong>boucles infinies</strong> (mise à jour obligatoire).</li>
-                    <li>🚫 <strong>Règle :</strong> Interdiction stricte de <code>break</code>.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Chronogramme -->
-          <div class="card card-custom">
-            <div class="card-header-custom text-info fw-bold">
-              <i class="bi bi-clock-history me-2"></i> Déroulement (90 min)
-            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
-                    <tr>
-                      <th>Phase</th>
-                      <th>Durée</th>
-                      <th>Activité Enseignant</th>
-                      <th>Activité Élève</th>
-                      <th>Support</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><span class="badge bg-secondary">1. Situation Problème</span></td>
-                      <td>15 min</td>
-                      <td>Saisie d'un âge : limites de la boucle <code>Pour</code>.</td>
-                      <td>Impossibilité de prévoir le nombre d'erreurs.</td>
-                      <td>Tableau</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-primary">2. Synthèse</span></td>
-                      <td>20 min</td>
-                      <td>Structures <code>Tant Que</code> et <code>Répéter</code> (<code>while</code>).</td>
-                      <td>Poursuite vs arrêt, traduction Python.</td>
-                      <td>Fiche</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-success">3. Pratique</span></td>
-                      <td>40 min</td>
-                      <td>Jeu du Nombre Secret et TDO.</td>
-                      <td>Analyse, TDO, algorithme et codage.</td>
-                      <td>Python</td>
-                    </tr>
-                    <tr>
-                      <td><span class="badge bg-warning text-dark">4. Évaluation</span></td>
-                      <td>15 min</td>
-                      <td>Contrôle des boucles et élimination de <code>break</code>.</td>
-                      <td>Tests machine et quiz.</td>
-                      <td>Python</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 2: Synthèse du Cours -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-journal-text text-primary me-2"></i> Synthèse du Cours</h2>
-
-        <section id="section-cours-boucles" class="section-pane">
-          <h3>2. Boucles à condition d'arrêt</h3>
-          <p class="text-muted">
-            Répétitions pilotées par une expression booléenne lorsque le nombre d'itérations est inconnu d'avance.
-          </p>
-
-          <!-- Tableau récapitulatif des 3 boucles -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-table me-2"></i> Comparaison des Structures Répétitives
-            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
-                    <tr>
-                      <th>Structure</th>
-                      <th>Utilisation</th>
-                      <th>Condition de Contrôle</th>
-                      <th>Nombre d'Exécutions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong><code>Pour</code></strong></td>
-                      <td>Nombre d'itérations <strong>connu d'avance</strong>.</td>
-                      <td>Automatique (Compteur d'itérations)</td>
-                      <td>Fixe ($Fin - Début + 1$)</td>
-                    </tr>
-                    <tr>
-                      <td><strong><code>Tant Que</code></strong></td>
-                      <td>Nombre d'itérations <strong>inconnu</strong>.</td>
-                      <td>Condition de <strong>Poursuite</strong> (évaluée au <em>début</em>)</td>
-                      <td>$0$ à plusieurs fois ($0 \dots N$)</td>
-                    </tr>
-                    <tr>
-                      <td><strong><code>Répéter</code></strong></td>
-                      <td>Nombre d'itérations <strong>inconnu</strong>.</td>
-                      <td>Condition d'<strong>Arrêt</strong> (évaluée à la <em>fin</em>)</td>
-                      <td>Au moins $1$ fois ($1 \dots N$)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Diagramme Vectoriel Tant Que vs Répéter -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-diagram-3 me-2"></i> Diagramme d'exécution vectoriel : Tant Que vs Répéter
-            </div>
-            <div class="card-body bg-body-tertiary text-center p-3">
-              <img src="images/seance04/tant_que_repeter.svg" alt="Diagramme Tant Que et Répéter" class="img-fluid"
-                style="max-height: 280px; width: 100%;">
-            </div>
-          </div>
-
-          <!-- Syntaxe Algorithme vs Python -->
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-primary fw-bold">
-                  <i class="bi bi-code-square me-2"></i> Structure <code>Tant Que</code> (Algorithme &amp; Python)
-                </div>
-                <div class="card-body">
-                  <p class="small text-muted mb-2">Le traitement est exécuté <strong>TANT QUE</strong> la condition de
-                    poursuite reste VRAIE.</p>
-                  <div class="code-container mb-3">
-                    <div class="code-header"><span>Algorithme</span></div>
-                    <pre><code class="language-algorithm">Tant que Condition_Poursuite Faire
-    Traitement
-Fin Tant que</code></pre>
-                  </div>
-                  <div class="code-container">
-                    <div class="code-header"><span>Python</span></div>
-                    <pre><code class="language-python">while condition_poursuite:
-    traitement</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100">
-                <div class="card-header-custom text-purple fw-bold" style="color: #8b5cf6;">
-                  <i class="bi bi-repeat me-2"></i> Structure <code>Répéter...Jusqu'à</code> (Algorithme &amp; Python)
-                </div>
-                <div class="card-body">
-                  <p class="small text-muted mb-2">Le traitement est répété <strong>JUSQU'À CE QUE</strong> la condition
-                    d'arrêt devienne VRAIE.</p>
-                  <div class="code-container mb-3">
-                    <div class="code-header"><span>Algorithme</span></div>
-                    <pre><code class="language-algorithm">Répéter
-    Traitement
-Jusqu'à Condition_Arrêt</code></pre>
-                  </div>
-                  <div class="code-container">
-                    <div class="code-header"><span>Python (Condition inversée)</span></div>
-                    <pre><code class="language-python"># Initialisation préalable
-traitement_initial
-while not (condition_arret):
-    traitement_de_saisie_ou_calcul</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Recommandations Ministérielles Alert Card -->
-          <div class="alert alert-danger border border-danger border-opacity-50 shadow-sm mb-4">
-            <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i> Recommandations Importantes
-            </h5>
-            <ol class="mb-0 small">
-              <li class="mb-1">
-                <strong>Initialisation préalable :</strong> Les variables intervenant dans la condition d'une boucle
-                <code>while</code> doivent être impérativement initialisées <strong>AVANT</strong> l'entrée dans la
-                boucle.
-              </li>
-              <li class="mb-1">
-                <strong>Mise à jour interne :</strong> La valeur contrôlant la condition doit obligatoirement être
-                <strong>modifiée à l'intérieur</strong> de la boucle, sous peine de créer une <strong>boucle
-                  infinie</strong>.
-              </li>
-              <li>
-                🚫 <strong>Interdiction stricte de <code>break</code> :</strong> L'utilisation des instructions de
-                sortie brutale (<code>break</code>, <code>exit()</code>) est <strong>strictement interdite</strong> lors
-                des épreuves pratiques et du baccalauréat.
-              </li>
-            </ol>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 3: Activité 1 - Correction de Boucle Infinie & Suppression de break -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-code-slash text-success me-2"></i> Activité 1 : Suppression de <code>break</code> &amp;
-          Contrôle de Saisie</h2>
-
-        <section id="section-activite1" class="section-pane">
-          <h3>Correction d'un Code Non Conforme</h3>
-          <p class="text-muted">
-            Transformons un script utilisant <code>break</code> en un code algorithmiquement propre et conforme aux
-            exigences officielles.
-          </p>
-
-          <div class="row g-4 mb-4">
-            <div class="col-md-6">
-              <div class="card card-custom h-100 border-danger border-opacity-50">
-                <div class="card-header-custom text-danger fw-bold">
-                  <i class="bi bi-x-circle-fill me-2"></i> Code Non Conforme
-                </div>
-                <div class="card-body">
-                  <div class="code-container">
-                    <pre><code class="language-python"># ❌ Interdit aux épreuves pratiques !
-while True:
-    val = int(input("Donner un nombre pair : "))
-    if val % 2 == 0:
-        break
-    print("Invalide ! Le nombre doit être pair.")
-
-print("Nombre valide :", val)</code></pre>
-                  </div>
-                  <div class="small text-danger mt-2">
-                    <i class="bi bi-info-circle me-1"></i> Inconvénient : Masque la condition logique d'arrêt de la
-                    boucle et viole les principes de programmation structurée.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card card-custom h-100 border-success border-opacity-50">
-                <div class="card-header-custom text-success fw-bold">
-                  <i class="bi bi-check-circle-fill me-2"></i> Code Conforme
-                </div>
-                <div class="card-body">
-                  <div class="code-container">
-                    <pre><code class="language-python"># ✅ Conforme aux conventions
-val = int(input("Donner un nombre pair : "))
-
-# Condition de poursuite : le nombre est IMPAIR
-while val % 2 != 0:
-    print("Invalide ! Le nombre doit être pair.")
-    val = int(input("Donner un nombre pair : "))
-
-print("Nombre valide :", val)</code></pre>
-                  </div>
-                  <div class="small text-success mt-2">
-                    <i class="bi bi-check-all me-1"></i> Avantage : Première saisie préalable, puis réitération TANT QUE
-                    la donnée est invalide (`val % 2 != 0`).
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tester Interactif Saisie -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-info fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-play-btn-fill me-2"></i> Démonstrateur Interactif : Simulation de la Boucle de
-                Saisie</span>
-              <span class="badge bg-info">Vue 3 Interactive</span>
-            </div>
-            <div class="card-body bg-body-tertiary">
-              <div class="row g-3 align-items-end">
-                <div class="col-md-6">
-                  <label class="form-label fw-bold small">Entrer une valeur d'essai (Entier) :</label>
-                  <div class="input-group">
-                    <input type="number" v-model.number="valPair" class="form-control"
-                      placeholder="Ex: 7 (impair) ou 14 (pair)">
-                    <button type="button" class="btn btn-primary" @click="testerSaisiePair">
-                      <i class="bi bi-lightning-fill me-1"></i> Tester la Condition
-                    </button>
-                  </div>
-                </div>
-                <div class="col-md-6 d-flex gap-2">
-                  <button type="button" class="btn btn-outline-secondary btn-sm" @click="reinitialiserSaisie">
-                    <i class="bi bi-arrow-counterclockwise me-1"></i> Réinitialiser la Trace
-                  </button>
-                </div>
-              </div>
-
-              <!-- Statut Card -->
-              <div class="mt-3 p-3 rounded border font-mono small"
-                :class="statutSaisie.valide ? 'bg-success bg-opacity-10 border-success text-success' : 'bg-warning bg-opacity-10 border-warning text-warning'">
-                <div class="fw-bold mb-1">{{ statutSaisie.message }}</div>
-                <div class="text-muted">{{ statutSaisie.code }}</div>
-              </div>
-
-              <!-- Trace List -->
-              <div v-if="traceSaisie.length > 0" class="mt-3">
-                <h6 class="small fw-bold text-muted mb-2">Historique des évaluations de la boucle :</h6>
-                <div class="table-responsive">
-                  <table class="table table-sm table-custom mb-0 small">
-                    <thead>
-                      <tr>
-                        <th>Valeur saisie</th>
-                        <th>Condition (val % 2 != 0)</th>
-                        <th>Action de la boucle</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(tr, idx) in traceSaisie" :key="idx"
-                        :class="tr.valide ? 'table-success' : 'table-warning'">
-                        <td class="fw-bold">{{ tr.valeur }}</td>
-                        <td>
-                          <span class="badge" :class="tr.valide ? 'bg-danger' : 'bg-warning text-dark'">
-                            {{ tr.valide ? 'FAUX' : 'VRAI' }}
-                          </span>
-                        </td>
-                        <td>{{ tr.explication }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 4: Activité 2 - Problème Pratique complet: Le Nombre Secret -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-controller text-warning me-2"></i> Activité 2 : Jeu du Nombre Secret &amp; Essais Limités
-        </h2>
-
-        <section id="section-activite2" class="section-pane">
-          <h3>Problème Pratique Guidé</h3>
-
-          <div class="alert alert-secondary border border-secondary border-opacity-25 mb-4">
-            <h5 class="alert-heading h6 fw-bold mb-2">
-              <i class="bi bi-file-earmark-text-fill me-2"></i> Énoncé du problème :
-            </h5>
-            <p class="mb-2">
-              On souhaite concevoir un jeu interactif <strong>« Le Nombre Secret »</strong> sous Python :
-            </p>
-            <ol class="mb-0 small">
-              <li>Le programme génère un nombre secret aléatoire compris entre <strong>1 et 50</strong> inclus (via
-                <code>randint(1, 50)</code> du module <code>random</code>).
-              </li>
-              <li>Le joueur dispose de <strong>6 essais maximum</strong> pour deviner le secret.</li>
-              <li>À chaque proposition :
-                <ul>
-                  <li>La saisie doit être <strong>strictement contrôlée</strong> dans $[1, 50]$.</li>
-                  <li>Si la proposition est supérieure au secret, afficher <code>"C'est MOINS !"</code>.</li>
-                  <li>Si elle est inférieure, afficher <code>"C'est PLUS !"</code>.</li>
-                  <li>Si elle est égale, le jeu s'arrête immédiatement avec un message de victoire.</li>
-                </ul>
-              </li>
-              <li>Si les 6 essais sont épuisés sans succès, afficher un message de défaite et révéler le nombre secret.
-              </li>
-            </ol>
-          </div>
-
-          <!-- TDO Table -->
-          <div class="card card-custom mb-4">
-            <div class="card-header-custom text-primary fw-bold">
-              <i class="bi bi-table me-2"></i> Tableau de Déclaration des Objets (TDO)
-            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-custom table-hover mb-0 align-middle small">
-                  <thead>
-                    <tr>
-                      <th>Objet</th>
-                      <th>Type / Nature</th>
-                      <th>Rôle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><code>secret</code></td>
-                      <td>Entier</td>
-                      <td>Nombre aléatoire secret à deviner ($1 \dots 50$)</td>
-                    </tr>
-                    <tr>
-                      <td><code>essai</code></td>
-                      <td>Entier</td>
-                      <td>Proposition saisie par le joueur</td>
-                    </tr>
-                    <tr>
-                      <td><code>nb_essais</code></td>
-                      <td>Entier</td>
-                      <td>Compteur des tentatives effectuées ($0 \dots 6$)</td>
-                    </tr>
-                    <tr>
-                      <td><code>trouve</code></td>
-                      <td>Booléen</td>
-                      <td>Drapeau (<em>flag</em>) d'arrêt (Vrai si le secret est trouvé)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Simulateur Interactif Jeu du Nombre Secret -->
-          <div class="card card-custom mb-4 border border-warning border-opacity-50 shadow-sm">
-            <div class="card-header-custom text-warning fw-bold d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-joystick me-2"></i> Simulateur Interactif : Le Nombre Secret</span>
-              <div class="d-flex align-items-center gap-2">
-                <span v-if="meilScore" class="badge bg-success font-mono">🏆 Meilleur score : {{ meilScore }}
-                  essai(s)</span>
-                <span class="badge bg-warning text-dark">Vue 3 App</span>
-              </div>
-            </div>
-            <div class="card-body bg-body-tertiary">
-              <div class="row g-3 align-items-center mb-3">
-                <div class="col-md-6">
-                  <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="fw-bold small">Nombre d'essais :</span>
-                    <span class="badge" :class="essaisRestants > 2 ? 'bg-primary' : 'bg-danger'">
-                      {{ nbEssais }} / {{ maxEssais }} ({{ essaisRestants }} restant(s))
-                    </span>
-                  </div>
-                  <div class="progress" style="height: 10px;">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated"
-                      :class="trouve ? 'bg-success' : (essaisRestants <= 2 ? 'bg-danger' : 'bg-warning')"
-                      role="progressbar" :style="{ width: (nbEssais / maxEssais * 100) + '%' }"></div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 text-end">
-                  <button type="button" class="btn btn-outline-primary btn-sm" @click="nouveauJeu">
-                    <i class="bi bi-arrow-repeat me-1"></i> Nouvelle Partie
-                  </button>
-                </div>
-              </div>
-
-              <!-- Input Area -->
-              <div class="row g-2 mb-3">
-                <div class="col-md-8">
-                  <input type="number" v-model.number="essaiInput" @keyup.enter="soumettreEssai" :disabled="partieFinie"
-                    class="form-control form-control-lg" placeholder="Entrez votre proposition (1 à 50)...">
-                  <div v-if="validationErreur" class="text-danger small mt-1">
-                    {{ validationErreur }}
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <button type="button" class="btn btn-warning btn-lg w-100 text-dark fw-bold" @click="soumettreEssai"
-                    :disabled="partieFinie">
-                    Valider <i class="bi bi-send-fill ms-1"></i>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Feedback Card -->
-              <div class="alert mb-3 font-mono" :class="'alert-' + messageFeedback.type">
-                <div class="d-flex align-items-center justify-content-between">
-                  <span class="fw-bold">{{ messageFeedback.text }}</span>
-                  <span class="badge bg-dark">trouve = {{ trouve ? 'True' : 'False' }}</span>
-                </div>
-              </div>
-
-              <!-- Timeline of Guesses -->
-              <div v-if="historique.length > 0">
-                <h6 class="small fw-bold text-muted mb-2">Historique de la partie en cours :</h6>
-                <div class="d-flex flex-wrap gap-2">
-                  <div v-for="item in historique" :key="item.num"
-                    class="p-2 rounded border font-mono small d-flex align-items-center gap-2"
-                    :class="'border-' + item.type + ' bg-' + item.type + ' bg-opacity-10'">
-                    <span class="badge bg-secondary">#{{ item.num }}</span>
-                    <span class="fw-bold fs-6">{{ item.valeur }}</span>
-                    <span class="badge" :class="'bg-' + item.type">{{ item.indication }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Code Implementations -->
-          <div class="row g-4">
-            <div class="col-md-6">
-              <div class="code-container">
-                <div class="code-header"><span>Algorithme</span></div>
-                <pre><code class="language-algorithm">ALGORITHME Jeu_Nombre_Secret
-DEBUT
-    secret ← Aléa(1, 50)
-    nb_essais ← 0
-    trouve ← Faux
-    
-    Tant que (nb_essais < 6 ET trouve = Faux) Faire
-        nb_essais ← nb_essais + 1
-        
-        Répéter
-            Écrire("Proposez un nombre (1 à 50) : ")
-            Lire(essai)
-        Jusqu'à (1 ≤ essai ET essai ≤ 50)
-        
-        Si (essai = secret) Alors
-            trouve ← Vrai
-        Sinon Si (essai < secret) Alors
-            Écrire("C'est PLUS !")
-        Sinon
-            Écrire("C'est MOINS !")
-        FinSi
-    Fin Tant que
-    
-    Si (trouve = Vrai) Alors
-        Écrire("Gagné en ", nb_essais, " essai(s) !")
-    Sinon
-        Écrire("Perdu ! Le secret était : ", secret)
-    FinSi
-FIN</code></pre>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="code-container">
-                <div class="code-header"><span>Implémentation Python (Python IDE)</span></div>
-                <pre><code class="language-python">from random import randint
-
-# Génération aléatoire du secret (1 à 50)
-secret = randint(1, 50)
-nb_essais = 0
-trouve = False
-
-# Boucle conditionnelle sans break
-while nb_essais < 6 and not trouve:
-    nb_essais += 1
-    print("\n--- Essai N°", nb_essais, "/ 6 ---")
-    
-    # Contrôle de saisie du domaine [1, 50]
-    essai = int(input("Proposez un nombre (1 à 50) : "))
-    while not (1 <= essai <= 50):
-        essai = int(input("Invalide ! Nombre entre 1 et 50 : "))
-    
-    # Évaluation de la proposition
-    if essai == secret:
-        trouve = True
-    elif essai < secret:
-        print("C'est PLUS !")
-    else:
-        print("C'est MOINS !")
-
-# Bilan de fin de partie
-if trouve:
-    print("🎉 Bravo ! Trouvé en", nb_essais, "essai(s) !")
-else:
-    print("❌ Perdu ! Le secret était :", secret)</code></pre>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- Article 5: Évaluation Formative -->
-      <article class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check2-square text-info me-2"></i> Évaluation Formative (Quiz Interactif)</h2>
-
-        <section id="section-quiz" class="section-pane">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <!-- EvalQuiz Vanilla JS Component -->
-              <div class="eval-quiz" v-pre data-title="Quiz (5 Questions)">
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Répéter teste à la FIN (au moins 1 exécution), Tant Que teste au DÉBUT.">
-                  <div class="question-text">1. Différence fondamentale entre Tant Que et Répéter ?</div>
-                  <ul class="quiz-options">
-                    <li>Répéter...Jusqu'à exécute le corps au moins une fois, Tant Que peut ne jamais l'exécuter</li>
-                    <li>Tant Que s'exécute toujours au moins 10 fois</li>
-                    <li>Répéter n'a pas besoin de condition</li>
-                    <li>Elles sont parfaitement identiques</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="1"
-                  data-explanation="Python n'a que la boucle while pour les répétitions conditionnelles.">
-                  <div class="question-text">2. Boucle conditionnelle en Python ?</div>
-                  <ul class="quiz-options">
-                    <li>repeat...until</li>
-                    <li>while condition :</li>
-                    <li>loop...until</li>
-                    <li>do...while</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="2"
-                  data-explanation="Force la réitération tant que la donnée saisie est invalide.">
-                  <div class="question-text">3. Rôle du contrôle de saisie ?</div>
-                  <ul class="quiz-options">
-                    <li>Trier un tableau</li>
-                    <li>Calculer une moyenne</li>
-                    <li>Valider la saisie et rejeter les valeurs incorrectes</li>
-                    <li>Convertir les types</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Arrêt dès que la condition d'arrêt devient VRAIE.">
-                  <div class="question-text">4. Quand s'arrête 'Répéter ... Jusqu'à (Condition)' ?</div>
-                  <ul class="quiz-options">
-                    <li>Dès que la Condition devient VRAIE</li>
-                    <li>Tant que la Condition est VRAIE</li>
-                    <li>Après 10 itérations</li>
-                    <li>Sur saturation mémoire</li>
-                  </ul>
-                </div>
-
-                <div class="quiz-question" data-correct="0"
-                  data-explanation="Sans mise à jour faussant la condition, la boucle tourne indéfiniment.">
-                  <div class="question-text">5. Conséquence si la condition d'un while reste toujours VRAIE ?</div>
-                  <ul class="quiz-options">
-                    <li>Le programme entre dans une boucle infinie</li>
-                    <li>Le programme s'arrête au bout de 5 secondes</li>
-                    <li>Python lève une exception de syntaxe</li>
-                    <li>La boucle s'exécute 0 fois</li>
-                  </ul>
-                </div>
-
-              </div>
-            </div>
-          </div>
-  </div>
-  </section>
-  </article>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer-custom">
-    <div class="container text-center">
-      <p class="mb-1">Page créée avec ♥ par Mohamed Anis MANI</p>
-      <p class="small text-muted mb-0">Cours d'Informatique — Année scolaire : 2026/2027</p>
+    <!-- Phase Quick Selector Bar -->
+    <div class="phase-pill-nav d-none d-md-block">
+      <div class="container d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('cadre-conventions')">
+          Cadre & Syntaxe
+        </button>
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
+          Palier 🟢 Débutant (Act 1-2)
+        </button>
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
+          Palier 🟡 Intermédiaire (Act 3-4)
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
+          Palier 🔴 Avancé (Act 5-6)
+        </button>
+      </div>
     </div>
-  </footer>
+
+    <!-- Main Content Container -->
+    <main class="container my-4">
+
+      <!-- =========================================================================
+           ARTICLE 1: CADRE THÉORIQUE & SYNTAXE
+           ========================================================================= -->
+      <article id="cadre" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-compass text-primary me-2"></i> CADRE THÉORIQUE — Répéter & Selon</h2>
+
+        <section id="cadre-conventions" class="section-pane mb-4">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom py-2">
+                  <h3 class="h6 mb-0 text-primary"><i class="bi bi-arrow-repeat me-1"></i> Boucle Répéter ... Jusqu'à</h3>
+                </div>
+                <div class="card-body py-2 small">
+                  <pre><code class="language-algorithm" v-pre>Répéter
+  Traitements
+Jusqu'à Condition</code></pre>
+                  <ul class="mb-0 ps-3 text-muted">
+                    <li>Exécute le traitement <strong>au moins une fois</strong> avant de tester la condition d'arrêt.</li>
+                    <li>La boucle s'arrête dès que la condition devient <strong>Vraie</strong>.</li>
+                    <li>Traduction Python : <code>while not (Condition):</code>.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-custom h-100">
+                <div class="card-header-custom py-2">
+                  <h3 class="h6 mb-0 text-success"><i class="bi bi-ui-checks me-1"></i> Structure conditionnelle Selon</h3>
+                </div>
+                <div class="card-body py-2 small">
+                  <pre><code class="language-algorithm" v-pre>Selon Sélecteur
+  Valeur1 : Traitement_1
+  Valeur2, Valeur3 : Traitement_2
+  Sinon Traitement_Par_Defaut
+Fin Selon</code></pre>
+                  <ul class="mb-0 ps-3 text-muted">
+                    <li>Le sélecteur doit être de <strong>type scalaire</strong> (Entier ou Caractère).</li>
+                    <li>Traduction Python 3.10+ : <code>match Sélecteur: case ...</code>.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 2: PALIER DÉBUTANT (SOCLE & GUIDAGE)
+           ========================================================================= -->
+      <article id="palier-debutant" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 DÉBUTANT — Socle & Guidage</h2>
+        <p class="text-muted small mb-3">Comprendre le fonctionnement d'une boucle à post-condition et simplifier des alternatives multiples.</p>
+
+        <!-- Activité 1 -->
+        <section id="act1-post-condition" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 1 — Découverte de la post-condition (au moins une exécution)</h3>
+              <span class="badge bg-secondary">Socle · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                On désire demander à l'utilisateur s'il souhaite continuer une saisie avec la réponse <code>'O'</code> (Oui) ou <code>'N'</code> (Non). On propose l'algorithme suivant :
+              </p>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="code-container">
+                    <pre><code class="language-algorithm" v-pre>Répéter
+  Écrire("Voulez-vous continuer (O/N) ? ")
+  Lire(rep)
+Jusqu'à (rep = 'O') Ou (rep = 'N')</code></pre>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Combien de fois l'instruction <code>Lire(rep)</code> s'exécute-t-elle au minimum ?</li>
+                    <li class="mb-2">Si l'utilisateur tape <code>'X'</code>, puis <code>'A'</code>, puis <code>'O'</code>, à quelle étape la boucle s'arrête-t-elle ?</li>
+                    <li>Pourquoi la structure <code>Répéter</code> est-elle plus concise qu'une boucle <code>Tant Que</code> dans cette situation ?</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Notez vos justifications et comparez avec la version <code>Tant Que</code> sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 2 -->
+        <section id="act2-syntaxe-selon" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 2 — La structure à choix multiples Selon</h3>
+              <span class="badge bg-secondary">Socle · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                Pour afficher le nom du jour de la semaine à partir de son numéro $num \in [1 ; 7]$, un élève écrit 7 conditions <code>Si ... Sinon Si</code>.
+              </p>
+
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Réécrire cette sélection de façon claire et lisible à l'aide de la structure algorithmique <code>Selon num</code>.</li>
+                <li class="mb-2">Quel traitement doit être placé après la clause <code>Sinon</code> pour gérer les valeurs en dehors de $[1 ; 7]$ ?</li>
+                <li>Dresser le TDO correspondant sur votre cahier.</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez la structure <code>Selon</code> complète sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 3: PALIER INTERMÉDIAIRE (MAÎTRISE & AUTONOMIE)
+           ========================================================================= -->
+      <article id="palier-intermediaire" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 INTERMÉDIAIRE — Maîtrise & Autonomie</h2>
+        <p class="text-muted small mb-3">Traduire en Python 3.10+ avec match...case et déboguer des sélecteurs invalides.</p>
+
+        <!-- Activité 3 -->
+        <section id="act3-traduction-match-case" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 3 — Traduction en Python 3.10+ avec match...case</h3>
+              <span class="badge bg-secondary">Maîtrise · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">
+                On considère un sélecteur $mois \in [1 ; 12]$. On souhaite afficher le nombre de jours correspondant (en considérant février à 28 jours) :
+              </p>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="code-container">
+                    <pre><code class="language-python" v-pre>mois = int(input("Numéro du mois (1 à 12) : "))
+match mois:
+    case 1 | 3 | 5 | 7 | 8 | 10 | 12:
+        print("31 jours")
+    case 4 | 6 | 9 | 11:
+        print("30 jours")
+    case 2:
+        print("28 jours")
+    case _:
+        print("Mois invalide !")</code></pre>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Quel est le rôle de l'opérateur <code>|</code> dans les motifs de <code>case</code> ?</li>
+                    <li class="mb-2">À quelle clause algorithmique correspond le motif universel <code>case _:</code> ?</li>
+                    <li>Traduire en boucle <code>while not:</code> la saisie du mois jusqu'à obtenir une valeur valide entre 1 et 12.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme équivalent et testez le script sur votre environnement Python.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 4 -->
+        <section id="act4-debogage-selecteur" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 4 — Débogage d'une structure conditionnelle à choix multiples</h3>
+              <span class="badge bg-secondary">Maîtrise · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-2">Un élève a écrit l'algorithme suivant pour classer des températures en degrés Celsius :</p>
+              <div class="code-container mb-3">
+                <pre><code class="language-algorithm" v-pre>Lire(temp)  # temp est de type Réel
+Selon temp
+  -10.0 .. 0.0 : Écrire("Gel")
+  0.1 .. 20.0  : Écrire("Frais")
+  Sinon Écrire("Chaud")
+Fin Selon</code></pre>
+              </div>
+
+              <ol class="small mb-0 ps-3">
+                <li class="mb-2">Identifier l'erreur conceptuelle majeure commise par l'élève dans cet algorithme au regard des conventions officielles 2024-2025.</li>
+                <li class="mb-2">Rappeler les seuls types de données autorisés pour le sélecteur d'une structure <code>Selon</code>.</li>
+                <li>Réécrire la solution correcte sous forme d'une structure conditionnelle généralisée (<code>Si ... Sinon Si ... Sinon</code>) sur votre cahier.</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'analyse de l'erreur et la version corrigée sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- =========================================================================
+           ARTICLE 4: PALIER AVANCÉ (DÉPASSEMENT & DÉFI SCIENTIFIQUE)
+           ========================================================================= -->
+      <article id="palier-avance" class="article-content-wrapper mb-5">
+        <h2><i class="bi bi-rocket-takeoff text-success me-2"></i> PALIER 🔴 AVANCÉ — Dépassement & Défi scientifique</h2>
+        <p class="text-muted small mb-3">Concevoir des menus de laboratoire interactifs et modéliser des calculs scientifiques combinés.</p>
+
+        <!-- Activité 5 -->
+        <section id="act5-menu-laboratoire" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 5 — Menu de calculs d'énergie et cinématique</h3>
+              <span class="badge bg-secondary">Avancé · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                On souhaite concevoir une application de physique offrant le menu suivant :
+                <br><code>1</code> : Calcul de vitesse moyenne ($v = d / t$) avec $t > 0$.
+                <br><code>2</code> : Calcul d'énergie cinétique ($E_c = \frac{1}{2} m v^2$) avec $m > 0$ et $v \ge 0$.
+                <br><code>3</code> : Calcul de puissance moyenne ($P = E / \Delta t$) avec $\Delta t > 0$.
+                <br><code>0</code> : Quitter.
+              </p>
+
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Écrire l'algorithme modélisant ce menu en utilisant <code>Selon Choix</code>.</li>
+                <li class="mb-2">Pour chaque option, inclure le contrôle de validité des grandeurs physiques requises au dénominateur.</li>
+                <li>Établir le TDO complet de votre algorithme sur votre cahier.</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme avec les contrôles de saisie sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activité 6 -->
+        <section id="act6-boucle-maintien" class="section-pane mb-4">
+          <div class="card card-custom">
+            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
+              <h3 class="h6 mb-0">Activité 6 — Maintien interactif de l'application et compteur d'opérations</h3>
+              <span class="badge bg-success text-white">Défi Avancé · 15 min</span>
+            </div>
+            <div class="card-body">
+              <p class="small mb-3">
+                Englober le menu de l'Activité 5 dans une boucle <code>Répéter ... Jusqu'à Choix = 0</code> pour que l'application ne s'arrête pas après un seul calcul et propose immédiatement un nouveau calcul à l'utilisateur.
+              </p>
+
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Ajouter un compteur <code>nb_calculs</code> qui incrémente à chaque fois qu'un calcul physique (options 1, 2 ou 3) est réalisé avec succès.</li>
+                <li class="mb-2">À la sortie de l'application (choix 0), afficher un message de synthèse indiquant le nombre total d'opérations effectuées au cours de la session.</li>
+                <li>Implémenter le programme complet en Python 3.10+ avec <code>match...case</code> et tester son exécution continue.</li>
+              </ol>
+
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Testez le programme sur machine et notez le bilan de session sur votre cahier.
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-muted">
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 4 : Répéter & Selon · Algorithmique & Python</p>
+      </div>
+    </footer>
   </div>
 
   <!-- JS Assets -->
@@ -759,8 +411,6 @@ else:
   <script src="assets/js/clipboard.js"></script>
   <script src="assets/js/draggable.js"></script>
   <script src="assets/js/pages.js"></script>
-
-  <!-- Application Script for Séance 4 -->
   <script src="assets/app/seance04.js"></script>
 </body>
 
