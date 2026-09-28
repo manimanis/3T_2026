@@ -1,6 +1,6 @@
 Utiliser la police "Book Antiqua, 12pt" comme style de paragraphe par défaut.
 De même pour le "Corps de texte" avec un espacement avant et après 0.1 cm, interligne 1.15 ligne
-Pour "Titre 1", Police "Ink free", gras, taille 24pt, espacement avant 0.2 cm, espacement après 0.1 cm
+Pour "Titre 1", Police "Ink free", gras, taille 24pt, espacement avant 0.2 cm, espacement après 0.1 cm, titre centré
 Pour "Titre 2", Police "Cambria", gras, taille 18pt, espacement avant 0.2 cm, espacement après 0.1 cm
 Pour "Titre 3", Police "Bernard MT Condensed", taille 16pt, espacement avant 0.2 cm, espacement après 0.1 cm
 Pour "Titre 4", Police "Arno Pro", gras, taille 14pt, espacement avant 0.2 cm, espacement après 0.1 cm
