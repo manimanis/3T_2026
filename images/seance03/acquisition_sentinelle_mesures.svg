@@ -1,0 +1,165 @@
+<svg viewBox="0 0 920 360" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-maitrise" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <marker id="arr-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#f59e0b" />
+    </marker>
+    <marker id="arr-green2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#10b981" />
+    </marker>
+    <marker id="arr-red2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#ef4444" />
+    </marker>
+  </defs>
+
+  <!-- Fond Principal -->
+  <rect width="920" height="360" rx="14" fill="#0b1120" stroke="#334155" stroke-width="2"/>
+
+  <!-- En-tête -->
+  <rect x="16" y="12" width="888" height="42" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.4"/>
+  <text x="32" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#f8fafc">
+    CHAÎNE D'ACQUISITION PAR SENTINELLE (-1.0) &amp; PROTECTION ANTI-DIVISION PAR ZÉRO
+  </text>
+  <rect x="710" y="19" width="182" height="28" rx="6" fill="#d97706" fill-opacity="0.25" stroke="#f59e0b" stroke-width="1"/>
+  <text x="801" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#fbbf24" text-anchor="middle">
+    Activité 3 &amp; 4 · Palier Maîtrise
+  </text>
+
+  <!-- =========================================================================
+       PANNEAU GAUCHE : FLUX D'ACQUISITION DE MESURES PAR SENTINELLE
+       ========================================================================= -->
+  <g id="flux-sentinelle">
+    <rect x="16" y="64" width="460" height="282" rx="10" fill="url(#grad-maitrise)" stroke="#475569" stroke-width="1.2"/>
+    
+    <rect x="26" y="74" width="440" height="26" rx="6" fill="#334155"/>
+    <text x="246" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="middle">
+      1. Flux de Relevés &amp; Détection de la Sentinelle
+    </text>
+
+    <!-- Échantillons de mesure -->
+    <!-- Mesure 1 -->
+    <rect x="30" y="114" width="92" height="50" rx="6" fill="#064e3b" fill-opacity="0.3" stroke="#10b981" stroke-width="1.5"/>
+    <text x="76" y="132" font-family="'Fira Code', monospace" font-size="11" font-weight="700" fill="#a7f3d0" text-anchor="middle">A₁ = 12.5</text>
+    <text x="76" y="150" font-family="system-ui, sans-serif" font-size="9" fill="#34d399" text-anchor="middle">Valide (≥ 0)</text>
+
+    <!-- Flèche 1 -> 2 -->
+    <line x1="122" y1="139" x2="140" y2="139" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr-amber)"/>
+
+    <!-- Mesure 2 -->
+    <rect x="144" y="114" width="92" height="50" rx="6" fill="#064e3b" fill-opacity="0.3" stroke="#10b981" stroke-width="1.5"/>
+    <text x="190" y="132" font-family="'Fira Code', monospace" font-size="11" font-weight="700" fill="#a7f3d0" text-anchor="middle">A₂ = 4.2</text>
+    <text x="190" y="150" font-family="system-ui, sans-serif" font-size="9" fill="#34d399" text-anchor="middle">Valide (≥ 0)</text>
+
+    <!-- Flèche 2 -> 3 -->
+    <line x1="236" y1="139" x2="254" y2="139" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr-amber)"/>
+
+    <!-- Mesure 3 -->
+    <rect x="258" y="114" width="92" height="50" rx="6" fill="#064e3b" fill-opacity="0.3" stroke="#10b981" stroke-width="1.5"/>
+    <text x="304" y="132" font-family="'Fira Code', monospace" font-size="11" font-weight="700" fill="#a7f3d0" text-anchor="middle">A₃ = 18.3</text>
+    <text x="304" y="150" font-family="system-ui, sans-serif" font-size="9" fill="#34d399" text-anchor="middle">Valide (≥ 0)</text>
+
+    <!-- Flèche 3 -> Sentinelle -->
+    <line x1="350" y1="139" x2="368" y2="139" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-red2)"/>
+
+    <!-- Sentinelle d'arrêt -->
+    <rect x="372" y="114" width="94" height="50" rx="6" fill="#7f1d1d" fill-opacity="0.4" stroke="#ef4444" stroke-width="1.8"/>
+    <text x="419" y="132" font-family="'Fira Code', monospace" font-size="11" font-weight="800" fill="#fca5a5" text-anchor="middle">A₄ = -1.0</text>
+    <text x="419" y="150" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#ef4444" text-anchor="middle">SENTINELLE !</text>
+
+    <!-- Cumul sous la boucle -->
+    <rect x="30" y="180" width="436" height="74" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="44" y="202" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fbbf24">
+      Règle de traitement dans la boucle Tant que (A ≥ 0) :
+    </text>
+    <text x="44" y="222" font-family="'Fira Code', monospace" font-size="10.5" fill="#f8fafc">
+      somme ← somme + A  <tspan fill="#94a3b8">(ex: 12.5 + 4.2 + 18.3 = 35.0)</tspan>
+    </text>
+    <text x="44" y="240" font-family="'Fira Code', monospace" font-size="10.5" fill="#f8fafc">
+      nb_mesures ← nb_mesures + 1  <tspan fill="#34d399">(Compteur = 3 mesures)</tspan>
+    </text>
+
+    <!-- Alerte sentinelle non comptabilisée -->
+    <rect x="30" y="266" width="436" height="66" rx="6" fill="#450a0a" fill-opacity="0.3" stroke="#ef4444" stroke-width="1"/>
+    <text x="44" y="285" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fca5a5">
+      ⚠️ Erreur classique à proscrire :
+    </text>
+    <text x="44" y="303" font-family="system-ui, sans-serif" font-size="10" fill="#fecaca">
+      Ne JAMAIS ajouter la sentinelle (-1.0) dans la somme ni dans nb_mesures.
+    </text>
+    <text x="44" y="319" font-family="system-ui, sans-serif" font-size="10" fill="#f87171">
+      L'ordre de lecture dans le corps de boucle garantit son exclusion.
+    </text>
+  </g>
+
+  <!-- =========================================================================
+       PANNEAU DROIT : ARBRE LOGIQUE & PROTECTION ANTI-DIVISION PAR ZÉRO
+       ========================================================================= -->
+  <g id="protection-division">
+    <rect x="490" y="64" width="414" height="282" rx="10" fill="url(#grad-maitrise)" stroke="#475569" stroke-width="1.2"/>
+    
+    <rect x="500" y="74" width="394" height="26" rx="6" fill="#334155"/>
+    <text x="697" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="middle">
+      2. Gestion du Cas Limite : nb_mesures &gt; 0
+    </text>
+
+    <!-- Bloc Entrée Condition -->
+    <rect x="617" y="112" width="160" height="32" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="697" y="132" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle">
+      Fin de saisie
+    </text>
+
+    <!-- Flèche vers test -->
+    <line x1="697" y1="144" x2="697" y2="168" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-amber)"/>
+
+    <!-- Losange Si nb_mesures > 0 -->
+    <polygon points="697,168 805,198 697,228 589,198" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+    <text x="697" y="195" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fde68a" text-anchor="middle">
+      nb_mesures &gt; 0 ?
+    </text>
+    <text x="697" y="210" font-family="'Fira Code', monospace" font-size="9" fill="#cbd5e1" text-anchor="middle">
+      (Mesures existantes ?)
+    </text>
+
+    <!-- Branche VRAI (Gauche) : Calcul de la Moyenne -->
+    <path d="M 589 198 L 540 198 L 540 248" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arr-green2)"/>
+    <rect x="548" y="184" width="36" height="16" rx="3" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+    <text x="566" y="196" font-family="system-ui, sans-serif" font-size="9.5" font-weight="800" fill="#86efac" text-anchor="middle">OUI</text>
+
+    <rect x="498" y="250" width="186" height="82" rx="6" fill="#064e3b" fill-opacity="0.35" stroke="#10b981" stroke-width="1.5"/>
+    <text x="591" y="270" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#86efac" text-anchor="middle">
+      CAS NOMINAL
+    </text>
+    <text x="591" y="290" font-family="'Fira Code', monospace" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">
+      moy ← somme / nb
+    </text>
+    <text x="591" y="310" font-family="'Fira Code', monospace" font-size="9.5" fill="#a7f3d0" text-anchor="middle">
+      ex: 35.0 / 3 = 11.67
+    </text>
+    <text x="591" y="324" font-family="system-ui, sans-serif" font-size="9" fill="#bbf7d0" text-anchor="middle">
+      Affichage normalisé
+    </text>
+
+    <!-- Branche NON (Droite) : Protection Division par Zéro -->
+    <path d="M 805 198 L 854 198 L 854 248" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-red2)"/>
+    <rect x="810" y="184" width="36" height="16" rx="3" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
+    <text x="828" y="196" font-family="system-ui, sans-serif" font-size="9.5" font-weight="800" fill="#fca5a5" text-anchor="middle">NON</text>
+
+    <rect x="710" y="250" width="184" height="82" rx="6" fill="#7f1d1d" fill-opacity="0.35" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="802" y="270" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fca5a5" text-anchor="middle">
+      CAS LIMITE : 0 MESURE
+    </text>
+    <text x="802" y="289" font-family="system-ui, sans-serif" font-size="9.5" font-weight="600" fill="#fecaca" text-anchor="middle">
+      Saisie directe de -1.0
+    </text>
+    <text x="802" y="306" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700" fill="#fbbf24" text-anchor="middle">
+      "Aucune donnée valide"
+    </text>
+    <text x="802" y="324" font-family="system-ui, sans-serif" font-size="9" fill="#f87171" text-anchor="middle">
+      Évite ZeroDivisionError !
+    </text>
+  </g>
+</svg>

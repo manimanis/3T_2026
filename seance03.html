@@ -26,6 +26,31 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
+    /* Structure pleine hauteur & pied de page collé */
+    #app {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    main.container {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 55vh;
+    }
+
+    .article-content-wrapper {
+      flex: 1 0 auto;
+      min-height: 48vh;
+    }
+
+    footer.footer-custom {
+      margin-top: auto !important;
+    }
+
     .phase-pill-nav {
       position: sticky;
       top: 56px;
@@ -73,9 +98,11 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>
+              Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -90,17 +117,10 @@
           <div>
             <div class="d-flex flex-wrap gap-2 mb-2">
               <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-25">
-                SÉANCE 3 · ÉVALUATION PRATIQUE N° 1
-              </span>
-              <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
-                <i class="bi bi-clock me-1"></i> 90 min
-              </span>
-              <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25">
-                Barème : /20 pts (Épreuve sur Machine)
+                SÉANCE 3 · TRAVAUX PRATIQUES N°1
               </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">TP Évalué : Contrôle de saisie & Boucle Tant Que sur Machine</h1>
-            <p class="text-muted small mb-0">Évaluation individuelle sur poste de travail — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
+            <h1 class="h3 fw-bold mb-1">TP : Contrôle de saisie &amp; Boucle Tant Que sur Machine</h1>
           </div>
         </div>
       </div>
@@ -110,16 +130,16 @@
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
         <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp')">
-          Consignes de l'Épreuve
+          Consignes
         </button>
         <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle')">
-          Palier 🟢 Socle (Act 1-2 • 8 pts)
+          🟢 Socle (Act 1-2 • 8 pts)
         </button>
         <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise')">
-          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+          🟡 Maîtrise (Act 3-4 • 8 pts)
         </button>
         <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence')">
-          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+          🔴 Dépassement (Act 5-6 • 4 pts)
         </button>
       </div>
     </div>
@@ -131,11 +151,18 @@
            ARTICLE 1: CONSIGNES GÉNÉRALES
            ========================================================================= -->
       <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DE L'ÉPREUVE PRATIQUE</h2>
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES</h2>
 
         <section id="consignes-tp" class="section-pane mb-4">
-          <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Durée :</strong> 90 minutes. Le travail est strictement individuel sur machine. Créez sur votre bureau un fichier nommé <code>TP1_Nom_Prenom.py</code> dans lequel vous écrirez vos codes Python.
+          <div class="card card-custom border-start border-4 border-warning mb-3 shadow-sm">
+            <div class="card-body py-2 px-3 small d-flex align-items-center gap-3">
+              <i class="bi bi-laptop fs-3 text-warning flex-shrink-0"></i>
+              <div>
+                <strong>Organisation du TP :</strong> Durée 90 minutes. Travail individuel sur machine.
+                Créez sur votre bureau le script Python <code>TP1_Nom_Prenom.py</code>. Rédigez les algorithmes et les
+                TDO demandés sur votre feuille de copie.
+              </div>
+            </div>
           </div>
 
           <div class="row g-3">
@@ -143,7 +170,8 @@
               <div class="card card-custom h-100">
                 <div class="card-body py-2 small">
                   <h6 class="text-primary mb-1"><i class="bi bi-check2-circle me-1"></i> Respect des Conventions</h6>
-                  <p class="text-muted mb-0">Nomenclature signifiante, types simples explicites, indentation rigoureuse, interdiction absolue de l'instruction <code>break</code>.</p>
+                  <p class="text-muted mb-0">Noms de variables explicites, types stricts, pas de conversion abusive en
+                    chaîne, interdiction formelle de l'instruction <code>break</code>.</p>
                 </div>
               </div>
             </div>
@@ -151,15 +179,17 @@
               <div class="card card-custom h-100">
                 <div class="card-body py-2 small">
                   <h6 class="text-warning mb-1"><i class="bi bi-pencil-square me-1"></i> Trace Écrite (Copie)</h6>
-                  <p class="text-muted mb-0">Rédigez sur votre feuille les analyses, les algorithmes demandés et les Tableaux de Déclaration des Objets (TDO).</p>
+                  <p class="text-muted mb-0">Rédigez sur votre feuille les algorithmes normalisés en pseudo-code et les
+                    Tableaux de Déclaration des Objets (TDO).</p>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="card card-custom h-100">
                 <div class="card-body py-2 small">
-                  <h6 class="text-success mb-1"><i class="bi bi-laptop me-1"></i> Validation Machine</h6>
-                  <p class="text-muted mb-0">Chaque module doit être testé avec les jeux d'essais du sujet avant validation par l'enseignant.</p>
+                  <h6 class="text-success mb-1"><i class="bi bi-shield-check me-1"></i> Validation Machine</h6>
+                  <p class="text-muted mb-0">Testez chaque activité avec les jeux d'essais obligatoires avant de faire
+                    valider le fonctionnement par l'enseignant.</p>
                 </div>
               </div>
             </div>
@@ -172,28 +202,91 @@
            ========================================================================= -->
       <article id="palier-socle" class="article-content-wrapper mb-5">
         <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 SOCLE DE RÉUSSITE (8 points)</h2>
-        <p class="text-muted small mb-3">Sécuriser la saisie des données d'un protocole expérimental et formaliser les déclarations d'objets.</p>
+        <p class="text-muted small mb-3">Sécuriser la saisie du code d'accès opérateur d'une machine-outil et analyser
+          sa structure par divisions successives.</p>
+
+        <!-- Illustration explicative Palier Socle -->
+        <div class="text-center my-3">
+          <img src="images/seance03/decompte_chiffres_controle.svg"
+            alt="Illustration explicative : Décompte des chiffres par divisions successives par 10 et patron de saisie contrôlée"
+            class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+            style="max-width: 780px; width: 100%; height: auto;">
+          <div class="form-text text-muted small mt-1">
+            <i class="bi bi-arrows-fullscreen me-1 text-info"></i> Cliquez sur l'illustration pour l'agrandir en
+            <strong>plein écran HD interactif</strong>.
+          </div>
+        </div>
 
         <!-- Activité 1 -->
         <section id="act1-saisie-concentration" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Saisie filtrée d'une concentration molaire sous Python</h3>
+              <h3 class="h6 mb-0">Activité 1 — Contrôle d'accès sécurisé à une machine-outil (MOCN)</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
-              <p class="small mb-3">
-                Dans un laboratoire de chimie, un protocole d'analyse exige la saisie d'une concentration molaire $C$ exprimée en $\text{mol/L}$. La valeur doit obligatoirement être comprise dans l'intervalle $[0.01 ; 2.50]$.
-              </p>
+              <div class="row g-3">
+                <div class="col-md-7">
+                  <h6 class="small fw-bold text-primary mb-2">Mise en situation technique &amp; Cahier des charges</h6>
+                  <p class="small mb-2">
+                    Sur une machine-outil à commande numérique (MOCN), l'accès au pupitre de commande est verrouillé.
+                    Pour s'authentifier, l'opérateur doit introduire un code numérique strictement positif ($code \in
+                    \mathbb{N}^*$).
+                  </p>
+                  <p class="small mb-2">
+                    Le module de sécurité exécute un traitement séquentiel en trois étapes indissociables :
+                  </p>
+                  <ol class="small mb-2 ps-3">
+                    <li class="mb-2">
+                      <strong>Étape 1 — Saisie filtrée obligatoire :</strong> Le système invite l'utilisateur à saisir
+                      <code>code</code>. Tant que la valeur entrée est invalide ($code \le 0$), le système affiche <em>«
+                        Code invalide ! Entrez un entier strictement positif. »</em> et réitère la demande.
+                    </li>
+                    <li class="mb-2">
+                      <strong>Étape 2 — Analyse du format &amp; Décompte des chiffres (Ex. 5) :</strong> Une fois le
+                      code validé, le système détermine son nombre exact de chiffres par <strong>divisions entières
+                        successives par 10</strong> (<code>copie_code // 10</code>), sans jamais recourir à la
+                      conversion en chaîne de caractères (interdiction formelle de <code>str()</code> ou
+                      <code>len()</code>).
+                    </li>
+                    <li>
+                      <strong>Étape 3 — Décision d'habilitation :</strong>
+                      <ul class="ps-3 mt-1">
+                        <li>Si le code comporte <strong>4 chiffres</strong> $\implies$ Afficher <em>« Accès Technicien
+                            Régleur autorisé »</em>.</li>
+                        <li>Si le code comporte <strong>3 chiffres</strong> $\implies$ Afficher <em>« Accès Opérateur
+                            Usinage autorisé »</em>.</li>
+                        <li>Pour tout autre format $\implies$ Afficher <em>« Format de code non accrédité : Accès refusé
+                            ! »</em>.</li>
+                      </ul>
+                    </li>
+                  </ol>
+                  <div class="cahier-zone mt-2">
+                    <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme complet sur votre feuille et
+                    enregistrez le script sous <code>TP1_Nom_Prenom.py</code>.
+                  </div>
+                </div>
 
-              <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire sous Python la boucle de saisie avec <code>while</code> forçant l'utilisateur à introduire une valeur valide.</li>
-                <li class="mb-2">En cas de valeur hors plage, afficher le message d'avertissement : <code>"Erreur : la concentration doit être comprise entre 0.01 et 2.50 mol/L !"</code> et redemander la saisie.</li>
-                <li>Tester la boucle en entrant successivement <code>-0.5</code>, <code>0.005</code>, <code>3.2</code>, puis <code>0.15</code>.</li>
-              </ol>
-
-              <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez le script de l'Activité 1 dans <code>TP1_Nom_Prenom.py</code> et notez l'algorithme sur votre feuille.
+                <div class="col-md-5">
+                  <h6 class="small fw-bold text-success mb-2">Principe algorithmique &amp; Validation</h6>
+                  <div class="code-container mb-2">
+                    <div class="code-header"><span>Trace des divisions (Exemple : code = 5403)</span></div>
+                    <pre><code class="language-algorithm" v-pre>// Initialisation : copie_code ← code (5403), nb ← 0
+// Étape 1 : 5403 div 10 = 540  -> nb = 1
+// Étape 2 :  540 div 10 =  54  -> nb = 2
+// Étape 3 :   54 div 10 =   5  -> nb = 3
+// Étape 4 :    5 div 10 =   0  -> nb = 4
+// Arrêt : copie_code = 0  -> Résultat = 4 chiffres
+// Habilitation : Profil « Technicien Régleur »</code></pre>
+                  </div>
+                  <p class="small mb-1 fw-bold">Jeux d'essais obligatoires :</p>
+                  <ul class="small mb-0 ps-3 text-muted">
+                    <li>$code = 5403 \implies \mathbf{4}$ chiffres $\implies$ Technicien Régleur</li>
+                    <li>$code = 176 \implies \mathbf{3}$ chiffres $\implies$ Opérateur Usinage</li>
+                    <li>$code = 9 \implies \mathbf{1}$ chiffre $\implies$ Format non accrédité</li>
+                    <li>$code = -45 \implies$ Erreur et répétition de saisie</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -203,7 +296,7 @@
         <section id="act2-tdo-justification" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Tableau de Déclaration des Objets & Justification des types</h3>
+              <h3 class="h6 mb-0">Activité 2 — Tableau de Déclaration des Objets &amp; Justification des choix</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
@@ -212,23 +305,51 @@
               </p>
 
               <div class="table-responsive my-3">
-                <table class="table table-custom table-sm table-bordered mb-0" style="max-width: 500px;">
+                <table class="table table-custom table-sm table-bordered mb-0">
                   <thead>
-                    <tr><th>Objet</th><th>Type / Nature</th><th>Rôle & Justification du type</th></tr>
+                    <tr>
+                      <th>Objet</th>
+                      <th>Type / Nature</th>
+                      <th>Rôle &amp; Justification du type</th>
+                    </tr>
                   </thead>
                   <tbody>
-                    <tr><td><code>C</code></td><td class="empty-cell">.........................</td><td class="empty-cell">...........................................................................</td></tr>
+                    <tr>
+                      <td><code>code</code></td>
+                      <td class="empty-cell">.........................</td>
+                      <td class="empty-cell">Code d'accès saisi par l'opérateur (Entier naturel $\ge 1$)</td>
+                    </tr>
+                    <tr>
+                      <td><code>copie_code</code></td>
+                      <td class="empty-cell">.........................</td>
+                      <td class="empty-cell">Variable de travail entière préservant la valeur initiale de
+                        <code>code</code> lors des divisions successives
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>nb_chiffres</code></td>
+                      <td class="empty-cell">.........................</td>
+                      <td class="empty-cell">Compteur d'itérations / nombre total de chiffres du code (Entier $\ge 0$)
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
 
               <ol class="small mb-0 ps-3">
-                <li>Pourquoi est-il impératif d'utiliser <code>float(input())</code> plutôt que <code>int(input())</code> pour cette grandeur ?</li>
-                <li>Que contiendrait la variable <code>C</code> si la conversion explicite <code>float()</code> avait été omise ?</li>
+                <li class="mb-2">Pourquoi est-il indispensable de copier la valeur de <code>code</code> dans
+                  <code>copie_code</code> avant la boucle ? Que se passerait-il si on effectuait les divisions
+                  directement sur la variable <code>code</code> ?
+                </li>
+                <li class="mb-2">Pourquoi l'opérateur <code>//</code> (division entière) est-il impératif à la place de
+                  l'opérateur <code>/</code> (division réelle) ? Quel serait l'impact sur la condition d'arrêt ?</li>
+                <li>Pourquoi l'usage de la fonction <code>len(str(code))</code> est-il proscrit dans cette épreuve
+                  d'algorithmique fondamentale ?</li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Remplissez le TDO et justifiez vos choix sur votre feuille d'évaluation.
+                <i class="bi bi-pencil-square me-1"></i> Complétez le TDO et justifiez vos choix de typage sur votre
+                feuille d'évaluation.
               </div>
             </div>
           </div>
@@ -239,29 +360,90 @@
            ARTICLE 3: PALIER MAÎTRISE (8 PTS)
            ========================================================================= -->
       <article id="palier-maitrise" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 MAÎTRISE DU NIVEAU ATTENDU (8 points)</h2>
-        <p class="text-muted small mb-3">Traiter une série de relevés par sentinelle et implémenter des calculs statistiques conditionnels.</p>
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 MAÎTRISE DU NIVEAU ATTENDU (8 points)
+        </h2>
+        <p class="text-muted small mb-3">Acquisition d'un flux de mesures par sentinelle, calculs cumulatifs et
+          protection anti-crash.</p>
+
+        <!-- Illustration explicative Palier Maîtrise -->
+        <div class="text-center my-3">
+          <img src="images/seance03/acquisition_sentinelle_mesures.svg"
+            alt="Illustration explicative : Chaîne d'acquisition de données par sentinelle et gestion du cas limite sans mesure"
+            class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+            style="max-width: 780px; width: 100%; height: auto;">
+          <div class="form-text text-muted small mt-1">
+            <i class="bi bi-arrows-fullscreen me-1 text-info"></i> Cliquez sur l'illustration pour l'agrandir en
+            <strong>plein écran HD interactif</strong>.
+          </div>
+        </div>
 
         <!-- Activité 3 -->
         <section id="act3-absorbance-sentinelle" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Saisie d'une suite d'absorbances optiques par sentinelle</h3>
+              <h3 class="h6 mb-0">Activité 3 — Saisie par sentinelle : Télémétrie optique</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
-              <p class="small mb-3">
-                On réalise un dosage spectrophotométrique (loi de Beer-Lambert). On saisit au clavier une suite de mesures d'absorbance réelles positives $A \ge 0$. L'opérateur arrête la saisie en entrant n'importe quelle <strong>valeur strictement négative</strong> (sentinelle, ex: <code>-1</code>).
-              </p>
+              <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-7">
+                  <p class="small mb-2">
+                    <strong>Mise en situation industrielle :</strong> Sur une chaîne automatisée de contrôle qualité, un <strong>capteur de télémétrie laser optique</strong> mesure en temps réel la distance séparant l'émetteur d'une série de pièces usinées défilant sur un convoyeur.
+                  </p>
+                  <p class="small mb-2">
+                    Chaque mesure valide correspond à une distance réelle positive $A \ge 0.0\text{ cm}$. La transmission de données s'arrête dès que le capteur émet la valeur sentinelle <strong>`-1.0`</strong> (détection de fin de lot ou arrêt du défilement).
+                  </p>
+                  <p class="small text-muted mb-0">
+                    <i class="bi bi-info-circle text-info me-1"></i> Le programme ne connaît pas à l'avance le nombre d'échantillons qui seront transmis au cours de la mesure.
+                  </p>
+                </div>
+                <div class="col-md-5 text-center">
+                  <div class="position-relative d-inline-block w-100">
+                    <img src="images/seance03/capteur_telemetrie_optique.jpg"
+                      alt="Capteur de télémétrie optique laser en mesure industrielle sur convoyeur"
+                      class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                      style="max-height: 190px; width: 100%; object-fit: cover;">
+                    <span class="badge bg-dark bg-opacity-75 text-info border border-info border-opacity-50 position-absolute bottom-0 end-0 m-2 small font-mono">
+                      <i class="bi bi-camera me-1"></i> Télémètre Laser
+                    </span>
+                  </div>
+                  <div class="form-text text-muted small mt-1">
+                    <i class="bi bi-arrows-fullscreen me-1 text-info"></i> Cliquez pour agrandir en plein écran
+                  </div>
+                </div>
+              </div>
 
-              <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire la boucle <code>while</code> permettant de lire cette série de mesures.</li>
-                <li class="mb-2">Comptabiliser le nombre total de mesures valides saisies à l'aide d'un compteur <code>nb_mesures</code>.</li>
-                <li>Afficher en sortie le nombre total de mesures enregistrées. <em>Rappel : la valeur négative d'arrêt ne doit pas être comptabilisée !</em></li>
-              </ol>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="code-container">
+                    <div class="code-header"><span>Patron d'acquisition par sentinelle</span></div>
+                    <pre><code class="language-algorithm" v-pre>Lire(A)
+nb_mesures ← 0
+Tant que (A ≥ 0.0) Faire
+  nb_mesures ← nb_mesures + 1
+  Lire(A)
+Fin Tant que
+Écrire("Nombre de mesures : ", nb_mesures)</code></pre>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Pourquoi la variable <code>A</code> doit-elle être lue une première fois
+                      <em>avant</em> la boucle <code>Tant que</code>, puis de nouveau à la <em>fin</em> du corps de
+                      boucle ?
+                    </li>
+                    <li class="mb-2">Vérifier que ce patron d'écriture garantit formellement que la sentinelle
+                      <code>-1.0</code> n'est <strong>jamais comptabilisée</strong> dans <code>nb_mesures</code>.
+                    </li>
+                    <li>Implémenter ce traitement en Python dans votre fichier <code>TP1_Nom_Prenom.py</code>.</li>
+                  </ol>
+                </div>
+              </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Ajoutez ce code dans <code>TP1_Nom_Prenom.py</code> et notez l'algorithme sur votre feuille.
+                <i class="bi bi-pencil-square me-1"></i> Programmez la boucle dans votre script Python et justifiez le
+                placement des instructions <code>input()</code>.
               </div>
             </div>
           </div>
@@ -271,22 +453,39 @@
         <section id="act4-moyenne-protection" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Calcul cumulatif et gestion du cas limite sans mesure</h3>
+              <h3 class="h6 mb-0">Activité 4 — Calcul cumulatif &amp; Protection anti-division par zéro</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Compléter le programme de l'Activité 3 pour calculer la somme et la moyenne arithmétique de toutes les absorbances valides saisies.
+                Compléter le programme de l'Activité 3 pour calculer la somme totale et la moyenne arithmétique de
+                toutes les mesures valides saisies.
               </p>
 
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Initialiser et mettre à jour la somme cumulée des absorbances valides.</li>
-                <li class="mb-2"><strong>Sécurité division par zéro :</strong> Si <code>nb_mesures > 0</code>, calculer et afficher la moyenne sous la forme : <code>"Absorbance moyenne = [valeur]"</code>. Sinon, afficher : <code>"Aucune mesure valide enregistrée."</code>.</li>
-                <li>Tester le cas limite où l'utilisateur saisit <code>-1</code> dès le début. Vérifier que la machine n'affiche pas d'erreur <code>ZeroDivisionError</code>.</li>
+                <li class="mb-2">Initialiser un accumulateur <code>somme</code> à $0.0$ et l'actualiser à chaque tour de
+                  boucle avec la mesure valide courante.</li>
+                <li class="mb-2"><strong>Sécurité algorithmique :</strong> Que se passe-t-il si l'opérateur saisit
+                  immédiatement <code>-1.0</code> au premier appel ? Pourquoi le calcul direct
+                  <code>moyenne = somme / nb_mesures</code> provoquerait-il un arrêt brutal du programme
+                  (<code>ZeroDivisionError</code>) ?
+                </li>
+                <li class="mb-2">Insérer une structure conditionnelle <code>if nb_mesures > 0: ... else: ...</code> afin
+                  d'afficher la moyenne uniquement si des mesures existent, ou le message d'avertissement
+                  <code>"Aucune mesure valide enregistrée"</code> dans le cas contraire.
+                </li>
+                <li>Valider votre script avec les deux jeux d'essais ci-dessous :
+                  <br>• <strong>Cas nominal :</strong> Entrées <code>12.5</code> $\to$ <code>4.2</code> $\to$
+                  <code>18.3</code> $\to$ <code>-1.0</code> $\implies$ <strong>3 mesures, Somme = 35.0, Moyenne = 11.67
+                    cm</strong>.
+                  <br>• <strong>Cas limite (0 itération) :</strong> Entrée immédiate de <code>-1.0</code> $\implies$
+                  <strong>"Aucune mesure valide enregistrée"</strong> sans crash machine.
+                </li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Intégrez la condition protectrice dans votre script Python et justifiez-la sur votre feuille.
+                <i class="bi bi-pencil-square me-1"></i> Intégrez la condition protectrice dans votre script Python et
+                validez les deux jeux d'essais sur machine.
               </div>
             </div>
           </div>
@@ -297,32 +496,109 @@
            ARTICLE 4: PALIER DÉPASSEMENT & EXCELLENCE (4 PTS)
            ========================================================================= -->
       <article id="palier-excellence" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-trophy text-success me-2"></i> PALIER 🔴 DÉPASSEMENT & EXCELLENCE (4 points)</h2>
-        <p class="text-muted small mb-3">Modéliser un processus dynamique de laboratoire et valider la recette logicielle.</p>
+        <h2><i class="bi bi-trophy text-success me-2"></i> PALIER 🔴 DÉPASSEMENT &amp; EXCELLENCE (4 points)</h2>
+        <p class="text-muted small mb-3">Modéliser la dynamique comparée de deux systèmes et réaliser la recette
+          logicielle d'un capteur.</p>
+
+        <!-- Illustration explicative Palier Dépassement -->
+        <div class="text-center my-3">
+          <img src="images/seance03/croissance_comparee_calibrage.svg"
+            alt="Illustration explicative : Modélisation dynamique comparée linéaire vs exponentiel et procédure de calibrage de capteur"
+            class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+            style="max-width: 780px; width: 100%; height: auto;">
+          <div class="form-text text-muted small mt-1">
+            <i class="bi bi-arrows-fullscreen me-1 text-info"></i> Cliquez sur l'illustration pour l'agrandir en
+            <strong>plein écran HD interactif</strong>.
+          </div>
+        </div>
 
         <!-- Activité 5 -->
         <section id="act5-simulation-vidange" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Modélisation dynamique : Vidange d'un réservoir à débit variable</h3>
+              <h3 class="h6 mb-0">Activité 5 — Modélisation dynamique comparée : Lignes de fabrication <span
+                  class="badge bg-success bg-opacity-25 text-success ms-2">Exercice 20 du Recueil</span></h3>
               <span class="badge bg-success text-white">Excellence · 2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Un réservoir de laboratoire contient initialement $V_0 = 100.0\text{ litres}$ d'eau distillée. Une fuite se déclare à la base : au cours de la première minute, le volume perdu est $q_0 = 2.0\text{ L}$. En raison de la baisse de pression hydrostatique, le débit de fuite diminue de $5\%$ chaque minute :
-                $$q_{t+1} = q_t \times 0.95$$
-                $$V_{t+1} = V_t - q_t$$
-                On souhaite déterminer le temps (en minutes) nécessaire pour que le volume restant devienne strictement inférieur au seuil critique $V_{seuil} = 5.0\text{ litres}$.
+                <strong>Mise en situation industrielle (Usine automatisée) :</strong> Deux lignes de fabrication
+                robotisées produisent des composants électroniques :
+                <br>• <strong>Ligne $\alpha$ (Croissance linéaire) :</strong> Production initiale $P_\alpha =
+                10\,000\,000$ pièces, avec une cadence constante de $+500\,000\text{ pièces/h}$.
+                <br>• <strong>Ligne $\beta$ (Croissance géométrique) :</strong> Production initiale $P_\beta =
+                5\,000\,000$ pièces, optimisée avec un gain continu de $+3\%$ par heure ($P_\beta \leftarrow P_\beta
+                \times 1.03$).
+                <br><strong>Objectif :</strong> Déterminer au bout de combien d'heures de fonctionnement la production
+                de la ligne $\beta$ dépassera celle de la ligne $\alpha$.
               </p>
 
-              <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire l'algorithme complet utilisant une boucle <code>Tant Que</code> modélisant cette vidange minute par minute.</li>
-                <li class="mb-2">Implémenter et exécuter la simulation sous Python.</li>
-                <li>Afficher le temps final de vidange ainsi que le volume d'eau exact restant dans le réservoir.</li>
-              </ol>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <p class="small mb-1 fw-bold">Jalons d'évolution horaire :</p>
+                  <div class="table-responsive">
+                    <table class="table table-custom table-sm table-bordered text-center mb-0">
+                      <thead>
+                        <tr>
+                          <th>Temps $t$</th>
+                          <th>Ligne $\alpha$ (Linéaire)</th>
+                          <th>Ligne $\beta$ (Exponentielle)</th>
+                          <th>$P_\beta > P_\alpha$ ?</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>$t = 0\text{ h}$</td>
+                          <td>$10.0\text{ M}$</td>
+                          <td>$5.00\text{ M}$</td>
+                          <td>Non</td>
+                        </tr>
+                        <tr>
+                          <td>$t = 20\text{ h}$</td>
+                          <td>$20.0\text{ M}$</td>
+                          <td>$9.03\text{ M}$</td>
+                          <td>Non</td>
+                        </tr>
+                        <tr>
+                          <td>$t = 40\text{ h}$</td>
+                          <td>$30.0\text{ M}$</td>
+                          <td>$16.31\text{ M}$</td>
+                          <td>Non</td>
+                        </tr>
+                        <tr>
+                          <td>$t = 60\text{ h}$</td>
+                          <td>$40.0\text{ M}$</td>
+                          <td>$29.46\text{ M}$</td>
+                          <td>Non</td>
+                        </tr>
+                        <tr>
+                          <td>$t = 77\text{ h}$</td>
+                          <td class="fw-bold text-primary">48.50 M</td>
+                          <td class="fw-bold text-success">48.69 M</td>
+                          <td class="text-success fw-bold">OUI (Dépassement !)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-2">Formuler la condition de maintien de la boucle <code>Tant Que</code> modélisant
+                      cette évolution heure par heure : <code>Tant que (P_beta ≤ P_alpha) Faire</code>.</li>
+                    <li class="mb-2">Écrire l'algorithme complet <code>ProductionComparee</code> avec compteur d'heures
+                      <code>t</code>.
+                    </li>
+                    <li class="mb-2">Implémenter et exécuter la simulation sous Python.</li>
+                    <li>Vérifier qu'au bout de <strong>77 heures</strong>, la ligne $\beta$ ($48\,689\,611$ pièces)
+                      dépasse la ligne $\alpha$ ($48\,500\,000$ pièces).</li>
+                  </ol>
+                </div>
+              </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme sur votre feuille et enregistrez la fonction dans votre fichier Python.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme sur votre feuille et enregistrez le script
+                dans <code>TP1_Nom_Prenom.py</code>.
               </div>
             </div>
           </div>
@@ -332,29 +608,81 @@
         <section id="act6-recette-validation" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Recette logicielle et validation par jeux d'essais</h3>
+              <h3 class="h6 mb-0">Activité 6 — Calibrage d'un capteur par encadrement &amp; Recette <span
+                  class="badge bg-warning bg-opacity-25 text-warning ms-2">Exercice 114 du Recueil</span></h3>
               <span class="badge bg-success text-white">Excellence · 2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Exécuter votre programme devant l'enseignant pour les 3 jeux d'essais imposés ci-dessous et consigner les résultats :
+                <strong>Procédure de réglage (Exercice 114) :</strong> Un capteur de position doit être calibré sur une
+                valeur de consigne entière secrète comprise entre $1$ et $30$. Le technicien dispose de <strong>5
+                  tentatives maximum</strong>. À chaque essai, le système indique <code>"Signal trop fort !"</code> ou
+                <code>"Signal trop faible !"</code>.
               </p>
 
+              <ol class="small mb-3 ps-3">
+                <li class="mb-1">Identifier la double condition d'arrêt de la boucle :
+                  <code>(valeur == cible) ou (essais >= 5)</code>.
+                </li>
+                <li class="mb-2">Écrire le script simulant le calibrage et afficher le message de succès ou d'échec au
+                  terme des 5 essais.</li>
+              </ol>
+
+              <p class="small mb-1 fw-bold">Grille de recette logicielle à faire valider par l'enseignant :</p>
               <div class="table-responsive my-2">
                 <table class="table table-custom table-sm table-bordered text-center mb-0">
                   <thead>
-                    <tr><th>N° Test</th><th>Jeu de données injecté</th><th>Résultat attendu</th><th>Résultat obtenu sur machine</th><th>Statut</th></tr>
+                    <tr>
+                      <th>N° Test</th>
+                      <th>Activité &amp; Données de test</th>
+                      <th>Résultat attendu</th>
+                      <th>Résultat machine</th>
+                      <th>Visa Enseignant</th>
+                    </tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>Test 1</strong></td><td>$C = 0.50$ ; Mesures : $0.12$, $0.34$, $0.20$, $-1$</td><td>Moyenne absorbances $= 0.22$</td><td class="empty-cell">.....</td><td class="empty-cell">Conforme / Non conforme</td></tr>
-                    <tr><td><strong>Test 2</strong></td><td>$C = 1.25$ ; Mesure immédiate : $-5$</td><td>Message d'absence de mesure</td><td class="empty-cell">.....</td><td class="empty-cell">Conforme / Non conforme</td></tr>
-                    <tr><td><strong>Test 3</strong></td><td>Simulation vidange ($V_0 = 100$, $q_0 = 2.0$, seuil $5.0$)</td><td>Temps $\approx 78\text{ min}$</td><td class="empty-cell">.....</td><td class="empty-cell">Conforme / Non conforme</td></tr>
+                    <tr>
+                      <td><strong>Test 1</strong></td>
+                      <td>Activité 1 : $code = 5403$ (test préalable $-12$)</td>
+                      <td>Rejet de $-12$ ; $5403 \implies 4\text{ chiffres}$ (Technicien Régleur)</td>
+                      <td class="empty-cell">.........................</td>
+                      <td class="empty-cell">[ ] Validé</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Test 2</strong></td>
+                      <td>Activité 4 : $12.5 \to 4.2 \to 18.3 \to -1.0$</td>
+                      <td>Somme = 35.0 ; Moyenne = 11.67 cm</td>
+                      <td class="empty-cell">.........................</td>
+                      <td class="empty-cell">[ ] Validé</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Test 3</strong></td>
+                      <td>Activité 4 : Saisie directe de $-1.0$</td>
+                      <td>Alerte : Aucune mesure (anti-crash)</td>
+                      <td class="empty-cell">.........................</td>
+                      <td class="empty-cell">[ ] Validé</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Test 4</strong></td>
+                      <td>Activité 5 : Modélisation $\alpha$ vs $\beta$</td>
+                      <td>Croisement en 77 heures ($P_\beta = 48.69\text{ M} > 48.50\text{ M}$)</td>
+                      <td class="empty-cell">.........................</td>
+                      <td class="empty-cell">[ ] Validé</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Test 5</strong></td>
+                      <td>Activité 6 : Calibrage capteur</td>
+                      <td>Arrêt en $\le 5$ essais avec retours</td>
+                      <td class="empty-cell">.........................</td>
+                      <td class="empty-cell">[ ] Validé</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Faites valider vos tests par l'enseignant et remettez votre copie d'examen ainsi que votre fichier <code>TP1_Nom_Prenom.py</code>.
+                <i class="bi bi-pencil-square me-1"></i> Faites valider vos 5 tests par l'enseignant et remettez votre
+                copie ainsi que votre fichier <code>TP1_Nom_Prenom.py</code>.
               </div>
             </div>
           </div>
@@ -366,7 +694,7 @@
     <!-- Footer -->
     <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
       <div class="container text-center small text-muted">
-        <p class="mb-0">3<sup>e</sup> Sciences · Séance 3 : TP Évalué N°1 (Tant Que & Contrôle de saisie) · Algorithmique & Python</p>
+        <p class="mb-0">3<sup>e</sup> Sciences Techniques · Séance 3 : TP N°1 (Tant Que &amp; Contrôle de saisie)</p>
       </div>
     </footer>
   </div>

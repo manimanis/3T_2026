@@ -13,11 +13,18 @@ createApp({
       theme: localStorage.getItem('theme') || 'dark',
 
       // Codes algorithmiques types pour la séance 2
-      codeControleSaisieAlgo: `Lire(n)
-Tant que n ≤ 0 Faire
-  Écrire("Erreur : n doit être strictement positif !")
-  Lire(n)
-Fin Tant que`,
+      codeControleSaisieAlgo: `ALGORITHME DechargeSecurite
+DEBUT
+  Lire(U)
+  duree ← 0
+  Tant que (U ≥ 20.0) Faire
+    U ← U / 2
+    duree ← duree + 1
+  Fin Tant que
+  Écrire("Tension résiduelle sécurisée : ", U, " V")
+  Écrire("Durée de décharge : ", duree, " s")
+  Écrire("Voyant Vert : Accès armoire autorisé")
+FIN`,
 
       codeTraceAlgo: `x ← 18
 cpt ← 0
@@ -27,11 +34,13 @@ Tant que x > 2 Faire
   Écrire("Étape ", cpt, " : x = ", x)
 Fin Tant que`,
 
-      codeDebogagePython: `# Code contenant une erreur logique de terminaison
-n = int(input("Donner un entier positif : "))
-while n <= 0:
-    print("Valeur invalide !")
-    # ERREUR : La nouvelle saisie n'a pas été demandée ici !`,
+      codeDebogagePython: `# Simulation de l'asservissement thermique (erreur de boucle infinie)
+temperature = float(input("Température initiale (°C) : "))
+cycles = 0
+while temperature > 25.0:
+    print(f"Cycle {cycles} : Refroidissement en cours...")
+    cycles += 1
+    # ERREUR : La température n'est jamais abaissée (oubli de 'temperature -= 1.5') !`,
 
       codeSentinelleAlgo: `s ← 0.0
 nb ← 0
@@ -107,7 +116,9 @@ FIN`
     },
 
     jumpToSection(sectionId) {
-      if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
+      if (typeof window.jumpToSection === 'function') {
+        window.jumpToSection(sectionId);
+      } else if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
         window.sectionDrawerInstance.showSection(sectionId);
       } else {
         const el = document.getElementById(sectionId);
@@ -121,6 +132,9 @@ FIN`
   mounted() {
     document.documentElement.setAttribute('data-theme', this.theme);
     this.$nextTick(() => {
+      if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.scanArticlesAndSections === 'function') {
+        window.sectionDrawerInstance.scanArticlesAndSections();
+      }
       if (typeof window.safeHighlightAll === 'function') {
         window.safeHighlightAll();
       } else if (typeof hljs !== 'undefined') {

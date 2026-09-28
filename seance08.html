@@ -209,16 +209,18 @@ for i in range(N):
         <section id="act1-declaration" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Déclaration formelle & Tableau de Déclaration des Objets (TDO)</h3>
+              <h3 class="h6 mb-0">Activité 1 — Surveillance d'une serre connectée & Déclaration TDO <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 77 du Recueil</span></h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">On souhaite enregistrer les notes d'une classe de 25 élèves et les effectifs de 10 groupes de travaux dirigés.</p>
+              <p class="small mb-2">
+                <strong>Contexte agronomique (Exercice 77) :</strong> Une sonde connectée relève la température horaire dans une serre sur 24 heures ($N = 24$). Les mesures sont conservées dans un tableau statique <code>T</code> de réels.
+              </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Rédiger les lignes du TDO algorithmique correspondant à un tableau <code>Notes</code> de 25 réels et un tableau <code>Effectifs</code> de 10 entiers.</li>
-                <li class="mb-2">Donner les instructions d'allocation équivalentes en Python avec la bibliothèque <code>numpy</code>.</li>
-                <li>Pourquoi l'écriture <code>T = []</code> (liste dynamique Python) est-elle proscrite par les conventions d'inspection ?</li>
+                <li class="mb-2">Rédiger les lignes du TDO algorithmique correspondant au tableau <code>T</code> de 24 réels et aux variables d'indices.</li>
+                <li class="mb-2">Donner les instructions d'allocation équivalentes en Python avec <code>numpy.array([0.0] * 24)</code>.</li>
+                <li>Identifier pourquoi l'affichage brut <code>print(T)</code> est proscrit et rédiger la boucle de parcours séquentiel case par case.</li>
               </ol>
 
               <div class="cahier-zone">
@@ -232,16 +234,21 @@ for i in range(N):
         <section id="act2-saisie-affichage" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Saisie contrôlée de la taille $N$ et parcours séquentiel</h3>
+              <h3 class="h6 mb-0">Activité 2 — Équilibrage des phases d'un réseau électrique <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 78 du Recueil</span></h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Soit $N$ le nombre de mesures expérimentales à acquérir ($3 \le N \le 20$).</p>
+              <p class="small mb-2">
+                <strong>Contexte électrotechnique (Exercice 78) :</strong> Un disjoncteur différentiel analyse un lot de $N$ impulsions représentées par des entiers. Le tableau est dit <strong>équilibré</strong> s'il contient exactement autant de valeurs paires que de valeurs impaires.
+              </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire la boucle <code>Répéter ... Jusqu'à</code> garantissant la saisie d'un entier $N$ dans l'intervalle $[3 ; 20]$.</li>
-                <li class="mb-2">Écrire l'algorithme de saisie élément par élément de $T$ à l'aide d'une boucle <code>Pour</code>.</li>
-                <li>Écrire la boucle d'affichage séquentiel qui présente chaque relevé sous la forme : <code>Relevé i : valeur</code>.</li>
+                <li class="mb-2">Écrire la boucle forçant la saisie d'un entier $N$ pair compris dans $[4 ; 20]$.</li>
+                <li class="mb-2">Écrire l'algorithme parcourant le tableau et comptant le nombre d'éléments pairs (<code>T[i] mod 2 = 0</code>) et impairs.</li>
+                <li><em>Exemples illustratifs :</em>
+                  <br>• $T = [12, 7, 24, 19, 8, 3]$ ($N = 6$) $\implies$ 3 pairs, 3 impairs $\rightarrow$ <strong>"Réseau Équilibré"</strong>.
+                  <br>• $T = [10, 14, 18, 5]$ ($N = 4$) $\implies$ 3 pairs, 1 impair $\rightarrow$ <strong>"Déséquilibre détecté !"</strong>.
+                </li>
               </ol>
 
               <div class="cahier-zone">
@@ -262,20 +269,24 @@ for i in range(N):
         <section id="act3-somme-moyenne" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Calcul de la somme cumulée et de la moyenne arithmétique</h3>
+              <h3 class="h6 mb-0">Activité 3 — Facturation d'énergie : Somme des produits croisés <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 79 du Recueil</span></h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Soit un tableau $T$ de $N$ valeurs réelles déjà rempli.</p>
+              <p class="small mb-2">
+                <strong>Contexte audit énergétique (Exercice 79) :</strong> Pour $N$ machines d'un atelier, on dispose de deux tableaux : $P$ (puissances nominales en kW) et $D$ (durées de fonctionnement en heures).
+              </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Pourquoi doit-on obligatoirement initialiser la variable <code>Somme</code> à 0.0 avant d'entamer le parcours du tableau ?</li>
-                <li class="mb-2">Écrire la boucle d'accumulation : $S \leftarrow S + T[i]$.</li>
-                <li>Calculer la moyenne arithmétique $\bar{x} = \frac{S}{N}$ et l'afficher arrondie à deux chiffres après la virgule.</li>
+                <li class="mb-2">Écrire l'algorithme calculant l'énergie totale consommée par produit scalaire : $E_{totale} = \sum_{i=0}^{N-1} (P[i] \times D[i])$.</li>
+                <li class="mb-2"><em>Exemple illustratif :</em> Pour $P = [1.5, 2.0, 0.8]\text{ kW}$ et $D = [4.0, 2.5, 5.0]\text{ h}$ :
+                  $$E = (1.5 \times 4.0) + (2.0 \times 2.5) + (0.8 \times 5.0) = 6.0 + 5.0 + 4.0 = \mathbf{15.0\text{ kWh}}$$
+                </li>
+                <li>Calculer la puissance moyenne consommée par machine : $\bar{P} = \frac{\sum P[i]}{N}$.</li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Écrivez l'algorithme de calcul de moyenne sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Écrivez l'algorithme du bilan énergétique sur votre cahier.
               </div>
             </div>
           </div>
@@ -285,20 +296,26 @@ for i in range(N):
         <section id="act4-maximum-indice" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Recherche du Maximum et conservation de l'indice</h3>
+              <h3 class="h6 mb-0">Activité 4 — Étalonnage croissant & Recherche d'Extrema <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercices 11 & 77</span></h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">On cherche la plus grande valeur contenue dans $T$ ainsi que la position (indice) où elle se situe.</p>
+              <p class="small mb-2">
+                <strong>Partie A (Exercice 77) :</strong> Déterminer la température minimale, la température maximale et les heures respectives (indices) dans le relevé de la serre.
+                <br><strong>Partie B (Exercice 11 du recueil — Monotonie d'étalonnage) :</strong> Lors de l'étalonnage d'un capteur de pression, les valeurs injectées dans un tableau $T$ doivent être strictement croissantes ($T[i-1] \le T[i]$).
+              </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Expliquer pourquoi il est formellement déconseillé d'initialiser le maximum à 0 si le tableau peut comporter des valeurs négatives.</li>
-                <li class="mb-2">Justifier l'initialisation canonique : <code>Max ← T[0] ; IndiceMax ← 0</code> puis parcours pour $i$ de $1$ à $N-1$.</li>
-                <li>Écrire l'algorithme complet de recherche du maximum et l'implémenter sous Python.</li>
+                <li class="mb-2">Écrire l'algorithme de vérification de tri avec arrêt anticipé dès qu'une régression est détectée.</li>
+                <li class="mb-2"><em>Exemples illustratifs :</em>
+                  <br>• $T = [12.0, 15.5, 20.0, 21.5, 23.5, 29.0] \implies$ <strong>"Étalonnage conforme (Monotonie respectée)"</strong>.
+                  <br>• $T = [12.0, 15.5, 20.0, 18.0, 23.5, 29.0] \implies$ <strong>"Anomalie détectée entre l'indice 2 et 3 !"</strong>.
+                </li>
+                <li>Rappeler l'initialisation canonique pour la recherche du maximum : <code>Max ← T[0] ; IndiceMax ← 0</code>.</li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez le patron de recherche du maximum avec indice sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez le patron de recherche du maximum avec indice et le test de monotonie sur votre cahier.
               </div>
             </div>
           </div>

@@ -13,11 +13,29 @@ createApp({
       theme: localStorage.getItem('theme') || 'dark',
 
       // Modèles de codes pour l'évaluation pratique 1
-      codeConcentrationPython: `# Saisie filtrée d'une concentration molaire C dans [0.01 ; 2.50]
-C = float(input("Donner la concentration molaire (mol/L) : "))
-while C < 0.01 or C > 2.50:
-    print("Erreur : la concentration doit être comprise entre 0.01 et 2.50 mol/L !")
-    C = float(input("Recommencez la saisie : "))`,
+      codeAccesMocnPython: `# Activité 1 : Contrôle d'accès sécurisé MOCN
+# Phase 1 : Saisie filtrée du code (> 0)
+code = int(input("Donner le code d'accès numérique (> 0) : "))
+while code <= 0:
+    print("Code invalide ! Entrez un entier strictement positif.")
+    code = int(input("Donner le code d'accès numérique (> 0) : "))
+
+# Phase 2 : Décompte des chiffres par divisions successives par 10
+copie_code = code
+nb_chiffres = 0
+while copie_code > 0:
+    copie_code = copie_code // 10
+    nb_chiffres = nb_chiffres + 1
+
+# Phase 3 : Habilitation de l'opérateur
+print("Code analysé :", code)
+print("Nombre de chiffres :", nb_chiffres)
+if nb_chiffres == 4:
+    print("Accès Technicien Régleur autorisé")
+elif nb_chiffres == 3:
+    print("Accès Opérateur Usinage autorisé")
+else:
+    print("Format de code non accrédité : Accès refusé !")`,
 
       codeAbsorbancePython: `# Saisie d'une série d'absorbances optiques arrêtée par une valeur négative
 somme = 0.0

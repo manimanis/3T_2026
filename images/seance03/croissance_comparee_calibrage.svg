@@ -1,0 +1,152 @@
+<svg viewBox="0 0 920 360" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-excellence" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <marker id="arr-gray3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#64748b" />
+    </marker>
+    <marker id="arr-green3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <!-- Fond Principal -->
+  <rect width="920" height="360" rx="14" fill="#0b1120" stroke="#334155" stroke-width="2"/>
+
+  <!-- En-tête -->
+  <rect x="16" y="12" width="888" height="42" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.4"/>
+  <text x="32" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#f8fafc">
+    MODÉLISATION DYNAMIQUE COMPARÉE &amp; CALIBRAGE DICHOTOMIQUE DE CAPTEUR
+  </text>
+  <rect x="710" y="19" width="182" height="28" rx="6" fill="#059669" fill-opacity="0.25" stroke="#10b981" stroke-width="1"/>
+  <text x="801" y="37" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#34d399" text-anchor="middle">
+    Activité 5 &amp; 6 · Dépassement
+  </text>
+
+  <!-- =========================================================================
+       PANNEAU GAUCHE : GRAPHIQUE COMPARATIF LINÉAIRE VS EXPONENTIEL (Activité 5)
+       ========================================================================= -->
+  <g id="comparaison-dynamique">
+    <rect x="16" y="64" width="480" height="282" rx="10" fill="url(#grad-excellence)" stroke="#475569" stroke-width="1.2"/>
+    
+    <rect x="26" y="74" width="460" height="26" rx="6" fill="#334155"/>
+    <text x="256" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="middle">
+      1. Croisement Dynamique : Linéaire (α) vs Exponentiel (β)
+    </text>
+
+    <!-- Axes Graphique -->
+    <!-- Axe Y (Production en Millions) -->
+    <line x1="68" y1="285" x2="68" y2="120" stroke="#64748b" stroke-width="1.8" marker-end="url(#arr-gray3)"/>
+    <text x="64" y="116" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#cbd5e1" text-anchor="end">Production (M)</text>
+
+    <!-- Axe X (Temps en heures) -->
+    <line x1="68" y1="285" x2="470" y2="285" stroke="#64748b" stroke-width="1.8" marker-end="url(#arr-gray3)"/>
+    <text x="470" y="303" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#cbd5e1" text-anchor="end">Temps t (h)</text>
+
+    <!-- Ticks Y (Échelle régulière : 10M = ~29px) -->
+    <text x="62" y="288" font-family="'Fira Code', monospace" font-size="9" fill="#94a3b8" text-anchor="end">0</text>
+    <line x1="68" y1="256" x2="455" y2="256" stroke="#334155" stroke-dasharray="2 2"/>
+    <text x="62" y="259" font-family="'Fira Code', monospace" font-size="9" fill="#94a3b8" text-anchor="end">10M</text>
+    <line x1="68" y1="227" x2="455" y2="227" stroke="#334155" stroke-dasharray="2 2"/>
+    <text x="62" y="230" font-family="'Fira Code', monospace" font-size="9" fill="#94a3b8" text-anchor="end">20M</text>
+    <line x1="68" y1="198" x2="455" y2="198" stroke="#334155" stroke-dasharray="2 2"/>
+    <text x="62" y="201" font-family="'Fira Code', monospace" font-size="9" fill="#94a3b8" text-anchor="end">30M</text>
+    <line x1="68" y1="169" x2="455" y2="169" stroke="#334155" stroke-dasharray="2 2"/>
+    <text x="62" y="172" font-family="'Fira Code', monospace" font-size="9" fill="#94a3b8" text-anchor="end">40M</text>
+    <line x1="68" y1="144" x2="455" y2="144" stroke="#f59e0b" stroke-dasharray="2 2" stroke-opacity="0.6"/>
+    <text x="62" y="147" font-family="'Fira Code', monospace" font-size="9" fill="#fbbf24" font-weight="700" text-anchor="end">48.5M</text>
+
+    <!-- Ticks X (Échelle horaire de 0 à 85 h) -->
+    <text x="157" y="299" font-family="'Fira Code', monospace" font-size="9" fill="#94a3b8" text-anchor="middle">20h</text>
+    <text x="247" y="299" font-family="'Fira Code', monospace" font-size="9" fill="#94a3b8" text-anchor="middle">40h</text>
+    <text x="336" y="299" font-family="'Fira Code', monospace" font-size="9" fill="#94a3b8" text-anchor="middle">60h</text>
+    <line x1="412" y1="285" x2="412" y2="144" stroke="#f59e0b" stroke-dasharray="3 3"/>
+    <text x="412" y="301" font-family="'Fira Code', monospace" font-size="10" font-weight="800" fill="#fbbf24" text-anchor="middle">t = 77 h</text>
+
+    <!-- Courbe Système Alpha : Linéaire (P_α = 10M + 0.5M * t) -->
+    <line x1="68" y1="256" x2="435" y2="137" stroke="#38bdf8" stroke-width="2.2"/>
+    <text x="180" y="215" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#38bdf8">
+      Ligne α : +500 k/h
+    </text>
+
+    <!-- Courbe Système Bêta : Exponentielle exacte U(n) = U(n-1)*1.03 -->
+    <path d="M68.0,270.5 L76.9,269.6 L85.9,268.6 L94.8,267.6 L103.8,266.6 L112.7,265.5 L121.6,264.3 L130.6,263.0 L139.5,261.7 L148.5,260.2 L157.4,258.7 L166.4,257.1 L175.3,255.4 L184.2,253.6 L193.2,251.7 L202.1,249.7 L211.1,247.5 L220.0,245.3 L228.9,242.8 L237.9,240.3 L246.8,237.6 L255.8,234.7 L264.7,231.6 L273.6,228.3 L282.6,224.9 L291.5,221.2 L300.5,217.4 L309.4,213.2 L318.4,208.9 L327.3,204.2 L336.2,199.3 L345.2,194.1 L354.1,188.5 L363.1,182.7 L372.0,176.4 L380.9,169.8 L389.9,162.8 L398.8,155.4 L407.8,147.5 L416.7,139.1 L425.6,130.2 L434.6,120.8" fill="none" stroke="#10b981" stroke-width="2.8"/>
+    <text x="270" y="248" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#34d399">
+      Ligne β : U(n) = U(n-1)×1.03
+    </text>
+
+    <!-- Point de croisement exact (t=77h, P=48.5M/48.69M -> x=412, y=144) -->
+    <circle cx="412" cy="144" r="5" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
+    <rect x="260" y="112" width="195" height="24" rx="4" fill="#78350f" fill-opacity="0.85" stroke="#f59e0b" stroke-width="1"/>
+    <text x="357" y="128" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#fde68a" text-anchor="middle">
+      CROISEMENT : t = 77 h (48.69 M)
+    </text>
+
+    <!-- Synthèse sous le graphique -->
+    <text x="76" y="323" font-family="'Fira Code', monospace" font-size="9.5" fill="#cbd5e1">
+      À t = 77 h : <tspan fill="#38bdf8">P_α = 48.50 M</tspan> &lt; <tspan fill="#34d399">P_β = 48.69 M</tspan> → <tspan fill="#a7f3d0">Arrêt boucle</tspan>
+    </text>
+    <text x="76" y="338" font-family="system-ui, sans-serif" font-size="9.5" fill="#94a3b8">
+      Modèle : Tant que (P_beta ≤ P_alpha) Faire (t ← 77 itérations)
+    </text>
+  </g>
+
+  <!-- =========================================================================
+       PANNEAU DROIT : CALIBRAGE DE CAPTEUR INDUSTRIEL (Activité 6)
+       ========================================================================= -->
+  <g id="calibrage-capteur">
+    <rect x="508" y="64" width="396" height="282" rx="10" fill="url(#grad-excellence)" stroke="#475569" stroke-width="1.2"/>
+    
+    <rect x="518" y="74" width="376" height="26" rx="6" fill="#334155"/>
+    <text x="706" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="middle">
+      2. Calibrage Borné d'un Capteur (1 à 30 • 5 essais max)
+    </text>
+
+    <!-- Échelle du Capteur [1 .. 30] -->
+    <rect x="532" y="116" width="350" height="20" rx="4" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+    <text x="540" y="130" font-family="'Fira Code', monospace" font-size="10" fill="#94a3b8">1</text>
+    <text x="872" y="130" font-family="'Fira Code', monospace" font-size="10" fill="#94a3b8" text-anchor="end">30</text>
+
+    <!-- Cible Secrète Consigne (ex: 19) -->
+    <rect x="734" y="112" width="28" height="28" rx="4" fill="#059669" stroke="#10b981" stroke-width="1.5"/>
+    <text x="748" y="130" font-family="'Fira Code', monospace" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">19</text>
+    <text x="748" y="106" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#34d399" text-anchor="middle">Cible</text>
+
+    <!-- Simulation des 3 essais -->
+    <!-- Essai 1 : 10 (Trop faible) -->
+    <rect x="532" y="152" width="350" height="34" rx="6" fill="#1e3a8a" fill-opacity="0.3" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="546" y="173" font-family="'Fira Code', monospace" font-size="10.5" font-weight="700" fill="#60a5fa">Essai 1 = 10</text>
+    <text x="700" y="173" font-family="system-ui, sans-serif" font-size="10" fill="#93c5fd">
+      ▲ Signal trop faible ! (Reste 4)
+    </text>
+
+    <!-- Essai 2 : 25 (Trop fort) -->
+    <rect x="532" y="194" width="350" height="34" rx="6" fill="#7f1d1d" fill-opacity="0.3" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="546" y="215" font-family="'Fira Code', monospace" font-size="10.5" font-weight="700" fill="#f87171">Essai 2 = 25</text>
+    <text x="700" y="215" font-family="system-ui, sans-serif" font-size="10" fill="#fca5a5">
+      ▼ Signal trop fort ! (Reste 3)
+    </text>
+
+    <!-- Essai 3 : 19 (Succès !) -->
+    <rect x="532" y="236" width="350" height="36" rx="6" fill="#064e3b" fill-opacity="0.5" stroke="#10b981" stroke-width="1.8"/>
+    <text x="546" y="258" font-family="'Fira Code', monospace" font-size="11" font-weight="800" fill="#86efac">Essai 3 = 19</text>
+    <text x="700" y="258" font-family="system-ui, sans-serif" font-size="10.5" font-weight="800" fill="#a7f3d0">
+      ✓ Calibrage validé en 3 essais !
+    </text>
+
+    <!-- Règle de terminaison double -->
+    <rect x="532" y="282" width="350" height="52" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="542" y="299" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fbbf24">
+      Double condition de terminaison de boucle :
+    </text>
+    <text x="542" y="315" font-family="'Fira Code', monospace" font-size="9.5" fill="#e2e8f0">
+      Tant que (valeur ≠ cible) ET (essais &lt; 5) Faire ...
+    </text>
+    <text x="542" y="328" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8">
+      Arrêt soit par réussite (valeur trouvée), soit par épuisement des essais.
+    </text>
+  </g>
+</svg>

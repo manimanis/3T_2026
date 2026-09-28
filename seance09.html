@@ -157,12 +157,12 @@
         <section id="act1-allocation" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Saisie filtrée de la taille et allocation statique</h3>
+              <h3 class="h6 mb-0">Activité 1 — Saisie filtrée et allocation statique (Barrage hydraulique) <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 77 du Recueil</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Saisir un nombre entier de relevés $N$ en exigeant qu'il appartienne à l'intervalle $[5 ; 30]$ (répéter la saisie tant que la valeur est hors bornes).
+                <strong>Contexte hydraulique :</strong> Un automate surveille $N$ points de pression d'une conduite de barrage ($5 \le N \le 30$). Saisir $N$ avec contrôle de validité.
               </p>
               <p class="small mb-2">
                 Allouer statiquement le tableau <code>Mesures</code> de taille $N$ initialisé à des valeurs réelles 0.0 avec <code>numpy.array([0.0] * N)</code>.
@@ -178,15 +178,15 @@
         <section id="act2-remplissage" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Saisie contrôlée des relevés de tension</h3>
+              <h3 class="h6 mb-0">Activité 2 — Saisie contrôlée des relevés de pression</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                À l'aide d'une boucle <code>Pour</code>, saisir une par une les $N$ tensions en contrôlant pour chaque valeur qu'elle vérifie la contrainte physique :
+                À l'aide d'une boucle <code>Pour</code>, saisir une par une les $N$ pressions en contrôlant pour chaque valeur qu'elle vérifie la contrainte physique :
               </p>
               <div class="p-2 bg-body-tertiary rounded text-center small mb-3">
-                $$0.0 \le U \le 15.0 \text{ Volts}$$
+                $$0.0 \le P \le 25.0 \text{ bars}$$
               </div>
               <div class="cahier-zone">
                 <i class="bi bi-terminal me-1"></i> Validez le contrôle de chaque mesure (une saisie erronée doit être re-demandée).
@@ -206,15 +206,15 @@
         <section id="act3-affichage" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Affichage normalisé séquentiel</h3>
+              <h3 class="h6 mb-0">Activité 3 — Affichage normalisé séquentiel case par case</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
                 Parcourir séquentiellement le tableau avec une boucle et afficher chaque relevé sur une ligne distincte sous la forme :
               </p>
-              <pre class="bg-body-tertiary p-2 rounded small mb-2"><code>Relevé [0] : 11.85 V
-Relevé [1] : 12.10 V
+              <pre class="bg-body-tertiary p-2 rounded small mb-2"><code>Relevé [0] : 14.20 bars
+Relevé [1] : 18.50 bars
 ...</code></pre>
               <p class="small text-danger mb-0"><strong>Rappel formel :</strong> L'instruction <code>print(Mesures)</code> est sanctionnée par 0 point sur cette activité.</p>
               <div class="cahier-zone mt-2">
@@ -228,7 +228,7 @@ Relevé [1] : 12.10 V
         <section id="act4-moyenne" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Calcul et affichage de la tension moyenne</h3>
+              <h3 class="h6 mb-0">Activité 4 — Calcul et affichage de la pression moyenne</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
@@ -236,9 +236,9 @@ Relevé [1] : 12.10 V
                 Calculer la somme de l'ensemble des relevés à l'aide d'une variable cumulatrice initialisée à 0.0, puis déterminer la moyenne arithmétique :
               </p>
               <div class="p-2 bg-body-tertiary rounded text-center small mb-3">
-                $$\bar{U} = \frac{1}{N} \sum_{i=0}^{N-1} \text{Mesures}[i]$$
+                $$\bar{P} = \frac{1}{N} \sum_{i=0}^{N-1} \text{Mesures}[i]$$
               </div>
-              <p class="small mb-2">Afficher la tension moyenne avec 2 chiffres significatifs après la virgule.</p>
+              <p class="small mb-2">Afficher la pression moyenne avec 2 chiffres après la virgule.</p>
               <div class="cahier-zone">
                 <i class="bi bi-terminal me-1"></i> Validez le calcul avec un jeu de mesures connues.
               </div>
@@ -257,18 +257,15 @@ Relevé [1] : 12.10 V
         <section id="act5-extrema" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Repérage des extrema et conservation des positions</h3>
+              <h3 class="h6 mb-0">Activité 5 — Repérage des extrema & Rangs de performance <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercices 77 & 81</span></h3>
               <span class="badge bg-secondary">2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                En un seul parcours séquentiel supplémentaire, déterminer :
+                <strong>Partie A (Exercice 77) :</strong> Déterminer la pression minimale et la pression maximale ainsi que les indices de capteurs concernés.
+                <br><strong>Partie B (Exercice 81 du recueil — Classement et rangs) :</strong> Calculer dans un tableau <code>Rangs</code> le rang de chaque capteur : $\text{Rang}[i] = 1 + \text{nombre de mesures} > \text{Mesures}[i]$.
+                <br><em>Exemple illustratif :</em> Pour $P = [14.2, 18.5, 12.0, 22.4, 15.1]$ $\implies$ Pression max $= 22.4\text{ bars}$ au capteur 3 (Rang 1).
               </p>
-              <ul class="small mb-3">
-                <li>La tension minimale <code>U_min</code> et l'indice <code>pos_min</code> où elle se situe.</li>
-                <li>La tension maximale <code>U_max</code> et l'indice <code>pos_max</code> où elle se situe.</li>
-              </ul>
-              <p class="small mb-2">Afficher les deux résultats sous forme d'un bilan d'inspection.</p>
               <div class="cahier-zone">
                 <i class="bi bi-terminal me-1"></i> Vérifiez que les indices affichés correspondent exactement aux cases du tableau.
               </div>
@@ -280,18 +277,13 @@ Relevé [1] : 12.10 V
         <section id="act6-anomalies" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Détection des relevés anormaux (écart > 20%)</h3>
+              <h3 class="h6 mb-0">Activité 6 — Analyse de variabilité : Mesures distinctes <span class="badge bg-success bg-opacity-25 text-success ms-2">Exercice 82 du Recueil</span></h3>
               <span class="badge bg-secondary">2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Un relevé $U$ est considéré comme <strong>anormal</strong> si sa déviation relative par rapport à la moyenne $\bar{U}$ dépasse $20\%$ :
-              </p>
-              <div class="p-2 bg-body-tertiary rounded text-center small mb-3">
-                $$\frac{|U - \bar{U}|}{\bar{U}} > 0.20 \iff |U - \bar{U}| > 0.20 \times \bar{U}$$
-              </div>
-              <p class="small mb-2">
-                Dénombrer le total de ces relevés anormaux et afficher leurs indices respectifs ainsi que leur valeur.
+                <strong>Contexte spectrométrie (Exercice 82) :</strong> Pour vérifier la sensibilité d'un capteur sans saturation, dénombrer le nombre exact de <strong>valeurs distinctes</strong> uniques présentes dans le tableau <code>Mesures</code>.
+                <br><em>Exemple illustratif :</em> Pour $T = [10, 15, 10, 12, 15, 18, 10] \implies \mathbf{4}$ valeurs distinctes $\{10, 12, 15, 18\}$.
               </p>
               <div class="cahier-zone mt-2">
                 <i class="bi bi-check2-all me-1"></i> Présentez l'exécution finale de votre TP à l'enseignant pour évaluation.

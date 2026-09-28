@@ -20,28 +20,48 @@ createApp({
         { critere: "Passage de paramètres", fonction: "Généralement par valeur", procedure: "Par valeur ou par référence avec @" }
       ],
 
-      codeModuleAlgo: `// En-tête de fonction algorithmique officielle :
-Fonction Volume_Cylindre(rayon, hauteur : Réel) : Réel
+      codeModuleAlgo: `// En-tête de fonction algorithmique officielle (Fonction pure) :
+Fonction Somme_Diviseurs(n : Entier) : Entier
 Début
-  Retourner 3.14159 * rayon * rayon * hauteur
+  somme ← 0
+  Pour d de 1 à n - 1 Faire
+    Si (n Mod d = 0) Alors
+      somme ← somme + d
+    Fin Si
+  Fin Pour
+  Retourner somme
 Fin
 
 // En-tête de procédure avec passage par référence (@) :
-Procédure Permuter(@x : Réel, @y : Réel)
+Procédure Saisir_Constantes(@pouls : Entier, @tension : Réel)
 Début
-  aux ← x
-  x ← y
-  y ← aux
+  Répéter
+    Écrire("Pouls patient (30-220 bpm) : ")
+    Lire(pouls)
+  Jusqu'à (pouls >= 30) Et (pouls <= 220)
+
+  Répéter
+    Écrire("Tension systolique (6.0-25.0 cmHg) : ")
+    Lire(tension)
+  Jusqu'à (tension >= 6.0) Et (tension <= 25.0)
 Fin`,
 
       codeModulePython: `# Équivalents Python 3 :
-def volume_cylindre(rayon: float, hauteur: float) -> float:
-    return 3.14159 * rayon * rayon * hauteur
+def somme_diviseurs(n: int) -> int:
+    somme = 0
+    for d in range(1, n):
+        if n % d == 0:
+            somme += d
+    return somme
 
-def permuter(x: float, y: float):
-    # En Python, les scalaires sont immuables.
-    # Pour simuler @ sur des scalaires, on retourne le tuple :
-    return y, x`
+def est_parfait(n: int) -> bool:
+    return somme_diviseurs(n) == n
+
+# En Python, les scalaires étant immuables, on simule @ par un retour de tuple :
+def saisir_constantes() -> tuple:
+    pouls = int(input("Pouls (30-220 bpm) : "))
+    tension = float(input("Tension (6.0-25.0 cmHg) : "))
+    return pouls, tension`
     };
   },
 

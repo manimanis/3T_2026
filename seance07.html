@@ -157,15 +157,22 @@
         <section id="act1-longueur" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Saisie et contrôle de longueur exacte</h3>
+              <h3 class="h6 mb-0">Activité 1 — Validation de format & Bit de parité impaire <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 71 du Recueil</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Écrire la boucle qui demande à l'utilisateur de saisir un code réactif et répète la saisie tant que la longueur de la chaîne n'est pas égale à <strong>exactement 7 caractères</strong> (utilisation obligatoire de <code>len()</code> / <code>Long()</code>).
+                <strong>Contexte transmission RS-485 (Exercice 71) :</strong> Un modem radio reçoit des trames de 8 bits. Pour sécuriser la ligne, il doit calculer un <strong>bit de parité impaire</strong> ('0' ou '1') afin que le nombre total de '1' transmis soit strictement impair.
               </p>
+              <ul class="small mb-2">
+                <li>Saisir une chaîne de 8 bits avec boucle forçant <code>Long(trame) = 8</code> et contenant uniquement des <code>'0'</code> et <code>'1'</code>.</li>
+                <li><em>Exemples illustratifs :</em>
+                  <br>• Entrée : <code>"11010010"</code> (4 bits à 1, pair) $\implies$ Bit de parité = <code>'1'</code> $\rightarrow$ Trame émise : <code>"110100101"</code> (total 5).
+                  <br>• Entrée : <code>"10101000"</code> (3 bits à 1, impair) $\implies$ Bit de parité = <code>'0'</code> $\rightarrow$ Trame émise : <code>"101010000"</code> (total 3).
+                </li>
+              </ul>
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Implémentez la saisie contrôlée dans <code>TP3_Nom_Prenom.py</code> et validez avec des chaînes trop courtes ou trop longues.
+                <i class="bi bi-terminal me-1"></i> Implémentez la saisie contrôlée et le calcul de parité dans <code>TP3_Nom_Prenom.py</code>.
               </div>
             </div>
           </div>
@@ -175,19 +182,19 @@
         <section id="act2-lettres-majuscules" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Contrôle des 2 lettres majuscules initiales</h3>
+              <h3 class="h6 mb-0">Activité 2 — Contrôle des 2 lettres majuscules d'un réactif</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Vérifier que les deux premiers caractères de la chaîne (indices 0 et 1) sont des lettres alphabétiques majuscules :
+                Vérifier que les deux premiers caractères du code de réactif (indices 0 et 1) sont des lettres alphabétiques majuscules :
               </p>
               <ul class="small mb-3">
                 <li>Méthode scalaire : $65 \le \text{ord}(c) \le 90$.</li>
                 <li>Afficher un message explicite si les lettres sont minuscules ou contiennent des symboles non autorisés.</li>
               </ul>
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Intégrez cette vérification dans votre script et testez avec <code>"ac-1234"</code> (doit être refusé) et <code>"AC-1234"</code>.
+                <i class="bi bi-terminal me-1"></i> Intégrez cette vérification dans votre script et testez avec <code>"ac-1234"</code> (rejeté) et <code>"AC-1234"</code> (accepté).
               </div>
             </div>
           </div>
@@ -204,7 +211,7 @@
         <section id="act3-separateur" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Contrôle du séparateur tiret</h3>
+              <h3 class="h6 mb-0">Activité 3 — Contrôle du séparateur tiret & Découpage</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
@@ -223,18 +230,20 @@
         <section id="act4-chiffres" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Extraction et validation numérique</h3>
+              <h3 class="h6 mb-0">Activité 4 — Réduction itérée d'une date (Chiffre de contrôle) <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 69 du Recueil</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Extraire la sous-chaîne formée par les 4 derniers caractères (indices 3 à 6 inclus, soit <code>code[3:7]</code> en Python ou <code>Sous_chaine(code, 3, 6)</code> en algorithmique).
+                <strong>Contexte agroalimentaire (Exercice 69) :</strong> Sur une chaîne d'embouteillage, la date de production au format <code>"JJ/MM/AAAA"</code> est compressée en un chiffre unique de contrôle par somme récursive de ses chiffres.
               </p>
-              <p class="small mb-2">
-                Vérifier que chacun de ces 4 caractères est un chiffre décimal compris entre <code>'0'</code> et <code>'9'</code> (ou via <code>isnumeric()</code> / <code>Estnum()</code>).
-              </p>
+              <ul class="small mb-2">
+                <li>Extraire les 8 chiffres décimaux de la date (ignorer les <code>'/'</code>).</li>
+                <li>Calculer la somme de ces chiffres, puis réitérer la somme sur le résultat jusqu'à obtenir un seul chiffre $\in [1 ; 9]$.</li>
+                <li><em>Exemple illustratif :</em> Pour <code>"29/09/2026"</code> $\implies 2+9+0+9+2+0+2+6 = 30 \implies 3+0 = \mathbf{3}$.</li>
+              </ul>
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Vérifiez que <code>"AC-12A4"</code> est correctement rejeté.
+                <i class="bi bi-terminal me-1"></i> Implémentez la fonction de réduction itérée dans votre fichier.
               </div>
             </div>
           </div>
@@ -251,22 +260,18 @@
         <section id="act5-cle-modulo" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Conversion numérique et clé de contrôle Modulo 19</h3>
+              <h3 class="h6 mb-0">Activité 5 — Certification de billets de banque <span class="badge bg-success bg-opacity-25 text-success ms-2">Exercice 75 du Recueil</span></h3>
               <span class="badge bg-secondary">2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Convertir le numéro de 4 chiffres en entier $N = \text{int}(code[3:7])$ (équivalent à <code>Valeur</code>).
-                Calculer la clé de sécurité :
-              </p>
-              <div class="p-2 bg-body-tertiary rounded text-center small mb-3">
-                $$\text{Clé} = N \pmod{19}$$
-              </div>
-              <p class="small mb-2">
-                Associer à cette clé une lettre de contrôle issue de la chaîne de référence : <code>"ABCDEFGHIJKLMNOPQRS"</code> (où l'indice correspond à la valeur de la clé de 0 à 18). Afficher la lettre clé calculée.
+                <strong>Contexte bancaire officiel (Exercice 75) :</strong> Un numéro de série comporte une lettre majuscule suivie de 11 chiffres (ex: <code>"S04012543281"</code>).
+                <br>• Remplacer la lettre par son rang alphabétique (A=1...S=19...Z=26).
+                <br>• Concaténer ce rang avec les 11 chiffres pour former un grand nombre.
+                <br>• Le billet est <strong>authentique</strong> si et seulement si : $\text{GrandNombre} \pmod 9 = 8$.
               </p>
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Exemple : pour <code>"AC-1045"</code>, $1045 = 19 \times 55 + 0 \implies \text{Clé} = 0 \implies \text{Lettre 'A'}$.
+                <i class="bi bi-terminal me-1"></i> Exemple : pour <code>"S04012543281"</code> $\implies 1904012543281 \pmod 9 = 8 \implies \mathbf{Billet\ Authentique}$.
               </div>
             </div>
           </div>
@@ -294,24 +299,24 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Cas 1 (Valide)</td>
-                      <td><code>"AC-1045"</code></td>
-                      <td>Code valide — Clé de contrôle calculée : 'A'</td>
+                      <td>Cas 1 (Ex 71 Parité)</td>
+                      <td><code>"11010010"</code></td>
+                      <td>Trame complète : <code>"110100101"</code> (Bit de parité '1')</td>
                     </tr>
                     <tr>
-                      <td>Cas 2 (Longueur incorrecte)</td>
-                      <td><code>"AC-104"</code></td>
-                      <td>Rejet immédiat : la longueur doit être exactement 7</td>
+                      <td>Cas 2 (Ex 69 Date)</td>
+                      <td><code>"29/09/2026"</code></td>
+                      <td>Clé d'horodatage = 3</td>
                     </tr>
                     <tr>
-                      <td>Cas 3 (Casse invalide)</td>
-                      <td><code>"ac-1045"</code></td>
-                      <td>Rejet : les 2 premières lettres doivent être majuscules</td>
+                      <td>Cas 3 (Ex 75 Billet Valide)</td>
+                      <td><code>"S04012543281"</code></td>
+                      <td>Billet certifié Authentique (Modulo 9 = 8)</td>
                     </tr>
                     <tr>
-                      <td>Cas 4 (Non numérique)</td>
-                      <td><code>"SL-39A2"</code></td>
-                      <td>Rejet : la partie identification doit comporter 4 chiffres</td>
+                      <td>Cas 4 (Ex 75 Contrefaçon)</td>
+                      <td><code>"A00000000001"</code></td>
+                      <td>Rejet : Modulo 9 = 2 ≠ 8 (Billet Non Conforme)</td>
                     </tr>
                   </tbody>
                 </table>

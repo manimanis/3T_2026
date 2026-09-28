@@ -184,26 +184,33 @@
            ARTICLE 2: PALIER DÉBUTANT (ACTIVITÉS 1 & 2)
            ========================================================================= -->
       <article id="palier-debutant" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-circle-fill text-success me-2"></i> PALIER 🟢 DÉBUTANT — Décomposition & Procédures d'affichage</h2>
+        <h2><i class="bi bi-circle-fill text-success me-2"></i> PALIER 🟢 DÉBUTANT — Décomposition & Moniteur Médical</h2>
 
         <!-- Activité 1 -->
         <section id="act1-arbre" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Arbre de décomposition modulaire descendante</h3>
+              <h3 class="h6 mb-0">Activité 1 — Arbre de décomposition d'un moniteur de réanimation <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 126 du Recueil</span></h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">On souhaite résoudre dans $\mathbb{R}$ l'équation du second degré $a x^2 + b x + c = 0$.</p>
+              <p class="small mb-2">
+                <strong>Contexte médical (Exercice 126) :</strong> Un moniteur de soins intensifs surveille en temps réel le pouls $P$ (en pulsations/min, entier) et la tension artérielle systolique $T$ (en cmHg, réel). Pour concevoir un logiciel médical robuste, l'ingénieur décompose le traitement en trois modules indépendants :
+              </p>
+              <ul class="small mb-2">
+                <li><strong>Module 1 :</strong> Saisie et validation des constantes vitales avec alertes de cohérence biologique ($30 \le P \le 220$ et $6.0 \le T \le 25.0$).</li>
+                <li><strong>Module 2 :</strong> Évaluation d'un indice de risque clinique global (retourne un code entier : 0 = normal, 1 = modéré, 2 = critique) sans aucune interaction avec l'écran.</li>
+                <li><strong>Module 3 :</strong> Affichage du rapport textuel et déclenchement éventuel du protocole d'urgence.</li>
+              </ul>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Identifier les trois sous-tâches fondamentales : (1) Saisie des coefficients avec $a \neq 0$, (2) Calcul du discriminant $\Delta = b^2 - 4ac$, (3) Discussion et affichage des racines selon le signe de $\Delta$.</li>
-                <li class="mb-2">Qualifier la nature (Fonction ou Procédure) de chacun des trois modules.</li>
-                <li>Tracer l'arbre de décomposition sur votre cahier en reliant le programme principal aux 3 modules.</li>
+                <li class="mb-2">Qualifier formellement la nature (<strong>Fonction</strong> ou <strong>Procédure</strong>) de chacun des trois modules en justifiant vos choix.</li>
+                <li class="mb-2">Identifier les paramètres formels et leurs modes de passage (par valeur ou par référence avec <code>@</code>).</li>
+                <li>Dessiner l'arbre hiérarchique de décomposition modulaire sur votre cahier en reliant le Programme Principal aux 3 sous-programmes.</li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Dessinez l'arbre hiérarchique et indiquez les types des paramètres sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Dessinez l'arbre hiérarchique et indiquez les signatures des modules sur votre cahier.
               </div>
             </div>
           </div>
@@ -213,23 +220,27 @@
         <section id="act2-banniere" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Déclaration d'une procédure d'affichage avec paramètre</h3>
+              <h3 class="h6 mb-0">Activité 2 — Procédure d'alerte clinique et affichage normé <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 126 du Recueil</span></h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">On souhaite concevoir une procédure <code>Banniere(titre : Chaîne)</code> qui encadre un texte par des tirets :</p>
-              <pre class="bg-body-tertiary p-2 rounded small mb-2"><code>------------------------------------
-  RÉSULTATS DE L'ANALYSE PHYSIQUE   
-------------------------------------</code></pre>
+              <p class="small mb-2">
+                On conçoit la procédure <code>Afficher_Rapport(code_risque : Entier)</code> chargée d'éditer le message destiné au personnel soignant selon le code reçu :
+              </p>
+              <ul class="small mb-2">
+                <li>Code 0 : <code>"[STABLE] Constantes dans les normes physiologiques."</code></li>
+                <li>Code 1 : <code>"[SURVEILLANCE] Anomalie modérée - Surveillance renforcée."</code></li>
+                <li>Code 2 : <code>"[URGENCE CRITIQUE] Dépassement des seuils vitaux - Intervention immédiate !"</code></li>
+              </ul>
 
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire l'en-tête et le corps algorithmique de la procédure.</li>
-                <li class="mb-2">Justifier pourquoi ce sous-programme ne peut en aucun cas être une Fonction.</li>
-                <li>Coder la fonction en Python (avec le mot-clé <code>def</code>) et l'appeler avec deux titres différents.</li>
+                <li class="mb-2">Rédiger l'en-tête et le corps algorithmique de la procédure en utilisant la structure de sélection multiple <code>Selon code_risque Faire</code>.</li>
+                <li class="mb-2">Justifier pourquoi ce sous-programme ne peut en aucun cas être une Fonction (absence de valeur de retour scalaire, présence d'actions d'écriture).</li>
+                <li>Coder la procédure en Python avec le mot-clé <code>def</code> et simuler son appel pour les codes 0, 1 et 2.</li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez la procédure sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme de la procédure sur votre cahier.
               </div>
             </div>
           </div>
@@ -240,26 +251,32 @@
            ARTICLE 3: PALIER INTERMÉDIAIRE (ACTIVITÉS 3 & 4)
            ========================================================================= -->
       <article id="palier-intermediaire" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-circle-fill text-warning me-2"></i> PALIER 🟡 INTERMÉDIAIRE — Fonctions Pures & TDOL</h2>
+        <h2><i class="bi bi-circle-fill text-warning me-2"></i> PALIER 🟡 INTERMÉDIAIRE — Cryptosystème & Nombres Parfaits</h2>
 
         <!-- Activité 3 -->
         <section id="act3-fonction-pure" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Conception d'une fonction mathématique pure</h3>
+              <h3 class="h6 mb-0">Activité 3 — Conception d'une fonction mathématique pure : Somme des diviseurs <span class="badge bg-warning bg-opacity-25 text-warning ms-2">Exercice 36 du Recueil</span></h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Le volume d'un cylindre de rayon $r$ et de hauteur $h$ est donné par $V = \pi r^2 h$.</p>
+              <p class="small mb-2">
+                <strong>Contexte arithmétique (Exercice 36) :</strong> Un protocole cryptographique génère des clés de sécurité à partir des <em>nombres parfaits</em> (un entier naturel égal à la somme de ses diviseurs stricts, à l'exclusion de lui-même).
+              </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Rédiger la fonction algorithmique <code>Volume_Cylindre(rayon, hauteur : Réel) : Réel</code>.</li>
-                <li class="mb-2">Pourquoi cette fonction ne doit-elle comporter <strong>aucun appel à <code>Lire()</code> ni à <code>Écrire()</code></strong> ?</li>
-                <li>Montrer comment appeler cette fonction dans le programme principal pour affecter le résultat à une variable <code>v1</code> puis pour l'afficher directement dans une phrase.</li>
+                <li class="mb-2">Rédiger la fonction algorithmique pure <code>Somme_Diviseurs(n : Entier) : Entier</code> qui calcule et retourne la somme de tous les diviseurs stricts de $n$ (de $1$ à $n - 1$).</li>
+                <li class="mb-2">Pourquoi cette fonction ne doit-elle comporter <strong>aucun appel à <code>Lire()</code> ni à <code>Écrire()</code></strong> ? Expliquer le concept d'étanchéité et de fonction pure.</li>
+                <li><em>Exemples d'évaluation de la fonction :</em>
+                  <br>• Pour $n = 6$ : diviseurs stricts $\{1, 2, 3\} \implies \text{Somme} = 6$.
+                  <br>• Pour $n = 12$ : diviseurs stricts $\{1, 2, 3, 4, 6\} \implies \text{Somme} = 16 \neq 12$.
+                  <br>• Pour $n = 28$ : diviseurs stricts $\{1, 2, 4, 7, 14\} \implies \text{Somme} = 28$.
+                </li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Consignez la spécification de la fonction et les instructions d'appel sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme de la fonction pure <code>Somme_Diviseurs</code> sur votre cahier.
               </div>
             </div>
           </div>
@@ -269,20 +286,23 @@
         <section id="act4-tdol-portee" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Portée des variables & Tableau des Objets Locaux (TDOL)</h3>
+              <h3 class="h6 mb-0">Activité 4 — Prédicat de Nombre Parfait, TDOL & Portée locale <span class="badge bg-warning bg-opacity-25 text-warning ms-2">Exercice 36 du Recueil</span></h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Une fonction utilise des variables internes intermédiaires pour effectuer ses calculs.</p>
+              <p class="small mb-2">
+                On enrichit l'architecture en concevant une seconde fonction <code>Est_Parfait(n : Entier) : Booléen</code> réutilisant la fonction précédente.
+              </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Distinguer formellement les <strong>paramètres formels</strong> (déclarés dans l'en-tête), les <strong>variables locales</strong> (déclarées dans le TDOL) et les <strong>variables globales</strong>.</li>
-                <li class="mb-2">Remplir le TDOL d'une fonction calculant l'hypoténuse d'un triangle rectangle $c = \sqrt{a^2 + b^2}$.</li>
-                <li>Que se passe-t-il si l'on essaie d'afficher dans le programme principal une variable déclarée uniquement dans le TDOL d'une fonction ? Pourquoi ?</li>
+                <li class="mb-2">Écrire la fonction <code>Est_Parfait(n : Entier) : Booléen</code> qui renvoie <code>Vrai</code> si <code>Somme_Diviseurs(n) = n</code>, et <code>Faux</code> sinon.</li>
+                <li class="mb-2">Dresser le <strong>Tableau de Déclaration des Objets Locaux (TDOL)</strong> de la fonction <code>Somme_Diviseurs</code> en identifiant le rôle de chaque variable interne (accumulateur, compteur d'itération).</li>
+                <li class="mb-2">Rédiger le programme principal qui saisit une borne maximale $B \in [2 ; 500]$ et affiche tous les nombres parfaits de l'intervalle $[2 ; B]$.</li>
+                <li><em>Résultat pour $B = 500$ :</em> Les nombres parfaits identifiés sont <strong>6, 28 et 496</strong> ($1+2+4+8+16+31+62+124+248 = 496$).</li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Notez la structure du TDOL et la règle d'encapsulation sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Consignez le TDOL et le programme principal sur votre cahier.
               </div>
             </div>
           </div>
@@ -293,28 +313,32 @@
            ARTICLE 4: PALIER AVANCÉ (ACTIVITÉS 5 & 6)
            ========================================================================= -->
       <article id="palier-avance" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-circle-fill text-danger me-2"></i> PALIER 🔴 AVANCÉ — Passage par Référence & Tableaux</h2>
+        <h2><i class="bi bi-circle-fill text-danger me-2"></i> PALIER 🔴 AVANCÉ — Bio-informatique & Tables d'Étalonnage</h2>
 
         <!-- Activité 5 -->
         <section id="act5-permutation-reference" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Procédure de permutation et passage par référence (<code>@</code>)</h3>
+              <h3 class="h6 mb-0">Activité 5 — Virologie & Distance de Hamming entre brins d'ARN <span class="badge bg-danger bg-opacity-25 text-danger ms-2">Exercice 68 du Recueil</span></h3>
               <span class="badge bg-danger">Dépassement</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                En algorithmique officielle 2024-2025, le passage par référence est matérialisé par le préfixe <strong><code>@</code></strong> devant le nom du paramètre dans l'en-tête de la procédure.
+                <strong>Contexte génomique (Exercice 68) :</strong> En épidémiologie moléculaire, pour quantifier le taux de dérive génétique entre deux souches d'un même virus à ARN, on calcule la <em>Distance de Hamming</em> : nombre de positions où les nucléotides homologues diffèrent.
               </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire la procédure <code>Permuter(@x : Réel, @y : Réel)</code> utilisant la variable locale <code>aux</code>.</li>
-                <li class="mb-2">Expliquer ce qui se produirait dans le programme appelant si les symboles <code>@</code> étaient omis (passage par valeur).</li>
-                <li>En Python, les nombres scalaires étant immuables, quelle syntaxe d'affectation multiple permet d'obtenir le même résultat ? (<code>x, y = y, x</code>).</li>
+                <li class="mb-2">Écrire la fonction <code>Distance_Hamming(brin1, brin2 : Chaîne) : Entier</code> qui compare les deux chaînes de même longueur et retourne le nombre d'écarts observés.</li>
+                <li class="mb-2">Écrire la fonction <code>Taux_Mutation(dist : Entier, longueur : Entier) : Réel</code> calculant le pourcentage de divergence : $\tau = \frac{\text{dist}}{\text{longueur}} \times 100\,\%$.</li>
+                <li><em>Exemple illustratif :</em>
+                  <br>• <code>brin1 = "GAGCCTACTA"</code>, <code>brin2 = "CATCGTACTA"</code> (longueur 10).
+                  <br>• Écarts : pos 0 (G $\neq$ C), pos 2 (G $\neq$ T), pos 4 (C $\neq$ G) $\implies$ Distance = 3 mutations.
+                  <br>• Taux de dérive = $30.0\,\%$.
+                </li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez la procédure <code>Permuter</code> avec <code>@</code> sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez les fonctions d'analyse génomique sur votre cahier.
               </div>
             </div>
           </div>
@@ -324,25 +348,28 @@
         <section id="act6-architecture-modulaire" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Architecture modulaire complète sur tableau numpy</h3>
+              <h3 class="h6 mb-0">Activité 6 — Procédure de matrice d'étalonnage & Passage par référence <span class="badge bg-danger bg-opacity-25 text-danger ms-2">Exercices 126 & 134 du Recueil</span></h3>
               <span class="badge bg-danger">Dépassement</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Concevoir une application complète décomposée en trois sous-programmes distincts :
+                <strong>Contexte instrumentation (Exercice 134) :</strong> On souhaite concevoir une procédure <code>Afficher_Table_Etalonnage(N : Entier)</code> générant une grille de coefficients carrée d'ordre $N$ ($2 \le N \le 10$), chaque coefficient étant égal au produit croisé des coordonnées $(i + 1) \times (j + 1)$.
               </p>
-              <ul class="small mb-3">
-                <li><code>Fonction Saisie_Taille() : Entier</code> : contrôle $N \in [3 ; 20]$.</li>
-                <li><code>Procédure Remplir_Tableau(@T : Tableau de N Réel, N : Entier)</code> : remplit $T$ case par case.</li>
-                <li><code>Fonction Calculer_Moyenne(T : Tableau de N Réel, N : Entier) : Réel</code> : calcule la moyenne sans affichage.</li>
-              </ul>
+              
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Rédiger le programme principal algorithmique appelant ces trois modules dans l'ordre logique.</li>
-                <li class="mb-2">Traduire l'ensemble en Python 3 et vérifier le bon déroulement sur machine.</li>
+                <li class="mb-2">Dresser le TDOL complet de la procédure (compteurs d'indices locaux $i, j$ de type Entier).</li>
+                <li class="mb-2">Rédiger l'algorithme utilisant deux boucles <code>Pour</code> imbriquées et un formatage tabulaire régulier.</li>
+                <li class="mb-2"><em>Exemple pour $N = 4$ :</em>
+                  <pre class="bg-body-tertiary p-2 rounded small mb-2"><code> 1   2   3   4
+ 2   4   6   8
+ 3   6   9  12
+ 4   8  12  16</code></pre>
+                </li>
+                <li>Synthétiser dans un encadré la convention officielle 2024-2025 du préfixe <strong><code>@</code></strong> pour le passage de paramètres modifiables par référence dans une procédure (ex: <code>Procédure Saisir_Bornes(@min : Réel, @max : Réel)</code>).</li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'architecture complète sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez la procédure d'étalonnage et la règle du passage par référence sur votre cahier.
               </div>
             </div>
           </div>

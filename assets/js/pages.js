@@ -64,7 +64,13 @@ class SectionDrawer {
       let initialIdx = this.options.initialIndex;
       if (window.location.hash) {
         const hashId = window.location.hash.substring(1);
-        const foundIdx = this.allSections.findIndex(sec => sec.id === hashId);
+        let foundIdx = this.allSections.findIndex(sec => sec.id === hashId);
+        if (foundIdx === -1) {
+          const matchingArticle = this.articles.find(art => art.id === hashId);
+          if (matchingArticle && matchingArticle.sections && matchingArticle.sections.length > 0) {
+            foundIdx = matchingArticle.sections[0].flatIndex;
+          }
+        }
         if (foundIdx !== -1) initialIdx = foundIdx;
       }
       this.showSection(initialIdx, false);
@@ -139,6 +145,7 @@ class SectionDrawer {
           icon: secIcon,
           element: secEl,
           parentArticle: artEl,
+          parentArticleId: artEl.id,
           articleTitle: artTitle,
           articleIcon: artIcon,
           flatIndex: this.allSections.length
@@ -167,6 +174,7 @@ class SectionDrawer {
           icon: secIcon,
           element: secEl,
           parentArticle: null,
+          parentArticleId: null,
           articleTitle: 'Page',
           articleIcon: 'bi-file-text',
           flatIndex: this.allSections.length
@@ -188,31 +196,79 @@ class SectionDrawer {
    * Affiche UNIQUEMENT la <section> spécifiée et masque toutes les autres
    */
   showSection(indexOrId, doScroll = true, updateUrl = true) {
+    if (!this.allSections || this.allSections.length === 0) {
+      this.scanArticlesAndSections();
+    }
+    if (this.allSections.length === 0) return false;
+
     let targetIndex = -1;
 
     if (typeof indexOrId === 'number') {
       targetIndex = indexOrId;
-    } else {
+    } else if (typeof indexOrId === 'string') {
+      // 1. Recherche directe par ID de section
       targetIndex = this.allSections.findIndex(sec => sec.id === indexOrId);
+
+      // 2. Recherche par ID d'article parent (ex: 'palier-debutant', 'palier-socle', etc.)
+      if (targetIndex === -1) {
+        let matchingArticle = this.articles.find(art => art.id === indexOrId);
+        if (!matchingArticle) {
+          // Re-scan au cas où le DOM a été re-rendu par Vue après scan initial
+          this.scanArticlesAndSections();
+          matchingArticle = this.articles.find(art => art.id === indexOrId);
+        }
+        if (matchingArticle && matchingArticle.sections && matchingArticle.sections.length > 0) {
+          targetIndex = matchingArticle.sections[0].flatIndex;
+        }
+      }
+
+      // 3. Recherche dans le DOM réel si non trouvé dans les index
+      if (targetIndex === -1) {
+        const domEl = document.getElementById(indexOrId);
+        if (domEl) {
+          if (domEl.matches && domEl.matches(this.options.sectionSelector)) {
+            targetIndex = this.allSections.findIndex(sec => sec.id === domEl.id);
+          } else {
+            const childSec = domEl.querySelector(this.options.sectionSelector);
+            if (childSec && childSec.id) {
+              targetIndex = this.allSections.findIndex(sec => sec.id === childSec.id);
+            }
+          }
+        }
+      }
+
+      // 4. Recherche par inclusion/préfixe
+      if (targetIndex === -1) {
+        const partialArt = this.articles.find(art => art.id && (art.id.startsWith(indexOrId) || indexOrId.startsWith(art.id)));
+        if (partialArt && partialArt.sections && partialArt.sections.length > 0) {
+          targetIndex = partialArt.sections[0].flatIndex;
+        }
+      }
     }
 
-    if (targetIndex < 0 || targetIndex >= this.allSections.length) return;
+    if (targetIndex < 0 || targetIndex >= this.allSections.length) {
+      console.warn(`[SectionDrawer] Section ou article introuvable pour : "${indexOrId}"`);
+      return false;
+    }
 
     this.activeIndex = targetIndex;
     const targetItem = this.allSections[targetIndex];
     this.activeId = targetItem.id;
 
-    const allArticles = document.querySelectorAll('article, .article-content-wrapper');
+    // Récupération des éléments LIVE du DOM (résistant aux re-rendus Vue/KaTeX)
+    const allArticles = document.querySelectorAll(this.options.articleSelector);
+    const parentArtId = targetItem.parentArticleId || (targetItem.parentArticle ? targetItem.parentArticle.id : null);
 
     // 1. Masquer toutes les sections et afficher uniquement la section ciblée
     this.allSections.forEach((sec, idx) => {
-      if (sec.element) {
+      const liveSecEl = document.getElementById(sec.id) || sec.element;
+      if (liveSecEl) {
         if (idx === targetIndex) {
-          sec.element.style.display = 'block';
-          sec.element.classList.add('section-active-fade');
+          liveSecEl.style.display = 'block';
+          liveSecEl.classList.add('section-active-fade');
         } else {
-          sec.element.style.display = 'none';
-          sec.element.classList.remove('section-active-fade');
+          liveSecEl.style.display = 'none';
+          liveSecEl.classList.remove('section-active-fade');
         }
       }
     });
@@ -220,9 +276,9 @@ class SectionDrawer {
     // 2. Afficher l'article parent correspondant et masquer les autres
     if (allArticles.length > 0) {
       allArticles.forEach(art => {
-        if (targetItem.parentArticle && art === targetItem.parentArticle) {
-          art.style.display = 'block';
-        } else if (!targetItem.parentArticle && art.contains(targetItem.element)) {
+        const liveSecEl = document.getElementById(targetItem.id);
+        const isMatch = (parentArtId && art.id === parentArtId) || (liveSecEl && art.contains(liveSecEl));
+        if (isMatch) {
           art.style.display = 'block';
         } else {
           art.style.display = 'none';
@@ -245,12 +301,29 @@ class SectionDrawer {
     // 5. Mettre à jour l'en-tête de navigation (Section X sur Y)
     this.updateHeaderIndicator(targetItem);
 
-    // 6. Défilement haut de page
+    // 6. Défilement fluide vers le haut du contenu actif
     if (doScroll) {
-      window.scrollTo({ top: 110, behavior: 'smooth' });
+      const liveSecEl = document.getElementById(targetItem.id);
+      const liveArtEl = parentArtId ? document.getElementById(parentArtId) : null;
+      const targetElement = liveArtEl || liveSecEl;
+      if (targetElement) {
+        const headerOffset = 110;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elemRect = targetElement.getBoundingClientRect().top;
+        const targetPos = elemRect - bodyRect - headerOffset;
+        window.scrollTo({
+          top: Math.max(0, targetPos),
+          behavior: 'smooth'
+        });
+      } else {
+        window.scrollTo({ top: 110, behavior: 'smooth' });
+      }
     }
 
-    // 7. Coloration syntaxique & KaTeX
+    // 7. Fermer le tiroir sur mobile si ouvert
+    this.close();
+
+    // 8. Coloration syntaxique & KaTeX
     setTimeout(() => {
       if (typeof hljs !== 'undefined' && hljs.highlightAll) {
         hljs.highlightAll();
@@ -270,6 +343,8 @@ class SectionDrawer {
         window.codeClipboardInstance.setupCodeCopyButtons();
       }
     }, 50);
+
+    return true;
   }
 
   showNextSection() {
@@ -647,26 +722,82 @@ window.SectionDrawer = SectionDrawer;
 
 if (typeof window !== 'undefined') {
   window.sectionDrawerInstance = new SectionDrawer();
+
+  // Fonction globale jumpToSection accessible pour tous les boutons et contrôleurs
+  window.jumpToSection = function(indexOrId) {
+    if (window.sectionDrawerInstance && typeof window.sectionDrawerInstance.showSection === 'function') {
+      const res = window.sectionDrawerInstance.showSection(indexOrId);
+      if (res !== false) return true;
+    }
+    let el = document.getElementById(indexOrId);
+    if (!el) {
+      const art = document.querySelector(`article#${indexOrId}`);
+      if (art) el = art.querySelector('section') || art;
+    }
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      return true;
+    }
+    return false;
+  };
 }
 
 /**
  * Image Zoom Lightbox Modal
- * Permet d'agrandir n'importe quelle illustration au clic dans une modale Bootstrap
+ * Véritable visionneuse plein écran haute fidélité avec zoom interactif, panoramique et affichage HD
  */
 function initImageModalZoom() {
   let modalEl = document.getElementById('imageZoomModal');
   if (!modalEl) {
     const modalHTML = `
       <div class="modal fade" id="imageZoomModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content card-custom border border-secondary border-opacity-25 shadow-lg">
-            <div class="modal-header border-bottom border-secondary border-opacity-25 py-2 px-3">
-              <h5 class="modal-title h6 mb-0 font-mono text-primary" id="imageZoomTitle"><i class="bi bi-search me-2"></i> Agrandissement de l'illustration</h5>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        <div class="modal-dialog modal-fullscreen">
+          <div class="modal-content d-flex flex-column h-100 border-0" style="background: rgba(11, 17, 32, 0.98) !important; color: #f8fafc;">
+            <!-- Header avec barre d'outils plein écran -->
+            <div class="modal-header border-bottom border-secondary border-opacity-25 py-2 px-3 d-flex align-items-center justify-content-between" style="background: #0f172a; z-index: 10;">
+              <div class="d-flex align-items-center gap-2 overflow-hidden me-2">
+                <i class="bi bi-arrows-fullscreen text-info fs-5"></i>
+                <h5 class="modal-title h6 mb-0 text-truncate font-mono text-light" id="imageZoomTitle">Agrandissement Plein Écran</h5>
+                <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25 small font-mono d-none d-sm-inline-block">Vecteur HD</span>
+              </div>
+              <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                <!-- Contrôles de zoom interactifs -->
+                <div class="btn-group btn-group-sm bg-dark rounded p-1 border border-secondary border-opacity-50">
+                  <button type="button" class="btn btn-outline-light btn-sm py-0 px-2" id="zoomOutBtn" title="Zoom arrière (-)">
+                    <i class="bi bi-dash-lg"></i>
+                  </button>
+                  <span class="px-2 py-0 small font-mono text-info d-flex align-items-center" id="zoomLevelText" style="min-width: 52px; justify-content: center;">100%</span>
+                  <button type="button" class="btn btn-outline-light btn-sm py-0 px-2" id="zoomInBtn" title="Zoom avant (+)">
+                    <i class="bi bi-plus-lg"></i>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm py-0 px-2 text-white-50" id="zoomResetBtn" title="Réinitialiser (100%)">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                  </button>
+                </div>
+                <!-- Ouvrir l'image originale -->
+                <a id="zoomOpenRawLink" href="#" target="_blank" class="btn btn-sm btn-outline-info py-1 px-2" title="Ouvrir le fichier original dans un nouvel onglet">
+                  <i class="bi bi-box-arrow-up-right me-1"></i><span class="d-none d-md-inline">Original</span>
+                </a>
+                <!-- Bascule plein écran navigateur -->
+                <button type="button" class="btn btn-sm btn-outline-secondary py-1 px-2 text-light" id="zoomFullscreenToggle" title="Plein écran navigateur (F11)">
+                  <i class="bi bi-arrows-fullscreen"></i>
+                </button>
+                <!-- Bouton fermer -->
+                <button type="button" class="btn-close btn-close-white ms-1" data-bs-dismiss="modal" aria-label="Fermer"></button>
+              </div>
             </div>
-            <div class="modal-body text-center p-3 bg-body-tertiary">
-              <img id="imageZoomSrc" src="" alt="" class="img-fluid rounded shadow-sm" style="max-height: 85vh; width: 100%; object-fit: contain;">
-              <p id="imageZoomCaption" class="small text-muted mt-2 mb-0 fst-italic"></p>
+            <!-- Zone centrale d'affichage plein écran -->
+            <div class="modal-body p-0 d-flex flex-column align-items-center justify-content-center position-relative overflow-hidden" style="background: radial-gradient(circle at center, #1e293b 0%, #0b1120 100%);">
+              <div id="imageZoomWrapper" class="w-100 h-100 d-flex align-items-center justify-content-center overflow-hidden position-relative" style="cursor: grab; user-select: none;">
+                <img id="imageZoomSrc" src="" alt="" class="shadow-lg rounded" style="max-height: calc(100vh - 120px); max-width: 96vw; width: auto; height: auto; object-fit: contain; transition: transform 0.15s ease-out; transform-origin: center center; display: block;">
+              </div>
+            </div>
+            <!-- Pied de page avec légende et raccourcis -->
+            <div class="modal-footer border-top border-secondary border-opacity-25 py-2 px-3 d-flex justify-content-between align-items-center" style="background: #0f172a; z-index: 10;">
+              <p id="imageZoomCaption" class="small text-white-50 mb-0 text-truncate fst-italic me-2"></p>
+              <span class="badge bg-secondary bg-opacity-25 text-white-50 small font-mono d-none d-md-inline-block">
+                <i class="bi bi-mouse me-1"></i> Molette : Zoomer · Glisser : Déplacer · Double-clic : Basculer zoom · Échap : Fermer
+              </span>
             </div>
           </div>
         </div>
@@ -674,22 +805,144 @@ function initImageModalZoom() {
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
     modalEl = document.getElementById('imageZoomModal');
+
+    // Initialisation des interactions de zoom & panoramique
+    let currentZoom = 1.0;
+    let panX = 0;
+    let panY = 0;
+    let isPanning = false;
+    let startX = 0;
+    let startY = 0;
+
+    const img = document.getElementById('imageZoomSrc');
+    const levelText = document.getElementById('zoomLevelText');
+    const wrapper = document.getElementById('imageZoomWrapper');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const zoomResetBtn = document.getElementById('zoomResetBtn');
+    const fsToggleBtn = document.getElementById('zoomFullscreenToggle');
+
+    function updateTransform() {
+      if (img) {
+        img.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoom})`;
+      }
+      if (levelText) {
+        levelText.textContent = `${Math.round(currentZoom * 100)}%`;
+      }
+    }
+
+    function resetZoom() {
+      currentZoom = 1.0;
+      panX = 0;
+      panY = 0;
+      if (wrapper) wrapper.style.cursor = 'grab';
+      updateTransform();
+    }
+
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentZoom = Math.min(3.5, Math.round((currentZoom + 0.25) * 100) / 100);
+        updateTransform();
+      });
+    }
+
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentZoom = Math.max(0.5, Math.round((currentZoom - 0.25) * 100) / 100);
+        updateTransform();
+      });
+    }
+
+    if (zoomResetBtn) {
+      zoomResetBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        resetZoom();
+      });
+    }
+
+    if (fsToggleBtn) {
+      fsToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!document.fullscreenElement) {
+          modalEl.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      });
+    }
+
+    if (wrapper) {
+      // Zoom avec la molette
+      wrapper.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY < 0 ? 0.15 : -0.15;
+        currentZoom = Math.min(3.5, Math.max(0.5, Math.round((currentZoom + delta) * 100) / 100));
+        updateTransform();
+      }, { passive: false });
+
+      // Double-clic pour zoom rapide 1x / 1.6x
+      wrapper.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        if (currentZoom > 1.1) {
+          resetZoom();
+        } else {
+          currentZoom = 1.6;
+          updateTransform();
+        }
+      });
+
+      // Panoramique par glisser-déposer
+      wrapper.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button, a')) return;
+        isPanning = true;
+        startX = e.clientX - panX;
+        startY = e.clientY - panY;
+        wrapper.style.cursor = 'grabbing';
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isPanning) return;
+        panX = e.clientX - startX;
+        panY = e.clientY - startY;
+        updateTransform();
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (isPanning) {
+          isPanning = false;
+          if (wrapper) wrapper.style.cursor = 'grab';
+        }
+      });
+    }
+
+    modalEl.addEventListener('show.bs.modal', resetZoom);
+    modalEl.addEventListener('hidden.bs.modal', () => {
+      resetZoom();
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
   }
 
+  // Écouteur global de clic sur les illustrations
   document.body.addEventListener('click', function (e) {
     const imgTarget = e.target.closest('img');
     if (imgTarget && !imgTarget.classList.contains('no-zoom') && !imgTarget.closest('#imageZoomModal')) {
       const src = imgTarget.getAttribute('src');
       if (!src) return;
 
-      const alt = imgTarget.getAttribute('alt') || 'Illustration';
+      const alt = imgTarget.getAttribute('alt') || 'Illustration technique';
       const modalSrc = document.getElementById('imageZoomSrc');
       const modalCaption = document.getElementById('imageZoomCaption');
       const modalTitle = document.getElementById('imageZoomTitle');
+      const modalRawLink = document.getElementById('zoomOpenRawLink');
 
       if (modalSrc) modalSrc.setAttribute('src', src);
       if (modalCaption) modalCaption.textContent = alt;
-      if (modalTitle) modalTitle.innerHTML = `<i class="bi bi-zoom-in me-2"></i> ${alt}`;
+      if (modalTitle) modalTitle.innerHTML = `<i class="bi bi-zoom-in text-info me-2"></i> ${alt}`;
+      if (modalRawLink) modalRawLink.setAttribute('href', src);
 
       if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
         const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);

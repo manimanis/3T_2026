@@ -192,26 +192,32 @@ for k in range(taille_T2):
            ARTICLE 2: PALIER DÉBUTANT (ACTIVITÉS 1 & 2)
            ========================================================================= -->
       <article id="palier-debutant" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-circle-fill text-success me-2"></i> PALIER 🟢 DÉBUTANT — Comptage & Simulation manuelle</h2>
+        <h2><i class="bi bi-circle-fill text-success me-2"></i> PALIER 🟢 DÉBUTANT — Régulation thermique & Simulation manuelle</h2>
 
         <!-- Activité 1 -->
         <section id="act1-comptage" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Comptage conditionnel d'éléments</h3>
+              <h3 class="h6 mb-0">Activité 1 — Régulation d'une centrale thermique & Seuil pivot <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 86 du Recueil</span></h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Soit un tableau $T$ de $N$ réels. On souhaite dénombrer les éléments strictement négatifs.</p>
+              <p class="small mb-2">
+                <strong>Contexte thermique (Exercice 86) :</strong> Dans une unité de cogénération, un tableau $T$ stocke $N$ températures réelles ($5 \le N \le 20$). La première case $T[0]$ constitue la <em>température de consigne pivot</em>. L'automate doit identifier et dénombrer toutes les mesures inférieures ou égales à cette consigne afin de réguler le débit des brûleurs.
+              </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Initialiser un compteur d'entiers <code>nb_neg</code> à 0.</li>
-                <li class="mb-2">Rédiger l'algorithme complet parcourant le tableau et incrémentant le compteur pour chaque case satisfaisant $T[i] < 0$.</li>
-                <li>Pourquoi ce traitement ne modifie-t-il aucun élément du tableau ?</li>
+                <li class="mb-2">Écrire la déclaration TDO du tableau $T$ de $N$ réels et des compteurs nécessaires.</li>
+                <li class="mb-2">Rédiger l'algorithme parcourant le tableau à partir de l'indice 1 pour compter le nombre de mesures vérifiant $T[i] \le T[0]$.</li>
+                <li class="mb-2">Pourquoi la consigne $T[0]$ sert-elle de pivot comparateur et pourquoi la boucle démarre-t-elle à $i = 1$ plutôt qu'à $0$ ?</li>
+                <li><em>Exemple illustratif :</em>
+                  <br>• $T = [20.0, 14.5, 25.0, 18.0, 31.0, 12.0, 22.5]$ ($N = 7$, Pivot $T[0] = 20.0^\circ\text{C}$).
+                  <br>• Mesures $\le 20.0$ détectées : $14.5, 18.0, 12.0 \implies \text{Nombre de dépassements bas} = 3$.
+                </li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez le TDO et l'algorithme de comptage conditionnel sur votre cahier.
               </div>
             </div>
           </div>
@@ -221,11 +227,14 @@ for k in range(taille_T2):
         <section id="act2-trace-double-indice" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Trace d'exécution pas à pas avec double indice</h3>
+              <h3 class="h6 mb-0">Activité 2 — Trace d'exécution du transfert sélectif avec double indice <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 86 du Recueil</span></h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Soit le tableau source $T1$ de taille 5 : <code>T1 = [12, -5, 8, -2, 15]</code>. On transfère uniquement les valeurs positives ($> 0$) dans $T2$.</p>
+              <p class="small mb-2">
+                On souhaite copier dans un tableau récepteur $T_{inf}$ toutes les températures inférieures ou égales au pivot $T[0] = 20.0$ issues du relevé suivant de taille $N = 6$ :
+                <br><code>T = [20.0, 14.5, 25.0, 18.0, 12.0, 22.5]</code>.
+              </p>
               
               <ol class="small mb-3 ps-3">
                 <li class="mb-2">Reproduire et compléter le tableau de trace ci-dessous sur votre cahier :</li>
@@ -236,44 +245,44 @@ for k in range(taille_T2):
                   <thead class="table-dark">
                     <tr>
                       <th>Étape ($i$)</th>
-                      <th>Valeur examinée $T1[i]$</th>
-                      <th>Condition $T1[i] > 0$ ?</th>
-                      <th>Action réalisée</th>
+                      <th>Température $T[i]$</th>
+                      <th>Condition $T[i] \le 20.0$ ?</th>
+                      <th>Action réalisée sur $T_{inf}$</th>
                       <th>Valeur finale de $j$</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>$i = 0$</td>
-                      <td>12</td>
-                      <td>Vrai</td>
-                      <td><code>T2[0] ← 12 ; j ← 1</code></td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
                       <td>$i = 1$</td>
-                      <td>-5</td>
-                      <td>Faux</td>
-                      <td>Aucune copie</td>
+                      <td>14.5</td>
+                      <td>Vrai ($14.5 \le 20.0$)</td>
+                      <td><code>Tinf[0] ← 14.5 ; j ← 1</code></td>
                       <td>1</td>
                     </tr>
                     <tr>
                       <td>$i = 2$</td>
-                      <td>8</td>
-                      <td>...</td>
-                      <td>...</td>
-                      <td>...</td>
+                      <td>25.0</td>
+                      <td>Faux ($25.0 > 20.0$)</td>
+                      <td>Aucune copie (ignoré)</td>
+                      <td>1</td>
                     </tr>
                     <tr>
                       <td>$i = 3$</td>
-                      <td>-2</td>
+                      <td>18.0</td>
                       <td>...</td>
                       <td>...</td>
                       <td>...</td>
                     </tr>
                     <tr>
                       <td>$i = 4$</td>
-                      <td>15</td>
+                      <td>12.0</td>
+                      <td>...</td>
+                      <td>...</td>
+                      <td>...</td>
+                    </tr>
+                    <tr>
+                      <td>$i = 5$</td>
+                      <td>22.5</td>
                       <td>...</td>
                       <td>...</td>
                       <td>...</td>
@@ -283,7 +292,7 @@ for k in range(taille_T2):
               </div>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Complétez la trace et déduisez le contenu final de $T2$ ainsi que la valeur finale de $j$.
+                <i class="bi bi-pencil-square me-1"></i> Déduisez le contenu final des cases utiles de $T_{inf}$ et la valeur finale de l'indice utile $j$.
               </div>
             </div>
           </div>
@@ -294,26 +303,40 @@ for k in range(taille_T2):
            ARTICLE 3: PALIER INTERMÉDIAIRE (ACTIVITÉS 3 & 4)
            ========================================================================= -->
       <article id="palier-intermediaire" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-circle-fill text-warning me-2"></i> PALIER 🟡 INTERMÉDIAIRE — Filtrage & Affichage Rigoureux</h2>
+        <h2><i class="bi bi-circle-fill text-warning me-2"></i> PALIER 🟡 INTERMÉDIAIRE — Télémétrie de Drone & Transfert Alterné</h2>
 
         <!-- Activité 3 -->
         <section id="act3-algo-filtrage" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Conception algorithmique du filtrage par intervalle</h3>
+              <h3 class="h6 mb-0">Activité 3 — Réorganisation entrelacée de flux télémétriques <span class="badge bg-warning bg-opacity-25 text-warning ms-2">Exercice 85 du Recueil</span></h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">On souhaite extraire d'un tableau $T1$ de $N$ réels toutes les valeurs comprises dans l'intervalle $[10.0 ; 20.0]$ et les stocker dans $T2$.</p>
+              <p class="small mb-2">
+                <strong>Contexte aérospatial (Exercice 85) :</strong> Un drone de reconnaissance maritime enregistre deux flux de données entrelacés dans un tableau statique $T$ de taille paire $N$ ($4 \le N \le 20$) :
+              </p>
+              <ul class="small mb-2">
+                <li>Les cases d'indices pairs ($i = 0, 2, 4, \dots$) contiennent les relevés du <strong>capteur infrarouge</strong>.</li>
+                <li>Les cases d'indices impairs ($i = 1, 3, 5, \dots$) contiennent les relevés de la <strong>caméra optique</strong>.</li>
+              </ul>
+              <p class="small mb-2">
+                On désire regrouper dans un tableau récepteur $R$ de taille $N$ tous les signaux infrarouges de gauche à droite (dans la première moitié), suivis des signaux optiques <strong>rangés dans l'ordre inverse</strong> de droite à gauche (dans la seconde moitié).
+              </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Pourquoi la taille maximale allouée pour $T2$ doit-elle être égale à $N$ ?</li>
-                <li class="mb-2">Écrire l'algorithme de transfert complet et préciser la condition d'appartenance à l'intervalle.</li>
-                <li>Que vaut la taille finale du tableau $T2$ si aucun élément ne vérifie le critère ?</li>
+                <li class="mb-2">Pourquoi la taille allouée pour $R$ est-elle exactement égale à $N$ ?</li>
+                <li class="mb-2">Concevoir l'algorithme de transfert en utilisant deux compteurs d'écriture indépendants ($j_1$ démarrant à 0 pour la gauche, et $j_2$ démarrant à $N - 1$ pour la droite).</li>
+                <li><em>Exemple d'exécution :</em>
+                  <br>• Tableau source $T = [10, 20, 30, 40, 50, 60]$ ($N = 6$).
+                  <br>• Infrarouges (indices pairs) : $10, 30, 50 \rightarrow$ placés en $R[0..2]$.
+                  <br>• Optiques (indices impairs) : $20, 40, 60 \rightarrow$ inversés en $60, 40, 20$ et placés en $R[3..5]$.
+                  <br>• Tableau final $R = [10, 30, 50, 60, 40, 20]$.
+                </li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme de transfert entrelacé sur votre cahier.
               </div>
             </div>
           </div>
@@ -323,17 +346,18 @@ for k in range(taille_T2):
         <section id="act4-python-filtrage" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Implémentation et affichage strict sous Python</h3>
+              <h3 class="h6 mb-0">Activité 4 — Implémentation NumPy & Validation de cohérence <span class="badge bg-warning bg-opacity-25 text-warning ms-2">Exercice 85 du Recueil</span></h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Coder la solution sous Python en utilisant obligatoirement <code>T2 = array([0.0] * N)</code>.
+                Coder la réorganisation sous Python en respectant rigoureusement les conventions :
               </p>
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire la boucle d'affichage séquentiel qui affiche <strong>strictement</strong> les $j$ premiers éléments (de l'indice 0 à $j-1$).</li>
-                <li class="mb-2">Vérifier qu'aucun zéro résiduel n'apparait dans le résultat affiché à l'écran.</li>
-                <li>Afficher un message spécifique si $j = 0$ : <code>"Aucun élément ne correspond au critère de sélection."</code></li>
+                <li class="mb-2">Allouer le tableau résultat sous la forme : <code>R = array([0] * N)</code>.</li>
+                <li class="mb-2">Écrire la boucle unique de transfert avec les indices $j_1$ et $j_2$.</li>
+                <li class="mb-2">Afficher les cases de $R$ une à une avec la syntaxe standardisée <code>f"R[{k}] = {R[k]}"</code>.</li>
+                <li>Tester votre programme avec $N = 6$ et $N = 4$ pour vérifier l'exactitude de l'inversion de la seconde moitié.</li>
               </ol>
 
               <div class="cahier-zone">
@@ -348,32 +372,31 @@ for k in range(taille_T2):
            ARTICLE 4: PALIER AVANCÉ (ACTIVITÉS 5 & 6)
            ========================================================================= -->
       <article id="palier-avance" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-circle-fill text-danger me-2"></i> PALIER 🔴 AVANCÉ — Éclatement & Tassement</h2>
+        <h2><i class="bi bi-circle-fill text-danger me-2"></i> PALIER 🔴 AVANCÉ — Dédoublonnage & Épuration de chaînes</h2>
 
         <!-- Activité 5 -->
         <section id="act5-eclatement" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Éclatement d'un tableau en deux sous-tableaux</h3>
+              <h3 class="h6 mb-0">Activité 5 — Élimination des détections RFID redondantes <span class="badge bg-danger bg-opacity-25 text-danger ms-2">Exercice 96 du Recueil</span></h3>
               <span class="badge bg-danger">Dépassement</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Soit un tableau $T$ de $N$ entiers. On souhaite éclater $T$ en deux tableaux distincts :
+                <strong>Contexte logistique (Exercice 96) :</strong> À l'entrée d'une plateforme de fret, un lecteur RFID capte les identifiants de palettes sous forme de tableau <code>Codes</code> de $N$ chaînes ($N \in [5 ; 30]$). Une palette stationnaire sous le portique engendre plusieurs lectures redondantes. On souhaite stocker dans un second tableau <code>Codes_Uniques</code> uniquement la première apparition de chaque identifiant.
               </p>
-              <ul class="small mb-3">
-                <li><code>TPairs</code> : contenant tous les entiers pairs ($T[i] \pmod 2 = 0$).</li>
-                <li><code>TImpairs</code> : contenant tous les entiers impairs ($T[i] \pmod 2 \neq 0$).</li>
-              </ul>
-
+              
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Expliquer pourquoi deux compteurs distincts $j_1$ et $j_2$ sont indispensables.</li>
-                <li class="mb-2">Écrire l'algorithme qui parcourt $T$ une seule fois et répartit les nombres dans les deux tableaux.</li>
-                <li>Vérifier que la relation arithmétique suivante est toujours satisfaite à la fin du traitement : $j_1 + j_2 = N$.</li>
+                <li class="mb-2">Expliquer comment tester si un identifiant <code>Codes[i]</code> a déjà été inséré dans <code>Codes_Uniques</code> parmi les indices $0$ à $j - 1$.</li>
+                <li class="mb-2">Écrire l'algorithme complet qui peuple <code>Codes_Uniques</code> et actualise la taille utile $j$.</li>
+                <li><em>Exemple illustratif :</em>
+                  <br>• <code>Codes = ["PAL-42", "PAL-18", "PAL-42", "PAL-99", "PAL-18", "PAL-05"]</code>
+                  <br>• <code>Codes_Uniques = ["PAL-42", "PAL-18", "PAL-99", "PAL-05"]</code> ($j = 4$ palettes réelles).
+                </li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme de séparation sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme de dédoublonnage sur votre cahier.
               </div>
             </div>
           </div>
@@ -383,23 +406,29 @@ for k in range(taille_T2):
         <section id="act6-tassement" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Tassement in-place d'un tableau (suppression des zéros)</h3>
+              <h3 class="h6 mb-0">Activité 6 — Épuration et filtrage de références de pièces usinées <span class="badge bg-danger bg-opacity-25 text-danger ms-2">Exercice 97 du Recueil</span></h3>
               <span class="badge bg-danger">Dépassement</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Soit un tableau contenant des zéros au milieu de nombres non nuls (ex: <code>[4, 0, 9, 0, 0, 7, 2]</code>).
-                On désire compacter le tableau vers la gauche pour regrouper tous les nombres non nuls <strong>sans utiliser de second tableau</strong>.
+                <strong>Contexte contrôle qualité (Exercice 97) :</strong> Une caméra industrielle lit des références gravées sur des pièces métalliques stockées dans un tableau <code>Brut</code> de $N$ chaînes. Certaines inscriptions contiennent des poussières ou des parasites (symboles non alphabétiques). L'ordinateur doit :
               </p>
+              <ul class="small mb-2">
+                <li>Nettoyer chaque référence en ne conservant que les lettres alphabétiques converties en majuscules.</li>
+                <li>Ne transférer dans le tableau <code>Valides</code> que les références dont la longueur épurée est <strong>strictement supérieure à 2</strong> ($\text{Long}(\text{ref}) > 2$).</li>
+              </ul>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Concevoir l'algorithme de tassement in-place en utilisant $i$ comme lecteur et $j$ comme pointeur d'écriture dans le même tableau $T$ : si $T[i] \neq 0$, alors $T[j] \leftarrow T[i]$ et $j \leftarrow j + 1$.</li>
-                <li class="mb-2">Remplir les cases résiduelles de $j$ à $N-1$ par des zéros.</li>
-                <li>Dérouler l'algorithme sur le tableau exemple et constater l'efficacité mémoire.</li>
+                <li class="mb-2">Écrire l'algorithme qui parcourt <code>Brut</code>, nettoie la chaîne caractère par caractère, teste sa longueur et effectue le transfert sélectif dans <code>Valides</code> avec le pointeur $j$.</li>
+                <li class="mb-2"><em>Exemple illustratif complet :</em>
+                  <br>• <code>Brut = ["#ab*", "m1", "p-y-t", "a", "@chem!"]</code>
+                  <br>• Épuration : <code>"#ab*"</code> $\rightarrow$ <code>"AB"</code> (longueur 2 $\le 2 \implies$ rejetée), <code>"m1"</code> $\rightarrow$ <code>"M"</code> (longueur 1 $\implies$ rejetée), <code>"p-y-t"</code> $\rightarrow$ <code>"PYT"</code> (longueur 3 $> 2 \implies$ <strong>conservée</strong>), <code>"a"</code> $\rightarrow$ <code>"A"</code> (longueur 1 $\implies$ rejetée), <code>"@chem!"</code> $\rightarrow$ <code>"CHEM"</code> (longueur 4 $> 2 \implies$ <strong>conservée</strong>).
+                  <br>• Tableau final : <code>Valides = ["PYT", "CHEM"]</code> ($j = 2$).
+                </li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme de tassement in-place sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme d'épuration et de filtrage sur votre cahier.
               </div>
             </div>
           </div>

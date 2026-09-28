@@ -150,16 +150,20 @@
         <section id="act1-affichage-menu" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Procédure d'affichage du menu interactif</h3>
+              <h3 class="h6 mb-0">Activité 1 — Menu didactique & Loi d'Ohm <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 119 du Recueil</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Écrire sous Python la procédure affichant le menu suivant :</p>
+              <p class="small mb-2">
+                <strong>Contexte banc de maintenance (Exercice 119) :</strong> On souhaite concevoir une application interactive d'auto-évaluation pour tester la loi d'Ohm ($U = R \times I$).
+                Écrire sous Python la procédure affichant le menu suivant :
+              </p>
               <pre class="bg-body-tertiary p-2 rounded small mb-3"><code>==========================================
-   SIMULATEUR DE MÉCANIQUE DES FLUIDES   
+   BANC D'ESSAI ÉLECTRIQUE (LOI D'OHM)   
 ==========================================
-1 : Calcul de la Pression (P = F / S)
-2 : Calcul du Débit volumique (D = V / t)
+1 : Lancer le test interactif (U = R * I)
+2 : Arbitrage de priorité réseau (Duel)
+3 : Déstockage sécurisé (Jeu de Nim)
 0 : Quitter l'application
 ------------------------------------------</code></pre>
               <div class="cahier-zone">
@@ -178,7 +182,7 @@
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Écrire la boucle forçant la saisie du choix entre 0, 1 et 2. En cas de choix invalide, afficher un message d'erreur et renouveler la demande.
+                Écrire la boucle forçant la saisie du choix entre <code>0, 1, 2, 3</code>. En cas de choix hors plage, afficher un message d'erreur et renouveler la saisie avec <code>Répéter ... Jusqu'à Choix ∈ [0 ; 3]</code>.
               </p>
               <div class="cahier-zone">
                 <i class="bi bi-pencil-square me-1"></i> Intégrez le contrôle de saisie dans votre script.
@@ -198,12 +202,14 @@
         <section id="act3-calcul-pression" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Implémentation de l'Option 1 : Calcul de Pression</h3>
+              <h3 class="h6 mb-0">Activité 3 — Option 1 : Session de questions avec seuil d'erreurs <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 119 du Recueil</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Pour le choix 1, demander la force $F > 0$ (en Newtons) et la surface $S > 0$ (en $\text{m}^2$). Calculer puis afficher la pression $P = F / S$ en Pascals et en Bars ($1\text{ bar} = 10^5\text{ Pa}$).
+                Pour le choix 1, générer aléatoirement $R \in [1 ; 20]\ \Omega$ et $I \in [1 ; 10]\text{ A}$. Demander à l'utilisateur la tension $U$ correspondante.
+                <br>• La session s'arrête dès que l'utilisateur atteint <strong>10 bonnes réponses</strong> (succès) OU commet <strong>3 erreurs</strong> (échec).
+                <br>• Afficher le bilan immédiat après chaque réponse.
               </p>
               <div class="cahier-zone">
                 <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme sur votre feuille et testez-le sous Python.
@@ -216,12 +222,12 @@
         <section id="act4-calcul-debit" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Implémentation de l'Option 2 : Calcul de Débit</h3>
+              <h3 class="h6 mb-0">Activité 4 — Option 2 : Arbitrage de priorité réseau <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 115 du Recueil</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Pour le choix 2, demander le volume $V > 0$ (en Litres) et la durée d'écoulement $t > 0$ (en secondes). Calculer et afficher le débit $D = V / t$ en $\text{L/s}$ et en $\text{m}^3/\text{s}$.
+                Pour le choix 2, deux routeurs $N_1$ et $N_2$ tirent un jeton aléatoire entre 1 et 6 à chaque tour. Le plus grand jeton rapporte 1 point. Le premier routeur à totaliser <strong>10 points</strong> remporte la priorité. Afficher les scores manche par manche.
               </p>
               <div class="cahier-zone">
                 <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme sur votre feuille et testez-le sous Python.
@@ -241,12 +247,12 @@
         <section id="act5-boucle-globale" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Boucle globale de maintien du simulateur</h3>
+              <h3 class="h6 mb-0">Activité 5 — Option 3 : Déstockage sécurisé (Jeu de Nim) <span class="badge bg-success bg-opacity-25 text-success ms-2">Exercice 125 du Recueil</span></h3>
               <span class="badge bg-success text-white">Excellence · 2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Envelopper les choix dans un bloc <code>match...case</code> et assurer la réapparition automatique du menu après chaque calcul tant que l'utilisateur n'a pas sélectionné <code>0</code>.
+                Pour le choix 3, simuler l'évacuation de 16 composants sensibles. Deux opérateurs retirent tour à tour 1, 2 ou 3 composants. Le dernier à retirer valide le lot. Rejeter toute saisie invalide ($< 1$ ou $> 3$ ou dépassant le stock restant).
               </p>
               <div class="cahier-zone">
                 <i class="bi bi-pencil-square me-1"></i> Complétez le programme principal dans <code>TP2_Nom_Prenom.py</code>.
@@ -259,12 +265,13 @@
         <section id="act6-compteur-statistique" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Compteur d'opérations & Recette logicielle</h3>
+              <h3 class="h6 mb-0">Activité 6 — Maintien global par boucle & Compteur statistique de session</h3>
               <span class="badge bg-success text-white">Excellence · 2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Ajouter un compteur <code>nb_simulations</code> affichant à la sortie le total de calculs réalisés au cours de la session. Valider devant l'enseignant avec un enchaînement : Option 1, Option 2, Option 0.
+                Envelopper le tout dans une boucle <code>Répéter ... Jusqu'à Choix = 0</code> avec aiguillage <code>match...case</code> et compteur de sessions actives.
+                <br><em>Validation de recette :</em> Tester l'enchaînement Option 1 $\rightarrow$ Option 2 $\rightarrow$ Option 3 $\rightarrow$ Option 0 devant l'enseignant.
               </p>
               <div class="cahier-zone">
                 <i class="bi bi-pencil-square me-1"></i> Faites valider vos tests et remettez votre fichier.

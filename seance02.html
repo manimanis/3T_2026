@@ -26,6 +26,31 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
+    /* Structure pleine hauteur & pied de page collé */
+    #app {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    main.container {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 55vh;
+    }
+
+    .article-content-wrapper {
+      flex: 1 0 auto;
+      min-height: 48vh;
+    }
+
+    footer.footer-custom {
+      margin-top: auto !important;
+    }
+
     .phase-pill-nav {
       position: sticky;
       top: 56px;
@@ -90,17 +115,17 @@
           <div>
             <div class="d-flex flex-wrap gap-2 mb-2">
               <span class="badge bg-primary bg-opacity-25 text-primary-light border border-primary border-opacity-25">
-                SÉANCE 2 · APPRENTISSAGE
+                Séance 2
               </span>
               <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
                 <i class="bi bi-clock me-1"></i> 90 min
               </span>
               <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
-                Pédagogie Différenciée (3 Paliers)
+                3 Paliers
               </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">Les structures itératives non bornées : La boucle Tant Que</h1>
-            <p class="text-muted small mb-0">Contrôle de saisie robuste, condition d'arrêt et itérations non bornées — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
+            <h1 class="h3 fw-bold mb-1">Boucle Tant Que (while)</h1>
+            <p class="text-muted small mb-0">Pré-condition, boucle non bornée et cas 0 itération — 3<sup>e</sup> Sciences</p>
           </div>
         </div>
       </div>
@@ -110,16 +135,16 @@
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
         <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('cadre-conventions')">
-          Cadre & Syntaxe
+          Syntaxe
         </button>
         <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          Palier 🟢 Débutant (Act 1-2)
+          🟢 Débutant (Act 1-2)
         </button>
         <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          Palier 🟡 Intermédiaire (Act 3-4)
+          🟡 Intermédiaire (Act 3-4)
         </button>
         <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          Palier 🔴 Avancé (Act 5-6)
+          🔴 Avancé (Act 5-6)
         </button>
       </div>
     </div>
@@ -131,11 +156,24 @@
            ARTICLE 1: CADRE & CONVENTIONS OFFICIELLES
            ========================================================================= -->
       <article id="cadre" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-compass text-primary me-2"></i> CADRE THÉORIQUE — La boucle Tant Que</h2>
+        <h2><i class="bi bi-compass text-primary me-2"></i> Cadre théorique</h2>
 
         <section id="cadre-conventions" class="section-pane mb-4">
-          <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Règle fondamentale :</strong> Lorsque le nombre de répétitions n'est pas connu à l'avance et dépend d'une condition dynamique qui évolue au cours du traitement, on utilise une <strong>structure itérative à condition d'arrêt</strong> (boucle non bornée).
+          <!-- Règle fondamentale Banner Callout -->
+          <div class="card card-custom border-start border-4 border-warning mb-4 shadow-sm">
+            <div class="card-body py-3 px-3 d-flex align-items-center gap-3">
+              <div class="badge bg-warning bg-opacity-15 text-warning border border-warning border-opacity-25 p-2 px-3 rounded-circle fs-4 flex-shrink-0">
+                <i class="bi bi-lightbulb-fill"></i>
+              </div>
+              <div class="small">
+                <div class="fw-bold text-warning text-uppercase mb-1" style="font-size: 0.75rem;">
+                  <i class="bi bi-shield-check me-1"></i> Règle de choix
+                </div>
+                <div class="text-body mb-0">
+                  Nombre d'itérations <strong>inconnu à l'avance</strong> $\rightarrow$ utiliser <strong class="text-primary-light"><code>Tant que</code></strong> (boucle non bornée). La boucle <code>Pour</code> est réservée aux répétitions prédéterminées.
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="row g-3">
@@ -149,8 +187,8 @@
   Traitements
 Fin Tant que</code></pre>
                   <ul class="mb-0 ps-3 text-muted">
-                    <li>La condition est évaluée <strong>avant</strong> d'entrer dans la boucle (pré-condition).</li>
-                    <li>Si la condition est fausse au départ, le corps n'est <strong>jamais exécuté</strong>.</li>
+                    <li>Évaluation <strong>avant</strong> exécution (pré-condition).</li>
+                    <li>Condition fausse au départ $\implies$ <strong>0 itération</strong>.</li>
                   </ul>
                 </div>
               </div>
@@ -159,14 +197,14 @@ Fin Tant que</code></pre>
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom py-2">
-                  <h3 class="h6 mb-0 text-success"><i class="bi bi-filetype-py me-1"></i> Traduction Python 3</h3>
+                  <h3 class="h6 mb-0 text-success"><i class="bi bi-filetype-py me-1"></i> Traduction Python</h3>
                 </div>
                 <div class="card-body py-2 small">
                   <pre><code class="language-python" v-pre>while Condition:
     Traitements</code></pre>
                   <ul class="mb-0 ps-3 text-muted">
-                    <li><strong>Règle d'or :</strong> La variable de contrôle doit impérativement être initialisée <em>avant</em> le <code>while</code> et mise à jour <em>à l'intérieur</em>.</li>
-                    <li><strong>Interdiction formelle :</strong> Il est strictement interdit d'utiliser <code>break</code> pour forcer la sortie d'une boucle.</li>
+                    <li>Variable de contrôle : initialisée <em>avant</em>, mise à jour <em>dans</em> la boucle.</li>
+                    <li>Utilisation de <code>break</code> interdite.</li>
                   </ul>
                 </div>
               </div>
@@ -179,45 +217,90 @@ Fin Tant que</code></pre>
            ARTICLE 2: PALIER DÉBUTANT (SOCLE & GUIDAGE)
            ========================================================================= -->
       <article id="palier-debutant" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 DÉBUTANT — Socle & Guidage</h2>
-        <p class="text-muted small mb-3">Comprendre la nécessité d'une boucle non bornée et maîtriser le patron universel de saisie contrôlée.</p>
+        <h2><i class="bi bi-check-circle text-info me-2"></i> Palier Débutant — Socle</h2>
+        <p class="text-muted small mb-3">Pré-condition et cas fondamental des 0 itération.</p>
 
         <!-- Activité 1 -->
         <section id="act1-obstacle-cognitif" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Obstacle cognitif : Pourquoi la boucle Pour est-elle insuffisante ?</h3>
-              <span class="badge bg-secondary">Socle · 15 min</span>
+              <h3 class="h6 mb-0">Activité 1 — Sécurité MOCN : Décharge de condensateur <span class="badge bg-info bg-opacity-25 text-info ms-2">Génie Électrique</span></h3>
+              <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Un élève veut s'assurer que l'utilisateur saisit bien une masse molaire $M$ strictement positive ($M > 0$). Il propose le code algorithmique suivant avec une boucle <code>Pour</code> :
+                <strong>Mise en situation :</strong> Dans une armoire de machine-outil à commande numérique (MOCN), un variateur de vitesse comporte un banc de condensateurs haute tension chargé initialement à $U = 100.0\text{ V}$.
+                <br>Pour respecter les normes de sécurité industrielle (Très Basse Tension de Sécurité - TBTS), un verrou électromécanique interdit l'ouverture de l'armoire tant que la tension résiduelle est dangereuse ($U \ge 20.0\text{ V}$).
+                <br>À la coupure du moteur, une résistance de décharge dissipe l'énergie : chaque seconde, la tension résiduelle est divisée par 2 ($U \leftarrow U / 2$).
+                <br><strong>Problème :</strong> Déterminer la durée de décharge nécessaire avant d'autoriser l'accès et identifier la structure algorithmique adaptée pour commander l'automate de sécurité.
               </p>
 
+              <!-- Illustration graphique du système et chronogramme de décharge -->
+              <div class="text-center my-3">
+                <img src="images/seance02/decharge_condensateur_securite.svg" 
+                     alt="Illustration : Circuit de décharge et chronogramme comparatif" 
+                     class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                     style="max-width: 780px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <i class="bi bi-arrows-fullscreen me-1 text-info"></i> Cliquez sur l'illustration pour l'agrandir en <strong>plein écran HD interactif</strong>.
+                </div>
+              </div>
+
               <div class="row g-3">
-                <div class="col-md-6">
-                  <div class="code-container">
-                    <pre><code class="language-algorithm" v-pre>Lire(M)
-Pour i de 1 à 3 Faire
-  Si M ≤ 0 Alors
-    Écrire("Erreur ! Recommencez :")
-    Lire(M)
-  FinSi
-Fin Pour</code></pre>
+                <div class="col-md-5">
+                  <p class="small mb-1 fw-bold">Tableau de suivi de la tension résiduelle :</p>
+                  <div class="table-responsive">
+                    <table class="table table-custom table-sm table-bordered text-center mb-0">
+                      <thead>
+                        <tr>
+                          <th>Temps $t$</th>
+                          <th>Tension $U$</th>
+                          <th>$U \ge 20.0\text{ V}$ ?</th>
+                          <th>Accès armoire</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$t = 0\text{ s}$</td><td>$100.0\text{ V}$</td><td class="text-danger fw-bold">Vrai (Danger)</td><td>🔒 Verrouillé</td></tr>
+                        <tr><td>$t = 1\text{ s}$</td><td>$50.0\text{ V}$</td><td class="text-danger fw-bold">Vrai (Danger)</td><td>🔒 Verrouillé</td></tr>
+                        <tr><td>$t = 2\text{ s}$</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td>$t = 3\text{ s}$</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td>$t = 4\text{ s}$</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-7">
+                  <p class="small mb-1 fw-bold">Travail demandé :</p>
                   <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Que se passe-t-il si l'utilisateur saisit 4 fois de suite une valeur négative (ex: $-5$, $-2$, $-10$, $-3$) ? La valeur finale $M$ est-elle garantie positive ?</li>
-                    <li class="mb-2">Est-il possible à l'avance de prévoir le nombre exact d'erreurs que commettra un utilisateur ?</li>
-                    <li>Pourquoi la boucle <code>Pour</code> est-elle fondamentalement inadaptée pour sécuriser une saisie ?</li>
+                    <li class="mb-2">
+                      <strong>Décharge réelle :</strong> En vous aidant du chronogramme ci-dessus, compléter le tableau de décharge. Au bout de combien de secondes la tension passe-t-elle sous le seuil de sécurité ($U < 20.0\text{ V}$) ?
+                    </li>
+                    <li class="mb-2">
+                      <strong>Obstacle cognitif :</strong> Un élève affirme : <em>« Pour trouver le temps de décharge, il suffit d'effectuer la division entière $100 \text{ div } 20 = 5\text{ secondes}$ »</em>.
+                      <br>Pourquoi cette formule est-elle fausse ? Quelle est la différence entre une soustraction répétée et une division successive par 2 ?
+                    </li>
+                    <li class="mb-2">
+                      <strong>Cas particulier ($U = 15.0\text{ V}$) :</strong> Un technicien intervient sur une machine à l'arrêt depuis 24 heures. Le voltmètre mesure $U = 15.0\text{ V}$.
+                      <br>a) La condition de danger $U \ge 20.0\text{ V}$ est-elle vérifiée ?
+                      <br>b) Combien de secondes de décharge doit-on attendre avant de déverrouiller l'armoire ?
+                    </li>
+                    <li class="mb-2">
+                      <strong>Nécessité de tester AVANT d'agir :</strong> Pourquoi l'automate doit-il tester la condition de tension <em>avant</em> d'enclencher une temporisation de décharge ?
+                    </li>
+                    <li class="mb-2">
+                      <strong>Choix de la structure de boucle :</strong> Peut-on prévoir à l'avance le nombre d'itérations sans connaître la tension initiale mesurée ? Pourquoi la boucle <code>Pour</code> est-elle inadaptée ?
+                    </li>
+                    <li>
+                      <strong>Formalisation de la règle :</strong> Exprimer en français la règle d'itération sous la forme :
+                      <br><em>« <strong>Tant que</strong> (condition de danger), <strong>Faire</strong> (actions de décharge) ... »</em>.
+                    </li>
                   </ol>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Répondez aux trois questions sur votre cahier et formulez le principe d'une boucle non bornée.
+                <i class="bi bi-pencil-square me-1"></i> Complétez le tableau de suivi et répondez aux six questions sur votre cahier.
               </div>
             </div>
           </div>
@@ -227,23 +310,27 @@ Fin Pour</code></pre>
         <section id="act2-patron-controle" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Le patron universel de saisie contrôlée</h3>
-              <span class="badge bg-secondary">Socle · 15 min</span>
+              <h3 class="h6 mb-0">Activité 2 — Algorithme & Trace comparée <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Conception</span></h3>
+              <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">
-                On souhaite saisir un entier $n$ et s'assurer qu'il est <strong>strictement positif</strong> ($n > 0$). Voici le patron algorithmique normalisé :
-              </p>
+              <p class="small mb-2">Algorithme de décharge sécurisée :</p>
 
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="code-container">
-                    <div class="code-header"><span>Patron algorithmique officiel</span></div>
-                    <pre><code class="language-algorithm" v-pre>Lire(n)
-Tant que n ≤ 0 Faire
-  Écrire("Erreur : n doit être strictement positif !")
-  Lire(n)
-Fin Tant que</code></pre>
+                    <div class="code-header"><span>Algorithme DechargeSecurite</span></div>
+                    <pre><code class="language-algorithm" v-pre>ALGORITHME DechargeSecurite
+DEBUT
+  Lire(U)
+  duree ← 0
+  Tant que (U ≥ 20.0) Faire
+    U ← U / 2
+    duree ← duree + 1
+  Fin Tant que
+  Écrire("Tension : ", U, " V")
+  Écrire("Durée : ", duree, " s")
+FIN</code></pre>
                   </div>
                 </div>
 
@@ -251,24 +338,45 @@ Fin Tant que</code></pre>
                   <div class="table-responsive mb-2">
                     <table class="table table-custom table-sm table-bordered mb-0">
                       <thead>
-                        <tr><th>Objet</th><th>Type / Nature</th><th>Rôle</th></tr>
+                        <tr><th>Objet</th><th>Type</th><th>Rôle</th></tr>
                       </thead>
                       <tbody>
-                        <tr><td><code>n</code></td><td class="empty-cell">.........................</td><td class="empty-cell">Entier strictement positif saisi</td></tr>
+                        <tr><td><code>U</code></td><td>Réel</td><td>Tension résiduelle (V)</td></tr>
+                        <tr><td><code>duree</code></td><td>Entier</td><td>Durée de décharge (s)</td></tr>
                       </tbody>
                     </table>
                   </div>
 
+                  <p class="small mb-1 fw-bold">Tracer et comparer sur votre cahier :</p>
                   <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Quelle est la <strong>condition de continuation</strong> de la boucle ? En quoi est-elle l'inverse de la condition de validité ?</li>
-                    <li class="mb-2">Compléter le TDO ci-dessus sur votre cahier.</li>
-                    <li>Traduire ce patron en langage Python avec conversion numérique explicite <code>int(input())</code>.</li>
+                    <li class="mb-2"><strong>Cas nominal ($U = 100.0\text{ V}$) :</strong>
+                      <br>• $t=0 : 100.0 \ge 20.0$ (Vrai) $\rightarrow U=50.0, \text{duree}=1$.
+                      <br>• $t=1 : 50.0 \ge 20.0$ (Vrai) $\rightarrow U=25.0, \text{duree}=2$.
+                      <br>• $t=2 : 25.0 \ge 20.0$ (Vrai) $\rightarrow U=12.5, \text{duree}=3$.
+                      <br>• $t=3 : 12.5 \ge 20.0$ (Faux) $\rightarrow$ Arrêt : $12.5\text{ V}$, <strong>$3\text{ s}$</strong>.
+                    </li>
+                    <li class="mb-2"><strong>Cas 0 itération ($U = 14.0\text{ V}$) :</strong>
+                      <br>• Entrée : $14.0 \ge 20.0$ (Faux d'emblée).
+                      <br>• <strong>0 itération</strong> $\rightarrow$ Sortie directe : $14.0\text{ V}$, <strong>$0\text{ s}$</strong>.
+                    </li>
                   </ol>
                 </div>
               </div>
 
+              <!-- Remarque didactique -->
+              <div class="card card-custom border-start border-4 border-info mt-3 mb-0 shadow-sm">
+                <div class="card-body py-2 px-3 small">
+                  <div class="fw-bold text-info mb-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> Synthèse didactique
+                  </div>
+                  <div class="text-body">
+                    <code>Tant Que</code> s'exécute de <strong>0 à $N$ fois</strong>. Si la condition est fausse à l'entrée, le corps est ignoré (0 itération).
+                  </div>
+                </div>
+              </div>
+
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez le TDO et le script Python sur votre cahier, puis testez-le sur machine.
+                <i class="bi bi-pencil-square me-1"></i> Notez le tableau de trace sur votre cahier.
               </div>
             </div>
           </div>
@@ -279,15 +387,15 @@ Fin Tant que</code></pre>
            ARTICLE 3: PALIER INTERMÉDIAIRE (MAÎTRISE & AUTONOMIE)
            ========================================================================= -->
       <article id="palier-intermediaire" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 INTERMÉDIAIRE — Maîtrise & Autonomie</h2>
-        <p class="text-muted small mb-3">Tracer pas à pas le déroulement des itérations et déboguer les erreurs logiques de terminaison.</p>
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> Palier Intermédiaire — Maîtrise</h2>
+        <p class="text-muted small mb-3">Trace d'exécution et correction d'erreurs de terminaison.</p>
 
         <!-- Activité 3 -->
         <section id="act3-trace-variables" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Tracé d'exécution pas à pas et suivi de variables</h3>
-              <span class="badge bg-secondary">Maîtrise · 15 min</span>
+              <h3 class="h6 mb-0">Activité 3 — Tracé d'exécution et variables</h3>
+              <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
               <div class="row g-3">
@@ -300,36 +408,36 @@ Tant que x > 2 Faire
   x ← x Div 2
   cpt ← cpt + 1
 Fin Tant que
-Écrire("x final = ", x)
-Écrire("Itérations = ", cpt)</code></pre>
+Écrire("x = ", x)
+Écrire("cpt = ", cpt)</code></pre>
                   </div>
                 </div>
 
                 <div class="col-md-7">
-                  <p class="small mb-2">Reproduire et compléter sur votre cahier le tableau de trace suivant :</p>
+                  <p class="small mb-2">Compléter le tableau de trace sur votre cahier :</p>
                   <div class="table-responsive my-2">
                     <table class="table table-custom table-sm table-bordered text-center mb-0">
                       <thead>
-                        <tr><th>Itération N°</th><th>Condition <code>x > 2</code></th><th><code>x ← x Div 2</code></th><th><code>cpt</code></th></tr>
+                        <tr><th>Itération</th><th>Condition <code>x > 2</code></th><th><code>x ← x Div 2</code></th><th><code>cpt</code></th></tr>
                       </thead>
                       <tbody>
-                        <tr><td>Initialisation</td><td>—</td><td><code>18</code></td><td><code>0</code></td></tr>
-                        <tr><td>Itération 1</td><td class="empty-cell">Vrai (18 > 2)</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                        <tr><td>Itération 2</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                        <tr><td>Itération 3</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                        <tr><td>Itération 4</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td>Initial</td><td>—</td><td><code>18</code></td><td><code>0</code></td></tr>
+                        <tr><td>1</td><td class="empty-cell">Vrai (18 > 2)</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td>2</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td>3</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr><td>4</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
                       </tbody>
                     </table>
                   </div>
                   <ol class="small mb-0 ps-3 mt-2">
-                    <li>Quelles sont les valeurs finales affichées pour <code>x</code> et <code>cpt</code> ?</li>
+                    <li>Valeurs finales de <code>x</code> et <code>cpt</code> ?</li>
                     <li>Pour quelle valeur de $x$ la condition devient-elle fausse ?</li>
                   </ol>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Remplissez le tableau de trace et donnez les affichages finaux sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Remplissez le tableau de trace sur votre cahier.
               </div>
             </div>
           </div>
@@ -339,38 +447,42 @@ Fin Tant que
         <section id="act4-debogage-boucle-infinie" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Débogage d'une boucle infinie (erreur de terminaison)</h3>
-              <span class="badge bg-secondary">Maîtrise · 15 min</span>
+              <h3 class="h6 mb-0">Activité 4 — Débogage : Boucle infinie</h3>
+              <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Un élève a écrit le script Python ci-dessous pour forcer la saisie d'un entier strictement positif. Lorsqu'il saisit une valeur négative (ex: <code>-3</code>), la console affiche indéfiniment <code>"Valeur invalide !"</code> et la machine semble bloquée.
+                Si la température dépasse $25.0^\circ\text{C}$, le programme boucle sans fin.
               </p>
 
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="code-container">
                     <div class="code-header"><span>Script Python erroné</span></div>
-                    <pre><code class="language-python" v-pre># Saisie d'un entier strictement positif
-n = int(input("Donner un entier positif : "))
-while n <= 0:
-    print("Valeur invalide !")
+                    <pre><code class="language-python" v-pre>temperature = float(input("Température (°C) : "))
+cycles = 0
 
-print("Merci, vous avez saisi :", n)</code></pre>
+while temperature > 25.0:
+    print(f"Cycle {cycles} : Refroidissement...")
+    cycles += 1
+    # Anomalie : la température n'est pas modifiée !
+
+print(f"Fin : {temperature}°C en {cycles} cycle(s).")</code></pre>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Expliquer précisément pourquoi ce script provoque une <strong>boucle infinie</strong>.</li>
-                    <li class="mb-2">Quelle instruction obligatoire manque-t-il à l'intérieur du bloc <code>while</code> pour assurer la terminaison de l'algorithme ?</li>
-                    <li>Réécrire le script Python corrigé sur votre cahier puis le tester sur machine.</li>
+                    <li class="mb-2">Pourquoi ce script provoque-t-il une boucle infinie si <code>temperature = 28.5</code> ?</li>
+                    <li class="mb-2">Quelle instruction ajouter pour faire évoluer <code>temperature</code> (ex. <code>temperature -= 1.5</code>) ?</li>
+                    <li class="mb-2">Que produit une saisie de $21.0^\circ\text{C}$ (cas 0 itération) ?</li>
+                    <li>Écrire le script corrigé sur votre cahier.</li>
                   </ol>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Notez l'explication de l'anomalie et le code Python corrigé sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Notez l'analyse et le code corrigé sur votre cahier.
               </div>
             </div>
           </div>
@@ -381,29 +493,32 @@ print("Merci, vous avez saisi :", n)</code></pre>
            ARTICLE 4: PALIER AVANCÉ (DÉPASSEMENT & DÉFI SCIENTIFIQUE)
            ========================================================================= -->
       <article id="palier-avance" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-rocket-takeoff text-success me-2"></i> PALIER 🔴 AVANCÉ — Dépassement & Défi scientifique</h2>
-        <p class="text-muted small mb-3">Gérer des sentinelles dynamiques et modéliser des phénomènes physiques réels.</p>
+        <h2><i class="bi bi-rocket-takeoff text-success me-2"></i> Palier Avancé — Défi</h2>
+        <p class="text-muted small mb-3">Sentinelles d'arrêt et modélisation dynamique.</p>
 
         <!-- Activité 5 -->
         <section id="act5-sentinelle-dynamique" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Accumulation continue arrêtée par sentinelle</h3>
-              <span class="badge bg-secondary">Avancé · 15 min</span>
+              <h3 class="h6 mb-0">Activité 5 — Sentinelle : Pluviométrie <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Ex. 27</span></h3>
+              <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Dans un laboratoire, on saisit au clavier une suite de températures réelles positives $t$ relevées lors d'une réaction exothermique. Le nombre de mesures n'est pas fixé à l'avance : la saisie se termine dès que l'opérateur introduit la valeur sentinelle <strong>$-999.0$</strong>.
+                <strong>Énoncé :</strong> Saisir une suite de précipitations journalières ($\ge 0$ mm), terminée par la sentinelle <strong>`-1.0`</strong> (non comptabilisée).
               </p>
 
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire l'algorithme permettant de calculer et d'afficher la moyenne arithmétique de ces températures. <em>Attention : la valeur sentinelle $-999.0$ ne doit pas être comptabilisée dans la somme ni dans le nombre de mesures !</em></li>
-                <li class="mb-2">Établir le TDO complet de votre solution.</li>
-                <li><strong>Cas limite :</strong> Comment votre algorithme se comporte-t-il si l'opérateur tape directement $-999.0$ dès la première saisie ? Quelle condition protectrice devez-vous ajouter pour éviter une erreur fatale de division par zéro (<code>ZeroDivisionError</code>) ?</li>
+                <li class="mb-2">Écrire l'algorithme calculant le nombre de jours pluvieux et le cumul des précipitations.</li>
+                <li class="mb-2">Dresser le TDO.</li>
+                <li><strong>Jeux d'essais :</strong>
+                  <br>• Nominal : <code>12.5</code> $\rightarrow$ <code>0.0</code> $\rightarrow$ <code>4.2</code> $\rightarrow$ <code>18.3</code> $\rightarrow$ <code>-1.0</code> $\implies$ <strong>4 relevés, Total = 35.0 mm</strong>.
+                  <br>• Limite : entrée immédiate de <code>-1.0</code> $\implies$ <em>« Aucune donnée »</em>.
+                </li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme complet avec la protection contre la division par zéro sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme et le TDO sur votre cahier.
               </div>
             </div>
           </div>
@@ -413,25 +528,23 @@ print("Merci, vous avez saisi :", n)</code></pre>
         <section id="act6-decroissance-radioactive" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Modélisation scientifique : Décroissance radioactive et Demi-vie</h3>
-              <span class="badge bg-success text-white">Défi Avancé · 15 min</span>
+              <h3 class="h6 mb-0">Activité 6 — Modélisation : Seuil budgétaire <span class="badge bg-success bg-opacity-25 text-success ms-2">Ex. 10</span></h3>
+              <span class="badge bg-success text-white">15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                <strong>Contexte physique :</strong> Un échantillon radioactif contient initialement $N_0 = 100\,000$ noyaux instables. Chaque année, par désintégration nucléaire, le nombre de noyaux diminue de $5\%$ par rapport à l'année précédente :
-                $$N_{t+1} = N_t \times (1 - 0.05) = N_t \times 0.95$$
-                La <strong>période radioactive (ou demi-vie)</strong> correspond à la durée nécessaire pour que le nombre de noyaux restants devienne strictement inférieur à la moitié de la quantité initiale, soit $N < N_0 / 2 = 50\,000$.
+                <strong>Énoncé :</strong> Un local est loué $650\text{ DT}$/mois, avec une hausse annuelle de $1.8\%$ ($L_{n+1} = L_n \times 1.018$). Le contrat s'arrête dès que le loyer dépasse $800\text{ DT}$.
               </p>
 
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Identifier la variable d'accumulation temporelle (nombre d'années) et la condition d'arrêt de la simulation.</li>
-                <li class="mb-2">Écrire l'algorithme complet <code>DemiVie</code> utilisant une boucle <code>Tant Que</code> pour déterminer le nombre d'années nécessaires pour atteindre la demi-vie.</li>
-                <li class="mb-2">Dresser le Tableau de Déclaration des Objets (TDO).</li>
-                <li>Implémenter et exécuter ce programme sous Python. Quel est le résultat obtenu ? (Vérifier que la demi-vie est d'environ 14 ans).</li>
+                <li class="mb-2">Identifier la condition de la boucle <code>Tant Que</code> et les variables de calcul.</li>
+                <li class="mb-2">Écrire l'algorithme <code>EvolutionLoyer</code> (années, loyer final, total cumulé).</li>
+                <li class="mb-2">Dresser le TDO.</li>
+                <li><strong>Validation :</strong> En Python, vérifier qu'à <strong>12 ans</strong> : loyer = <strong>804.83 DT</strong> ($> 800$) et total = <strong>104 532 DT</strong>.</li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme complet, le TDO et le résultat du calcul de demi-vie sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme et le TDO sur votre cahier.
               </div>
             </div>
           </div>
@@ -443,7 +556,7 @@ print("Merci, vous avez saisi :", n)</code></pre>
     <!-- Footer -->
     <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
       <div class="container text-center small text-muted">
-        <p class="mb-0">3<sup>e</sup> Sciences · Séance 2 : Boucle Tant Que & Contrôle de saisie · Algorithmique & Python</p>
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 2 : Boucle Tant Que</p>
       </div>
     </footer>
   </div>
@@ -457,8 +570,8 @@ print("Merci, vous avez saisi :", n)</code></pre>
   <script src="assets/js/contrib/auto-render.min.js"></script>
   <script src="assets/js/clipboard.js"></script>
   <script src="assets/js/draggable.js"></script>
-  <script src="assets/js/pages.js"></script>
-  <script src="assets/app/seance02.js"></script>
+  <script src="assets/js/pages.js?v=20260928"></script>
+  <script src="assets/app/seance02.js?v=20260928"></script>
 </body>
 
 </html>

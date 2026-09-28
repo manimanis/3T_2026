@@ -13,12 +13,12 @@ createApp({
       theme: localStorage.getItem('theme') || 'dark',
 
       criteresEvaluation: [
-        { niveau: "Socle (8 pts)", critere: "Act 1 : Contrôle de N in [6; 25] et allocation statique des 3 tableaux numpy", points: "4 pts" },
-        { niveau: "Socle (8 pts)", critere: "Act 2 : Remplissage contrôlé des masses physiques in [100.0; 200.0] g", points: "4 pts" },
-        { niveau: "Maîtrise (8 pts)", critere: "Act 3 : Filtrage conditionnel dans Acceptes avec gestion de l'indice j1", points: "4 pts" },
-        { niveau: "Maîtrise (8 pts)", critere: "Act 4 : Transfert des rebuts dans Rejetes avec gestion de l'indice j2", points: "4 pts" },
-        { niveau: "Dépassement (4 pts)", critere: "Act 5 : Calcul du taux d'acceptation (%) et de la masse moyenne conforme", points: "2 pts" },
-        { niveau: "Dépassement (4 pts)", critere: "Act 6 : Affichage séquentiel strict des deux sous-tableaux selon j1 et j2", points: "2 pts" }
+        { niveau: "Socle (8 pts)", critere: "Act 1 : Contrôle de N in [6; 25] et allocation statique NumPy (Lots, Acceptes, Rebuts)", points: "4 pts" },
+        { niveau: "Socle (8 pts)", critere: "Act 2 : Remplissage contrôlé des diamètres laser in [45.00; 55.00] mm", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 3 : Éclatement sélectif vers Acceptes et Rebuts avec double pointeur j1 et j2", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 4 : Dépollution de paquets satellite en Trames_Pures et Trames_Parasites", points: "4 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 5 : Bilan métrologique (taux d'acceptation % et diamètre moyen sans résidus)", points: "2 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 6 : Brassage cryptographique par permutation in-place de couples consécutifs", points: "2 pts" }
       ]
     };
   },

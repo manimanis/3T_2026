@@ -134,15 +134,13 @@
           <div class="alert alert-secondary py-2 small mb-3">
             <strong>Modalités :</strong> 90 minutes. Épreuve sur poste individuel.
             Enregistrez votre travail sous le nom <code>TP5_Nom_Prenom.py</code> sur le Bureau.
-            L'allocation dynamique par listes Python est formellement interdite (utiliser <code>numpy.array([0.0]*N)</code>).
+            L'utilisation de tableaux dynamiques (listes Python extensibles avec <code>append</code>) est formellement proscrite : utilisez obligatoirement les tableaux statiques NumPy (<code>numpy.array([0.0] * N)</code>).
           </div>
 
           <div class="card card-custom p-3">
-            <h3 class="h6 text-primary mb-2"><i class="bi bi-gear-wide-connected me-1"></i> Contexte Industriel : Ligne de tri de pièces manufacturées</h3>
+            <h3 class="h6 text-primary mb-2"><i class="bi bi-gear-wide-connected me-1"></i> Contexte Industriel : Ligne de fabrication aéronautique & Traitement de télémesures</h3>
             <p class="small text-muted mb-0">
-              Dans une unité de production automatisée, un lot de $N$ pièces mécaniques sort de la ligne d'usinage.
-              La masse nominale ciblée est de $150.0\text{ g}$. L'intervalle de tolérance d'acceptation est fixé à $[145.0 ; 155.0]\text{ g}$.
-              Le programme doit séparer le lot initial en deux lots physiques : pièces <strong>Acceptées</strong> et pièces <strong>Rejetées</strong>.
+              Dans un atelier de mécanique de précision, un banc laser mesure le diamètre de $N$ pistons destinés à l'aéronautique (diamètre nominal $50.00\text{ mm}$, tolérance admise $[49.80 ; 50.20]\text{ mm}$). En parallèle, une station sol réceptionne des trames de données satellitaires nécessitant une dépollution numérique et un chiffrement par brassage de couples.
             </p>
           </div>
         </section>
@@ -158,18 +156,21 @@
         <section id="act1-allocation-trois-tableaux" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Saisie de la taille et allocation des 3 tableaux numpy</h3>
+              <h3 class="h6 mb-0">Activité 1 — Saisie de la taille du lot et allocation statique NumPy <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 86 Appliqué</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Saisir le nombre de pièces $N \in [6 ; 25]$ avec une boucle de contrôle.
+                <strong>Contexte usinage pistons (Exercice 86) :</strong> Un banc de métrologie inspecte une série de $N$ pistons aéronautiques ($6 \le N \le 25$).
               </p>
-              <p class="small mb-2">
-                Déclarer et allouer les 3 tableaux statiques réels de taille $N$ : <code>Lots</code>, <code>Acceptes</code> et <code>Rejetes</code>.
-              </p>
+              
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Écrire la boucle de contrôle forçant la saisie d'un entier $N$ valide dans l'intervalle $[6 ; 25]$.</li>
+                <li class="mb-2">Déclarer et allouer les 3 tableaux statiques réels de taille $N$ : <code>Lots</code> (mesures brutes), <code>Acceptes</code> (pièces conformes) et <code>Rebuts</code> (pièces non conformes) avec <code>numpy.array([0.0] * N)</code>.</li>
+              </ol>
+
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Implémentez la saisie sécurisée et l'allocation dans <code>TP5_Nom_Prenom.py</code>.
+                <i class="bi bi-terminal me-1"></i> Implémentez la saisie sécurisée et l'allocation NumPy dans <code>TP5_Nom_Prenom.py</code>.
               </div>
             </div>
           </div>
@@ -179,18 +180,24 @@
         <section id="act2-remplissage-masses" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Remplissage contrôlé des masses physiques</h3>
+              <h3 class="h6 mb-0">Activité 2 — Remplissage contrôlé des diamètres laser <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 86 Appliqué</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Remplir séquentiellement le tableau <code>Lots</code> avec les masses de chaque pièce en vérifiant que chaque valeur saisie respecte :
+                Remplir séquentiellement le tableau <code>Lots</code> avec les diamètres mesurés en vérifiant que chaque valeur saisie respecte la plage de plausibilité physique du micromètre :
               </p>
               <div class="p-2 bg-body-tertiary rounded text-center small mb-3">
-                $$100.0 \le \text{masse} \le 200.0 \text{ grammes}$$
+                $$45.00 \le \text{diamètre} \le 55.00 \text{ mm}$$
               </div>
+
+              <p class="small mb-2">
+                <em>Jeu d'essai indicatif ($N = 6$) :</em>
+                <br><code>Lots = [50.05, 49.70, 50.18, 50.35, 49.95, 50.10]</code>
+              </p>
+
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Validez le contrôle de saisie pour chaque pièce.
+                <i class="bi bi-terminal me-1"></i> Validez le contrôle de saisie pour chaque pièce saisie.
               </div>
             </div>
           </div>
@@ -207,16 +214,27 @@
         <section id="act3-filtrage-acceptes" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Transfert sélectif des pièces conformes (Acceptées)</h3>
+              <h3 class="h6 mb-0">Activité 3 — Éclatement simultané vers Acceptes & Rebuts <span class="badge bg-warning bg-opacity-25 text-warning ms-2">Exercice 86 Appliqué</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Initialiser le pointeur $j_1 \leftarrow 0$.
-                Parcourir le tableau <code>Lots</code> avec l'indice $i$. Si $145.0 \le \text{Lots}[i] \le 155.0$, affecter $\text{Acceptes}[j_1] \leftarrow \text{Lots}[i]$ et incrémenter $j_1$.
+                Les pièces sont acceptées si leur diamètre respecte la tolérance de montage :
+                $$49.80 \le \text{Lots}[i] \le 50.20 \text{ mm}$$
               </p>
+              
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Initialiser deux pointeurs d'écriture indépendants : $j_1 \leftarrow 0$ pour <code>Acceptes</code> et $j_2 \leftarrow 0$ pour <code>Rebuts</code>.</li>
+                <li class="mb-2">Parcourir <code>Lots</code> en une seule passe : si la pièce est conforme, l'enregistrer dans $\text{Acceptes}[j_1]$ et incrémenter $j_1$ ; sinon, l'orienter dans $\text{Rebuts}[j_2]$ et incrémenter $j_2$.</li>
+                <li class="mb-2">Vérifier formellement la conservation d'effectif : $j_1 + j_2 = N$.</li>
+                <li><em>Résultat attendu pour le jeu d'essai :</em>
+                  <br>• <code>Acceptes</code> : <code>[50.05, 50.18, 49.95, 50.10]</code> ($j_1 = 4$)
+                  <br>• <code>Rebuts</code> : <code>[49.70, 50.35]</code> ($j_2 = 2$)
+                </li>
+              </ol>
+
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Vérifiez que l'indice $j_1$ ne s'incrémente que si la condition est satisfaite.
+                <i class="bi bi-terminal me-1"></i> Intégrez l'algorithme d'éclatement à double pointeur dans votre script.
               </div>
             </div>
           </div>
@@ -226,19 +244,26 @@
         <section id="act4-transfert-rejetes" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Transfert simultané des pièces non conformes (Rejetées)</h3>
+              <h3 class="h6 mb-0">Activité 4 — Dépollution de signaux de télémesures satellitaires <span class="badge bg-warning bg-opacity-25 text-warning ms-2">Exercices 90 & 92 du Recueil</span></h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Initialiser le pointeur $j_2 \leftarrow 0$.
-                Dans la même boucle ou de manière complémentaire (branche <code>Sinon</code>), affecter $\text{Rejetes}[j_2] \leftarrow \text{Lots}[i]$ et incrémenter $j_2$.
+                <strong>Contexte spatial (Exercices 90 & 92) :</strong> Une station réceptrice stocke $M$ paquets de télémesure sous forme de chaînes de caractères. En raison des interférences ionosphériques, certains paquets sont corrompus par des caractères alphabétiques ou symboles parasites. Un paquet est <strong>intègre (pur)</strong> s'il est composé <em>exclusivement de chiffres décimaux</em> ('0' à '9').
               </p>
-              <p class="small mb-2">
-                Vérifier impérativement après le parcours complet que l'égalité suivante est vérifiée : $j_1 + j_2 = N$.
-              </p>
+              
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Écrire le sous-programme ou la séquence testant si une chaîne de transmission est purement numérique.</li>
+                <li class="mb-2">Transférer sélectivement les paquets dans <code>Trames_Pures</code> (taille utile $k_1$) et les paquets corrompus dans <code>Trames_Parasites</code> (taille utile $k_2$).</li>
+                <li><em>Exemple illustratif :</em>
+                  <br>• Entrée : <code>["1048", "98X2", "0054", "78#0", "3120"]</code>
+                  <br>• Trames pures : <code>["1048", "0054", "3120"]</code> ($k_1 = 3$)
+                  <br>• Trames parasites : <code>["98X2", "78#0"]</code> ($k_2 = 2$)
+                </li>
+              </ol>
+
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Intégrez la double gestion d'indice $j_1$ et $j_2$.
+                <i class="bi bi-terminal me-1"></i> Implémentez la dépollution sélective de télémesures.
               </div>
             </div>
           </div>
@@ -255,19 +280,20 @@
         <section id="act5-statistiques-qualite" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Taux de conformité & Masse moyenne des pièces acceptées</h3>
+              <h3 class="h6 mb-0">Activité 5 — Bilan métrologique & Taux d'acceptation de la ligne <span class="badge bg-danger bg-opacity-25 text-danger ms-2">Exercice 86 Appliqué</span></h3>
               <span class="badge bg-secondary">2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Calculer et afficher :
+                Calculer et afficher les indicateurs de performance de la chaîne d'usinage :
               </p>
               <ul class="small mb-3">
-                <li>Le <strong>taux d'acceptation</strong> de la ligne : $\tau = \frac{j_1}{N} \times 100\,\%$.</li>
-                <li>La <strong>masse moyenne</strong> des pièces conformes $\bar{m}_{\text{acc}}$ (en prévoyant le cas d'évitement de division par zéro si $j_1 = 0$).</li>
+                <li>Le <strong>taux d'acceptation</strong> : $\tau = \frac{j_1}{N} \times 100\,\%$ (ex: $\frac{4}{6} \times 100 = 66.67\%$).</li>
+                <li>Le <strong>diamètre moyen</strong> des pièces acceptées $\bar{d}_{\text{acc}}$ (avec protection division par zéro si $j_1 = 0$).</li>
+                <li>Affichage strict des lots sans résidus : afficher <code>Acceptes</code> de 0 à $j_1 - 1$ et <code>Rebuts</code> de 0 à $j_2 - 1$.</li>
               </ul>
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Vérifiez l'affichage formaté des statistiques.
+                <i class="bi bi-terminal me-1"></i> Vérifiez l'affichage formaté des statistiques et l'absence de zéros résiduels.
               </div>
             </div>
           </div>
@@ -277,19 +303,24 @@
         <section id="act6-affichage-bilan" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Affichage rigoureux des lots sans valeurs résiduelles</h3>
+              <h3 class="h6 mb-0">Activité 6 — Brassage cryptographique par permutation in-place <span class="badge bg-danger bg-opacity-25 text-danger ms-2">Exercice 80 du Recueil</span></h3>
               <span class="badge bg-secondary">2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Afficher le détail des deux sous-tableaux :
+                <strong>Contexte sécurité des télémesures (Exercice 80) :</strong> Pour sécuriser les paquets radio avant retransmission, le processeur brouille un tableau de signaux de taille paire en <strong>permutant deux à deux</strong> les valeurs consécutives (la case 0 avec 1, la case 2 avec 3, etc.) directement <em>in-place</em> (sans aucun tableau auxiliaire).
               </p>
-              <ul class="small mb-3">
-                <li>Le lot des pièces acceptées (strictement de l'indice 0 à $j_1 - 1$).</li>
-                <li>Le lot des pièces rejetées (strictement de l'indice 0 à $j_2 - 1$).</li>
-              </ul>
+              
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">Écrire la boucle effectuant l'échange de couples avec une variable temporaire <code>temp</code> par pas de 2.</li>
+                <li><em>Exemple d'exécution :</em>
+                  <br>• Avant brassage : <code>[105, 112, 98, 104, 76, 82]</code>
+                  <br>• Après brassage : <code>[112, 105, 104, 98, 82, 76]</code>
+                </li>
+              </ol>
+
               <div class="cahier-zone mt-2">
-                <i class="bi bi-check2-all me-1"></i> Présentez l'exécution finale de votre script à l'enseignant.
+                <i class="bi bi-check2-all me-1"></i> Présentez l'exécution finale de votre script complet à l'enseignant.
               </div>
             </div>
           </div>

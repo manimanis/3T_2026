@@ -190,16 +190,16 @@
         <section id="act1-indexation" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Repérage et extraction de sous-chaîne</h3>
+              <h3 class="h6 mb-0">Activité 1 — Repérage et extraction de sous-chaîne : Séquence génétique <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 2 du Recueil</span></h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Soit la variable algorithmique <code>Ch ← "SCIENCE"</code>.</p>
+              <p class="small mb-2">Soit la variable algorithmique <code>Ch ← "SCIENCE"</code> (ou le brin d'ADN <code>"ATCGGCTA"</code>).</p>
               
               <ol class="small mb-3 ps-3">
                 <li class="mb-2">Donner la valeur entière renvoyée par l'expression <code>Long(Ch)</code>.</li>
                 <li class="mb-2">Indiquer les caractères obtenus par <code>Ch[0]</code> et <code>Ch[Long(Ch) - 1]</code>.</li>
-                <li class="mb-2">Déterminer la sous-chaîne retournée par <code>Sous_chaine(Ch, 2, 4)</code> en rappelant si les indices sont inclusifs.</li>
+                <li class="mb-2"><em>Exercice 2 du recueil :</em> Déterminer la sous-chaîne retournée par la boucle <code>Pour i de p1 à p2 - 1</code> pour <code>p1 = 2, p2 = 6</code> sur <code>"ATCGGCTA"</code> $\implies$ <strong>"CGGC"</strong>. Établir l'équivalence avec <code>Sous_chaine(Ch, 2, 4)</code>.</li>
                 <li>Que retourne l'appel <code>Pos("IEN", Ch)</code> ? Que retournerait <code>Pos("PHY", Ch)</code> ?</li>
               </ol>
 
@@ -214,7 +214,7 @@
         <section id="act2-ord-chr" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Fonctions scalaires <code>Ord</code> et <code>Chr</code> (Code ASCII)</h3>
+              <h3 class="h6 mb-0">Activité 2 — Fonctions scalaires <code>Ord</code> et <code>Chr</code> & Décalage César <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 65 du Recueil</span></h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
@@ -227,7 +227,7 @@
 
               <ol class="small mb-3 ps-3">
                 <li class="mb-2">Écrire la condition booléenne permettant de vérifier qu'une variable caractère <code>c</code> est une lettre alphabétique majuscule.</li>
-                <li class="mb-2">Déterminer le résultat renvoyé par l'expression <code>Chr(Ord('A') + 3)</code>.</li>
+                <li class="mb-2">Déterminer le résultat renvoyé par l'expression <code>Chr(Ord('A') + 3)</code> (décalage César +3 $\rightarrow$ <strong>'D'</strong>).</li>
                 <li>Écrire une formule mathématique permettant de convertir un caractère minuscule $c \in ['a'; 'z']$ en son équivalent majuscule à l'aide de <code>Ord</code> et <code>Chr</code>.</li>
               </ol>
 
@@ -249,16 +249,21 @@
         <section id="act3-comptage-voyelles" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Dénombrement conditionnel de voyelles</h3>
+              <h3 class="h6 mb-0">Activité 3 — Dénombrement de voyelles & Mots acoustiquement équilibrés <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercices 49 & 60 du Recueil</span></h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">On souhaite dénombrer les voyelles francophones (A, E, I, O, U, Y) présentes dans une chaîne quelconque.</p>
+              <p class="small mb-2">
+                <strong>Contexte commande vocale :</strong> Un système domotique filtre les mots de passe prononcés. Le mot est dit "Joli-mot" (ou acoustiquement équilibré) si son nombre de voyelles est strictement égal à son nombre de consonnes.
+              </p>
               
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Déclarer un compteur <code>nb_voyelles</code> initialisé à 0.</li>
-                <li class="mb-2">Écrire l'algorithme complet qui convertit la chaîne en majuscules avec <code>Majus(Ch)</code>, puis parcourt chaque indice $i$ de $0$ à $\text{Long}(Ch) - 1$ pour tester si $Ch[i]$ figure dans la chaîne de référence <code>"AEIOUY"</code> avec la fonction <code>Pos</code>.</li>
-                <li>Traduire cet algorithme en Python et vérifier son fonctionnement sur les mots <code>"informatique"</code> et <code>"adn"</code>.</li>
+                <li class="mb-2">Déclarer un compteur <code>nb_voyelles</code> et un compteur <code>nb_consonnes</code>.</li>
+                <li class="mb-2">Écrire l'algorithme qui parcourt la chaîne convertie en majuscules pour tester si chaque caractère figure dans <code>"AEIOUY"</code>.</li>
+                <li><em>Exemples illustratifs :</em>
+                  <br>• Pour <code>"ROBOT"</code> $\rightarrow$ 2 voyelles, 3 consonnes $\implies$ Non équilibré.
+                  <br>• Pour <code>"ZONE"</code> $\rightarrow$ 2 voyelles, 2 consonnes $\implies$ <strong>Mot acoustiquement équilibré !</strong>
+                </li>
               </ol>
 
               <div class="cahier-zone">
@@ -272,16 +277,18 @@
         <section id="act4-palindrome" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Algorithme de vérification d'un palindrome</h3>
+              <h3 class="h6 mb-0">Activité 4 — Séquences palindromiques de restriction enzymatique <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 61 du Recueil</span></h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Un mot est un <strong>palindrome</strong> s'il se lit de la même façon de gauche à droite et de droite à gauche (exemples : <code>"RADAR"</code>, <code>"KAYAK"</code>, <code>"LAVAL"</code>).</p>
+              <p class="small mb-2">
+                <strong>Contexte bio-informatique (Exercice 61) :</strong> Les enzymes de restriction coupent l'ADN au niveau de motifs palindromiques (ex: <code>"RADAR"</code>, <code>"KAYAK"</code>, <code>"GAATTC"</code>).
+              </p>
               
               <ol class="small mb-3 ps-3">
                 <li class="mb-2">Expliquer pourquoi il suffit de comparer le caractère à l'indice $i$ avec le caractère symétrique à l'indice $\text{Long}(Ch) - 1 - i$ pour $i$ allant de $0$ jusqu'à $\text{Long}(Ch) \text{ Div } 2$.</li>
                 <li class="mb-2">Élaborer l'algorithme utilisant une boucle <code>Tant Que</code> avec arrêt prématuré dès qu'une dissemblance est détectée.</li>
-                <li>Tester la méthode sur votre cahier pour le mot <code>"RADAR"</code> (valide) puis <code>"ROBOT"</code> (invalide).</li>
+                <li>Tester la méthode sur votre cahier pour le mot <code>"RADAR"</code> (valide) puis <code>"GENOME"</code> (rejet immédiat dès l'indice 0 : 'G' $\ne$ 'E').</li>
               </ol>
 
               <div class="cahier-zone">

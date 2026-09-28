@@ -186,35 +186,38 @@ Fin Selon</code></pre>
         <section id="act1-post-condition" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Découverte de la post-condition (au moins une exécution)</h3>
+              <h3 class="h6 mb-0">Activité 1 — Découverte de la post-condition : Transmission IoT avec ACK <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 17 du Recueil</span></h3>
               <span class="badge bg-secondary">Socle · 15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                On désire demander à l'utilisateur s'il souhaite continuer une saisie avec la réponse <code>'O'</code> (Oui) ou <code>'N'</code> (Non). On propose l'algorithme suivant :
+                <strong>Contexte transmission radio (Exercice 17) :</strong> Un émetteur radio IoT envoie des trames vers une station. Chaque tentative équivaut au tirage aléatoire d'un jeton entre 1 et 6. La liaison est acquittée lorsque le code d'accusé de réception <strong>ACK = 6</strong> est reçu.
               </p>
 
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="code-container">
-                    <pre><code class="language-algorithm" v-pre>Répéter
-  Écrire("Voulez-vous continuer (O/N) ? ")
-  Lire(rep)
-Jusqu'à (rep = 'O') Ou (rep = 'N')</code></pre>
+                    <pre><code class="language-algorithm" v-pre>tentatives ← 0
+Répéter
+  ack ← alea(1, 6)
+  tentatives ← tentatives + 1
+  Écrire("Trame transmise... Réponse : ", ack)
+Jusqu'à (ack = 6)
+Écrire("Connexion établie en ", tentatives, " essais.")</code></pre>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Combien de fois l'instruction <code>Lire(rep)</code> s'exécute-t-elle au minimum ?</li>
-                    <li class="mb-2">Si l'utilisateur tape <code>'X'</code>, puis <code>'A'</code>, puis <code>'O'</code>, à quelle étape la boucle s'arrête-t-elle ?</li>
-                    <li>Pourquoi la structure <code>Répéter</code> est-elle plus concise qu'une boucle <code>Tant Que</code> dans cette situation ?</li>
+                    <li class="mb-2">Combien de fois la transmission et l'évaluation s'exécutent-elles au minimum ?</li>
+                    <li class="mb-2"><em>Exemple illustratif :</em> Si les tirages successifs sont <code>3</code>, <code>1</code>, <code>5</code>, <code>6</code>, quel est l'affichage final ?</li>
+                    <li>Pourquoi la structure <code>Répéter ... Jusqu'à</code> est-elle plus adaptée ici qu'une boucle <code>Tant Que</code> ?</li>
                   </ol>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Notez vos justifications et comparez avec la version <code>Tant Que</code> sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez le tracé de la boucle et comparez avec sa version <code>Tant Que</code> sur votre cahier.
               </div>
             </div>
           </div>
@@ -224,22 +227,26 @@ Jusqu'à (rep = 'O') Ou (rep = 'N')</code></pre>
         <section id="act2-syntaxe-selon" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — La structure à choix multiples Selon</h3>
+              <h3 class="h6 mb-0">Activité 2 — La structure à choix multiples Selon & Grille logistique <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 118 du Recueil</span></h3>
               <span class="badge bg-secondary">Socle · 15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                Pour afficher le nom du jour de la semaine à partir de son numéro $num \in [1 ; 7]$, un élève écrit 7 conditions <code>Si ... Sinon Si</code>.
+                <strong>Contexte entrepôt robotisé (Exercice 118) :</strong> Le sol d'un centre logistique est quadrillé en cases repérées par une colonne (caractère <code>'a'..'h'</code>) et une ligne (entier <code>1..8</code>). On veut classifier la case en <strong>"Zone Blanche (Circulation)"</strong> ou <strong>"Zone Noire (Stockage)"</strong>.
               </p>
 
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Réécrire cette sélection de façon claire et lisible à l'aide de la structure algorithmique <code>Selon num</code>.</li>
-                <li class="mb-2">Quel traitement doit être placé après la clause <code>Sinon</code> pour gérer les valeurs en dehors de $[1 ; 7]$ ?</li>
+                <li class="mb-2">Écrire la structure algorithmique <code>Selon col</code> combinant les lettres impaires (<code>'a', 'c', 'e', 'g'</code>) et paires (<code>'b', 'd', 'f', 'h'</code>).</li>
+                <li class="mb-2"><em>Exemples illustratifs :</em>
+                  <br>• Pour <code>col = 'a'</code> et <code>ligne = 5</code> $\implies$ Ligne impaire sur colonne impaire $\rightarrow$ <strong>Zone Noire</strong>.
+                  <br>• Pour <code>col = 'e'</code> et <code>ligne = 6</code> $\implies$ Ligne paire sur colonne impaire $\rightarrow$ <strong>Zone Blanche</strong>.
+                  <br>• Pour <code>col = 'z'</code> $\implies$ Branche <code>Sinon</code> $\rightarrow$ <strong>"Coordonnées hors grille !"</strong>.
+                </li>
                 <li>Dresser le TDO correspondant sur votre cahier.</li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez la structure <code>Selon</code> complète sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez la structure <code>Selon</code> complète et le TDO sur votre cahier.
               </div>
             </div>
           </div>
@@ -369,22 +376,26 @@ Fin Selon</code></pre>
         <section id="act6-boucle-maintien" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Maintien interactif de l'application et compteur d'opérations</h3>
+              <h3 class="h6 mb-0">Activité 6 — Maintien interactif & Processus concurrents <span class="badge bg-success bg-opacity-25 text-success ms-2">Inspiré de l'Exercice 111 du Recueil</span></h3>
               <span class="badge bg-success text-white">Défi Avancé · 15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Englober le menu de l'Activité 5 dans une boucle <code>Répéter ... Jusqu'à Choix = 0</code> pour que l'application ne s'arrête pas après un seul calcul et propose immédiatement un nouveau calcul à l'utilisateur.
+                <strong>Partie A (Menu interactif) :</strong> Englober le menu de l'Activité 5 dans une boucle <code>Répéter ... Jusqu'à Choix = 0</code> pour garantir la continuité du programme.
+                <br><strong>Partie B (Exercice 111 — Course Lièvre et Tortue) :</strong> Modéliser la compétition de deux processus avec la boucle à post-condition :
+                <br>• À chaque tour, un dé est lancé : si le <code>6</code> sort, le Lièvre l'emporte immédiatement.
+                <br>• Sinon, la Tortue avance d'une case. Elle gagne dès qu'elle a avancé 6 fois.
+                <br><em>Condition d'arrêt :</em> <code>Jusqu'à (victoire_lievre Ou pas_tortue = 6)</code>.
               </p>
 
               <ol class="small mb-3 ps-3">
                 <li class="mb-2">Ajouter un compteur <code>nb_calculs</code> qui incrémente à chaque fois qu'un calcul physique (options 1, 2 ou 3) est réalisé avec succès.</li>
                 <li class="mb-2">À la sortie de l'application (choix 0), afficher un message de synthèse indiquant le nombre total d'opérations effectuées au cours de la session.</li>
-                <li>Implémenter le programme complet en Python 3.10+ avec <code>match...case</code> et tester son exécution continue.</li>
+                <li>Implémenter l'algorithme de simulation du Lièvre et de la Tortue sous Python avec <code>while not (condition):</code>.</li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Testez le programme sur machine et notez le bilan de session sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Testez les deux programmes sur machine et notez les traces d'exécution sur votre cahier.
               </div>
             </div>
           </div>
