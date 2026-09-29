@@ -21,9 +21,8 @@ DEBUT
     U ← U / 2
     duree ← duree + 1
   Fin Tant que
-  Écrire("Tension résiduelle sécurisée : ", U, " V")
-  Écrire("Durée de décharge : ", duree, " s")
-  Écrire("Voyant Vert : Accès armoire autorisé")
+  Écrire("Tension : ", U, " V")
+  Écrire("Durée : ", duree, " s")
 FIN`,
 
       codeTraceAlgo: `x ← 18
@@ -31,45 +30,19 @@ cpt ← 0
 Tant que x > 2 Faire
   x ← x Div 2
   cpt ← cpt + 1
-  Écrire("Étape ", cpt, " : x = ", x)
-Fin Tant que`,
-
-      codeDebogagePython: `# Simulation de l'asservissement thermique (erreur de boucle infinie)
-temperature = float(input("Température initiale (°C) : "))
-cycles = 0
-while temperature > 25.0:
-    print(f"Cycle {cycles} : Refroidissement en cours...")
-    cycles += 1
-    # ERREUR : La température n'est jamais abaissée (oubli de 'temperature -= 1.5') !`,
-
-      codeSentinelleAlgo: `s ← 0.0
-nb ← 0
-Lire(t)
-Tant que t ≠ -999.0 Faire
-  Si t ≥ 0 Alors
-    s ← s + t
-    nb ← nb + 1
-  FinSi
-  Lire(t)
 Fin Tant que
-Si nb > 0 Alors
-  moy ← s / nb
-  Écrire("Moyenne = ", moy)
-Sinon
-  Écrire("Aucune température valide saisie")
-FinSi`,
+Écrire("x = ", x)
+Écrire("cpt = ", cpt)`,
 
-      codeDecroissanceAlgo: `ALGORITHME DemiVie
-DEBUT
-  N ← 100000
-  seuil ← N / 2
-  annees ← 0
-  Tant que N > seuil Faire
-    N ← N * 0.95
-    annees ← annees + 1
-  Fin Tant que
-  Écrire("Demi-vie atteinte en ", annees, " ans")
-FIN`
+      codeDebogagePython: `temperature = float(input("Température (°C) : "))
+cycles = 0
+
+while temperature > 25.0:
+    print(f"Cycle {cycles} : Refroidissement...")
+    cycles += 1
+    # Anomalie : la température n'est pas modifiée !
+
+print(f"Fin : {temperature}°C en {cycles} cycle(s).")`
     };
   },
 
@@ -102,7 +75,6 @@ FIN`
 
     renderMath() {
       if (typeof renderMathInElement === 'function') {
-        const containers = document.querySelectorAll('.math-expr, .formula-box, .katex-render, body');
         renderMathInElement(document.body, {
           delimiters: [
             { left: '$$', right: '$$', display: true },

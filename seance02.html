@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Séance 2 · La boucle Tant Que (while) & Contrôle de saisie — 3e Sciences</title>
   <meta name="description"
-    content="Séance 2 d'informatique pour 3e Sciences : Structures itératives non bornées, boucle Tant Que (while), contrôle de saisie robuste et modélisation scientifique.">
+    content="Séance 2 : La boucle Tant Que (while) & Contrôle de saisie. Pré-condition, structure itérative non bornée et cas fondamental des 0 itération.">
 
   <!-- Anti-FOUC Early Theme Script -->
   <script>
@@ -73,7 +73,7 @@
     .empty-cell {
       color: var(--text-dim);
       font-style: italic;
-      font-size: 0.8rem;
+      letter-spacing: 2px;
     }
   </style>
 </head>
@@ -98,9 +98,11 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>
+              Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -124,8 +126,9 @@
                 3 Paliers
               </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">Boucle Tant Que (while)</h1>
-            <p class="text-muted small mb-0">Pré-condition, boucle non bornée et cas 0 itération — 3<sup>e</sup> Sciences</p>
+            <h1 class="h3 fw-bold mb-1">Séance 2 : La boucle Tant Que (while) &amp; Contrôle de saisie</h1>
+            <p class="text-muted small mb-0">Pré-condition, structure itérative non bornée et cas fondamental des 0
+              itération</p>
           </div>
         </div>
       </div>
@@ -135,7 +138,7 @@
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
         <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('cadre-conventions')">
-          Syntaxe
+          1. Cadre théorique
         </button>
         <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
           🟢 Débutant (Act 1-2)
@@ -153,24 +156,30 @@
     <main class="container my-4">
 
       <!-- =========================================================================
-           ARTICLE 1: CADRE & CONVENTIONS OFFICIELLES
+           ARTICLE 1: 1. Cadre théorique & Conventions officielles
            ========================================================================= -->
       <article id="cadre" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-compass text-primary me-2"></i> Cadre théorique</h2>
+        <h2><i class="bi bi-compass text-primary me-2"></i> 1. Cadre théorique &amp; Conventions officielles</h2>
 
         <section id="cadre-conventions" class="section-pane mb-4">
-          <!-- Règle fondamentale Banner Callout -->
+          <!-- Règle de choix fondamentale Banner Callout -->
           <div class="card card-custom border-start border-4 border-warning mb-4 shadow-sm">
             <div class="card-body py-3 px-3 d-flex align-items-center gap-3">
-              <div class="badge bg-warning bg-opacity-15 text-warning border border-warning border-opacity-25 p-2 px-3 rounded-circle fs-4 flex-shrink-0">
-                <i class="bi bi-lightbulb-fill"></i>
+              <div
+                class="badge bg-warning bg-opacity-15 text-warning border border-warning border-opacity-25 p-2 px-3 rounded-circle fs-4 flex-shrink-0">
+                <i class="bi bi-lightning-charge-fill"></i>
               </div>
               <div class="small">
-                <div class="fw-bold text-warning text-uppercase mb-1" style="font-size: 0.75rem;">
-                  <i class="bi bi-shield-check me-1"></i> Règle de choix
+                <div class="fw-bold text-warning text-uppercase mb-1" style="font-size: 0.8rem;">
+                  ⚡ RÈGLE DE CHOIX FONDAMENTALE :
+                </div>
+                <div class="text-body mb-1">
+                  Nombre d'itérations <strong>inconnu à l'avance</strong> → utiliser impérativement la structure
+                  itérative <strong><code>Tant que</code></strong> (boucle non bornée).
                 </div>
                 <div class="text-body mb-0">
-                  Nombre d'itérations <strong>inconnu à l'avance</strong> $\rightarrow$ utiliser <strong class="text-primary-light"><code>Tant que</code></strong> (boucle non bornée). La boucle <code>Pour</code> est réservée aux répétitions prédéterminées.
+                  La boucle <code>Pour</code> est strictement réservée aux répétitions dont le nombre d'itérations est
+                  prédéterminé et connu avant d'entrer dans la boucle.
                 </div>
               </div>
             </div>
@@ -180,15 +189,17 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom py-2">
-                  <h3 class="h6 mb-0 text-primary"><i class="bi bi-code-square me-1"></i> Syntaxe Algorithmique</h3>
+                  <h3 class="h6 mb-0 text-primary"><i class="bi bi-code-square me-1"></i> A. Syntaxe Algorithmique</h3>
                 </div>
                 <div class="card-body py-2 small">
                   <pre><code class="language-algorithm" v-pre>Tant que Condition Faire
   Traitements
 Fin Tant que</code></pre>
                   <ul class="mb-0 ps-3 text-muted">
-                    <li>Évaluation <strong>avant</strong> exécution (pré-condition).</li>
-                    <li>Condition fausse au départ $\implies$ <strong>0 itération</strong>.</li>
+                    <li>Évaluation de la condition <strong>avant</strong> l'exécution du bloc d'instructions (structure
+                      à <strong>pré-condition</strong>).</li>
+                    <li>Si la condition est fausse dès l'entrée dans la boucle ⇒ <strong>0 itération</strong> (le corps
+                      de la boucle est totalement ignoré).</li>
                   </ul>
                 </div>
               </div>
@@ -197,14 +208,16 @@ Fin Tant que</code></pre>
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom py-2">
-                  <h3 class="h6 mb-0 text-success"><i class="bi bi-filetype-py me-1"></i> Traduction Python</h3>
+                  <h3 class="h6 mb-0 text-success"><i class="bi bi-filetype-py me-1"></i> B. Traduction Python</h3>
                 </div>
                 <div class="card-body py-2 small">
                   <pre><code class="language-python" v-pre>while Condition:
     Traitements</code></pre>
                   <ul class="mb-0 ps-3 text-muted">
-                    <li>Variable de contrôle : initialisée <em>avant</em>, mise à jour <em>dans</em> la boucle.</li>
-                    <li>Utilisation de <code>break</code> interdite.</li>
+                    <li><strong>Variable de contrôle :</strong> doit être obligatoirement initialisée <em>avant</em> la
+                      boucle, et modifiée <em>dans</em> le corps de la boucle.</li>
+                    <li>L'instruction <code>break</code> est <strong>formellement interdite</strong> par les conventions
+                      pédagogiques officielles.</li>
                   </ul>
                 </div>
               </div>
@@ -214,112 +227,142 @@ Fin Tant que</code></pre>
       </article>
 
       <!-- =========================================================================
-           ARTICLE 2: PALIER DÉBUTANT (SOCLE & GUIDAGE)
+           ARTICLE 2: 2. Palier Débutant — Socle (Pré-condition & Cas fondamental 0 itération)
            ========================================================================= -->
       <article id="palier-debutant" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check-circle text-info me-2"></i> Palier Débutant — Socle</h2>
-        <p class="text-muted small mb-3">Pré-condition et cas fondamental des 0 itération.</p>
+        <h2><i class="bi bi-check-circle text-info me-2"></i> 2. Palier Débutant — Socle (Pré-condition &amp; Cas
+          fondamental 0 itération)</h2>
 
         <!-- Activité 1 -->
-        <section id="act1-obstacle-cognitif" class="section-pane mb-4">
+        <section id="act1-decharge" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Sécurité MOCN : Décharge de condensateur <span class="badge bg-info bg-opacity-25 text-info ms-2">Génie Électrique</span></h3>
+              <h3 class="h6 mb-0">Activité 1 — Sécurité MOCN : Décharge de condensateur <span
+                  class="badge bg-info bg-opacity-25 text-info ms-2">Génie Électrique</span></h3>
               <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
+              <h4 class="h6 fw-bold text-primary mb-2">Mise en situation industrielle</h4>
+              <p class="small mb-2">
+                Dans une armoire de machine-outil (MOCN), un banc de condensateurs haute tension est chargé à <i>U</i> =
+                100.0 V. Pour respecter la norme TBTS, l'armoire reste verrouillée tant que <i>U</i> ≥ 20.0 V. À la
+                coupure, la tension est divisée par 2 chaque seconde (<i>U</i> ← <i>U</i> / 2).
+              </p>
               <p class="small mb-3">
-                <strong>Mise en situation :</strong> Dans une armoire de machine-outil à commande numérique (MOCN), un variateur de vitesse comporte un banc de condensateurs haute tension chargé initialement à $U = 100.0\text{ V}$.
-                <br>Pour respecter les normes de sécurité industrielle (Très Basse Tension de Sécurité - TBTS), un verrou électromécanique interdit l'ouverture de l'armoire tant que la tension résiduelle est dangereuse ($U \ge 20.0\text{ V}$).
-                <br>À la coupure du moteur, une résistance de décharge dissipe l'énergie : chaque seconde, la tension résiduelle est divisée par 2 ($U \leftarrow U / 2$).
-                <br><strong>Problème :</strong> Déterminer la durée de décharge nécessaire avant d'autoriser l'accès et identifier la structure algorithmique adaptée pour commander l'automate de sécurité.
+                <strong>Problème posé :</strong> Trouver la durée de décharge et identifier la boucle adaptée.
               </p>
 
-              <!-- Illustration graphique du système et chronogramme de décharge -->
+              <!-- Figure 1 -->
               <div class="text-center my-3">
-                <img src="images/seance02/decharge_condensateur_securite.svg" 
-                     alt="Illustration : Circuit de décharge et chronogramme comparatif" 
-                     class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
-                     style="max-width: 780px; width: 100%; height: auto;">
+                <img src="images/seance02/decharge_condensateur_securite.svg"
+                  alt="Illustration : Circuit de décharge et chronogramme comparatif"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 780px; width: 100%; height: auto;">
                 <div class="form-text text-muted small mt-1">
-                  <i class="bi bi-arrows-fullscreen me-1 text-info"></i> Cliquez sur l'illustration pour l'agrandir en <strong>plein écran HD interactif</strong>.
+                  Figure 1 : Circuit de dissipation, chronogramme de décharge TBTS et automate API.
                 </div>
               </div>
 
               <div class="row g-3">
                 <div class="col-md-5">
-                  <p class="small mb-1 fw-bold">Tableau de suivi de la tension résiduelle :</p>
+                  <h4 class="h6 fw-bold mb-2">Tableau de suivi de la tension résiduelle</h4>
                   <div class="table-responsive">
                     <table class="table table-custom table-sm table-bordered text-center mb-0">
                       <thead>
                         <tr>
-                          <th>Temps $t$</th>
-                          <th>Tension $U$</th>
-                          <th>$U \ge 20.0\text{ V}$ ?</th>
+                          <th>Temps <i>t</i></th>
+                          <th>Tension <i>U</i></th>
+                          <th>Condition : <i>U</i> ≥ 20.0 V ?</th>
                           <th>Accès armoire</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr><td>$t = 0\text{ s}$</td><td>$100.0\text{ V}$</td><td class="text-danger fw-bold">Vrai (Danger)</td><td>🔒 Verrouillé</td></tr>
-                        <tr><td>$t = 1\text{ s}$</td><td>$50.0\text{ V}$</td><td class="text-danger fw-bold">Vrai (Danger)</td><td>🔒 Verrouillé</td></tr>
-                        <tr><td>$t = 2\text{ s}$</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                        <tr><td>$t = 3\text{ s}$</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                        <tr><td>$t = 4\text{ s}$</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr>
+                          <td><i>t</i> = 0 s</td>
+                          <td>100.0 V</td>
+                          <td class="text-danger fw-bold">Vrai (Danger)</td>
+                          <td>🔒 Verrouillé</td>
+                        </tr>
+                        <tr>
+                          <td><i>t</i> = 1 s</td>
+                          <td>50.0 V</td>
+                          <td class="text-danger fw-bold">Vrai (Danger)</td>
+                          <td>🔒 Verrouillé</td>
+                        </tr>
+                        <tr>
+                          <td><i>t</i> = 2 s</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                        </tr>
+                        <tr>
+                          <td><i>t</i> = 3 s</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                        </tr>
+                        <tr>
+                          <td><i>t</i> = 4 s</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
                 </div>
 
                 <div class="col-md-7">
-                  <p class="small mb-1 fw-bold">Travail demandé :</p>
+                  <h4 class="h6 fw-bold mb-2">Travail demandé</h4>
                   <ol class="small mb-0 ps-3">
                     <li class="mb-2">
-                      <strong>Décharge réelle :</strong> En vous aidant du chronogramme ci-dessus, compléter le tableau de décharge. Au bout de combien de secondes la tension passe-t-elle sous le seuil de sécurité ($U < 20.0\text{ V}$) ?
+                      <strong>Décharge réelle :</strong> Compléter le tableau. Au bout de combien de secondes a-t-on
+                      <i>U</i> &lt; 20.0 V ?
                     </li>
                     <li class="mb-2">
-                      <strong>Obstacle cognitif :</strong> Un élève affirme : <em>« Pour trouver le temps de décharge, il suffit d'effectuer la division entière $100 \text{ div } 20 = 5\text{ secondes}$ »</em>.
-                      <br>Pourquoi cette formule est-elle fausse ? Quelle est la différence entre une soustraction répétée et une division successive par 2 ?
+                      <strong>Obstacle cognitif :</strong> Pourquoi l'affirmation « 100 div 20 = 5 s » est-elle fausse ?
                     </li>
                     <li class="mb-2">
-                      <strong>Cas particulier ($U = 15.0\text{ V}$) :</strong> Un technicien intervient sur une machine à l'arrêt depuis 24 heures. Le voltmètre mesure $U = 15.0\text{ V}$.
-                      <br>a) La condition de danger $U \ge 20.0\text{ V}$ est-elle vérifiée ?
-                      <br>b) Combien de secondes de décharge doit-on attendre avant de déverrouiller l'armoire ?
+                      <strong>Cas particulier (<i>U</i> = 15.0 V) :</strong> Machine à l'arrêt depuis 24h : la condition
+                      <i>U</i> ≥ 20.0 V est-elle vérifiée ?
                     </li>
                     <li class="mb-2">
-                      <strong>Nécessité de tester AVANT d'agir :</strong> Pourquoi l'automate doit-il tester la condition de tension <em>avant</em> d'enclencher une temporisation de décharge ?
+                      <strong>Tester AVANT d'agir :</strong> Pourquoi l'automate teste-t-il la condition <em>avant</em>
+                      toute temporisation ?
                     </li>
                     <li class="mb-2">
-                      <strong>Choix de la structure de boucle :</strong> Peut-on prévoir à l'avance le nombre d'itérations sans connaître la tension initiale mesurée ? Pourquoi la boucle <code>Pour</code> est-elle inadaptée ?
+                      <strong>Choix de structure :</strong> Pourquoi la boucle <code>Pour</code> est-elle inadaptée ici
+                      ?
                     </li>
                     <li>
-                      <strong>Formalisation de la règle :</strong> Exprimer en français la règle d'itération sous la forme :
-                      <br><em>« <strong>Tant que</strong> (condition de danger), <strong>Faire</strong> (actions de décharge) ... »</em>.
+                      <strong>Règle formelle :</strong> Exprimer la règle : « <strong>Tant que</strong> (danger),
+                      <strong>Faire</strong> (décharge) ».
                     </li>
                   </ol>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Complétez le tableau de suivi et répondez aux six questions sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Complétez le tableau de
+                suivi et répondez aux six questions de l'activité 1.
               </div>
             </div>
           </div>
         </section>
 
         <!-- Activité 2 -->
-        <section id="act2-patron-controle" class="section-pane mb-4">
+        <section id="act2-trace" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Algorithme & Trace comparée <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Conception</span></h3>
+              <h3 class="h6 mb-0">Activité 2 — Algorithme &amp; Trace comparée <span
+                  class="badge bg-primary bg-opacity-25 text-primary ms-2">Conception</span></h3>
               <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Algorithme de décharge sécurisée :</p>
-
               <div class="row g-3">
                 <div class="col-md-6">
+                  <h4 class="h6 fw-bold text-primary mb-2">Algorithme de décharge sécurisée</h4>
                   <div class="code-container">
-                    <div class="code-header"><span>Algorithme DechargeSecurite</span></div>
                     <pre><code class="language-algorithm" v-pre>ALGORITHME DechargeSecurite
 DEBUT
   Lire(U)
@@ -335,48 +378,64 @@ FIN</code></pre>
                 </div>
 
                 <div class="col-md-6">
-                  <div class="table-responsive mb-2">
+                  <h4 class="h6 fw-bold text-primary mb-2">Tableau de Déclaration des Objets (TDO)</h4>
+                  <div class="table-responsive mb-3">
                     <table class="table table-custom table-sm table-bordered mb-0">
                       <thead>
-                        <tr><th>Objet</th><th>Type</th><th>Rôle</th></tr>
+                        <tr>
+                          <th style="width: 20%;">Objet</th>
+                          <th style="width: 20%;">Type</th>
+                          <th style="width: 60%;">Rôle / Description</th>
+                        </tr>
                       </thead>
                       <tbody>
-                        <tr><td><code>U</code></td><td>Réel</td><td>Tension résiduelle (V)</td></tr>
-                        <tr><td><code>duree</code></td><td>Entier</td><td>Durée de décharge (s)</td></tr>
+                        <tr>
+                          <td><code>U</code></td>
+                          <td>Réel</td>
+                          <td>Tension résiduelle mesurée aux bornes du condensateur (V)</td>
+                        </tr>
+                        <tr>
+                          <td><code>duree</code></td>
+                          <td>Entier</td>
+                          <td>Durée de décharge cumulée (secondes)</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <p class="small mb-1 fw-bold">Tracer et comparer sur votre cahier :</p>
+                  <h4 class="h6 fw-bold mb-2">Traces d'exécution comparées</h4>
                   <ol class="small mb-0 ps-3">
-                    <li class="mb-2"><strong>Cas nominal ($U = 100.0\text{ V}$) :</strong>
-                      <br>• $t=0 : 100.0 \ge 20.0$ (Vrai) $\rightarrow U=50.0, \text{duree}=1$.
-                      <br>• $t=1 : 50.0 \ge 20.0$ (Vrai) $\rightarrow U=25.0, \text{duree}=2$.
-                      <br>• $t=2 : 25.0 \ge 20.0$ (Vrai) $\rightarrow U=12.5, \text{duree}=3$.
-                      <br>• $t=3 : 12.5 \ge 20.0$ (Faux) $\rightarrow$ Arrêt : $12.5\text{ V}$, <strong>$3\text{ s}$</strong>.
+                    <li class="mb-2"><strong>Cas nominal (<i>U</i> = 100.0 V) :</strong>
+                      <br>• <i>t</i> = 0 : 100.0 ≥ 20.0 (Vrai) → <i>U</i> = 50.0, duree = 1.
+                      <br>• <i>t</i> = 1 : 50.0 ≥ 20.0 (Vrai) → <i>U</i> = 25.0, duree = 2.
+                      <br>• <i>t</i> = 2 : 25.0 ≥ 20.0 (Vrai) → <i>U</i> = 12.5, duree = 3.
+                      <br>• <i>t</i> = 3 : 12.5 ≥ 20.0 (Faux) → Arrêt de la boucle : <strong>12.5 V, 3 s</strong>.
                     </li>
-                    <li class="mb-2"><strong>Cas 0 itération ($U = 14.0\text{ V}$) :</strong>
-                      <br>• Entrée : $14.0 \ge 20.0$ (Faux d'emblée).
-                      <br>• <strong>0 itération</strong> $\rightarrow$ Sortie directe : $14.0\text{ V}$, <strong>$0\text{ s}$</strong>.
+                    <li class="mb-2"><strong>Cas 0 itération (<i>U</i> = 14.0 V) :</strong>
+                      <br>• Entrée dans la boucle : 14.0 ≥ 20.0 (Faux d'emblée).
+                      <br>• <strong>0 itération</strong> → Sortie directe immédiate : <strong>14.0 V, 0 s</strong>.
                     </li>
                   </ol>
                 </div>
               </div>
 
-              <!-- Remarque didactique -->
+              <!-- Synthèse didactique -->
               <div class="card card-custom border-start border-4 border-info mt-3 mb-0 shadow-sm">
                 <div class="card-body py-2 px-3 small">
                   <div class="fw-bold text-info mb-1">
-                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> Synthèse didactique
+                    💡 SYNTHÈSE DIDACTIQUE :
                   </div>
                   <div class="text-body">
-                    <code>Tant Que</code> s'exécute de <strong>0 à $N$ fois</strong>. Si la condition est fausse à l'entrée, le corps est ignoré (0 itération).
+                    La structure <code>Tant Que</code> s'exécute de <strong>0 à <i>N</i> fois</strong>. Si la condition
+                    est fausse à l'entrée, le corps de la boucle est totalement ignoré (cas fondamental des 0
+                    itération).
                   </div>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Notez le tableau de trace sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Notez le tableau de trace
+                pour les deux cas (nominal et 0 itération).
               </div>
             </div>
           </div>
@@ -384,14 +443,14 @@ FIN</code></pre>
       </article>
 
       <!-- =========================================================================
-           ARTICLE 3: PALIER INTERMÉDIAIRE (MAÎTRISE & AUTONOMIE)
+           ARTICLE 3: 3. Palier Intermédiaire — Maîtrise (Tracé & Correction d'erreurs)
            ========================================================================= -->
       <article id="palier-intermediaire" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> Palier Intermédiaire — Maîtrise</h2>
-        <p class="text-muted small mb-3">Trace d'exécution et correction d'erreurs de terminaison.</p>
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> 3. Palier Intermédiaire — Maîtrise (Tracé &amp;
+          Correction d'erreurs)</h2>
 
         <!-- Activité 3 -->
-        <section id="act3-trace-variables" class="section-pane mb-4">
+        <section id="act3-trace" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
               <h3 class="h6 mb-0">Activité 3 — Tracé d'exécution et variables</h3>
@@ -400,8 +459,8 @@ FIN</code></pre>
             <div class="card-body">
               <div class="row g-3">
                 <div class="col-md-5">
+                  <h4 class="h6 fw-bold text-primary mb-2">Algorithme DivisionIterative</h4>
                   <div class="code-container">
-                    <div class="code-header"><span>Algorithme DivisionIterative</span></div>
                     <pre><code class="language-algorithm" v-pre>x ← 18
 cpt ← 0
 Tant que x > 2 Faire
@@ -414,75 +473,112 @@ Fin Tant que
                 </div>
 
                 <div class="col-md-7">
-                  <p class="small mb-2">Compléter le tableau de trace sur votre cahier :</p>
+                  <h4 class="h6 fw-bold mb-2">Tableau de trace à compléter</h4>
                   <div class="table-responsive my-2">
                     <table class="table table-custom table-sm table-bordered text-center mb-0">
                       <thead>
-                        <tr><th>Itération</th><th>Condition <code>x > 2</code></th><th><code>x ← x Div 2</code></th><th><code>cpt</code></th></tr>
+                        <tr>
+                          <th style="width: 24%;">Itération</th>
+                          <th style="width: 28%;">Condition <code>x &gt; 2</code></th>
+                          <th style="width: 26%;"><code>x ← x Div 2</code></th>
+                          <th style="width: 22%;"><code>cpt</code></th>
+                        </tr>
                       </thead>
                       <tbody>
-                        <tr><td>Initial</td><td>—</td><td><code>18</code></td><td><code>0</code></td></tr>
-                        <tr><td>1</td><td class="empty-cell">Vrai (18 > 2)</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                        <tr><td>2</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                        <tr><td>3</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                        <tr><td>4</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
+                        <tr>
+                          <td>Initial</td>
+                          <td>—</td>
+                          <td>18</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Vrai (18 &gt; 2)</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                          <td class="empty-cell">.....</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
                   <ol class="small mb-0 ps-3 mt-2">
-                    <li>Valeurs finales de <code>x</code> et <code>cpt</code> ?</li>
-                    <li>Pour quelle valeur de $x$ la condition devient-elle fausse ?</li>
+                    <li class="mb-1">Quelles sont les valeurs finales affichées pour <code>x</code> et <code>cpt</code>
+                      ?</li>
+                    <li>Pour quelle valeur précise de <i>x</i> la condition de la boucle devient-elle fausse ?</li>
                   </ol>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Remplissez le tableau de trace sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Remplissez le tableau de
+                trace et répondez aux deux questions d'analyse.
               </div>
             </div>
           </div>
         </section>
 
         <!-- Activité 4 -->
-        <section id="act4-debogage-boucle-infinie" class="section-pane mb-4">
+        <section id="act4-debogage" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Débogage : Boucle infinie</h3>
+              <h3 class="h6 mb-0">Activité 4 — Débogage : Boucle infinie <span
+                  class="badge bg-warning bg-opacity-25 text-warning ms-2">Anomalie</span></h3>
               <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
+              <h4 class="h6 fw-bold text-primary mb-2">Mise en situation</h4>
               <p class="small mb-2">
-                Si la température dépasse $25.0^\circ\text{C}$, le programme boucle sans fin.
+                Si la température dépasse 25.0 °C, le programme ci-dessous boucle indéfiniment sans s'arrêter.
               </p>
 
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="code-container">
-                    <div class="code-header"><span>Script Python erroné</span></div>
                     <pre><code class="language-python" v-pre>temperature = float(input("Température (°C) : "))
 cycles = 0
 
 while temperature > 25.0:
-    print(f"Cycle {cycles} : Refroidissement...")
-    cycles += 1
+    print("Cycle", cycles, ": Refroidissement...")
+    cycles = cycles + 1
     # Anomalie : la température n'est pas modifiée !
 
-print(f"Fin : {temperature}°C en {cycles} cycle(s).")</code></pre>
+print("Fin : ", temperature, "°C en ", cycles, "cycle(s).")</code></pre>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Pourquoi ce script provoque-t-il une boucle infinie si <code>temperature = 28.5</code> ?</li>
-                    <li class="mb-2">Quelle instruction ajouter pour faire évoluer <code>temperature</code> (ex. <code>temperature -= 1.5</code>) ?</li>
-                    <li class="mb-2">Que produit une saisie de $21.0^\circ\text{C}$ (cas 0 itération) ?</li>
-                    <li>Écrire le script corrigé sur votre cahier.</li>
+                    <li class="mb-2">Pourquoi ce script provoque-t-il une boucle infinie si
+                      <code>temperature = 28.5</code> ?
+                    </li>
+                    <li class="mb-2">Quelle instruction ajouter dans la boucle pour décrémenter <code>temperature</code>
+                      ?</li>
+                    <li class="mb-2">Que produit une saisie initiale de 21.0 °C ?</li>
+                    <li>Écrire le script Python corrigé sur votre cahier.</li>
                   </ol>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Notez l'analyse et le code corrigé sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Notez l'analyse du bogue et
+                recopiez le code Python dûment corrigé.
               </div>
             </div>
           </div>
@@ -490,61 +586,79 @@ print(f"Fin : {temperature}°C en {cycles} cycle(s).")</code></pre>
       </article>
 
       <!-- =========================================================================
-           ARTICLE 4: PALIER AVANCÉ (DÉPASSEMENT & DÉFI SCIENTIFIQUE)
+           ARTICLE 4: 4. Palier Avancé — Défi (Sentinelle d'arrêt & Modélisation scientifique)
            ========================================================================= -->
       <article id="palier-avance" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-rocket-takeoff text-success me-2"></i> Palier Avancé — Défi</h2>
-        <p class="text-muted small mb-3">Sentinelles d'arrêt et modélisation dynamique.</p>
+        <h2><i class="bi bi-rocket-takeoff text-success me-2"></i> 4. Palier Avancé — Défi (Sentinelle d'arrêt &amp;
+          Modélisation scientifique)</h2>
 
         <!-- Activité 5 -->
-        <section id="act5-sentinelle-dynamique" class="section-pane mb-4">
+        <section id="act5-sentinelle" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Sentinelle : Pluviométrie <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Ex. 27</span></h3>
+              <h3 class="h6 mb-0">Activité 5 — Sentinelle : Pluviométrie <span
+                  class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 27</span></h3>
               <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                <strong>Énoncé :</strong> Saisir une suite de précipitations journalières ($\ge 0$ mm), terminée par la sentinelle <strong>`-1.0`</strong> (non comptabilisée).
+                <strong>Énoncé :</strong> Saisir au clavier une suite de précipitations journalières (exprimées en mm,
+                valeurs ≥ 0), terminée par la valeur sentinelle <strong><code>-1.0</code></strong> (la valeur sentinelle
+                indique la fin de la saisie et ne doit en aucun cas être comptabilisée dans les statistiques).
               </p>
 
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire l'algorithme calculant le nombre de jours pluvieux et le cumul des précipitations.</li>
-                <li class="mb-2">Dresser le TDO.</li>
-                <li><strong>Jeux d'essais :</strong>
-                  <br>• Nominal : <code>12.5</code> $\rightarrow$ <code>0.0</code> $\rightarrow$ <code>4.2</code> $\rightarrow$ <code>18.3</code> $\rightarrow$ <code>-1.0</code> $\implies$ <strong>4 relevés, Total = 35.0 mm</strong>.
-                  <br>• Limite : entrée immédiate de <code>-1.0</code> $\implies$ <em>« Aucune donnée »</em>.
+                <li class="mb-2">Écrire l'algorithme complet calculant et affichant le nombre de jours pluvieux ainsi
+                  que le cumul total des précipitations.</li>
+                <li class="mb-2">Dresser le Tableau de Déclaration des Objets (TDO).</li>
+                <li><strong>Jeux d'essais à valider :</strong>
+                  <ul class="mt-1">
+                    <li>• <strong>Cas nominal :</strong> <code>12.5</code> → <code>0.0</code> → <code>4.2</code> →
+                      <code>18.3</code> → <code>-1.0</code> ⇒ <strong>4 relevés traités, Cumul = 35.0 mm</strong>.
+                    </li>
+                    <li>• <strong>Cas limite (0 itération) :</strong> entrée immédiate de <code>-1.0</code> au premier
+                      tour ⇒ Affichage : <strong>« Aucune donnée saisie »</strong>.</li>
+                  </ul>
                 </li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme et le TDO sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Rédigez l'algorithme de
+                pluviométrie et son TDO complet.
               </div>
             </div>
           </div>
         </section>
 
         <!-- Activité 6 -->
-        <section id="act6-decroissance-radioactive" class="section-pane mb-4">
+        <section id="act6-modelisation" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Modélisation : Seuil budgétaire <span class="badge bg-success bg-opacity-25 text-success ms-2">Ex. 10</span></h3>
-              <span class="badge bg-success text-white">15 min</span>
+              <h3 class="h6 mb-0">Activité 6 — Modélisation scientifique : Seuil budgétaire <span
+                  class="badge bg-success bg-opacity-25 text-success ms-2">Exercice 10</span></h3>
+              <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                <strong>Énoncé :</strong> Un local est loué $650\text{ DT}$/mois, avec une hausse annuelle de $1.8\%$ ($L_{n+1} = L_n \times 1.018$). Le contrat s'arrête dès que le loyer dépasse $800\text{ DT}$.
+                <strong>Énoncé :</strong> Un local commercial est loué initialement à 650 DT par mois, avec une
+                augmentation annuelle de 1.8% (soit <i>L</i><sub><i>n</i>+1</sub> = <i>L</i><sub><i>n</i></sub> ×
+                1.018). Le locataire résilie le bail dès que le loyer dépasse 800 DT.
               </p>
 
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Identifier la condition de la boucle <code>Tant Que</code> et les variables de calcul.</li>
-                <li class="mb-2">Écrire l'algorithme <code>EvolutionLoyer</code> (années, loyer final, total cumulé).</li>
-                <li class="mb-2">Dresser le TDO.</li>
-                <li><strong>Validation :</strong> En Python, vérifier qu'à <strong>12 ans</strong> : loyer = <strong>804.83 DT</strong> ($> 800$) et total = <strong>104 532 DT</strong>.</li>
+                <li class="mb-2">Identifier la condition de continuation de la boucle <code>Tant Que</code> et les
+                  variables de calcul.</li>
+                <li class="mb-2">Écrire l'algorithme <code>EvolutionLoyer</code> calculant le nombre d'années écoulées
+                  avant résiliation, le loyer mensuel final et la somme totale cumulée des loyers.</li>
+                <li class="mb-2">Dresser le Tableau de Déclaration des Objets (TDO).</li>
+                <li><strong>Validation sur machine :</strong> En Python, programmer et vérifier qu'au bout de <strong>12
+                    ans</strong> : le loyer atteint <strong>804.83 DT</strong> (&gt; 800 DT) et le total cumulé des
+                  loyers est de <strong>104 532 DT</strong>.</li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme et le TDO sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Rédigez l'algorithme
+                <code>EvolutionLoyer</code>, son TDO et validez les calculs.
               </div>
             </div>
           </div>
@@ -556,7 +670,7 @@ print(f"Fin : {temperature}°C en {cycles} cycle(s).")</code></pre>
     <!-- Footer -->
     <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
       <div class="container text-center small text-muted">
-        <p class="mb-0">3<sup>e</sup> Sciences · Séance 2 : Boucle Tant Que</p>
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 2 : La boucle Tant Que (while) &amp; Contrôle de saisie</p>
       </div>
     </footer>
   </div>

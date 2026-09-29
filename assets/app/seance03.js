@@ -37,21 +37,38 @@ elif nb_chiffres == 3:
 else:
     print("Format de code non accrédité : Accès refusé !")`,
 
-      codeAbsorbancePython: `# Saisie d'une série d'absorbances optiques arrêtée par une valeur négative
+      codeTelemetriePython: `# Activité 3 & 4 : Saisie par sentinelle (Télémétrie laser optique)
 somme = 0.0
 nb_mesures = 0
-A = float(input("Donner une valeur d'absorbance (négatif pour stopper) : "))
-while A >= 0:
+A = float(input("Distance mesurée en cm (ou -1.0 pour terminer) : "))
+while A >= 0.0:
     somme = somme + A
     nb_mesures = nb_mesures + 1
-    A = float(input("Mesure suivante : "))
+    A = float(input("Distance mesurée en cm (ou -1.0 pour terminer) : "))
 
 if nb_mesures > 0:
     moyenne = somme / nb_mesures
     print("Nombre de mesures valides :", nb_mesures)
-    print("Absorbance moyenne :", moyenne)
+    print("Distance moyenne :", round(moyenne, 2), "cm")
 else:
-    print("Aucune mesure valide enregistrée.")`
+    print("Aucune mesure valide enregistrée")`,
+
+      // Alias pour compatibilité ascendante
+      codeAbsorbancePython: `# Activité 3 & 4 : Saisie par sentinelle (Télémétrie laser optique)
+somme = 0.0
+nb_mesures = 0
+A = float(input("Distance mesurée en cm (ou -1.0 pour terminer) : "))
+while A >= 0.0:
+    somme = somme + A
+    nb_mesures = nb_mesures + 1
+    A = float(input("Distance mesurée en cm (ou -1.0 pour terminer) : "))
+
+if nb_mesures > 0:
+    moyenne = somme / nb_mesures
+    print("Nombre de mesures valides :", nb_mesures)
+    print("Distance moyenne :", round(moyenne, 2), "cm")
+else:
+    print("Aucune mesure valide enregistrée")`
     };
   },
 
