@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance 5 · TP Évalué N°2 : Menus interactifs & Boucles combinées — 3e Sciences</title>
+  <title>Séance 5 · TP N°2 : Menus interactifs & Boucles combinées — 3e Sciences</title>
   <meta name="description"
     content="Séance 5 d'informatique pour 3e Sciences : Évaluation pratique sur machine N°2 (TP noté) sur les menus interactifs, match...case et les boucles de répétition.">
 
@@ -73,9 +73,11 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>
+              Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -90,17 +92,14 @@
           <div>
             <div class="d-flex flex-wrap gap-2 mb-2">
               <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-25">
-                SÉANCE 5 · ÉVALUATION PRATIQUE N° 2
+                SÉANCE 5 · TP N° 2
               </span>
               <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
                 <i class="bi bi-clock me-1"></i> 90 min
               </span>
-              <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25">
-                Barème : /20 pts (Épreuve sur Machine)
-              </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">TP Évalué : Menus interactifs & Boucles combinées sur Machine</h1>
-            <p class="text-muted small mb-0">Évaluation individuelle sur poste de travail — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
+            <h1 class="h3 fw-bold mb-1">TP : Menus interactifs & Boucles combinées sur Machine</h1>
+            <p class="text-muted small mb-0">Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
       </div>
@@ -131,11 +130,12 @@
            ARTICLE 1: CONSIGNES GÉNÉRALES
            ========================================================================= -->
       <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP ÉVALUÉ N°2</h2>
+        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP N°2</h2>
 
         <section id="consignes-tp2" class="section-pane mb-4">
           <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Durée :</strong> 90 minutes. Travail strictement individuel. Enregistrez votre code sous le nom <code>TP2_Nom_Prenom.py</code> sur le bureau.
+            <strong>Durée :</strong> 90 minutes. Travail strictement individuel. Enregistrez votre code sous le nom
+            <code>TP2_Nom_Prenom.py</code> sur le bureau.
           </div>
         </section>
       </article>
@@ -150,13 +150,14 @@
         <section id="act1-affichage-menu" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Menu didactique & Loi d'Ohm <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 119 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 1 — Menu didactique</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                <strong>Contexte banc de maintenance (Exercice 119) :</strong> On souhaite concevoir une application interactive d'auto-évaluation pour tester la loi d'Ohm ($U = R \times I$).
-                Écrire sous Python la procédure affichant le menu suivant :
+                <strong>Contexte banc de maintenance :</strong> On souhaite concevoir une application interactive
+                d'auto-évaluation pour tester la loi d'Ohm ($U = R \times I$). Écrire un programme Python affichant le
+                menu suivant :
               </p>
               <pre class="bg-body-tertiary p-2 rounded small mb-3"><code>==========================================
    BANC D'ESSAI ÉLECTRIQUE (LOI D'OHM)   
@@ -166,8 +167,21 @@
 3 : Déstockage sécurisé (Jeu de Nim)
 0 : Quitter l'application
 ------------------------------------------</code></pre>
+
+              <!-- Illustration banc d'essai électrique et loi d'Ohm -->
+              <div class="text-center my-3">
+                <img src="images/seance05/banc_essai_loi_ohm.jpg"
+                  alt="Figure 1 : Banc d'essai électrique de maintenance pour l'évaluation de la loi d'Ohm (U = R * I)"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 720px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 1 :</strong> Banc d'essai électrique didactique : mesure de tension ($U$), résistance ($R$) et intensité ($I$) pour la vérification de la loi d'Ohm ($U = R \times I$).
+                </div>
+              </div>
+
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez la procédure dans <code>TP2_Nom_Prenom.py</code>.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez la première partie du programme dans
+                <code>TP2_Nom_Prenom.py</code>.
               </div>
             </div>
           </div>
@@ -182,7 +196,8 @@
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Écrire la boucle forçant la saisie du choix entre <code>0, 1, 2, 3</code>. En cas de choix hors plage, afficher un message d'erreur et renouveler la saisie avec <code>Répéter ... Jusqu'à Choix ∈ [0 ; 3]</code>.
+                Mettre le menu dans une boucle forçant la saisie du choix entre <code>0, 1, 2, 3</code>. En cas de choix
+                hors plage, afficher un message d'erreur et renouveler la saisie.
               </p>
               <div class="cahier-zone">
                 <i class="bi bi-pencil-square me-1"></i> Intégrez le contrôle de saisie dans votre script.
@@ -196,21 +211,36 @@
            ARTICLE 3: PALIER MAÎTRISE (8 PTS)
            ========================================================================= -->
       <article id="palier-maitrise-tp2" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 MAÎTRISE DU NIVEAU ATTENDU (8 points)</h2>
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 MAÎTRISE DU NIVEAU ATTENDU (8 points)
+        </h2>
 
         <!-- Activité 3 -->
         <section id="act3-calcul-pression" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Option 1 : Session de questions avec seuil d'erreurs <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 119 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 3 — Option 1 : Session de questions avec seuil d'erreurs</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Pour le choix 1, générer aléatoirement $R \in [1 ; 20]\ \Omega$ et $I \in [1 ; 10]\text{ A}$. Demander à l'utilisateur la tension $U$ correspondante.
-                <br>• La session s'arrête dès que l'utilisateur atteint <strong>10 bonnes réponses</strong> (succès) OU commet <strong>3 erreurs</strong> (échec).
+                Pour le choix 1 (Lancer le test interactif (U = R * I)), générer aléatoirement $R \in [1, 20]\ \Omega$ et
+                $I \in [1, 10]\text{ A}$. Demander à l'utilisateur la tension $U$ correspondante.
+                <br>• La session s'arrête dès que l'utilisateur atteint <strong>3 bonnes réponses</strong> (succès) OU
+                commet <strong>3 erreurs</strong> (échec).
                 <br>• Afficher le bilan immédiat après chaque réponse.
               </p>
+
+              <!-- Illustration session interactive de test Loi d'Ohm -->
+              <div class="text-center my-3">
+                <img src="images/seance05/session_quiz_loi_ohm.jpg"
+                  alt="Figure 2 : Terminal d'auto-évaluation interactive sur la loi d'Ohm avec compteurs de bonnes réponses et d'erreurs"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 720px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 2 :</strong> Interface d'évaluation interactive : tirage aléatoire de $R$ et $I$, calcul attendu de $U = R \times I$, et arrêt au seuil de 3 succès ou 3 erreurs.
+                </div>
+              </div>
+
               <div class="cahier-zone">
                 <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme sur votre feuille et testez-le sous Python.
               </div>
@@ -222,13 +252,27 @@
         <section id="act4-calcul-debit" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Option 2 : Arbitrage de priorité réseau <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 115 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 4 — Option 2 : Arbitrage de priorité réseau</h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Pour le choix 2, deux routeurs $N_1$ et $N_2$ tirent un jeton aléatoire entre 1 et 6 à chaque tour. Le plus grand jeton rapporte 1 point. Le premier routeur à totaliser <strong>10 points</strong> remporte la priorité. Afficher les scores manche par manche.
+                Pour le choix 2, deux routeurs $N_1$ et $N_2$ tirent un jeton aléatoire entre 1 et 6 à chaque tour. Le
+                plus grand jeton rapporte 1 point. Le premier routeur à totaliser <strong>10 points</strong> remporte la
+                priorité. Afficher les scores manche par manche.
               </p>
+
+              <!-- Illustration arbitrage de priorité réseau entre deux routeurs -->
+              <div class="text-center my-3">
+                <img src="images/seance05/arbitrage_routeurs_reseau.jpg"
+                  alt="Figure 3 : Arbitrage de priorité réseau entre deux routeurs N1 et N2 par tirage aléatoire de jetons"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 720px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 3 :</strong> Arbitrage de priorité réseau : tirages de jetons entre routeurs $N_1$ et $N_2$, comparaison des valeurs et attribution dynamique de la bande passante.
+                </div>
+              </div>
+
               <div class="cahier-zone">
                 <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme sur votre feuille et testez-le sous Python.
               </div>
@@ -247,15 +291,30 @@
         <section id="act5-boucle-globale" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Option 3 : Déstockage sécurisé (Jeu de Nim) <span class="badge bg-success bg-opacity-25 text-success ms-2">Exercice 125 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 5 — Option 3 : Déstockage sécurisé (Jeu de Nim)</h3>
               <span class="badge bg-success text-white">Excellence · 2 points</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Pour le choix 3, simuler l'évacuation de 16 composants sensibles. Deux opérateurs retirent tour à tour 1, 2 ou 3 composants. Le dernier à retirer valide le lot. Rejeter toute saisie invalide ($< 1$ ou $> 3$ ou dépassant le stock restant).
+                Pour le choix 3, simuler l'évacuation de 16 composants sensibles. Deux opérateurs retirent tour à tour
+                1, 2 ou 3 composants. Le dernier à retirer valide le lot. Rejeter toute saisie invalide ($< 1$ ou $> 3$
+                  ou dépassant le stock restant).
               </p>
+
+              <!-- Illustration déstockage sécurisé de composants (Jeu de Nim) -->
+              <div class="text-center my-3">
+                <img src="images/seance05/destockage_composants_nim.jpg"
+                  alt="Figure 4 : Poste de déstockage automatisé de 16 composants sensibles selon la stratégie du jeu de Nim"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 720px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 4 :</strong> Déstockage sécurisé en salle blanche : retrait alterné de 1, 2 ou 3 composants parmi un lot initial de 16 unités (stratégie du jeu de Nim).
+                </div>
+              </div>
+
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Complétez le programme principal dans <code>TP2_Nom_Prenom.py</code>.
+                <i class="bi bi-pencil-square me-1"></i> Complétez le programme principal dans
+                <code>TP2_Nom_Prenom.py</code>.
               </div>
             </div>
           </div>
@@ -270,8 +329,10 @@
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                Envelopper le tout dans une boucle <code>Répéter ... Jusqu'à Choix = 0</code> avec aiguillage <code>match...case</code> et compteur de sessions actives.
-                <br><em>Validation de recette :</em> Tester l'enchaînement Option 1 $\rightarrow$ Option 2 $\rightarrow$ Option 3 $\rightarrow$ Option 0 devant l'enseignant.
+                Envelopper le tout dans une boucle <code>Répéter ... Jusqu'à Choix = 0</code> avec aiguillage
+                <code>match...case</code> et compteur de sessions actives.
+                <br><em>Validation de recette :</em> Tester l'enchaînement Option 1 $\rightarrow$ Option 2 $\rightarrow$
+                Option 3 $\rightarrow$ Option 0 devant l'enseignant.
               </p>
               <div class="cahier-zone">
                 <i class="bi bi-pencil-square me-1"></i> Faites valider vos tests et remettez votre fichier.
@@ -286,7 +347,8 @@
     <!-- Footer -->
     <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
       <div class="container text-center small text-muted">
-        <p class="mb-0">3<sup>e</sup> Sciences · Séance 5 : TP Évalué N°2 (Menus interactifs & Selon) · Algorithmique & Python</p>
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 5 : TP Évalué N°2 (Menus interactifs & Selon) · Algorithmique &
+          Python</p>
       </div>
     </footer>
   </div>

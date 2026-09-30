@@ -3,11 +3,11 @@
  * Domaine : Pensée computationnelle et programmation (3ème Année & Bac)
  */
 
-(function(root, factory) {
+(function (root, factory) {
   if (typeof exports === 'object' && typeof module !== 'undefined') {
     module.exports = factory;
   }
-  
+
   var targetHljs = (typeof window !== 'undefined' && window.hljs) ? window.hljs : (root && root.hljs ? root.hljs : null);
   if (targetHljs && typeof targetHljs.registerLanguage === 'function') {
     targetHljs.registerLanguage('algorithm', factory);
@@ -15,15 +15,19 @@
     targetHljs.registerLanguage('algorithme', factory);
   }
 }(typeof window !== 'undefined' ? window : this, function hljsAlgorithmLanguage(hljs) {
+  const WORD_CHARS = 'a-zA-Z0-9_àâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ';
+  const WORD_BOUNDARY_FR = `(?![${WORD_CHARS}])`;
+
   const KEYWORDS = {
+    $pattern: new RegExp(`[${WORD_CHARS}]+|Jusqu['’]à`, 'i'),
     keyword: [
-      'ALGORITHME', 'DEBUT', 'FIN',
+      'ALGORITHME', 'Algorithme', 'DEBUT', 'Début', 'Debut', 'FIN', 'Fin',
       'Si', 'Alors', 'Sinon', 'FinSi', 'Fin Si', 'Fin_Si',
-      'Selon', 'Fin Selon', 'FinSelon',
+      'Selon', 'FinSelon', 'Fin Selon', 'Fin_Selon',
       'Pour', 'de', 'à', 'Pas', 'Faire', 'Fin Pour', 'FinPour', 'Fin_Pour',
       'Tant que', 'Tantque', 'Fin Tant que', 'FinTantque', 'Fin_Tant_que',
-      'Répéter', 'Jusqu\'à', 'Jusqua', 'Jusqu’à',
-      'Fonction', 'Procédure', 'Retourner',
+      'Répéter', 'Repeter', 'Jusqu\'à', 'Jusqua', 'Jusqu’à',
+      'Fonction', 'Procédure', 'Procedure', 'Retourner',
       'Tableau', 'Enregistrement', 'Fichier', 'Structure'
     ],
     type: [
@@ -38,15 +42,13 @@
       'Lire', 'Écrire', 'Ecrire', 'Écrire_nl', 'Ecrire_nl', 'Lire_ligne',
       'Ouvrir', 'Fermer', 'Fin_fichier',
       // Mathématiques
-      'Arrondi', 'RacineCarré', 'RacineCarre', 'Aléa', 'Alea', 'Ent', 'Abs',
+      'Arrondi', 'RacineCarré', 'RacineCarre', 'Racine', 'Aléa', 'Alea', 'Ent', 'Abs',
       // Caractères & Chaînes
       'Ord', 'Chr', 'Long', 'Pos', 'Convch', 'Estnum', 'Valeur', 'Sous_chaine', 'Effacer', 'Majus',
       // Opérateurs mots
       'Div', 'Mod', 'Non', 'Et', 'Ou'
     ]
   };
-
-  const WORD_BOUNDARY_FR = '(?![a-zA-Z0-9_àâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ])';
 
   return {
     name: 'Algorithme (Conventions 2024)',
@@ -56,10 +58,12 @@
     contains: [
       hljs.C_LINE_COMMENT_MODE,
       hljs.C_BLOCK_COMMENT_MODE,
+      hljs.HASH_COMMENT_MODE,
+      hljs.COMMENT('--', '$'),
       // Mots-clés composés & accentués explicites
       {
         className: 'keyword',
-        begin: new RegExp('(?:Répéter|Procédure|Jusqu[\'’]à|Jusqua|Fin\\s+Si|Fin\\s+Pour|Fin\\s+Tant\\s+que|Tant\\s+que)' + WORD_BOUNDARY_FR, 'i')
+        begin: new RegExp('(?:Début|Debut|Répéter|Repeter|Procédure|Procedure|Jusqu[\'’]à|Jusqua|Fin\\s+Si|Fin\\s+Selon|Fin\\s+Pour|Fin\\s+Tant\\s+que|Tant\\s+que)' + WORD_BOUNDARY_FR, 'i')
       },
       {
         className: 'type',
@@ -81,7 +85,7 @@
       },
       {
         className: 'function',
-        beginKeywords: 'Fonction Procédure',
+        beginKeywords: 'Fonction Procédure Procedure',
         end: /[:;\n(]/,
         excludeEnd: true,
         contains: [
@@ -90,8 +94,19 @@
       },
       {
         className: 'title.class',
-        beginKeywords: 'ALGORITHME Algorithme',
-        end: /$/
+        begin: /(?:Algorithme|ALGORITHME)\s+([a-zA-Z0-9_àâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ]+)/i,
+        returnBegin: true,
+        end: /$/m,
+        contains: [
+          {
+            className: 'keyword',
+            begin: /Algorithme|ALGORITHME/i
+          },
+          {
+            className: 'title.class',
+            begin: new RegExp('[a-zA-Z_àâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ][a-zA-Z0-9_àâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ]*')
+          }
+        ]
       },
       {
         className: 'symbol',

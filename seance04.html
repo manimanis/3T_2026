@@ -73,9 +73,11 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>
+              Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -100,7 +102,8 @@
               </span>
             </div>
             <h1 class="h3 fw-bold mb-1">Boucle Répéter ... Jusqu'à & Structure Selon</h1>
-            <p class="text-muted small mb-0">Itérations post-test, sélecteurs scalaires, match...case et conception de menus interactifs — 3<sup>e</sup> Sciences</p>
+            <p class="text-muted small mb-0">Itérations post-test, sélecteurs scalaires, match...case et conception de
+              menus interactifs — 3<sup>e</sup> Sciences</p>
           </div>
         </div>
       </div>
@@ -138,14 +141,16 @@
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom py-2">
-                  <h3 class="h6 mb-0 text-primary"><i class="bi bi-arrow-repeat me-1"></i> Boucle Répéter ... Jusqu'à</h3>
+                  <h3 class="h6 mb-0 text-primary"><i class="bi bi-arrow-repeat me-1"></i> Boucle Répéter ... Jusqu'à
+                  </h3>
                 </div>
                 <div class="card-body py-2 small">
                   <pre><code class="language-algorithm" v-pre>Répéter
   Traitements
 Jusqu'à Condition</code></pre>
                   <ul class="mb-0 ps-3 text-muted">
-                    <li>Exécute le traitement <strong>au moins une fois</strong> avant de tester la condition d'arrêt.</li>
+                    <li>Exécute le traitement <strong>au moins une fois</strong> avant de tester la condition d'arrêt.
+                    </li>
                     <li>La boucle s'arrête dès que la condition devient <strong>Vraie</strong>.</li>
                     <li>Traduction Python : <code>while not (Condition):</code>.</li>
                   </ul>
@@ -156,7 +161,8 @@ Jusqu'à Condition</code></pre>
             <div class="col-md-6">
               <div class="card card-custom h-100">
                 <div class="card-header-custom py-2">
-                  <h3 class="h6 mb-0 text-success"><i class="bi bi-ui-checks me-1"></i> Structure conditionnelle Selon</h3>
+                  <h3 class="h6 mb-0 text-success"><i class="bi bi-ui-checks me-1"></i> Structure conditionnelle Selon
+                  </h3>
                 </div>
                 <div class="card-body py-2 small">
                   <pre><code class="language-algorithm" v-pre>Selon Sélecteur
@@ -180,19 +186,34 @@ Fin Selon</code></pre>
            ========================================================================= -->
       <article id="palier-debutant" class="article-content-wrapper mb-5">
         <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 DÉBUTANT — Socle & Guidage</h2>
-        <p class="text-muted small mb-3">Comprendre le fonctionnement d'une boucle à post-condition et simplifier des alternatives multiples.</p>
+        <p class="text-muted small mb-3">Comprendre le fonctionnement de la boucle <code>Répéter ... Jusqu'à</code> et
+          simplifier des alternatives multiples.</p>
 
         <!-- Activité 1 -->
         <section id="act1-post-condition" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Découverte de la post-condition : Transmission IoT avec ACK <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 17 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 1 — Boucle <code>Répéter ... Jusqu'à</code> : Transmission IoT avec ACK</h3>
               <span class="badge bg-secondary">Socle · 15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                <strong>Contexte transmission radio (Exercice 17) :</strong> Un émetteur radio IoT envoie des trames vers une station. Chaque tentative équivaut au tirage aléatoire d'un jeton entre 1 et 6. La liaison est acquittée lorsque le code d'accusé de réception <strong>ACK = 6</strong> est reçu.
+                <strong>Contexte transmission radio :</strong> Un émetteur radio IoT envoie des trames
+                vers une station. Chaque trame est acquitée par un code entre 1 et 6. Une trame est
+                reçue avec succès lorsque le code d'accusé de réception <strong>ACK = 6</strong>.
               </p>
+
+              <!-- Illustration transmission radio IoT et station -->
+              <div class="text-center my-3">
+                <img src="images/seance04/communication_radio_station.jpg"
+                  alt="Figure 1 : Communication radio sans fil entre l'émetteur IoT et la station réceptrice avec accusé de réception (ACK)"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 720px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 1 :</strong> Protocole de communication sans fil IoT : transmission des trames (TX) par
+                  l'émetteur radio et accusé de réception (ACK) émis en retour.
+                </div>
+              </div>
 
               <div class="row g-3">
                 <div class="col-md-6">
@@ -210,14 +231,19 @@ Jusqu'à (ack = 6)
                 <div class="col-md-6">
                   <ol class="small mb-0 ps-3">
                     <li class="mb-2">Combien de fois la transmission et l'évaluation s'exécutent-elles au minimum ?</li>
-                    <li class="mb-2"><em>Exemple illustratif :</em> Si les tirages successifs sont <code>3</code>, <code>1</code>, <code>5</code>, <code>6</code>, quel est l'affichage final ?</li>
-                    <li>Pourquoi la structure <code>Répéter ... Jusqu'à</code> est-elle plus adaptée ici qu'une boucle <code>Tant Que</code> ?</li>
+                    <li class="mb-2"><em>Exemple illustratif :</em> Si les tirages successifs sont <code>3</code>,
+                      <code>1</code>, <code>5</code>, <code>6</code>, quel est l'affichage final ?
+                    </li>
+                    <li>Pourquoi la structure <code>Répéter ... Jusqu'à</code> est-elle plus adaptée ici qu'une boucle
+                      <code>Tant Que</code> ?
+                    </li>
                   </ol>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez le tracé de la boucle et comparez avec sa version <code>Tant Que</code> sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez le tracé de la boucle et comparez avec sa version
+                <code>Tant Que</code> sur votre cahier.
               </div>
             </div>
           </div>
@@ -227,26 +253,50 @@ Jusqu'à (ack = 6)
         <section id="act2-syntaxe-selon" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — La structure à choix multiples Selon & Grille logistique <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 118 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 2 — La structure à choix multiples Selon & Grille logistique</h3>
               <span class="badge bg-secondary">Socle · 15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                <strong>Contexte entrepôt robotisé (Exercice 118) :</strong> Le sol d'un centre logistique est quadrillé en cases repérées par une colonne (caractère <code>'a'..'h'</code>) et une ligne (entier <code>1..8</code>). On veut classifier la case en <strong>"Zone Blanche (Circulation)"</strong> ou <strong>"Zone Noire (Stockage)"</strong>.
+                <strong>Contexte entrepôt robotisé :</strong> Le sol d'un entrepôt est organisé en cases
+                repérées par une colonne (caractère <code>'a'..'h'</code>) et une ligne (entier <code>1..8</code>). Tout
+                comme un échiquier, les cases noires sont des zones de stockage et les cases blanches sont des voies de
+                circulation pour les robots mobiles autonomes (AMR = Autonomous Mobile Robots).
               </p>
 
+              <!-- Illustration entrepôt robotisé et sol en forme d'échiquier -->
+              <div class="text-center my-3">
+                <img src="images/seance04/entrepot_sol_echiquier.jpg"
+                  alt="Figure 2 : Entrepôt robotisé avec sol en damier d'échiquier 8x8 (cases noires de stockage et cases blanches de circulation AMR)"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 720px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 2 :</strong> Sol d'entrepôt en forme d'échiquier 8×8 (colonnes <code>'a'..'h'</code>,
+                  lignes
+                  <code>1..8</code>) : cases noires de stockage et cases blanches de circulation pour robots mobiles
+                  autonomes (AMR).
+                </div>
+              </div>
+
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire la structure algorithmique <code>Selon col</code> combinant les lettres impaires (<code>'a', 'c', 'e', 'g'</code>) et paires (<code>'b', 'd', 'f', 'h'</code>).</li>
+                <li class="mb-2">Écrire l'algorithme d'un programme qui lit les coordonées <code>col</code> et
+                  <code>ligne</code> d'un robot et qui affiche s'il est dans une zone de stockage ou sur une voie de
+                  circulation.
+                </li>
                 <li class="mb-2"><em>Exemples illustratifs :</em>
-                  <br>• Pour <code>col = 'a'</code> et <code>ligne = 5</code> $\implies$ Ligne impaire sur colonne impaire $\rightarrow$ <strong>Zone Noire</strong>.
-                  <br>• Pour <code>col = 'e'</code> et <code>ligne = 6</code> $\implies$ Ligne paire sur colonne impaire $\rightarrow$ <strong>Zone Blanche</strong>.
-                  <br>• Pour <code>col = 'z'</code> $\implies$ Branche <code>Sinon</code> $\rightarrow$ <strong>"Coordonnées hors grille !"</strong>.
+                  <br>• Pour <code>col = 'a'</code> et <code>ligne = 5</code> $\implies$ Ligne impaire sur colonne
+                  impaire $\rightarrow$ <strong>Zone de stockage</strong>.
+                  <br>• Pour <code>col = 'e'</code> et <code>ligne = 6</code> $\implies$ Ligne paire sur colonne
+                  impaire $\rightarrow$ <strong>Zone de circulation</strong>.
+                  <br>• Pour <code>col = 'z'</code> $\implies$ Branche <code>Sinon</code> $\rightarrow$
+                  <strong>"Coordonnées hors grille !"</strong>.
                 </li>
                 <li>Dresser le TDO correspondant sur votre cahier.</li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez la structure <code>Selon</code> complète et le TDO sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez la structure <code>Selon</code> complète et le TDO sur
+                votre cahier.
               </div>
             </div>
           </div>
@@ -258,7 +308,8 @@ Jusqu'à (ack = 6)
            ========================================================================= -->
       <article id="palier-intermediaire" class="article-content-wrapper mb-5">
         <h2><i class="bi bi-lightning-charge text-warning me-2"></i> PALIER 🟡 INTERMÉDIAIRE — Maîtrise & Autonomie</h2>
-        <p class="text-muted small mb-3">Traduire en Python 3.10+ avec match...case et déboguer des sélecteurs invalides.</p>
+        <p class="text-muted small mb-3">Traduire en Python 3.10+ avec match...case et déboguer des sélecteurs
+          invalides.</p>
 
         <!-- Activité 3 -->
         <section id="act3-traduction-match-case" class="section-pane mb-4">
@@ -269,7 +320,8 @@ Jusqu'à (ack = 6)
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                On considère un sélecteur $mois \in [1 ; 12]$. On souhaite afficher le nombre de jours correspondant (en considérant février à 28 jours) :
+                On considère un sélecteur $mois \in [1 ; 12]$. On souhaite afficher le nombre de jours correspondant (en
+                considérant février à 28 jours) :
               </p>
 
               <div class="row g-3">
@@ -290,15 +342,19 @@ match mois:
 
                 <div class="col-md-6">
                   <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Quel est le rôle de l'opérateur <code>|</code> dans les motifs de <code>case</code> ?</li>
-                    <li class="mb-2">À quelle clause algorithmique correspond le motif universel <code>case _:</code> ?</li>
-                    <li>Traduire en boucle <code>while not:</code> la saisie du mois jusqu'à obtenir une valeur valide entre 1 et 12.</li>
+                    <li class="mb-2">Quel est le rôle de l'opérateur <code>|</code> dans les motifs de <code>case</code>
+                      ?</li>
+                    <li class="mb-2">À quelle clause algorithmique correspond le motif universel <code>case _:</code> ?
+                    </li>
+                    <li>Utiliser une boucle <code>while</code> pour effectuer la saisie d'un mois valide entre 1 et 12.
+                    </li>
                   </ol>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme équivalent et testez le script sur votre environnement Python.
+                <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme équivalent et testez le script sur votre
+                environnement Python.
               </div>
             </div>
           </div>
@@ -312,24 +368,33 @@ match mois:
               <span class="badge bg-secondary">Maîtrise · 15 min</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Un élève a écrit l'algorithme suivant pour classer des températures en degrés Celsius :</p>
+              <p class="small mb-2">Un élève a écrit l'algorithme suivant pour classer des températures en degrés
+                Celsius :</p>
               <div class="code-container mb-3">
-                <pre><code class="language-algorithm" v-pre>Lire(temp)  # temp est de type Réel
-Selon temp
-  -10.0 .. 0.0 : Écrire("Gel")
-  0.1 .. 20.0  : Écrire("Frais")
-  Sinon Écrire("Chaud")
-Fin Selon</code></pre>
+                <pre><code class="language-algorithm" v-pre>Algorithme ClassTemp
+Début
+  Lire(temp)  # temp est de type Réel
+  Selon temp
+    -10.0 .. 0.0   : Écrire("Gel")
+    0.1 .. 20.0     : Écrire("Frais")
+    Sinon           : Écrire("Chaud")
+  Fin Selon
+Fin
+</code></pre>
               </div>
 
               <ol class="small mb-0 ps-3">
-                <li class="mb-2">Identifier l'erreur conceptuelle majeure commise par l'élève dans cet algorithme au regard des conventions officielles 2024-2025.</li>
-                <li class="mb-2">Rappeler les seuls types de données autorisés pour le sélecteur d'une structure <code>Selon</code>.</li>
-                <li>Réécrire la solution correcte sous forme d'une structure conditionnelle généralisée (<code>Si ... Sinon Si ... Sinon</code>) sur votre cahier.</li>
+                <li class="mb-2">Rappeler les seuls types de données autorisés pour le sélecteur d'une structure
+                  <code>Selon</code>.
+                </li>
+                <li class="mb-2">Identifier l'erreur commise par l'élève dans cet algorithme.</li>
+                <li>Réécrire la solution correcte sous forme d'une structure conditionnelle généralisée
+                  (<code>Si ... Sinon Si ... Sinon</code>) sur votre cahier.</li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'analyse de l'erreur et la version corrigée sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'analyse de l'erreur et la version corrigée sur votre
+                cahier.
               </div>
             </div>
           </div>
@@ -340,8 +405,10 @@ Fin Selon</code></pre>
            ARTICLE 4: PALIER AVANCÉ (DÉPASSEMENT & DÉFI SCIENTIFIQUE)
            ========================================================================= -->
       <article id="palier-avance" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-rocket-takeoff text-success me-2"></i> PALIER 🔴 AVANCÉ — Dépassement & Défi scientifique</h2>
-        <p class="text-muted small mb-3">Concevoir des menus de laboratoire interactifs et modéliser des calculs scientifiques combinés.</p>
+        <h2><i class="bi bi-rocket-takeoff text-success me-2"></i> PALIER 🔴 AVANCÉ — Dépassement & Défi scientifique
+        </h2>
+        <p class="text-muted small mb-3">Concevoir des menus de laboratoire interactifs et modéliser des calculs
+          scientifiques combinés.</p>
 
         <!-- Activité 5 -->
         <section id="act5-menu-laboratoire" class="section-pane mb-4">
@@ -353,20 +420,38 @@ Fin Selon</code></pre>
             <div class="card-body">
               <p class="small mb-3">
                 On souhaite concevoir une application de physique offrant le menu suivant :
-                <br><code>1</code> : Calcul de vitesse moyenne ($v = d / t$) avec $t > 0$.
-                <br><code>2</code> : Calcul d'énergie cinétique ($E_c = \frac{1}{2} m v^2$) avec $m > 0$ et $v \ge 0$.
-                <br><code>3</code> : Calcul de puissance moyenne ($P = E / \Delta t$) avec $\Delta t > 0$.
+                <br><code>1</code> : Calcul de vitesse moyenne en m/s ($v = d / t$) avec $t > 0$.
+                <br><code>2</code> : Calcul d'énergie cinétique en J ($E_c = \frac{1}{2} m v^2$) avec $m > 0$ et $v \ge
+                0$.
+                <br><code>3</code> : Calcul de puissance moyenne en W ($P = E / \Delta t$) avec $\Delta t > 0$.
                 <br><code>0</code> : Quitter.
               </p>
 
+              <!-- Illustration modélisation physique : cinématique, énergie et puissance -->
+              <div class="text-center my-3">
+                <img src="images/seance04/menu_physique_energie_cinematique.jpg"
+                  alt="Figure 3 : Banc d'expérimentation de laboratoire physique (vitesse v = d/t, énergie cinétique Ec = 1/2 m v² et puissance P = E/Δt)"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 720px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 3 :</strong> Station d'expérimentation physique : calculs de vitesse moyenne ($v = d /
+                  t$), d'énergie cinétique ($E_c = \frac{1}{2} m v^2$) et de puissance ($P = \Delta E / \Delta t$).
+                </div>
+              </div>
+
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire l'algorithme modélisant ce menu en utilisant <code>Selon Choix</code>.</li>
-                <li class="mb-2">Pour chaque option, inclure le contrôle de validité des grandeurs physiques requises au dénominateur.</li>
+                <li class="mb-2">Écrire l'algorithme modélisant ce menu en utilisant <code>Selon Choix</code>. Englober
+                  le menu dans une boucle <code>Répéter ... Jusqu'à Choix = 0</code> pour garantir la continuité du
+                  programme.
+                </li>
+                <li class="mb-2">Pour chaque option, inclure le contrôle de validité des grandeurs physiques requises au
+                  dénominateur.</li>
                 <li>Établir le TDO complet de votre algorithme sur votre cahier.</li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme avec les contrôles de saisie sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme avec les contrôles de saisie sur votre
+                cahier.
               </div>
             </div>
           </div>
@@ -376,26 +461,37 @@ Fin Selon</code></pre>
         <section id="act6-boucle-maintien" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Maintien interactif & Processus concurrents <span class="badge bg-success bg-opacity-25 text-success ms-2">Inspiré de l'Exercice 111 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 6 — Le lièvre et la tortue</h3>
               <span class="badge bg-success text-white">Défi Avancé · 15 min</span>
             </div>
             <div class="card-body">
               <p class="small mb-3">
-                <strong>Partie A (Menu interactif) :</strong> Englober le menu de l'Activité 5 dans une boucle <code>Répéter ... Jusqu'à Choix = 0</code> pour garantir la continuité du programme.
-                <br><strong>Partie B (Exercice 111 — Course Lièvre et Tortue) :</strong> Modéliser la compétition de deux processus avec la boucle à post-condition :
-                <br>• À chaque tour, un dé est lancé : si le <code>6</code> sort, le Lièvre l'emporte immédiatement.
-                <br>• Sinon, la Tortue avance d'une case. Elle gagne dès qu'elle a avancé 6 fois.
-                <br><em>Condition d'arrêt :</em> <code>Jusqu'à (victoire_lievre Ou pas_tortue = 6)</code>.
+                La compétition d'une lièvre et d'une tortue peut être modélisé comme un tirage répété d'un dé à six
+                faces. À chaque tour, un dé est lancé :
+                <br>• si le <code>6</code> sort, le Lièvre gagne.
+                <br>• Sinon, la Tortue avance d'une case et gagne dès qu'elle a atteint la case 6.
               </p>
 
+              <!-- Illustration simulation algorithmique : Course du Lièvre et de la Tortue -->
+              <div class="text-center my-3">
+                <img src="images/seance04/lievre_et_tortue_course.jpg"
+                  alt="Figure 4 : Modélisation probabiliste et algorithmique de la course entre le Lièvre et la Tortue"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 720px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 4 :</strong> Simulation de la course : si le dé affiche <code>6</code>, le Lièvre
+                  l'emporte immédiatement ; sinon, la Tortue avance d'une case vers la case 6.
+                </div>
+              </div>
+
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Ajouter un compteur <code>nb_calculs</code> qui incrémente à chaque fois qu'un calcul physique (options 1, 2 ou 3) est réalisé avec succès.</li>
-                <li class="mb-2">À la sortie de l'application (choix 0), afficher un message de synthèse indiquant le nombre total d'opérations effectuées au cours de la session.</li>
-                <li>Implémenter l'algorithme de simulation du Lièvre et de la Tortue sous Python avec <code>while not (condition):</code>.</li>
+                <li>Écrire l'algorithme de simulation du Lièvre et de la Tortue.
+                </li>
               </ol>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Testez les deux programmes sur machine et notez les traces d'exécution sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Testez le programme sur machine et notez les traces
+                d'exécution sur votre cahier.
               </div>
             </div>
           </div>
