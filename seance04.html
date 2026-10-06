@@ -26,14 +26,34 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
+    html {
+      scroll-padding-top: 130px;
+    }
+
+    .section-pane,
+    section,
+    article,
+    .card-custom {
+      scroll-margin-top: 130px;
+    }
+
+    .navbar-custom {
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+      min-height: 60px;
+    }
+
     .phase-pill-nav {
       position: sticky;
-      top: 56px;
+      top: 60px;
       z-index: 1020;
       background: var(--bg-navbar);
-      backdrop-filter: blur(10px);
-      padding: 0.5rem 0;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.45rem 0;
       border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .cahier-zone {
@@ -49,6 +69,33 @@
       color: var(--text-dim);
       font-style: italic;
       font-size: 0.8rem;
+    }
+
+    .badge-qcm-letter {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-color);
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .quiz-option {
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-option:hover {
+      transform: translateY(-1px);
+    }
+
+    .quiz-option:active {
+      transform: scale(0.99);
     }
   </style>
 </head>
@@ -224,10 +271,13 @@ Fin Selon</code></pre>
                 </div>
               </div>
 
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <div class="code-container">
-                    <pre><code class="language-algorithm" v-pre>tentatives ← 0
+              <div class="row g-4">
+                <div class="col-lg-5">
+                  <div class="code-container my-0 shadow-sm">
+                    <div class="code-header d-flex justify-content-between align-items-center py-2 px-3 border-bottom border-secondary border-opacity-25">
+                      <span class="small text-muted font-monospace"><i class="bi bi-cpu me-1"></i> Algorithme : Transmission IoT</span>
+                    </div>
+                    <pre class="m-0 p-3"><code class="language-algorithm" v-pre>tentatives ← 0
 Répéter
   ack ← alea(1, 6)
   tentatives ← tentatives + 1
@@ -237,16 +287,100 @@ Jusqu'à (ack = 6)
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Combien de fois la transmission et l'évaluation s'exécutent-elles au minimum ?</li>
-                    <li class="mb-2"><em>Exemple illustratif :</em> Si les tirages successifs sont <code>3</code>,
-                      <code>1</code>, <code>5</code>, <code>6</code>, quel est l'affichage final ?
-                    </li>
-                    <li>Pourquoi la structure <code>Répéter ... Jusqu'à</code> est-elle plus adaptée ici qu'une boucle
-                      <code>Tant Que</code> ?
-                    </li>
-                  </ol>
+                <div class="col-lg-7">
+                  <div class="card card-custom shadow-sm border border-secondary border-opacity-25 h-100">
+                    <!-- QCM Header -->
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-ui-checks text-warning fs-5"></i>
+                        <span class="fw-semibold small">QCM Interactif (3 Questions · 3 Réponses/Q)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge" :class="scoreAct1 === qcmAct1.length && totalReponduAct1 === qcmAct1.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1" v-if="scoreAct1 === qcmAct1.length && totalReponduAct1 === qcmAct1.length"></i>
+                          Score : {{ scoreAct1 }} / {{ qcmAct1.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct1" title="Réinitialiser toutes les réponses">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i><span>Réinitialiser</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar" :style="{ width: (totalReponduAct1 / qcmAct1.length * 100) + '%' }" :aria-valuenow="totalReponduAct1" aria-valuemin="0" :aria-valuemax="qcmAct1.length"></div>
+                      </div>
+
+                      <!-- Questions list -->
+                      <div v-for="(q, qIdx) in qcmAct1" :key="q.id" class="mb-4 pb-3" :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct1.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <!-- 3 Options -->
+                        <div class="quiz-options-list mt-2">
+                          <div
+                            v-for="(opt, optIdx) in q.options"
+                            :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }"
+                            @click="selectReponseAct1(qIdx, optIdx)"
+                            role="button"
+                            tabindex="0"
+                            @keydown.enter="selectReponseAct1(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct1(qIdx, optIdx)"
+                          >
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Feedback and explanation -->
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3" :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0" :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1">{{ q.explanation }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Global Score Summary when all 3 answered -->
+                      <div v-if="totalReponduAct1 === qcmAct1.length" class="mt-3 p-3 rounded-3 text-center" :class="scoreAct1 === qcmAct1.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                        <div v-if="scoreAct1 === qcmAct1.length">
+                          <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                          <strong class="text-success">Excellent ! 3 / 3 bonnes réponses</strong>
+                          <p class="small mb-0 text-muted mt-1">Vous maîtrisez parfaitement la logique d'exécution de la boucle Répéter ... Jusqu'à !</p>
+                        </div>
+                        <div v-else>
+                          <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                          <strong class="text-info">Score final : {{ scoreAct1 }} / {{ qcmAct1.length }}</strong>
+                          <p class="small mb-0 text-muted mt-1">
+                            Analysez les explications ci-dessus pour consolider vos acquis, ou
+                            <a href="#" class="text-info fw-semibold text-decoration-underline" @click.prevent="resetQcmAct1">cliquez ici pour réinitialiser</a>.
+                          </p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -333,10 +467,13 @@ Jusqu'à (ack = 6)
                 considérant février à 28 jours) :
               </p>
 
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <div class="code-container">
-                    <pre><code class="language-python" v-pre>mois = int(input("Numéro du mois (1 à 12) : "))
+              <div class="row g-4">
+                <div class="col-lg-5">
+                  <div class="code-container my-0 shadow-sm">
+                    <div class="code-header d-flex justify-content-between align-items-center py-2 px-3 border-bottom border-secondary border-opacity-25">
+                      <span class="small text-muted font-monospace"><i class="bi bi-filetype-py me-1 text-warning"></i> Script Python 3.10+ : match...case</span>
+                    </div>
+                    <pre class="m-0 p-3"><code class="language-python" v-pre>mois = int(input("Numéro du mois (1 à 12) : "))
 match mois:
     case 1 | 3 | 5 | 7 | 8 | 10 | 12:
         print("31 jours")
@@ -349,15 +486,100 @@ match mois:
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Quel est le rôle de l'opérateur <code>|</code> dans les motifs de <code>case</code>
-                      ?</li>
-                    <li class="mb-2">À quelle clause algorithmique correspond le motif universel <code>case _:</code> ?
-                    </li>
-                    <li>Utiliser une boucle <code>while</code> pour effectuer la saisie d'un mois valide entre 1 et 12.
-                    </li>
-                  </ol>
+                <div class="col-lg-7">
+                  <div class="card card-custom shadow-sm border border-secondary border-opacity-25 h-100">
+                    <!-- QCM Header -->
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-ui-checks text-warning fs-5"></i>
+                        <span class="fw-semibold small">QCM Interactif (3 Questions · 3 Réponses/Q)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge" :class="scoreAct3 === qcmAct3.length && totalReponduAct3 === qcmAct3.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1" v-if="scoreAct3 === qcmAct3.length && totalReponduAct3 === qcmAct3.length"></i>
+                          Score : {{ scoreAct3 }} / {{ qcmAct3.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct3" title="Réinitialiser toutes les réponses">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i><span>Réinitialiser</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar" :style="{ width: (totalReponduAct3 / qcmAct3.length * 100) + '%' }" :aria-valuenow="totalReponduAct3" aria-valuemin="0" :aria-valuemax="qcmAct3.length"></div>
+                      </div>
+
+                      <!-- Questions list -->
+                      <div v-for="(q, qIdx) in qcmAct3" :key="q.id" class="mb-4 pb-3" :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct3.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <!-- 3 Options -->
+                        <div class="quiz-options-list mt-2">
+                          <div
+                            v-for="(opt, optIdx) in q.options"
+                            :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }"
+                            @click="selectReponseAct3(qIdx, optIdx)"
+                            role="button"
+                            tabindex="0"
+                            @keydown.enter="selectReponseAct3(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct3(qIdx, optIdx)"
+                          >
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Feedback and explanation -->
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3" :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0" :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1" v-html="q.explanation"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Global Score Summary when all 3 answered -->
+                      <div v-if="totalReponduAct3 === qcmAct3.length" class="mt-3 p-3 rounded-3 text-center" :class="scoreAct3 === qcmAct3.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                        <div v-if="scoreAct3 === qcmAct3.length">
+                          <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                          <strong class="text-success">Excellent ! 3 / 3 bonnes réponses</strong>
+                          <p class="small mb-0 text-muted mt-1">Vous maîtrisez parfaitement la syntaxe match...case et le contrôle de saisie en Python !</p>
+                        </div>
+                        <div v-else>
+                          <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                          <strong class="text-info">Score final : {{ scoreAct3 }} / {{ qcmAct3.length }}</strong>
+                          <p class="small mb-0 text-muted mt-1">
+                            Consultez les explications ci-dessus pour consolider vos acquis, ou
+                            <a href="#" class="text-info fw-semibold text-decoration-underline" @click.prevent="resetQcmAct3">cliquez ici pour réinitialiser</a>.
+                          </p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -379,8 +601,14 @@ match mois:
             <div class="card-body">
               <p class="small mb-2">Un élève a écrit l'algorithme suivant pour classer des températures en degrés
                 Celsius :</p>
-              <div class="code-container mb-3">
-                <pre><code class="language-algorithm" v-pre>Algorithme ClassTemp
+
+              <div class="row g-4">
+                <div class="col-lg-5">
+                  <div class="code-container my-0 shadow-sm">
+                    <div class="code-header d-flex justify-content-between align-items-center py-2 px-3 border-bottom border-secondary border-opacity-25">
+                      <span class="small text-muted font-monospace"><i class="bi bi-bug me-1 text-danger"></i> Algorithme erroné : ClassTemp</span>
+                    </div>
+                    <pre class="m-0 p-3"><code class="language-algorithm" v-pre>Algorithme ClassTemp
 Début
   Lire(temp)  # temp est de type Réel
   Selon temp
@@ -388,18 +616,122 @@ Début
     0.1 .. 20.0     : Écrire("Frais")
     Sinon           : Écrire("Chaud")
   Fin Selon
-Fin
-</code></pre>
+Fin</code></pre>
+                  </div>
+                </div>
+
+                <div class="col-lg-7">
+                  <div class="card card-custom shadow-sm border border-secondary border-opacity-25 h-100">
+                    <!-- QCM Header -->
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-ui-checks text-warning fs-5"></i>
+                        <span class="fw-semibold small">QCM Interactif (Questions 1 &amp; 2 · 3 Choix/Q)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge" :class="scoreAct4 === qcmAct4.length && totalReponduAct4 === qcmAct4.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1" v-if="scoreAct4 === qcmAct4.length && totalReponduAct4 === qcmAct4.length"></i>
+                          Score : {{ scoreAct4 }} / {{ qcmAct4.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct4" title="Réinitialiser toutes les réponses">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i><span>Réinitialiser</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar" :style="{ width: (totalReponduAct4 / qcmAct4.length * 100) + '%' }" :aria-valuenow="totalReponduAct4" aria-valuemin="0" :aria-valuemax="qcmAct4.length"></div>
+                      </div>
+
+                      <!-- Questions list -->
+                      <div v-for="(q, qIdx) in qcmAct4" :key="q.id" class="mb-4 pb-3" :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct4.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <!-- 3 Options -->
+                        <div class="quiz-options-list mt-2">
+                          <div
+                            v-for="(opt, optIdx) in q.options"
+                            :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }"
+                            @click="selectReponseAct4(qIdx, optIdx)"
+                            role="button"
+                            tabindex="0"
+                            @keydown.enter="selectReponseAct4(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct4(qIdx, optIdx)"
+                          >
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Feedback and explanation -->
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3" :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0" :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1" v-html="q.explanation"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Global Score Summary when both answered -->
+                      <div v-if="totalReponduAct4 === qcmAct4.length" class="mt-3 p-3 rounded-3 text-center" :class="scoreAct4 === qcmAct4.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                        <div v-if="scoreAct4 === qcmAct4.length">
+                          <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                          <strong class="text-success">Excellent ! 2 / 2 bonnes réponses</strong>
+                          <p class="small mb-0 text-muted mt-1">Vous maîtrisez parfaitement la règle du sélecteur scalaire obligatoire pour la structure Selon !</p>
+                        </div>
+                        <div v-else>
+                          <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                          <strong class="text-info">Score : {{ scoreAct4 }} / {{ qcmAct4.length }}</strong>
+                          <p class="small mb-0 text-muted mt-1">
+                            Analysez les explications ci-dessus ou
+                            <a href="#" class="text-info fw-semibold text-decoration-underline" @click.prevent="resetQcmAct4">cliquez ici pour réinitialiser</a>.
+                          </p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <ol class="small mb-0 ps-3">
-                <li class="mb-2">Rappeler les seuls types de données autorisés pour le sélecteur d'une structure
-                  <code>Selon</code>.
-                </li>
-                <li class="mb-2">Identifier l'erreur commise par l'élève dans cet algorithme.</li>
-                <li>Réécrire la solution correcte sous forme d'une structure conditionnelle généralisée
-                  (<code>Si ... Sinon Si ... Sinon</code>) sur votre cahier.</li>
-              </ol>
+              <!-- Question 3 : Cahier -->
+              <div class="card card-custom mt-4 border border-secondary border-opacity-25">
+                <div class="card-body p-3">
+                  <div class="d-flex align-items-start gap-2">
+                    <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q3</span>
+                    <div>
+                      <strong class="text-heading small d-block mb-1">Question 3 — Réécriture sur votre cahier :</strong>
+                      <p class="small text-muted mb-0">
+                        Réécrire la solution correcte sous forme d'une structure conditionnelle généralisée
+                        (<code>Si ... Sinon Si ... Sinon</code>) sur votre cahier pour traiter correctement les intervalles continus de type <code>Réel</code>.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div class="cahier-zone mt-3">
                 <i class="bi bi-pencil-square me-1"></i> Rédigez l'analyse de l'erreur et la version corrigée sur votre

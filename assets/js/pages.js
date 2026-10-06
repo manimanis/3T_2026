@@ -308,7 +308,7 @@ class SectionDrawer {
       const liveArtEl = parentArtId ? document.getElementById(parentArtId) : null;
       const targetElement = liveArtEl || liveSecEl;
       if (targetElement) {
-        const headerOffset = 110;
+        const headerOffset = 130;
         const bodyRect = document.body.getBoundingClientRect().top;
         const elemRect = targetElement.getBoundingClientRect().top;
         const targetPos = elemRect - bodyRect - headerOffset;
@@ -317,7 +317,7 @@ class SectionDrawer {
           behavior: 'smooth'
         });
       } else {
-        window.scrollTo({ top: 110, behavior: 'smooth' });
+        window.scrollTo({ top: 130, behavior: 'smooth' });
       }
     }
 
