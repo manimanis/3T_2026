@@ -44,6 +44,34 @@
       font-size: 0.85rem;
       color: var(--text-dim);
     }
+
+    .badge-qcm-letter {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-color);
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .quiz-option {
+      user-select: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .quiz-option:hover {
+      transform: translateY(-1px);
+    }
+
+    .quiz-option:active {
+      transform: scale(0.99);
+    }
   </style>
 </head>
 
@@ -67,9 +95,11 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>
+              Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -94,7 +124,8 @@
               </span>
             </div>
             <h1 class="h3 fw-bold mb-1">Chaînes de caractères & Fonctions prédéfinies normalisées</h1>
-            <p class="text-muted small mb-0">Indexation base 0, fonctions prédéfinies officielles, algorithmes de parcours et analyse de motifs</p>
+            <p class="text-muted small mb-0">Indexation base 0, fonctions prédéfinies officielles, algorithmes de
+              parcours et analyse de motifs</p>
           </div>
         </div>
       </div>
@@ -103,25 +134,36 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('fonctions-officielles')" data-target-id="fonctions-officielles" title="Répertoire officiel des fonctions prédéfinies sur les chaînes">
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('fonctions-officielles')"
+          data-target-id="fonctions-officielles" title="Répertoire officiel des fonctions prédéfinies sur les chaînes">
           Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-indexation')" data-target-id="act1-indexation" title="Activité 1 — Repérage et extraction de sous-chaîne : Séquence génétique Exercice 2 du Recueil">
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-indexation')"
+          data-target-id="act1-indexation"
+          title="Activité 1 — Repérage et extraction de sous-chaîne : Séquence génétique Exercice 2 du Recueil">
           Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-ord-chr')" data-target-id="act2-ord-chr" title="Activité 2 — Fonctions scalaires Ord et Chr & Décalage César Exercice 65 du Recueil">
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-ord-chr')"
+          data-target-id="act2-ord-chr"
+          title="Activité 2 — Fonctions scalaires Ord et Chr & Décalage César Exercice 65 du Recueil">
           Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-comptage-voyelles')" data-target-id="act3-comptage-voyelles" title="Activité 3 — Dénombrement de voyelles & Mots acoustiquement équilibrés Exercices 49 & 60 du Recueil">
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-comptage-voyelles')"
+          data-target-id="act3-comptage-voyelles"
+          title="Activité 3 — Dénombrement de voyelles & Mots acoustiquement équilibrés Exercices 49 & 60 du Recueil">
           Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-palindrome')" data-target-id="act4-palindrome" title="Activité 4 — Séquences palindromiques de restriction enzymatique Exercice 61 du Recueil">
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-palindrome')"
+          data-target-id="act4-palindrome"
+          title="Activité 4 — Séquences palindromiques de restriction enzymatique Exercice 61 du Recueil">
           Activité 4
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-cesar')" data-target-id="act5-cesar" title="Activité 5 — Chiffrement de César modulaire circulaire">
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-cesar')"
+          data-target-id="act5-cesar" title="Activité 5 — Chiffrement de César modulaire circulaire">
           Activité 5
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-motif-adn')" data-target-id="act6-motif-adn" title="Activité 6 — Analyse bio-informatique : dénombrement d'un motif d'ADN">
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-motif-adn')"
+          data-target-id="act6-motif-adn" title="Activité 6 — Analyse bio-informatique : dénombrement d'un motif d'ADN">
           Activité 6
         </button>
       </div>
@@ -140,19 +182,24 @@
           <div class="col-md-4">
             <div class="card card-custom h-100 p-3">
               <h3 class="h6 text-primary"><i class="bi bi-1-circle me-1"></i> Indexation base 0</h3>
-              <p class="small text-muted mb-0">Comprendre le repérage positionnel d'une chaîne : premier caractère à l'indice 0, dernier caractère à l'indice <code>Long(Ch) - 1</code>.</p>
+              <p class="small text-muted mb-0">Comprendre le repérage positionnel d'une chaîne : premier caractère à
+                l'indice 0, dernier caractère à l'indice <code>Long(Ch) - 1</code>.</p>
             </div>
           </div>
           <div class="col-md-4">
             <div class="card card-custom h-100 p-3">
               <h3 class="h6 text-primary"><i class="bi bi-2-circle me-1"></i> Fonctions normalisées</h3>
-              <p class="small text-muted mb-0">Exploiter rigoureusement les fonctions prescrites par les conventions 2024-2025 : <code>Long</code>, <code>Pos</code>, <code>Sous_chaine</code>, <code>Ord</code>, <code>Chr</code>.</p>
+              <p class="small text-muted mb-0">Exploiter rigoureusement les fonctions prescrites par les conventions
+                2024-2025 : <code>Long</code>, <code>Pos</code>, <code>Sous_chaine</code>, <code>Ord</code>,
+                <code>Chr</code>.
+              </p>
             </div>
           </div>
           <div class="col-md-4">
             <div class="card card-custom h-100 p-3">
               <h3 class="h6 text-primary"><i class="bi bi-3-circle me-1"></i> Parcours séquentiel</h3>
-              <p class="small text-muted mb-0">Analyser et transformer une chaîne caractère par caractère (comptage, validation de formats, détection de symétrie).</p>
+              <p class="small text-muted mb-0">Analyser et transformer une chaîne caractère par caractère (comptage,
+                validation de formats, détection de symétrie).</p>
             </div>
           </div>
         </div>
@@ -160,23 +207,24 @@
         <section id="fonctions-officielles" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom py-2">
-              <h3 class="h6 mb-0"><i class="bi bi-table text-info me-2"></i> Répertoire officiel des fonctions prédéfinies sur les chaînes</h3>
+              <h3 class="h6 mb-0"><i class="bi bi-table text-info me-2"></i> Répertoire officiel des fonctions
+                prédéfinies sur les chaînes</h3>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
                 <table class="table table-bordered table-hover mb-0 small">
                   <thead class="table-dark">
                     <tr>
-                      <th style="width: 25%;">Fonction / Procédure</th>
-                      <th style="width: 45%;">Rôle & Spécification algorithmique</th>
-                      <th style="width: 30%;">Exemple d'évaluation</th>
+                      <th style="width: 25%;">Fonction</th>
+                      <th style="width: 45%;">Spécification algorithmique</th>
+                      <th style="width: 30%;">Exemple</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="f in fonctionsPredefinies" :key="f.nom">
                       <td><code class="text-info fw-bold">{{ f.nom }}</code></td>
                       <td>{{ f.description }}</td>
-                      <td><code>{{ f.exemple }}</code></td>
+                      <td><code style="white-space: pre-line;">{{ f.exemple }}</code></td>
                     </tr>
                   </tbody>
                 </table>
@@ -196,21 +244,165 @@
         <section id="act1-indexation" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Repérage et extraction de sous-chaîne : Séquence génétique <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 2 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 1 — Repérage et extraction de sous-chaîne</h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Soit la variable algorithmique <code>Ch ← "SCIENCE"</code> (ou le brin d'ADN <code>"ATCGGCTA"</code>).</p>
-              
-              <ol class="small mb-3 ps-3">
-                <li class="mb-2">Donner la valeur entière renvoyée par l'expression <code>Long(Ch)</code>.</li>
-                <li class="mb-2">Indiquer les caractères obtenus par <code>Ch[0]</code> et <code>Ch[Long(Ch) - 1]</code>.</li>
-                <li class="mb-2"><em>Exercice 2 du recueil :</em> Déterminer la sous-chaîne retournée par la boucle <code>Pour i de p1 à p2 - 1</code> pour <code>p1 = 2, p2 = 6</code> sur <code>"ATCGGCTA"</code> $\implies$ <strong>"CGGC"</strong>. Établir l'équivalence avec <code>Sous_chaine(Ch, 2, 4)</code>.</li>
-                <li>Que retourne l'appel <code>Pos("IEN", Ch)</code> ? Que retournerait <code>Pos("PHY", Ch)</code> ?</li>
-              </ol>
+              <div class="row g-4">
+                <!-- Colonne Gauche : Donnée d'étude et repères visuels -->
+                <div class="col-lg-5">
+                  <div
+                    class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                      <h4 class="h6 text-primary mb-2">
+                        <i class="bi bi-info-circle me-1"></i> Donnée d'étude
+                      </h4>
+                      <p class="small mb-3">
+                        Soit la variable algorithmique de type chaîne de caractères :
+                        <br><code class="fs-6 text-info fw-bold">Ch ← "SCIENCE"</code>
+                      </p>
 
-              <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Répondez aux 4 questions avec justification sur votre cahier.
+                      <!-- Tableau visuel d'indexation base 0 -->
+                      <h5 class="small text-muted fw-semibold mb-2">Repérage positionnel en mémoire (Base 0) :</h5>
+                      <div class="table-responsive mb-3">
+                        <table class="table table-bordered table-sm text-center mb-0 small">
+                          <thead>
+                            <tr class="table-dark">
+                              <th class="py-1 px-2 text-muted" style="width: 28%;">Indice</th>
+                              <th class="py-1 px-2 text-info fw-bold">0</th>
+                              <th class="py-1 px-2 text-info fw-bold">1</th>
+                              <th class="py-1 px-2 text-info fw-bold">2</th>
+                              <th class="py-1 px-2 text-info fw-bold">3</th>
+                              <th class="py-1 px-2 text-info fw-bold">4</th>
+                              <th class="py-1 px-2 text-info fw-bold">5</th>
+                              <th class="py-1 px-2 text-info fw-bold">6</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="py-1 px-2 text-muted fw-semibold">Caractère</td>
+                              <td class="py-1 px-2 fw-bold text-light">S</td>
+                              <td class="py-1 px-2 fw-bold text-light">C</td>
+                              <td class="py-1 px-2 fw-bold text-light">I</td>
+                              <td class="py-1 px-2 fw-bold text-light">E</td>
+                              <td class="py-1 px-2 fw-bold text-light">N</td>
+                              <td class="py-1 px-2 fw-bold text-light">C</td>
+                              <td class="py-1 px-2 fw-bold text-light">E</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="cahier-zone mt-2">
+                      <i class="bi bi-pencil-square me-1"></i> Répondez aux 4 questions du QCM interactif et notez vos
+                      justifications sur votre cahier.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Colonne Droite : QCM Interactif (4 Questions · 3 Propositions/Q) -->
+                <div class="col-lg-7">
+                  <div class="card card-custom shadow-sm border border-secondary border-opacity-25 h-100">
+                    <!-- QCM Header -->
+                    <div
+                      class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-ui-checks text-warning fs-5"></i>
+                        <span class="fw-semibold small">QCM Interactif (4 Questions · 3 Choix/Q)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge"
+                          :class="scoreAct1 === qcmAct1.length && totalReponduAct1 === qcmAct1.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1"
+                            v-if="scoreAct1 === qcmAct1.length && totalReponduAct1 === qcmAct1.length"></i>
+                          Score : {{ scoreAct1 }} / {{ qcmAct1.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct1"
+                          title="Réinitialiser toutes les réponses">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i><span>Réinitialiser</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar"
+                          :style="{ width: (totalReponduAct1 / qcmAct1.length * 100) + '%' }"
+                          :aria-valuenow="totalReponduAct1" aria-valuemin="0" :aria-valuemax="qcmAct1.length"></div>
+                      </div>
+
+                      <!-- Questions list -->
+                      <div v-for="(q, qIdx) in qcmAct1" :key="q.id" class="mb-4 pb-3"
+                        :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct1.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <!-- 3 Options -->
+                        <div class="quiz-options-list mt-2">
+                          <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }" @click="selectReponseAct1(qIdx, optIdx)" role="button" tabindex="0"
+                            @keydown.enter="selectReponseAct1(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct1(qIdx, optIdx)">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Feedback and explanation -->
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                          :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0"
+                              :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1" v-html="q.explanation"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Global Score Summary when all questions answered -->
+                      <div v-if="totalReponduAct1 === qcmAct1.length" class="mt-3 p-3 rounded-3 text-center"
+                        :class="scoreAct1 === qcmAct1.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                        <div v-if="scoreAct1 === qcmAct1.length">
+                          <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                          <strong class="text-success">Excellent ! {{ scoreAct1 }} / {{ qcmAct1.length }} bonnes
+                            réponses</strong>
+                          <p class="small mb-0 text-muted mt-1">Vous maîtrisez parfaitement l'indexation en base 0 et
+                            les fonctions prédéfinies Long, Sous_chaine et Pos !</p>
+                        </div>
+                        <div v-else>
+                          <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                          <strong class="text-info">Score final : {{ scoreAct1 }} / {{ qcmAct1.length }}</strong>
+                          <p class="small mb-0 text-muted mt-1">
+                            Analysez les explications ci-dessus pour consolider vos acquis, ou
+                            <a href="#" class="text-info fw-semibold text-decoration-underline"
+                              @click.prevent="resetQcmAct1">cliquez ici pour recommencer</a>.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -220,25 +412,209 @@
         <section id="act2-ord-chr" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Fonctions scalaires <code>Ord</code> et <code>Chr</code> & Décalage César <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 65 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 2 — Fonctions scalaires <code>Ord</code> et <code>Chr</code> & Décalage César
+              </h3>
               <span class="badge bg-success">Socle</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Les caractères sont codés en mémoire selon la table ASCII standard.</p>
-              <ul class="small mb-3">
-                <li><code>Ord('A') = 65</code> jusqu'à <code>Ord('Z') = 90</code>.</li>
-                <li><code>Ord('a') = 97</code> jusqu'à <code>Ord('z') = 122</code>.</li>
-                <li><code>Ord('0') = 48</code> jusqu'à <code>Ord('9') = 57</code>.</li>
-              </ul>
+              <div class="row g-4">
+                <!-- Colonne Gauche : Table ASCII de référence -->
+                <div class="col-lg-5">
+                  <div
+                    class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                      <h4 class="h6 text-primary mb-2">
+                        <i class="bi bi-table me-1"></i> Répertoire des codes ASCII standard
+                      </h4>
+                      <p class="small text-muted mb-3">
+                        En mémoire, chaque caractère est encodé par une valeur entière scalaire accessible par
+                        <code>Ord(c)</code> et restituable par <code>Chr(code)</code>.
+                      </p>
 
-              <ol class="small mb-3 ps-3">
-                <li class="mb-2">Écrire la condition booléenne permettant de vérifier qu'une variable caractère <code>c</code> est une lettre alphabétique majuscule.</li>
-                <li class="mb-2">Déterminer le résultat renvoyé par l'expression <code>Chr(Ord('A') + 3)</code> (décalage César +3 $\rightarrow$ <strong>'D'</strong>).</li>
-                <li>Écrire une formule mathématique permettant de convertir un caractère minuscule $c \in ['a'; 'z']$ en son équivalent majuscule à l'aide de <code>Ord</code> et <code>Chr</code>.</li>
-              </ol>
+                      <!-- Tableau des plages ASCII -->
+                      <div class="table-responsive mb-3">
+                        <table class="table table-bordered table-sm text-center small mb-0 align-middle">
+                          <thead class="table-dark">
+                            <tr>
+                              <th style="width: 32%;">Catégorie</th>
+                              <th style="width: 34%;">Caractères</th>
+                              <th style="width: 34%;">Codes <code>Ord</code></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="fw-semibold text-info text-start ps-2">Chiffres</td>
+                              <td><code>'0'</code> $\dots$ <code>'9'</code></td>
+                              <td><span class="badge bg-secondary">48 à 57</span></td>
+                            </tr>
+                            <tr>
+                              <td class="fw-semibold text-primary text-start ps-2">Majuscules</td>
+                              <td><code>'A'</code> $\dots$ <code>'Z'</code></td>
+                              <td><span class="badge bg-primary">65 à 90</span></td>
+                            </tr>
+                            <tr>
+                              <td class="fw-semibold text-warning text-start ps-2">Minuscules</td>
+                              <td><code>'a'</code> $\dots$ <code>'z'</code></td>
+                              <td><span class="badge bg-warning text-dark">97 à 122</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
 
-              <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Consignez la condition et les calculs scalaires sur votre cahier.
+                      <!-- Tableau des correspondances directes -->
+                      <h5 class="small text-muted fw-semibold mb-2">Correspondances scalaires directes :</h5>
+                      <div class="table-responsive mb-3">
+                        <table class="table table-bordered table-sm text-center small mb-0 font-monospace">
+                          <thead>
+                            <tr class="table-dark">
+                              <th class="py-1 text-muted" style="width: 25%;">Caractère</th>
+                              <th class="py-1 text-info">'0'</th>
+                              <th class="py-1 text-info">'9'</th>
+                              <th class="py-1 text-primary">'A'</th>
+                              <th class="py-1 text-primary">'B'</th>
+                              <th class="py-1 text-primary">'Z'</th>
+                              <th class="py-1 text-warning">'a'</th>
+                              <th class="py-1 text-warning">'z'</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="py-1 text-muted fw-semibold">Code</td>
+                              <td class="py-1">48</td>
+                              <td class="py-1">57</td>
+                              <td class="py-1 fw-bold text-primary">65</td>
+                              <td class="py-1">66</td>
+                              <td class="py-1">90</td>
+                              <td class="py-1 fw-bold text-warning">97</td>
+                              <td class="py-1">122</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div
+                        class="small p-2 bg-dark bg-opacity-25 rounded-2 border border-secondary border-opacity-25 mb-2">
+                        <div class="d-flex align-items-center gap-2">
+                          <i class="bi bi-lightbulb text-warning fs-5"></i>
+                          <span>
+                            <strong>Relation d'écart constant :</strong> $\text{Ord}('a') - \text{Ord}('A') = 97 - 65 =
+                            32$.
+                            <br>$\implies \text{Majuscule}(c) = \text{Chr}(\text{Ord}(c) - 32)$ pour tout $c \in ['a';
+                            'z']$.
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="cahier-zone mt-2">
+                      <i class="bi bi-pencil-square me-1"></i> Consignez la condition et les calculs scalaires sur votre
+                      cahier.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Colonne Droite : QCM Interactif (3 Questions · 3 Propositions/Q) -->
+                <div class="col-lg-7">
+                  <div class="card card-custom shadow-sm border border-secondary border-opacity-25 h-100">
+                    <!-- QCM Header -->
+                    <div
+                      class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-ui-checks text-warning fs-5"></i>
+                        <span class="fw-semibold small">QCM Interactif (3 Questions · 3 Choix/Q)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge"
+                          :class="scoreAct2 === qcmAct2.length && totalReponduAct2 === qcmAct2.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1"
+                            v-if="scoreAct2 === qcmAct2.length && totalReponduAct2 === qcmAct2.length"></i>
+                          Score : {{ scoreAct2 }} / {{ qcmAct2.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct2"
+                          title="Réinitialiser toutes les réponses">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i><span>Réinitialiser</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar"
+                          :style="{ width: (totalReponduAct2 / qcmAct2.length * 100) + '%' }"
+                          :aria-valuenow="totalReponduAct2" aria-valuemin="0" :aria-valuemax="qcmAct2.length"></div>
+                      </div>
+
+                      <!-- Questions list -->
+                      <div v-for="(q, qIdx) in qcmAct2" :key="q.id" class="mb-4 pb-3"
+                        :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct2.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <!-- 3 Options -->
+                        <div class="quiz-options-list mt-2">
+                          <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }" @click="selectReponseAct2(qIdx, optIdx)" role="button" tabindex="0"
+                            @keydown.enter="selectReponseAct2(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct2(qIdx, optIdx)">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Feedback and explanation -->
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                          :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0"
+                              :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1" v-html="q.explanation"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Global Score Summary when all questions answered -->
+                      <div v-if="totalReponduAct2 === qcmAct2.length" class="mt-3 p-3 rounded-3 text-center"
+                        :class="scoreAct2 === qcmAct2.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                        <div v-if="scoreAct2 === qcmAct2.length">
+                          <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                          <strong class="text-success">Bravo ! {{ scoreAct2 }} / {{ qcmAct2.length }} bonnes
+                            réponses</strong>
+                          <p class="small mb-0 text-muted mt-1">Vous maîtrisez parfaitement les fonctions scalaires Ord
+                            et Chr ainsi que les calculs de décalage dans la table ASCII !</p>
+                        </div>
+                        <div v-else>
+                          <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                          <strong class="text-info">Score final : {{ scoreAct2 }} / {{ qcmAct2.length }}</strong>
+                          <p class="small mb-0 text-muted mt-1">
+                            Analysez les explications ci-dessus pour consolider vos acquis, ou
+                            <a href="#" class="text-info fw-semibold text-decoration-underline"
+                              @click.prevent="resetQcmAct2">cliquez ici pour recommencer</a>.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -255,25 +631,43 @@
         <section id="act3-comptage-voyelles" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Dénombrement de voyelles & Mots acoustiquement équilibrés <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercices 49 & 60 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 3 — Dénombrement de voyelles & Mots acoustiquement équilibrés</h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                <strong>Contexte commande vocale :</strong> Un système domotique filtre les mots de passe prononcés. Le mot est dit "Joli-mot" (ou acoustiquement équilibré) si son nombre de voyelles est strictement égal à son nombre de consonnes.
+                <strong>Contexte commande vocale :</strong> Un système domotique filtre les mots de passe prononcés. Le
+                mot est dit "Joli-mot" (ou acoustiquement équilibré) si son nombre de voyelles est strictement égal à
+                son nombre de consonnes.
               </p>
-              
+
+              <!-- Illustration commande vocale domotique -->
+              <div class="text-center my-3">
+                <img src="images/seance06/commande_vocale_domotique.jpg"
+                  alt="Figure 1 : Interface de commande vocale domotique et analyse spectrale du signal acoustique"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 680px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 1 :</strong> Système domotique à commande vocale : analyse spectrale des ondes acoustiques et détection des voyelles et consonnes.
+                </div>
+              </div>
+
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Déclarer un compteur <code>nb_voyelles</code> et un compteur <code>nb_consonnes</code>.</li>
-                <li class="mb-2">Écrire l'algorithme qui parcourt la chaîne convertie en majuscules pour tester si chaque caractère figure dans <code>"AEIOUY"</code>.</li>
+                <li class="mb-2">Écrire l'algorithme d'un programme qui parcourt une chaîne <code>ch</code>, convertie
+                  en majuscules, pour compter le nombre de ses voyelles et de ses consonnes. Une
+                  <strong>voyelle</strong> est une lettre de la chaîne <code>"OUIEYA"</code> et une
+                  <strong>consonne</strong> est une lettre qui n'est pas une voyelle.
+                </li>
                 <li><em>Exemples illustratifs :</em>
                   <br>• Pour <code>"ROBOT"</code> $\rightarrow$ 2 voyelles, 3 consonnes $\implies$ Non équilibré.
-                  <br>• Pour <code>"ZONE"</code> $\rightarrow$ 2 voyelles, 2 consonnes $\implies$ <strong>Mot acoustiquement équilibré !</strong>
+                  <br>• Pour <code>"ZONE"</code> $\rightarrow$ 2 voyelles, 2 consonnes $\implies$ <strong>Mot
+                    acoustiquement équilibré !</strong>
                 </li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme complet et le TDO associé sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme complet et le TDO associé sur votre
+                cahier.
               </div>
             </div>
           </div>
@@ -283,22 +677,223 @@
         <section id="act4-palindrome" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Séquences palindromiques de restriction enzymatique <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 61 du Recueil</span></h3>
+              <h3 class="h6 mb-0">Activité 4 — Séquences palindromiques de restriction enzymatique</h3>
               <span class="badge bg-warning text-dark">Maîtrise</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">
-                <strong>Contexte bio-informatique (Exercice 61) :</strong> Les enzymes de restriction coupent l'ADN au niveau de motifs palindromiques (ex: <code>"RADAR"</code>, <code>"KAYAK"</code>, <code>"GAATTC"</code>).
-              </p>
-              
-              <ol class="small mb-3 ps-3">
-                <li class="mb-2">Expliquer pourquoi il suffit de comparer le caractère à l'indice $i$ avec le caractère symétrique à l'indice $\text{Long}(Ch) - 1 - i$ pour $i$ allant de $0$ jusqu'à $\text{Long}(Ch) \text{ Div } 2$.</li>
-                <li class="mb-2">Élaborer l'algorithme utilisant une boucle <code>Tant Que</code> avec arrêt prématuré dès qu'une dissemblance est détectée.</li>
-                <li>Tester la méthode sur votre cahier pour le mot <code>"RADAR"</code> (valide) puis <code>"GENOME"</code> (rejet immédiat dès l'indice 0 : 'G' $\ne$ 'E').</li>
-              </ol>
+              <!-- Illustration enzyme de restriction et palindrome ADN -->
+              <div class="text-center mb-4">
+                <img src="images/seance06/enzyme_restriction_palindrome.jpg"
+                  alt="Figure 2 : Enzyme de restriction moléculaire reconnaissant un motif palindromique symétrique sur l'ADN"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 680px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 2 :</strong> Enzyme de restriction moléculaire ciblant un site palindromique symétrique sur un brin d'ADN.
+                </div>
+              </div>
 
-              <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Notez l'algorithme optimisé du palindrome sur votre cahier.
+              <div class="row g-4">
+                <!-- Colonne Gauche : Contexte & Schéma de symétrie -->
+                <div class="col-lg-5">
+                  <div class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                      <h4 class="h6 text-warning mb-2">
+                        <i class="bi bi-shield-check me-1"></i> Contexte bio-informatique
+                      </h4>
+                      <p class="small text-muted mb-3">
+                        Les enzymes de restriction coupent l'ADN au niveau de motifs palindromiques (ex: <code>"RADAR"</code>, <code>"KAYAK"</code>, <code>"GAATTC"</code>).
+                      </p>
+
+                      <!-- Principe de symétrie sur "RADAR" -->
+                      <h5 class="small text-muted fw-semibold mb-2">Principe de symétrie (Exemple "RADAR") :</h5>
+                      <div class="table-responsive mb-2">
+                        <table class="table table-bordered table-sm text-center small mb-0 font-monospace">
+                          <thead>
+                            <tr class="table-dark">
+                              <th class="py-1 text-muted" style="width: 28%;">Indice $i$</th>
+                              <th class="py-1 text-info">0</th>
+                              <th class="py-1 text-info">1</th>
+                              <th class="py-1 text-secondary">2</th>
+                              <th class="py-1 text-info">3</th>
+                              <th class="py-1 text-info">4</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="py-1 text-muted fw-semibold">Caractère</td>
+                              <td class="py-1 fw-bold text-success">R</td>
+                              <td class="py-1 fw-bold text-primary">A</td>
+                              <td class="py-1 text-muted">D</td>
+                              <td class="py-1 fw-bold text-primary">A</td>
+                              <td class="py-1 fw-bold text-success">R</td>
+                            </tr>
+                            <tr>
+                              <td class="py-1 text-muted">Symétrique</td>
+                              <td class="py-1 small text-success">$i=4$</td>
+                              <td class="py-1 small text-primary">$i=3$</td>
+                              <td class="py-1 small text-muted">pivot</td>
+                              <td class="py-1 small text-primary">$i=1$</td>
+                              <td class="py-1 small text-success">$i=0$</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="small p-2 bg-dark bg-opacity-25 rounded-2 border border-secondary border-opacity-25">
+                        <small class="text-muted d-block mb-1">Paires testées pour $\text{Long}(Ch) = 5$ :</small>
+                        <ul class="mb-0 ps-3 small">
+                          <li>$i = 0 \iff \text{sym} = 4$ : $Ch[0] == Ch[4]$ ('R' == 'R') <i class="bi bi-check text-success"></i></li>
+                          <li>$i = 1 \iff \text{sym} = 3$ : $Ch[1] == Ch[3]$ ('A' == 'A') <i class="bi bi-check text-success"></i></li>
+                          <li>$i = 2$ : Pivot central ($5 \text{ Div } 2 = 2$), arrêt optimal !</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="small p-2 bg-info bg-opacity-10 border border-info border-opacity-25 rounded-2 mt-3">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-info-circle-fill text-info flex-shrink-0"></i>
+                        <span class="small text-muted">Cette symétrie axiale permet d'interrompre l'analyse dès le premier caractère discordant (Questions 1, 2 et 3 ci-après).</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Colonne Droite : Question 1 Interactive (3 Choix) -->
+                <div class="col-lg-7">
+                  <div class="card card-custom shadow-sm border border-secondary border-opacity-25 h-100">
+                    <!-- QCM Header -->
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-secondary rounded-pill px-2 py-1 fw-bold">Q1</span>
+                        <span class="fw-semibold small">Question 1 — Justification théorique de la symétrie</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge" :class="scoreAct4 === qcmAct4.length && totalReponduAct4 === qcmAct4.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1" v-if="scoreAct4 === qcmAct4.length && totalReponduAct4 === qcmAct4.length"></i>
+                          Score : {{ scoreAct4 }} / {{ qcmAct4.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct4" title="Réinitialiser la réponse">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i><span>Réinitialiser</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar" :style="{ width: (totalReponduAct4 / qcmAct4.length * 100) + '%' }" :aria-valuenow="totalReponduAct4" aria-valuemin="0" :aria-valuemax="qcmAct4.length"></div>
+                      </div>
+
+                      <div v-for="(q, qIdx) in qcmAct4" :key="q.id" class="mb-3">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q1</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <!-- 3 Options -->
+                        <div class="quiz-options-list mt-3">
+                          <div
+                            v-for="(opt, optIdx) in q.options"
+                            :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }"
+                            @click="selectReponseAct4(qIdx, optIdx)"
+                            role="button"
+                            tabindex="0"
+                            @keydown.enter="selectReponseAct4(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct4(qIdx, optIdx)"
+                          >
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Feedback and explanation -->
+                        <div v-if="q.selected !== null" class="small mt-3 p-3 rounded-3" :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-5 flex-shrink-0" :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Justification exacte !' : 'Réponse incorrecte.' }}
+                              </strong>
+                              <div class="text-body mt-1" v-html="q.explanation"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Global Score Summary when answered -->
+                      <div v-if="totalReponduAct4 === qcmAct4.length" class="mt-3 p-3 rounded-3 text-center" :class="scoreAct4 === qcmAct4.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                        <div v-if="scoreAct4 === qcmAct4.length">
+                          <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                          <strong class="text-success">Principe de symétrie validé !</strong>
+                          <p class="small mb-0 text-muted mt-1">Vous comprenez parfaitement pourquoi l'examen d'un palindrome s'arrête à la moitié de la chaîne.</p>
+                        </div>
+                        <div v-else>
+                          <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                          <strong class="text-info">Réponse non validée</strong>
+                          <p class="small mb-0 text-muted mt-1">
+                            Consultez l'explication et le schéma ci-contre pour mieux appréhender la symétrie axiale, ou
+                            <a href="#" class="text-info fw-semibold text-decoration-underline" @click.prevent="resetQcmAct4">cliquez ici pour réessayer</a>.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Questions 2 et 3 : Concises et bien distinguées -->
+              <div class="row g-3 mt-1">
+                <!-- Question 2 : Algorithme avec arrêt prématuré -->
+                <div class="col-md-6">
+                  <div class="card card-custom h-100 border border-primary border-opacity-25 shadow-sm">
+                    <div class="card-header-custom d-flex align-items-center gap-2 py-2 px-3">
+                      <span class="badge bg-primary rounded-pill px-2 py-1 fw-bold">Q2</span>
+                      <h4 class="h6 mb-0 fw-bold text-primary">Algorithme avec arrêt prématuré</h4>
+                    </div>
+                    <div class="card-body p-3">
+                      <p class="small mb-0">
+                        Élaborer l'algorithme utilisant une boucle <code>Tant Que</code> avec une variable booléenne <code>valide</code> et un arrêt dès qu'une dissemblance est détectée ($Ch[i] \ne Ch[\text{Long}(Ch) - 1 - i]$).
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 3 : Traces d'exécution sur cahier -->
+                <div class="col-md-6">
+                  <div class="card card-custom h-100 border border-warning border-opacity-25 shadow-sm">
+                    <div class="card-header-custom d-flex align-items-center gap-2 py-2 px-3">
+                      <span class="badge bg-warning text-dark rounded-pill px-2 py-1 fw-bold">Q3</span>
+                      <h4 class="h6 mb-0 fw-bold text-warning">Traces d'exécution sur cahier</h4>
+                    </div>
+                    <div class="card-body p-3">
+                      <p class="small mb-2">
+                        Tester la méthode en dressant la trace d'exécution pour :
+                      </p>
+                      <ul class="small mb-0 ps-3">
+                        <li class="mb-1"><code>"RADAR"</code> (valide jusqu'à $i = 2$)</li>
+                        <li><code>"GENOME"</code> (rejet immédiat à $i = 0$ : <code>'G' &ne; 'E'</code>)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Zone Cahier -->
+              <div class="cahier-zone mt-3">
+                <i class="bi bi-pencil-square me-1"></i> Rédigez l'algorithme optimisé du palindrome, le TDO associé et les traces d'exécution sur votre cahier.
               </div>
             </div>
           </div>
@@ -319,21 +914,40 @@
               <span class="badge bg-danger">Dépassement</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Le chiffrement de César décale chaque lettre de $k$ positions ($1 \le k \le 25$). Lorsque le décalage dépasse la lettre <code>'Z'</code>, il reboucle au début de l'alphabet à la lettre <code>'A'</code>.</p>
-              
-              <p class="small mb-2">La formule arithmétique rigoureuse appliquée à tout caractère majuscule $c \in ['A' ; 'Z']$ est :</p>
+              <p class="small mb-2">Le chiffrement de César décale chaque lettre de $k$ positions ($1 \le k \le 25$).
+                Lorsque le décalage dépasse la lettre <code>'Z'</code>, il reboucle au début de l'alphabet à la lettre
+                <code>'A'</code>.
+              </p>
+
+              <!-- Illustration roue cryptographique de César -->
+              <div class="text-center my-3">
+                <img src="images/seance06/roue_chiffrement_cesar.jpg"
+                  alt="Figure 3 : Disque cryptographique circulaire de César à double anneau alphabétique concentrique"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 680px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 3 :</strong> Disque cryptographique circulaire de César : rotation modulaire de l'alphabet avec rebouclage de 'Z' vers 'A'.
+                </div>
+              </div>
+
+              <p class="small mb-2">La formule arithmétique rigoureuse appliquée à tout caractère majuscule $c \in ['A'
+                ; 'Z']$ est :</p>
               <div class="p-2 bg-body-tertiary rounded text-center small mb-3">
                 $$c_{\text{chiffré}} = \text{Chr}\Big(65 + \big(\text{Ord}(c) - 65 + k\big) \pmod{26}\Big)$$
               </div>
 
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Vérifier à la main le cryptage de la lettre <code>'Z'</code> avec une clé $k = 3$. Quel caractère obtient-on ?</li>
-                <li class="mb-2">Écrire l'algorithme qui prend en entrée une chaîne composée exclusivement de lettres majuscules et affiche son message crypté.</li>
-                <li>Implémenter le programme en Python et déchiffrer le message reçu en appliquant le décalage inverse.</li>
+                <li class="mb-2">Vérifier à la main le cryptage de la lettre <code>'Z'</code> avec une clé $k = 3$. Quel
+                  caractère obtient-on ?</li>
+                <li class="mb-2">Écrire l'algorithme qui prend en entrée une chaîne composée exclusivement de lettres
+                  majuscules et affiche son message crypté.</li>
+                <li>Implémenter le programme en Python et déchiffrer le message reçu en appliquant le décalage inverse.
+                </li>
               </ol>
 
               <div class="cahier-zone">
-                <i class="bi bi-pencil-square me-1"></i> Testez la formule modulaire sur votre cahier et implémentez la solution.
+                <i class="bi bi-pencil-square me-1"></i> Testez la formule modulaire sur votre cahier et implémentez la
+                solution.
               </div>
             </div>
           </div>
@@ -347,11 +961,29 @@
               <span class="badge bg-danger">Dépassement</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">Une séquence d'ADN est modélisée par une chaîne contenant uniquement les nucléotides <code>'A'</code>, <code>'T'</code>, <code>'C'</code>, <code>'G'</code> (ex: <code>seq = "ATCGATCGTTGA"</code>).</p>
-              
+              <p class="small mb-2">Une séquence d'ADN est modélisée par une chaîne contenant uniquement les nucléotides
+                <code>'A'</code>, <code>'T'</code>, <code>'C'</code>, <code>'G'</code> (ex:
+                <code>seq = "ATCGATCGTTGA"</code>).
+              </p>
+
+              <!-- Illustration analyse bio-informatique séquence ADN -->
+              <div class="text-center my-3">
+                <img src="images/seance06/analyse_sequence_adn.jpg"
+                  alt="Figure 4 : Poste de bio-informatique visualisant le séquençage et le repérage de motifs d'ADN"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="max-width: 680px; width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 4 :</strong> Écran d'analyse génomique : scanning automatisé de séquences d'ADN, dénombrement de motifs dinucléotidiques et calcul du taux GC.
+                </div>
+              </div>
+
               <ol class="small mb-3 ps-3">
-                <li class="mb-2">Concevoir un algorithme qui compte le nombre d'occurrences d'un dinucléotide cible (ex: <code>"CG"</code>) dans la séquence en examinant les tranches successives de 2 caractères : <code>Sous_chaine(seq, i, i + 1)</code>.</li>
-                <li class="mb-2">Calculer le taux de GC de la séquence : $\text{Taux GC} = \frac{\text{Nb}(G) + \text{Nb}(C)}{\text{Long}(seq)} \times 100\,\%$.</li>
+                <li class="mb-2">Concevoir un algorithme qui compte le nombre d'occurrences d'un dinucléotide cible (ex:
+                  <code>"CG"</code>) dans la séquence en examinant les tranches successives de 2 caractères :
+                  <code>Sous_chaine(seq, i, i + 2)</code>.
+                </li>
+                <li class="mb-2">Calculer le taux de GC de la séquence : $\text{Taux GC} = \frac{\text{Nb}(G) +
+                  \text{Nb}(C)}{\text{Long}(seq)} \times 100\,\%$.</li>
                 <li>Implémenter le script sous Python et vérifier avec une séquence saisie par l'utilisateur.</li>
               </ol>
 
@@ -368,7 +1000,8 @@
     <!-- Footer -->
     <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
       <div class="container text-center small text-muted">
-        <p class="mb-0">3<sup>e</sup> Sciences · Séance 6 : Chaînes de caractères & Fonctions prédéfinies · Algorithmique & Python</p>
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 6 : Chaînes de caractères & Fonctions prédéfinies ·
+          Algorithmique & Python</p>
       </div>
     </footer>
   </div>
