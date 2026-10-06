@@ -93,7 +93,7 @@
                 Barème : /20 pts (Épreuve sur Machine)
               </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">TP Évalué : Fonctions arithmétiques modulaires sur Machine</h1>
+            <h1 class="h3 fw-bold mb-1">TP : Fonctions arithmétiques modulaires sur Machine</h1>
             <p class="text-muted small mb-0">PGCD d'Euclide, PPCM, calcul fractionnaire et résonance physique — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
@@ -103,48 +103,32 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp7')">
-          Consignes
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-saisie-positif')" data-target-id="act1-saisie-positif" title="Activité 1 — Fonction de saisie d'un entier strictement positif">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp7')">
-          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-fonction-pgcd')" data-target-id="act2-fonction-pgcd" title="Activité 2 — Fonction PGCD(a, b) par l'algorithme d'Euclide">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp7')">
-          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-fonction-ppcm')" data-target-id="act3-fonction-ppcm" title="Activité 3 — Fonction PPCM(a, b)">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp7')">
-          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-addition-fractions')" data-target-id="act4-addition-fractions" title="Activité 4 — Procédure de calcul fractionnaire exact Somme_Fractions">
+          Activité 4
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp7')">
-          Grille d'évaluation
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-satellites')" data-target-id="act5-satellites" title="Activité 5 — Problème physique : Synchronisation orbitale de deux satellites">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-jeux-essais')" data-target-id="act6-jeux-essais" title="Activité 6 — Recette sur jeux d'essais critiques">
+          Activité 6
+        </button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp7')" data-target-id="bareme-tp7" title="GRILLE D'ÉVALUATION DU TP N°7">
+          Barème
         </button>
       </div>
     </div>
 
     <!-- Main Content Container -->
     <main class="container my-4">
-
-      <!-- =========================================================================
-           ARTICLE 1: CONSIGNES GÉNÉRALES
-           ========================================================================= -->
-      <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP ÉVALUÉ N°7</h2>
-
-        <section id="consignes-tp7" class="section-pane mb-4">
-          <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Modalités :</strong> 90 minutes. Travail individuel sur machine.
-            Nom du fichier de script : <code>TP7_Nom_Prenom.py</code> sur le Bureau.
-            Les fonctions <code>PGCD</code> et <code>PPCM</code> doivent être écrites manuellement (interdiction d'importer le module <code>math.gcd</code>).
-          </div>
-
-          <div class="card card-custom p-3">
-            <h3 class="h6 text-primary mb-2"><i class="bi bi-calculator me-1"></i> Contexte Scientifique : Arithmétique modulaire appliquée</h3>
-            <p class="small text-muted mb-0">
-              L'épreuve porte sur l'écriture autonome des algorithmes arithmétiques fondamentaux et leur réutilisation dans des applications de calcul fractionnaire exact et de synchronisation périodique de phénomènes astronomiques.
-            </p>
-          </div>
-        </section>
-      </article>
 
       <!-- =========================================================================
            ARTICLE 2: PALIER SOCLE (8 POINTS)

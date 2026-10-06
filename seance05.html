@@ -108,37 +108,29 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp2')">
-          Consignes
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-affichage-menu')" data-target-id="act1-affichage-menu" title="Activité 1 — Menu didactique">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp2')">
-          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-controle-choix')" data-target-id="act2-controle-choix" title="Activité 2 — Saisie sécurisée du choix utilisateur">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp2')">
-          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-calcul-pression')" data-target-id="act3-calcul-pression" title="Activité 3 — Option 1 : Session de questions avec seuil d'erreurs">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp2')">
-          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-calcul-debit')" data-target-id="act4-calcul-debit" title="Activité 4 — Option 2 : Arbitrage de priorité réseau">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-boucle-globale')" data-target-id="act5-boucle-globale" title="Activité 5 — Option 3 : Déstockage sécurisé (Jeu de Nim)">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-compteur-statistique')" data-target-id="act6-compteur-statistique" title="Activité 6 — Maintien global par boucle & Compteur statistique de session">
+          Activité 6
         </button>
       </div>
     </div>
 
     <!-- Main Content Container -->
     <main class="container my-4">
-
-      <!-- =========================================================================
-           ARTICLE 1: CONSIGNES GÉNÉRALES
-           ========================================================================= -->
-      <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP N°2</h2>
-
-        <section id="consignes-tp2" class="section-pane mb-4">
-          <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Durée :</strong> 90 minutes. Travail strictement individuel. Enregistrez votre code sous le nom
-            <code>TP2_Nom_Prenom.py</code> sur le bureau.
-          </div>
-        </section>
-      </article>
 
       <!-- =========================================================================
            ARTICLE 2: PALIER SOCLE (8 PTS)
@@ -347,7 +339,7 @@
     <!-- Footer -->
     <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
       <div class="container text-center small text-muted">
-        <p class="mb-0">3<sup>e</sup> Sciences · Séance 5 : TP Évalué N°2 (Menus interactifs & Selon) · Algorithmique &
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 5 : TP N°2 (Menus interactifs & Selon) · Algorithmique &
           Python</p>
       </div>
     </footer>

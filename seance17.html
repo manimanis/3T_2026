@@ -93,7 +93,7 @@
                 Barème : /20 pts (Épreuve sur Machine)
               </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">TP Évalué : Primalité, Crible & Facteurs premiers sur Machine</h1>
+            <h1 class="h3 fw-bold mb-1">TP : Primalité, Crible & Facteurs premiers sur Machine</h1>
             <p class="text-muted small mb-0">Algorithmes d'optimisation arithmétique et factorisation — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
@@ -103,49 +103,32 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp8')">
-          Consignes
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-est-premier')" data-target-id="act1-est-premier" title="Activité 1 — Fonction Est_Premier(n) optimisée">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp8')">
-          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-validation-primalite')" data-target-id="act2-validation-primalite" title="Activité 2 — Validation sur le jeu d'essais imposé">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp8')">
-          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-remplir-premiers')" data-target-id="act3-remplir-premiers" title="Activité 3 — Procédure Remplir_Premiers(@T, N)">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp8')">
-          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-cumul-premiers')" data-target-id="act4-cumul-premiers" title="Activité 4 — Affichage séquentiel et somme cumulée">
+          Activité 4
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp8')">
-          Grille d'évaluation
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-decomposer')" data-target-id="act5-decomposer" title="Activité 5 — Procédure de décomposition Decomposer(n)">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-nombres-remarquables')" data-target-id="act6-nombres-remarquables" title="Activité 6 — Recette sur nombres remarquables">
+          Activité 6
+        </button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp8')" data-target-id="bareme-tp8" title="GRILLE D'ÉVALUATION DU TP N°8">
+          Barème
         </button>
       </div>
     </div>
 
     <!-- Main Content Container -->
     <main class="container my-4">
-
-      <!-- =========================================================================
-           ARTICLE 1: CONSIGNES GÉNÉRALES
-           ========================================================================= -->
-      <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP ÉVALUÉ N°8</h2>
-
-        <section id="consignes-tp8" class="section-pane mb-4">
-          <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Modalités :</strong> 90 minutes. Travail individuel sur machine.
-            Fichier script : <code>TP8_Nom_Prenom.py</code> sur le Bureau.
-            L'algorithme de primalité doit obligatoirement être optimisé avec la borne $\sqrt{n}$ (le test naïf $1 \dots n$ ne sera pas comptabilisé).
-          </div>
-
-          <div class="card card-custom p-3">
-            <h3 class="h6 text-primary mb-2"><i class="bi bi-shield-lock me-1"></i> Contexte : Cryptographie & Nombres premiers</h3>
-            <p class="small text-muted mb-0">
-              Les algorithmes cryptographiques modernes reposent sur la difficulté de décomposer de grands entiers en facteurs premiers.
-              Ce TP évalue votre capacité à construire des fonctions d'analyse arithmétique rigoureuses et à générer des séquences numériques dans des tableaux statiques <code>numpy</code>.
-            </p>
-          </div>
-        </section>
-      </article>
 
       <!-- =========================================================================
            ARTICLE 2: PALIER SOCLE (8 POINTS)

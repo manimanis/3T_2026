@@ -103,20 +103,26 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('objectifs')">
-          Objectifs
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('syntaxe-statique')" data-target-id="syntaxe-statique" title="Algorithmique Officielle (TDO)">
+          Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('syntaxe-statique')">
-          Syntaxe statique
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-declaration')" data-target-id="act1-declaration" title="Activité 1 — Surveillance d'une serre connectée & Déclaration TDO Exercice 77 du Recueil">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          Palier 🟢 Débutant (Act 1-2)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-saisie-affichage')" data-target-id="act2-saisie-affichage" title="Activité 2 — Équilibrage des phases d'un réseau électrique Exercice 78 du Recueil">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          Palier 🟡 Intermédiaire (Act 3-4)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-somme-moyenne')" data-target-id="act3-somme-moyenne" title="Activité 3 — Facturation d'énergie : Somme des produits croisés Exercice 79 du Recueil">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          Palier 🔴 Avancé (Act 5-6)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-maximum-indice')" data-target-id="act4-maximum-indice" title="Activité 4 — Étalonnage croissant & Recherche d'Extrema Exercices 11 & 77">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-variance')" data-target-id="act5-variance" title="Activité 5 — Calcul de la variance statistique et de l'écart-type">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-extrema-multiples')" data-target-id="act6-extrema-multiples" title="Activité 6 — Détection de tous les extrema multiples (Ex aequo)">
+          Activité 6
         </button>
       </div>
     </div>

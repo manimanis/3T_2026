@@ -56,7 +56,7 @@ createApp({
         {
           id: 3,
           moduleId: 2,
-          title: "Séance 3 : [TP Évalué N°1] Contrôle de saisie & Tant Que sur Machine",
+          title: "Séance 3 : [TP N°1] Contrôle de saisie & Tant Que sur Machine",
           duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance03.html",
@@ -84,7 +84,7 @@ createApp({
         {
           id: 5,
           moduleId: 3,
-          title: "Séance 5 : [TP Évalué N°2] Menus interactifs & Boucles combinées",
+          title: "Séance 5 : [TP N°2] Menus interactifs & Boucles combinées",
           duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance05.html",
@@ -112,7 +112,7 @@ createApp({
         {
           id: 7,
           moduleId: 4,
-          title: "Séance 7 : [TP Évalué N°3] Traitement textuel & Validation de formats",
+          title: "Séance 7 : [TP N°3] Traitement textuel & Validation de formats",
           duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance07.html",
@@ -140,7 +140,7 @@ createApp({
         {
           id: 9,
           moduleId: 5,
-          title: "Séance 9 : [TP Évalué N°4] Tableaux 1D (numpy), Cumuls & Extrema",
+          title: "Séance 9 : [TP N°4] Tableaux 1D (numpy), Cumuls & Extrema",
           duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance09.html",
@@ -168,7 +168,7 @@ createApp({
         {
           id: 11,
           moduleId: 6,
-          title: "Séance 11 : [TP Évalué N°5] Filtrage, Éclatement & Séparation",
+          title: "Séance 11 : [TP N°5] Filtrage, Éclatement & Séparation",
           duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance11.html",
@@ -196,7 +196,7 @@ createApp({
         {
           id: 13,
           moduleId: 7,
-          title: "Séance 13 : [TP Évalué N°6] Conception modulaire d'une application",
+          title: "Séance 13 : [TP N°6] Conception modulaire d'une application",
           duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance13.html",
@@ -224,7 +224,7 @@ createApp({
         {
           id: 15,
           moduleId: 8,
-          title: "Séance 15 : [TP Évalué N°7] Fonctions arithmétiques modulaires (PGCD & PPCM)",
+          title: "Séance 15 : [TP N°7] Fonctions arithmétiques modulaires (PGCD & PPCM)",
           duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance15.html",
@@ -252,7 +252,7 @@ createApp({
         {
           id: 17,
           moduleId: 9,
-          title: "Séance 17 : [TP Évalué N°8] Primalité, Crible & Facteurs premiers",
+          title: "Séance 17 : [TP N°8] Primalité, Crible & Facteurs premiers",
           duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance17.html",
@@ -280,7 +280,7 @@ createApp({
         {
           id: 19,
           moduleId: 10,
-          title: "Séance 19 : [TP Évalué N°9] Recherche & Tri à Bulles modulaires",
+          title: "Séance 19 : [TP N°9] Recherche & Tri à Bulles modulaires",
           duration: "90 min (1h 30mn)",
           status: "Disponible",
           link: "seance19.html",

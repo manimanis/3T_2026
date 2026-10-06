@@ -295,8 +295,9 @@ class SectionDrawer {
       }
     }
 
-    // 4. Activer l'élément correspondant dans le tiroir
+    // 4. Activer l'élément correspondant dans le tiroir et dans la barre d'onglets
     this.setActiveDrawerItem(targetItem.id);
+    this.setActivePillItem(targetItem.id);
 
     // 5. Mettre à jour l'en-tête de navigation (Section X sur Y)
     this.updateHeaderIndicator(targetItem);
@@ -360,7 +361,7 @@ class SectionDrawer {
   }
 
   /**
-   * Crée/met à jour la barre d'indicateur de section en haut de page
+   * Crée/met à jour la barre d'indicateur de section en bas de page
    */
   renderHeaderIndicator() {
     if (this.allSections.length === 0) return;
@@ -372,8 +373,10 @@ class SectionDrawer {
     if (!bar) {
       bar = document.createElement('div');
       bar.id = 'sectionHeaderNav';
-      bar.className = 'd-flex justify-content-between align-items-center mb-4 p-3 box-custom border-primary border-opacity-25 shadow-sm rounded-3';
-      parentContainer.parentNode.insertBefore(bar, parentContainer);
+      bar.className = 'sectionHeaderNav d-flex justify-content-between align-items-center mt-5 mb-4 p-3 box-custom border-primary border-opacity-25 shadow-sm rounded-3';
+      parentContainer.parentNode.appendChild(bar);
+    } else if (bar.parentNode !== parentContainer.parentNode || bar !== parentContainer.parentNode.lastElementChild) {
+      parentContainer.parentNode.appendChild(bar);
     }
 
     this.updateHeaderIndicator(this.allSections[this.activeIndex] || this.allSections[0]);
@@ -484,23 +487,23 @@ class SectionDrawer {
       { file: 'index.html', label: 'Accueil & Sommaire', icon: 'bi-house-door' },
       { file: 'seance01.html', label: 'Séance 1 : Série N°0 (Diagnostic)', icon: 'bi-journal-bookmark' },
       { file: 'seance02.html', label: 'Séance 2 : Boucle Tant Que (Apprentissage)', icon: 'bi-repeat' },
-      { file: 'seance03.html', label: 'Séance 3 : TP Évalué N°1 (Tant Que)', icon: 'bi-laptop' },
+      { file: 'seance03.html', label: 'Séance 3 : TP N°1 (Tant Que)', icon: 'bi-laptop' },
       { file: 'seance04.html', label: 'Séance 4 : Répéter & Selon (Apprentissage)', icon: 'bi-arrow-repeat' },
-      { file: 'seance05.html', label: 'Séance 5 : TP Évalué N°2 (Menus & Boucles)', icon: 'bi-laptop' },
+      { file: 'seance05.html', label: 'Séance 5 : TP N°2 (Menus & Boucles)', icon: 'bi-laptop' },
       { file: 'seance06.html', label: 'Séance 6 : Chaînes de caractères (Apprentissage)', icon: 'bi-fonts' },
-      { file: 'seance07.html', label: 'Séance 7 : TP Évalué N°3 (Traitements textuels)', icon: 'bi-laptop' },
+      { file: 'seance07.html', label: 'Séance 7 : TP N°3 (Traitements textuels)', icon: 'bi-laptop' },
       { file: 'seance08.html', label: 'Séance 8 : Tableaux 1D statiques (Apprentissage)', icon: 'bi-grid-1x2' },
-      { file: 'seance09.html', label: 'Séance 9 : TP Évalué N°4 (Tableaux 1D & Extrema)', icon: 'bi-laptop' },
+      { file: 'seance09.html', label: 'Séance 9 : TP N°4 (Tableaux 1D & Extrema)', icon: 'bi-laptop' },
       { file: 'seance10.html', label: 'Séance 10 : Filtrage sélectif sur tableaux (Apprentissage)', icon: 'bi-funnel' },
-      { file: 'seance11.html', label: 'Séance 11 : TP Évalué N°5 (Filtrage & Séparation)', icon: 'bi-laptop' },
+      { file: 'seance11.html', label: 'Séance 11 : TP N°5 (Filtrage & Séparation)', icon: 'bi-laptop' },
       { file: 'seance12.html', label: 'Séance 12 : Modularité logicielle (Apprentissage)', icon: 'bi-diagram-3' },
-      { file: 'seance13.html', label: 'Séance 13 : TP Évalué N°6 (Application modulaire)', icon: 'bi-laptop' },
+      { file: 'seance13.html', label: 'Séance 13 : TP N°6 (Application modulaire)', icon: 'bi-laptop' },
       { file: 'seance14.html', label: 'Séance 14 : Arithmétique I : PGCD & PPCM (Apprentissage)', icon: 'bi-calculator' },
-      { file: 'seance15.html', label: 'Séance 15 : TP Évalué N°7 (PGCD & PPCM)', icon: 'bi-laptop' },
+      { file: 'seance15.html', label: 'Séance 15 : TP N°7 (PGCD & PPCM)', icon: 'bi-laptop' },
       { file: 'seance16.html', label: 'Séance 16 : Arithmétique II : Primalité (Apprentissage)', icon: 'bi-shield-check' },
-      { file: 'seance17.html', label: 'Séance 17 : TP Évalué N°8 (Primalité & Facteurs)', icon: 'bi-laptop' },
+      { file: 'seance17.html', label: 'Séance 17 : TP N°8 (Primalité & Facteurs)', icon: 'bi-laptop' },
       { file: 'seance18.html', label: 'Séance 18 : Recherche & Tri à Bulles (Apprentissage)', icon: 'bi-sort-numeric-down' },
-      { file: 'seance19.html', label: 'Séance 19 : TP Évalué N°9 (Recherche & Tri)', icon: 'bi-laptop' },
+      { file: 'seance19.html', label: 'Séance 19 : TP N°9 (Recherche & Tri)', icon: 'bi-laptop' },
       { file: 'seance20.html', label: 'Séance 20 : Épreuve Finale de Synthèse & Bilan', icon: 'bi-award' }
     ];
 
@@ -690,6 +693,26 @@ class SectionDrawer {
         el.classList.add('active');
       } else {
         el.classList.remove('active');
+      }
+    });
+  }
+
+  setActivePillItem(id) {
+    const pillNav = document.querySelector('.phase-pill-nav');
+    if (!pillNav) return;
+
+    const allButtons = pillNav.querySelectorAll('button');
+    allButtons.forEach(btn => {
+      const clickAttr = btn.getAttribute('@click') || btn.getAttribute('onclick') || '';
+      const targetAttr = btn.getAttribute('data-target-id');
+      const isTarget = (targetAttr && targetAttr === id) ||
+                       (clickAttr && (clickAttr.includes(`'${id}'`) || clickAttr.includes(`"${id}"`)));
+      if (isTarget) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-current', 'page');
+      } else {
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-current');
       }
     });
   }

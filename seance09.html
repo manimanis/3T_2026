@@ -93,7 +93,7 @@
                 Barème : /20 pts (Épreuve sur Machine)
               </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">TP Évalué : Tableaux 1D (numpy), Cumuls & Extrema sur Machine</h1>
+            <h1 class="h3 fw-bold mb-1">TP : Tableaux 1D (numpy), Cumuls & Extrema sur Machine</h1>
             <p class="text-muted small mb-0">Relevés de tensions d'un banc expérimental — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
@@ -103,49 +103,32 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp4')">
-          Consignes
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-allocation')" data-target-id="act1-allocation" title="Activité 1 — Saisie filtrée et allocation statique (Barrage hydraulique) Exercice 77 du Recueil">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp4')">
-          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-remplissage')" data-target-id="act2-remplissage" title="Activité 2 — Saisie contrôlée des relevés de pression">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp4')">
-          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-affichage')" data-target-id="act3-affichage" title="Activité 3 — Affichage normalisé séquentiel case par case">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp4')">
-          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-moyenne')" data-target-id="act4-moyenne" title="Activité 4 — Calcul et affichage de la pression moyenne">
+          Activité 4
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp4')">
-          Grille d'évaluation
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-extrema')" data-target-id="act5-extrema" title="Activité 5 — Repérage des extrema & Rangs de performance Exercices 77 & 81">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-anomalies')" data-target-id="act6-anomalies" title="Activité 6 — Analyse de variabilité : Mesures distinctes Exercice 82 du Recueil">
+          Activité 6
+        </button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp4')" data-target-id="bareme-tp4" title="GRILLE D'ÉVALUATION DU TP N°4">
+          Barème
         </button>
       </div>
     </div>
 
     <!-- Main Content Container -->
     <main class="container my-4">
-
-      <!-- =========================================================================
-           ARTICLE 1: CONSIGNES GÉNÉRALES
-           ========================================================================= -->
-      <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP ÉVALUÉ N°4</h2>
-
-        <section id="consignes-tp4" class="section-pane mb-4">
-          <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Modalités :</strong> 90 minutes. Travail individuel sur machine.
-            Enregistrez votre code sous le nom <code>TP4_Nom_Prenom.py</code> sur le Bureau.
-            L'utilisation de la bibliothèque <code>numpy</code> pour déclarer les tableaux statiques est <strong>obligatoire</strong>.
-          </div>
-
-          <div class="card card-custom p-3">
-            <h3 class="h6 text-primary mb-2"><i class="bi bi-lightning-charge me-1"></i> Contexte : Surveillance de tension d'un générateur en laboratoire</h3>
-            <p class="small text-muted mb-0">
-              Un banc d'essai électronique enregistre une série de $N$ mesures de tension électrique en Volts ($U \in [0.0 ; 15.0]\text{ V}$).
-              L'application doit valider la stabilité du générateur en calculant les moyennes et en isolant les anomalies.
-            </p>
-          </div>
-        </section>
-      </article>
 
       <!-- =========================================================================
            ARTICLE 2: PALIER SOCLE (8 POINTS)

@@ -103,20 +103,26 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('objectifs')">
-          Objectifs
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('comparatif')" data-target-id="comparatif" title="Tableau comparatif officiel : Fonctions vs Procédures">
+          Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('comparatif')">
-          Fonction vs Procédure
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-arbre')" data-target-id="act1-arbre" title="Activité 1 — Arbre de décomposition d'un moniteur de réanimation Exercice 126 du Recueil">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          Palier 🟢 Débutant (Act 1-2)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-banniere')" data-target-id="act2-banniere" title="Activité 2 — Procédure d'alerte clinique et affichage normé Exercice 126 du Recueil">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          Palier 🟡 Intermédiaire (Act 3-4)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-fonction-pure')" data-target-id="act3-fonction-pure" title="Activité 3 — Conception d'une fonction mathématique pure : Somme des diviseurs Exercice 36 du Recueil">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          Palier 🔴 Avancé (Act 5-6)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-tdol-portee')" data-target-id="act4-tdol-portee" title="Activité 4 — Prédicat de Nombre Parfait, TDOL & Portée locale Exercice 36 du Recueil">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-permutation-reference')" data-target-id="act5-permutation-reference" title="Activité 5 — Virologie & Distance de Hamming entre brins d'ARN Exercice 68 du Recueil">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-architecture-modulaire')" data-target-id="act6-architecture-modulaire" title="Activité 6 — Procédure de matrice d'étalonnage & Passage par référence Exercices 126 & 134 du Recueil">
+          Activité 6
         </button>
       </div>
     </div>

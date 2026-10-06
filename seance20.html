@@ -103,55 +103,29 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-epreuve')">
-          Consignes
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-analyse-modulaire')" data-target-id="act1-analyse-modulaire" title="Activité 1 — Analyse modulaire, TDO et TDOL sur copie">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp20')">
-          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-saisie-echantillons')" data-target-id="act2-saisie-echantillons" title="Activité 2 — Acquisition de la série d'échantillons avec numpy">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp20')">
-          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-traitement-scientifique')" data-target-id="act3-traitement-scientifique" title="Activité 3 — Module de traitement scientifique (Primalité / Validation)">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp20')">
-          Palier 🔴 Dépassement (Act 5 • 4 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-tri-recherche')" data-target-id="act4-tri-recherche" title="Activité 4 — Module algorithmique : Tri à Bulles ou Recherche de Seuil">
+          Activité 4
         </button>
-        <button class="btn btn-sm btn-outline-primary rounded-pill" @click="jumpToSection('bilan-annuel')">
-          Bilan & Perspectives 4e (Act 6)
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-integration-recette')" data-target-id="act5-integration-recette" title="Activité 5 — Intégration dans le programme principal & Validation des jeux d'essais">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-auto-evaluation')" data-target-id="act6-auto-evaluation" title="Activité 6 — Grille d'auto-évaluation du profil de sortie de 3e Année">
+          Activité 6
         </button>
       </div>
     </div>
 
     <!-- Main Content Container -->
     <main class="container my-4">
-
-      <!-- =========================================================================
-           ARTICLE 1: CONSIGNES GÉNÉRALES
-           ========================================================================= -->
-      <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> MODALITÉS DE L'ÉPREUVE PRATIQUE DE SYNTHÈSE</h2>
-
-        <section id="consignes-epreuve" class="section-pane mb-4">
-          <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Organisation horaire :</strong>
-            <ul class="mb-0 ps-3">
-              <li><strong>Partie 1 (60 minutes) :</strong> Réalisation de l'épreuve pratique individuelle sur machine enregistrée sous le nom <code>Synthese_Nom_Prenom.py</code>.</li>
-              <li><strong>Partie 2 (30 minutes) :</strong> Restitution, auto-évaluation du profil de compétences et présentation du programme de 4<sup>e</sup> année (Baccalauréat).</li>
-            </ul>
-          </div>
-
-          <div class="card card-custom p-3">
-            <h3 class="h6 text-primary mb-2"><i class="bi bi-cpu me-1"></i> Sujet de Synthèse : Analyseur de signaux physiques échantillonnés</h3>
-            <p class="small text-muted mb-0">
-              Un système d'acquisition numérique recueille une série de $N$ mesures physiques d'un capteur ($N \in [5 ; 25]$).
-              Le programme doit :
-              (1) Valider l'intégrité de la série par un contrôle de saisie,
-              (2) Vérifier la signature d'un identifiant scientifique,
-              (3) Réaliser un filtrage ou un tri séquentiel optimisé,
-              (4) Éditer un rapport d'inspection dans la console.
-            </p>
-          </div>
-        </section>
-      </article>
 
       <!-- =========================================================================
            ARTICLE 2: PALIER SOCLE (8 POINTS)

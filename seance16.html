@@ -103,20 +103,26 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('objectifs')">
-          Objectifs
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('optimisation-sqrt')" data-target-id="optimisation-sqrt" title="Patron officiel : Test de Primalité Optimisé">
+          Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('optimisation-sqrt')">
-          Optimisation $\sqrt{n}$
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-naive')" data-target-id="act1-naive" title="Activité 1 — Approche naïve par comptage de l'ensemble des diviseurs">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          Palier 🟢 Débutant (Act 1-2)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-arbre-facteurs')" data-target-id="act2-arbre-facteurs" title="Activité 2 — Trace manuelle de décomposition en facteurs premiers">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          Palier 🟡 Intermédiaire (Act 3-4)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-demonstration-sqrt')" data-target-id="act3-demonstration-sqrt" title="Activité 3 — Justification de la condition d'arrêt $d \times d \le n$">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          Palier 🔴 Avancé (Act 5-6)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-generation-tableau')" data-target-id="act4-generation-tableau" title="Activité 4 — Génération des nombres premiers dans un tableau statique">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-boucles-imbriquees')" data-target-id="act5-boucles-imbriquees" title="Activité 5 — Algorithme de factorisation avec boucles imbriquées">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-formatage-canonique')" data-target-id="act6-formatage-canonique" title="Activité 6 — Formatage de la décomposition canonique">
+          Activité 6
         </button>
       </div>
     </div>

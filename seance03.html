@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance 3 : TP Évalué N°1 — Contrôle de saisie & Boucle Tant Que sur Machine — 3e Sciences</title>
+  <title>Séance 3 : TP N°1 — Contrôle de saisie & Boucle Tant Que sur Machine — 3e Sciences</title>
   <meta name="description"
     content="Séance 3 d'informatique pour 3e Sciences : Évaluation pratique sur machine N°1 (TP noté individuel) sur les boucles itératives non bornées et le contrôle de saisie.">
 
@@ -122,14 +122,8 @@
               <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25">
                 <i class="bi bi-clock me-1"></i> Durée : 90 min
               </span>
-              <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
-                <i class="bi bi-check-circle me-1"></i> Total : 20 points
-              </span>
-              <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25">
-                <i class="bi bi-file-earmark-text me-1"></i> Fiche TP Noté Individuel
-              </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">Séance 3 : TP Évalué N°1 — Contrôle de saisie &amp; Boucle Tant Que sur Machine</h1>
+            <h1 class="h3 fw-bold mb-1">Séance 3 : TP N°1 — Contrôle de saisie &amp; Boucle Tant Que sur Machine</h1>
             <p class="text-muted small mb-0">Évaluation pratique sur machine N°1 (TP noté individuel) sur les boucles itératives non bornées et le contrôle de saisie</p>
           </div>
         </div>
@@ -139,17 +133,23 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes')">
-          1. Consignes
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-saisie-concentration')" data-target-id="act1-saisie-concentration" title="Activité 1 — Contrôle d'accès sécurisé à une machine-outil (MOCN)">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle')">
-          2. Palier Socle (Act 1-2 • 8 pts)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-tdo-justification')" data-target-id="act2-tdo-justification" title="Activité 2 — Tableau de Déclaration des Objets &amp; Justification des choix">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise')">
-          3. Palier Maîtrise (Act 3-4 • 8 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-absorbance-sentinelle')" data-target-id="act3-absorbance-sentinelle" title="Activité 3 — Saisie par sentinelle : Télémétrie optique">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence')">
-          4. Palier Dépassement &amp; Excellence (Act 5-6 • 4 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-moyenne-protection')" data-target-id="act4-moyenne-protection" title="Activité 4 — Calcul cumulatif &amp; Protection anti-division par zéro">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-simulation-vidange')" data-target-id="act5-simulation-vidange" title="Activité 5 — Modélisation dynamique comparée : Lignes de fabrication Ex. 20">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-recette-validation')" data-target-id="act6-recette-validation" title="Activité 6 — Calibrage d'un capteur par encadrement &amp; Recette Ex. 114">
+          Activité 6
         </button>
       </div>
     </div>
@@ -158,60 +158,14 @@
     <main class="container my-4">
 
       <!-- =========================================================================
-           ARTICLE 1: 1. CONSIGNES GÉNÉRALES
+           PALIER SOCLE DE RÉUSSITE (8 POINTS)
            ========================================================================= -->
-      <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> 1. Consignes Générales</h2>
-
-        <section id="consignes-tp" class="section-pane mb-4">
-          <div class="card card-custom border-start border-4 border-warning mb-3 shadow-sm">
-            <div class="card-body py-2 px-3 small d-flex align-items-center gap-3">
-              <i class="bi bi-laptop fs-3 text-warning flex-shrink-0"></i>
-              <div>
-                <strong>💻 Organisation du TP :</strong> Durée 90 minutes. Travail individuel sur machine.<br>
-                Créez sur votre bureau le script Python <code>TP1_Nom_Prenom.py</code>. Rédigez les algorithmes et les
-                TDO demandés sur votre feuille de copie.
-              </div>
-            </div>
-          </div>
-
-          <div class="row g-3">
-            <div class="col-md-4">
-              <div class="card card-custom h-100">
-                <div class="card-body py-2 small">
-                  <h6 class="text-primary mb-1"><i class="bi bi-check2-circle me-1"></i> Respect des Conventions</h6>
-                  <p class="text-muted mb-0">Noms de variables explicites, types stricts, pas de conversion abusive en
-                    chaîne, interdiction formelle de l'instruction <code>break</code>.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-custom h-100">
-                <div class="card-body py-2 small">
-                  <h6 class="text-warning mb-1"><i class="bi bi-pencil-square me-1"></i> Trace Écrite (Copie)</h6>
-                  <p class="text-muted mb-0">Rédigez sur votre feuille les algorithmes normalisés en pseudo-code et les
-                    Tableaux de Déclaration des Objets (TDO).</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-custom h-100">
-                <div class="card-body py-2 small">
-                  <h6 class="text-success mb-1"><i class="bi bi-shield-check me-1"></i> Validation Machine</h6>
-                  <p class="text-muted mb-0">Testez chaque activité avec les jeux d'essais obligatoires avant de faire
-                    valider le fonctionnement par l'enseignant.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
 
       <!-- =========================================================================
            ARTICLE 2: 2. PALIER SOCLE DE RÉUSSITE (8 POINTS)
            ========================================================================= -->
       <article id="palier-socle" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-check-circle text-info me-2"></i> 2. Palier Socle de Réussite (8 points)</h2>
+        <h2><i class="bi bi-check-circle text-info me-2"></i> 1. Palier Socle de Réussite (8 points)</h2>
         <p class="text-muted small mb-3">Sécuriser la saisie du code d'accès opérateur d'une machine-outil et analyser
           sa structure par divisions successives.</p>
 
@@ -367,7 +321,7 @@
            ARTICLE 3: 3. PALIER MAÎTRISE DU NIVEAU ATTENDU (8 POINTS)
            ========================================================================= -->
       <article id="palier-maitrise" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> 3. Palier Maîtrise du Niveau Attendu (8 points)</h2>
+        <h2><i class="bi bi-lightning-charge text-warning me-2"></i> 2. Palier Maîtrise du Niveau Attendu (8 points)</h2>
         <p class="text-muted small mb-3">Acquisition d'un flux de mesures par sentinelle, calculs cumulatifs et
           protection anti-crash.</p>
 
@@ -478,7 +432,7 @@ Fin Tant que
            ARTICLE 4: 4. PALIER DÉPASSEMENT & EXCELLENCE (4 POINTS)
            ========================================================================= -->
       <article id="palier-excellence" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-trophy text-success me-2"></i> 4. Palier Dépassement &amp; Excellence (4 points)</h2>
+        <h2><i class="bi bi-trophy text-success me-2"></i> 3. Palier Dépassement &amp; Excellence (4 points)</h2>
         <p class="text-muted small mb-3">Modéliser la dynamique comparée de deux systèmes et réaliser la recette
           logicielle d'un capteur.</p>
 
@@ -675,7 +629,7 @@ Fin Tant que
     <!-- Footer -->
     <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
       <div class="container text-center small text-muted">
-        <p class="mb-0">3<sup>e</sup> Sciences · Séance 3 : TP Évalué N°1 — Contrôle de saisie &amp; Boucle Tant Que</p>
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 3 : TP N°1 — Contrôle de saisie &amp; Boucle Tant Que</p>
       </div>
     </footer>
   </div>

@@ -137,17 +137,26 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('cadre-conventions')">
-          1. Cadre théorique
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('cadre-conventions')" data-target-id="cadre-conventions" title="A. Syntaxe Algorithmique">
+          Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          🟢 Débutant (Act 1-2)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-decharge')" data-target-id="act1-decharge" title="Activité 1 — Sécurité MOCN : Décharge de condensateur Génie Électrique">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          🟡 Intermédiaire (Act 3-4)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-trace')" data-target-id="act2-trace" title="Activité 2 — Algorithme &amp; Trace comparée Conception">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          🔴 Avancé (Act 5-6)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-trace')" data-target-id="act3-trace" title="Activité 3 — Tracé d'exécution et variables">
+          Activité 3
+        </button>
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-debogage')" data-target-id="act4-debogage" title="Activité 4 — Débogage : Boucle infinie Anomalie">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-sentinelle')" data-target-id="act5-sentinelle" title="Activité 5 — Sentinelle : Pluviométrie Exercice 27">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-modelisation')" data-target-id="act6-modelisation" title="Activité 6 — Modélisation scientifique : Seuil budgétaire Exercice 10">
+          Activité 6
         </button>
       </div>
     </div>

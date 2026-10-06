@@ -103,20 +103,26 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('objectifs')">
-          Objectifs
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('patrons-officiels')" data-target-id="patrons-officiels" title="Recherche séquentielle officielle">
+          Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('patrons-officiels')">
-          Patrons officiels
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-arret-immediat')" data-target-id="act1-arret-immediat" title="Activité 1 — Pourquoi la boucle Pour est inadaptée pour la recherche">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          Palier 🟢 Débutant (Act 1-2)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-permutation')" data-target-id="act2-permutation" title="Activité 2 — Mécanique de l'échange de deux cases">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          Palier 🟡 Intermédiaire (Act 3-4)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-fonction-recherche')" data-target-id="act3-fonction-recherche" title="Activité 3 — Fonction de recherche de position">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          Palier 🔴 Avancé (Act 5-6)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-trace-tri-bulles')" data-target-id="act4-trace-tri-bulles" title="Activité 4 — Tracé papier manuel d'un tri à bulles">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-procedure-tri-optimise')" data-target-id="act5-procedure-tri-optimise" title="Activité 5 — Procédure de tri à bulles optimisée">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-tri-decroissant')" data-target-id="act6-tri-decroissant" title="Activité 6 — Adaptation au tri décroissant et gestion des ex aequo">
+          Activité 6
         </button>
       </div>
     </div>

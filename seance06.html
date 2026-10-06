@@ -103,20 +103,26 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('objectifs')">
-          Objectifs
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('fonctions-officielles')" data-target-id="fonctions-officielles" title="Répertoire officiel des fonctions prédéfinies sur les chaînes">
+          Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('fonctions-officielles')">
-          Fonctions officielles
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-indexation')" data-target-id="act1-indexation" title="Activité 1 — Repérage et extraction de sous-chaîne : Séquence génétique Exercice 2 du Recueil">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          Palier 🟢 Débutant (Act 1-2)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-ord-chr')" data-target-id="act2-ord-chr" title="Activité 2 — Fonctions scalaires Ord et Chr & Décalage César Exercice 65 du Recueil">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          Palier 🟡 Intermédiaire (Act 3-4)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-comptage-voyelles')" data-target-id="act3-comptage-voyelles" title="Activité 3 — Dénombrement de voyelles & Mots acoustiquement équilibrés Exercices 49 & 60 du Recueil">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          Palier 🔴 Avancé (Act 5-6)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-palindrome')" data-target-id="act4-palindrome" title="Activité 4 — Séquences palindromiques de restriction enzymatique Exercice 61 du Recueil">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-cesar')" data-target-id="act5-cesar" title="Activité 5 — Chiffrement de César modulaire circulaire">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-motif-adn')" data-target-id="act6-motif-adn" title="Activité 6 — Analyse bio-informatique : dénombrement d'un motif d'ADN">
+          Activité 6
         </button>
       </div>
     </div>

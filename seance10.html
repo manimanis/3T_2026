@@ -103,20 +103,26 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('objectifs')">
-          Objectifs
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('patron-filtrage')" data-target-id="patron-filtrage" title="Patron de conception officiel : Transfert sélectif avec double indice">
+          Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('patron-filtrage')">
-          Patron de filtrage
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-comptage')" data-target-id="act1-comptage" title="Activité 1 — Régulation d'une centrale thermique & Seuil pivot Exercice 86 du Recueil">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          Palier 🟢 Débutant (Act 1-2)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-trace-double-indice')" data-target-id="act2-trace-double-indice" title="Activité 2 — Trace d'exécution du transfert sélectif avec double indice Exercice 86 du Recueil">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          Palier 🟡 Intermédiaire (Act 3-4)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-algo-filtrage')" data-target-id="act3-algo-filtrage" title="Activité 3 — Réorganisation entrelacée de flux télémétriques Exercice 85 du Recueil">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          Palier 🔴 Avancé (Act 5-6)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-python-filtrage')" data-target-id="act4-python-filtrage" title="Activité 4 — Implémentation NumPy & Validation de cohérence Exercice 85 du Recueil">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-eclatement')" data-target-id="act5-eclatement" title="Activité 5 — Élimination des détections RFID redondantes Exercice 96 du Recueil">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-tassement')" data-target-id="act6-tassement" title="Activité 6 — Épuration et filtrage de références de pièces usinées Exercice 97 du Recueil">
+          Activité 6
         </button>
       </div>
     </div>

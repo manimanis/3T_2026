@@ -93,7 +93,7 @@
                 Barème : /20 pts (Épreuve sur Machine)
               </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">TP Évalué : Filtrage, Éclatement & Séparation sur Machine</h1>
+            <h1 class="h3 fw-bold mb-1">TP : Filtrage, Éclatement & Séparation sur Machine</h1>
             <p class="text-muted small mb-0">Contrôle qualité sur une chaîne de fabrication — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
@@ -103,48 +103,32 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp5')">
-          Consignes
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-allocation-trois-tableaux')" data-target-id="act1-allocation-trois-tableaux" title="Activité 1 — Saisie de la taille du lot et allocation statique NumPy Exercice 86 Appliqué">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp5')">
-          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-remplissage-masses')" data-target-id="act2-remplissage-masses" title="Activité 2 — Remplissage contrôlé des diamètres laser Exercice 86 Appliqué">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp5')">
-          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-filtrage-acceptes')" data-target-id="act3-filtrage-acceptes" title="Activité 3 — Éclatement simultané vers Acceptes & Rebuts Exercice 86 Appliqué">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp5')">
-          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-transfert-rejetes')" data-target-id="act4-transfert-rejetes" title="Activité 4 — Dépollution de signaux de télémesures satellitaires Exercices 90 & 92 du Recueil">
+          Activité 4
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp5')">
-          Grille d'évaluation
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-statistiques-qualite')" data-target-id="act5-statistiques-qualite" title="Activité 5 — Bilan métrologique & Taux d'acceptation de la ligne Exercice 86 Appliqué">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-affichage-bilan')" data-target-id="act6-affichage-bilan" title="Activité 6 — Brassage cryptographique par permutation in-place Exercice 80 du Recueil">
+          Activité 6
+        </button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp5')" data-target-id="bareme-tp5" title="GRILLE D'ÉVALUATION DU TP N°5">
+          Barème
         </button>
       </div>
     </div>
 
     <!-- Main Content Container -->
     <main class="container my-4">
-
-      <!-- =========================================================================
-           ARTICLE 1: CONSIGNES GÉNÉRALES
-           ========================================================================= -->
-      <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP ÉVALUÉ N°5</h2>
-
-        <section id="consignes-tp5" class="section-pane mb-4">
-          <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Modalités :</strong> 90 minutes. Épreuve sur poste individuel.
-            Enregistrez votre travail sous le nom <code>TP5_Nom_Prenom.py</code> sur le Bureau.
-            L'utilisation de tableaux dynamiques (listes Python extensibles avec <code>append</code>) est formellement proscrite : utilisez obligatoirement les tableaux statiques NumPy (<code>numpy.array([0.0] * N)</code>).
-          </div>
-
-          <div class="card card-custom p-3">
-            <h3 class="h6 text-primary mb-2"><i class="bi bi-gear-wide-connected me-1"></i> Contexte Industriel : Ligne de fabrication aéronautique & Traitement de télémesures</h3>
-            <p class="small text-muted mb-0">
-              Dans un atelier de mécanique de précision, un banc laser mesure le diamètre de $N$ pistons destinés à l'aéronautique (diamètre nominal $50.00\text{ mm}$, tolérance admise $[49.80 ; 50.20]\text{ mm}$). En parallèle, une station sol réceptionne des trames de données satellitaires nécessitant une dépollution numérique et un chiffrement par brassage de couples.
-            </p>
-          </div>
-        </section>
-      </article>
 
       <!-- =========================================================================
            ARTICLE 2: PALIER SOCLE (8 POINTS)

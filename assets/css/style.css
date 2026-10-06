@@ -1560,3 +1560,249 @@ footer p {
 .cond-code-cell pre code {
   height: auto;
 }
+
+/* =========================================================================
+   AÉRATION, RESPIRATION & LISIBILITÉ DES ACTIVITÉS (.section-pane)
+   ========================================================================= */
+
+.section-pane {
+  margin-bottom: 2.25rem !important;
+  transition: opacity 0.3s ease;
+}
+
+/* Cartes des activités plus aérées et raffinées */
+.section-pane > .card-custom,
+.section-pane > .card {
+  border-radius: 1.15rem !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border-color) !important;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+/* En-tête des cartes d'activité */
+.section-pane .card-header-custom,
+.section-pane .card-header {
+  padding: 1.15rem 1.65rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-subtle) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.section-pane .card-header-custom h3,
+.section-pane .card-header-custom .h6 {
+  font-size: 1.08rem !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0 !important;
+  color: var(--text-heading) !important;
+}
+
+/* Corps des activités aéré */
+.section-pane .card-body {
+  padding: 1.75rem 2rem !important;
+  font-size: 0.965rem;
+  line-height: 1.72;
+  color: var(--text-main) !important;
+}
+
+@media (max-width: 767.98px) {
+  .section-pane .card-body {
+    padding: 1.25rem 1.25rem !important;
+  }
+}
+
+/* Dé-serrer les classes .small à l'intérieur des activités pour un vrai confort de lecture */
+.section-pane .card-body .small,
+.section-pane .card-body small {
+  font-size: 0.945rem !important;
+  line-height: 1.68 !important;
+}
+
+/* Espacement agréable des questions */
+.section-pane .card-body ol,
+.section-pane .card-body ul {
+  padding-left: 1.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.35rem;
+}
+
+.section-pane .card-body ol > li,
+.section-pane .card-body ul > li {
+  margin-bottom: 0.95rem;
+  line-height: 1.7;
+}
+
+.section-pane .card-body ol > li:last-child,
+.section-pane .card-body ul > li:last-child {
+  margin-bottom: 0.25rem;
+}
+
+/* Situation / Contexte introductif */
+.section-pane .card-body p {
+  margin-bottom: 1.15rem;
+  line-height: 1.72;
+}
+
+/* Blocs de code dans les activités */
+.section-pane .code-container {
+  margin: 1.25rem 0 1.5rem 0 !important;
+  border-radius: 0.85rem !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.14);
+}
+
+.section-pane .code-container pre {
+  padding: 1.35rem 1.5rem !important;
+  font-size: 0.94rem !important;
+  line-height: 1.65 !important;
+}
+
+/* Tableaux dans les activités */
+.section-pane .table-responsive {
+  margin: 1.25rem 0 1.5rem 0;
+  border-radius: 0.65rem;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.section-pane .table-custom th,
+.section-pane .table-custom td {
+  padding: 0.7rem 1rem !important;
+  vertical-align: middle;
+}
+
+/* Zone Cahier moderne, aérée et attrayante */
+.cahier-zone {
+  border: 1px dashed rgba(99, 102, 241, 0.45) !important;
+  border-radius: 0.75rem !important;
+  padding: 1rem 1.35rem !important;
+  margin-top: 1.5rem !important;
+  background: rgba(99, 102, 241, 0.04) !important;
+  font-size: 0.92rem !important;
+  font-weight: 500;
+  color: var(--text-main) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  transition: all 0.25s ease;
+}
+
+[data-theme="light"] .cahier-zone {
+  background: rgba(99, 102, 241, 0.06) !important;
+  border-color: rgba(99, 102, 241, 0.35) !important;
+  color: #312e81 !important;
+}
+
+.cahier-zone:hover {
+  border-color: var(--primary) !important;
+  background: rgba(99, 102, 241, 0.08) !important;
+  transform: translateY(-1px);
+}
+
+.cahier-zone i {
+  font-size: 1.2rem;
+  color: var(--primary) !important;
+  flex-shrink: 0;
+}
+
+/* Navigation de bas de section (.sectionHeaderNav) */
+.sectionHeaderNav,
+#sectionHeaderNav {
+  margin-top: 2.75rem !important;
+  margin-bottom: 2.5rem !important;
+  padding: 1.15rem 1.65rem !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.3s ease;
+}
+
+.sectionHeaderNav:hover,
+#sectionHeaderNav:hover {
+  border-color: var(--primary) !important;
+  box-shadow: var(--shadow-glow) !important;
+}
+
+/* ==========================================================================
+   Barre de navigation rapide par onglets / activités (.phase-pill-nav)
+   ========================================================================== */
+.phase-pill-nav {
+  position: sticky;
+  top: 56px;
+  z-index: 1020;
+  background: rgba(15, 23, 42, 0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  padding: 0.55rem 0 !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+  transition: all 0.25s ease;
+}
+
+[data-theme="light"] .phase-pill-nav {
+  background: rgba(255, 255, 255, 0.92) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
+}
+
+.phase-pill-nav .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.phase-pill-nav .btn {
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 0.95rem !important;
+  border-width: 1.5px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  white-space: nowrap;
+}
+
+.phase-pill-nav .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+}
+
+.phase-pill-nav .btn.active,
+.phase-pill-nav .btn[aria-current="page"] {
+  transform: translateY(-1px);
+  box-shadow: 0 0 14px currentColor, 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.phase-pill-nav .btn-outline-info.active {
+  background-color: var(--bs-info) !important;
+  color: #0f172a !important;
+  border-color: var(--bs-info) !important;
+}
+
+.phase-pill-nav .btn-outline-warning.active {
+  background-color: var(--bs-warning) !important;
+  color: #0f172a !important;
+  border-color: var(--bs-warning) !important;
+}
+
+.phase-pill-nav .btn-outline-success.active {
+  background-color: var(--bs-success) !important;
+  color: #ffffff !important;
+  border-color: var(--bs-success) !important;
+}
+
+.phase-pill-nav .btn-outline-primary.active {
+  background-color: var(--bs-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--bs-primary) !important;
+}
+
+.phase-pill-nav .btn-outline-secondary.active {
+  background-color: #64748b !important;
+  color: #ffffff !important;
+  border-color: #64748b !important;
+}

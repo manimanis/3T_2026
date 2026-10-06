@@ -112,17 +112,26 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('cadre-conventions')">
-          Cadre & Syntaxe
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('cadre-conventions')" data-target-id="cadre-conventions" title="Boucle Répéter ... Jusqu'à">
+          Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          Palier 🟢 Débutant (Act 1-2)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-post-condition')" data-target-id="act1-post-condition" title="Activité 1 — Boucle Répéter ... Jusqu'à : Transmission IoT avec ACK">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          Palier 🟡 Intermédiaire (Act 3-4)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-syntaxe-selon')" data-target-id="act2-syntaxe-selon" title="Activité 2 — La structure à choix multiples Selon & Grille logistique">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          Palier 🔴 Avancé (Act 5-6)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-traduction-match-case')" data-target-id="act3-traduction-match-case" title="Activité 3 — Traduction en Python 3.10+ avec match...case">
+          Activité 3
+        </button>
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-debogage-selecteur')" data-target-id="act4-debogage-selecteur" title="Activité 4 — Débogage d'une structure conditionnelle à choix multiples">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-menu-laboratoire')" data-target-id="act5-menu-laboratoire" title="Activité 5 — Menu de calculs d'énergie et cinématique">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-boucle-maintien')" data-target-id="act6-boucle-maintien" title="Activité 6 — Le lièvre et la tortue">
+          Activité 6
         </button>
       </div>
     </div>

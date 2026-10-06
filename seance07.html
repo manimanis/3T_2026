@@ -93,7 +93,7 @@
                 Barème : /20 pts (Épreuve sur Machine)
               </span>
             </div>
-            <h1 class="h3 fw-bold mb-1">TP Évalué : Traitement textuel & Validation de formats sur Machine</h1>
+            <h1 class="h3 fw-bold mb-1">TP : Traitement textuel & Validation de formats sur Machine</h1>
             <p class="text-muted small mb-0">Contrôle de codes de flacons de réactifs chimiques — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
@@ -103,49 +103,32 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('consignes-tp3')">
-          Consignes
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-longueur')" data-target-id="act1-longueur" title="Activité 1 — Validation de format & Bit de parité impaire Exercice 71 du Recueil">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-socle-tp3')">
-          Palier 🟢 Socle (Act 1-2 • 8 pts)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-lettres-majuscules')" data-target-id="act2-lettres-majuscules" title="Activité 2 — Contrôle des 2 lettres majuscules d'un réactif">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-maitrise-tp3')">
-          Palier 🟡 Maîtrise (Act 3-4 • 8 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-separateur')" data-target-id="act3-separateur" title="Activité 3 — Contrôle du séparateur tiret & Découpage">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-excellence-tp3')">
-          Palier 🔴 Dépassement (Act 5-6 • 4 pts)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-chiffres')" data-target-id="act4-chiffres" title="Activité 4 — Réduction itérée d'une date (Chiffre de contrôle) Exercice 69 du Recueil">
+          Activité 4
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp3')">
-          Grille d'évaluation
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-cle-modulo')" data-target-id="act5-cle-modulo" title="Activité 5 — Certification de billets de banque Exercice 75 du Recueil">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-recette')" data-target-id="act6-recette" title="Activité 6 — Recette logicielle et validation par jeux d'essais">
+          Activité 6
+        </button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp3')" data-target-id="bareme-tp3" title="GRILLE D'ÉVALUATION DU TP N°3">
+          Barème
         </button>
       </div>
     </div>
 
     <!-- Main Content Container -->
     <main class="container my-4">
-
-      <!-- =========================================================================
-           ARTICLE 1: CONSIGNES GÉNÉRALES DU TP
-           ========================================================================= -->
-      <article id="consignes" class="article-content-wrapper mb-5">
-        <h2><i class="bi bi-info-circle text-primary me-2"></i> CONSIGNES DU TP ÉVALUÉ N°3</h2>
-
-        <section id="consignes-tp3" class="section-pane mb-4">
-          <div class="alert alert-secondary py-2 small mb-3">
-            <strong>Modalités :</strong> 90 minutes. Épreuve strictement individuelle sur machine.
-            Créez un fichier nommé <code>TP3_Nom_Prenom.py</code> sur le Bureau et enregistrez vos modifications après chaque activité.
-          </div>
-
-          <div class="card card-custom p-3">
-            <h3 class="h6 text-primary mb-2"><i class="bi bi-file-earmark-medical me-1"></i> Contexte Scientifique : Traçabilité des réactifs de laboratoire</h3>
-            <p class="small text-muted mb-0">
-              Dans un laboratoire de chimie analytique, chaque flacon de réactif est identifié par un code normalisé sous la forme : 
-              <code class="text-info fw-bold">"LL-NNNN"</code> (exemples valides : <code>"AC-1045"</code>, <code>"BA-0482"</code>, <code>"SL-3912"</code>).<br>
-              Le code se compose de <strong>2 lettres majuscules</strong> (type de réactif : AC = Acide, BA = Base, SL = Solvant), d'un <strong>tiret séparateur</strong> <code>"-"</code>, et de <strong>4 chiffres décimaux</strong>.
-            </p>
-          </div>
-        </section>
-      </article>
 
       <!-- =========================================================================
            ARTICLE 2: PALIER SOCLE (8 POINTS)

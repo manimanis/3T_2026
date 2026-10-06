@@ -103,20 +103,26 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('objectifs')">
-          Objectifs
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('algorithme-euclide')" data-target-id="algorithme-euclide" title="Algorithme Officiel d'Euclide (Divisions successives)">
+          Cours & Repères
         </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('algorithme-euclide')">
-          Algorithme d'Euclide
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-divisibilite')" data-target-id="act1-divisibilite" title="Activité 1 — Prédicat booléen de divisibilité">
+          Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('palier-debutant')">
-          Palier 🟢 Débutant (Act 1-2)
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-soustractions')" data-target-id="act2-soustractions" title="Activité 2 — PGCD par la méthode des soustractions successives">
+          Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('palier-intermediaire')">
-          Palier 🟡 Intermédiaire (Act 3-4)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-euclide-divisions')" data-target-id="act3-euclide-divisions" title="Activité 3 — Trace et formalisation de l'algorithme d'Euclide">
+          Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('palier-avance')">
-          Palier 🔴 Avancé (Act 5-6)
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-ppcm')" data-target-id="act4-ppcm" title="Activité 4 — Fonction de calcul du Plus Petit Commun Multiple (PPCM)">
+          Activité 4
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-simplification')" data-target-id="act5-simplification" title="Activité 5 — Procédure de simplification d'une fraction irréductible">
+          Activité 5
+        </button>
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-pgcd-trois')" data-target-id="act6-pgcd-trois" title="Activité 6 — PGCD de trois entiers par associativité">
+          Activité 6
         </button>
       </div>
     </div>
