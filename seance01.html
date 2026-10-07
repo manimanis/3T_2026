@@ -56,6 +56,222 @@
       font-style: italic;
       font-size: 0.8rem;
     }
+
+    .badge-qcm-letter {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-color);
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .quiz-option {
+      user-select: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .quiz-option:hover {
+      transform: translateY(-1px);
+    }
+
+    .quiz-option:active {
+      transform: scale(0.99);
+    }
+
+    .select-type-custom {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .select-type-custom:focus {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.2rem var(--primary-light);
+    }
+
+    .select-type-custom.is-valid {
+      border-color: var(--success) !important;
+      background-color: rgba(16, 185, 129, 0.08) !important;
+      color: var(--text-heading) !important;
+      padding-right: 2rem !important;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2310b981' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+    }
+
+    .select-type-custom.is-invalid {
+      border-color: var(--danger) !important;
+      background-color: rgba(239, 68, 68, 0.08) !important;
+      color: var(--text-heading) !important;
+      padding-right: 2rem !important;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ef4444' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+    }
+
+    /* Drag & Drop - Q4 Banque d'actions & Emplacements fixes */
+    .action-pool-box {
+      background: rgba(148, 163, 184, 0.05);
+      border: 2px dashed rgba(148, 163, 184, 0.28);
+      border-radius: 0.75rem;
+      min-height: 76px;
+      transition: all 0.2s ease;
+    }
+
+    .action-pool-box.pool-drag-over {
+      border-color: var(--primary) !important;
+      background: rgba(99, 102, 241, 0.12) !important;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+
+    .action-card-draggable {
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .action-card-draggable:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary);
+    }
+
+    .action-card-draggable:active {
+      cursor: grabbing;
+    }
+
+    .action-card-draggable.is-dragging {
+      opacity: 0.4;
+      border: 2px dashed var(--primary) !important;
+      transform: scale(0.98);
+    }
+
+    .action-card-draggable .action-text-content,
+    .action-card-draggable .action-text-content * {
+      pointer-events: none;
+    }
+
+    .action-card-draggable .action-card-btn,
+    .action-card-draggable .action-card-btn * {
+      pointer-events: auto;
+    }
+
+    .action-slots-box {
+      background: rgba(148, 163, 184, 0.04);
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .slot-row {
+      transition: all 0.2s ease;
+    }
+
+    .slot-step-badge {
+      width: 105px;
+      flex-shrink: 0;
+      padding: 0.55rem 0.5rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .slot-step-badge .step-num {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--primary-text);
+      line-height: 1.2;
+    }
+
+    .slot-step-badge .step-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+      line-height: 1.1;
+    }
+
+    .slot-step-badge.step-correct {
+      background: rgba(16, 185, 129, 0.12) !important;
+      border-color: var(--success) !important;
+    }
+
+    .slot-step-badge.step-correct .step-num,
+    .slot-step-badge.step-correct .step-label {
+      color: var(--success) !important;
+    }
+
+    .slot-step-badge.step-incorrect {
+      background: rgba(239, 68, 68, 0.12) !important;
+      border-color: var(--danger) !important;
+    }
+
+    .slot-step-badge.step-incorrect .step-num,
+    .slot-step-badge.step-incorrect .step-label {
+      color: var(--danger) !important;
+    }
+
+    .slot-drop-container {
+      min-height: 58px;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+    }
+
+    .slot-drop-container.slot-empty {
+      border: 2px dashed rgba(148, 163, 184, 0.35);
+      background: rgba(148, 163, 184, 0.02);
+      color: var(--text-dim);
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .slot-drop-container.slot-empty * {
+      pointer-events: none;
+    }
+
+    .slot-drop-container.slot-empty:hover {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.06);
+      color: var(--primary-text);
+    }
+
+    .slot-drop-container.slot-drag-over {
+      border: 2px dashed var(--primary) !important;
+      background: rgba(99, 102, 241, 0.15) !important;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+      transform: scale(1.005);
+    }
+
+    .slot-drop-container.slot-correct {
+      border: 1.5px solid var(--success) !important;
+      background: rgba(16, 185, 129, 0.08) !important;
+    }
+
+    .slot-drop-container.slot-incorrect {
+      border: 1.5px solid var(--danger) !important;
+      background: rgba(239, 68, 68, 0.08) !important;
+    }
   </style>
 </head>
 
@@ -105,9 +321,11 @@
             <h1 class="h3 fw-bold mb-1">Révision · Réactivation · Évaluation diagnostique</h1>
             <p class="text-muted small mb-0">Algorithmique & Python — 3<sup>e</sup> Sciences expérimentales</p>
           </div>
-
         </div>
-     <!-- Phase Quick Selector Bar -->
+      </div>
+    </header>
+
+    <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
         <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('ex1-lire-probleme')" data-target-id="ex1-lire-probleme" title="Exercice 1 — Lire un problème avant de coder">
@@ -156,39 +374,449 @@
         <!-- Exercice 1 -->
         <section id="ex1-lire-probleme" class="section-pane mb-4">
           <div class="card card-custom">
-            <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Exercice 1 — Lire un problème avant de coder</h3>
-              <span class="badge bg-secondary">4 pts · 6 min</span>
+            <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-cpu text-info fs-5"></i>
+                <h3 class="h6 mb-0">Exercice 1 — Lire un problème avant de coder</h3>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge"
+                  :class="scoreEx1Total === 4 ? 'bg-success text-white' : 'badge-info-custom'">
+                  <i class="bi bi-trophy me-1" v-if="scoreEx1Total === 4"></i>
+                  Score interactif : {{ scoreEx1Total }} / 4 pts
+                </span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetEx1"
+                  title="Réinitialiser l'exercice 1">
+                  <i class="bi bi-arrow-counterclockwise me-1"></i><span>Réinitialiser</span>
+                </button>
+                <span class="badge bg-secondary">4 pts · 6 min</span>
+              </div>
             </div>
-            <div class="card-body">
-              <p class="small mb-3">
-                <strong>Situation :</strong> Lors d'une expérience de mouvement, on relève une distance $d$ (en mètres) et une durée $t$ (en secondes), avec $t > 0$. On veut calculer puis afficher la vitesse moyenne $v = d / t$.
-              </p>
-
-              <ol class="small mb-0 ps-3">
-                <li class="mb-2">Indiquer le but du problème en une phrase.</li>
-                <li class="mb-2">Compléter : entrées = … ; sortie = … ; contrainte = …</li>
-                <li class="mb-2">
-                  Proposer le type algorithmique de $d$, $t$ et $v$, puis compléter les trois exemples supplémentaires :
-                  <div class="table-responsive my-2">
-                    <table class="table table-custom table-sm table-bordered mb-0" style="max-width: 600px;">
-                      <thead>
-                        <tr><th>Objet / information</th><th>Exemple</th><th>Type</th></tr>
-                      </thead>
-                      <tbody>
-                        <tr><td><code>d</code>, <code>t</code>, <code>v</code></td><td>mesures numériques avec décimales</td><td class="empty-cell">.........................</td></tr>
-                        <tr><td><code>initialeGroupe</code></td><td><code>'A'</code></td><td class="empty-cell">.........................</td></tr>
-                        <tr><td><code>estValide</code></td><td><code>Vrai</code> ou <code>Faux</code></td><td class="empty-cell">.........................</td></tr>
-                        <tr><td><code>nomExperience</code></td><td><code>'Chute libre'</code></td><td class="empty-cell">.........................</td></tr>
-                      </tbody>
-                    </table>
+            <div class="card-body p-3">
+              <!-- Situation expérimentale -->
+              <div class="p-3 mb-4 rounded-3 border border-info border-opacity-25" style="background: rgba(6, 182, 212, 0.05);">
+                <div class="d-flex align-items-start gap-2">
+                  <i class="bi bi-info-circle-fill text-info fs-5 flex-shrink-0 mt-1"></i>
+                  <div>
+                    <div class="fw-bold text-info small mb-1">Mise en situation :</div>
+                    <p class="small mb-0">
+                      Lors d'une expérience de mouvement, on relève une distance $d$ (en mètres) et une durée $t$ (en secondes), avec $t > 0$. On veut calculer puis afficher la vitesse moyenne $v = d / t$.
+                    </p>
                   </div>
-                </li>
-                <li>Écrire les quatre actions principales de la solution, sans utiliser Python.</li>
-              </ol>
+                </div>
+              </div>
 
+              <!-- Question 1 (QCM) -->
+              <div class="mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+                <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary rounded-pill px-2 py-1">Q1</span>
+                    <span class="small fw-semibold text-heading">1. Indiquer le but du problème en une phrase :</span>
+                  </div>
+                  <span v-if="qcmEx1[0].selected !== null" class="badge"
+                    :class="qcmEx1[0].selected === qcmEx1[0].correct ? 'bg-success' : 'bg-danger'">
+                    {{ qcmEx1[0].selected === qcmEx1[0].correct ? '+1 pt' : '0 pt' }}
+                  </span>
+                </div>
+
+                <div class="quiz-options-list mt-2">
+                  <div v-for="(opt, optIdx) in qcmEx1[0].options" :key="optIdx"
+                    class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                    :class="{
+                      'selected-correct': qcmEx1[0].selected !== null && optIdx === qcmEx1[0].correct,
+                      'selected-incorrect': qcmEx1[0].selected !== null && qcmEx1[0].selected === optIdx && optIdx !== qcmEx1[0].correct
+                    }" @click="selectReponseQcmEx1(0, optIdx)" role="button" tabindex="0"
+                    @keydown.enter="selectReponseQcmEx1(0, optIdx)"
+                    @keydown.space.prevent="selectReponseQcmEx1(0, optIdx)">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                      <span v-html="opt"></span>
+                    </div>
+                    <div class="ms-2 flex-shrink-0">
+                      <i v-if="qcmEx1[0].selected === null" class="bi bi-circle text-muted"></i>
+                      <i v-else-if="optIdx === qcmEx1[0].correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                      <i v-else-if="qcmEx1[0].selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                      <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Feedback Q1 -->
+                <div v-if="qcmEx1[0].selected !== null" class="small mt-2 p-2 rounded-3"
+                  :class="qcmEx1[0].selected === qcmEx1[0].correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                  <div class="d-flex align-items-start gap-2">
+                    <i class="bi fs-6 flex-shrink-0"
+                      :class="qcmEx1[0].selected === qcmEx1[0].correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                    <div>
+                      <strong :class="qcmEx1[0].selected === qcmEx1[0].correct ? 'text-success' : 'text-danger'">
+                        {{ qcmEx1[0].selected === qcmEx1[0].correct ? 'Exact !' : 'Incorrect.' }}
+                      </strong>
+                      <span class="text-body ms-1" v-html="qcmEx1[0].explanation"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 2 (QCM) -->
+              <div class="mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+                <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary rounded-pill px-2 py-1">Q2</span>
+                    <span class="small fw-semibold text-heading">2. Compléter l'analyse : entrées = … ; sortie = … ; contrainte = …</span>
+                  </div>
+                  <span v-if="qcmEx1[1].selected !== null" class="badge"
+                    :class="qcmEx1[1].selected === qcmEx1[1].correct ? 'bg-success' : 'bg-danger'">
+                    {{ qcmEx1[1].selected === qcmEx1[1].correct ? '+1 pt' : '0 pt' }}
+                  </span>
+                </div>
+
+                <div class="quiz-options-list mt-2">
+                  <div v-for="(opt, optIdx) in qcmEx1[1].options" :key="optIdx"
+                    class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                    :class="{
+                      'selected-correct': qcmEx1[1].selected !== null && optIdx === qcmEx1[1].correct,
+                      'selected-incorrect': qcmEx1[1].selected !== null && qcmEx1[1].selected === optIdx && optIdx !== qcmEx1[1].correct
+                    }" @click="selectReponseQcmEx1(1, optIdx)" role="button" tabindex="0"
+                    @keydown.enter="selectReponseQcmEx1(1, optIdx)"
+                    @keydown.space.prevent="selectReponseQcmEx1(1, optIdx)">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                      <span v-html="opt"></span>
+                    </div>
+                    <div class="ms-2 flex-shrink-0">
+                      <i v-if="qcmEx1[1].selected === null" class="bi bi-circle text-muted"></i>
+                      <i v-else-if="optIdx === qcmEx1[1].correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                      <i v-else-if="qcmEx1[1].selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                      <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Feedback Q2 -->
+                <div v-if="qcmEx1[1].selected !== null" class="small mt-2 p-2 rounded-3"
+                  :class="qcmEx1[1].selected === qcmEx1[1].correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                  <div class="d-flex align-items-start gap-2">
+                    <i class="bi fs-6 flex-shrink-0"
+                      :class="qcmEx1[1].selected === qcmEx1[1].correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                    <div>
+                      <strong :class="qcmEx1[1].selected === qcmEx1[1].correct ? 'text-success' : 'text-danger'">
+                        {{ qcmEx1[1].selected === qcmEx1[1].correct ? 'Exact !' : 'Incorrect.' }}
+                      </strong>
+                      <span class="text-body ms-1" v-html="qcmEx1[1].explanation"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 3 (Liste de types) -->
+              <div class="mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+                <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary rounded-pill px-2 py-1">Q3</span>
+                    <span class="small fw-semibold text-heading">3. Proposer le type algorithmique de $d$, $t$ et $v$, puis compléter les trois exemples supplémentaires :</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge"
+                      :class="scoreTypesEx1 === typesEx1Rows.length ? 'bg-success text-white' : 'badge-info-custom'">
+                      Types validés : {{ scoreTypesEx1 }} / {{ typesEx1Rows.length }}
+                    </span>
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetTypesEx1"
+                      title="Réinitialiser la liste des types">
+                      <i class="bi bi-arrow-counterclockwise me-1"></i><span>Effacer</span>
+                    </button>
+                  </div>
+                </div>
+                <p class="text-muted small mb-3">
+                  Sélectionnez le type algorithmique approprié dans la liste déroulante pour chaque élément du tableau :
+                </p>
+
+                <div class="table-responsive my-2">
+                  <table class="table table-custom table-sm table-bordered align-middle mb-0 w-100">
+                    <thead>
+                      <tr>
+                        <th style="width: 25%;">Objet / information</th>
+                        <th style="width: 35%;">Exemple</th>
+                        <th style="width: 40%;">Type (proposer dans la liste)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="row in typesEx1Rows" :key="row.id">
+                        <td><span v-html="row.nom"></span></td>
+                        <td><span v-html="row.exemple"></span></td>
+                        <td>
+                          <div class="d-flex align-items-center gap-2" style="max-width: 360px;">
+                            <select class="form-select form-select-sm select-type-custom flex-grow-1"
+                              v-model="row.selected"
+                              @change="onTypeChange(row)"
+                              :class="{
+                                'is-valid': row.selected && row.selected === row.correct,
+                                'is-invalid': row.selected && row.selected !== row.correct
+                              }">
+                              <option value="" disabled>-- Choisir un type --</option>
+                              <option v-for="t in typesEx1Options" :key="t" :value="t">{{ t }}</option>
+                            </select>
+                            <div class="flex-shrink-0" style="width: 24px; text-align: center;">
+                              <i v-if="row.selected && row.selected === row.correct"
+                                class="bi bi-check-circle-fill text-success fs-5" title="Correct !"></i>
+                              <i v-else-if="row.selected && row.selected !== row.correct"
+                                class="bi bi-x-circle-fill text-danger fs-5" title="Incorrect"></i>
+                              <i v-else class="bi bi-dash-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                          <!-- Explication pour chaque type sélectionné -->
+                          <div v-if="row.selected" class="mt-1 small"
+                            :class="row.selected === row.correct ? 'text-success' : 'text-danger'">
+                            <span v-if="row.selected === row.correct">
+                              <i class="bi bi-check me-1"></i><span v-html="row.explanation"></span>
+                            </span>
+                            <span v-else>
+                              <i class="bi bi-x me-1"></i>Type incorrect pour cet objet. Essayez un autre type de la liste.
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Question 4 (Glisser-Déposer vers des emplacements fixes) -->
+              <div>
+                <div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mb-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary rounded-pill px-2 py-1">Q4</span>
+                    <span class="small fw-semibold text-heading">4. Ordonner les quatre actions principales de la solution algorithmique :</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span v-if="isActionsEx1Verified" class="badge"
+                      :class="isActionsEx1Correct ? 'bg-success text-white' : 'bg-danger text-white'">
+                      <i class="bi" :class="isActionsEx1Correct ? 'bi-check-circle-fill me-1' : 'bi-x-circle-fill me-1'"></i>
+                      {{ isActionsEx1Correct ? 'Ordre exact (+1 pt)' : 'Ordre incorrect (0 pt)' }}
+                    </span>
+                    <span v-else class="badge badge-info-custom">
+                      {{ slotsEx1FilledCount }} / 4 étapes placées
+                    </span>
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetActionsSlotsEx1"
+                      title="Vider les 4 étapes et remettre toutes les actions dans la banque">
+                      <i class="bi bi-arrow-counterclockwise me-1"></i><span>Réinitialiser</span>
+                    </button>
+                    <button class="btn btn-sm btn-primary py-0 px-2 small" @click="verifierActionsSlotsEx1"
+                      title="Vérifier la séquence des étapes">
+                      <i class="bi bi-check2-circle me-1"></i><span>Vérifier</span>
+                    </button>
+                  </div>
+                </div>
+
+                <p class="text-muted small mb-3">
+                  <i class="bi bi-arrows-move me-1 text-info"></i>
+                  <strong>Glissez et déposez</strong> chaque action disponible dans son emplacement chronologique approprié (<strong>Étape 1</strong> à <strong>Étape 4</strong>). Vous pouvez également glisser une action d'une étape à une autre pour intervertir, ou cliquer sur une action pour la placer directement.
+                </p>
+
+                <!-- Zone 1 : Banque des actions disponibles à placer -->
+                <div class="action-pool-box p-3 mb-3"
+                  :class="{ 'pool-drag-over': dragOverTarget === 'pool' }"
+                  @dragover.prevent="onPoolDragOver($event)"
+                  @dragenter.prevent="onPoolDragEnter($event)"
+                  @dragleave="onPoolDragLeave($event)"
+                  @drop.prevent="onPoolDrop($event)">
+                  <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="small fw-bold text-muted d-flex align-items-center gap-2">
+                      <i class="bi bi-collection text-info"></i>
+                      <span>Banque d'actions disponibles à ordonner :</span>
+                      <span class="badge bg-secondary rounded-pill">{{ poolActionsEx1.length }}</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <button v-if="poolActionsEx1.length > 1" class="btn btn-sm btn-link p-0 text-decoration-none text-muted"
+                        @click="melangerBanqueEx1" title="Mélanger l'ordre des actions dans la banque">
+                        <i class="bi bi-shuffle me-1"></i>Mélanger
+                      </button>
+                      <span class="text-muted fst-italic" style="font-size: 0.78rem;">
+                        {{ poolActionsEx1.length > 0 ? 'Glisser vers une étape ci-dessous (ou cliquer)' : 'Toutes les actions sont placées' }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Liste des actions dans la banque -->
+                  <div v-if="poolActionsEx1.length > 0" class="d-flex flex-column gap-2">
+                    <div v-for="action in poolActionsEx1" :key="'pool-' + action.id"
+                      class="action-card-draggable p-2 px-3 d-flex align-items-center justify-content-between"
+                      :class="{ 'is-dragging': activeDraggingId === action.id }"
+                      draggable="true"
+                      @dragstart="onActionDragStart($event, action, 'pool', null)"
+                      @dragend="onActionDragEnd"
+                      @click="clickPoolAction(action)"
+                      role="button"
+                      tabindex="0"
+                      title="Glisser vers une étape ou cliquer pour placer">
+                      <div class="action-text-content d-flex align-items-center gap-2 flex-grow-1">
+                        <i class="bi bi-grip-vertical text-muted fs-5 flex-shrink-0" title="Glisser"></i>
+                        <span class="badge rounded-pill flex-shrink-0" :class="action.badgeClass">{{ action.type }}</span>
+                        <div>
+                          <div class="small fw-semibold text-heading" v-html="action.label"></div>
+                          <div class="text-muted" style="font-size: 0.78rem;" v-html="action.desc"></div>
+                        </div>
+                      </div>
+                      <div class="action-card-btn ms-2 flex-shrink-0 text-muted small d-none d-sm-block">
+                        <i class="bi bi-box-arrow-in-down me-1"></i><span>Placer</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Message quand la banque est vide -->
+                  <div v-else class="text-center py-2 text-success small">
+                    <i class="bi bi-check2-circle me-1"></i> Toutes les actions ont été placées dans les étapes ci-dessous. Cliquez sur <strong>Vérifier</strong> pour valider l'ordre logique.
+                  </div>
+                </div>
+
+                <!-- Zone 2 : Les 4 étapes fixes ordonnées -->
+                <div class="action-slots-box p-3 mb-3">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="small fw-bold text-muted d-flex align-items-center gap-2">
+                      <i class="bi bi-diagram-3 text-primary"></i>
+                      <span>Démarche algorithmique ordonnée :</span>
+                      <span class="badge" :class="slotsEx1FilledCount === 4 ? 'bg-success' : 'bg-secondary'">
+                        {{ slotsEx1FilledCount }} / 4 étapes remplies
+                      </span>
+                    </div>
+                    <span class="text-muted fst-italic" style="font-size: 0.78rem;">
+                      {{ slotsEx1FilledCount === 4 ? 'Prêt pour validation' : 'Déposez les 4 actions dans l\'ordre chronologique' }}
+                    </span>
+                  </div>
+
+                  <div class="slots-container d-flex flex-column gap-2">
+                    <div v-for="(slotAction, slotIdx) in slotsEx1" :key="'slot-row-' + slotIdx"
+                      class="slot-row d-flex align-items-center gap-2">
+                      <!-- Badge fixe de l'étape -->
+                      <div class="slot-step-badge"
+                        :class="{
+                          'step-correct': isActionsEx1Verified && isSlotCorrect(slotIdx),
+                          'step-incorrect': isActionsEx1Verified && slotAction && !isSlotCorrect(slotIdx)
+                        }">
+                        <div class="step-num">Étape {{ slotIdx + 1 }}</div>
+                        <div class="step-label">
+                          {{ slotIdx === 0 ? '1ère action' : slotIdx === 1 ? '2ème action' : slotIdx === 2 ? '3ème action' : '4ème action' }}
+                        </div>
+                      </div>
+
+                      <!-- Emplacement récepteur -->
+                      <div class="slot-drop-container flex-grow-1 p-2"
+                        :class="{
+                          'slot-empty': !slotAction,
+                          'slot-drag-over': dragOverTarget === slotIdx,
+                          'slot-correct': isActionsEx1Verified && isSlotCorrect(slotIdx),
+                          'slot-incorrect': isActionsEx1Verified && slotAction && !isSlotCorrect(slotIdx)
+                        }"
+                        @dragover.prevent="onSlotDragOver(slotIdx, $event)"
+                        @dragenter.prevent="onSlotDragEnter(slotIdx, $event)"
+                        @dragleave="onSlotDragLeave(slotIdx, $event)"
+                        @drop.prevent="onSlotDrop(slotIdx, $event)">
+
+                        <!-- Si l'emplacement est vide -->
+                        <div v-if="!slotAction"
+                          :key="'empty-' + slotIdx"
+                          class="w-100 text-center small text-muted py-2"
+                          @click="clickEmptySlot(slotIdx)"
+                          role="button"
+                          tabindex="0"
+                          title="Glisser une action ici ou cliquer pour y placer la prochaine action disponible">
+                          <i class="bi bi-box-arrow-in-down fs-5 me-2 align-middle text-info"></i>
+                          <span>Déposer l'action de l'Étape {{ slotIdx + 1 }} ici</span>
+                        </div>
+
+                        <!-- Si une action est placée dans l'emplacement -->
+                        <div v-else
+                          :key="'card-' + slotAction.id"
+                          class="action-card-draggable p-1 px-3 d-flex align-items-center justify-content-between w-100 border-0"
+                          :class="{ 'is-dragging': activeDraggingId === slotAction.id }"
+                          draggable="true"
+                          @dragstart="onActionDragStart($event, slotAction, 'slot', slotIdx)"
+                          @dragend="onActionDragEnd"
+                          title="Glisser pour déplacer vers une autre étape ou intervertir">
+                          <div class="action-text-content d-flex align-items-center gap-2 flex-grow-1">
+                            <i class="bi bi-grip-vertical text-muted fs-5 flex-shrink-0" title="Glisser pour déplacer"></i>
+                            <span class="badge rounded-pill flex-shrink-0" :class="slotAction.badgeClass">{{ slotAction.type }}</span>
+                            <div>
+                              <div class="small fw-semibold text-heading" v-html="slotAction.label"></div>
+                              <div class="text-muted" style="font-size: 0.76rem;" v-html="slotAction.desc"></div>
+                            </div>
+                          </div>
+
+                          <!-- Statut de validation & Bouton de retrait -->
+                          <div class="action-card-btn d-flex align-items-center gap-2 ms-2 flex-shrink-0" @click.stop>
+                            <div v-if="isActionsEx1Verified">
+                              <span v-if="isSlotCorrect(slotIdx)" class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 small">
+                                <i class="bi bi-check-circle-fill me-1"></i>Bien placé
+                              </span>
+                              <span v-else class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25 small">
+                                <i class="bi bi-x-circle-fill me-1"></i>Mal placé
+                              </span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-secondary py-0 px-2"
+                              @click.stop="removeActionFromSlot(slotIdx)"
+                              title="Retirer de cette étape et remettre dans la banque">
+                              <i class="bi bi-x-lg"></i>
+                            </button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Explications après vérification -->
+                <div v-if="isActionsEx1Verified" class="small p-3 rounded-3 mb-2"
+                  :class="isActionsEx1Correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                  <div class="d-flex align-items-start gap-2">
+                    <i class="bi fs-5 flex-shrink-0"
+                      :class="isActionsEx1Correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-triangle-fill text-danger'"></i>
+                    <div>
+                      <strong :class="isActionsEx1Correct ? 'text-success' : 'text-danger'">
+                        {{ isActionsEx1Correct ? 'Bravo ! La démarche algorithmique est parfaitement ordonnée.' : 'Attention à l\'enchaînement logique :' }}
+                      </strong>
+                      <p class="mb-0 mt-1 text-body">
+                        Un algorithme respecte le triptyque fondamental : 
+                        <strong>1. Entrées</strong> (acquisition de la distance <var class="fw-bold text-info">d</var> et de la durée <var class="fw-bold text-info">t</var> &gt; 0) 
+                        &rarr; <strong>2. Traitement</strong> (calcul de la vitesse moyenne <var class="fw-bold text-warning">v</var> &larr; <var class="fw-bold">d</var> / <var class="fw-bold">t</var>) 
+                        &rarr; <strong>3. Sortie</strong> (affichage du résultat final <var class="fw-bold text-success">v</var>).
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bouton solution repliable -->
+                <div class="d-flex justify-content-end mt-2">
+                  <button class="btn btn-sm btn-outline-info py-0 px-2 small" @click="toggleSolutionActionsEx1">
+                    <i class="bi" :class="showSolutionActionsEx1 ? 'bi-eye-slash me-1' : 'bi-lightbulb me-1'"></i>
+                    <span>{{ showSolutionActionsEx1 ? 'Masquer la solution type' : 'Consulter la solution type' }}</span>
+                  </button>
+                </div>
+
+                <div v-if="showSolutionActionsEx1" class="p-3 rounded-3 mt-2 border border-info border-opacity-25"
+                  style="background: rgba(6, 182, 212, 0.08);">
+                  <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="small fw-bold text-info">
+                      <i class="bi bi-check2-all me-1"></i> Ordre chronologique standard :
+                    </div>
+                    <button class="btn btn-sm btn-primary py-0 px-2 small" @click="appliquerSolutionEx1">
+                      <i class="bi bi-magic me-1"></i><span>Appliquer aux 4 étapes</span>
+                    </button>
+                  </div>
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-1"><strong>Étape 1 :</strong> Saisir la distance <var class="fw-bold text-info">d</var> (en mètres, avec <var class="fw-bold">d</var> &ge; 0).</li>
+                    <li class="mb-1"><strong>Étape 2 :</strong> Saisir la durée <var class="fw-bold text-info">t</var> (en secondes, avec <var class="fw-bold">t</var> &gt; 0).</li>
+                    <li class="mb-1"><strong>Étape 3 :</strong> Calculer la vitesse moyenne : <var class="fw-bold text-warning">v</var> &larr; <var class="fw-bold">d</var> / <var class="fw-bold">t</var>.</li>
+                    <li class="mb-0"><strong>Étape 4 :</strong> Afficher la vitesse moyenne calculée <var class="fw-bold text-success">v</var>.</li>
+                  </ol>
+                  <div class="text-muted mt-2" style="font-size: 0.8rem;">
+                    <em>Note : La saisie de la durée peut également précéder celle de la distance (les étapes 1 et 2 sont permutables), l'essentiel étant que les deux données soient acquises avant le calcul.</em>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cahier note -->
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez les réponses aux questions 1 à 4 sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Validez vos réponses de façon interactive ci-dessus, puis recopiez la synthèse sur votre cahier.
               </div>
             </div>
           </div>
@@ -198,14 +826,32 @@
         <section id="ex2-etat-variables" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Exercice 2 — Suivre l'état des variables</h3>
-              <span class="badge bg-secondary">3 pts · 5 min</span>
+              <div class="d-flex align-items-center gap-2">
+                <h3 class="h6 mb-0">Exercice 2 — Suivre l'état des variables</h3>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge"
+                  :class="scoreQcmEx2 === qcmEx2.length ? 'bg-success' : 'badge-info-custom'">
+                  Score QCM : {{ scoreQcmEx2 }} / {{ qcmEx2.length }}
+                </span>
+                <span class="badge bg-secondary">2 pts · 5 min</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmEx2"
+                  title="Réinitialiser l'exercice 2">
+                  <i class="bi bi-arrow-counterclockwise me-1"></i><span>Effacer</span>
+                </button>
+              </div>
             </div>
             <div class="card-body">
               <div class="row g-3">
                 <div class="col-md-5">
                   <div class="code-container">
-                    <div class="code-header"><span>Algorithme Etat</span></div>
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Algorithme Etat</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeAlgoEx2, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>ALGORITHME Etat
 DEBUT
   a ← 4
@@ -215,34 +861,179 @@ DEBUT
   Écrire(a, b, c)
 FIN</code></pre>
                   </div>
+
+                  <!-- Outil pédagogique : Visualiser la trace des variables -->
+                  <div class="mt-3">
+                    <button class="btn btn-sm btn-outline-info w-100 d-flex align-items-center justify-content-between"
+                      @click="showTraceEx2 = !showTraceEx2">
+                      <span><i class="bi" :class="showTraceEx2 ? 'bi-eye-slash me-1' : 'bi-table me-1'"></i>{{ showTraceEx2 ? 'Masquer la trace détaillée' : 'Consulter le tableau de trace' }}</span>
+                      <i class="bi" :class="showTraceEx2 ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                    </button>
+                    <div v-if="showTraceEx2" class="table-responsive mt-2">
+                      <table class="table table-custom table-sm table-bordered text-center mb-0">
+                        <thead>
+                          <tr>
+                            <th>Après l'instruction</th>
+                            <th>a</th>
+                            <th>b</th>
+                            <th>c</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-start font-mono small"><code>a ← 4</code></td>
+                            <td><strong class="text-primary">4</strong></td>
+                            <td class="text-muted fst-italic">indéfini</td>
+                            <td class="text-muted fst-italic">indéfini</td>
+                          </tr>
+                          <tr>
+                            <td class="text-start font-mono small"><code>b ← a + 3</code></td>
+                            <td>4</td>
+                            <td><strong class="text-primary">7</strong> <small class="text-muted">(4 + 3)</small></td>
+                            <td class="text-muted fst-italic">indéfini</td>
+                          </tr>
+                          <tr>
+                            <td class="text-start font-mono small"><code>a ← b * 2</code></td>
+                            <td><strong class="text-warning">14</strong> <small class="text-muted">(7 × 2)</small></td>
+                            <td>7</td>
+                            <td class="text-muted fst-italic">indéfini</td>
+                          </tr>
+                          <tr>
+                            <td class="text-start font-mono small"><code>c ← a - b</code></td>
+                            <td>14</td>
+                            <td>7</td>
+                            <td><strong class="text-success">7</strong> <small class="text-muted">(14 - 7)</small></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col-md-7">
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">
-                      Compléter la trace suivante :
-                      <div class="table-responsive my-2">
-                        <table class="table table-custom table-sm table-bordered text-center mb-0">
-                          <thead>
-                            <tr><th>Après l'instruction</th><th>a</th><th>b</th><th>c</th></tr>
-                          </thead>
-                          <tbody>
-                            <tr><td class="text-start font-mono">a ← 4</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                            <tr><td class="text-start font-mono">b ← a + 3</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                            <tr><td class="text-start font-mono">a ← b * 2</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                            <tr><td class="text-start font-mono">c ← a - b</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                          </tbody>
-                        </table>
+                  <!-- Question 1 (QCM) : Quel affichage obtient-on ? -->
+                  <div class="mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-pill px-2 py-1">Q1</span>
+                        <span class="small fw-semibold text-heading" v-html="qcmEx2[0].question"></span>
                       </div>
-                    </li>
-                    <li class="mb-2">Quel affichage obtient-on ?</li>
-                    <li>Après la modification de <code>a</code>, pourquoi <code>b</code> ne change-t-il pas automatiquement ?</li>
-                  </ol>
+                      <span v-if="qcmEx2[0].selected !== null" class="badge"
+                        :class="qcmEx2[0].selected === qcmEx2[0].correct ? 'bg-success' : 'bg-danger'">
+                        {{ qcmEx2[0].selected === qcmEx2[0].correct ? '+1 pt' : '0 pt' }}
+                      </span>
+                    </div>
+
+                    <div class="quiz-options-list mt-2">
+                      <div v-for="(opt, optIdx) in qcmEx2[0].options" :key="optIdx"
+                        class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                        :class="{
+                          'selected-correct': qcmEx2[0].selected !== null && optIdx === qcmEx2[0].correct,
+                          'selected-incorrect': qcmEx2[0].selected !== null && qcmEx2[0].selected === optIdx && optIdx !== qcmEx2[0].correct
+                        }" @click="selectReponseQcmEx2(0, optIdx)" role="button" tabindex="0"
+                        @keydown.enter="selectReponseQcmEx2(0, optIdx)"
+                        @keydown.space.prevent="selectReponseQcmEx2(0, optIdx)">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                          <span v-html="opt"></span>
+                        </div>
+                        <div class="ms-2 flex-shrink-0">
+                          <i v-if="qcmEx2[0].selected === null" class="bi bi-circle text-muted"></i>
+                          <i v-else-if="optIdx === qcmEx2[0].correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                          <i v-else-if="qcmEx2[0].selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                          <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Feedback Q1 -->
+                    <div v-if="qcmEx2[0].selected !== null" class="small mt-2 p-2 rounded-3"
+                      :class="qcmEx2[0].selected === qcmEx2[0].correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                      <div class="d-flex align-items-start gap-2">
+                        <i class="bi fs-6 flex-shrink-0"
+                          :class="qcmEx2[0].selected === qcmEx2[0].correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                        <div>
+                          <strong :class="qcmEx2[0].selected === qcmEx2[0].correct ? 'text-success' : 'text-danger'">
+                            {{ qcmEx2[0].selected === qcmEx2[0].correct ? 'Exact !' : 'Incorrect.' }}
+                          </strong>
+                          <span class="text-body ms-1" v-html="qcmEx2[0].explanation"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Question 2 (QCM) : Pourquoi b ne change-t-il pas ? -->
+                  <div>
+                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-pill px-2 py-1">Q2</span>
+                        <span class="small fw-semibold text-heading" v-html="qcmEx2[1].question"></span>
+                      </div>
+                      <span v-if="qcmEx2[1].selected !== null" class="badge"
+                        :class="qcmEx2[1].selected === qcmEx2[1].correct ? 'bg-success' : 'bg-danger'">
+                        {{ qcmEx2[1].selected === qcmEx2[1].correct ? '+1 pt' : '0 pt' }}
+                      </span>
+                    </div>
+
+                    <div class="quiz-options-list mt-2">
+                      <div v-for="(opt, optIdx) in qcmEx2[1].options" :key="optIdx"
+                        class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                        :class="{
+                          'selected-correct': qcmEx2[1].selected !== null && optIdx === qcmEx2[1].correct,
+                          'selected-incorrect': qcmEx2[1].selected !== null && qcmEx2[1].selected === optIdx && optIdx !== qcmEx2[1].correct
+                        }" @click="selectReponseQcmEx2(1, optIdx)" role="button" tabindex="0"
+                        @keydown.enter="selectReponseQcmEx2(1, optIdx)"
+                        @keydown.space.prevent="selectReponseQcmEx2(1, optIdx)">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                          <span v-html="opt"></span>
+                        </div>
+                        <div class="ms-2 flex-shrink-0">
+                          <i v-if="qcmEx2[1].selected === null" class="bi bi-circle text-muted"></i>
+                          <i v-else-if="optIdx === qcmEx2[1].correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                          <i v-else-if="qcmEx2[1].selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                          <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Feedback Q2 -->
+                    <div v-if="qcmEx2[1].selected !== null" class="small mt-2 p-2 rounded-3"
+                      :class="qcmEx2[1].selected === qcmEx2[1].correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                      <div class="d-flex align-items-start gap-2">
+                        <i class="bi fs-6 flex-shrink-0"
+                          :class="qcmEx2[1].selected === qcmEx2[1].correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                        <div>
+                          <strong :class="qcmEx2[1].selected === qcmEx2[1].correct ? 'text-success' : 'text-danger'">
+                            {{ qcmEx2[1].selected === qcmEx2[1].correct ? 'Exact !' : 'Incorrect.' }}
+                          </strong>
+                          <span class="text-body ms-1" v-html="qcmEx2[1].explanation"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Synthèse de réussite globale de l'exercice 2 -->
+              <div v-if="totalReponduQcmEx2 === qcmEx2.length" class="mt-3 p-3 rounded-3 text-center"
+                :class="scoreQcmEx2 === qcmEx2.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                <div v-if="scoreQcmEx2 === qcmEx2.length">
+                  <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                  <strong class="text-success">Notion d'affectation et état des variables maîtrisés !</strong>
+                  <p class="small mb-0 text-muted mt-1">Vous avez identifié l'affichage exact et bien compris le caractère séquentiel et statique de l'affectation en mémoire.</p>
+                </div>
+                <div v-else>
+                  <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                  <strong class="text-info">{{ scoreQcmEx2 }} / {{ qcmEx2.length }} réponse(s) exacte(s)</strong>
+                  <p class="small mb-0 text-muted mt-1">
+                    Consultez les explications détaillées ci-dessus ou cliquez sur « Consulter le tableau de trace » pour visualiser l'état de chaque variable ligne par ligne.
+                  </p>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Reproduisez le tableau de trace et justifiez sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Répondez au QCM interactif ci-dessus, puis notez la justification du comportement des variables et le résultat de l'algorithme sur votre cahier.
               </div>
             </div>
           </div>
@@ -252,8 +1043,20 @@ FIN</code></pre>
         <section id="ex3-condition-tests" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Exercice 3 — Décider avec une condition et choisir des tests</h3>
-              <span class="badge bg-secondary">4 pts · 9 min</span>
+              <div class="d-flex align-items-center gap-2">
+                <h3 class="h6 mb-0">Exercice 3 — Décider avec une condition et choisir des tests</h3>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge"
+                  :class="scoreQcmEx3 === qcmEx3.length ? 'bg-success' : 'badge-info-custom'">
+                  Score QCM : {{ scoreQcmEx3 }} / {{ qcmEx3.length }}
+                </span>
+                <span class="badge bg-secondary">4 pts · 9 min</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmEx3"
+                  title="Réinitialiser l'exercice 3">
+                  <i class="bi bi-arrow-counterclockwise me-1"></i><span>Effacer</span>
+                </button>
+              </div>
             </div>
             <div class="card-body">
               <p class="small mb-2">
@@ -263,6 +1066,13 @@ FIN</code></pre>
               <div class="row g-3">
                 <div class="col-md-5">
                   <div class="code-container">
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Algorithme Condition</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeAlgoEx3, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>Lire(x)
 Si (x ≥ 10) Et (x ≤ 20) Alors
   Écrire("Dans la plage")
@@ -270,32 +1080,99 @@ Sinon
   Écrire("Hors de la plage")
 FinSi</code></pre>
                   </div>
+
+                  <!-- Table récapitulative des tests -->
+                  <div class="mt-3">
+                    <button class="btn btn-sm btn-outline-info w-100 d-flex align-items-center justify-content-between"
+                      @click="showTraceEx3 = !showTraceEx3">
+                      <span><i class="bi" :class="showTraceEx3 ? 'bi-eye-slash me-1' : 'bi-table me-1'"></i>{{ showTraceEx3 ? 'Masquer la synthèse des tests' : 'Consulter le tableau des tests' }}</span>
+                      <i class="bi" :class="showTraceEx3 ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                    </button>
+                    <div v-if="showTraceEx3" class="table-responsive mt-2">
+                      <table class="table table-custom table-sm table-bordered text-center mb-0">
+                        <thead>
+                          <tr><th>Valeur x</th><th>Condition</th><th>Affichage attendu</th><th>Rôle du test</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td><code>9,5</code></td><td><code>Faux</code></td><td><span class="badge bg-danger bg-opacity-25 text-danger">Hors de la plage</span></td><td>Extérieur gauche (&lt; 10)</td></tr>
+                          <tr><td><code>10</code></td><td><code>Vrai</code></td><td><span class="badge bg-success bg-opacity-25 text-success">Dans la plage</span></td><td>Borne inférieure (&ge; 10)</td></tr>
+                          <tr><td><code>20</code></td><td><code>Vrai</code></td><td><span class="badge bg-success bg-opacity-25 text-success">Dans la plage</span></td><td>Borne supérieure (&le; 20)</td></tr>
+                          <tr><td><code>20,1</code></td><td><code>Faux</code></td><td><span class="badge bg-danger bg-opacity-25 text-danger">Hors de la plage</span></td><td>Extérieur droit (&gt; 20)</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col-md-7">
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">
-                      Donner l'affichage pour $x = 9,5$ ; $x = 10$ ; $x = 20$ ; $x = 20,1$ :
-                      <div class="table-responsive my-2">
-                        <table class="table table-custom table-sm table-bordered text-center mb-0">
-                          <thead>
-                            <tr><th>x</th><th>9,5</th><th>10</th><th>20</th><th>20,1</th></tr>
-                          </thead>
-                          <tbody>
-                            <tr><td class="fw-bold">Affichage</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                          </tbody>
-                        </table>
+                  <div v-for="(q, qIdx) in qcmEx3" :key="q.id" class="mb-4 pb-3" :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmEx3.length - 1 }">
+                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-pill px-2 py-1">Q{{ qIdx + 1 }}</span>
+                        <span class="small fw-semibold text-heading" v-html="q.question"></span>
                       </div>
-                    </li>
-                    <li class="mb-2">Pourquoi les valeurs 10 et 20 sont-elles des tests importants ?</li>
-                    <li class="mb-2">Si on remplace <code>x &le; 20</code> par <code>x &lt; 20</code>, quel test permet de mettre immédiatement l'erreur en évidence ?</li>
-                    <li>Dans cet exercice, 10 et 20 sont des valeurs de référence fixes. Les considéreriez-vous comme des constantes ou des variables ? Justifier brièvement.</li>
-                  </ol>
+                      <span v-if="q.selected !== null" class="badge"
+                        :class="q.selected === q.correct ? 'bg-success' : 'bg-danger'">
+                        {{ q.selected === q.correct ? '+1 pt' : '0 pt' }}
+                      </span>
+                    </div>
+
+                    <div class="quiz-options-list mt-2">
+                      <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                        class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                        :class="{
+                          'selected-correct': q.selected !== null && optIdx === q.correct,
+                          'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                        }" @click="selectReponseQcmEx3(qIdx, optIdx)" role="button" tabindex="0"
+                        @keydown.enter="selectReponseQcmEx3(qIdx, optIdx)"
+                        @keydown.space.prevent="selectReponseQcmEx3(qIdx, optIdx)">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                          <span v-html="opt"></span>
+                        </div>
+                        <div class="ms-2 flex-shrink-0">
+                          <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                          <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                          <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                          <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                      :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                      <div class="d-flex align-items-start gap-2">
+                        <i class="bi fs-6 flex-shrink-0"
+                          :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                        <div>
+                          <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                            {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                          </strong>
+                          <span class="text-body ms-1" v-html="q.explanation"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Synthèse globale Ex 3 -->
+              <div v-if="totalReponduQcmEx3 === qcmEx3.length" class="mt-3 p-3 rounded-3 text-center"
+                :class="scoreQcmEx3 === qcmEx3.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                <div v-if="scoreQcmEx3 === qcmEx3.length">
+                  <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                  <strong class="text-success">Tests aux limites et condition logique maîtrisés !</strong>
+                  <p class="small mb-0 text-muted mt-1">Vous avez su analyser la condition composée, identifier les tests frontières et distinguer variables et constantes.</p>
+                </div>
+                <div v-else>
+                  <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                  <strong class="text-info">{{ scoreQcmEx3 }} / {{ qcmEx3.length }} réponse(s) exacte(s)</strong>
+                  <p class="small mb-0 text-muted mt-1">Consultez les explications ou la synthèse des tests pour consolider les notions de bornes d'intervalle.</p>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Rédigez le tableau et vos justifications sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Validez vos réponses de façon interactive ci-dessus, puis notez les 4 tests de référence sur votre cahier.
               </div>
             </div>
           </div>
@@ -328,13 +1205,32 @@ FinSi</code></pre>
         <section id="ex4-boucle-pour" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Exercice 4 — Comprendre une boucle Pour</h3>
-              <span class="badge bg-secondary">4 pts · 8 min</span>
+              <div class="d-flex align-items-center gap-2">
+                <h3 class="h6 mb-0">Exercice 4 — Comprendre une boucle Pour</h3>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge"
+                  :class="scoreQcmEx4 === qcmEx4.length ? 'bg-success' : 'badge-info-custom'">
+                  Score QCM : {{ scoreQcmEx4 }} / {{ qcmEx4.length }}
+                </span>
+                <span class="badge bg-secondary">4 pts · 8 min</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmEx4"
+                  title="Réinitialiser l'exercice 4">
+                  <i class="bi bi-arrow-counterclockwise me-1"></i><span>Effacer</span>
+                </button>
+              </div>
             </div>
             <div class="card-body">
               <div class="row g-3">
                 <div class="col-md-5">
                   <div class="code-container">
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Algorithme BouclePour</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeAlgoEx4, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>Lire(n)
 s ← 0
 Pour i de 1 à n Faire
@@ -342,31 +1238,100 @@ Pour i de 1 à n Faire
 Fin Pour
 Écrire(s)</code></pre>
                   </div>
+
+                  <!-- Trace de la boucle pour n = 4 -->
+                  <div class="mt-3">
+                    <button class="btn btn-sm btn-outline-info w-100 d-flex align-items-center justify-content-between"
+                      @click="showTraceEx4 = !showTraceEx4">
+                      <span><i class="bi" :class="showTraceEx4 ? 'bi-eye-slash me-1' : 'bi-table me-1'"></i>{{ showTraceEx4 ? 'Masquer la trace pas à pas' : 'Consulter la trace pas à pas (n = 4)' }}</span>
+                      <i class="bi" :class="showTraceEx4 ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                    </button>
+                    <div v-if="showTraceEx4" class="table-responsive mt-2">
+                      <table class="table table-custom table-sm table-bordered text-center mb-0">
+                        <thead>
+                          <tr><th>Itération (i)</th><th>Calcul effectué</th><th>Valeur de s</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>Avant boucle</td><td><code>s ← 0</code></td><td><span class="text-muted">0</span></td></tr>
+                          <tr><td><code>i = 1</code></td><td><code>s ← 0 + 1</code></td><td><strong class="text-primary">1</strong></td></tr>
+                          <tr><td><code>i = 2</code></td><td><code>s ← 1 + 2</code></td><td><strong class="text-primary">3</strong></td></tr>
+                          <tr><td><code>i = 3</code></td><td><code>s ← 3 + 3</code></td><td><strong class="text-primary">6</strong></td></tr>
+                          <tr><td><code>i = 4</code></td><td><code>s ← 6 + 4</code></td><td><strong class="text-success">10</strong></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col-md-7">
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">
-                      Pour $n = 4$, compléter la trace :
-                      <div class="table-responsive my-2">
-                        <table class="table table-custom table-sm table-bordered text-center mb-0">
-                          <thead>
-                            <tr><th>i</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
-                          </thead>
-                          <tbody>
-                            <tr><td class="fw-bold">s après mise à jour</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td><td class="empty-cell">.....</td></tr>
-                          </tbody>
-                        </table>
+                  <div v-for="(q, qIdx) in qcmEx4" :key="q.id" class="mb-4 pb-3" :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmEx4.length - 1 }">
+                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-pill px-2 py-1">Q{{ qIdx + 1 }}</span>
+                        <span class="small fw-semibold text-heading" v-html="q.question"></span>
                       </div>
-                    </li>
-                    <li class="mb-2">Quel résultat est affiché ? Quel est le rôle général de cet algorithme ?</li>
-                    <li>On veut calculer le produit $1 \times 2 \times \dots \times n$ au lieu de la somme. Indiquer exactement les <strong>deux lignes à modifier</strong>.</li>
-                  </ol>
+                      <span v-if="q.selected !== null" class="badge"
+                        :class="q.selected === q.correct ? 'bg-success' : 'bg-danger'">
+                        {{ q.selected === q.correct ? '+1 pt' : '0 pt' }}
+                      </span>
+                    </div>
+
+                    <div class="quiz-options-list mt-2">
+                      <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                        class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                        :class="{
+                          'selected-correct': q.selected !== null && optIdx === q.correct,
+                          'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                        }" @click="selectReponseQcmEx4(qIdx, optIdx)" role="button" tabindex="0"
+                        @keydown.enter="selectReponseQcmEx4(qIdx, optIdx)"
+                        @keydown.space.prevent="selectReponseQcmEx4(qIdx, optIdx)">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                          <span v-html="opt"></span>
+                        </div>
+                        <div class="ms-2 flex-shrink-0">
+                          <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                          <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                          <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                          <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                      :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                      <div class="d-flex align-items-start gap-2">
+                        <i class="bi fs-6 flex-shrink-0"
+                          :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                        <div>
+                          <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                            {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                          </strong>
+                          <span class="text-body ms-1" v-html="q.explanation"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Synthèse globale Ex 4 -->
+              <div v-if="totalReponduQcmEx4 === qcmEx4.length" class="mt-3 p-3 rounded-3 text-center"
+                :class="scoreQcmEx4 === qcmEx4.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                <div v-if="scoreQcmEx4 === qcmEx4.length">
+                  <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                  <strong class="text-success">Mécanisme de la boucle Pour et accumulation maîtrisés !</strong>
+                  <p class="small mb-0 text-muted mt-1">Vous comprenez parfaitement l'itération à nombre déterminé de tours et le rôle des éléments neutres pour la somme et le produit.</p>
+                </div>
+                <div v-else>
+                  <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                  <strong class="text-info">{{ scoreQcmEx4 }} / {{ qcmEx4.length }} réponse(s) exacte(s)</strong>
+                  <p class="small mb-0 text-muted mt-1">Consultez la trace détaillée pas à pas ci-contre pour bien suivre la mise à jour de la variable accumulateur.</p>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Complétez la trace et indiquez les deux lignes sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Répondez au QCM interactif ci-dessus, puis recopiez la trace et la variante du produit sur votre cahier.
               </div>
             </div>
           </div>
@@ -376,17 +1341,36 @@ Fin Pour
         <section id="ex5-completer-moyenne" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Exercice 5 — Compléter une solution : moyenne de mesures</h3>
-              <span class="badge bg-secondary">4 pts · 10 min</span>
+              <div class="d-flex align-items-center gap-2">
+                <h3 class="h6 mb-0">Exercice 5 — Compléter une solution : moyenne de mesures</h3>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge"
+                  :class="scoreQcmEx5 === qcmEx5.length ? 'bg-success' : 'badge-info-custom'">
+                  Score QCM : {{ scoreQcmEx5 }} / {{ qcmEx5.length }}
+                </span>
+                <span class="badge bg-secondary">4 pts · 10 min</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmEx5"
+                  title="Réinitialiser l'exercice 5">
+                  <i class="bi bi-arrow-counterclockwise me-1"></i><span>Effacer</span>
+                </button>
+              </div>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                On saisit $n$ mesures réelles, avec $n \ge 1$. On veut afficher leur moyenne. Compléter uniquement les décisions manquantes.
+                On saisit $n$ mesures réelles ($n \ge 1$). On veut calculer et afficher leur moyenne arithmétique. Compléter uniquement les éléments manquants.
               </p>
 
               <div class="row g-3">
-                <div class="col-md-6">
+                <div class="col-md-5">
                   <div class="code-container">
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Algorithme MoyenneMesures</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeAlgoEx5, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>ALGORITHME MoyenneMesures
 DEBUT
   Lire(n)
@@ -399,34 +1383,100 @@ DEBUT
   Écrire(m)
 FIN</code></pre>
                   </div>
+
+                  <!-- TDO repliable -->
+                  <div class="mt-3">
+                    <button class="btn btn-sm btn-outline-info w-100 d-flex align-items-center justify-content-between"
+                      @click="showTraceEx5 = !showTraceEx5">
+                      <span><i class="bi" :class="showTraceEx5 ? 'bi-eye-slash me-1' : 'bi-table me-1'"></i>{{ showTraceEx5 ? 'Masquer le TDO complet' : 'Consulter le Tableau de Déclaration (TDO)' }}</span>
+                      <i class="bi" :class="showTraceEx5 ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                    </button>
+                    <div v-if="showTraceEx5" class="table-responsive mt-2">
+                      <table class="table table-custom table-sm table-bordered text-center mb-0">
+                        <thead>
+                          <tr><th>Objet</th><th>Type / Nature</th><th>Rôle</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td><code>n</code></td><td><span class="badge bg-info text-dark">Entier</span></td><td>Nombre de mesures à traiter (&ge; 1)</td></tr>
+                          <tr><td><code>i</code></td><td><span class="badge bg-info text-dark">Entier</span></td><td>Indice de la boucle Pour</td></tr>
+                          <tr><td><code>x</code></td><td><span class="badge bg-warning text-dark">Réel</span></td><td>Mesure saisie à chaque répétition</td></tr>
+                          <tr><td><code>s</code></td><td><span class="badge bg-warning text-dark">Réel</span></td><td>Somme cumulée des mesures (init. 0)</td></tr>
+                          <tr><td><code>m</code></td><td><span class="badge bg-success text-white">Réel</span></td><td>Moyenne arithmétique calculée (s / n)</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="table-responsive mb-3">
-                    <table class="table table-custom table-sm table-bordered mb-0" style="max-width: 320px;">
-                      <thead>
-                        <tr><th>objet</th><th>type/nature</th></tr>
-                      </thead>
-                      <tbody>
-                        <tr><td><code>n</code></td><td class="empty-cell">.........................</td></tr>
-                        <tr><td><code>i</code></td><td class="empty-cell">.........................</td></tr>
-                        <tr><td><code>x</code></td><td class="empty-cell">.........................</td></tr>
-                        <tr><td><code>s</code></td><td class="empty-cell">.........................</td></tr>
-                        <tr><td><code>m</code></td><td class="empty-cell">.........................</td></tr>
-                      </tbody>
-                    </table>
-                  </div>
+                <div class="col-md-7">
+                  <div v-for="(q, qIdx) in qcmEx5" :key="q.id" class="mb-4 pb-3" :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmEx5.length - 1 }">
+                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-pill px-2 py-1">Q{{ qIdx + 1 }}</span>
+                        <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                      </div>
+                      <span v-if="q.selected !== null" class="badge"
+                        :class="q.selected === q.correct ? 'bg-success' : 'bg-danger'">
+                        {{ q.selected === q.correct ? '+1 pt' : '0 pt' }}
+                      </span>
+                    </div>
 
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Donner $[A]$, $[B]$ et $[C]$.</li>
-                    <li class="mb-2">Compléter le TDO ci-contre avec les types adaptés.</li>
-                    <li>Pour $n = 3$ et les mesures $12,5$ ; $13,0$ ; $16,5$, écrire l'attendu avant toute exécution.</li>
-                  </ol>
+                    <div class="quiz-options-list mt-2">
+                      <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                        class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                        :class="{
+                          'selected-correct': q.selected !== null && optIdx === q.correct,
+                          'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                        }" @click="selectReponseQcmEx5(qIdx, optIdx)" role="button" tabindex="0"
+                        @keydown.enter="selectReponseQcmEx5(qIdx, optIdx)"
+                        @keydown.space.prevent="selectReponseQcmEx5(qIdx, optIdx)">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                          <span v-html="opt"></span>
+                        </div>
+                        <div class="ms-2 flex-shrink-0">
+                          <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                          <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                          <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                          <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                      :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                      <div class="d-flex align-items-start gap-2">
+                        <i class="bi fs-6 flex-shrink-0"
+                          :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                        <div>
+                          <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                            {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                          </strong>
+                          <span class="text-body ms-1" v-html="q.explanation"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Synthèse globale Ex 5 -->
+              <div v-if="totalReponduQcmEx5 === qcmEx5.length" class="mt-3 p-3 rounded-3 text-center"
+                :class="scoreQcmEx5 === qcmEx5.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                <div v-if="scoreQcmEx5 === qcmEx5.length">
+                  <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                  <strong class="text-success">Calcul de moyenne et typage TDO parfaitement validés !</strong>
+                  <p class="small mb-0 text-muted mt-1">Vous maîtrisez le schéma classique d'accumulation d'une somme puis de division finale par le nombre d'éléments.</p>
+                </div>
+                <div v-else>
+                  <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                  <strong class="text-info">{{ scoreQcmEx5 }} / {{ qcmEx5.length }} réponse(s) exacte(s)</strong>
+                  <p class="small mb-0 text-muted mt-1">Vérifiez les explications et le TDO complété pour vous assurer des types et des opérations manquantes.</p>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Écrivez A, B, C, le TDO et le calcul attendu sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Validez le QCM ci-dessus, puis notez les instructions A, B, C et le TDO dans votre cahier.
               </div>
             </div>
           </div>
@@ -436,17 +1486,36 @@ FIN</code></pre>
         <section id="ex6-deboguer-positifs" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Exercice 6 — Déboguer : compter les valeurs strictement positives</h3>
-              <span class="badge bg-secondary">4 pts · 12 min</span>
+              <div class="d-flex align-items-center gap-2">
+                <h3 class="h6 mb-0">Exercice 6 — Déboguer : compter les valeurs strictement positives</h3>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge"
+                  :class="scoreQcmEx6 === qcmEx6.length ? 'bg-success' : 'badge-info-custom'">
+                  Score QCM : {{ scoreQcmEx6 }} / {{ qcmEx6.length }}
+                </span>
+                <span class="badge bg-secondary">4 pts · 12 min</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmEx6"
+                  title="Réinitialiser l'exercice 6">
+                  <i class="bi bi-arrow-counterclockwise me-1"></i><span>Effacer</span>
+                </button>
+              </div>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                <strong>Objectif :</strong> parmi $n$ valeurs réelles saisies une à une, afficher le nombre de valeurs <strong>strictement positives</strong>. La solution suivante contient <strong>deux erreurs logiques</strong>.
+                <strong>Objectif :</strong> parmi $n$ valeurs réelles saisies, afficher le nombre de valeurs <strong>strictement positives</strong> ($x > 0$). La solution initiale contient <strong>deux erreurs logiques</strong>.
               </p>
 
               <div class="row g-3">
                 <div class="col-md-5">
                   <div class="code-container">
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span class="text-danger fw-semibold"><i class="bi bi-bug me-1"></i>Code à déboguer</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeAlgoEx6, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>Lire(n)
 nbPos ← 1
 Pour i de 1 à n Faire
@@ -457,20 +1526,98 @@ Pour i de 1 à n Faire
 Fin Pour
 Écrire(nbPos)</code></pre>
                   </div>
+
+                  <!-- Version corrigée repliable -->
+                  <div class="mt-3">
+                    <button class="btn btn-sm btn-outline-success w-100 d-flex align-items-center justify-content-between"
+                      @click="showTraceEx6 = !showTraceEx6">
+                      <span><i class="bi" :class="showTraceEx6 ? 'bi-eye-slash me-1' : 'bi-check2-circle me-1'"></i>{{ showTraceEx6 ? 'Masquer la version corrigée' : 'Consulter l\'algorithme corrigé' }}</span>
+                      <i class="bi" :class="showTraceEx6 ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                    </button>
+                    <div v-if="showTraceEx6" class="code-container mt-2">
+                      <div class="code-header bg-success bg-opacity-10 text-success"><span>Algorithme Corrigé</span></div>
+                      <pre><code class="language-algorithm" v-pre>Lire(n)
+nbPos ← 0       // Correction 1 : init à 0
+Pour i de 1 à n Faire
+  Lire(x)
+  Si x > 0 Alors // Correction 2 : strictement > 0
+    nbPos ← nbPos + 1
+  FinSi
+Fin Pour
+Écrire(nbPos)</code></pre>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col-md-7">
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Avec $n = 3$ et les valeurs $-2$ ; $0$ ; $5$, quel résultat devrait être obtenu ?</li>
-                    <li class="mb-2">Tracer rapidement <code>nbPos</code> et repérer la première divergence entre l'attendu et le comportement de l'algorithme.</li>
-                    <li class="mb-2">Identifier les deux erreurs puis écrire les deux corrections.</li>
-                    <li>Retester mentalement avec $-2$ ; $0$ ; $5$ et donner le nouveau résultat.</li>
-                  </ol>
+                  <div v-for="(q, qIdx) in qcmEx6" :key="q.id" class="mb-4 pb-3" :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmEx6.length - 1 }">
+                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-pill px-2 py-1">Q{{ qIdx + 1 }}</span>
+                        <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                      </div>
+                      <span v-if="q.selected !== null" class="badge"
+                        :class="q.selected === q.correct ? 'bg-success' : 'bg-danger'">
+                        {{ q.selected === q.correct ? '+1 pt' : '0 pt' }}
+                      </span>
+                    </div>
+
+                    <div class="quiz-options-list mt-2">
+                      <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                        class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                        :class="{
+                          'selected-correct': q.selected !== null && optIdx === q.correct,
+                          'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                        }" @click="selectReponseQcmEx6(qIdx, optIdx)" role="button" tabindex="0"
+                        @keydown.enter="selectReponseQcmEx6(qIdx, optIdx)"
+                        @keydown.space.prevent="selectReponseQcmEx6(qIdx, optIdx)">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                          <span v-html="opt"></span>
+                        </div>
+                        <div class="ms-2 flex-shrink-0">
+                          <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                          <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                          <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                          <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                      :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                      <div class="d-flex align-items-start gap-2">
+                        <i class="bi fs-6 flex-shrink-0"
+                          :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                        <div>
+                          <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                            {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                          </strong>
+                          <span class="text-body ms-1" v-html="q.explanation"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Synthèse globale Ex 6 -->
+              <div v-if="totalReponduQcmEx6 === qcmEx6.length" class="mt-3 p-3 rounded-3 text-center"
+                :class="scoreQcmEx6 === qcmEx6.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                <div v-if="scoreQcmEx6 === qcmEx6.length">
+                  <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                  <strong class="text-success">Débogage logique et analyse des compteurs réussis !</strong>
+                  <p class="small mb-0 text-muted mt-1">Vous avez su repérer l'erreur d'initialisation et la nuance fondamentale entre inégalité large et stricte.</p>
+                </div>
+                <div v-else>
+                  <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                  <strong class="text-info">{{ scoreQcmEx6 }} / {{ qcmEx6.length }} réponse(s) exacte(s)</strong>
+                  <p class="small mb-0 text-muted mt-1">Consultez l'algorithme corrigé pour visualiser les deux rectifications en surbrillance.</p>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Notez l'attendu, le tracé de divergence et les deux corrections sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Notez l'attendu, les deux erreurs logiques et le code corrigé sur votre cahier.
               </div>
             </div>
           </div>
@@ -480,17 +1627,36 @@ Fin Pour
         <section id="ex7-modifier-multiples3" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Exercice 7 — Modifier une solution existante</h3>
-              <span class="badge bg-secondary">4 pts · 10 min</span>
+              <div class="d-flex align-items-center gap-2">
+                <h3 class="h6 mb-0">Exercice 7 — Modifier une solution existante</h3>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge"
+                  :class="scoreQcmEx7 === qcmEx7.length ? 'bg-success' : 'badge-info-custom'">
+                  Score QCM : {{ scoreQcmEx7 }} / {{ qcmEx7.length }}
+                </span>
+                <span class="badge bg-secondary">4 pts · 10 min</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmEx7"
+                  title="Réinitialiser l'exercice 7">
+                  <i class="bi bi-arrow-counterclockwise me-1"></i><span>Effacer</span>
+                </button>
+              </div>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                La solution suivante calcule la somme de $n$ entiers saisis. On veut la modifier pour calculer seulement la somme des <strong>valeurs multiples de 3</strong>.
+                La solution initiale calcule la somme de tous les $n$ entiers saisis. On veut la modifier pour sommer uniquement les <strong>valeurs multiples de 3</strong>.
               </p>
 
               <div class="row g-3">
                 <div class="col-md-5">
                   <div class="code-container">
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Algorithme Initial</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeAlgoEx7, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>Lire(n)
 s ← 0
 Pour i de 1 à n Faire
@@ -499,19 +1665,96 @@ Pour i de 1 à n Faire
 Fin Pour
 Écrire(s)</code></pre>
                   </div>
+
+                  <!-- Solution modifiée en Python repliable -->
+                  <div class="mt-3">
+                    <button class="btn btn-sm btn-outline-info w-100 d-flex align-items-center justify-content-between"
+                      @click="showTraceEx7 = !showTraceEx7">
+                      <span><i class="bi" :class="showTraceEx7 ? 'bi-eye-slash me-1' : 'bi-code-slash me-1'"></i>{{ showTraceEx7 ? 'Masquer la traduction Python' : 'Consulter la solution en Python' }}</span>
+                      <i class="bi" :class="showTraceEx7 ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                    </button>
+                    <div v-if="showTraceEx7" class="code-container mt-2">
+                      <div class="code-header bg-info bg-opacity-10 text-info"><span>Python 3 (Somme multiples de 3)</span></div>
+                      <pre><code class="language-python" v-pre>n = int(input("Donner n : "))
+s = 0
+for i in range(1, n + 1):
+    x = int(input(f"Valeur {i} : "))
+    if x % 3 == 0:
+        s = s + x
+print("Somme multiples de 3 =", s)</code></pre>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col-md-7">
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Réécrire uniquement la partie à modifier, sans changer inutilement le reste de la solution.</li>
-                    <li class="mb-2">Pour $n = 4$ et les valeurs $3$ ; $4$ ; $6$ ; $7$, donner le résultat attendu.</li>
-                    <li>Écrire en Python la condition qui teste « $x$ est multiple de 3 ».</li>
-                  </ol>
+                  <div v-for="(q, qIdx) in qcmEx7" :key="q.id" class="mb-4 pb-3" :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmEx7.length - 1 }">
+                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-pill px-2 py-1">Q{{ qIdx + 1 }}</span>
+                        <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                      </div>
+                      <span v-if="q.selected !== null" class="badge"
+                        :class="q.selected === q.correct ? 'bg-success' : 'bg-danger'">
+                        {{ q.selected === q.correct ? '+1 pt' : '0 pt' }}
+                      </span>
+                    </div>
+
+                    <div class="quiz-options-list mt-2">
+                      <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                        class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                        :class="{
+                          'selected-correct': q.selected !== null && optIdx === q.correct,
+                          'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                        }" @click="selectReponseQcmEx7(qIdx, optIdx)" role="button" tabindex="0"
+                        @keydown.enter="selectReponseQcmEx7(qIdx, optIdx)"
+                        @keydown.space.prevent="selectReponseQcmEx7(qIdx, optIdx)">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                          <span v-html="opt"></span>
+                        </div>
+                        <div class="ms-2 flex-shrink-0">
+                          <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                          <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                          <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                          <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                      :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                      <div class="d-flex align-items-start gap-2">
+                        <i class="bi fs-6 flex-shrink-0"
+                          :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                        <div>
+                          <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                            {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                          </strong>
+                          <span class="text-body ms-1" v-html="q.explanation"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Synthèse globale Ex 7 -->
+              <div v-if="totalReponduQcmEx7 === qcmEx7.length" class="mt-3 p-3 rounded-3 text-center"
+                :class="scoreQcmEx7 === qcmEx7.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                <div v-if="scoreQcmEx7 === qcmEx7.length">
+                  <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                  <strong class="text-success">Filtrage conditionnel et opérateur Modulo validés !</strong>
+                  <p class="small mb-0 text-muted mt-1">Vous maîtrisez l'utilisation de l'opérateur modulo en algorithmique et sa syntaxe Python <code>%</code> avec <code>== 0</code>.</p>
+                </div>
+                <div v-else>
+                  <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                  <strong class="text-info">{{ scoreQcmEx7 }} / {{ qcmEx7.length }} réponse(s) exacte(s)</strong>
+                  <p class="small mb-0 text-muted mt-1">Consultez la solution Python ci-contre pour revoir la combinaison de <code>for</code> et <code>if %</code>.</p>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Réécrivez le bloc modifié, l'attendu et la condition Python sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Notez le bloc d'accumulation conditionnelle et la condition Python sur votre cahier.
               </div>
             </div>
           </div>
@@ -530,18 +1773,36 @@ Fin Pour
         <section id="ex8-comparer-solutions" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Exercice 8 — Comparer deux solutions</h3>
-              <span class="badge bg-secondary">3 pts · 7 min</span>
+              <div class="d-flex align-items-center gap-2">
+                <h3 class="h6 mb-0">Exercice 8 — Comparer deux solutions</h3>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge"
+                  :class="scoreQcmEx8 === qcmEx8.length ? 'bg-success' : 'badge-info-custom'">
+                  Score QCM : {{ scoreQcmEx8 }} / {{ qcmEx8.length }}
+                </span>
+                <span class="badge bg-secondary">3 pts · 7 min</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmEx8"
+                  title="Réinitialiser l'exercice 8">
+                  <i class="bi bi-arrow-counterclockwise me-1"></i><span>Effacer</span>
+                </button>
+              </div>
             </div>
             <div class="card-body">
               <p class="small mb-2">
-                On a déjà lu trois réels $a$, $b$ et $c$. On veut afficher leur maximum. Deux élèves proposent les solutions suivantes.
+                On dispose de trois réels $a$, $b$ et $c$. On souhaite afficher leur maximum. Deux approches algorithmiques distinctes sont proposées :
               </p>
 
               <div class="row g-3 mb-3">
                 <div class="col-md-6">
                   <div class="code-container">
-                    <div class="code-header"><span>Solution A</span></div>
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Solution A (Initialisation par défaut)</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeAlgoEx8A, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>maxi ← a
 Si b > maxi Alors
   maxi ← b
@@ -555,7 +1816,13 @@ FinSi
 
                 <div class="col-md-6">
                   <div class="code-container">
-                    <div class="code-header"><span>Solution B</span></div>
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Solution B (Alternative initiale Si/Sinon)</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeAlgoEx8B, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>Si a > b Alors
   maxi ← a
 Sinon
@@ -569,14 +1836,98 @@ FinSi
                 </div>
               </div>
 
-              <ol class="small mb-0 ps-3">
-                <li class="mb-2">Tester les deux solutions avec au moins trois jeux de valeurs, dont un cas d'égalité.</li>
-                <li class="mb-2">Les deux solutions sont-elles valides ? Justifier sans se contenter de « ça marche sur mon exemple ».</li>
-                <li>Décrire en une phrase la stratégie commune aux deux solutions.</li>
-              </ol>
+              <!-- Tableau comparatif des jeux d'essais -->
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-info w-100 d-flex align-items-center justify-content-between"
+                  @click="showTraceEx8 = !showTraceEx8">
+                  <span><i class="bi" :class="showTraceEx8 ? 'bi-eye-slash me-1' : 'bi-table me-1'"></i>{{ showTraceEx8 ? 'Masquer la comparaison des jeux d\'essais' : 'Consulter le tableau des 3 jeux d\'essais' }}</span>
+                  <i class="bi" :class="showTraceEx8 ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                </button>
+                <div v-if="showTraceEx8" class="table-responsive mt-2">
+                  <table class="table table-custom table-sm table-bordered text-center mb-0">
+                    <thead>
+                      <tr><th>Jeu d'essai (a, b, c)</th><th>Cas testé</th><th>Sortie Solution A</th><th>Sortie Solution B</th><th>Verdict</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><code>(10, 3, 7)</code></td><td>Premier élément maximal</td><td><strong>10</strong></td><td><strong>10</strong></td><td><span class="badge bg-success">Conforme</span></td></tr>
+                      <tr><td><code>(4, 9, 2)</code></td><td>Deuxième élément maximal</td><td><strong>9</strong></td><td><strong>9</strong></td><td><span class="badge bg-success">Conforme</span></td></tr>
+                      <tr><td><code>(5, 5, 2)</code></td><td>Égalité sur le maximum ($a = b$)</td><td><strong>5</strong></td><td><strong>5</strong></td><td><span class="badge bg-success">Conforme</span></td></tr>
+                      <tr><td><code>(-8, -2, -1)</code></td><td>Valeurs toutes négatives</td><td><strong>-1</strong></td><td><strong>-1</strong></td><td><span class="badge bg-success">Conforme</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-12">
+                  <div v-for="(q, qIdx) in qcmEx8" :key="q.id" class="mb-4 pb-3" :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmEx8.length - 1 }">
+                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-pill px-2 py-1">Q{{ qIdx + 1 }}</span>
+                        <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                      </div>
+                      <span v-if="q.selected !== null" class="badge"
+                        :class="q.selected === q.correct ? 'bg-success' : 'bg-danger'">
+                        {{ q.selected === q.correct ? '+1 pt' : '0 pt' }}
+                      </span>
+                    </div>
+
+                    <div class="quiz-options-list mt-2">
+                      <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                        class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                        :class="{
+                          'selected-correct': q.selected !== null && optIdx === q.correct,
+                          'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                        }" @click="selectReponseQcmEx8(qIdx, optIdx)" role="button" tabindex="0"
+                        @keydown.enter="selectReponseQcmEx8(qIdx, optIdx)"
+                        @keydown.space.prevent="selectReponseQcmEx8(qIdx, optIdx)">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                          <span v-html="opt"></span>
+                        </div>
+                        <div class="ms-2 flex-shrink-0">
+                          <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                          <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                          <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                          <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                      :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                      <div class="d-flex align-items-start gap-2">
+                        <i class="bi fs-6 flex-shrink-0"
+                          :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                        <div>
+                          <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                            {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                          </strong>
+                          <span class="text-body ms-1" v-html="q.explanation"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Synthèse globale Ex 8 -->
+              <div v-if="totalReponduQcmEx8 === qcmEx8.length" class="mt-3 p-3 rounded-3 text-center"
+                :class="scoreQcmEx8 === qcmEx8.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                <div v-if="scoreQcmEx8 === qcmEx8.length">
+                  <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                  <strong class="text-success">Comparaison et équivalence algorithmique maîtrisées !</strong>
+                  <p class="small mb-0 text-muted mt-1">Vous avez su analyser deux structures de contrôle différentes et démontrer leur parfaite équivalence fonctionnelle.</p>
+                </div>
+                <div v-else>
+                  <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                  <strong class="text-info">{{ scoreQcmEx8 }} / {{ qcmEx8.length }} réponse(s) exacte(s)</strong>
+                  <p class="small mb-0 text-muted mt-1">Consultez le tableau comparatif pour revoir le comportement sur les différents cas limites.</p>
+                </div>
+              </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> Présentez vos 3 jeux d'essais et vos justifications sur votre cahier.
+                <i class="bi bi-pencil-square me-1"></i> Rédigez vos 3 jeux d'essais et la justification de l'équivalence des deux solutions sur votre cahier.
               </div>
             </div>
           </div>
@@ -702,11 +2053,11 @@ Fin Pour
   <script src="assets/js/highlight.min.js"></script>
   <script src="assets/js/algorithm.highlight.js"></script>
   <script src="assets/js/katex.min.js"></script>
-  <script src="assets/js/contrib/auto-render.min.js"></script>
+  <script src="assets/js/contrib/auto-render.min.js?v=20261007_3"></script>
   <script src="assets/js/clipboard.js"></script>
   <script src="assets/js/draggable.js"></script>
-  <script src="assets/js/pages.js"></script>
-  <script src="assets/app/seance01.js"></script>
+  <script src="assets/js/pages.js?v=20261007_6"></script>
+  <script src="assets/app/seance01.js?v=20261007_6"></script>
 </body>
 
 </html>

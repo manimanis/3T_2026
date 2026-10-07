@@ -164,8 +164,11 @@ const splitAtDelimiters = function (text, delimiters) {
  * API, we should copy it before mutating.
  */
 const renderMathInText = function (text, optionsCopy) {
+  if (!text || !text.trim()) {
+    return null;
+  }
   const data = auto_render_splitAtDelimiters(text, optionsCopy.delimiters);
-  if (data.length === 1 && data[0].type === 'text') {
+  if (data.length === 0 || (data.length === 1 && data[0].type === 'text')) {
     // There is no formula in the text.
     // Let's return null which means there is no need to replace
     // the current text node with a new one.
@@ -289,7 +292,15 @@ const renderMathInElement = function (elem, options) {
     display: true
   }];
   optionsCopy.ignoredTags = new Set((options == null ? void 0 : options.ignoredTags) || ["script", "noscript", "style", "textarea", "pre", "code", "option"]);
-  optionsCopy.ignoredClasses = optionsCopy.ignoredClasses || [];
+  optionsCopy.ignoredClasses = (optionsCopy.ignoredClasses || []).concat([
+    "action-pool-box",
+    "action-slots-box",
+    "slots-container",
+    "quiz-options-list",
+    "select-type-custom",
+    "vue-interactive",
+    "no-katex"
+  ]);
   optionsCopy.errorCallback = optionsCopy.errorCallback || console.error;
 
   // Enable sharing of global macros defined via `\gdef` between different

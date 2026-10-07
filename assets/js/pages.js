@@ -337,6 +337,15 @@ class SectionDrawer {
             { left: '\\(', right: '\\)', display: false },
             { left: '$', right: '$', display: false }
           ],
+          ignoredClasses: [
+            'action-pool-box',
+            'action-slots-box',
+            'slots-container',
+            'quiz-options-list',
+            'select-type-custom',
+            'vue-interactive',
+            'no-katex'
+          ],
           throwOnError: false
         });
       }
