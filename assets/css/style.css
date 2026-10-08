@@ -1605,8 +1605,22 @@ footer p {
   border-radius: 1.15rem !important;
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.12);
   border: 1px solid var(--border-color) !important;
-  overflow: hidden;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
   margin-bottom: 1.5rem;
+}
+
+.section-pane .card,
+.section-pane .card-custom {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.section-pane .card-body {
+  flex: 0 1 auto !important;
+  height: auto !important;
 }
 
 /* En-tête des cartes d'activité */

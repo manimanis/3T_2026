@@ -75,6 +75,139 @@
       font-style: italic;
       letter-spacing: 2px;
     }
+
+    .badge-qcm-letter {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-color);
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .quiz-option {
+      user-select: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .quiz-option:hover {
+      transform: translateY(-1px);
+    }
+
+    .quiz-option:active {
+      transform: scale(0.99);
+    }
+
+    .table-custom th,
+    .table-custom td {
+      padding: 0.45rem 0.35rem !important;
+      vertical-align: middle !important;
+    }
+
+    .form-control.table-input-sm,
+    input.table-input-sm {
+      padding: 0.25rem 0.3rem !important;
+      font-size: 0.82rem !important;
+      text-align: center !important;
+      border-radius: 0.35rem !important;
+      background-color: var(--bg-input) !important;
+      color: var(--text-main) !important;
+      border: 1px solid var(--border-color) !important;
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    .form-select.table-select-sm,
+    select.table-select-sm {
+      padding: 0.25rem 1.15rem 0.25rem 0.35rem !important;
+      font-size: 0.78rem !important;
+      line-height: 1.35 !important;
+      border-radius: 0.35rem !important;
+      background-color: var(--bg-input) !important;
+      color: var(--text-main) !important;
+      border: 1px solid var(--border-color) !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      background-position: right 0.25rem center !important;
+      background-size: 10px 8px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .form-select.table-select-sm option,
+    select.table-select-sm option {
+      background-color: #1e293b !important;
+      color: #e2e8f0 !important;
+    }
+
+    /* Force override Bootstrap's bloated 4.125rem padding-right and checkmark SVG */
+    .form-select.table-select-sm.is-valid,
+    select.table-select-sm.is-valid {
+      border-color: #10b981 !important;
+      background-color: rgba(16, 185, 129, 0.15) !important;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2310b981' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 0.25rem center !important;
+      background-size: 10px 8px !important;
+      padding-right: 1.15rem !important;
+      padding-left: 0.35rem !important;
+      box-shadow: none !important;
+    }
+
+    .form-select.table-select-sm.is-invalid,
+    select.table-select-sm.is-invalid {
+      border-color: #ef4444 !important;
+      background-color: rgba(239, 68, 68, 0.15) !important;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ef4444' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 0.25rem center !important;
+      background-size: 10px 8px !important;
+      padding-right: 1.15rem !important;
+      padding-left: 0.35rem !important;
+      box-shadow: none !important;
+    }
+
+    .form-control.table-input-sm.is-valid,
+    input.table-input-sm.is-valid {
+      border-color: #10b981 !important;
+      background-color: rgba(16, 185, 129, 0.15) !important;
+      background-image: none !important;
+      padding-right: 0.3rem !important;
+      box-shadow: none !important;
+    }
+
+    .form-control.table-input-sm.is-invalid,
+    input.table-input-sm.is-invalid {
+      border-color: #ef4444 !important;
+      background-color: rgba(239, 68, 68, 0.15) !important;
+      background-image: none !important;
+      padding-right: 0.3rem !important;
+      box-shadow: none !important;
+    }
+
+    /* Correction structurelle anti-débordement & affichage complet des activités */
+    .section-pane,
+    .section-pane > .card,
+    .section-pane > .card-custom,
+    .section-pane .card,
+    .section-pane .card-custom {
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    .section-pane .card-body {
+      flex: 0 1 auto !important;
+      height: auto !important;
+      overflow: visible !important;
+    }
   </style>
 </head>
 
@@ -272,88 +405,294 @@ Fin Tant que</code></pre>
                 </div>
               </div>
 
-              <div class="row g-3">
-                <div class="col-md-5">
-                  <h4 class="h6 fw-bold mb-2">Tableau de suivi de la tension résiduelle</h4>
-                  <div class="table-responsive">
-                    <table class="table table-custom table-sm table-bordered text-center mb-0">
-                      <thead>
-                        <tr>
-                          <th>Temps <i>t</i></th>
-                          <th>Tension <i>U</i></th>
-                          <th>Condition : <i>U</i> ≥ 20.0 V ?</th>
-                          <th>Accès armoire</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><i>t</i> = 0 s</td>
-                          <td>100.0 V</td>
-                          <td class="text-danger fw-bold">Vrai (Danger)</td>
-                          <td>🔒 Verrouillé</td>
-                        </tr>
-                        <tr>
-                          <td><i>t</i> = 1 s</td>
-                          <td>50.0 V</td>
-                          <td class="text-danger fw-bold">Vrai (Danger)</td>
-                          <td>🔒 Verrouillé</td>
-                        </tr>
-                        <tr>
-                          <td><i>t</i> = 2 s</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                        </tr>
-                        <tr>
-                          <td><i>t</i> = 3 s</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                        </tr>
-                        <tr>
-                          <td><i>t</i> = 4 s</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                        </tr>
-                      </tbody>
-                    </table>
+              <div class="row g-4">
+                <!-- Colonne Gauche : Tableau de suivi interactif -->
+                <div class="col-lg-6 col-12">
+                  <div class="card card-custom border border-secondary border-opacity-25 shadow-sm">
+                    <div class="card-header-custom d-flex justify-content-between align-items-center py-2 px-3">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-table text-info"></i>
+                        <span class="fw-semibold small">Tableau de suivi interactif</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-1">
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2" @click="resetTableAct1" title="Réinitialiser le tableau" style="font-size: 0.78rem;">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i>Effacer
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-3">
+                      <p class="text-muted small mb-2">
+                        Complétez les valeurs de tension <i>U</i> (V), la condition logique et le statut d'accès à l'armoire :
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-custom table-sm table-bordered text-center align-middle mb-0">
+                          <thead>
+                            <tr>
+                              <th style="width: 16%;">Temps <i>t</i></th>
+                              <th style="width: 18%;">Tension <i>U</i></th>
+                              <th style="width: 33%;"><i>U</i> &ge; 20.0 V ?</th>
+                              <th style="width: 33%;">Accès armoire</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="fw-semibold"><i>t</i> = 0 s</td>
+                              <td>100.0 V</td>
+                              <td><span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25">Vrai (Danger)</span></td>
+                              <td>🔒 Verrouillé</td>
+                            </tr>
+                            <tr>
+                              <td class="fw-semibold"><i>t</i> = 1 s</td>
+                              <td>50.0 V</td>
+                              <td><span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25">Vrai (Danger)</span></td>
+                              <td>🔒 Verrouillé</td>
+                            </tr>
+                            <!-- Ligne t = 2 s interactive -->
+                            <tr :class="{ 'table-success bg-opacity-10': tableAct1Verified && isRowAct1Correct(0), 'table-danger bg-opacity-10': tableAct1Verified && !isRowAct1Correct(0) }">
+                              <td class="fw-semibold"><i>t</i> = 2 s</td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="U (V)"
+                                  v-model.trim="tableAct1[0].u"
+                                  :class="{
+                                    'is-valid': tableAct1Verified && isRowAct1Correct(0),
+                                    'is-invalid': tableAct1Verified && !isRowAct1Correct(0)
+                                  }">
+                              </td>
+                              <td>
+                                <select class="form-select form-select-sm table-select-sm"
+                                  v-model="tableAct1[0].cond"
+                                  :class="{
+                                    'is-valid': tableAct1Verified && isRowAct1Correct(0),
+                                    'is-invalid': tableAct1Verified && !isRowAct1Correct(0)
+                                  }">
+                                  <option value="">-- Choisir --</option>
+                                  <option value="Vrai (Danger)">Vrai (Danger)</option>
+                                  <option value="Faux (Sécurisé)">Faux (Sécurisé)</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select class="form-select form-select-sm table-select-sm"
+                                  v-model="tableAct1[0].acces"
+                                  :class="{
+                                    'is-valid': tableAct1Verified && isRowAct1Correct(0),
+                                    'is-invalid': tableAct1Verified && !isRowAct1Correct(0)
+                                  }">
+                                  <option value="">-- Choisir --</option>
+                                  <option value="🔒 Verrouillé">🔒 Verrouillé</option>
+                                  <option value="🔓 Déverrouillé">🔓 Déverrouillé</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <!-- Ligne t = 3 s interactive -->
+                            <tr :class="{ 'table-success bg-opacity-10': tableAct1Verified && isRowAct1Correct(1), 'table-danger bg-opacity-10': tableAct1Verified && !isRowAct1Correct(1) }">
+                              <td class="fw-semibold"><i>t</i> = 3 s</td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="U (V)"
+                                  v-model.trim="tableAct1[1].u"
+                                  :class="{
+                                    'is-valid': tableAct1Verified && isRowAct1Correct(1),
+                                    'is-invalid': tableAct1Verified && !isRowAct1Correct(1)
+                                  }">
+                              </td>
+                              <td>
+                                <select class="form-select form-select-sm table-select-sm"
+                                  v-model="tableAct1[1].cond"
+                                  :class="{
+                                    'is-valid': tableAct1Verified && isRowAct1Correct(1),
+                                    'is-invalid': tableAct1Verified && !isRowAct1Correct(1)
+                                  }">
+                                  <option value="">-- Choisir --</option>
+                                  <option value="Vrai (Danger)">Vrai (Danger)</option>
+                                  <option value="Faux (Sécurisé)">Faux (Sécurisé)</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select class="form-select form-select-sm table-select-sm"
+                                  v-model="tableAct1[1].acces"
+                                  :class="{
+                                    'is-valid': tableAct1Verified && isRowAct1Correct(1),
+                                    'is-invalid': tableAct1Verified && !isRowAct1Correct(1)
+                                  }">
+                                  <option value="">-- Choisir --</option>
+                                  <option value="🔒 Verrouillé">🔒 Verrouillé</option>
+                                  <option value="🔓 Déverrouillé">🔓 Déverrouillé</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <!-- Ligne t = 4 s interactive (l'élève doit la laisser non remplie) -->
+                            <tr :class="{
+                              'table-success bg-opacity-10': tableAct1Verified && isRowAct1Correct(2),
+                              'table-danger bg-opacity-10': tableAct1Verified && !isRowAct1Correct(2)
+                            }">
+                              <td class="fw-semibold">
+                                <i>t</i> = 4 s
+                                <div v-if="tableAct1Verified && isRowAct1Correct(2)" class="badge bg-success bg-opacity-25 text-success p-1 mt-1 d-block" style="font-size: 0.65rem;">
+                                  <i class="bi bi-check2"></i> Non exécutée
+                                </div>
+                                <div v-else-if="tableAct1Verified && !isRowAct1Correct(2)" class="badge bg-danger bg-opacity-25 text-danger p-1 mt-1 d-block" style="font-size: 0.65rem;">
+                                  <i class="bi bi-x"></i> Ne pas remplir
+                                </div>
+                              </td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  :placeholder="tableAct1Verified && isRowAct1Correct(2) ? '— (Arrêt)' : 'Laisser vide'"
+                                  v-model.trim="tableAct1[2].u"
+                                  :class="{
+                                    'is-valid': tableAct1Verified && isRowAct1Correct(2),
+                                    'is-invalid': tableAct1Verified && !isRowAct1Correct(2)
+                                  }">
+                              </td>
+                              <td>
+                                <select class="form-select form-select-sm table-select-sm"
+                                  v-model="tableAct1[2].cond"
+                                  :class="{
+                                    'is-valid': tableAct1Verified && isRowAct1Correct(2),
+                                    'is-invalid': tableAct1Verified && !isRowAct1Correct(2)
+                                  }">
+                                  <option value="">{{ tableAct1Verified && isRowAct1Correct(2) ? '— (Arrêt)' : '-- Laisser vide --' }}</option>
+                                  <option value="Vrai (Danger)">Vrai (Danger)</option>
+                                  <option value="Faux (Sécurisé)">Faux (Sécurisé)</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select class="form-select form-select-sm table-select-sm"
+                                  v-model="tableAct1[2].acces"
+                                  :class="{
+                                    'is-valid': tableAct1Verified && isRowAct1Correct(2),
+                                    'is-invalid': tableAct1Verified && !isRowAct1Correct(2)
+                                  }">
+                                  <option value="">{{ tableAct1Verified && isRowAct1Correct(2) ? '— (Arrêt)' : '-- Laisser vide --' }}</option>
+                                  <option value="🔒 Verrouillé">🔒 Verrouillé</option>
+                                  <option value="🔓 Déverrouillé">🔓 Déverrouillé</option>
+                                </select>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="d-flex flex-column gap-2 mt-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <button class="btn btn-sm btn-primary py-1 px-3" @click="verifierTableAct1">
+                            <i class="bi bi-check2-circle me-1"></i>Vérifier le tableau
+                          </button>
+                          <span v-if="tableAct1Verified" class="small fw-semibold"
+                            :class="isRowAct1Correct(0) && isRowAct1Correct(1) && isRowAct1Correct(2) ? 'text-success' : 'text-warning'">
+                            <i class="bi" :class="isRowAct1Correct(0) && isRowAct1Correct(1) && isRowAct1Correct(2) ? 'bi-check-circle-fill me-1' : 'bi-exclamation-circle me-1'"></i>
+                            {{ isRowAct1Correct(0) && isRowAct1Correct(1) && isRowAct1Correct(2) ? 'Tableau validé !' : 'À corriger' }}
+                          </span>
+                        </div>
+                        <div v-if="tableAct1Verified && !isRowAct1Correct(2) && isRowAct1Correct(0) && isRowAct1Correct(1)" class="alert alert-warning py-2 px-3 small mb-0 rounded-3 border-warning border-opacity-50">
+                          <i class="bi bi-exclamation-triangle-fill me-1 text-warning"></i>
+                          <strong>Règle d'arrêt :</strong> La condition <i>U</i> &ge; 20.0 V est devenue <strong>Fausse</strong> à <i>t</i> = 3 s (<i>U</i> = 12.5 V). La boucle s'est <strong>arrêtée</strong> : la ligne <i>t</i> = 4 s ne doit pas être exécutée ni remplie (laissez ses champs vides) !
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div class="col-md-7">
-                  <h4 class="h6 fw-bold mb-2">Travail demandé</h4>
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">
-                      <strong>Décharge réelle :</strong> Compléter le tableau. Au bout de combien de secondes a-t-on
-                      <i>U</i> &lt; 20.0 V ?
-                    </li>
-                    <li class="mb-2">
-                      <strong>Obstacle cognitif :</strong> Pourquoi l'affirmation « 100 div 20 = 5 s » est-elle fausse ?
-                    </li>
-                    <li class="mb-2">
-                      <strong>Cas particulier (<i>U</i> = 15.0 V) :</strong> Machine à l'arrêt depuis 24h : la condition
-                      <i>U</i> ≥ 20.0 V est-elle vérifiée ?
-                    </li>
-                    <li class="mb-2">
-                      <strong>Tester AVANT d'agir :</strong> Pourquoi l'automate teste-t-il la condition <em>avant</em>
-                      toute temporisation ?
-                    </li>
-                    <li class="mb-2">
-                      <strong>Choix de structure :</strong> Pourquoi la boucle <code>Pour</code> est-elle inadaptée ici
-                      ?
-                    </li>
-                    <li>
-                      <strong>Règle formelle :</strong> Exprimer la règle : « <strong>Tant que</strong> (danger),
-                      <strong>Faire</strong> (décharge) ».
-                    </li>
-                  </ol>
+                <!-- Colonne Droite : QCM Interactif (6 Questions) -->
+                <div class="col-lg-6 col-12">
+                  <div class="card card-custom border border-secondary border-opacity-25 shadow-sm">
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-ui-checks text-warning fs-5"></i>
+                        <span class="fw-semibold small">Questions d'analyse interactives (6 Questions)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge"
+                          :class="scoreAct1 === qcmAct1.length && totalReponduAct1 === qcmAct1.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1" v-if="scoreAct1 === qcmAct1.length && totalReponduAct1 === qcmAct1.length"></i>
+                          Score : {{ scoreAct1 }} / {{ qcmAct1.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct1" title="Réinitialiser les questions">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i><span>Effacer</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar"
+                          :style="{ width: (totalReponduAct1 / qcmAct1.length * 100) + '%' }"
+                          :aria-valuenow="totalReponduAct1" aria-valuemin="0" :aria-valuemax="qcmAct1.length"></div>
+                      </div>
+
+                      <!-- Questions list -->
+                      <div v-for="(q, qIdx) in qcmAct1" :key="q.id" class="mb-4 pb-3"
+                        :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct1.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <!-- Options -->
+                        <div class="quiz-options-list mt-2">
+                          <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }"
+                            @click="selectReponseAct1(qIdx, optIdx)" role="button" tabindex="0"
+                            @keydown.enter="selectReponseAct1(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct1(qIdx, optIdx)">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Feedback and explanation -->
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                          :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0"
+                              :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1" v-html="q.explanation"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Global Score Summary when all 6 answered -->
+                      <div v-if="totalReponduAct1 === qcmAct1.length" class="mt-3 p-3 rounded-3 text-center"
+                        :class="scoreAct1 === qcmAct1.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                        <div v-if="scoreAct1 === qcmAct1.length">
+                          <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                          <strong class="text-success">Excellent ! {{ scoreAct1 }} / {{ qcmAct1.length }} bonnes réponses</strong>
+                          <p class="small mb-0 text-muted mt-1">Vous maîtrisez parfaitement la logique de sécurité et la boucle Tant Que !</p>
+                        </div>
+                        <div v-else>
+                          <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                          <strong class="text-info">Score final : {{ scoreAct1 }} / {{ qcmAct1.length }}</strong>
+                          <p class="small mb-0 text-muted mt-1">
+                            Analysez les explications ci-dessus pour consolider vos acquis, ou
+                            <a href="#" class="text-info fw-semibold text-decoration-underline" @click.prevent="resetQcmAct1">cliquez ici pour réinitialiser</a>.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Complétez le tableau de
-                suivi et répondez aux six questions de l'activité 1.
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Notez le tableau de suivi complété et la règle fondamentale formalisée à la question 6.
               </div>
             </div>
           </div>
@@ -368,10 +707,17 @@ Fin Tant que</code></pre>
               <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
-              <div class="row g-3">
-                <div class="col-md-6">
+              <div class="row g-4">
+                <div class="col-lg-5">
                   <h4 class="h6 fw-bold text-primary mb-2">Algorithme de décharge sécurisée</h4>
-                  <div class="code-container">
+                  <div class="code-container mb-3">
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Algorithme DechargeSecurite</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeControleSaisieAlgo, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>ALGORITHME DechargeSecurite
 DEBUT
   Lire(U)
@@ -384,24 +730,22 @@ DEBUT
   Écrire("Durée : ", duree, " s")
 FIN</code></pre>
                   </div>
-                </div>
 
-                <div class="col-md-6">
                   <h4 class="h6 fw-bold text-primary mb-2">Tableau de Déclaration des Objets (TDO)</h4>
                   <div class="table-responsive mb-3">
                     <table class="table table-custom table-sm table-bordered mb-0">
                       <thead>
                         <tr>
                           <th style="width: 20%;">Objet</th>
-                          <th style="width: 20%;">Type</th>
-                          <th style="width: 60%;">Rôle / Description</th>
+                          <th style="width: 25%;">Type</th>
+                          <th style="width: 55%;">Rôle / Description</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td><code>U</code></td>
                           <td>Réel</td>
-                          <td>Tension résiduelle mesurée aux bornes du condensateur (V)</td>
+                          <td>Tension résiduelle aux bornes du condensateur (V)</td>
                         </tr>
                         <tr>
                           <td><code>duree</code></td>
@@ -412,39 +756,179 @@ FIN</code></pre>
                     </table>
                   </div>
 
-                  <h4 class="h6 fw-bold mb-2">Traces d'exécution comparées</h4>
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2"><strong>Cas nominal (<i>U</i> = 100.0 V) :</strong>
-                      <br>• <i>t</i> = 0 : 100.0 ≥ 20.0 (Vrai) → <i>U</i> = 50.0, duree = 1.
-                      <br>• <i>t</i> = 1 : 50.0 ≥ 20.0 (Vrai) → <i>U</i> = 25.0, duree = 2.
-                      <br>• <i>t</i> = 2 : 25.0 ≥ 20.0 (Vrai) → <i>U</i> = 12.5, duree = 3.
-                      <br>• <i>t</i> = 3 : 12.5 ≥ 20.0 (Faux) → Arrêt de la boucle : <strong>12.5 V, 3 s</strong>.
-                    </li>
-                    <li class="mb-2"><strong>Cas 0 itération (<i>U</i> = 14.0 V) :</strong>
-                      <br>• Entrée dans la boucle : 14.0 ≥ 20.0 (Faux d'emblée).
-                      <br>• <strong>0 itération</strong> → Sortie directe immédiate : <strong>14.0 V, 0 s</strong>.
-                    </li>
-                  </ol>
-                </div>
-              </div>
-
-              <!-- Synthèse didactique -->
-              <div class="card card-custom border-start border-4 border-info mt-3 mb-0 shadow-sm">
-                <div class="card-body py-2 px-3 small">
-                  <div class="fw-bold text-info mb-1">
-                    💡 SYNTHÈSE DIDACTIQUE :
+                  <!-- Synthèse didactique -->
+                  <div class="card card-custom border-start border-4 border-info shadow-sm mb-3">
+                    <div class="card-body py-2 px-3 small">
+                      <div class="fw-bold text-info mb-1">
+                        💡 SYNTHÈSE DIDACTIQUE :
+                      </div>
+                      <div class="text-body">
+                        La structure <code>Tant Que</code> s'exécute de <strong>0 à <i>N</i> fois</strong>. Si la condition
+                        est fausse à l'entrée, le corps de la boucle est totalement ignoré (<strong>cas fondamental des 0 itération</strong>).
+                      </div>
+                    </div>
                   </div>
-                  <div class="text-body">
-                    La structure <code>Tant Que</code> s'exécute de <strong>0 à <i>N</i> fois</strong>. Si la condition
-                    est fausse à l'entrée, le corps de la boucle est totalement ignoré (cas fondamental des 0
-                    itération).
+                </div>
+
+                <div class="col-lg-7">
+                  <!-- Simulateur interactif de trace -->
+                  <div class="card card-custom border border-secondary border-opacity-25 mb-4 shadow-sm">
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-cpu text-info fs-5"></i>
+                        <span class="fw-semibold small">Simulateur d'exécution pas à pas</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-1">
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2" @click="resetSimAct2" title="Réinitialiser le simulateur" style="font-size: 0.78rem;">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i>Réinitialiser
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-3">
+                      <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted mb-1">Choisir ou saisir une tension initiale <i>U</i> (V) :</label>
+                        <div class="d-flex flex-wrap gap-2 mb-2">
+                          <button class="btn btn-sm btn-outline-primary" @click="runSimAct2(100.0)" :class="{ 'active': simAct2.inputU == 100.0 }">
+                            100.0 V (Cas nominal)
+                          </button>
+                          <button class="btn btn-sm btn-outline-warning" @click="runSimAct2(14.0)" :class="{ 'active': simAct2.inputU == 14.0 }">
+                            14.0 V (0 itération)
+                          </button>
+                          <button class="btn btn-sm btn-outline-info" @click="runSimAct2(20.0)" :class="{ 'active': simAct2.inputU == 20.0 }">
+                            20.0 V (Cas limite)
+                          </button>
+                          <button class="btn btn-sm btn-outline-secondary" @click="runSimAct2(50.0)" :class="{ 'active': simAct2.inputU == 50.0 }">
+                            50.0 V
+                          </button>
+                        </div>
+                        <div class="input-group input-group-sm" style="max-width: 320px;">
+                          <span class="input-group-text">U =</span>
+                          <input type="number" step="0.5" min="0" class="form-control" v-model.number="simAct2.inputU" placeholder="Tension (V)">
+                          <button class="btn btn-primary" @click="runSimAct2(simAct2.inputU)">
+                            <i class="bi bi-play-fill me-1"></i>Simuler
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Tableau des étapes de la trace simulée -->
+                      <div v-if="simAct2.steps.length > 0" class="table-responsive mb-2">
+                        <table class="table table-custom table-sm table-bordered text-center align-middle mb-0">
+                          <thead>
+                            <tr>
+                              <th style="width: 22%;">Étape</th>
+                              <th style="width: 28%;">Test : <i>U</i> &ge; 20.0 V ?</th>
+                              <th style="width: 28%;">Corps de boucle</th>
+                              <th style="width: 22%;">Durée</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr v-for="(st, sIdx) in simAct2.steps" :key="sIdx">
+                              <td class="fw-semibold">{{ st.etape }}</td>
+                              <td>
+                                <span class="badge" :class="st.condition.includes('Vrai') ? 'bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25' : 'bg-success bg-opacity-25 text-success border border-success border-opacity-25'">
+                                  {{ st.condition }}
+                                </span>
+                              </td>
+                              <td class="small font-mono text-start ps-2">{{ st.corps }}</td>
+                              <td><span class="badge bg-secondary rounded-pill">{{ st.duree }} s</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <!-- Résumé des sorties finales -->
+                      <div v-if="simAct2.completed" class="p-2 px-3 rounded-2 mt-2 bg-body-tertiary border border-secondary border-opacity-25 d-flex flex-wrap justify-content-between align-items-center gap-2 small">
+                        <div>
+                          <i class="bi bi-display text-success me-1"></i>
+                          <span><strong>Affichage final :</strong> Tension = <code class="text-info">{{ simAct2.finalU }} V</code>, Durée = <code class="text-warning">{{ simAct2.finalDuree }} s</code></span>
+                        </div>
+                        <div>
+                          <span class="badge" :class="simAct2.totalIterations === 0 ? 'bg-warning text-dark' : 'bg-info text-white'">
+                            {{ simAct2.totalIterations }} itération(s)
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- QCM Interactif Activité 2 -->
+                  <div class="card card-custom border border-secondary border-opacity-25 shadow-sm">
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-ui-checks text-warning fs-5"></i>
+                        <span class="fw-semibold small">Questions d'analyse du comportement (3 Questions)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge"
+                          :class="scoreAct2 === qcmAct2.length && totalReponduAct2 === qcmAct2.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1" v-if="scoreAct2 === qcmAct2.length && totalReponduAct2 === qcmAct2.length"></i>
+                          Score : {{ scoreAct2 }} / {{ qcmAct2.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct2" title="Réinitialiser">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i>Effacer
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar"
+                          :style="{ width: (totalReponduAct2 / qcmAct2.length * 100) + '%' }"
+                          :aria-valuenow="totalReponduAct2" aria-valuemin="0" :aria-valuemax="qcmAct2.length"></div>
+                      </div>
+
+                      <div v-for="(q, qIdx) in qcmAct2" :key="q.id" class="mb-3 pb-3"
+                        :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct2.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <div class="quiz-options-list mt-2">
+                          <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }"
+                            @click="selectReponseAct2(qIdx, optIdx)" role="button" tabindex="0"
+                            @keydown.enter="selectReponseAct2(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct2(qIdx, optIdx)">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                          :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0"
+                              :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1" v-html="q.explanation"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Notez le tableau de trace
-                pour les deux cas (nominal et 0 itération).
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Notez le tableau de trace pour les deux cas (nominal et 0 itération).
               </div>
             </div>
           </div>
@@ -466,10 +950,17 @@ FIN</code></pre>
               <span class="badge bg-secondary">15 min</span>
             </div>
             <div class="card-body">
-              <div class="row g-3">
-                <div class="col-md-5">
+              <div class="row g-4">
+                <div class="col-xl-5 col-12">
                   <h4 class="h6 fw-bold text-primary mb-2">Algorithme DivisionIterative</h4>
-                  <div class="code-container">
+                  <div class="code-container mb-3">
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Algorithme DivisionIterative</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeTraceAlgo, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-algorithm" v-pre>x ← 18
 cpt ← 0
 Tant que x > 2 Faire
@@ -479,65 +970,274 @@ Fin Tant que
 Écrire("x = ", x)
 Écrire("cpt = ", cpt)</code></pre>
                   </div>
+
+                  <div class="card card-custom border-start border-4 border-warning shadow-sm mb-3">
+                    <div class="card-body py-2 px-3 small">
+                      <div class="fw-bold text-warning mb-1">
+                        📌 RAPPEL OPÉRATEUR <code>Div</code> :
+                      </div>
+                      <div class="text-body">
+                        L'opérateur <code>Div</code> effectue la <strong>division entière</strong> (quotient entier sans les décimales).
+                        <br>• <code>18 Div 2 = 9</code>
+                        <br>• <code>9 Div 2 = 4</code> (et non 4.5)
+                        <br>• <code>4 Div 2 = 2</code>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="col-md-7">
-                  <h4 class="h6 fw-bold mb-2">Tableau de trace à compléter</h4>
-                  <div class="table-responsive my-2">
-                    <table class="table table-custom table-sm table-bordered text-center mb-0">
-                      <thead>
-                        <tr>
-                          <th style="width: 24%;">Itération</th>
-                          <th style="width: 28%;">Condition <code>x &gt; 2</code></th>
-                          <th style="width: 26%;"><code>x ← x Div 2</code></th>
-                          <th style="width: 22%;"><code>cpt</code></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Initial</td>
-                          <td>—</td>
-                          <td>18</td>
-                          <td>0</td>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>Vrai (18 &gt; 2)</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                          <td class="empty-cell">.....</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                <div class="col-xl-7 col-12">
+                  <!-- Tableau de trace interactif -->
+                  <div class="card card-custom border border-secondary border-opacity-25 mb-4 shadow-sm">
+                    <div class="card-header-custom d-flex justify-content-between align-items-center py-2 px-3">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-table text-warning"></i>
+                        <span class="fw-semibold small">Tableau de trace d'exécution à compléter</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-1">
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2" @click="resetTableAct3" title="Réinitialiser" style="font-size: 0.78rem;">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i>Effacer
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-3">
+                      <div class="table-responsive">
+                        <table class="table table-custom table-sm table-bordered text-center align-middle mb-0" style="min-width: 380px;">
+                          <thead>
+                            <tr>
+                              <th style="width: 22%;">Itération</th>
+                              <th style="width: 32%;">Condition <code>x &gt; 2</code></th>
+                              <th style="width: 24%;"><code>x ← x Div 2</code></th>
+                              <th style="width: 22%;"><code>cpt</code></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="fw-semibold">Initial</td>
+                              <td>—</td>
+                              <td>18</td>
+                              <td>0</td>
+                            </tr>
+                            <!-- Ligne Itération 1 -->
+                            <tr :class="{ 'table-success bg-opacity-10': tableAct3Verified && isRowAct3Correct(0), 'table-danger bg-opacity-10': tableAct3Verified && !isRowAct3Correct(0) }">
+                              <td class="fw-semibold">1</td>
+                              <td><span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25">Vrai (18 &gt; 2)</span></td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="x"
+                                  v-model.trim="tableAct3[0].x"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(0),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(0)
+                                  }">
+                              </td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="cpt"
+                                  v-model.trim="tableAct3[0].cpt"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(0),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(0)
+                                  }">
+                              </td>
+                            </tr>
+                            <!-- Ligne Itération 2 -->
+                            <tr :class="{ 'table-success bg-opacity-10': tableAct3Verified && isRowAct3Correct(1), 'table-danger bg-opacity-10': tableAct3Verified && !isRowAct3Correct(1) }">
+                              <td class="fw-semibold">2</td>
+                              <td>
+                                <select class="form-select form-select-sm table-select-sm"
+                                  v-model="tableAct3[1].cond"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(1),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(1)
+                                  }">
+                                  <option value="">-- Test condition --</option>
+                                  <option value="Vrai (9 > 2)">Vrai (9 &gt; 2)</option>
+                                  <option value="Faux (9 > 2)">Faux (9 &gt; 2)</option>
+                                </select>
+                              </td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="x"
+                                  v-model.trim="tableAct3[1].x"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(1),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(1)
+                                  }">
+                              </td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="cpt"
+                                  v-model.trim="tableAct3[1].cpt"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(1),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(1)
+                                  }">
+                              </td>
+                            </tr>
+                            <!-- Ligne Itération 3 -->
+                            <tr :class="{ 'table-success bg-opacity-10': tableAct3Verified && isRowAct3Correct(2), 'table-danger bg-opacity-10': tableAct3Verified && !isRowAct3Correct(2) }">
+                              <td class="fw-semibold">3</td>
+                              <td>
+                                <select class="form-select form-select-sm table-select-sm"
+                                  v-model="tableAct3[2].cond"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(2),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(2)
+                                  }">
+                                  <option value="">-- Test condition --</option>
+                                  <option value="Vrai (4 > 2)">Vrai (4 &gt; 2)</option>
+                                  <option value="Faux (4 > 2)">Faux (4 &gt; 2)</option>
+                                </select>
+                              </td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="x"
+                                  v-model.trim="tableAct3[2].x"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(2),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(2)
+                                  }">
+                              </td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="cpt"
+                                  v-model.trim="tableAct3[2].cpt"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(2),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(2)
+                                  }">
+                              </td>
+                            </tr>
+                            <!-- Ligne Itération 4 / Arrêt -->
+                            <tr :class="{ 'table-success bg-opacity-10': tableAct3Verified && isRowAct3Correct(3), 'table-danger bg-opacity-10': tableAct3Verified && !isRowAct3Correct(3) }">
+                              <td class="fw-semibold">4 (Arrêt)</td>
+                              <td>
+                                <select class="form-select form-select-sm table-select-sm"
+                                  v-model="tableAct3[3].cond"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(3),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(3)
+                                  }">
+                                  <option value="">-- Test condition --</option>
+                                  <option value="Vrai (2 > 2)">Vrai (2 &gt; 2)</option>
+                                  <option value="Faux (2 > 2)">Faux (2 &gt; 2)</option>
+                                </select>
+                              </td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="2 (inchangé)"
+                                  v-model.trim="tableAct3[3].x"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(3),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(3)
+                                  }">
+                              </td>
+                              <td>
+                                <input type="text" class="form-control form-control-sm table-input-sm"
+                                  placeholder="3 (inchangé)"
+                                  v-model.trim="tableAct3[3].cpt"
+                                  :class="{
+                                    'is-valid': tableAct3Verified && isRowAct3Correct(3),
+                                    'is-invalid': tableAct3Verified && !isRowAct3Correct(3)
+                                  }">
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="d-flex justify-content-between align-items-center mt-3">
+                        <button class="btn btn-sm btn-primary py-1 px-3" @click="verifierTableAct3">
+                          <i class="bi bi-check2-circle me-1"></i>Vérifier la trace
+                        </button>
+                        <span v-if="tableAct3Verified" class="small fw-semibold"
+                          :class="isRowAct3Correct(0) && isRowAct3Correct(1) && isRowAct3Correct(2) && isRowAct3Correct(3) ? 'text-success' : 'text-warning'">
+                          <i class="bi" :class="isRowAct3Correct(0) && isRowAct3Correct(1) && isRowAct3Correct(2) && isRowAct3Correct(3) ? 'bi-check-circle-fill me-1' : 'bi-exclamation-circle me-1'"></i>
+                          {{ isRowAct3Correct(0) && isRowAct3Correct(1) && isRowAct3Correct(2) && isRowAct3Correct(3) ? 'Tracé entièrement validé !' : 'Valeurs à corriger' }}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <ol class="small mb-0 ps-3 mt-2">
-                    <li class="mb-1">Quelles sont les valeurs finales affichées pour <code>x</code> et <code>cpt</code>
-                      ?</li>
-                    <li>Pour quelle valeur précise de <i>x</i> la condition de la boucle devient-elle fausse ?</li>
-                  </ol>
+
+                  <!-- Questions d'analyse interactives -->
+                  <div class="card card-custom border border-secondary border-opacity-25 shadow-sm">
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-ui-checks text-warning fs-5"></i>
+                        <span class="fw-semibold small">Questions d'analyse (2 Questions)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge"
+                          :class="scoreAct3 === qcmAct3.length && totalReponduAct3 === qcmAct3.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1" v-if="scoreAct3 === qcmAct3.length && totalReponduAct3 === qcmAct3.length"></i>
+                          Score : {{ scoreAct3 }} / {{ qcmAct3.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct3" title="Réinitialiser">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i>Effacer
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar"
+                          :style="{ width: (totalReponduAct3 / qcmAct3.length * 100) + '%' }"
+                          :aria-valuenow="totalReponduAct3" aria-valuemin="0" :aria-valuemax="qcmAct3.length"></div>
+                      </div>
+
+                      <div v-for="(q, qIdx) in qcmAct3" :key="q.id" class="mb-3 pb-3"
+                        :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct3.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <div class="quiz-options-list mt-2">
+                          <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }"
+                            @click="selectReponseAct3(qIdx, optIdx)" role="button" tabindex="0"
+                            @keydown.enter="selectReponseAct3(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct3(qIdx, optIdx)">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                          :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0"
+                              :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1" v-html="q.explanation"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Remplissez le tableau de
-                trace et répondez aux deux questions d'analyse.
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Remplissez le tableau de trace validé et notez les réponses d'analyse.
               </div>
             </div>
           </div>
@@ -557,9 +1257,17 @@ Fin Tant que
                 Si la température dépasse 25.0 °C, le programme ci-dessous boucle indéfiniment sans s'arrêter.
               </p>
 
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <div class="code-container">
+              <div class="row g-4">
+                <div class="col-lg-5">
+                  <h4 class="h6 fw-bold text-primary mb-2">Programme Python contenant l'anomalie</h4>
+                  <div class="code-container mb-3">
+                    <div class="code-header d-flex justify-content-between align-items-center">
+                      <span>Script Python à déboguer</span>
+                      <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                        @click="copyCode(codeDebogagePython, $event)" title="Copier le code">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
                     <pre><code class="language-python" v-pre>temperature = float(input("Température (°C) : "))
 cycles = 0
 
@@ -570,24 +1278,137 @@ while temperature > 25.0:
 
 print("Fin : ", temperature, "°C en ", cycles, "cycle(s).")</code></pre>
                   </div>
+
+                  <!-- Question 4 sur cahier avec solution repliable -->
+                  <div class="card card-custom border border-secondary border-opacity-25 shadow-sm mb-3">
+                    <div class="card-header-custom d-flex justify-content-between align-items-center py-2 px-3">
+                      <span class="small fw-semibold text-warning"><i class="bi bi-pencil-square me-1"></i> Question 4 (Sur cahier)</span>
+                      <button class="btn btn-sm btn-outline-warning py-0 px-2" @click="showSolutionAct4 = !showSolutionAct4" style="font-size: 0.78rem;">
+                        <i class="bi" :class="showSolutionAct4 ? 'bi-eye-slash me-1' : 'bi-lightbulb me-1'"></i>
+                        {{ showSolutionAct4 ? 'Masquer la correction' : 'Consulter le code corrigé' }}
+                      </button>
+                    </div>
+                    <div class="card-body p-3 small">
+                      <p class="mb-2 text-muted">
+                        <strong>Travail à rédiger sur cahier :</strong> Écrivez le script Python corrigé en intégrant l'instruction de décrémentation identifiée à la question 2.
+                      </p>
+                      <div v-if="showSolutionAct4" class="mt-2">
+                        <div class="code-container">
+                          <div class="code-header d-flex justify-content-between align-items-center">
+                            <span>Script Python corrigé</span>
+                            <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                              @click="copyCode(codeDebogagePythonCorrige, $event)" title="Copier le code">
+                              <i class="bi bi-clipboard"></i>
+                            </button>
+                          </div>
+                          <pre><code class="language-python" v-pre>temperature = float(input("Température (°C) : "))
+cycles = 0
+
+while temperature > 25.0:
+    print(f"Cycle {cycles} : Refroidissement...")
+    cycles += 1
+    temperature -= 1.0  # Correction : décrémentation de la température
+
+print(f"Fin : {temperature:.1f} °C en {cycles} cycle(s).")</code></pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="col-md-6">
-                  <ol class="small mb-0 ps-3">
-                    <li class="mb-2">Pourquoi ce script provoque-t-il une boucle infinie si
-                      <code>temperature = 28.5</code> ?
-                    </li>
-                    <li class="mb-2">Quelle instruction ajouter dans la boucle pour décrémenter <code>temperature</code>
-                      ?</li>
-                    <li class="mb-2">Que produit une saisie initiale de 21.0 °C ?</li>
-                    <li>Écrire le script Python corrigé sur votre cahier.</li>
-                  </ol>
+                <div class="col-lg-7">
+                  <!-- Questions interactives 1, 2 et 3 -->
+                  <div class="card card-custom border border-secondary border-opacity-25 shadow-sm">
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-bug-fill text-warning fs-5"></i>
+                        <span class="fw-semibold small">Questions interactives de diagnostic (Q1, Q2, Q3)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge"
+                          :class="scoreAct4 === qcmAct4.length && totalReponduAct4 === qcmAct4.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1" v-if="scoreAct4 === qcmAct4.length && totalReponduAct4 === qcmAct4.length"></i>
+                          Score : {{ scoreAct4 }} / {{ qcmAct4.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct4" title="Réinitialiser">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i>Effacer
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-info" role="progressbar"
+                          :style="{ width: (totalReponduAct4 / qcmAct4.length * 100) + '%' }"
+                          :aria-valuenow="totalReponduAct4" aria-valuemin="0" :aria-valuemax="qcmAct4.length"></div>
+                      </div>
+
+                      <div v-for="(q, qIdx) in qcmAct4" :key="q.id" class="mb-3 pb-3"
+                        :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct4.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <div class="quiz-options-list mt-2">
+                          <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }"
+                            @click="selectReponseAct4(qIdx, optIdx)" role="button" tabindex="0"
+                            @keydown.enter="selectReponseAct4(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct4(qIdx, optIdx)">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                          :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0"
+                              :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1" v-html="q.explanation"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div v-if="totalReponduAct4 === qcmAct4.length" class="mt-3 p-3 rounded-3 text-center"
+                        :class="scoreAct4 === qcmAct4.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                        <div v-if="scoreAct4 === qcmAct4.length">
+                          <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                          <strong class="text-success">Bravo ! 3 / 3 réponses exactes</strong>
+                          <p class="small mb-0 text-muted mt-1">Vous avez identifié l'origine de l'anomalie et la solution de correction.</p>
+                        </div>
+                        <div v-else>
+                          <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                          <strong class="text-info">Score : {{ scoreAct4 }} / {{ qcmAct4.length }}</strong>
+                          <p class="small mb-0 text-muted mt-1">Consultez les explications pour consolider la notion de variable de contrôle.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="cahier-zone mt-3">
-                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Notez l'analyse du bogue et
-                recopiez le code Python dûment corrigé.
+                <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Notez l'analyse du bogue et recopiez le code Python dûment corrigé (Question 4).
               </div>
             </div>
           </div>
@@ -654,20 +1475,181 @@ print("Fin : ", temperature, "°C en ", cycles, "cycle(s).")</code></pre>
                 1.018). Le locataire résilie le bail dès que le loyer dépasse 800 DT.
               </p>
 
-              <ol class="small mb-3 ps-3">
-                <li class="mb-2">Identifier la condition de continuation de la boucle <code>Tant Que</code> et les
-                  variables de calcul.</li>
-                <li class="mb-2">Écrire l'algorithme <code>EvolutionLoyer</code> calculant le nombre d'années écoulées
-                  avant résiliation, le loyer mensuel final et la somme totale cumulée des loyers.</li>
-                <li class="mb-2">Dresser le Tableau de Déclaration des Objets (TDO).</li>
-                <li><strong>Validation sur machine :</strong> En Python, programmer et vérifier qu'au bout de <strong>12
-                    ans</strong> : le loyer atteint <strong>804.83 DT</strong> (&gt; 800 DT) et le total cumulé des
-                  loyers est de <strong>104 532 DT</strong>.</li>
-              </ol>
+              <div class="row g-4">
+                <div class="col-xl-6 col-12">
+                  <!-- Question 1 Interactive -->
+                  <div class="card card-custom border border-secondary border-opacity-25 h-100 shadow-sm">
+                    <div class="card-header-custom d-flex flex-wrap justify-content-between align-items-center py-2 px-3 gap-2">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-ui-checks text-success fs-5"></i>
+                        <span class="fw-semibold small">Question 1 Interactive — Condition &amp; Variables</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge"
+                          :class="scoreAct6 === qcmAct6.length && totalReponduAct6 === qcmAct6.length ? 'bg-success text-white' : 'badge-info-custom'">
+                          <i class="bi bi-trophy me-1" v-if="scoreAct6 === qcmAct6.length && totalReponduAct6 === qcmAct6.length"></i>
+                          Score : {{ scoreAct6 }} / {{ qcmAct6.length }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2 small" @click="resetQcmAct6" title="Réinitialiser">
+                          <i class="bi bi-arrow-counterclockwise me-1"></i>Effacer
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-3">
+                      <!-- Progress bar -->
+                      <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar bg-success" role="progressbar"
+                          :style="{ width: (totalReponduAct6 / qcmAct6.length * 100) + '%' }"
+                          :aria-valuenow="totalReponduAct6" aria-valuemin="0" :aria-valuemax="qcmAct6.length"></div>
+                      </div>
+
+                      <div v-for="(q, qIdx) in qcmAct6" :key="q.id" class="mb-3 pb-3"
+                        :class="{ 'border-bottom border-secondary border-opacity-25': qIdx < qcmAct6.length - 1 }">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                          <span class="badge bg-secondary rounded-pill px-2 py-1 mt-1">Q{{ q.id }}</span>
+                          <span class="small fw-semibold text-heading" v-html="q.question"></span>
+                        </div>
+
+                        <div class="quiz-options-list mt-2">
+                          <div v-for="(opt, optIdx) in q.options" :key="optIdx"
+                            class="quiz-option py-2 px-3 mb-2 small d-flex align-items-center justify-content-between rounded-2"
+                            :class="{
+                              'selected-correct': q.selected !== null && optIdx === q.correct,
+                              'selected-incorrect': q.selected !== null && q.selected === optIdx && optIdx !== q.correct
+                            }"
+                            @click="selectReponseAct6(qIdx, optIdx)" role="button" tabindex="0"
+                            @keydown.enter="selectReponseAct6(qIdx, optIdx)"
+                            @keydown.space.prevent="selectReponseAct6(qIdx, optIdx)">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge-qcm-letter">{{ String.fromCharCode(65 + optIdx) }}</span>
+                              <span v-html="opt"></span>
+                            </div>
+                            <div class="ms-2 flex-shrink-0">
+                              <i v-if="q.selected === null" class="bi bi-circle text-muted"></i>
+                              <i v-else-if="optIdx === q.correct" class="bi bi-check-circle-fill text-success fs-6"></i>
+                              <i v-else-if="q.selected === optIdx" class="bi bi-x-circle-fill text-danger fs-6"></i>
+                              <i v-else class="bi bi-circle text-muted opacity-25"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div v-if="q.selected !== null" class="small mt-2 p-2 rounded-3"
+                          :class="q.selected === q.correct ? 'bg-success bg-opacity-10 border border-success border-opacity-25' : 'bg-danger bg-opacity-10 border border-danger border-opacity-25'">
+                          <div class="d-flex align-items-start gap-2">
+                            <i class="bi fs-6 flex-shrink-0"
+                              :class="q.selected === q.correct ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'"></i>
+                            <div>
+                              <strong :class="q.selected === q.correct ? 'text-success' : 'text-danger'">
+                                {{ q.selected === q.correct ? 'Exact !' : 'Incorrect.' }}
+                              </strong>
+                              <span class="text-body ms-1" v-html="q.explanation"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div v-if="totalReponduAct6 === qcmAct6.length" class="mt-3 p-3 rounded-3 text-center"
+                        :class="scoreAct6 === qcmAct6.length ? 'bg-success bg-opacity-10 border border-success border-opacity-50' : 'bg-info bg-opacity-10 border border-info border-opacity-50'">
+                        <div v-if="scoreAct6 === qcmAct6.length">
+                          <i class="bi bi-trophy-fill text-success fs-4 d-block mb-1"></i>
+                          <strong class="text-success">Parfait ! Modélisation validée</strong>
+                          <p class="small mb-0 text-muted mt-1">Vous avez identifié avec précision la condition et les variables nécessaires.</p>
+                        </div>
+                        <div v-else>
+                          <i class="bi bi-lightbulb-fill text-info fs-4 d-block mb-1"></i>
+                          <strong class="text-info">Score : {{ scoreAct6 }} / {{ qcmAct6.length }}</strong>
+                          <p class="small mb-0 text-muted mt-1">Lisez les justifications pour ajuster votre analyse.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-12">
+                  <!-- Travail sur cahier & sur machine (Questions 2, 3, 4) -->
+                  <div class="card card-custom border border-secondary border-opacity-25 h-100 shadow-sm">
+                    <div class="card-header-custom d-flex justify-content-between align-items-center py-2 px-3">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-journal-text text-primary"></i>
+                        <span class="fw-semibold small">Questions 2, 3 &amp; 4 — Cahier &amp; Machine</span>
+                      </div>
+                      <button class="btn btn-sm btn-outline-info py-0 px-2" @click="showSolutionAct6 = !showSolutionAct6" style="font-size: 0.78rem;">
+                        <i class="bi" :class="showSolutionAct6 ? 'bi-eye-slash me-1' : 'bi-lightbulb me-1'"></i>
+                        {{ showSolutionAct6 ? 'Masquer la solution' : 'Consulter la solution complète' }}
+                      </button>
+                    </div>
+                    <div class="card-body p-3">
+                      <ol class="small mb-3 ps-3" start="2">
+                        <li class="mb-2">
+                          <strong>Algorithme <code>EvolutionLoyer</code> :</strong> Écrire l'algorithme complet calculant le nombre d'années écoulées avant résiliation, le loyer mensuel final et la somme totale cumulée des loyers.
+                        </li>
+                        <li class="mb-2">
+                          <strong>Tableau de Déclaration des Objets :</strong> Dresser le TDO associé.
+                        </li>
+                        <li class="mb-2">
+                          <strong>Validation sur machine :</strong> En Python, programmer et vérifier qu'au bout de <strong>12 ans</strong> : le loyer atteint <strong>804.83 DT</strong> (&gt; 800 DT) et le total cumulé des loyers est de <strong>104 532 DT</strong>.
+                        </li>
+                      </ol>
+
+                      <!-- Solution repliable pour Q2-Q4 -->
+                      <div v-if="showSolutionAct6" class="mt-3 pt-3 border-top border-secondary border-opacity-25">
+                        <h5 class="h6 fw-bold text-primary mb-2">Algorithme complet &amp; TDO</h5>
+                        <div class="code-container mb-3">
+                          <div class="code-header d-flex justify-content-between align-items-center">
+                            <span>Algorithme EvolutionLoyer</span>
+                            <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                              @click="copyCode(codeEvolutionLoyerAlgo, $event)" title="Copier le code">
+                              <i class="bi bi-clipboard"></i>
+                            </button>
+                          </div>
+                          <pre><code class="language-algorithm" v-pre>ALGORITHME EvolutionLoyer
+DEBUT
+  loyer ← 650.0
+  annee ← 0
+  total ← 0.0
+  Tant que (loyer ≤ 800.0) Faire
+    total ← total + (12 * loyer)
+    loyer ← loyer * 1.018
+    annee ← annee + 1
+  Fin Tant que
+  Écrire("Nombre d'années : ", annee)
+  Écrire("Loyer final : ", loyer, " DT")
+  Écrire("Total cumulé : ", total, " DT")
+FIN</code></pre>
+                        </div>
+
+                        <h5 class="h6 fw-bold text-success mb-2">Script Python de validation</h5>
+                        <div class="code-container">
+                          <div class="code-header d-flex justify-content-between align-items-center">
+                            <span>Script Python</span>
+                            <button class="btn btn-sm btn-link text-decoration-none text-muted p-0"
+                              @click="copyCode(codeEvolutionLoyerPython, $event)" title="Copier le code">
+                              <i class="bi bi-clipboard"></i>
+                            </button>
+                          </div>
+                          <pre><code class="language-python" v-pre>loyer = 650.0
+annee = 0
+total = 0.0
+
+while loyer <= 800.0:
+    total += 12 * loyer
+    loyer *= 1.018
+    annee += 1
+
+print(f"Années écoulées : {annee} ans")
+print(f"Loyer mensuel final : {loyer:.2f} DT")
+print(f"Total cumulé des loyers : {total:.0f} DT")</code></pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div class="cahier-zone mt-3">
                 <i class="bi bi-pencil-square me-1"></i> <strong>Sur votre cahier :</strong> Rédigez l'algorithme
-                <code>EvolutionLoyer</code>, son TDO et validez les calculs.
+                <code>EvolutionLoyer</code>, son TDO et validez les calculs sur machine.
               </div>
             </div>
           </div>
