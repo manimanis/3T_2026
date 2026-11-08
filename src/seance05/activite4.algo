@@ -1,0 +1,59 @@
+Algorithme Menu_didactique
+Début
+  Répéter
+    Répéter
+      Ecrire("=========================================")
+      Ecrire("BANC D'ESSAI ÉLECTRIQUE (LOI D'OHM)   ")
+      Ecrire("==========================================")
+      Ecrire("1 : Lancer le test interactif (U = R * I)")
+      Ecrire("2 : Arbitrage de priorité réseau (Duel)")
+      Ecrire("3 : Déstockage sécurisé (Jeu de Nim)")
+      Ecrire("0 : Quitter l'application")
+      Ecrire("------------------------------------------")
+
+      Ecrire("Votre Choix ? ")
+      Lire(choix)
+    Jusqu'à 0 ≤ choix ≤ 3
+
+    
+    Si choix = 1 Alors
+      //--- Choix 1 ---
+      Ecrire("Non implémenté !")
+
+    Sinon Si choix = 2 Alors
+      //--- Choix 2 ---
+      n1 ← 0
+      n2 ← 0
+      manche ← 0
+      Tant Que n1 ≠ 10 et n2 ≠ 10 Faire
+        manche ← manche + 1
+        r1 ← Alea(1, 6)
+        r2 ← Alea(1, 6)
+        Ecrire("Manche", manche)
+        Ecrire("Routeur 1 :", r1, "- Routeur 2 :", r2)
+        Si r1 > r2 Alors
+          n1 ← n1 + 1
+          Ecrire("Routeur 1 gagne")
+        sinon si r1 < r2 Alors
+          n2 ← n2 + 1
+          Ecrire("Routeur 2 gagne")
+        Fin Si
+        Ecrire("n1 =", n1, "- n2 =", n2)
+      Fin Tant Que
+      Si n1 > n2 Alors
+        Ecrire("Le routeur 1 remporte la priorité")
+      Sinon
+        Ecrire("Le routeur 2 remporte la priorité")
+      Fin Si
+      
+    Sinon Si choix = 3 Alors
+      //--- Choix 3 ---
+      Ecrire("Non implémenté !")
+    Fin Si
+  Jusqu'à choix = 0
+Fin
+
+TDO
+Objet : Type/Nature
+choix, r, i, essai, u, n1, n2, manche, r1, r2, comp, j, nbc : entier
+

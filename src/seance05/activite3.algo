@@ -1,0 +1,53 @@
+Algorithme Menu_didactique
+Début
+  Répéter
+    Répéter
+      Ecrire("=========================================")
+      Ecrire("BANC D'ESSAI ÉLECTRIQUE (LOI D'OHM)   ")
+      Ecrire("==========================================")
+      Ecrire("1 : Lancer le test interactif (U = R * I)")
+      Ecrire("2 : Arbitrage de priorité réseau (Duel)")
+      Ecrire("3 : Déstockage sécurisé (Jeu de Nim)")
+      Ecrire("0 : Quitter l'application")
+      Ecrire("------------------------------------------")
+
+      Ecrire("Votre Choix ? ")
+      Lire(choix)
+    Jusqu'à 0 ≤ choix ≤ 3
+
+    
+    Si choix = 1 Alors
+      //--- Choix 1 ---
+      r ← Alea(1, 20)
+      i ← Alea(1, 10)
+      essai ← 0
+      Répéter
+        essai ← essai + 1
+        Ecrire("Essai n°", essai)
+        Ecrire("R =", r, "Ω, I =", i, "A - Calculer le voltage U = R * I")
+        Lire(u)
+        Si u ≠ r * i Alors
+          Ecrire("Incorrect !")
+        Fin Si
+      Jusqu'à essai = 3 ou r * i = u
+      Si u = r * i Alors
+        Ecrire("Correct !")
+      Sinon
+        Ecrire("La bonne réponse est :", r * i, "V")
+      Fin Si
+
+    Sinon Si choix = 2 Alors
+      //--- Choix 2 ---
+      Ecrire("Non implémenté !")
+      
+    Sinon Si choix = 3 Alors
+      //--- Choix 3 ---
+      Ecrire("Non implémenté !")
+    Fin Si
+  Jusqu'à choix = 0
+Fin
+
+TDO
+Objet : Type/Nature
+choix, r, i, essai, u, n1, n2, manche, r1, r2, comp, j, nbc : entier
+

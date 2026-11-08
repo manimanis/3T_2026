@@ -1,0 +1,51 @@
+Algorithme Menu_didactique
+Début
+  Répéter
+    Répéter
+      Ecrire("=========================================")
+      Ecrire("BANC D'ESSAI ÉLECTRIQUE (LOI D'OHM)   ")
+      Ecrire("==========================================")
+      Ecrire("1 : Lancer le test interactif (U = R * I)")
+      Ecrire("2 : Arbitrage de priorité réseau (Duel)")
+      Ecrire("3 : Déstockage sécurisé (Jeu de Nim)")
+      Ecrire("0 : Quitter l'application")
+      Ecrire("------------------------------------------")
+
+      Ecrire("Votre Choix ? ")
+      Lire(choix)
+    Jusqu'à 0 ≤ choix ≤ 3
+
+    
+    Si choix = 1 Alors
+      //--- Choix 1 ---
+      Ecrire("Non implémenté !")
+
+    Sinon Si choix = 2 Alors
+      //--- Choix 2 ---
+      Ecrire("Non implémenté !")
+      
+    Sinon Si choix = 3 Alors
+      //--- Choix 3 ---
+      comp ← 16
+      j ← 0
+      Répéter
+        Ecrire("Nombre de composants :", comp)
+        Ecrire("Joueur ", j+1)
+        Répéter
+          Ecrire("Nombre à retirer ? ")
+          Lire(nbc)
+        Jusqu'à 1 ≤ nbc ≤ (3 + comp - abs(3 - comp)) div 2
+        comp ← comp - nbc
+        Si comp > 0 Alors
+          j ← (j + 1) mod 2
+        Fin Si
+      Jusqu'à comp = 0
+      Ecrire("Le joueur", j+1, "a gagné")
+    Fin Si
+  Jusqu'à choix = 0
+Fin
+
+TDO
+Objet : Type/Nature
+choix, r, i, essai, u, n1, n2, manche, r1, r2, comp, j, nbc : entier
+
