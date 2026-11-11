@@ -25,7 +25,7 @@ createApp({
         { nom: "Chr(code)", description: "Retourne le caractère correspondant au code ASCII spécifié", exemple: "Chr(65) = 'A'" }
       ],
 
-      codeIndexationAlgo: `// En algorithmique officielle 2024-2025 :
+      codeIndexationAlgo: `// En algorithmique :
 // Une chaîne Ch est indexée de 0 à Long(Ch) - 1.
 Ch ← "SCIENCE"
 Afficher(Long(Ch))        // 7
@@ -46,11 +46,11 @@ print(ch[2:4])       # "IE" (le 4 est exclu, équivalent à Sous_chaine(ch, 2, 4
           id: 1,
           question: "Quelle est la valeur renvoyée par l'expression <code>Long(Ch)</code> pour <code>Ch ← \"SCIENCE\"</code> ?",
           options: [
-            "<strong>6</strong> (confusion avec l'indice du dernier caractère <code>Long(Ch) - 1</code>)",
-            "<strong>7</strong> (nombre total de caractères composant le mot <code>\"SCIENCE\"</code>)",
-            "<strong>8</strong> (longueur incluant un caractère de fin de chaîne)"
+            "<strong>7</strong>",
+            "<strong>6</strong>",
+            "<strong>8</strong>"
           ],
-          correct: 1,
+          correct: 0,
           selected: null,
           explanation: "La fonction <code>Long(Ch)</code> renvoie le nombre exact de caractères. Le mot <code>\"SCIENCE\"</code> est composé de 7 lettres."
         },
@@ -58,23 +58,23 @@ print(ch[2:4])       # "IE" (le 4 est exclu, équivalent à Sous_chaine(ch, 2, 4
           id: 2,
           question: "Quels sont les caractères obtenus par <code>Ch[0]</code> et <code>Ch[Long(Ch) - 1]</code> ?",
           options: [
-            "<code>'S'</code> et <code>'E'</code> (premier et dernier caractère avec l'indexation base 0)",
-            "<code>'C'</code> et <code>'E'</code> (erreur de repérage en commençant à l'indice 1)",
-            "<code>'S'</code> et <code>'C'</code> (premier et avant-dernier caractère)"
+            "<code>'C'</code> et <code>'E'</code>",
+            "<code>'S'</code> et <code>'E'</code>",
+            "<code>'S'</code> et <code>'C'</code>"
           ],
-          correct: 0,
+          correct: 1,
           selected: null,
-          explanation: "En indexation officielle en base 0, le premier caractère est accessible à l'indice <code>0</code> (<code>'S'</code>) et le dernier à l'indice <code>Long(Ch) - 1 = 6</code> (<code>'E'</code>)."
+          explanation: "En indexant à partir de 0, le premier caractère est à l'indice <code>0</code> (<code>'S'</code>) et le dernier à l'indice <code>Long(Ch) - 1 = 6</code> (<code>'E'</code>)."
         },
         {
           id: 3,
           question: "Quelle est la sous-chaîne retournée par l'instruction <code>Sous_chaine(Ch, 2, 4)</code> ?",
           options: [
-            "<code>\"IE\"</code> (uniquement les deux caractères situés aux positions 2 et 3, indice 4 exclu)",
-            "<code>\"IEN\"</code> (confusion fréquente en incluant l'indice de fin 4)",
-            "<code>\"SC\"</code> (extraction des indices 0 et 1)"
+            "<code>\"IEN\"</code>",
+            "<code>\"SC\"</code>",
+            "<code>\"IE\"</code>"
           ],
-          correct: 0,
+          correct: 2,
           selected: null,
           explanation: "En algorithmique officielle (conventions 2024-2025), <code>Sous_chaine(Ch, deb, fin)</code> extrait les caractères de l'indice <code>deb</code> à l'indice <code>fin</code> (<strong>fin exclue</strong>). Pour <code>Sous_chaine(\"SCIENCE\", 2, 4)</code>, on extrait uniquement les deux caractères situés aux positions 2 (<code>'I'</code>) et 3 (<code>'E'</code>) $\\implies$ <code>\"IE\"</code>."
         },
@@ -82,13 +82,13 @@ print(ch[2:4])       # "IE" (le 4 est exclu, équivalent à Sous_chaine(ch, 2, 4
           id: 4,
           question: "Que renvoient respectivement les appels <code>Pos(\"IEN\", Ch)</code> et <code>Pos(\"PHY\", Ch)</code> ?",
           options: [
-            "<code>2</code> et <code>-1</code> (indice de la 1<sup>ère</sup> occurrence, et -1 si motif absent)",
-            "<code>3</code> et <code>0</code> (indice en base 1, et 0 en cas d'absence)",
-            "<code>2</code> et <code>Faux</code> (indice positionnel, et résultat booléen si absent)"
+            "<code>3</code> et <code>0</code>",
+            "<code>2</code> et <code>-1</code>",
+            "<code>2</code> et <code>Faux</code>"
           ],
-          correct: 0,
+          correct: 1,
           selected: null,
-          explanation: "<code>Pos(\"IEN\", Ch)</code> renvoie <code>2</code> (l'indice base 0 de début du motif dans <code>\"SCIENCE\"</code>). Si le motif est introuvable (ex: <code>\"PHY\"</code>), <code>Pos</code> renvoie conventionnellement <code>-1</code>."
+          explanation: "<code>Pos(\"IEN\", Ch)</code> renvoie <code>2</code>. Si le motif est introuvable (ex: <code>\"PHY\"</code>), <code>Pos</code> renvoie <code>-1</code>."
         }
       ],
 
@@ -96,25 +96,25 @@ print(ch[2:4])       # "IE" (le 4 est exclu, équivalent à Sous_chaine(ch, 2, 4
       qcmAct2: [
         {
           id: 1,
-          question: "Quelle condition booléenne permet de vérifier qu'une variable caractère <code>c</code> est une lettre alphabétique majuscule ?",
+          question: "Quelle est la condition qui permet de vérifier si le caractère <code>c</code> est une lettre alphabétique majuscule ?",
           options: [
-            "<code>(Ord(c) &gt;= 65) Et (Ord(c) &lt;= 90)</code> (ou <code>(c &gt;= 'A') Et (c &lt;= 'Z')</code>)",
-            "<code>(Ord(c) &gt;= 97) Et (Ord(c) &lt;= 122)</code> (confusion avec la plage des minuscules)",
-            "<code>(Ord(c) &gt;= 48) Et (Ord(c) &lt;= 57)</code> (confusion avec la plage des chiffres)"
+            "<code>('a' &le; c &le; 'z')</code> ou <code>(97 &le; Ord(c) &le; 122)</code>",
+            "<code>('A' &le; c &le; 'Z')</code> ou <code>(65 &le; Ord(c) &le; 90)</code>",
+            "<code>('0' &le; c &le; '9')</code> ou <code>(48 &le; Ord(c) &le; 57)</code>"
           ],
-          correct: 0,
+          correct: 1,
           selected: null,
-          explanation: "Dans la table ASCII, les 26 lettres majuscules occupent la plage continue de 65 (<code>'A'</code>) à 90 (<code>'Z'</code>). La condition s'écrit <code>(Ord(c) &gt;= 65) Et (Ord(c) &lt;= 90)</code> ou <code>(c &gt;= 'A') Et (c &lt;= 'Z')</code>."
+          explanation: "Dans la table ASCII, les 26 lettres majuscules occupent la plage continue de 65 (<code>'A'</code>) à 90 (<code>'Z'</code>). La condition s'écrit <code>('A' &le; c &le; 'Z')</code> ou <code>(65 &le; Ord(c) &le; 90)</code>."
         },
         {
           id: 2,
           question: "Déterminer le résultat renvoyé par l'expression <code>Chr(Ord('A') + 3)</code> :",
           options: [
-            "<code>'D'</code> (décalage César : <code>Ord('A') + 3 = 65 + 3 = 68 $\\implies$ Chr(68) = 'D'</code>)",
-            "<code>'C'</code> (décalage de 2 positions au lieu de 3)",
-            "<code>68</code> (confusion entre la valeur numérique du code et le caractère renvoyé par <code>Chr</code>)"
+            "<code>'C'</code>",
+            "<code>68</code>",
+            "<code>'D'</code>"
           ],
-          correct: 0,
+          correct: 2,
           selected: null,
           explanation: "<code>Ord('A')</code> renvoie 65. L'expression <code>Ord('A') + 3</code> calcule <code>65 + 3 = 68</code>. La fonction <code>Chr(68)</code> renvoie le caractère de code 68, soit <code>'D'</code>."
         },
@@ -122,11 +122,11 @@ print(ch[2:4])       # "IE" (le 4 est exclu, équivalent à Sous_chaine(ch, 2, 4
           id: 3,
           question: "Quelle formule permet de convertir un caractère minuscule $c \\in ['a'; 'z']$ en majuscule à l'aide de <code>Ord</code> et <code>Chr</code> ?",
           options: [
-            "<code>Chr(Ord(c) - 32)</code> (écart fixe : <code>Ord('a') - 32 = 97 - 32 = 65 = Ord('A')</code>)",
-            "<code>Chr(Ord(c) + 32)</code> (sens inverse : transforme une majuscule en minuscule)",
-            "<code>Ord(c) - 32</code> (renvoie un code entier au lieu d'un type Caractère)"
+            "<code>Chr(Ord(c) + 32)</code>",
+            "<code>Chr(Ord(c) - 32)</code>",
+            "<code>Ord(c) - 32</code>"
           ],
-          correct: 0,
+          correct: 1,
           selected: null,
           explanation: "L'écart entre une lettre minuscule et sa majuscule est constant dans la table ASCII : <code>Ord('a') - Ord('A') = 97 - 65 = 32</code>. Pour obtenir le caractère majuscule, on soustrait 32 avant d'appliquer <code>Chr</code> : <code>Chr(Ord(c) - 32)</code>."
         }
@@ -136,13 +136,13 @@ print(ch[2:4])       # "IE" (le 4 est exclu, équivalent à Sous_chaine(ch, 2, 4
       qcmAct4: [
         {
           id: 1,
-          question: "Pourquoi suffit-il de comparer le caractère à l'indice $i$ avec son symétrique à l'indice $\\text{Long}(Ch) - 1 - i$ pour $i$ allant de $0$ jusqu'à $\\text{Long}(Ch) \\text{ Div } 2$ ?",
+          question: "Pourquoi suffit-il de comparer le caractère à l'indice <code>i</code> avec son symétrique à l'indice <code>Long(Ch) - 1 - i</code> pour <code>i</code> allant de <code>0</code> jusqu'à <code>Long(Ch) div 2</code> ?",
           options: [
-            "<strong>Symétrie axiale des paires :</strong> Chaque test traite 2 caractères opposés simultanément. Parcourir la première moitié ($0$ à $\\text{Long}(Ch) \\text{ Div } 2$) compare ainsi l'ensemble des paires symétriques sans aucune redondance.",
-            "<strong>Recopie mémoire automatique :</strong> Les caractères de la seconde moitié sont automatiquement recopiés dans la première moitié lors du déroulement de la boucle.",
-            "<strong>Limite d'itération obligatoire :</strong> Une boucle conditionnelle ne peut pas parcourir plus de la moitié des cases d'une chaîne sans provoquer une erreur d'indice mémoire."
+            "Continuer au-delà de la moitié provoquerait une erreur d'indice hors limites.",
+            "Chaque test compare deux caractères opposés ; aller plus loin retesterait inutilement les mêmes paires.",
+            "L'indice symétrique <code>Long(Ch) - 1 - i</code> deviendrait négatif après la moitié de la chaîne."
           ],
-          correct: 0,
+          correct: 1,
           selected: null,
           explanation: "Un palindrome possède un axe de symétrie central : chaque comparaison entre $Ch[i]$ et $Ch[\\text{Long}(Ch) - 1 - i]$ valide deux caractères opposés à la fois ($Ch[0] \\leftrightarrow Ch[L-1]$, $Ch[1] \\leftrightarrow Ch[L-2]$, etc.). S'arrêter à $\\text{Long}(Ch) \\text{ Div } 2$ suffit donc pour vérifier l'ensemble des caractères, évitant de retester inutilement les mêmes paires en sens inverse."
         }

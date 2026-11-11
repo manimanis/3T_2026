@@ -13,12 +13,12 @@ createApp({
       theme: localStorage.getItem('theme') || 'dark',
 
       criteresEvaluation: [
-        { niveau: "Socle (8 pts)", critere: "Act 1 : Contrôle de la longueur exacte (7 caractères) via Long()", points: "4 pts" },
-        { niveau: "Socle (8 pts)", critere: "Act 2 : Validation des 2 premiers caractères majuscules via Ord() ou Majus()", points: "4 pts" },
-        { niveau: "Maîtrise (8 pts)", critere: "Act 3 : Détection et validation du séparateur tiret '-' en position 2", points: "4 pts" },
-        { niveau: "Maîtrise (8 pts)", critere: "Act 4 : Extraction des 4 derniers caractères et vérification avec Estnum()", points: "4 pts" },
-        { niveau: "Dépassement (4 pts)", critere: "Act 5 : Conversion en entier avec Valeur() et calcul de la clé Modulo 19", points: "2 pts" },
-        { niveau: "Dépassement (4 pts)", critere: "Act 6 : Validation rigoureuse par 4 jeux d'essais et robustesse logicielle", points: "2 pts" }
+        { niveau: "Socle (8 pts)", critere: "Act 1 (Ex 71) : Saisie contrôlée et validation de conformité de la trame binaire (8 bits)", points: "4 pts" },
+        { niveau: "Socle (8 pts)", critere: "Act 2 (Ex 71) : Décompte des bits '1', parité impaire et génération de la trame émise (9 bits)", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 3 (Ex 69) : Contrôle de conformité de la date 'JJ/MM/AAAA' (taille 10, slashs et chiffres)", points: "4 pts" },
+        { niveau: "Maîtrise (8 pts)", critere: "Act 4 (Ex 69) : Somme récursive et réduction itérée en un chiffre de contrôle [1..9]", points: "4 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 5 (Ex 75) : Certification d'un billet via substitution alphabétique et modulo 9 = 8", points: "2 pts" },
+        { niveau: "Dépassement (4 pts)", critere: "Act 6 : Audit d'une liasse de N billets, décompte des conformités et alerte contrefaçon", points: "2 pts" }
       ]
     };
   },

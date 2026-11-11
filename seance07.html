@@ -67,9 +67,11 @@
             </li>
           </ul>
           <div class="d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i> Sommaire</a>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>
+              Sommaire</a>
             <button class="theme-toggle-btn ms-lg-2" @click="toggleTheme" title="Changer de thème">
-              <i class="bi" :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
+              <i class="bi"
+                :class="theme === 'dark' ? 'bi-sun-fill text-warning' : 'bi-moon-stars-fill text-primary'"></i>
               <span>{{ theme === 'dark' ? 'Mode Clair' : 'Mode Sombre' }}</span>
             </button>
           </div>
@@ -89,12 +91,10 @@
               <span class="badge bg-info bg-opacity-25 text-info border border-info border-info-opacity-25">
                 <i class="bi bi-clock me-1"></i> 90 min
               </span>
-              <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25">
-                Barème : /20 pts (Épreuve sur Machine)
-              </span>
             </div>
             <h1 class="h3 fw-bold mb-1">TP : Traitement textuel & Validation de formats sur Machine</h1>
-            <p class="text-muted small mb-0">Contrôle de codes de flacons de réactifs chimiques — Algorithmique & Python (3<sup>e</sup> Sciences)</p>
+            <p class="text-muted small mb-0">Transmission série, Horodatage de lot & Sécurité fiduciaire — Algorithmique
+              & Python (3<sup>e</sup> Sciences)</p>
           </div>
         </div>
       </div>
@@ -103,26 +103,32 @@
     <!-- Phase Quick Selector Bar -->
     <div class="phase-pill-nav d-none d-md-block">
       <div class="container d-flex flex-wrap gap-2">
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-longueur')" data-target-id="act1-longueur" title="Activité 1 — Validation de format & Bit de parité impaire Exercice 71 du Recueil">
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act1-trame-binaire')"
+          data-target-id="act1-trame-binaire"
+          title="Activité 1 — Saisie & Validation d'une trame binaire (8 bits)">
           Activité 1
         </button>
-        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-lettres-majuscules')" data-target-id="act2-lettres-majuscules" title="Activité 2 — Contrôle des 2 lettres majuscules d'un réactif">
+        <button class="btn btn-sm btn-outline-info rounded-pill" @click="jumpToSection('act2-parite-impaire')"
+          data-target-id="act2-parite-impaire" title="Activité 2 — Bit de parité impaire & Trame à 9 bits">
           Activité 2
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-separateur')" data-target-id="act3-separateur" title="Activité 3 — Contrôle du séparateur tiret & Découpage">
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act3-format-date')"
+          data-target-id="act3-format-date" title="Activité 3 — Contrôle de conformité du format de date">
           Activité 3
         </button>
-        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-chiffres')" data-target-id="act4-chiffres" title="Activité 4 — Réduction itérée d'une date (Chiffre de contrôle) Exercice 69 du Recueil">
+        <button class="btn btn-sm btn-outline-warning rounded-pill" @click="jumpToSection('act4-chiffres')"
+          data-target-id="act4-chiffres"
+          title="Activité 4 — Réduction itérée d'une date (Chiffre de contrôle)">
           Activité 4
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-cle-modulo')" data-target-id="act5-cle-modulo" title="Activité 5 — Certification de billets de banque Exercice 75 du Recueil">
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act5-cle-modulo')"
+          data-target-id="act5-cle-modulo" title="Activité 5 — Certification de billets de banque">
           Activité 5
         </button>
-        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-recette')" data-target-id="act6-recette" title="Activité 6 — Recette logicielle et validation par jeux d'essais">
+        <button class="btn btn-sm btn-outline-success rounded-pill" @click="jumpToSection('act6-liasse-billets')"
+          data-target-id="act6-liasse-billets"
+          title="Activité 6 — Audit d'une liasse de billets & Détection de contrefaçons">
           Activité 6
-        </button>
-        <button class="btn btn-sm btn-outline-secondary rounded-pill" @click="jumpToSection('bareme-tp3')" data-target-id="bareme-tp3" title="GRILLE D'ÉVALUATION DU TP N°3">
-          Barème
         </button>
       </div>
     </div>
@@ -135,49 +141,214 @@
            ========================================================================= -->
       <article id="palier-socle-tp3" class="article-content-wrapper mb-5">
         <h2><i class="bi bi-check-circle text-info me-2"></i> PALIER 🟢 SOCLE DE RÉUSSITE (8 points)</h2>
+        <p class="text-muted small mb-3">Sécurisation d'une liaison série industrielle RS-485 : saisie contrôlée d'une trame binaire de 8 bits et calcul du 9<sup>ème</sup> bit de parité impaire (Exercice 71).</p>
 
         <!-- Activité 1 -->
-        <section id="act1-longueur" class="section-pane mb-4">
+        <section id="act1-trame-binaire" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 1 — Validation de format & Bit de parité impaire <span class="badge bg-info bg-opacity-25 text-info ms-2">Exercice 71 du Recueil</span></h3>
+              <h3 class="h6 mb-0">
+                Activité 1 — Saisie sécurisée & Validation d'une trame binaire (8 bits)
+              </h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">
-                <strong>Contexte transmission RS-485 (Exercice 71) :</strong> Un modem radio reçoit des trames de 8 bits. Pour sécuriser la ligne, il doit calculer un <strong>bit de parité impaire</strong> ('0' ou '1') afin que le nombre total de '1' transmis soit strictement impair.
+              <p class="small mb-3">
+                <strong>Transmission industrielle (Liaison série RS-485 / UART) :</strong>
+                Un capteur envoie un octet de données sous la forme d'une chaîne binaire de 8 caractères.
+                Pour que la trame soit admissible par le modem, elle doit respecter deux critères stricts de conformité
+                :
               </p>
-              <ul class="small mb-2">
-                <li>Saisir une chaîne de 8 bits avec boucle forçant <code>Long(trame) = 8</code> et contenant uniquement des <code>'0'</code> et <code>'1'</code>.</li>
-                <li><em>Exemples illustratifs :</em>
-                  <br>• Entrée : <code>"11010010"</code> (4 bits à 1, pair) $\implies$ Bit de parité = <code>'1'</code> $\rightarrow$ Trame émise : <code>"110100101"</code> (total 5).
-                  <br>• Entrée : <code>"10101000"</code> (3 bits à 1, impair) $\implies$ Bit de parité = <code>'0'</code> $\rightarrow$ Trame émise : <code>"101010000"</code> (total 3).
+
+              <!-- Illustration explicative Palier Socle -->
+              <div class="text-center my-3">
+                <img src="images/seance07/transmission_parite_rs485.svg"
+                  alt="Figure 1 : Transmission série industrielle RS-485 et calcul du bit de parité impaire"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 1 :</strong> Contrôle de conformité d'une trame de 8 bits et principe du bit de parité impaire.
+                </div>
+              </div>
+
+              <div class="row g-3 small mb-3">
+                <div class="col-md-6">
+                  <div class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 h-100">
+                    <h6 class="text-primary fw-semibold mb-2">
+                      <i class="bi bi-rulers me-1"></i> Critère 1 : Longueur exacte
+                    </h6>
+                    <p class="text-muted mb-0">
+                      La chaîne <code>trame</code> doit comporter <strong>exactement 8 caractères</strong>.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 h-100">
+                    <h6 class="text-primary fw-semibold mb-2">
+                      <i class="bi bi-123 me-1"></i> Critère 2 : Chiffres binaires
+                    </h6>
+                    <p class="text-muted mb-0">
+                      Chaque caractère $c$ de la chaîne doit obligatoirement être le symbole <code>'0'</code> ou
+                      <code>'1'</code>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Travail demandé -->
+              <h5 class="small text-primary fw-semibold mb-2">
+                <i class="bi bi-clipboard-check me-1"></i> Travail demandé :
+              </h5>
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">
+                  Écrire une saisie contrôlée qui demande à l'utilisateur d'introduire une trame binaire et réitère la
+                  saisie tant que la trame n'est pas conforme. Pour valider la trame à chaque tentative :
+                  <ul class="mb-1">
+                    <li>Vérifier d'abord que la longueur est égale à 8.</li>
+                    <li>Parcourir la chaîne pour s'assurer que chaque caractère est bien un chiffre binaire.</li>
+                  </ul>
                 </li>
-              </ul>
+                <li>
+                  Afficher un message d'erreur en cas de saisie invalide (ex: <code>"Trame invalide !"</code>).
+                </li>
+              </ol>
+
+              <!-- Jeux d'essais de validation -->
+              <div class="table-responsive mb-3">
+                <table class="table table-sm table-bordered small mb-0">
+                  <thead class="table-dark">
+                    <tr>
+                      <th>Saisie testée</th>
+                      <th>Contrôle de longueur</th>
+                      <th>Contrôle des symboles</th>
+                      <th>Décision du programme</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>"1101"</code></td>
+                      <td class="text-danger">Longueur = 4 (≠ 8)</td>
+                      <td class="text-success">Uniquement '0' et '1'</td>
+                      <td><span class="badge bg-danger">Rejetée</span> $\rightarrow$ Redemander la saisie</td>
+                    </tr>
+                    <tr>
+                      <td><code>"11020010"</code></td>
+                      <td class="text-success">Longueur = 8</td>
+                      <td class="text-danger">Présence de '2' (interdit)</td>
+                      <td><span class="badge bg-danger">Rejetée</span> $\rightarrow$ Redemander la saisie</td>
+                    </tr>
+                    <tr>
+                      <td><code>"1101 010"</code></td>
+                      <td class="text-success">Longueur = 8</td>
+                      <td class="text-danger">Présence d'un espace</td>
+                      <td><span class="badge bg-danger">Rejetée</span> $\rightarrow$ Redemander la saisie</td>
+                    </tr>
+                    <tr class="table-success text-dark">
+                      <td><code>"11010010"</code></td>
+                      <td class="text-success">Longueur = 8 (OK)</td>
+                      <td class="text-success">Uniquement '0' et '1' (OK)</td>
+                      <td><span class="badge bg-success">Validée</span> $\rightarrow$ Poursuivre vers l'Activité 2</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Implémentez la saisie contrôlée et le calcul de parité dans <code>TP3_Nom_Prenom.py</code>.
+                <i class="bi bi-terminal me-1"></i> Implémentez la saisie contrôlée dans <code>TP3_Nom_Prenom.py</code>
+                et testez les cas de rejet ci-dessus avant de valider votre trame.
               </div>
             </div>
           </div>
         </section>
 
         <!-- Activité 2 -->
-        <section id="act2-lettres-majuscules" class="section-pane mb-4">
+        <section id="act2-parite-impaire" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 2 — Contrôle des 2 lettres majuscules d'un réactif</h3>
+              <h3 class="h6 mb-0">
+                Activité 2 — Bit de parité impaire & Émission de la trame à 9 bits
+              </h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">
-                Vérifier que les deux premiers caractères du code de réactif (indices 0 et 1) sont des lettres alphabétiques majuscules :
+              <p class="small mb-3">
+                Pour sécuriser la transmission sur la ligne RS-485, le modem émetteur ajoute à la fin de la trame un
+                9<sup>ème</sup> bit appelé <strong>bit de parité impaire</strong>.
               </p>
-              <ul class="small mb-3">
-                <li>Méthode scalaire : $65 \le \text{ord}(c) \le 90$.</li>
-                <li>Afficher un message explicite si les lettres sont minuscules ou contiennent des symboles non autorisés.</li>
-              </ul>
+
+              <!-- Règle de parité impaire -->
+              <div class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 mb-3">
+                <h6 class="text-primary fw-semibold mb-2">
+                  <i class="bi bi-gear-fill me-1"></i> Règle arithmétique de la parité impaire :
+                </h6>
+                <p class="small mb-2">
+                  Le bit de parité est calculé de sorte que le <strong>nombre total de bits <code>'1'</code> dans la
+                    trame soit strictement IMPAIR</strong> :
+                </p>
+                <div class="row g-2 small mb-3">
+                  <div class="col-md-6">
+                    <div class="p-2 bg-dark bg-opacity-25 rounded-2 border border-secondary border-opacity-25 h-100">
+                      <strong class="text-warning d-block mb-1">• Nombre initial de '1' est PAIR :</strong>
+                      On fixe le bit de parité à <code>'1'</code> (un total pair + 1 devient impair).
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="p-2 bg-dark bg-opacity-25 rounded-2 border border-secondary border-opacity-25 h-100">
+                      <strong class="text-info d-block mb-1">• Nombre initial de '1' est IMPAIR :</strong>
+                      On fixe le bit de parité à <code>'0'</code> (le total reste impair).
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tableau comparatif -->
+                <div class="table-responsive">
+                  <table class="table table-sm table-bordered text-center small mb-0 font-monospace">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Trame initiale (8 bits)</th>
+                        <th>Nombre de '1'</th>
+                        <th>Parité initiale</th>
+                        <th>Bit de parité</th>
+                        <th>Trame émise (9 bits)</th>
+                        <th>Total de '1' émis</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-info fw-bold">"11010010"</td>
+                        <td>4</td>
+                        <td><span class="badge bg-warning text-dark">Pair</span></td>
+                        <td class="fw-bold text-success">'1'</td>
+                        <td class="text-success fw-bold">"110100101"</td>
+                        <td>5 (Impair <i class="bi bi-check-lg text-success"></i>)</td>
+                      </tr>
+                      <tr>
+                        <td class="text-info fw-bold">"10101000"</td>
+                        <td>3</td>
+                        <td><span class="badge bg-info text-dark">Impair</span></td>
+                        <td class="fw-bold text-success">'0'</td>
+                        <td class="text-success fw-bold">"101010000"</td>
+                        <td>3 (Impair <i class="bi bi-check-lg text-success"></i>)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Travail demandé -->
+              <h5 class="small text-primary fw-semibold mb-2">
+                <i class="bi bi-clipboard-check me-1"></i> Travail demandé :
+              </h5>
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">
+                  Calculer le <strong>bit de parité impaire</strong> de la trame binaire saisie dans l'activité 1, puis
+                  l'afficher.
+                </li>
+              </ol>
+
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Intégrez cette vérification dans votre script et testez avec <code>"ac-1234"</code> (rejeté) et <code>"AC-1234"</code> (accepté).
+                <i class="bi bi-terminal me-1"></i> Complétez votre script <code>TP3_Nom_Prenom.py</code> et vérifiez
+                que pour <code>"11010010"</code>, la trame finale affichée est bien <code>"110100101"</code>.
               </div>
             </div>
           </div>
@@ -189,21 +360,75 @@
            ========================================================================= -->
       <article id="palier-maitrise-tp3" class="article-content-wrapper mb-5">
         <h2><i class="bi bi-star-fill text-warning me-2"></i> PALIER 🟡 MAÎTRISE DU SUJET (8 points)</h2>
+        <p class="text-muted small mb-3">Traçabilité agroalimentaire sur chaîne d'embouteillage : validation d'un format de date JJ/MM/AAAA et algorithme de réduction itérée (Exercice 69).</p>
 
         <!-- Activité 3 -->
-        <section id="act3-separateur" class="section-pane mb-4">
+        <section id="act3-format-date" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 3 — Contrôle du séparateur tiret & Découpage</h3>
+              <h3 class="h6 mb-0">
+                Activité 3 — Contrôle de conformité d'une date de production
+              </h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">
-                Vérifier que le caractère positionné à l'indice 2 est strictement le tiret <code>"-"</code>.
-                Si un autre séparateur est saisi (ex: <code>"/"</code>, <code>"_"</code>, espace), le code doit être invalidé avec affichage d'un message d'erreur précisant la position fautive.
+              <p class="small mb-3">
+                <strong>Traçabilité agroalimentaire :</strong> Sur une chaîne d'embouteillage, chaque lot de production
+                est horodaté par une date sous la forme <code>"JJ/MM/AAAA"</code>.
+                Avant de générer le code de sécurité du lot, le système doit impérativement valider le format de la
+                date.
               </p>
+
+              <!-- Illustration explicative Palier Maîtrise -->
+              <div class="text-center my-3">
+                <img src="images/seance07/tracabilite_reduction_date.svg"
+                  alt="Figure 2 : Traçabilité agroalimentaire et processus de réduction itérée d'une date (JJ/MM/AAAA)"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 2 :</strong> Validation du format de date d'embouteillage et réduction itérée en chiffre de sécurité.
+                </div>
+              </div>
+
+              <!-- Critères de format -->
+              <div class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 mb-3">
+                <h6 class="text-primary fw-semibold mb-2">
+                  <i class="bi bi-calendar-check me-1"></i> Critères de conformité du format :
+                </h6>
+                <ul class="small mb-0 ps-3">
+                  <li class="mb-1">La date doit comporter <strong>exactement 10 caractères</strong>.</li>
+                  <li class="mb-1">Les séparateurs aux indices 2 et 5 doivent obligatoirement être le symbole slash
+                    <code>'/'</code>.
+                  </li>
+                  <li>Les 8 autres positions doivent obligatoirement être des chiffres
+                    (<code>'0' &le; c &le; '9'</code>).</li>
+                </ul>
+              </div>
+
+              <!-- Travail demandé -->
+              <h5 class="small text-primary fw-semibold mb-2">
+                <i class="bi bi-clipboard-check me-1"></i> Travail demandé :
+              </h5>
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">
+                  <strong>Saisie de la date :</strong> Inviter l'opérateur à saisir une chaîne de caractères
+                  <code>date</code> sous la forme <code>"JJ/MM/AAAA"</code>.
+                </li>
+                <li class="mb-2">
+                  <strong>Vérification du format :</strong> Vérifier la longueur exacte de la date (10 caractères), la
+                  présence des slashs aux positions 2 et 5, et la validité numérique des autres caractères.
+                </li>
+                <li>
+                  <strong>Diagnostic et validation :</strong>
+                  Afficher un message d'erreur si l'un des critères n'est pas respecté (ex:
+                  <code>"Format invalide !</code>).
+                </li>
+              </ol>
+
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Testez les cas <code>"AC/1234"</code> et <code>"AC 1234"</code>.
+                <i class="bi bi-terminal me-1"></i> Testez les cas : <code>"29/09/26"</code> (rejeté : longueur 8 au
+                lieu de 10), <code>"29-09-2026"</code> (rejeté : mauvais séparateur), et <code>"29/09/2026"</code>
+                (accepté).
               </div>
             </div>
           </div>
@@ -213,20 +438,63 @@
         <section id="act4-chiffres" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 4 — Réduction itérée d'une date (Chiffre de contrôle) <span class="badge bg-primary bg-opacity-25 text-primary ms-2">Exercice 69 du Recueil</span></h3>
+              <h3 class="h6 mb-0">
+                Activité 4 — Réduction itérée d'une date (Chiffre de contrôle)
+              </h3>
               <span class="badge bg-secondary">4 points</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">
-                <strong>Contexte agroalimentaire (Exercice 69) :</strong> Sur une chaîne d'embouteillage, la date de production au format <code>"JJ/MM/AAAA"</code> est compressée en un chiffre unique de contrôle par somme récursive de ses chiffres.
+              <p class="small mb-3">
+                <strong>Génération de la clé de sécurité :</strong> Une fois la date de l'activité 3 est validée, le
+                système calcule son <strong>chiffre de contrôle</strong> par une <strong>réduction itérée</strong>
+                (somme des chiffres jusqu'à obtenir un chiffre unique $\in [1 ; 9]$).
               </p>
-              <ul class="small mb-2">
-                <li>Extraire les 8 chiffres décimaux de la date (ignorer les <code>'/'</code>).</li>
-                <li>Calculer la somme de ces chiffres, puis réitérer la somme sur le résultat jusqu'à obtenir un seul chiffre $\in [1 ; 9]$.</li>
-                <li><em>Exemple illustratif :</em> Pour <code>"29/09/2026"</code> $\implies 2+9+0+9+2+0+2+6 = 30 \implies 3+0 = \mathbf{3}$.</li>
-              </ul>
+
+              <!-- Principe de réduction itérée -->
+              <div class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 mb-3">
+                <h6 class="text-primary fw-semibold mb-2">
+                  <i class="bi bi-arrow-repeat me-1"></i> Principe algorithmique de la réduction itérée :
+                </h6>
+                <p class="small mb-2">
+                  On calcule la somme de tous les chiffres de la date. Si le résultat obtenu est supérieur à 9, on
+                  additionne à nouveau les chiffres de ce résultat, et ainsi de suite jusqu'à obtenir un unique chiffre
+                  $\in [1 ; 9]$.
+                </p>
+                <div
+                  class="p-2 bg-dark bg-opacity-25 rounded-2 border border-secondary border-opacity-25 small font-monospace">
+                  <span class="text-info fw-bold">Date validée : "29/09/2026"</span>
+                  <br>• Étape 1 : 2 + 9 + 0 + 9 + 2 + 0 + 2 + 6 = <strong>30</strong> (somme > 9 $\implies$ on continue)
+                  <br>• Étape 2 : 3 + 0 = <strong class="text-success">3</strong> (somme &le; 9 $\implies$ arrêt,
+                  chiffre unique $\in [1 ; 9]$)
+                </div>
+              </div>
+
+              <!-- Travail demandé -->
+              <h5 class="small text-primary fw-semibold mb-2">
+                <i class="bi bi-clipboard-check me-1"></i> Travail demandé :
+              </h5>
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">
+                  <strong>Extraction et somme initiale :</strong> Parcourir la chaîne <code>date</code> validée pour
+                  extraire les 8 chiffres décimaux et calculer leur somme initiale <code>somme</code>.
+                </li>
+                <li class="mb-2">
+                  <strong>Boucle de réduction itérée :</strong> À l'aide d'une boucle, répéter le calcul de la somme des
+                  chiffres de la <code>somme</code> jusqu'à obtenir un chiffre unique compris entre 1 et 9.
+                  <br><span class="text-muted fst-italic">Astuce : Vous pouvez convertir le nombre en chaîne via
+                    <code>ConvCh(somme)</code> pour parcourir ses chiffres, ou utiliser les divisions successives par 10
+                    (<code>mod 10</code> et <code>div 10</code>).</span>
+                </li>
+                <li>
+                  <strong>Affichage de la clé d'horodatage :</strong> Afficher la clé de contrôle finale obtenue pour
+                  sécuriser le lot de fabrication (ex: <code>"Clé d'horodatage du lot = 3"</code>).
+                </li>
+              </ol>
+
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Implémentez la fonction de réduction itérée dans votre fichier.
+                <i class="bi bi-terminal me-1"></i> Implémentez la réduction itérée dans votre script
+                <code>TP3_Nom_Prenom.py</code> et vérifiez avec <code>"29/09/2026"</code> ($\implies$ Clé = 3) et
+                <code>"15/08/2024"</code> ($\implies 22 \implies$ Clé = 4).
               </div>
             </div>
           </div>
@@ -238,115 +506,202 @@
            ========================================================================= -->
       <article id="palier-excellence-tp3" class="article-content-wrapper mb-5">
         <h2><i class="bi bi-trophy-fill text-danger me-2"></i> PALIER 🔴 DÉPASSEMENT / EXCELLENCE (4 points)</h2>
+        <p class="text-muted small mb-3">Sécurité fiduciaire en automate bancaire : certification d'un numéro de série par modulo 9 et audit séquentiel d'une liasse de billets (Exercice 75).</p>
 
         <!-- Activité 5 -->
         <section id="act5-cle-modulo" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 5 — Certification de billets de banque <span class="badge bg-success bg-opacity-25 text-success ms-2">Exercice 75 du Recueil</span></h3>
+              <h3 class="h6 mb-0">
+                Activité 5 — Certification de billets de banque
+              </h3>
               <span class="badge bg-secondary">2 points</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">
-                <strong>Contexte bancaire officiel (Exercice 75) :</strong> Un numéro de série comporte une lettre majuscule suivie de 11 chiffres (ex: <code>"S04012543281"</code>).
-                <br>• Remplacer la lettre par son rang alphabétique (A=1...S=19...Z=26).
-                <br>• Concaténer ce rang avec les 11 chiffres pour former un grand nombre.
-                <br>• Le billet est <strong>authentique</strong> si et seulement si : $\text{GrandNombre} \pmod 9 = 8$.
+              <p class="small mb-3">
+                <strong>Contexte bancaire officiel :</strong> Un automate bancaire vérifie l'authenticité d'un billet à
+                partir de son numéro de série, composé d'une <strong>lettre majuscule</strong> suivie de <strong>11
+                  chiffres décimaux</strong> (ex: <code>"S04012543281"</code>).
               </p>
+
+              <!-- Illustration explicative Palier Excellence -->
+              <div class="text-center my-3">
+                <img src="images/seance07/authentification_billet_banque.svg"
+                  alt="Figure 3 : Sécurité fiduciaire : Authentification optique d'un billet de banque et audit de liasse"
+                  class="img-fluid rounded-3 border border-secondary border-opacity-25 shadow-sm img-zoomable"
+                  style="width: 100%; height: auto;">
+                <div class="form-text text-muted small mt-1">
+                  <strong>Figure 3 :</strong> Règle d'authentification fiduciaire modulo 9 et procédure d'audit d'une liasse de billets.
+                </div>
+              </div>
+
+              <!-- Règle d'authenticité -->
+              <div class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 mb-3">
+                <h6 class="text-success fw-semibold mb-2">
+                  <i class="bi bi-cash-coin me-1"></i> Règle d'authentification :
+                </h6>
+                <ol class="small mb-0 ps-3">
+                  <li class="mb-1">Remplacer la première lettre par son rang alphabétique : $\text{'A'} \rightarrow 1,
+                    \text{'B'} \rightarrow 2, \dots, \text{'S'} \rightarrow 19, \dots, \text{'Z'} \rightarrow 26$.</li>
+                  <li class="mb-1">Concaténer ce rang avec les 11 chiffres restants pour former un grand nombre entier.
+                  </li>
+                  <li>Le billet est <strong>authentique</strong> si et seulement si : $\text{GrandNombre} \pmod 9 = 8$.
+                  </li>
+                </ol>
+              </div>
+
+              <!-- Travail demandé -->
+              <h5 class="small text-primary fw-semibold mb-2">
+                <i class="bi bi-clipboard-check me-1"></i> Travail demandé :
+              </h5>
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">
+                  <strong>Calcul du rang alphabétique :</strong> Calculer le rang alphabétique de la première lettre
+                  <code>serie[0]</code>.
+                </li>
+                <li class="mb-2">
+                  <strong>Constitution du grand entier :</strong> Concaténer la chaîne représentant le rang avec les 11
+                  chiffres suivants, puis convertir cette nouvelle chaîne en un entier <code>gn</code>.
+                </li>
+                <li>
+                  <strong>Verdict d'authenticité :</strong> Évaluer l'authenticité du billet <code>gn mod 9 = 8</code>
+                  et afficher <code>"Billet Authentique certifié"</code> ou <code>"Billet Non Conforme"</code>.
+                </li>
+              </ol>
+
+              <!-- Exemples d'exécution console -->
+              <div class="my-3">
+                <h6 class="small text-primary fw-semibold mb-2">
+                  <i class="bi bi-terminal me-1"></i> Exemples d'exécution console :
+                </h6>
+                <div class="row g-2">
+                  <div class="col-md-6">
+                    <div class="p-2 rounded bg-dark bg-opacity-25 border border-secondary border-opacity-25 h-100">
+                      <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong class="text-success small"><i class="bi bi-check-circle me-1"></i> Billet
+                          Authentique</strong>
+                        <span class="badge bg-success bg-opacity-25 text-success">Valide</span>
+                      </div>
+                      <div class="small font-monospace mb-1">
+                        Entrée : <code>"S04012543281"</code>
+                      </div>
+                      <div class="text-muted small">
+                        • Lettre <code>'S'</code> $\rightarrow$ rang 19<br>
+                        • Grand entier : <code>1904012543281</code><br>
+                        • Modulo : $1904012543281 \pmod 9 = 8$<br>
+                        <strong class="text-success">&rArr; Billet Authentique certifié</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="p-2 rounded bg-dark bg-opacity-25 border border-secondary border-opacity-25 h-100">
+                      <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong class="text-danger small"><i class="bi bi-x-circle me-1"></i> Billet Non
+                          Conforme</strong>
+                        <span class="badge bg-danger bg-opacity-25 text-danger">Rejeté</span>
+                      </div>
+                      <div class="small font-monospace mb-1">
+                        Entrée : <code>"A00000000001"</code>
+                      </div>
+                      <div class="text-muted small">
+                        • Lettre <code>'A'</code> $\rightarrow$ rang 1<br>
+                        • Grand entier : <code>100000000001</code><br>
+                        • Modulo : $100000000001 \pmod 9 = 2 \ne 8$<br>
+                        <strong class="text-danger">&rArr; Billet Non Conforme (Rejet)</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="cahier-zone">
-                <i class="bi bi-terminal me-1"></i> Exemple : pour <code>"S04012543281"</code> $\implies 1904012543281 \pmod 9 = 8 \implies \mathbf{Billet\ Authentique}$.
+                <i class="bi bi-check2-all me-1"></i> Validez l'algorithme d'authentification sur machine avec l'enseignant.
               </div>
             </div>
           </div>
         </section>
 
         <!-- Activité 6 -->
-        <section id="act6-recette" class="section-pane mb-4">
+        <section id="act6-liasse-billets" class="section-pane mb-4">
           <div class="card card-custom">
             <div class="card-header-custom d-flex justify-content-between align-items-center py-2">
-              <h3 class="h6 mb-0">Activité 6 — Recette logicielle et validation par jeux d'essais</h3>
+              <h3 class="h6 mb-0">
+                Activité 6 — Audit d'une liasse de billets & Détection de contrefaçons
+                <span class="badge bg-success bg-opacity-25 text-success ms-2">Prolongement Activité 5</span>
+              </h3>
               <span class="badge bg-secondary">2 points</span>
             </div>
             <div class="card-body">
-              <p class="small mb-2">
-                Valider votre script avec les 4 cas tests suivants et noter le résultat d'exécution :
+              <p class="small mb-3">
+                <strong>Contexte guichet automatique (Audit de caisse) :</strong>
+                Un commerçant dépose une liasse de $N$ billets de banque au guichet automatique.
+                Pour sécuriser le versement, l'automate doit analyser successivement chaque billet de la liasse en
+                réinvestissant l'algorithme d'authentification de l'<strong>Activité 5</strong>, puis dresser un bilan
+                de sécurité complet du dépôt.
               </p>
-              <div class="table-responsive">
-                <table class="table table-sm table-bordered small">
-                  <thead class="table-dark">
-                    <tr>
-                      <th>Jeu de test</th>
-                      <th>Entrée utilisateur</th>
-                      <th>Comportement attendu du programme</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Cas 1 (Ex 71 Parité)</td>
-                      <td><code>"11010010"</code></td>
-                      <td>Trame complète : <code>"110100101"</code> (Bit de parité '1')</td>
-                    </tr>
-                    <tr>
-                      <td>Cas 2 (Ex 69 Date)</td>
-                      <td><code>"29/09/2026"</code></td>
-                      <td>Clé d'horodatage = 3</td>
-                    </tr>
-                    <tr>
-                      <td>Cas 3 (Ex 75 Billet Valide)</td>
-                      <td><code>"S04012543281"</code></td>
-                      <td>Billet certifié Authentique (Modulo 9 = 8)</td>
-                    </tr>
-                    <tr>
-                      <td>Cas 4 (Ex 75 Contrefaçon)</td>
-                      <td><code>"A00000000001"</code></td>
-                      <td>Rejet : Modulo 9 = 2 ≠ 8 (Billet Non Conforme)</td>
-                    </tr>
-                  </tbody>
-                </table>
+
+              <!-- Travail demandé -->
+              <h5 class="small text-primary fw-semibold mb-2">
+                <i class="bi bi-clipboard-check me-1"></i> Travail demandé :
+              </h5>
+              <ol class="small mb-3 ps-3">
+                <li class="mb-2">
+                  <strong>Saisie contrôlée du nombre de billets :</strong> Demander à l'opérateur le nombre de billets à
+                  auditer $N$, en répétant la saisie tant que $N < 2$ ou $N> 5$ (pour limiter la durée des tests).
+                </li>
+                <li class="mb-2">
+                  <strong>Contrôle itératif de la liasse :</strong> À l'aide d'une boucle (<code>Pour i de 1 à N</code>)
+                  :
+                  <ul class="mb-1">
+                    <li>Saisir le numéro de série du billet n°$i$.</li>
+                    <li>Appliquer la formule de vérification de l'Activité 5.</li>
+                    <li>Afficher la décision pour ce billet : <code>"Billet i : Authentique"</code> ou
+                      <code>"Billet i : Non Conforme"</code>.
+                    </li>
+                    <li>Comptabiliser le nombre de billets conformes (<code>nb_authentiques</code>) et le nombre de
+                      billets suspects (<code>nb_suspects</code>).</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Bilan de caisse et alerte de sécurité (0.5 pt) :</strong>
+                  Afficher le récapitulatif global du dépôt (nombre de billets vérifiés, acceptés et rejetés).
+                  Si au moins une contrefaçon a été détectée (<code>nb_suspects > 0</code>), afficher le message
+                  d'alerte :
+                  <code>"ALERTE SÉCURITÉ : Faux billet détecté ! Liasse mise en quarantaine."</code>.
+                </li>
+              </ol>
+
+              <!-- Exemple d'exécution console -->
+              <div class="my-3">
+                <h6 class="small text-primary fw-semibold mb-2">
+                  <i class="bi bi-terminal me-1"></i> Exemple d'exécution console attendu (Audit d'une liasse de 3
+                  billets) :
+                </h6>
+                <pre
+                  class="bg-body-tertiary p-3 rounded-3 border border-secondary border-opacity-25 small font-monospace mb-0"><code>--- AUDIT DE LA LIASSE (N = 3 billets) ---
+Saisie Billet 1/3 : S04012543281  --> Authentique certifié [OK]
+Saisie Billet 2/3 : A00000000001  --> REJET : Non Conforme (Modulo 9 = 2 != 8)
+Saisie Billet 3/3 : S04012543281  --> Authentique certifié [OK]
+
+================ RAPPORT D'AUDIT ================
+Billets vérifiés : 3 | Authentiques : 2 | Rejetés : 1
+ALERTE SÉCURITÉ : 1 contrefaçon détectée ! Liasse mise en quarantaine.</code></pre>
               </div>
-              <div class="cahier-zone mt-2">
-                <i class="bi bi-check2-all me-1"></i> Validez le fonctionnement de votre script sur machine devant l'enseignant.
+
+              <div class="cahier-zone">
+                <i class="bi bi-check2-all me-1"></i> Validez le bon fonctionnement de votre audit sur machine avec
+                l'enseignant.
               </div>
             </div>
           </div>
         </section>
       </article>
-
-      <!-- =========================================================================
-           ARTICLE 5: GRILLE D'ÉVALUATION
-           ========================================================================= -->
-      <article id="bareme-tp3" class="article-content-wrapper mb-4">
-        <h2><i class="bi bi-clipboard-check text-primary me-2"></i> GRILLE D'ÉVALUATION DU TP N°3</h2>
-        <div class="card card-custom">
-          <div class="card-body p-0">
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover mb-0 small">
-                <thead class="table-dark">
-                  <tr>
-                    <th style="width: 20%;">Palier</th>
-                    <th style="width: 65%;">Critère d'évaluation</th>
-                    <th style="width: 15%;">Points</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="c in criteresEvaluation" :key="c.critere">
-                    <td><span class="badge bg-secondary">{{ c.niveau }}</span></td>
-                    <td>{{ c.critere }}</td>
-                    <td class="fw-bold text-success">{{ c.points }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </article>
-
     </main>
 
     <!-- Footer -->
     <footer class="footer-custom py-3 border-top border-secondary border-opacity-25 mt-5">
       <div class="container text-center small text-muted">
-        <p class="mb-0">3<sup>e</sup> Sciences · Séance 7 : TP Noté N°3 — Traitement textuel · Barème : /20 pts</p>
+        <p class="mb-0">3<sup>e</sup> Sciences · Séance 7 : TP Noté N°3 — Traitement textuel</p>
       </div>
     </footer>
   </div>

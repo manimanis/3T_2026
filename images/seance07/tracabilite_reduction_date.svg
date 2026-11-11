@@ -1,0 +1,146 @@
+<svg viewBox="0 0 920 340" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-bg7-2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="grad-card7-2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Marqueurs de flèche -->
+    <marker id="arr-amber72" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#f59e0b" />
+    </marker>
+    <marker id="arr-green72" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <!-- Fond Principal -->
+  <rect width="920" height="340" rx="14" fill="url(#grad-bg7-2)" stroke="#334155" stroke-width="2"/>
+
+  <!-- En-tête -->
+  <rect x="16" y="12" width="888" height="40" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.4"/>
+  <text x="32" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#f8fafc">
+    TRAÇABILITÉ AGROALIMENTAIRE &amp; RÉDUCTION ITÉRÉE DE DATE
+  </text>
+  <rect x="680" y="18" width="212" height="28" rx="6" fill="#b45309" fill-opacity="0.25" stroke="#f59e0b" stroke-width="1"/>
+  <text x="786" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#fbbf24" text-anchor="middle">
+    Activité 3 &amp; 4 · Palier Maîtrise (8 pts)
+  </text>
+
+  <!-- =========================================================================
+       PANNEAU GAUCHE : FORMAT DE DATE JJ/MM/AAAA (Activité 3)
+       ========================================================================= -->
+  <g id="format-date">
+    <rect x="16" y="60" width="434" height="266" rx="10" fill="url(#grad-card7-2)" stroke="#475569" stroke-width="1.2"/>
+    
+    <rect x="26" y="70" width="414" height="24" rx="5" fill="#334155"/>
+    <text x="233" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#fbbf24" text-anchor="middle">
+      1. Contrôle Algorithmique du Format "JJ/MM/AAAA"
+    </text>
+
+    <!-- Découpage des indices de la chaîne date -->
+    <g transform="translate(28, 105)">
+      <!-- '2' --> <rect x="0" y="18" width="36" height="34" rx="4" fill="#0f172a" stroke="#38bdf8"/>
+      <text x="18" y="41" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">2</text>
+      <text x="18" y="12" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">0</text>
+
+      <!-- '9' --> <rect x="40" y="18" width="36" height="34" rx="4" fill="#0f172a" stroke="#38bdf8"/>
+      <text x="58" y="41" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">9</text>
+      <text x="58" y="12" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">1</text>
+
+      <!-- '/' --> <rect x="80" y="18" width="36" height="34" rx="4" fill="#78350f" fill-opacity="0.4" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="98" y="41" font-family="'Fira Code', monospace" font-size="15" font-weight="700" fill="#fbbf24" text-anchor="middle">/</text>
+      <text x="98" y="12" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#f59e0b" text-anchor="middle">2</text>
+
+      <!-- '0' --> <rect x="120" y="18" width="36" height="34" rx="4" fill="#0f172a" stroke="#38bdf8"/>
+      <text x="138" y="41" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">0</text>
+      <text x="138" y="12" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">3</text>
+
+      <!-- '9' --> <rect x="160" y="18" width="36" height="34" rx="4" fill="#0f172a" stroke="#38bdf8"/>
+      <text x="178" y="41" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">9</text>
+      <text x="178" y="12" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">4</text>
+
+      <!-- '/' --> <rect x="200" y="18" width="36" height="34" rx="4" fill="#78350f" fill-opacity="0.4" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="218" y="41" font-family="'Fira Code', monospace" font-size="15" font-weight="700" fill="#fbbf24" text-anchor="middle">/</text>
+      <text x="218" y="12" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#f59e0b" text-anchor="middle">5</text>
+
+      <!-- '2' --> <rect x="240" y="18" width="36" height="34" rx="4" fill="#0f172a" stroke="#38bdf8"/>
+      <text x="258" y="41" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">2</text>
+      <text x="258" y="12" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">6</text>
+
+      <!-- '0' --> <rect x="280" y="18" width="36" height="34" rx="4" fill="#0f172a" stroke="#38bdf8"/>
+      <text x="298" y="41" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">0</text>
+      <text x="298" y="12" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">7</text>
+
+      <!-- '2' --> <rect x="320" y="18" width="36" height="34" rx="4" fill="#0f172a" stroke="#38bdf8"/>
+      <text x="338" y="41" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">2</text>
+      <text x="338" y="12" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">8</text>
+
+      <!-- '6' --> <rect x="360" y="18" width="36" height="34" rx="4" fill="#0f172a" stroke="#38bdf8"/>
+      <text x="378" y="41" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">6</text>
+      <text x="378" y="12" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">9</text>
+    </g>
+
+    <!-- Règles de conformité algorithmiques -->
+    <rect x="28" y="174" width="410" height="74" rx="6" fill="#0b1120" stroke="#334155" stroke-width="1"/>
+    <text x="40" y="193" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#f59e0b">• Condition 1 :</text>
+    <text x="115" y="193" font-family="system-ui, sans-serif" font-size="10" fill="#e2e8f0">Longueur exacte : <tspan font-family="'Fira Code', monospace" fill="#38bdf8">Long(date) = 10</tspan></text>
+    <text x="40" y="213" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#f59e0b">• Condition 2 :</text>
+    <text x="115" y="213" font-family="system-ui, sans-serif" font-size="10" fill="#e2e8f0">Séparateurs : <tspan font-family="'Fira Code', monospace" fill="#fbbf24">date[2] = "/" ET date[5] = "/"</tspan></text>
+    <text x="40" y="233" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#f59e0b">• Condition 3 :</text>
+    <text x="115" y="233" font-family="system-ui, sans-serif" font-size="10" fill="#e2e8f0">8 autres positions : <tspan font-family="'Fira Code', monospace" fill="#a7f3d0">date[i] ∈ ["0" .. "9"]</tspan></text>
+
+    <!-- Statut validé -->
+    <rect x="28" y="258" width="410" height="56" rx="6" fill="#064e3b" fill-opacity="0.3" stroke="#10b981" stroke-width="1"/>
+    <text x="233" y="278" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#34d399" text-anchor="middle">
+      Validation Algorithmique : Extraction des 8 Chiffres
+    </text>
+    <text x="233" y="298" font-family="'Fira Code', monospace" font-size="10" fill="#a7f3d0" text-anchor="middle">
+      Pour i de 0 à 9 : Si (i ≠ 2 ET i ≠ 5) Alors extraire date[i]
+    </text>
+  </g>
+
+  <!-- =========================================================================
+       PANNEAU DROIT : RÉDUCTION ITÉRÉE DU CHIFFRE DE CONTRÔLE (Activité 4)
+       ========================================================================= -->
+  <g id="reduction-iteree">
+    <rect x="468" y="60" width="436" height="266" rx="10" fill="url(#grad-card7-2)" stroke="#475569" stroke-width="1.2"/>
+    
+    <rect x="478" y="70" width="416" height="24" rx="5" fill="#334155"/>
+    <text x="686" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">
+      2. Algorithme : Tant que (somme &gt; 9) Faire ... FinTantQue
+    </text>
+
+    <!-- Étape 1 : Somme des 8 chiffres -->
+    <rect x="480" y="105" width="412" height="66" rx="6" fill="#0b1120" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="492" y="124" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fbbf24">Étape 1 · Calcul de la somme des 8 chiffres :</text>
+    <text x="492" y="144" font-family="'Fira Code', monospace" font-size="11" fill="#e2e8f0">
+      somme ← 2 + 9 + 0 + 9 + 2 + 0 + 2 + 6  (= <tspan font-weight="700" fill="#f59e0b">30</tspan>)
+    </text>
+    <text x="492" y="161" font-family="system-ui, sans-serif" font-size="9.5" fill="#94a3b8">
+      Test boucle : (30 &gt; 9) est VRAI → Réitérer la somme !
+    </text>
+
+    <!-- Flèche de réduction -->
+    <line x1="686" y1="172" x2="686" y2="188" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr-amber72)"/>
+
+    <!-- Étape 2 : Réitération sur 30 -->
+    <rect x="480" y="190" width="412" height="54" rx="6" fill="#0b1120" stroke="#10b981" stroke-width="1.2"/>
+    <text x="492" y="209" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#34d399">Étape 2 · Nouvelle somme sur le résultat 30 :</text>
+    <text x="492" y="230" font-family="'Fira Code', monospace" font-size="11" fill="#e2e8f0">
+      somme ← 3 + 0  (= <tspan font-weight="700" fill="#4ade80">3</tspan>)
+      <tspan font-family="system-ui, sans-serif" font-size="9.5" fill="#a7f3d0">  (3 ≤ 9 : Arrêt de boucle)</tspan>
+    </text>
+
+    <!-- Clé finale d'horodatage -->
+    <rect x="480" y="254" width="412" height="60" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="686" y="274" font-family="system-ui, sans-serif" font-size="10" fill="#a7f3d0" text-anchor="middle">CLÉ D'HORODATAGE OBTENUE (RÉSULTAT UNIQUE) :</text>
+    <text x="686" y="299" font-family="'Fira Code', monospace" font-size="15" font-weight="700" fill="#facc15" text-anchor="middle">
+      cle ← somme  (Valeur = 3)
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,129 @@
+<svg viewBox="0 0 920 340" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-bg7-3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="grad-card7-3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Marqueurs de flèche -->
+    <marker id="arr-green73" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#10b981" />
+    </marker>
+    <marker id="arr-rose73" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#f43f5e" />
+    </marker>
+  </defs>
+
+  <!-- Fond Principal -->
+  <rect width="920" height="340" rx="14" fill="url(#grad-bg7-3)" stroke="#334155" stroke-width="2"/>
+
+  <!-- En-tête -->
+  <rect x="16" y="12" width="888" height="40" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.4"/>
+  <text x="32" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#f8fafc">
+    SÉCURITÉ FIDUCIAIRE : AUTHENTIFICATION ET AUDIT DE BILLETS
+  </text>
+  <rect x="670" y="18" width="222" height="28" rx="6" fill="#065f46" fill-opacity="0.25" stroke="#10b981" stroke-width="1"/>
+  <text x="781" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">
+    Activité 5 &amp; 6 · Palier Excellence (4 pts)
+  </text>
+
+  <!-- =========================================================================
+       PANNEAU GAUCHE : AUTHENTIFICATION DU BILLET (Activité 5)
+       ========================================================================= -->
+  <g id="authentification-billet">
+    <rect x="16" y="60" width="434" height="266" rx="10" fill="url(#grad-card7-3)" stroke="#475569" stroke-width="1.2"/>
+    
+    <rect x="26" y="70" width="414" height="24" rx="5" fill="#334155"/>
+    <text x="233" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">
+      1. Algorithme de Certification (gn mod 9 = 8)
+    </text>
+
+    <!-- Numéro de série décomposé -->
+    <rect x="28" y="102" width="410" height="48" rx="6" fill="#0b1120" stroke="#334155" stroke-width="1"/>
+    <text x="40" y="120" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Numéro de série :</text>
+    <text x="40" y="139" font-family="'Fira Code', monospace" font-size="13" font-weight="700">
+      <tspan fill="#f59e0b">'S'</tspan><tspan fill="#38bdf8">04012543281</tspan>
+      <tspan font-family="system-ui, sans-serif" font-size="10" font-weight="normal" fill="#94a3b8"> (1 lettre majuscule + 11 chiffres)</tspan>
+    </text>
+
+    <!-- Étape de transformation algorithmique -->
+    <g transform="translate(28, 156)">
+      <rect x="0" y="0" width="410" height="88" rx="6" fill="#0b1120" stroke="#10b981" stroke-width="1"/>
+      <text x="12" y="19" font-family="system-ui, sans-serif" font-size="10" fill="#a7f3d0">
+        • Étape 1 : <tspan font-family="'Fira Code', monospace" font-size="10.5" fill="#facc15">rang ← Ord(serie[0]) - Ord("A") + 1</tspan>  (rang = 19)
+      </text>
+      <text x="12" y="39" font-family="system-ui, sans-serif" font-size="10" fill="#a7f3d0">
+        • Étape 2 : <tspan font-family="'Fira Code', monospace" font-size="10.5" fill="#38bdf8">gn ← Valeur(ConvCh(rang) + serie[1:12])</tspan>
+      </text>
+      <text x="24" y="56" font-family="'Fira Code', monospace" font-size="10" fill="#94a3b8">
+        gn = 1904012543281
+      </text>
+      <text x="12" y="76" font-family="system-ui, sans-serif" font-size="10" fill="#a7f3d0">
+        • Étape 3 : <tspan font-family="'Fira Code', monospace" font-size="10.5" font-weight="700" fill="#4ade80">Si (gn mod 9 = 8) Alors Billet Authentique</tspan>
+      </text>
+    </g>
+
+    <!-- Statut décision -->
+    <rect x="28" y="252" width="410" height="64" rx="6" fill="#064e3b" fill-opacity="0.35" stroke="#10b981" stroke-width="1.2"/>
+    <text x="233" y="272" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">
+      ✓ Décision : Billet Authentique certifié (1904012543281 mod 9 = 8)
+    </text>
+    <text x="233" y="295" font-family="system-ui, sans-serif" font-size="9.5" fill="#a7f3d0" text-anchor="middle">
+      Rejet si mod ≠ 8 : ex. "A00000000001" ⇒ 100000000001 mod 9 = 2 ≠ 8
+    </text>
+  </g>
+
+  <!-- =========================================================================
+       PANNEAU DROIT : AUDIT DE LIASSE DE BILLETS (Activité 6)
+       ========================================================================= -->
+  <g id="audit-liasse">
+    <rect x="468" y="60" width="436" height="266" rx="10" fill="url(#grad-card7-3)" stroke="#475569" stroke-width="1.2"/>
+    
+    <rect x="478" y="70" width="416" height="24" rx="5" fill="#334155"/>
+    <text x="686" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle">
+      2. Algorithme d'Audit : Pour i de 1 à N Faire ... FinPour
+    </text>
+
+    <!-- Simulation de liasse -->
+    <g transform="translate(480, 102)">
+      <!-- Billet 1 -->
+      <rect x="0" y="0" width="412" height="34" rx="5" fill="#0b1120" stroke="#10b981" stroke-width="1"/>
+      <text x="12" y="22" font-family="'Fira Code', monospace" font-size="10" fill="#f8fafc">
+        i = 1 : "S04012543281"  (mod 9 = 8)
+      </text>
+      <rect x="290" y="7" width="110" height="20" rx="4" fill="#064e3b" stroke="#10b981"/>
+      <text x="345" y="21" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#34d399" text-anchor="middle">✓ AUTHENTIQUE</text>
+
+      <!-- Billet 2 (Contrefaçon) -->
+      <rect x="0" y="40" width="412" height="34" rx="5" fill="#0b1120" stroke="#f43f5e" stroke-width="1"/>
+      <text x="12" y="62" font-family="'Fira Code', monospace" font-size="10" fill="#f8fafc">
+        i = 2 : "A00000000001"  (mod 9 = 2)
+      </text>
+      <rect x="290" y="47" width="110" height="20" rx="4" fill="#4c0519" stroke="#f43f5e"/>
+      <text x="345" y="61" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#fb7185" text-anchor="middle">✗ REJET (2 ≠ 8)</text>
+
+      <!-- Billet 3 -->
+      <rect x="0" y="80" width="412" height="34" rx="5" fill="#0b1120" stroke="#10b981" stroke-width="1"/>
+      <text x="12" y="102" font-family="'Fira Code', monospace" font-size="10" fill="#f8fafc">
+        i = 3 : "S04012543281"  (mod 9 = 8)
+      </text>
+      <rect x="290" y="87" width="110" height="20" rx="4" fill="#064e3b" stroke="#10b981"/>
+      <text x="345" y="101" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#34d399" text-anchor="middle">✓ AUTHENTIQUE</text>
+    </g>
+
+    <!-- Rapport de caisse & Alerte -->
+    <rect x="480" y="226" width="412" height="90" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.2"/>
+    <text x="492" y="244" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#c7d2fe">BILAN ALGORITHMIQUE &amp; DÉCISION SÉCURITÉ :</text>
+    <text x="492" y="262" font-family="'Fira Code', monospace" font-size="10.5" fill="#e0e7ff">
+      Total : 3  |  Authentiques : <tspan fill="#4ade80" font-weight="700">2</tspan>  |  Rejets : <tspan fill="#f87171" font-weight="700">1</tspan>
+    </text>
+    <rect x="492" y="272" width="388" height="24" rx="4" fill="#881337" fill-opacity="0.6" stroke="#f43f5e"/>
+    <text x="686" y="288" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700" fill="#fecdd3" text-anchor="middle">
+      Si (nb_suspects &gt; 0) Alors Alerte("Faux billet détecté !") FinSi
+    </text>
+  </g>
+</svg>

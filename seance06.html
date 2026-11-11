@@ -426,7 +426,7 @@
                         <i class="bi bi-table me-1"></i> Répertoire des codes ASCII standard
                       </h4>
                       <p class="small text-muted mb-3">
-                        En mémoire, chaque caractère est encodé par une valeur entière scalaire accessible par
+                        En mémoire, chaque caractère est encodé par une valeur entière accessible par
                         <code>Ord(c)</code> et restituable par <code>Chr(code)</code>.
                       </p>
 
@@ -461,7 +461,7 @@
                       </div>
 
                       <!-- Tableau des correspondances directes -->
-                      <h5 class="small text-muted fw-semibold mb-2">Correspondances scalaires directes :</h5>
+                      <h5 class="small text-muted fw-semibold mb-2">Correspondances directes :</h5>
                       <div class="table-responsive mb-3">
                         <table class="table table-bordered table-sm text-center small mb-0 font-monospace">
                           <thead>
@@ -870,7 +870,7 @@
                 <!-- Question 2 : Algorithme avec arrêt prématuré -->
                 <div class="col-md-6">
                   <div class="card card-custom h-100 border border-primary border-opacity-25 shadow-sm">
-                    <div class="card-header-custom d-flex align-items-center gap-2 py-2 px-3">
+                    <div class="card-header-custom d-flex justify-content-start align-items-center gap-2 py-2 px-3">
                       <span class="badge bg-primary rounded-pill px-2 py-1 fw-bold">Q2</span>
                       <h4 class="h6 mb-0 fw-bold text-primary">Algorithme avec arrêt prématuré</h4>
                     </div>
@@ -887,7 +887,7 @@
                 <!-- Question 3 : Traces d'exécution sur cahier -->
                 <div class="col-md-6">
                   <div class="card card-custom h-100 border border-warning border-opacity-25 shadow-sm">
-                    <div class="card-header-custom d-flex align-items-center gap-2 py-2 px-3">
+                    <div class="card-header-custom d-flex justify-content-start align-items-center gap-2 py-2 px-3">
                       <span class="badge bg-warning text-dark rounded-pill px-2 py-1 fw-bold">Q3</span>
                       <h4 class="h6 mb-0 fw-bold text-warning">Traces d'exécution sur cahier</h4>
                     </div>
@@ -945,10 +945,40 @@
                 </div>
               </div>
 
-              <p class="small mb-2">La formule arithmétique rigoureuse appliquée à tout caractère majuscule $c \in ['A'
+              <p class="small mb-2">La formule utilisée pour crypter les lettres majuscules $c \in ['A'
                 ; 'Z']$ est :</p>
               <div class="p-2 bg-body-tertiary rounded text-center small mb-3">
-                $$c_{\text{chiffré}} = \text{Chr}\Big(65 + \big(\text{Ord}(c) - 65 + k\big) \pmod{26}\Big)$$
+                $$c_{\text{chiffré}} = \text{Chr}\Big(65 + \big(\text{Ord}(c) - 65 + k\big) \text{ mod 26}\Big)$$
+              </div>
+
+              <!-- Exemple illustratif Chiffrement de César -->
+              <div class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 mb-3">
+                <h5 class="small text-primary fw-semibold mb-2">
+                  <i class="bi bi-lightbulb me-1"></i> Exemple illustratif (Clé $k = 3$) :
+                </h5>
+                <div class="row g-2 small">
+                  <div class="col-md-6">
+                    <div class="p-2 bg-dark bg-opacity-25 rounded-2 border border-secondary border-opacity-25 h-100">
+                      <strong class="text-info d-block mb-1">• Décalage direct :</strong>
+                      Pour la lettre <code>'A'</code> :<br>
+                      $\text{Ord}('A') = 65$<br>
+                      $(65 - 65 + 3) \bmod 26 = 3 \implies 65 + 3 = 68$<br>
+                      $\text{Chr}(68) =$ <code>'D'</code>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="p-2 bg-dark bg-opacity-25 rounded-2 border border-secondary border-opacity-25 h-100">
+                      <strong class="text-warning d-block mb-1">• Rebouclage circulaire :</strong>
+                      Pour la lettre <code>'X'</code> :<br>
+                      $\text{Ord}('X') = 88$<br>
+                      $(88 - 65 + 3) \bmod 26 = 26 \bmod 26 = 0 \implies 65 + 0 = 65$<br>
+                      $\text{Chr}(65) =$ <code>'A'</code>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-2 small pt-2 border-top border-secondary border-opacity-25">
+                  <strong>Application sur un mot :</strong> Le message <code>"INFO"</code> crypté avec la clé $k = 3$ donne <code>"LQIR"</code> (et <code>"BAC"</code> donne <code>"EDF"</code>).
+                </div>
               </div>
 
               <ol class="small mb-3 ps-3">
@@ -990,6 +1020,40 @@
                 <div class="form-text text-muted small mt-1">
                   <strong>Figure 4 :</strong> Écran d'analyse génomique : scanning automatisé de séquences d'ADN,
                   dénombrement de motifs dinucléotidiques et calcul du taux GC.
+                </div>
+              </div>
+
+              <!-- Exemple illustratif Analyse ADN -->
+              <div class="p-3 bg-body-tertiary rounded-3 border border-secondary border-opacity-25 mb-3">
+                <h5 class="small text-primary fw-semibold mb-2">
+                  <i class="bi bi-lightbulb me-1"></i> Exemple illustratif :
+                </h5>
+                <p class="small mb-2">
+                  Soit la séquence d'ADN <code>seq = "ATCGATCGTTGA"</code> de longueur $\text{Long}(seq) = 12$ :
+                </p>
+                <div class="row g-2 small">
+                  <div class="col-md-6">
+                    <div class="p-2 bg-dark bg-opacity-25 rounded-2 border border-secondary border-opacity-25 h-100">
+                      <strong class="text-info d-block mb-1">• Dénombrement du motif <code>"CG"</code> :</strong>
+                      Extraction par fenêtres successives de 2 caractères :
+                      <ul class="mb-0 ps-3 mt-1">
+                        <li>Indice 2 : <code>Sous_chaine(seq, 2, 4)</code> = <code>"CG"</code> <i class="bi bi-check-lg text-success"></i></li>
+                        <li>Indice 6 : <code>Sous_chaine(seq, 6, 8)</code> = <code>"CG"</code> <i class="bi bi-check-lg text-success"></i></li>
+                      </ul>
+                      $\implies$ Nombre d'occurrences de <code>"CG"</code> = <strong>2</strong>.
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="p-2 bg-dark bg-opacity-25 rounded-2 border border-secondary border-opacity-25 h-100">
+                      <strong class="text-warning d-block mb-1">• Calcul du Taux GC :</strong>
+                      Dénombrement des bases <code>'G'</code> et <code>'C'</code> :
+                      <ul class="mb-0 ps-3 mt-1">
+                        <li>$\text{Nb}(G) = 3$ (indices 3, 7 et 10)</li>
+                        <li>$\text{Nb}(C) = 2$ (indices 2 et 6)</li>
+                      </ul>
+                      $\text{Taux GC} = \dfrac{3 + 2}{12} \times 100 = \dfrac{5}{12} \times 100 \approx \mathbf{41{,}67\,\%}$
+                    </div>
+                  </div>
                 </div>
               </div>
 

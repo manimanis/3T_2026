@@ -17,7 +17,7 @@ createApp({
         { id: 2, shortTitle: "Cycle 2 · Boucle Tant Que" },
         { id: 3, shortTitle: "Cycle 3 · Répéter & Selon" },
         { id: 4, shortTitle: "Cycle 4 · Chaînes de caractères" },
-        { id: 5, shortTitle: "Cycle 5 · Tableaux 1D (numpy)" },
+        { id: 5, shortTitle: "Cycle 5 · Tableaux" },
         { id: 6, shortTitle: "Cycle 6 · Filtrage sélectif sur Tableaux" },
         { id: 7, shortTitle: "Cycle 7 · Modularité logicielle" },
         { id: 8, shortTitle: "Cycle 8 · Arithmétique I (PGCD & PPCM)" },
@@ -28,11 +28,11 @@ createApp({
         {
           id: 1,
           moduleId: 1,
-          title: "Séance 1 : Série N°0 · Révision, Réactivation & Évaluation Diagnostique",
+          title: "Séance 1 : Diagnostic, Réactivation active & Synthèse autonome",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance01.html",
-          description: "Diagnostic à froid sans machine (types, affectation, conditions), réactivation active guidée (boucle Pour, accumulation, débogage) et synthèse autonome (campagne de mesures, barème /40).",
+          description: "Diagnostic à froid sans machine (types simples, affectation, conditions), réactivation active guidée (boucle Pour, accumulation, modification & débogage) et synthèse autonome (campagne de mesures, TDO, barème /40).",
           objectives: [
             "Diagnostic à froid sans machine (types simples, affectation, tests aux limites)",
             "Réactivation active guidée (boucle Pour, accumulation, débogage et modification)",
@@ -46,7 +46,7 @@ createApp({
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance02.html",
-          description: "Découverte des itérations non bornées, patron universel de contrôle de saisie avec TDO, tracé sur cahier, débogage de boucle infinie et modélisation scientifique.",
+          description: "Découverte des itérations non bornées, pré-condition, patron universel de contrôle de saisie avec TDO, tracé sur cahier, débogage de boucle infinie et modélisation scientifique.",
           objectives: [
             "Différencier boucle bornée (Pour) et boucle non bornée (Tant Que)",
             "Maîtriser le patron de contrôle de saisie avec rejet et réitération",
@@ -56,43 +56,43 @@ createApp({
         {
           id: 3,
           moduleId: 2,
-          title: "Séance 3 : [TP N°1] Contrôle de saisie & Tant Que sur Machine",
+          title: "Séance 3 : [TP N°1] Contrôle de saisie & Boucle Tant Que sur Machine",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance03.html",
-          description: "Évaluation pratique individuelle sur machine (/20 pts) : validation de concentrations chimiques, détection de sentinelle et simulation de vidange de réservoir.",
+          description: "Travaux Pratiques : sécurisation d'accès pupitre MOCN (décompte par divisions entières), clé de parité, télémétrie par sentinelle et simulation dynamique de vidange.",
           objectives: [
-            "Sécuriser la saisie d'une concentration molaire en Python (float)",
-            "Traiter une suite d'absorbances arrêtée par une sentinelle négative",
-            "Modéliser la vidange d'un réservoir à débit décroissant et valider par jeux d'essais"
+            "Contrôle d'accès sécurisé à une machine-outil et analyse de chiffres",
+            "Télémétrie optique par sentinelle et calcul de moyenne protégé anti-division par zéro",
+            "Modélisation dynamique de vidange et calibrage de capteur par encadrement"
           ]
         },
         {
           id: 4,
           moduleId: 3,
-          title: "Séance 4 : Boucle Répéter & Structure conditionnelle Selon",
+          title: "Séance 4 : Boucle Répéter ... Jusqu'à & Structure Selon",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance04.html",
-          description: "Boucle à post-condition Répéter...Jusqu'à, structure à choix multiples Selon, traduction Python 3.10+ avec match...case et conception de menus interactifs.",
+          description: "Itérations post-test Répéter...Jusqu'à, sélecteurs scalaires avec la structure Selon, équivalent Python 3.10+ match...case, menus interactifs et modélisation cinématique.",
           objectives: [
-            "Maîtriser la condition d'arrêt de la boucle Répéter...Jusqu'à",
-            "Structurer les alternatives multiples avec Selon et match...case",
-            "Construire un menu interactif de formules physiques maintenu par boucle"
+            "Maîtriser la condition d'arrêt de la boucle post-condition Répéter...Jusqu'à",
+            "Structurer les alternatives multiples avec Selon et match...case en Python",
+            "Concevoir des menus interactifs de calculs physiques maintenus par boucle"
           ]
         },
         {
           id: 5,
           moduleId: 3,
-          title: "Séance 5 : [TP N°2] Menus interactifs & Boucles combinées",
+          title: "Séance 5 : [TP N°2] Menus interactifs & Boucles combinées sur Machine",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance05.html",
-          description: "Évaluation pratique individuelle sur machine (/20 pts) : simulateur de mécanique des fluides, contrôle de saisie du menu, calculs de pression et débits.",
+          description: "Travaux Pratiques : banc d'essai électrique didactique (loi d'Ohm), arbitrage de priorité réseau (Duel), déstockage sécurisé (Jeu de Nim) et compteur de session.",
           objectives: [
-            "Programmer un menu interactif complet sous Python",
-            "Forcer la saisie des choix dans l'ensemble des options valides",
-            "Maintenir l'exécution continue jusqu'à l'option explicite de sortie"
+            "Programmer un menu interactif complet sous Python et sécuriser la saisie des choix",
+            "Implémenter les modules applicatifs (loi d'Ohm, priorité réseau, Jeu de Nim)",
+            "Maintenir la session par une boucle globale avec compteur statistique d'exécutions"
           ]
         },
         {
@@ -102,31 +102,31 @@ createApp({
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance06.html",
-          description: "Indexation base 0, répertoire des fonctions officielles (Long, Pos, Sous_chaine, Ord, Chr), dénombrements conditionnels et algorithme du palindrome.",
+          description: "Indexation base 0, répertoire des fonctions officielles (Long, Pos, Sous_chaine, Ord, Chr), dénombrements conditionnels, palindrome enzymatique et chiffrement de César.",
           objectives: [
-            "Manipuler les chaînes avec indexation base 0 (de 0 à Long-1)",
-            "Exploiter rigoureusement les fonctions normalisées autorisées",
-            "Concevoir l'algorithme optimisé de vérification d'un palindrome"
+            "Manipuler les chaînes avec indexation base 0 et découpage en sous-chaînes",
+            "Mettre en œuvre les fonctions scalaires Ord et Chr et les dénombrements",
+            "Concevoir l'algorithme du palindrome et le chiffrement de César modulaire"
           ]
         },
         {
           id: 7,
           moduleId: 4,
-          title: "Séance 7 : [TP N°3] Traitement textuel & Validation de formats",
+          title: "Séance 7 : [TP N°3] Traitement textuel & Validation de formats sur Machine",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance07.html",
-          description: "Évaluation pratique sur machine (/20 pts) : contrôle et certification de codes de réactifs de laboratoire (LL-NNNN), séparateur tiret et clé modulo 19.",
+          description: "Travaux Pratiques : validation de trame binaire et bit de parité impaire, traçabilité de lot et réduction itérée, certification de billets et audit de liasse.",
           objectives: [
-            "Contrôler la longueur et la composition alphanumérique d'une chaîne",
-            "Extraire et valider les sous-chaînes avec Sous_chaine et Estnum",
-            "Calculer une clé de contrôle arithmétique et valider par jeux d'essais"
+            "Valider le format binaire d'une trame de 8 bits et calculer le bit de parité impaire",
+            "Contrôler la conformité de format de date 'JJ/MM/AAAA' et calculer la clé d'horodatage par réduction itérée",
+            "Certifier l'authenticité de billets de banque (Modulo 9 = 8) et automatiser l'audit d'une liasse de billets"
           ]
         },
         {
           id: 8,
           moduleId: 5,
-          title: "Séance 8 : Tableaux 1D statiques : Déclaration, Saisie & Cumuls",
+          title: "Séance 8 : Tableaux : Déclaration, Saisie & Cumuls",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance08.html",
@@ -140,11 +140,11 @@ createApp({
         {
           id: 9,
           moduleId: 5,
-          title: "Séance 9 : [TP N°4] Tableaux 1D (numpy), Cumuls & Extrema",
+          title: "Séance 9 : [TP N°4] Tableaux, Cumuls & Extrema",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance09.html",
-          description: "Évaluation pratique sur machine (/20 pts) : traitement des mesures de tension d'un banc expérimental, moyenne, extrema avec positions et relevés aberrants.",
+          description: "Travaux Pratiques : traitement des mesures de tension d'un banc expérimental, moyenne, extrema avec positions et relevés aberrants.",
           objectives: [
             "Contrôler la taille statique N in [5; 30] et allouer le tableau numpy",
             "Effectuer les calculs de moyenne et identifier minimum et maximum",
@@ -154,7 +154,7 @@ createApp({
         {
           id: 10,
           moduleId: 6,
-          title: "Séance 10 : Tableaux 1D : Comptages conditionnels & Filtrage sélectif",
+          title: "Séance 10 : Tableaux : Comptages conditionnels & Filtrage sélectif",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance10.html",
@@ -172,7 +172,7 @@ createApp({
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance11.html",
-          description: "Évaluation pratique sur machine (/20 pts) : tri automatisé d'un lot de pièces mécaniques, séparation pièces acceptées vs rebuts et bilan de conformité.",
+          description: "Travaux Pratiques : tri automatisé d'un lot de pièces mécaniques, séparation pièces acceptées vs rebuts et bilan de conformité.",
           objectives: [
             "Manipuler simultanément trois tableaux statiques numpy",
             "Gérer deux indices d'insertion indépendants j1 et j2",
@@ -200,7 +200,7 @@ createApp({
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance13.html",
-          description: "Évaluation pratique sur machine (/20 pts) : application d'analyse pluviométrique architecturée en 5 sous-programmes indépendants et programme principal.",
+          description: "Travaux Pratiques : application d'analyse pluviométrique architecturée en 5 sous-programmes indépendants et programme principal.",
           objectives: [
             "Concevoir des fonctions pures et des procédures avec passage par référence",
             "Assurer l'absence d'effets de bord parasites dans les fonctions calculatoires",
@@ -228,7 +228,7 @@ createApp({
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance15.html",
-          description: "Évaluation pratique sur machine (/20 pts) : fonctions PGCD et PPCM autonomes, calcul fractionnaire exact et synchronisation orbitale de satellites.",
+          description: "Travaux Pratiques : fonctions PGCD et PPCM autonomes, calcul fractionnaire exact et synchronisation orbitale de satellites.",
           objectives: [
             "Implémenter de manière autonome les fonctions pures PGCD et PPCM",
             "Résoudre un problème de synchronisation de périodes orbitales",
@@ -256,7 +256,7 @@ createApp({
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance17.html",
-          description: "Évaluation pratique sur machine (/20 pts) : fonction de primalité optimisée, tableau numpy de premiers et factorisation des nombres 360, 1024 et 1729.",
+          description: "Travaux Pratiques : fonction de primalité optimisée, tableau numpy de premiers et factorisation des nombres 360, 1024 et 1729.",
           objectives: [
             "Programmer un prédicat booléen Est_Premier sans faille",
             "Remplir un tableau numpy avec les N premiers nombres premiers",
@@ -266,7 +266,7 @@ createApp({
         {
           id: 18,
           moduleId: 10,
-          title: "Séance 18 : Recherche Séquentielle & Tri à Bulles sur Tableaux 1D",
+          title: "Séance 18 : Recherche Séquentielle & Tri à Bulles sur Tableaux",
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance18.html",
@@ -284,7 +284,7 @@ createApp({
           duration: "1h 30mn",
           status: "Disponible",
           link: "seance19.html",
-          description: "Évaluation pratique sur machine (/20 pts) : classement d'un concours scientifique, recherche de position, tri à bulles croissant/décroissant et gestion des ex aequo.",
+          description: "Travaux Pratiques : classement d'un concours scientifique, recherche de position, tri à bulles croissant/décroissant et gestion des ex aequo.",
           objectives: [
             "Programmer les modules de recherche de présence et de position",
             "Implémenter le tri à bulles décroissant avec affichage du rang",
